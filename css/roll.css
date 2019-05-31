@@ -1,0 +1,192 @@
+@font-face {
+	font-family: 'HelveticaNeueCyr';
+	src: url('../fonts/HelveticaNeueCyr-Medium.eot');
+	src: local('HelveticaNeueCyr-Medium'),
+		url('../fonts/HelveticaNeueCyr-Medium.eot?#iefix') format('embedded-opentype')
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'HelveticaNeueCyr';
+	src: url('../fonts/HelveticaNeueCyr-Bold.eot');
+	src: local('HelveticaNeueCyr-Bold'),
+		url('../fonts/HelveticaNeueCyr-Bold.eot?#iefix') format('embedded-opentype')
+	font-weight: bold;
+	font-style: normal;
+}
+body {
+	padding: 0;
+	margin: 0;
+}
+* {
+	font-family: "HelveticaNeueCyr";
+	padding: 0;
+	margin: 0;
+}
+.menu {
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	padding: 0;
+	width: calc(479px + 12px);
+	height: calc(479px + 12px);
+	background: #1b2625;
+	border-radius: 50%;
+	border:21px solid #3d4147;
+	box-shadow: 0px 0px 15px 1px rgba(251,228,1,0.8);
+}
+.menu .center {
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+	position: absolute;
+	z-index: 9999;
+	background: #101c25;
+	width: 142px;
+	height: 142px;
+	border-radius: 50%;
+}
+.menu .center .imagesBlock {
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	background: #101c25;
+	border:6px solid #3d4147;
+	margin: 5px;
+	text-align: center;
+}
+.menu .center .imagesBlock img {
+	margin-top: 7px;
+}
+.menu ul {
+	transform: rotate(calc(45deg / 2));
+	width: 479px;
+	height: 479px;
+	padding: 0;
+	margin: 0 auto;
+	margin-top: 6px;
+	list-style: none;
+	position: relative;
+	z-index: 1;
+	border-radius: 50%;
+	background-color: #c3c5c6;
+	overflow: hidden;
+
+}
+.menu li {
+	position: absolute;
+	background-color: #bdbfc0;
+	border: 2px solid #c4c6c7;
+	width: 240px;
+	height: 240px;
+	transform-origin: 100% 100%;
+	overflow: hidden;
+	cursor:pointer;
+}
+.slot {
+    width: 150px;
+    height: 200px;
+    display: block;
+    text-align: center;
+    font-size: 20px;
+}
+.slot1 {
+	color: white;
+	transform: skew(-45deg) rotate(-22.5deg);
+	margin-left: 16px;
+	margin-top: 164px;
+}
+.slot2 {
+	color: white;
+	transform: skew(-45deg) rotate(-67.6deg);
+	margin-left: 110px;
+    margin-top: 99px;
+}
+.slot3 {
+	color: white;
+	transform: skew(-45deg) rotate(-112.5deg);
+	margin-left: 200px;
+    margin-top: 30px;
+}
+.slot4 {
+	color: white;
+	transform: skew(-45deg) rotate(-157.5deg);
+	margin-left: 185px;
+    margin-top: 15px;
+}
+.slot5 {
+	color: white;
+	transform: skew(-45deg) rotate(-202.5deg);
+	margin-left: 105px;
+    margin-top: 20px;
+}
+.slot6 {
+	color: white;
+	transform: skew(-45deg) rotate(-247.5deg);
+	margin-left: 15px;
+    margin-top: 38px;
+}
+.slot7 {
+	color: white;
+	transform: skew(-45deg) rotate(-292.5deg);
+	margin-left: -10px;
+    margin-top:100px;
+}
+.slot8 {
+	color: white;
+	transform: skew(-45deg) rotate(-337.5deg);
+	margin-left: -20px;
+    margin-top: 150px;
+}
+.menu li:hover {
+	background-color: #d6c823;
+} 
+.menu li:nth-child(1) {
+	transform: rotate(0deg) skew(45deg);
+}
+.menu li:nth-child(2) {
+	transform: rotate(45deg) skew(45deg);
+}
+.menu li:nth-child(3) {
+	transform: rotate(90deg) skew(45deg);
+}
+.menu li:nth-child(4) {
+	transform: rotate(135deg) skew(45deg);
+}
+.menu li:nth-child(5) {
+	transform: rotate(180deg) skew(45deg);
+}
+.menu li:nth-child(6) {
+	transform: rotate(225deg) skew(45deg);
+}
+.menu li:nth-child(7) {
+	transform: rotate(270deg) skew(45deg);
+}
+.menu li:nth-child(8) {
+	transform: rotate(315deg) skew(45deg);
+}
+@media(max-width:1920px) and (max-height:1080px), (max-width:1920px) and (max-height:1200px), (max-width:1680px) and (max-height:1050px)
+{
+	.menu{
+		transform:translate(-50%,-50%) scale(.8);
+	}
+}
+@media(max-width:1440px) and (max-height:1050px)
+{
+	.menu{
+		transform:translate(-50%,-50%) scale(.7);
+	}
+}
+@media(max-width:1600px) and (max-height:900px), (max-width:1440px) and (max-height:900px)
+{
+	.menu{
+		transform:translate(-50%,-50%) scale(.6);
+	}
+}
+@media(max-width:1366px) and (max-height:768px), (max-width:1280px) and (max-height:720px), (max-width:1280px) and (max-height:800px), @media (max-width:1024px) and (max-height: 768px), (max-width:800px) and (max-height: 600px)
+{
+	.menu{
+		transform:translate(-50%,-50%) scale(.5);
+	}
+}

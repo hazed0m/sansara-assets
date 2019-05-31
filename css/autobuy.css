@@ -1,0 +1,263 @@
+* {
+	font-family: "HelveticaNeueCyr";
+	padding:0;
+	margin:0;
+	color:#fff;	
+	box-sizing:border-box;
+}
+.container .main-wrapper
+{
+	position: absolute;
+	top:5px;
+	left:5px;
+	width:305px;
+	height:auto;
+	background:#36393f;
+	border-radius:10px;
+	padding-bottom:35px;
+}
+.main-wrapper .title-block
+{
+	height:34px;
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	padding:0 14px;
+	font-size:16.41px;
+	font-weight:500;
+}
+.main-wrapper .page-block .del
+{
+	margin:0 -5px;
+}
+.main-wrapper .page-block
+{
+	font-size:15.65px;
+}
+.car-wrap
+{
+	max-height:296px;
+	overflow-x:hidden;
+}
+.car-wrap::-webkit-scrollbar { width: 0; }
+.inner-wrap .up-but, .inner-wrap .bottom-but
+{
+	width:100%;
+	height:34px;
+	background:#292a2c;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.inner-wrap .up-but:hover, .inner-wrap .bottom-but:hover
+{
+	background:rgba(0,0,0,0.8);
+}
+.inner-wrap .up-but:hover i, .inner-wrap .bottom-but:hover i
+{
+	transform: scale(1.25);
+}
+.car-wrap
+{
+	padding:3px 0;
+}
+.car-wrap .car-item:first-child
+{
+	margin:0;
+}
+.car-wrap .car-item
+{
+	height:30px;
+	background:#484c52;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding:0 7px 0 10px;
+	cursor: pointer;	
+	font-size:19.06px;
+	margin-top:7px;	
+}
+.car-item .price-block
+{
+	display: flex;
+}
+.car-wrap .car-item .price-block div
+{
+	font-size:14px;
+	margin-top:4px;
+}
+.car-wrap .active
+{
+	background:#fdfd01;
+}
+.car-wrap .active .car-name, .car-wrap .active .price, .car-wrap .active div
+{
+	color:#160b5b!important;
+}
+.container .rotate-wrapper
+{
+	position: absolute;
+	left:5px;
+	bottom:5px;
+	width:240px;
+	height:90px;
+	background:#36393f;
+	border-radius:10px;
+	padding:7px 10px;
+}
+.rotate-wrapper .title
+{
+	font-size:13.66px;
+	font-weight: 500;
+	text-align: center;
+	margin-bottom:10px;
+}
+.rangeslider__handle
+{
+	width:15px;
+	height:15px;
+	box-shadow: 0 0 5px #ffff00;
+}
+.rangeslider--horizontal .rangeslider__handle
+{
+	top:-2px;
+}
+.rotate-wrapper .but, .buy-wrapper .but
+{
+	margin:11px auto 0 auto;
+	width:95px;
+	height:28px;
+	background:#ffff00;
+	color:#050550;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius:10px;
+	font-size:11.47px;
+	font-weight:500;
+	cursor: pointer;
+	box-shadow: 0 0 6px #ffff00;
+}
+.car-item:hover
+{
+	background:rgba(255,255,0,0.3);
+}
+.car-item.active:hover
+{
+	background:rgba(255,255,0,1);
+}
+.color-wrapper .color-item:hover, .rotate-wrapper .but:hover, .buy-wrapper .but:hover, .rangeslider__handle:hover, .radio-block div:hover
+{
+	transform: scale(1.05);
+}
+.container .buy-wrapper
+{
+	position: absolute;
+	right:5px;
+	bottom:5px;
+	width:176px;
+	height:105px;
+	background:#36393f;
+	border-radius:10px;
+}
+.buy-wrapper .but
+{
+	margin-top:8px;
+	width:160px;
+	height:45px;
+	font-size:17.98px;
+}
+.buy-wrapper div.card, .buy-wrapper div.cash
+{
+	width:40px;
+	height:44px;
+	display:flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	padding:3px 0;	
+	border-radius:5px;
+	background: #484c52;
+	cursor: pointer;
+	box-sizing: border-box;
+	margin:0 6px;
+}
+.buy-wrapper .radio-block
+{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	margin-top:4px;
+}
+.buy-wrapper .radio-block i
+{
+	margin-top:6px;
+	color:#fafafa;
+	font-size:12px;
+}
+.container .color-wrapper
+{
+	position: absolute;
+	right:5px;
+	top:50%;
+	transform:translate(0,-50%);
+	width:162px;
+	height:202px;
+	background:#36393f;
+	border-radius:10px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	padding:9px 5px 5px 7px;
+}
+.color-wrapper .color-item
+{
+	width:69px;
+	height:38px;
+	border-radius:2px;
+	cursor: pointer;
+}
+.color-wrapper .color-item.active
+{
+	transform: scale(1.05);
+	box-shadow:0 0 5px #dedede;
+}
+.color-wrapper .color-item:hover
+{
+	box-shadow: 0 0 2px #dedede;
+}
+.color-wrapper .color-item.color1
+{
+	background-color:#8393ca;
+}
+.color-wrapper .color-item.color2
+{
+	background-color:#ed1c24;
+}
+.color-wrapper .color-item.color3
+{
+	background-color:#ed145b;
+}
+.color-wrapper .color-item.color4
+{
+	background-color:#39b54a;
+}
+.color-wrapper .color-item.color5
+{
+	background-color:#ffff00;
+}
+.color-wrapper .color-item.color6
+{
+	background-color:#003471;
+}
+.color-wrapper .color-item.color7
+{
+	background-color:#ec008c;
+}
+.color-wrapper .color-item.color8
+{
+	background-color:#ed1c24;
+}

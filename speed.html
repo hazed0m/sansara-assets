@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>speed</title>
+	<link rel="stylesheet" href="fonts/font.css">
+	<link rel="stylesheet" href="css/speed.css">
+</head>
+<body>
+	<div class="container" id="speed" v-show="this.speedActive === true">
+		<div class="radius">
+			<div class="arrow-block">
+				<div class="center">
+					<div class="inner-center"></div>
+				</div>
+				<div class="arrow" :style="{ transform: 'rotateZ('+ this.vehicleArrowSpeed + 'deg)'}"></div>
+			</div>
+		</div>
+		<div class="info-wrapper">
+			<div class="info-cont">
+				<div class="gear-cont">
+					<div class="gear">{{ this.gear }}</div>
+				</div>
+				<div class="speed-cont">
+					<div class="speed">{{ this.vehicleSpeed }}</div>
+				</div>
+			</div>	
+		</div>
+		<div class="power-wrapper">
+			<div class="status-cont">
+				<div class="engine"><img src="img/engine.png" alt="engine"></div>	
+				<div class="carbody alert"><img src="img/carbody.png" alt="carbody"></div>
+			</div>
+			<div class="power-cont">
+				<div class="energy-block"></div>
+				<div class="energy-block"></div>
+				<div class="energy-block"></div>
+				<div class="energy-block"></div>
+				<div class="energy-block active"></div>
+				<div class="energy-block active"></div>
+				<div class="energy-block active"></div>
+				<div class="energy-percent">30л</div>л
+			</div>
+		</div>
+	</div>
+	<script src="js/vue.js"></script>
+    <script src="js/speed.js"></script>
+</body>
+</html>

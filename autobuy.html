@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>autobuy</title>
+	<link rel="stylesheet" href="fonts/font.css">
+	<link rel="stylesheet" href="css/slider.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="stylesheet" href="css/autobuy.css">
+</head>
+<body>
+	<div class="container">
+		<div class="main-wrapper">
+			<div class="title-block">
+				<div class="title">Автосалон '<span class="auto-title"></span>'</div>
+				<div class="page-block">
+					<span class="current">1</span>					
+					<span class="del">/</span>
+					<span class="max"></span>	
+				</div>
+			</div>
+			<div class="inner-wrap">
+				<div class="up-but">
+					<i class="fas fa-chevron-up"></i>
+				</div>
+				<div class="car-wrap">
+					
+				</div>
+				<div class="bottom-but">
+					<i class="fas fa-chevron-down"></i>
+				</div>
+			</div>
+		</div>
+		<div class="rotate-wrapper">
+			<div class="title">Поворот</div>
+			<input type="range" class="slick" value="0" min="-100" max="100" step="0.01" id="rotate">
+			<div class="but">Сбросить</div>
+		</div>
+		<div class="color-wrapper">
+			<div class="color-item color1 active"></div>
+			<div class="color-item color2"></div>
+			<div class="color-item color3"></div>
+			<div class="color-item color4"></div>
+			<div class="color-item color5"></div>
+			<div class="color-item color6"></div>
+			<div class="color-item color7"></div>
+			<div class="color-item color8"></div>
+		</div>
+		<div class="buy-wrapper">			
+			<div class="but" id="buy">Купить</div>
+			<div class="radio-block">
+				<div class="card">
+					<img src="img/shop/card.png" alt="card">
+					<i class="far fa-circle"></i>
+				</div>
+				<div class="cash active">
+					<img src="img/shop/cash.png" alt="card">
+					<i class="fas fa-circle"></i>
+				</div>						
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/slider.min.js"></script>
+	<script src="js/autobuy.js"></script>
+</body>
+</html>

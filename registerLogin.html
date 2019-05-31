@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="css/registerLogin.css?34">
+        <link rel="stylesheet" href="fonts/font.css">
+        <link rel="stylesheet" href="css/font-awesome.css">
+	</head>
+	<body>
+        <div class="container">            
+            <div class="popup-wrap" id="signin">
+                <div class="logo-wrap">
+                    <img src="images/auth/logo.png" alt="">
+                </div>
+                <div class="form-input__wrap">
+                    <input class="form-input one" type="text" name="loginName" id="loginName" required>
+                    <label>Логин</label>                
+                </div>
+                <div class="form-input__wrap">
+                    <input class="form-input two" type="password" name="loginPass" id="loginPass" required>  
+                    <label>Пароль</label>                    
+                </div>
+                <button class="form-btn login" data-attr="1">Авторизация</button>
+                <div class="form-more">Нет аккаунта? <span class="form-auth">Зарегистрироваться</span></div> 
+            </div>
+            <div class="popup-wrap" id="signup" style="display: none;">
+                <div class="form-input__wrap">
+                    <input class="form-input one" type="text" name="newLoginName" id="newLoginName" required>
+                    <label>Логин</label>    
+                </div>
+                
+                <div class="form-input__wrap">
+                    <input class="form-input two" type="password" name="newLoginPass" id="newLoginPass" required>
+                    <label>Пароль</label>    
+                </div>
+                
+                <div class="form-input__wrap">
+                    <input class="form-input three" type="text" name="newLoginEmail" id="newLoginEmail" required>  
+                    <label>Почта</label>    
+                </div>
+                          
+                <button class="form-btn register" data-attr="0">Продолжить..</button>
+                <div class="form-more">Есть аккаунт? <span class="form-auth">Авторизация</span></div> 
+            </div>
+            <div class="rage">
+                <img src="images/auth/rage.png" alt="">
+            </div>
+            <div class="social">
+                <div class="social-disc"><div class="discord-wrap"><i class="fab fa-discord"></i></div> discord.com/</div>
+                <div class="social-vk" style="padding-top: 35px;"><div class="vk-wrap"><i class="fab fa-vk"></i></div> vk.com/</div>
+            </div>
+            <div class="alert" style="display: none;">
+                <i class="fal fa-info-circle"></i>
+                <div class="alert-message"></div>
+            </div>
+        </div>    
+    </body>
+    <script src="js/jquery-3.3.1.min.js"></script> 
+    <script src="js/font-awesome.min.js"></script>
+    <script src="js/notifications.js"></script>
+</html>
