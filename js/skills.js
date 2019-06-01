@@ -1,6 +1,7 @@
 var skillsList = [];
 function skillsInitialize(element)
 {
+	skillsList = [];
 	let newList = JSON.parse(element);
 	$(newList).each(function(index,item){
 		let obj = {
@@ -14,7 +15,6 @@ function skillsInitialize(element)
 };
 function wrapperRefresh()
 {
-	console.log($('.block-wrap')[0]);
 	$('.block-wrap').each(function(index,item){
 		$(item).find('.level-numb').text(skillsList[index].level);
 		$(item).find('.line-numb .current').text(skillsList[index].exp);
