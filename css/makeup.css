@@ -487,6 +487,9 @@
 	{
 		transform: scale(1.3);
 	}
+	.rotate .rangeslider {
+		width: 67%!important;
+	}
 	.container
 	{
     	left: -2.5%;

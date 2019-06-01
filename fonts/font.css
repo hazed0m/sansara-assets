@@ -1,7 +1,3 @@
-*
-{
-	-webkit-user-select: none;
-}
 @font-face {
 	font-family: 'Gotham Pro';
 	src: url('GothamPro-Medium.eot');
@@ -56,30 +52,4 @@
 	url('Montserrat-Medium.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
-}
-@font-face {
-	font-family:"HelveticaNeueCyr";
-	src: url("HelveticaNeueCyr-Medium.otf") format("truetype");
-	font-weight: bold;
-	font-style: normal;
-}
-@font-face {
-	font-family:"HelveticaNeueCyr";
-	src: url("HelveticaNeueCyr-Roman.otf") format("truetype");
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family:"HelveticaNeueCyr";
-	src: url("HelveticaNeueCondensedBlack.ttf") format("truetype");
-	font-weight: 900;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'HelveticaNeueCyr';
-	src: url('../fonts/HelveticaNeueCyr-Medium.eot');
-	src: local('HelveticaNeueCyr-Medium'),
-		url('../fonts/HelveticaNeueCyr-Medium.eot?#iefix') format('embedded-opentype')
-	font-weight: 500;
-	font-style: normal;
-}
+	}

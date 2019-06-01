@@ -84,12 +84,12 @@ $('#buy').on('click',function(){
     let fullPrice = $('.car-wrap .active .price').text();
     let nameCar = $('.car-wrap .active .car-name').text();
     let currentColor = $('.color-wrapper .active')[0].classList[1];
-    console.log(nameCar + ' ' + currentColor)
     mp.trigger("AutoBuyButton", cashService, currentColor, nameCar, fullPrice);
 });
 $('.rotate-wrapper .but').on('click',function(){
-  $('.rangeslider__fill').css('width','110px');
-  $('.rangeslider__handle').css('left','102.5px');
+  let fillWidth = $('.rotate-wrapper .rangeslider--horizontal').css('width');
+  $('.rotate-wrapper .rangeslider__fill').css('width', `${parseInt(fillWidth)/2}px`);
+  $('.rotate-wrapper .rangeslider__handle').css('left', `${(parseInt(fillWidth)/2)-6}px`);
   mp.trigger('AutobuyRotateReset');
 });
 $('.up-but').on('click',function(){
@@ -101,7 +101,6 @@ $('.up-but').on('click',function(){
     $(currentElement).prev().addClass('active');
     scrolled=scrolled-37; 
     let currentNumb = parseInt($('.page-block .current').text())-1;
-    console.log(currentNumb);
     $('.page-block .current').text(currentNumb);
   } 
   checkFirst();

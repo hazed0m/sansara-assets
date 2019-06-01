@@ -264,12 +264,9 @@ $(function() {
     });
 });
 $('#resetCamera').on('click',function(){
-    $('.rotate .rangeslider__fill').each(function(index,item){
-        $(item).css('width', '95.5px');
-    });
-    $('.rotate .rangeslider__handle').each(function(index,item){
-        $(item).css('left', '88px');
-    });
+    let fillWidth = $('.rotate .rangeslider--horizontal').css('width');
+    $('.rotate .rangeslider__fill').css('width', `${parseInt(fillWidth)/2}px`);
+    $('.rotate .rangeslider__handle').css('left', `${(parseInt(fillWidth)/2)-6}px`);
     mp.trigger("resetCamera");
 });
 

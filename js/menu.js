@@ -44,6 +44,7 @@ let animCircle = new Vue({
         passShow: false,
         activeClass: 'btn-active',
         settingsShow: false,
+        skillsShow: false,
         reportShow: false,
         loginSetShow:false,
         animateShow: false,
@@ -51,11 +52,12 @@ let animCircle = new Vue({
         setFastAnimIndex: 0,
         animateSettingsShow: false,
         saveButtonState:false,
+        isDisabled: false,
         options: [
             { text: 'Паспорт', value: 'passShow', status: false },
             { text: 'Вызов администрации', value: 'reportShow', status: false },
             { text: 'Эмоции', value: 'animateShow', status: false },
-            { text: 'Навыки персонажа', value: 'passShow', status: false },
+            { text: 'Навыки персонажа', value: 'skillsShow', status: false },
             { text: 'Настройки аккаунта', value: 'settingsShow', status: false},
             { text: 'Настройка быстрых эмоций', value: 'settingsAnimShow', status: false},
         ],
@@ -123,6 +125,7 @@ let animCircle = new Vue({
                     this.settingsShow = false;
                     this.reportShow = false;
                     this.animateShow = false;
+                    this.skillsShow = false;
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
                     switch (this.passShow) {
@@ -134,10 +137,39 @@ let animCircle = new Vue({
                             break;
                     }
                     break;
+                case 'skillsShow':
+                    this.passShow = false;
+                    this.settingsShow = false;
+                    this.reportShow = false;
+                    this.animateShow = false;
+                    animCircle.settingsAnimShow = false;
+                    this.animateSettingsShow = false;
+                    switch (this.skillsShow) {
+                        case true:
+                           $('.categorie-title').each(function(index,item){
+                               if($(item).attr('data-id') == 'settingsShow')
+                               {
+                                   $(item).delay(1000).fadeIn(); 
+                               }
+                            });
+                            this.skillsShow = false;
+                            break;
+                        case false: 
+                            $('.categorie-title').each(function(index,item){
+                               if($(item).attr('data-id') == 'settingsShow')
+                               {
+                                   $(item).css('display','none'); 
+                               }
+                            });
+                            this.skillsShow = true;
+                            break;
+                    }
+                    break;
                 case 'settingsShow':
                     this.passShow = false;
                     this.reportShow = false;
                     this.animateShow = false;
+                    this.skillsShow = false;
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
                     switch (this.settingsShow) {
@@ -154,6 +186,7 @@ let animCircle = new Vue({
                     this.reportShow = false;
                     this.animateShow = false;
                     this.settingsShow = false;
+                    this.skillsShow = false;
                     switch (animCircle.settingsAnimShow) {
                         case true:
                             animCircle.settingsAnimShow = false;
@@ -169,6 +202,7 @@ let animCircle = new Vue({
                     this.passShow = false;
                     this.settingsShow = false;
                     this.animateShow = false;
+                    this.skillsShow = false;
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
                     switch (this.reportShow) {
@@ -184,6 +218,7 @@ let animCircle = new Vue({
                     this.passShow = false;
                     this.settingsShow = false;
                     this.reportShow = false;
+                    this.skillsShow = false;
                     this.animateSettingsShow = false;
                     animCircle.settingsAnimShow = false;
                     switch (this.animateShow) {
@@ -227,3 +262,4 @@ let animCircle = new Vue({
         }
     }
 });
+

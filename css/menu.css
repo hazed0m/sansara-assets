@@ -6,7 +6,7 @@ body {
 .menu-wrap {
     width: 351px;
     height: auto;
-    background: rgb(0, 0, 0, 0.88);
+    background: #36393f;
     overflow-x: hidden;
     overflow-y: auto;
     display: flex;
@@ -141,7 +141,7 @@ body {
     position: fixed;
     top: 50%;
     left: 0;
-    background: rgb(0, 0, 0, 0.88);
+    background: #36393f;
     width: 351px;
     height: 49vh;
     overflow: auto;
@@ -171,6 +171,15 @@ body {
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 25px;
+}
+.skills-wrap
+{
+    overflow: auto;
+    max-height:400px;
+}
+.skills-wrap .wrapper
+{
+    margin-right:10px;
 }
 .setting-btn {
     width: 101px;
@@ -213,7 +222,6 @@ body {
     font-family: "Gotham Pro";
     font-size: 20px;
     font-weight: 500;
-    background-color: rgb(0, 0, 0, 1);
     margin: 0 auto;
     cursor: pointer;
     padding: 15px;
@@ -224,7 +232,7 @@ body {
     color: #224161;
 }
 .report-wrap {
-    background: rgb(0, 0, 0, 0.88);
+    background: #36393f;
     width: 600px;
     height: auto;
     position: absolute;
