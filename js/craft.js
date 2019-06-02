@@ -93,7 +93,7 @@ function pushCraft(inventory, needsArr, finalElem, elemMultiple)
   needsListRefresh();
   blockRefresh();  
   checkCompatibility(); 
-  jsonDebugger();
+  // jsonDebugger();
 };
 function pushNeedsList(items,final)
 {
