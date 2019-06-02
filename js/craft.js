@@ -1,7 +1,8 @@
 var craftList = [],
     currentNeedsList = [],
     finalElement = '',
-    counter = 0;
+    counter = 0,
+    multiple = 0;
 
 function quantityProducts() {
     var $quantityArrowMinus = $(".quantity-arrow-minus");
@@ -71,9 +72,10 @@ function firstInitialize()
 	  blockRefresh();
     refreshFinalElem(); 
 }
-function pushCraft(inventory, needsArr, finalElem)
+function pushCraft(inventory, needsArr, finalElem, elemMultiple)
 {
   let newElem = JSON.parse(inventory);
+  multiple = elemMultiple;
   $(newElem).each(function(index,item){
     if(item.type == 'Resourses' || item.type == 'Recycled_Resources')
     {
@@ -180,8 +182,8 @@ function checkCompatibility()
 };
 function refreshFinalElem()
 {
-  let currentCount = $('input.quantity-num').val();
-  $('.final-block .block .count').text(currentCount);
+  let currentCount = parseInt($('input.quantity-num').val());
+  $('.final-block .block .count').text(currentCount*multiple);
 }
 function checkCountMin()
 {
