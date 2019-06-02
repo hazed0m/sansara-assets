@@ -93,6 +93,7 @@ function pushCraft(inventory, needsArr, finalElem, elemMultiple)
   needsListRefresh();
   blockRefresh();  
   checkCompatibility(); 
+  jsonDebugger();
 };
 function pushNeedsList(items,final)
 {
@@ -113,11 +114,29 @@ function needsListRefresh()
   $('.main-block').empty();
   $('.title-block .title-name').text(finalElement);
   $(currentNeedsList).each(function(index,item){
-    $('#needs-list').append(`<li>${item.name} (${item.count})</li>`);
+    $('#needs-list').append(`<li data-name="${item.name}">${item.name} (${item.count})</li>`);
     $('.main-block').append(`<div class="block" data-name="${item.name}" data-count="${item.count}"></div>`);
   });
   $('.final-block .block').attr('data-name',finalElement);
 };
+// function jsonDebugger()
+// {
+//   $('body').append(`
+//                     <div class="container newcontainer">
+//                       <div class="title" style="color:#fff">Список инвентаря</div>
+//                       <ul class="list1"></ul>
+//                       <div class="title" style="color:#fff">Список нужного</div>
+//                       <ul class="list2"></ul>
+//                     </div>`);
+//   $('.newcontainer').css('left','25%');
+//   $(craftList).each(function(index,item){
+//     $('.newcontainer ul.list1').append(`<li style="color:#fff">${item.name}</li>`)
+//   });
+//   $(currentNeedsList).each(function(index,item){
+//     $('.newcontainer ul.list2').append(`<li style="color:#fff">${item.name}</li>`)
+//   });
+  
+// }
 function blockRefresh()
 {    
   $('.main-block .block').empty();
@@ -128,7 +147,7 @@ function blockRefresh()
             let currentCount = $('input.quantity-num').val();
             let template = 
             `<div class="inner-block" style="background-image:url(img/${item.type}.png);">            
-                <div class="count">${currentNeedsList[index].count*currentCount}</div>
+                <div class="count">${currentNeedsList[indexBlock].count*currentCount}</div>
                 <div class="inner-wrap">
                   <div class="title">${item.name}</div>
                   <div class="type">${item.type == 'Resourses' ? 'Неперер. ресурс' : 'Перер. ресурс'}</div>
@@ -150,7 +169,7 @@ function checkCompatibility()
     else
     {
       $('#needs-list li').each(function(indexList,itemList){
-        if($(item).attr('data-name') == $(itemList).text())
+        if($(item).attr('data-name') == $(itemList).attr('data-name'))
         {
           $(itemList).css('text-decoration','line-through').css('text-decoration-color','red').css('text-decoration-style','double');
         }
@@ -176,7 +195,7 @@ function checkCompatibility()
 	      $('.final-block .block').append(template);  
       	blockRefresh();
       	quantityProducts();
-  		firstInitialize();
+  		  firstInitialize();
       }    
   }
 };
