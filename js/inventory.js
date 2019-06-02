@@ -669,6 +669,7 @@ function refreshInventory(currentIterator)
 			var currentImg = item.type,
 				currentIter = 'inventory',
 				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);	
+				giveBut = '<li id="give">Передать</li>';
 			if(item.type == 'Clothes_Legal' || item.type == 'Clothes_Duty' || item.type == 'Clothes_Illegal' || item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{
 				listBut = '<li id="use">Надеть</li>';		
@@ -684,6 +685,10 @@ function refreshInventory(currentIterator)
 					currentImg = weaponsListFull[currentElement].name;
 					currentIter = 'weapons';
 				}
+				if(item.type == 'Weapon_FireGun_Police')
+				{
+					giveBut = '';
+				}
 			}
 			else
 			{
@@ -691,22 +696,22 @@ function refreshInventory(currentIterator)
 				listBut = '<li id="use">Применить</li>';
 			}			
 			itemTemplate = 
-			'<li ' + currentIterator + '-id="' + index +'">\
-				<div class="itemInv'+' '+ shadowClass +'">\
-					<div class="button-dropdown">\
-						<div class="quantity">'+ item.count +'</div>\
-						<div class="infoItem dropdown-toggle">\
-							<div class="nameItem">' + item.name + '</div>\
-						</div>\
-						<img src="images/'+ currentIter + '/' + currentImg + '.png" class="itemImg dropdown-toggle">\
-						<ul class="dropdown-menu">\
-							' + listBut +'\
-							<li id="drop">Выбросить</li>\
-							<li id="give">Передать</li>\
-						</ul>\
-					</div>\
-				</div>\
-			</li>';
+			`<li ${currentIterator}-id="${index}">
+				<div class="itemInv ${shadowClass}">
+					<div class="button-dropdown">
+						<div class="quantity">${item.count}</div>
+						<div class="infoItem dropdown-toggle">
+							<div class="nameItem">${item.name}</div>
+						</div>
+						<img src="images/${currentIter}/${currentImg}.png" class="itemImg dropdown-toggle">
+						<ul class="dropdown-menu">
+							${listBut}
+							<li id="drop">Выбросить</li>
+							${giveBut}
+						</ul>
+					</div>
+				</div>
+			</li>`;
 		}    		
 		switch (currentIterator)
 		{
