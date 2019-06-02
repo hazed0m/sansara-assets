@@ -52,4 +52,28 @@
 	url('Montserrat-Medium.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
-	}
+}
+@font-face {
+	font-family:"HelveticaNeueCyr";
+	src: url("HelveticaNeueCyr-Medium.otf") format("truetype");
+	font-weight: bold;
+	font-style: normal;
+}
+@font-face {
+	font-family:"HelveticaNeueCyr";
+	src: url("HelveticaNeueCyr-Medium.otf") format("truetype");
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family:"HelveticaNeueCyr";
+	src: url("HelveticaNeueCyr-Roman.otf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family:"HelveticaNeueCyr";
+	src: url("Helvetica Neue Condensed Black.ttf") format("truetype");
+	font-weight: 900;
+	font-style: normal;
+}

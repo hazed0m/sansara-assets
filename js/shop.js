@@ -1,8 +1,52 @@
 var shopList = [],
 	basketList = [],
 	currentShopType = '',
+	typeName = 
+    [
+        'Eat',                                              
+        'Drink', 
+        'Alcohol', 
+        'Instrument', 
+        'Clothes_Legal', 
+        'Clothes_Duty', 
+        'Clothes_Illegal', 
+        'Weapon_Cold', 
+        'Weapon_FireGun_Legal', 
+        'Weapon_FireGun_Police',
+        'Weapon_FireGun_Illegal',
+        'Medical_Preparation',
+        'Illegal_Object',
+        'LegalObject',
+        'Resourses',
+        'Recycled_Resources',
+        'Craft_Resources',
+        'Documents',
+        'Ammo'
+    ],
+	typeNameTranslated = 
+    [
+        'Еда',                                              
+        'Напитки', 
+        'Алкоголь', 
+        'Инструменты', 
+        'Одежда легал.', 
+        'Одежда форм.', 
+        'Одежда нелегал.', 
+        'Оружие холодн.', 
+        'Огнестрел. легал.', 
+        'Огнестрел. полиц.',
+        'Огнестрел. нелегал.',
+        'Мед. препараты',
+        'Нелегал. предметы',
+        'Легал. предметы',
+        'Ресурсы',
+        'Перераб. ресурсы',
+        'Крафт ресурсы',
+        'Документы',
+        'Патроны'
+    ],
 	weaponsList = [
-		{name:'flashlight',type:'Weapon_Cold',legal:'police'},
+		{name:'flashlight',type:'Weapon_Cold',legal:'legal'},
 		{name:'brass-knuckles',type:'Weapon_Cold',legal:'illegal'},
 		{name:'knife',type:'Weapon_Cold',legal:'legal'},
 		{name:'machete',type:'Weapon_Cold',legal:'illegal'},
@@ -12,7 +56,7 @@ var shopList = [],
 		{name:'pistol-mk2',type:'Weapon_FireGun_Legal',legal:'legal'},
 		{name:'combat-pistol',type:'Weapon_FireGun_Police',legal:'police'},
 		{name:'ad-pistol',type:'Weapon_FireGun_Illegal',legal:'illegal'},
-		{name:'stun-gun',type:'Weapon_FireGun_Legal',legal:'legal'},
+		{name:'stun-gun',type:'Weapon_Cold',legal:'legal'},
 		{name:'pistol-50',type:'Weapon_FireGun_Police',legal:'police'},
 		{name:'heavy-pistol',type:'Weapon_FireGun_Police',legal:'police'},
 		{name:'micro-smg',type:'Weapon_FireGun_Illegal',legal:'illegal'},
@@ -219,7 +263,7 @@ function basketListRefresh()
 				<div class="icon" ${legalId}><img src="images/${path}/${currentImg}.png" alt=""></div>
 				<div class="title-wrap">
 					<div class="title-item">${item.name}</div>
-					<div class="class-item">${item.type}</div>
+					<div class="class-item">${translateType(item.type)}</div>
 				</div>
 				<div class="col-wrap">
 					<div class="minus">-</div>
@@ -242,6 +286,11 @@ function basketListRefresh()
 	$('.right-wrap .price span').text(currentSum);
 	basketListInitialize();
 };
+function translateType(type)
+{
+	let currentType = $.inArray(type, typeName);
+	return typeNameTranslated[currentType];
+}
 function basketListInitialize()
 {	
 	$('.basket-list .basket-item .close').on('click',function(){

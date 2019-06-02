@@ -144,11 +144,14 @@
 	padding:0 5px;
 	box-sizing: border-box;
 	bottom:7px;		
-	transition: 0.3s;
+	transition: 0.2s;
 }
 .container .shop-wrap .shop-item:hover .title
 {
 	height:50%;
+	box-sizing: content-box;
+	overflow: hidden;
+	padding:10px;
 }
 .shop-item .inner-item .title .title-text
 {
@@ -178,14 +181,6 @@
 	padding-bottom:18px;
 	box-sizing: border-box; 
 }
-.clothes-item .title-wrap i.fa-chevron-left
-{
-	left:10%;
-}
-.clothes-item .title-wrap i.fa-chevron-right
-{
-	right:10%;
-}
 .bottom-wrap .btn:hover, .button:hover, .radio-block div:hover, .container .exit-but:hover
 {
 	transform: scale(1.05);
@@ -211,7 +206,7 @@
 	font-size:14px;
 	cursor: pointer;
 }
-.bottom-wrap .button, .rotate .button
+.bottom-wrap .button
 {
 	width:105px;
 	height: 34px;
@@ -224,6 +219,7 @@
 	font-size:14px;
 	border-radius: 5px;
 	cursor: pointer;
+	transition: 0.3s;
 }
 .bottom-wrap .price, .inner-item .price
 {
@@ -258,6 +254,7 @@
 	background: #484c52;
 	cursor: pointer;
 	box-sizing: border-box;
+	transition:0.3s;
 }
 .bottom-wrap .right-wrap
 {
@@ -318,17 +315,19 @@
 	font-weight:500;
 	text-shadow:0 0 5px #000;
 	cursor: pointer;
+	transition:0.3s;
 }
 .basket-list .basket-item
 {
 	text-transform: capitalize;
 	position: relative;
 	width:244px;
-	height:57px;
+	/* height:57px; */
+	height: auto;
 	background:rgba(0,0,0,0.4);
 	margin:10px auto;
 	color:#fff;
-	padding: 0 18px 0 25px;
+	padding: 5px 18px 5px 25px;
 	box-sizing: border-box;
 	border-radius:5px;
 	display: flex;
@@ -351,12 +350,15 @@
 {
 	transform:scale(1.1) translate(-50%,-40%);
 }
-.basket-list .basket-item .plus:hover,
-.basket-list .basket-item .minus:hover,
 .basket-list .empty-but:hover
 {
 	transform:scale(1.05);
 	text-shadow: 0 0 5px #fbe401;
+}
+.basket-list .basket-item .title-wrap
+{
+	padding:0 5px;
+	min-width: 50%;
 }
 .basket-list .basket-item .title-item
 {
