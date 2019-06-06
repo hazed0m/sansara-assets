@@ -555,7 +555,7 @@ $('.messages-inner .smiles-wrap .smile, .messages-inner .big-smiles-wrap .smile'
 $('.messages-inner .sender').on('click',function(){
 	let currentMessage = $(this).prev().val();
 	let currentIndex = $(this).parent().parent().find('.title').attr('data-index');
-	let date = mp.game.time.getLocalTime(year, month, day, hour, minute, second);
+	let date = mp.game.time.getLocalTime(year, month, day, hour, minute, second),
 		hours = `${date.hour}:${date.minute}`;
 	console.log(contactsList[currentIndex]);
 	contactsList[currentIndex].messageList.push({'status':'outcoming','time':hours,'message':currentMessage});

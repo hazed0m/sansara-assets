@@ -35,7 +35,7 @@ $('#cancel, #pass').on('click',function(){
 });
 $('.btn.exit').on('click',function(){
 	// $('.container').fadeOut();
-    mp.trigger("tattooExit");
+    mp.trigger("makeupExit");
 });
 
 
