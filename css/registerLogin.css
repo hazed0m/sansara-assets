@@ -206,7 +206,11 @@ label {
 	-moz-transition: 0.4s ease all; 
 	-webkit-transition: 0.4s ease all;
 }
-  
+.g-recaptcha
+{
+	margin-top:20px;
+	padding:0 20px;
+}
 input:focus ~ label, input:valid ~ label {
 	left: 5px;
 	top: -20px;
