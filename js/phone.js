@@ -132,6 +132,9 @@ $('.incomingCall-wrapper .cancel').on('click',function(){
 	secondsCounter = 0;
 	mp.trigger("cancelIncomingCall");
 });
+$('input[type="text"]').keyup(function() {
+    this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '');
+});
 $('.incomingCall-wrapper .allow').on('click',function(){
 	checkCall(getNumber);
 });
@@ -173,7 +176,7 @@ function getCall(number)
 		++secondsCounter;
 		if(secondsCounter % 3 == 0 || secondsCounter == 1)
 		{
-			$('.container').effect('shake')
+			$('.incomingCall-wrapper .caller-ico').addClass('animated infinite bounce');
 		}
 	}, 1000);
 	$('.incomingCall-wrapper').addClass('active').fadeIn();
