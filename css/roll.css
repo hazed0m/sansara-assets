@@ -124,8 +124,8 @@ body {
 .slot6 {
 	color: white;
 	transform: skew(-45deg) rotate(-247.5deg);
-	margin-left: 15px;
-    margin-top: 38px;
+	margin-left: 27px;
+    margin-top: 44px;
 }
 .slot7 {
 	color: white;
@@ -138,6 +138,10 @@ body {
 	transform: skew(-45deg) rotate(-337.5deg);
 	margin-left: -20px;
     margin-top: 150px;
+}
+.deactivated
+{
+	opacity:0.2;
 }
 .menu li:hover {
 	background-color: #d6c823;

@@ -16,8 +16,9 @@
                     </div>
                     <ul>
                         <li v-for="(fastAnimLists, index) in fastAnimList" @click="circleAnim(fastAnimLists.id, index)">
-                            <div class="slot" :class="fastAnimLists.class" v-if="fastAnimLists.title === 'Отсутствует'"></div>
+                            <div class="slot" :class="fastAnimLists.class" v-if="fastAnimLists.title === 'Отсутствует'">Отсутствует</div>
                             <div v-else class="slot" :class="fastAnimLists.class">{{ fastAnimLists.title }}</div>
+                        </li>
                     </ul>
                 </div>          
             </div>
