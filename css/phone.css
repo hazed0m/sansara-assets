@@ -13,7 +13,7 @@
 	transform: translate(0,-50%);
 	right:15px;
 }
-.main-wrapper, .settings-wrapper, .caller-wrapper, .incomingCall-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper
+.main-wrapper, .settings-wrapper, .caller-wrapper, .outCaller-wrapper, .incomingCall-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper
 {
 	position: absolute;
 	top:50%;
@@ -242,7 +242,7 @@
 	font-size:13px;
 	cursor:pointer;
 }
-.settings-wrapper, .caller-wrapper, .incomingCall-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper
+.settings-wrapper, .outCaller-wrapper, .caller-wrapper, .incomingCall-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper
 {
 	display:none;
 }
@@ -286,12 +286,12 @@
 {
 	display:block;
 }
-.caller-wrapper, .incomingCall-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper
+.caller-wrapper, .incomingCall-wrapper, .outCaller-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper
 {
 	background:#ebebeb;
 	border-radius: 15px;
 }
-.caller-wrapper .wrapper, .incomingCall-wrapper .wrapper
+.outCaller-wrapper .wrapper, .caller-wrapper .wrapper, .incomingCall-wrapper .wrapper
 {
 	position:absolute;
 	top:45%;
@@ -303,20 +303,21 @@
 	align-items: center;
 	width:100%;
 }
-.caller-wrapper .caller-ico, .incomingCall-wrapper .caller-ico
+.outCaller-wrapper .caller-ico,.caller-wrapper .caller-ico, .incomingCall-wrapper .caller-ico
 {	
 	width:77px;
 	height:77px;
 	background:url(../img/phone/caller/person.png) no-repeat;
 	background-size:cover;
 }
-.caller-wrapper .title, .incomingCall-wrapper .title
+.outCaller-wrapper .title,.caller-wrapper .title, .incomingCall-wrapper .title
 {
 	margin-top:10px;
-	font-size:12.65px;
+	font-size:15.65px;
 	font-weight: bold;
+	margin-bottom: 10px;
 }
-.caller-wrapper .number, .incomingCall-wrapper .number
+.outCaller-wrapper .number,.caller-wrapper .number, .incomingCall-wrapper .number
 {
 	font-size:24.92px;
 	font-weight: bold;
@@ -348,7 +349,7 @@
 	top:0;
 	right:0;
 }
-.caller-wrapper .cancel, .incomingCall-wrapper .cancel
+.outCaller-wrapper .cancel, .caller-wrapper .cancel, .incomingCall-wrapper .cancel
 {
 	width:54px;
 	height:54px;

@@ -1,14 +1,15 @@
 const wallpaperList = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 var contactsList = 
-[{'name':'Скорая помощь','number':1, 
-'messageList':[]},
- {'name':'Полиция','number':2, 
-'messageList':[]},
-{'name':'Такси','number':3, 
-'messageList':[]},
-{'name':'Эвакуатор','number':4, 
-'messageList':[]}
-];
+	[{'name':'Скорая помощь','number':1, 
+	'messageList':[]},
+	{'name':'Полиция','number':2, 
+	'messageList':[]},
+	{'name':'Такси','number':3, 
+	'messageList':[]},
+	{'name':'Эвакуатор','number':4, 
+	'messageList':[]}
+	],
+currentTopPosition = 0;
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
@@ -19,7 +20,12 @@ function phoneFadeIn()
 }
 function phoneToTop()
 {
+	currentTopPosition = $('.container').css('top');
 	$('.container').css('top','50%');
+}
+function phoneToBottom()
+{
+	$('.container').css('top',currentTopPosition);
 }
 function pushContactList(item)
 {
@@ -115,30 +121,44 @@ var myInterval = null,
 $('.main-wrapper .fast-block div').on('click',function(){
 	checkCall($(this).attr('data-number'));
 });
-$('.caller-wrapper .cancel').on('click',function(){
-	$('.caller-wrapper').removeClass('active').fadeOut();
+var getNumber = 0;
+$('.incomingCall-wrapper .cancel').on('click',function(){	
+	mp.trigger("cancelIncomingCall",getNumber);
+});
+$('.outCaller-wrapper .cancel, caller-wrapper .cancel').on('click',function(){	
+	mp.trigger("cancelOutcomingCall",getNumber);
+});
+function cancelOutcomingCall(){
+	if($('.caller-wrapper').hasClass('active'))
+	{
+		$('.caller-wrapper').removeClass('active').fadeOut();
+	}
+	if($('.outCaller-wrapper').hasClass('active'))
+	{
+		$('.outCaller-wrapper').removeClass('active').fadeOut();
+	}
 	$('.main-wrapper').addClass('active').fadeIn();
 	clearInterval(myInterval);
 	myInterval = null;
 	secondsCounter = 0;
 	minutesCounter = 0;
-});
-var getNumber = 0;
-$('.incomingCall-wrapper .cancel').on('click',function(){
+};
+function cancelIncomingCall()
+{
 	$('.incomingCall-wrapper').removeClass('active').fadeOut();
 	$('.main-wrapper').addClass('active').fadeIn();
 	clearInterval(callInterval);
 	callInterval = null;
 	secondsCounter = 0;
-	mp.trigger("cancelIncomingCall");
-});
+	minutesCounter = 0;
+};
 $('input[type="text"]').keyup(function() {
-    this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '');
+    this.value = this.value.replace(/[^a-zA-Zа-яА-Я0-9_]/g, '');
 });
 $('.incomingCall-wrapper .allow').on('click',function(){
-	checkCall(getNumber);
+	mp.trigger("allowIncomingCall",getNumber);
 });
-function toCall(number)
+function toCall(number,type)
 {
 	getNumber = number;
 	let active = $('.container > .active')[0].classList[0];
@@ -148,8 +168,21 @@ function toCall(number)
 		{
 			getNumber = item.name;
 		}
-	});
+	});	
+	if(type == 'in')
+	{
+		type = 'Входящий вызов';
+	}
+	else if(type == 'out')
+	{	
+		type = 'Исходящий вызов'; 
+	}
+	else
+	{
+		type = 'Вызов';
+	}
 	$('.caller-wrapper').find('.number').text(getNumber);
+	$('.caller-wrapper').find('.title').text(type);
 	$('.caller-wrapper').addClass('active').fadeIn();
 	clearInterval(callInterval);
 	callInterval = null;
@@ -158,6 +191,7 @@ function toCall(number)
 }
 function checkCall(number)
 {
+	getNumber = number;
 	mp.trigger('PhoneCheckCall',number);
 }
 function getCall(number)
@@ -206,12 +240,16 @@ $('.number-wrap .call').on('click',function(){
 	let number = $(this).parents().find('.this-block').text();
 	if(number.length >= 6)
 	{
+		let active = $('.container > .active')[0].classList[0];
+		$('.'+active).removeClass('active').fadeOut();
+		$('.outCaller-wrapper').find('.number').text(number);
+		$('.outCaller-wrapper').addClass('active').fadeIn();
 		checkCall(number);
 	}
-	else
-	{
-		$('.this-block').effect('shake');
-	}
+	// else
+	// {
+	// 	$('.this-block').effect('shake');
+	// }
 });
 jQuery.fn.reverse = [].reverse;
 $('.number-wrap .cross').on('click',function(){
@@ -536,34 +574,33 @@ $('.messages-inner .back-but').on('click',function(){
 });
 $('.messages-inner .smiles-wrap .smile, .messages-inner .big-smiles-wrap .smile').on('click',function(){	
 	let messageTemplate = `:${$(this)[0].id}:`,
-		currentIndex = $(this).parent().parent().parent().find('.title').attr('data-index'),
-	 	date = mp.game.time.getLocalTime(year, month, day, hour, minute, second),
-		hours = `${date.hour}:${date.minute}`;
+		currentIndex = $(this).parent().parent().parent().find('.title').attr('data-index');
+	 	// date = mp.game.time.getLocalTime(year, month, day, hour, minute, second),
+		// hours = `${date.hour}:${date.minute}`;
 	if($(this).parent().hasClass('big-smiles-wrap'))
 	{
 		currentIndex = $(this).parent().parent().parent().find('.title').attr('data-index');
 		$('.messages-inner .big-smiles-wrap').fadeOut();
 		$('.home-but').fadeIn();
 	}
-	contactsList[currentIndex].messageList.push({'status':'outcoming','time':`${hours}`,'message':messageTemplate});
+	contactsList[currentIndex].messageList.push({'status':'outcoming','time':``,'message':messageTemplate});
 	refreshMessages();	
 	checkSmile();
 	messageInnerScroll('inner');	
-	let jsonOutput = {'number':contactsList[currentIndex].number,'time':hours,'message':currentMessage};
+	let jsonOutput = {'number':contactsList[currentIndex].number,'time':'','message':messageTemplate};
 	mp.trigger("sendMessage",JSON.stringify(jsonOutput));
 });
 $('.messages-inner .sender').on('click',function(){
 	let currentMessage = $(this).prev().val();
 	let currentIndex = $(this).parent().parent().find('.title').attr('data-index');
-	let date = mp.game.time.getLocalTime(year, month, day, hour, minute, second),
-		hours = `${date.hour}:${date.minute}`;
-	console.log(contactsList[currentIndex]);
-	contactsList[currentIndex].messageList.push({'status':'outcoming','time':hours,'message':currentMessage});
+	// let date = mp.game.time.getLocalTime(year, month, day, hour, minute, second),
+	// 	hours = `${date.hour}:${date.minute}`;
+	contactsList[currentIndex].messageList.push({'status':'outcoming','time':``,'message':currentMessage});
 	$(this).prev().val('');
 	refreshMessages();
 	checkSmile();
 	messageInnerScroll('inner');
-	let jsonOutput = {'number':contactsList[currentIndex].number,'time':hours,'message':currentMessage};	
+	let jsonOutput = {'number':contactsList[currentIndex].number,'time':'','message':currentMessage};	
 	mp.trigger("sendMessage",JSON.stringify(jsonOutput));
 });
 function incomingMessage(number, time, message)
