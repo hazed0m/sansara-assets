@@ -575,41 +575,46 @@ $('.messages-inner .back-but').on('click',function(){
 $('.messages-inner .smiles-wrap .smile, .messages-inner .big-smiles-wrap .smile').on('click',function(){	
 	let messageTemplate = `:${$(this)[0].id}:`,
 		currentIndex = $(this).parent().parent().parent().find('.title').attr('data-index');
-	 	// date = mp.game.time.getLocalTime(year, month, day, hour, minute, second),
-		// hours = `${date.hour}:${date.minute}`;
 	if($(this).parent().hasClass('big-smiles-wrap'))
 	{
 		currentIndex = $(this).parent().parent().parent().find('.title').attr('data-index');
 		$('.messages-inner .big-smiles-wrap').fadeOut();
 		$('.home-but').fadeIn();
 	}
-	contactsList[currentIndex].messageList.push({'status':'outcoming','time':``,'message':messageTemplate});
-	refreshMessages();	
-	checkSmile();
-	messageInnerScroll('inner');	
-	let jsonOutput = {'number':contactsList[currentIndex].number,'time':'','message':messageTemplate};
-	mp.trigger("sendMessage",JSON.stringify(jsonOutput));
+	// contactsList[currentIndex].messageList.push({'status':'outcoming','time':``,'message':messageTemplate});
+	// refreshMessages();	
+	// checkSmile();
+	// messageInnerScroll('inner');	
+	let jsonOutput = JSON.stringify({'number':contactsList[currentIndex].number,'time':'','message':messageTemplate});
+	mp.trigger("sendMessage",jsonOutput);
 });
 $('.messages-inner .sender').on('click',function(){
 	let currentMessage = $(this).prev().val();
-	let currentIndex = $(this).parent().parent().find('.title').attr('data-index');
-	// let date = mp.game.time.getLocalTime(year, month, day, hour, minute, second),
-	// 	hours = `${date.hour}:${date.minute}`;
-	contactsList[currentIndex].messageList.push({'status':'outcoming','time':``,'message':currentMessage});
-	$(this).prev().val('');
-	refreshMessages();
-	checkSmile();
-	messageInnerScroll('inner');
-	let jsonOutput = {'number':contactsList[currentIndex].number,'time':'','message':currentMessage};	
-	mp.trigger("sendMessage",JSON.stringify(jsonOutput));
+	if(currentMessage.length > 0)
+	{
+		let currentIndex = $(this).parent().parent().find('.title').attr('data-index');
+		// contactsList[currentIndex].messageList.push({'status':'outcoming','time':``,'message':currentMessage});
+		$(this).prev().val('');
+		// refreshMessages();
+		// checkSmile();
+		// messageInnerScroll('inner');
+		let jsonOutput = JSON.stringify({'number':contactsList[currentIndex].number,'time':'','message':currentMessage});	
+		mp.trigger("sendMessage",jsonOutput);
+	}	
 });
-function incomingMessage(number, time, message)
+function incomingMessage(number,jsonInput)
 {
-	var checker = false;
+	let checker = false,
+	    currentJson = JSON.parse(jsonInput);
 	$(contactsList).each(function(index,item){
 		if(item.number == number)
 		{
-			item.messageList.push({'status':'incoming','time': time,'message':message});
+			console.log(index);
+			item.messageList.push({	
+									status:currentJson.status,
+									time: currentJson.time,
+									message:currentJson.message
+								  });
 			if($('.messages-inner').hasClass('active') && $('.messages-inner .title').attr('data-index') == index)
 			{
 				refreshMessages();
@@ -622,10 +627,16 @@ function incomingMessage(number, time, message)
 	});		
 	if(!checker)
 	{
-		contactsList
-				.push(
-						{'name':'Неизвестный','number':number,'messageList':[{'status':'incoming','time': time,'message':message}]}
-					 );
+		contactsList.push({ 
+							name:'Неизвестный', 
+							number:number, 
+							messageList:
+							[{
+								status: currentJson.status,
+								time: currentJson.time, 
+								message :currentJson.message
+							}]
+						});
 		pushContacts('messages');
 		messageInnerScroll('wrapper');			
 	}	
