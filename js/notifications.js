@@ -50,13 +50,13 @@ $('input[type="text"]').keyup(function() {
         }
     }    
 });
-var verifyCallback = function(response) {
+var verifyLoginCallback = function(response) {
     if(response)
     {
         $('.form-input__wrap input').keyup(function(){
             if($(this).parent().parent()[0].id === 'signin')
             {
-                if($('#loginName').val().length > 6 && $('#loginPass').val().length > 6)
+                if($('#loginName').val().length >= 6 && $('#loginPass').val().length >= 6)
                 {
                     $('.login').removeClass('disabled');
                 }
@@ -64,10 +64,25 @@ var verifyCallback = function(response) {
                 {
                     $('.login').addClass('disabled');
                 }
-            }
+            }          
+        });
+        if($('#loginName').val().length >= 6 && $('#loginPass').val().length >= 6)
+        {
+            $('.login').removeClass('disabled');
+        }
+    }    
+    else
+    {
+        alert('fail');
+    }     
+};
+var verifyRegisterCallback = function(response) {
+    if(response)
+    {
+        $('.form-input__wrap input').keyup(function(){
             if($(this).parent().parent()[0].id === 'signup')
             {
-                if($('#newLoginName').val().length > 6 && $('#newLoginPass').val().length > 6 && emailValidate)
+                if($('#newLoginName').val().length >= 6 && $('#newLoginPass').val().length >= 6 && emailValidate)
                 {
                     $('.register').removeClass('disabled');
                 }
@@ -77,11 +92,7 @@ var verifyCallback = function(response) {
                 }
             }           
         });
-        if($('#loginName').val().length > 6 && $('#loginPass').val().length > 6)
-        {
-            $('.login').removeClass('disabled');
-        }
-        if($('#newLoginName').val().length > 6 && $('#newLoginPass').val().length > 6 && emailValidate)
+        if($('#newLoginName').val().length >= 6 && $('#newLoginPass').val().length >= 6 && emailValidate)
         {
             $('.register').removeClass('disabled');
         }
@@ -91,18 +102,17 @@ var verifyCallback = function(response) {
         alert('fail');
     }     
 };
-
 var regCaptcha;
 var onloadCallback = function() {
    
     regCaptcha = grecaptcha.render('g-recaptcha1', {
         'sitekey' : '6LcShqcUAAAAAEFfGkm9KKambio8Ik5XGbD3Lruz',
-        'callback' : verifyCallback,
+        'callback' : verifyRegisterCallback,
         'theme' : 'dark'
     });
     grecaptcha.render('g-recaptcha', {
     'sitekey' : '6LcShqcUAAAAAEFfGkm9KKambio8Ik5XGbD3Lruz',
-    'callback' : verifyCallback,
+    'callback' : verifyLoginCallback,
     'theme' : 'dark'
     });
 };

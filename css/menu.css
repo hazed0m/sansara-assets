@@ -11,6 +11,7 @@ body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    padding-bottom:10px;
 }
 .menu-content {
     padding: 15px;

@@ -15,18 +15,30 @@
             <div class="categorie-wrap" v-for="option in options" >
                 <div class="categorie-title" @click="switching(option.value)" :data-id="option.value">{{ option.text }}</div>
             </div>
-            <div class="categorie-wrap" v-show="admin === 1 || admin === 2 || admin === 3">
-                <div class="categorie-title">Панель Куратора</div>
-            </div>
-            <div class="categorie-wrap" v-show="admin === 2 || admin === 3">
-                <div class="categorie-title">Панель Админа</div>
-            </div>
-            <div class="categorie-wrap" v-show="admin === 3">
-                <div class="categorie-title">Панель Разработчика</div>
-            </div>
             <transition name="custom-classes-transition"
                         enter-active-class="animated fadeIn"
-                        leave-active-class="animated fadeOut" :duration="{ enter: 400, leave: 300 }">
+                        leave-active-class="animated fadeOut">
+                <div class="categorie-wrap" v-show="admin === 1 || admin === 2 || admin === 3">
+                    <div class="categorie-title">Панель Куратора</div>
+                </div>
+            </transition> 
+            <transition name="custom-classes-transition"
+                enter-active-class="animated fadeIn"
+                leave-active-class="animated fadeOut">    
+                <div class="categorie-wrap" v-show="admin === 2 || admin === 3">
+                    <div class="categorie-title">Панель Админа</div>
+                </div>
+            </transition> 
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">
+                <div class="categorie-wrap" v-show="admin === 3">
+                    <div class="categorie-title">Панель Разработчика</div>
+                </div>
+            </transition>     
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">
                 <div class="passport-wrap" v-show="passShow === true">
                         <div class="pass-content">
                              <div class="pass-title">S A N S A R A    S T A T E </div>
@@ -43,7 +55,7 @@
                                         <div class="name-sub">Имя / Фамилия</div>
                                     </div>
                                     <div class="pass-age">Возраст: {{ pass.age }}</div>
-                                    <div class="pass-phone">Номер телефона: 999-999</div>
+                                    <div class="pass-phone">Номер телефона: {{ pass.number }}</div>
                                     <div class="pass-number">№ {{ pass.id }}</div>
                                     <div class="pass-autograph">Подпись: <span class="autograph"> {{ pass.signature }} </span></div>
                                 </div>                        
@@ -51,9 +63,7 @@
                         </div>
                 </div>
             </transition> 
-            <transition name="custom-classes-transition"
-                        enter-active-class="animated fadeIn"
-                        leave-active-class="animated fadeOut" :duration="{ enter: 400, leave: 300 }">
+            <vue-slide-up-down :active="skillsShow" :duration="1000">
                 <div class="skills-wrap" v-show="skillsShow === true">
                     <div class="wrapper">
                         <div class="block-wrap" id="strength">
@@ -143,10 +153,8 @@
                         </div>
                     </div>
                 </div>
-            </transition>   
-            <transition name="custom-classes-transition"
-                        enter-active-class="animated fadeIn"
-                        leave-active-class="animated fadeOut" :duration="{ enter: 400, leave: 300 }">
+            </vue-slide-up-down> 
+            <vue-slide-up-down :active="settingsShow" :duration="1000">
                 <div class="settings-wrap" style="order:1;" v-show="settingsShow === true">
                     <div class="setting-wrap">
                         <div class="setting-title">Автологин</div>
@@ -157,31 +165,31 @@
                     </div>
                     <button class="save" :class="saveButtonState ? 'saveText__active' : ''" @click="save()" >Применить</button>
                 </div>
-            </transition>            
+            </vue-slide-up-down>            
             <transition name="custom-classes-transition"
                         enter-active-class="animated fadeIn"
-                        leave-active-class="animated fadeOut" :duration="{ enter: 400, leave: 300 }">    
+                        leave-active-class="animated fadeOut">    
                 <div class="report-wrap" v-show="reportShow === true">
                     <div class="report-content">
                         <div class="report-close" @click="reportShow = false;"></div>
                         <div class="report-title">Введите текст жалобы/вопроса</div>
                         <textarea  class="report-input" type="text" placeholder="Введите сообщение..." style="resize: none;padding:10px;">
                         </textarea>
-                        <div class="report-subtitle">Внимание! За оффтоп либо дизинформацию  вы получите блокировку чата на определенный срок!</div>
+                        <div class="report-subtitle">Внимание! За оффтоп либо дезинформацию, вы получите блокировку чата на определенный срок!</div>
                         <button class="report-btn">Отправить</button>
                     </div>
                 </div>
             </transition>    
             <transition name="custom-classes-transition"
                         enter-active-class="animated fadeIn"
-                        leave-active-class="animated fadeOut" :duration="{ enter: 400, leave: 300 }">
+                        leave-active-class="animated fadeOut">
                 <div class="animation-wrap" v-show="animateShow === true">
                     <div class="animation-name" v-for="animation in animations" @click="animate(animation.dict, animation.name)">{{ animation.title }}</div>
                 </div>
             </transition>      
             <transition name="custom-classes-transition"
                         enter-active-class="animated fadeIn"
-                        leave-active-class="animated fadeOut" :duration="{ enter: 400, leave: 300 }">
+                        leave-active-class="animated fadeOut">
                 <div class="animation-wrap animation-2" v-show="animateSettingsShow === true">
                     <div class="animation-name" v-for="(animation, index) in animations" @click="setFastAnim(index)">{{ animation.title }}</div>
                 </div>
@@ -205,6 +213,7 @@
         </div>
     </body> 
     <script src="https://cdn.rawgit.com/vuejs/vue/v2.1.10/dist/vue.js"></script>
+    <script type="text/javascript" src="js/vue-slide-up-down.umd.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/skills.js"></script>
     <script src="js/menu.js"></script>

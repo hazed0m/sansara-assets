@@ -36,13 +36,14 @@ let animCircle = new Vue({
     }
 });  
 
-
- let menu = new Vue({
+Vue.component('vue-slide-up-down', VueSlideUpDown);
+let menu = new Vue({
     el: '#buttons',
     data: {
         admin: 0,
         passShow: false,
         activeClass: 'btn-active',
+        phoneNumber:1111111,
         settingsShow: false,
         skillsShow: false,
         reportShow: false,
@@ -149,7 +150,7 @@ let animCircle = new Vue({
                            $('.categorie-title').each(function(index,item){
                                if($(item).attr('data-id') == 'settingsShow')
                                {
-                                   $(item).delay(1000).fadeIn(); 
+                                   $(item).fadeIn(1000); 
                                }
                             });
                             this.skillsShow = false;
