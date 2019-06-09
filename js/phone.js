@@ -125,7 +125,7 @@ var getNumber = 0;
 $('.incomingCall-wrapper .cancel').on('click',function(){	
 	mp.trigger("cancelIncomingCall",getNumber);
 });
-$('.outCaller-wrapper .cancel, caller-wrapper .cancel').on('click',function(){	
+$('.outCaller-wrapper .cancel, .caller-wrapper .cancel').on('click',function(){	
 	mp.trigger("cancelOutcomingCall",getNumber);
 });
 function cancelOutcomingCall(){
@@ -246,10 +246,6 @@ $('.number-wrap .call').on('click',function(){
 		$('.outCaller-wrapper').addClass('active').fadeIn();
 		checkCall(number);
 	}
-	// else
-	// {
-	// 	$('.this-block').effect('shake');
-	// }
 });
 jQuery.fn.reverse = [].reverse;
 $('.number-wrap .cross').on('click',function(){
@@ -581,39 +577,27 @@ $('.messages-inner .smiles-wrap .smile, .messages-inner .big-smiles-wrap .smile'
 		$('.messages-inner .big-smiles-wrap').fadeOut();
 		$('.home-but').fadeIn();
 	}
-	// contactsList[currentIndex].messageList.push({'status':'outcoming','time':``,'message':messageTemplate});
-	// refreshMessages();	
-	// checkSmile();
-	// messageInnerScroll('inner');	
-	let jsonOutput = JSON.stringify({'number':contactsList[currentIndex].number,'time':'','message':messageTemplate});
-	mp.trigger("sendMessage",jsonOutput);
+	mp.trigger("sendMessage",contactsList[currentIndex].number, messageTemplate);
 });
 $('.messages-inner .sender').on('click',function(){
 	let currentMessage = $(this).prev().val();
 	if(currentMessage.length > 0)
 	{
 		let currentIndex = $(this).parent().parent().find('.title').attr('data-index');
-		// contactsList[currentIndex].messageList.push({'status':'outcoming','time':``,'message':currentMessage});
 		$(this).prev().val('');
-		// refreshMessages();
-		// checkSmile();
-		// messageInnerScroll('inner');
-		let jsonOutput = JSON.stringify({'number':contactsList[currentIndex].number,'time':'','message':currentMessage});	
-		mp.trigger("sendMessage",jsonOutput);
+		mp.trigger("sendMessage",contactsList[currentIndex].number, currentMessage);
 	}	
 });
-function incomingMessage(number,jsonInput)
+function incomingMessage(number, status, time, message)
 {
-	let checker = false,
-	    currentJson = JSON.parse(jsonInput);
+	let checker = false;
 	$(contactsList).each(function(index,item){
 		if(item.number == number)
 		{
-			console.log(index);
 			item.messageList.push({	
-									status:currentJson.status,
-									time: currentJson.time,
-									message:currentJson.message
+									status: status,
+									time: time,
+									message: message
 								  });
 			if($('.messages-inner').hasClass('active') && $('.messages-inner .title').attr('data-index') == index)
 			{
@@ -632,9 +616,9 @@ function incomingMessage(number,jsonInput)
 							number:number, 
 							messageList:
 							[{
-								status: currentJson.status,
-								time: currentJson.time, 
-								message :currentJson.message
+								status: status,
+								time: time, 
+								message: message
 							}]
 						});
 		pushContacts('messages');
