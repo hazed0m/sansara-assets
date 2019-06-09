@@ -153,7 +153,7 @@ function cancelIncomingCall()
 	minutesCounter = 0;
 };
 $('input[type="text"]').keyup(function() {
-    this.value = this.value.replace(/[^a-zA-Zа-яА-Я0-9_]/g, '');
+    this.value = this.value.replace(/[^a-zA-Zа-яА-Я0-9,.!?_]/g, '');
 });
 $('.incomingCall-wrapper .allow').on('click',function(){
 	mp.trigger("allowIncomingCall",getNumber);
