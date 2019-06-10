@@ -158,6 +158,12 @@ $('input[type="text"]').keyup(function() {
 $('.incomingCall-wrapper .allow').on('click',function(){
 	mp.trigger("allowIncomingCall",getNumber);
 });
+function goHome()
+{
+	let active = $('.container > .active')[0].classList[0];
+	$('.'+active).removeClass('active').fadeOut();
+	$('.main-wrapper').addClass('active').fadeIn();
+}
 function toCall(number,type)
 {
 	getNumber = number;
