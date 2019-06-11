@@ -14,11 +14,11 @@
                     <img src="images/auth/logo.png" alt="">
                 </div>
                 <div class="form-input__wrap">
-                    <input class="form-input one" type="text" name="loginName" id="loginName" required>
+                    <input class="form-input one" type="text" name="loginName" id="loginName" data-error="Не меньше 6 символов" required>
                     <label>Логин</label>                
                 </div>
                 <div class="form-input__wrap">
-                    <input class="form-input two" type="password" name="loginPass" id="loginPass" required>  
+                    <input class="form-input two" type="password" name="loginPass" id="loginPass" data-error="Не меньше 6 символов" required>  
                     <label>Пароль</label>                    
                 </div>
                 <div class="g-recaptcha" id="g-recaptcha" data-sitekey="6LcShqcUAAAAAEFfGkm9KKambio8Ik5XGbD3Lruz"></div>
@@ -27,17 +27,17 @@
             </div>
             <div class="popup-wrap" id="signup" style="display: none;">
                 <div class="form-input__wrap">
-                    <input class="form-input one" type="text" name="newLoginName" id="newLoginName" required>
+                    <input class="form-input one" type="text" name="newLoginName" id="newLoginName" data-error="Не меньше 6 символов" required>
                     <label>Логин</label>    
                 </div>
                 
                 <div class="form-input__wrap">
-                    <input class="form-input two" type="password" name="newLoginPass" id="newLoginPass" required>
+                    <input class="form-input two" type="password" name="newLoginPass" id="newLoginPass" data-error="Не меньше 6 символов" required>
                     <label>Пароль</label>    
                 </div>
                 
                 <div class="form-input__wrap">
-                    <input class="form-input three" type="text" name="newLoginEmail" id="newLoginEmail" required>  
+                    <input class="form-input three" type="text" name="newLoginEmail" id="newLoginEmail" data-error="sansara@rage.mp" required>  
                     <label>Почта</label>    
                 </div>
                 <div class="g-recaptcha" id="g-recaptcha1" data-sitekey="6LcShqcUAAAAAEFfGkm9KKambio8Ik5XGbD3Lruz"></div>          

@@ -7,6 +7,16 @@ function loginError(text)
 		$('.alert').fadeOut()
 	}, 3000);
 }
+$('input').on('click',function(){
+    $(this).attr('placeholder',$(this).attr('data-error'));
+});
+$('input').focusout(function(){
+    if($(this).val().length == 0)
+    {
+        $(this).css('border','none');
+    }
+    $(this).attr('placeholder','');
+});
 let signIn = document.getElementById('signin'),
     signUp = document.getElementById('signup'),
     btn = document.querySelectorAll('.form-auth'),
@@ -33,20 +43,34 @@ $('.form-btn').on('click', function() {
         sendAccountInfos(parseInt($(this).attr('data-attr')));
     }
 });
-$('input[type="text"]').keyup(function() {
+$('input[type="text"], input[type="password"]').keyup(function() {
     if($(this)[0].id != 'newLoginEmail')
     {
+        console.log($(this)[0].id);
+        if($(this).val().length < 6)
+        {
+            console.log($(this)[0].id+'if');
+            $(this).css('border','2px solid red');
+        }
+        else
+        {
+            console.log($(this)[0].id+'else');
+            $(this).css('border','2px solid green');
+        }
         this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '');
     }
     else
     {
-        if(document.getElementById('newLoginEmail').value.match("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"))
+        const emailRegex = /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i;
+        if(document.getElementById('newLoginEmail').value.match(emailRegex))
         {
             emailValidate = true;
+            $('#newLoginEmail').css('border','2px solid green');
         }
         else
         {
             emailValidate = false;
+            $('#newLoginEmail').css('border','2px solid red');
         }
     }    
 });
