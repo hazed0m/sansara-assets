@@ -53,7 +53,8 @@ var className =
        "Часы",
        "Бронежилет",
        "Обувь",
-       "Сумка"
+       "Сумка",
+       "Значки"
     ],
     clothesArr = [];    
 clothesArr["Маска"] = [];   
@@ -70,6 +71,7 @@ clothesArr["Часы"] = [];
 clothesArr["Бронежилет"] = [];
 clothesArr["Обувь"] = [];
 clothesArr["Сумка"] = [];
+clothesArr["Значки"] = [];
 function pushClothesShop(json)
 {
     var itemList = JSON.parse(json);
@@ -242,7 +244,7 @@ $('#resetCamera').on('click',function(){
     mp.trigger("resetCamera");
 });
 var clothesTemplate = `
-                <div class="clothes-item" id="Маска">
+            <div class="clothes-item" id="Маска">
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                     <div class="title" data-index="0" data-item="-1" data-price="0" data-price="0">Маска (<span>Тек.</span>)</div>
@@ -288,6 +290,20 @@ var clothesTemplate = `
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                 <div class="title" data-index="3" data-item="-1" data-price="0">Аксессуар (<span>Тек.</span>)</div>
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+                <div class="toogle">
+                    <i class="fas fa-chevron-left"></i>
+                    <div class="color-list">
+                        <div class="color">Цвет</div>
+                    </div>			
+                    <i class="fas fa-chevron-right"></i>
+                </div>
+            </div>
+            <div class="clothes-item" id="Значки">
+                <div class="title-wrap">
+                    <i class="fas fa-chevron-left"></i>
+                <div class="title" data-index="14" data-item="-1" data-price="0">Значки (<span>Тек.</span>)</div>
                     <i class="fas fa-chevron-right"></i>
                 </div>
                 <div class="toogle">
