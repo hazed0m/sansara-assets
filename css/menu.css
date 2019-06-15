@@ -2,6 +2,7 @@ body {
     user-select: none;
     margin: 0;
     padding: 0;
+    font-family:'HelveticaNeueCyr';
 }
 .menu-wrap {
     width: 351px;
@@ -18,7 +19,6 @@ body {
 }
 .menu-title {
     color: #ffffff;
-    font-family: "Gotham Pro";
     font-size: 26px;
     font-weight: 300;
 }
@@ -41,7 +41,6 @@ body {
     padding: 15px 0px;
     padding-left: 56px;
     color: #f7f7f7;
-    font-family: "Gotham Pro";
     font-size: 18px;
     font-weight: 500;
     transition: 0.5s;
@@ -61,82 +60,99 @@ body {
     left: 50%;
     transform: translate(-50%,-50%) scale(0.5);
     width: 773px;
-    height: 391px;
+    height: 403px;
     background: url(../images/hud/pass-bg.png);
     background-size: cover;
     border-radius: 20px;
 }
 .pass-content {
     padding: 30px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
 }
 .pass-title {
-    font-family: "Gotham Pro";
     font-size: 31px;
     font-weight: 300;
     text-align: center;
 }
 .pass-subtitle {
-    font-family: "Gotham Pro";
     font-size: 11px;
     font-weight: 300;
     text-align: center;
 }
 .column-wrap {
-    display: flex;
-    justify-content: space-between;
+    width:100%;
+    height:100%;
+    position: relative;
 }
-.column-left {
+.user-wrapper 
+{
+    width:50%;
+    position: absolute;
+    top:8%;
+    right:0;
+}
+.char-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 300px;
     width: 50%;
-    font-family: "Gotham Pro";
     font-size: 18px;
-    font-weight: 300;
+    position: absolute;
+    bottom:35px;
+    left:31%;
+}
+.user-wrapper div > span, .char-wrapper div > span
+{
+    font-size:1.2em;
+    font-weight: 500;
+}
+.mgt30
+{
+    margin-top:20px;
 }
 .name {
-    font-family: "Gotham Pro";
-    font-size: 35px;
+    font-size: 24.88px;
     font-weight: 400;
+    text-align: center;
 }
 .name-sub {
-    font-family: "Gotham Pro";
-    font-size: 12px;
-    font-weight: 400;
+    font-size: 14.55px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom:16px;
+}
+.pass-age, .pass-phone
+{    
     text-align: center;
 }
-.pass-age {
-    font-family: "Gotham Pro";
+.pass-age, .pass-autograph, .pass-phone, .pass-lic, .pass-rank, .pass-live, .pass-carlic, .pass-carnum {
     font-size: 20px;
     font-weight: 400;
-    text-align: center;
-}
-.pass-phone {
-    font-family: "Gotham Pro";
-    font-size: 18px;
-    font-weight: 400;
-    text-align: center;
 }
 .pass-number {
-    font-family: "Gotham Pro";
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 300;
     transform: rotateZ(-90deg);
     position: absolute;
-    right: 1%;
-    top: 50%;
+    right: -40px;
+    top: 40%;
 }
 .pass-autograph {
-    font-family: Tahoma;
-    font-size: 17px;
-    font-weight: 400;
-    margin-top: 170px;
+    position: absolute;
+    bottom:-3%;
+    right:-63%;
+    width:100%;
 }
 .autograph {
     font-family: "Sacramento";
-    font-size: 46px;
+    font-size: 45px;
     font-weight: 400;
+    position: absolute;
+    top:-30px;
+    margin-left:5px;
+    transform:rotate(-8deg);
 }
 .animCircle, .animation-wrap {
     position: fixed;
@@ -168,7 +184,6 @@ body {
 }
 .setting-title {
     color: #ffffff;
-    font-family: "Gotham Pro";
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 25px;
@@ -188,7 +203,6 @@ body {
     border-radius: 5px;
     background-color: #252524;
     color: #ffffff;
-    font-family: "Gotham Pro";
     font-size: 18px;
     font-weight: 500;
     outline: none;
@@ -207,7 +221,6 @@ body {
 	box-shadow: 0 0 21px 1px rgba(186, 167, 0, 0.75);
 	background-color: #fbe400;
 	color: #224161;
-	font-family: "Gotham Pro";
 	font-size: 14px;
 	font-weight: 500;
 	outline: none;
@@ -220,7 +233,6 @@ body {
 }
 .animation-name {
     color: #ffffff;
-    font-family: "Gotham Pro";
     font-size: 20px;
     font-weight: 500;
     margin: 0 auto;
@@ -249,7 +261,6 @@ body {
 }
 .report-title {
     color: #ffffff;
-    font-family: "Gotham Pro";
     font-size: 19px;
     font-weight: 500;
 }
@@ -259,14 +270,12 @@ body {
     height: 63px;
     max-height: 63px;
     background-color: #ffffff;
-    font-family: "Gotham Pro";
     font-size: 18px;
     font-weight: 400;
     text-align: center;
 }
 .report-subtitle {
     color: #ffffff;
-    font-family: "Gotham Pro";
     font-size: 12px;
     font-weight: 500;
 }
@@ -274,7 +283,6 @@ body {
     box-shadow: 0 0 5px rgba(251, 229, 4, 0.75);
     background-color: #fbe504;
     color: #224161;
-    font-family: "Gotham Pro";
     font-size: 21px;
     font-weight: 500;
     outline: none;
@@ -349,7 +357,6 @@ body {
     position: absolute;
     text-decoration: none;
     color: #ffffff;
-    font-family: "Gotham Pro";
     font-size: 23px;
     font-weight: 400;
     pointer-events: none;
@@ -371,7 +378,6 @@ body {
 }
 .setting-text {
     color: #ffffff;
-    font-family: "Gotham Pro";
     font-size: 20px;
     font-weight: 500;
     padding-bottom: 5px;
@@ -379,7 +385,6 @@ body {
 }
 .anim-text {
     color: #ffffff;
-    font-family: "Gotham Pro";
     font-size: 14px;
     font-weight: 500;
     padding-bottom: 5px;
@@ -410,7 +415,7 @@ body {
  transition: height 0.5s;
 }
 @media (max-width:3840px) and (max-height: 2160px)
-    {
+{
     .animCircle, .animation-wrap {
         top: 22%;
         max-height: 475px;
@@ -419,6 +424,7 @@ body {
         position: absolute;
         top: 5%;
     }
+}
 @media (max-width:3440px) and (max-height: 1440px)
 {
     .animCircle, .animation-wrap {
@@ -427,7 +433,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 8%;
+        top: 9%;
     }
 }
 @media (max-width:2560px) and (max-height: 1600px)
@@ -438,7 +444,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 7%;
+        top: 8%;
     }
 }
 @media (max-width:2560px) and (max-height: 1440px)
@@ -449,7 +455,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 7%;
+        top: 8%;
     }
 }
 @media (max-width:1920px) and (max-height: 1200px)
@@ -460,7 +466,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 9%;
+        top: 10%;
     }
 }
 @media (max-width:1920px) and (max-height: 1080px)
@@ -471,7 +477,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 10%;
+        top: 11%;
     }
 }
 @media (max-width:1680px) and (max-height: 1050px)
@@ -482,7 +488,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 10%;
+        top: 11%;
     }
 }
 @media (max-width:1680px) and (max-height: 900px)
@@ -493,7 +499,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 12%;
+        top: 13%;
     }
 }
 @media (max-width:1440px) and (max-height: 1050px)
@@ -504,7 +510,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 10%;
+        top: 11%;
     }
 }
 @media (max-width:1440px) and (max-height: 900px)
@@ -522,7 +528,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 12%;
+        top: 13%;
     }
 }
 @media (max-width:1366px) and (max-height: 768px), (max-width:1280px) and (max-height: 800px)
@@ -542,7 +548,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 14%;
+        top: 15%;
     }
     .menu-content {
         padding: 12px 15px;
@@ -588,7 +594,7 @@ body {
     }
     .passport-wrap {
         position: absolute;
-        top: 15%;
+        top: 16%;
     }
     .menu-content {
         padding: 12px 15px;
@@ -632,9 +638,7 @@ body {
     .passport-wrap
     {
         transform: translate(-50%,-50%) scale(0.4);
-    }
-    .passport-wrap {
-        top: 12%;
+        top: 13%;
     }
 }
 @media (max-width:800px) and (max-height: 600px)

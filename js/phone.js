@@ -1,15 +1,9 @@
 const wallpaperList = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13];
-var contactsList = 
-	[{'name':'Скорая помощь','number':1, 
-	'messageList':[]},
-	{'name':'Полиция','number':2, 
-	'messageList':[]},
-	{'name':'Такси','number':3, 
-	'messageList':[]},
-	{'name':'Эвакуатор','number':4, 
-	'messageList':[]}
-	],
-currentTopPosition = 0;
+var contactsList = 	[],
+	incomingAudio = new Audio('audio/incoming.mp3'),	
+	dialingAudio = new Audio('audio/dialing.mp3'),
+	messageAudio = new Audio('audio/message.mp3'),
+	currentTopPosition = 0;
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
@@ -107,7 +101,7 @@ $('.home-but').on('click',function(){
 	$('.contacts-wrapper .current-wrapper .active').css('display','none').removeClass('active');
 	$('.contacts-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
 	$('.contacts-wrapper .wrapper .number.active').fadeTo("slow",1).removeClass('active');
-	if(active != 'main-wrapper' && active != 'incomingCall-wrapper' && active != 'caller-wrapper')
+	if(active != 'main-wrapper' && active != 'incomingCall-wrapper' && active != 'caller-wrapper' && active != 'outCaller-wrapper')
 	{
 		$('.'+active).removeClass('active').fadeOut();
 		$('.main-wrapper').addClass('active').fadeIn();
@@ -119,6 +113,7 @@ var myInterval = null,
 	secondsCounter = 0,
 	minutesCounter = 0;
 $('.main-wrapper .fast-block div').on('click',function(){
+	outCaller($(this).attr('data-number'));
 	checkCall($(this).attr('data-number'));
 });
 var getNumber = 0;
@@ -160,19 +155,28 @@ $('.incomingCall-wrapper .allow').on('click',function(){
 });
 function goHome()
 {
+	dialingAudio.pause();
+	dialingAudio.currentTime = 0;
+	incomingAudio.pause();
+	incomingAudio.currentTime = 0;
 	let active = $('.container > .active')[0].classList[0];
 	$('.'+active).removeClass('active').fadeOut();
 	$('.main-wrapper').addClass('active').fadeIn();
 }
 function toCall(number,type)
 {
+	dialingAudio.pause();
+	dialingAudio.currentTime = 0;
+	incomingAudio.pause();
+	incomingAudio.currentTime = 0;
 	getNumber = number;
+	let currentName = '';
 	let active = $('.container > .active')[0].classList[0];
 	$('.'+active).removeClass('active').fadeOut();
 	$(contactsList).each(function(index,item){
 		if(item.number == getNumber)
 		{
-			getNumber = item.name;
+			currentName = item.name;
 		}
 	});	
 	if(type == 'in')
@@ -187,7 +191,11 @@ function toCall(number,type)
 	{
 		type = 'Вызов';
 	}
-	$('.caller-wrapper').find('.number').text(getNumber);
+	if(currentName == '')
+	{
+		currentName = getNumber;
+	}
+	$('.caller-wrapper').find('.number').text(currentName);
 	$('.caller-wrapper').find('.title').text(type);
 	$('.caller-wrapper').addClass('active').fadeIn();
 	clearInterval(callInterval);
@@ -198,20 +206,25 @@ function toCall(number,type)
 function checkCall(number)
 {
 	getNumber = number;
-	mp.trigger('PhoneCheckCall',number);
+	mp.trigger('PhoneCheckCall',getNumber);
 }
 function getCall(number)
 {	
 	getNumber = number;
-	let active = $('.container > .active')[0].classList[0];
+	let active = $('.container > .active')[0].classList[0],
+		currentName = '';
 	$('.'+active).removeClass('active').fadeOut();
 	$(contactsList).each(function(index,item){
 		if(item.number == getNumber)
 		{
-			getNumber = item.name;
+			currentName = item.name;
 		}
 	});
-	$('.incomingCall-wrapper').find('.number').text(getNumber);
+	if(currentName == '')
+	{
+		currentName = getNumber;
+	}
+	$('.incomingCall-wrapper').find('.number').text(currentName);
 	callInterval = setInterval(function () {
 		++secondsCounter;
 		if(secondsCounter % 3 == 0 || secondsCounter == 1)
@@ -220,6 +233,7 @@ function getCall(number)
 		}
 	}, 1000);
 	$('.incomingCall-wrapper').addClass('active').fadeIn();
+	incomingAudio.play();
 }
 function timerOnCaller()
 {
@@ -245,14 +259,19 @@ $('.bottom-block .phone').on('click',function(){
 $('.number-wrap .call').on('click',function(){
 	let number = $(this).parents().find('.this-block').text();
 	if(number.length >= 6)
-	{
-		let active = $('.container > .active')[0].classList[0];
-		$('.'+active).removeClass('active').fadeOut();
-		$('.outCaller-wrapper').find('.number').text(number);
-		$('.outCaller-wrapper').addClass('active').fadeIn();
+	{	
+		outCaller(number);
 		checkCall(number);
 	}
 });
+function outCaller(number)
+{	
+	let active = $('.container > .active')[0].classList[0];	
+	$('.'+active).removeClass('active').fadeOut();
+	$('.outCaller-wrapper').find('.number').text(number);
+	$('.outCaller-wrapper').addClass('active').fadeIn();
+	dialingAudio.play();
+}
 jQuery.fn.reverse = [].reverse;
 $('.number-wrap .cross').on('click',function(){
 	var numbersList = $('.this-block').text();
@@ -395,6 +414,7 @@ function contactsInitialize()
 		let currentIndex = $(this).parent().attr('data-index');		
 		$('.contacts-wrapper .current-wrapper .active').css('display','none').removeClass('active');
 		$('.contacts-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
+		outCaller($(contactsList)[currentIndex].number);
 		checkCall($(contactsList)[currentIndex].number);
 	});
 	$('.contacts-wrapper .current-wrapper .create-contact .delete, .contacts-wrapper .current-wrapper .change-contact .delete, .contacts-wrapper .current-wrapper .selected-contact .delete').on('click',function(){
@@ -597,6 +617,10 @@ $('.messages-inner .sender').on('click',function(){
 function incomingMessage(number, status, time, message)
 {
 	let checker = false;
+	if(status == 'incoming')
+	{
+		messageAudio.play();
+	}
 	$(contactsList).each(function(index,item){
 		if(item.number == number)
 		{

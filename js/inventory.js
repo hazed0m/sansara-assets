@@ -41,32 +41,43 @@ var sex = '',
 	   "Бронежилет",
 	   "Обувь",
 	   "Сумка"
+	]
+	weaponClassArray = 
+	[
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false,
+		false
 	],
 	weaponsListFull = [
-		{name:'flashlight',type:'Weapon_Cold',legal:'police'},
-		{name:'brass-knuckles',type:'Weapon_Cold',legal:'illegal'},
-		{name:'knife',type:'Weapon_Cold',legal:'legal'},
-		{name:'machete',type:'Weapon_Cold',legal:'illegal'},
-		{name:'f-knife',type:'Weapon_Cold',legal:'legal'},
-		{name:'nightstick',type:'Weapon_Cold',legal:'police'},
-		{name:'pistol',type:'Weapon_FireGun_Legal',legal:'legal'},
-		{name:'pistol-mk2',type:'Weapon_FireGun_Legal',legal:'legal'},
-		{name:'combat-pistol',type:'Weapon_FireGun_Police',legal:'police'},
-		{name:'ad-pistol',type:'Weapon_FireGun_Illegal',legal:'illegal'},
-		{name:'stun-gun',type:'Weapon_FireGun_Legal',legal:'legal'},
-		{name:'pistol-50',type:'Weapon_FireGun_Police',legal:'police'},
-		{name:'heavy-pistol',type:'Weapon_FireGun_Police',legal:'police'},
-		{name:'micro-smg',type:'Weapon_FireGun_Illegal',legal:'illegal'},
-		{name:'smg',type:'Weapon_FireGun_Police',legal:'police'},
-		{name:'smg-mk2',type:'Weapon_FireGun_Illegal',legal:'illegal'},
-		{name:'assault-smg',type:'Weapon_FireGun_Police',legal:'police'},
-		{name:'combat-pdw',type:'Weapon_FireGun_Police',legal:'police'},
-		{name:'shotgun',type:'Weapon_FireGun_Police',legal:'police'},
-		{name:'sawed-off-shotgun',type:'Weapon_FireGun_Illegal',legal:'illegal'},
-		{name:'assault-rifle',type:'Weapon_FireGun_Illegal',legal:'illegal'},
-		{name:'carbine-rifle',type:'Weapon_FireGun_Police',legal:'police'},
-		{name:'bullpup-rifle-mk2',type:'Weapon_FireGun_Police',legal:'police'},
-		{name:'sniper-rifle',type:'Weapon_FireGun_Police',legal:'police'}
+		{name:'flashlight',type:'Weapon_Cold',legal:'police',class:1},
+		{name:'brass-knuckles',type:'Weapon_Cold',legal:'illegal',class:1},
+		{name:'knife',type:'Weapon_Cold',legal:'legal',class:1},
+		{name:'machete',type:'Weapon_Cold',legal:'illegal',class:1},
+		{name:'f-knife',type:'Weapon_Cold',legal:'legal',class:1},
+		{name:'nightstick',type:'Weapon_Cold',legal:'police',class:1},
+		{name:'pistol',type:'Weapon_FireGun_Legal',legal:'legal',class:2},
+		{name:'pistol-mk2',type:'Weapon_FireGun_Legal',legal:'legal',class:2},
+		{name:'combat-pistol',type:'Weapon_FireGun_Police',legal:'police',class:2},
+		{name:'ad-pistol',type:'Weapon_FireGun_Illegal',legal:'illegal',class:2},
+		{name:'stun-gun',type:'Weapon_FireGun_Legal',legal:'legal',class:2},
+		{name:'pistol-50',type:'Weapon_FireGun_Police',legal:'police',class:2},
+		{name:'heavy-pistol',type:'Weapon_FireGun_Police',legal:'police',class:2},
+		{name:'micro-smg',type:'Weapon_FireGun_Illegal',legal:'illegal',class:3},
+		{name:'smg',type:'Weapon_FireGun_Police',legal:'police',class:3},
+		{name:'smg-mk2',type:'Weapon_FireGun_Illegal',legal:'illegal',class:3},
+		{name:'assault-smg',type:'Weapon_FireGun_Police',legal:'police',class:3},
+		{name:'combat-pdw',type:'Weapon_FireGun_Police',legal:'police',class:3},
+		{name:'shotgun',type:'Weapon_FireGun_Police',legal:'police',class:4},
+		{name:'sawed-off-shotgun',type:'Weapon_FireGun_Illegal',legal:'illegal',class:4},
+		{name:'assault-rifle',type:'Weapon_FireGun_Illegal',legal:'illegal',class:5},
+		{name:'carbine-rifle',type:'Weapon_FireGun_Police',legal:'police',class:5},
+		{name:'bullpup-rifle-mk2',type:'Weapon_FireGun_Police',legal:'police',class:5},
+		{name:'sniper-rifle',type:'Weapon_FireGun_Police',legal:'police',class:6}
 	],
 	weaponsListTranslated = [
 		'фонарик',
@@ -121,6 +132,11 @@ function doneAction(action, index, id, currentCount)
     switch(action)
     {
     	case ('remove'):
+			if(id === 'weapons')
+			{
+				let currentWeaponClass = inventoryList[index].class;
+				weaponClassArray[currentWeaponClass-1] = false;
+			}
         	removeElem = eval(id +'List').splice(inventoryList[index].wearedId,1);        			
 			$(eval(id+'List')).each(function(index,item){
 
@@ -267,29 +283,39 @@ function useElement(element, index)
 				inventoryList[index].wearedId = length;
 			}
 		}
+		else
+		{
+			notificationShow('Данная одежда уже одета');
+			mp.trigger('WrongClothes');			
+		}
 	}	
 	if(element.type == 'Weapon_Cold' || element.type == 'Weapon_FireGun_Legal' || element.type == 'Weapon_FireGun_Police' || element.type == 'Weapon_FireGun_Illegal')
 	{	
-		if(!element.used)
-		{
-			element.used = true;
-			if(element.count != 0)
-			{
-				element.count--;
-				if(element.count == 0)
+		if(!element.used && weaponClassArray[element.class-1] === false)
+		{		
+				element.used = true;
+				if(element.count != 0)
 				{
-					inventoryList[index].enabled = true;
+					element.count--;
+					if(element.count == 0)
+					{
+						inventoryList[index].enabled = true;
+					}
+					weaponsList.push(element);
+					let length = weaponsList.length-1;
+					inventoryList[index].wearedId = length;
+				}	
+				else
+				{
+					weaponsList.push(element); 				
+					let length = weaponsList.length-1;
+					inventoryList[index].wearedId = length;
 				}
-				weaponsList.push(element);
-				let length = weaponsList.length-1;
-				inventoryList[index].wearedId = length;
-			}	
-			else
-			{
-				weaponsList.push(element); 				
-				let length = weaponsList.length-1;
-				inventoryList[index].wearedId = length;
-			}
+		}		
+		else
+		{
+			notificationShow('Вы не можете носить больше одного оружия, данного класса');
+			mp.trigger('WrongWeapon');			
 		}			
 	}
 	if(element.type == 'Eat' || element.type == 'Drink' || element.type == 'Alcohol' || element.type == 'Instrument'
@@ -313,6 +339,12 @@ function useElement(element, index)
 			listIndexCheck('person');
 		}
 	}
+};
+function notificationShow(notification)
+{
+	$('.info-wrapper .title').text(notification);
+	$('.info-wrapper').fadeIn();
+	setTimeout(() => {$('.info-wrapper').fadeOut()},2000);
 };
 function pushInventory(item,gender,maxweight)
 {
@@ -351,7 +383,12 @@ function pushInventory(item,gender,maxweight)
 			{
 				obj.count--;
 			}	
-			obj.used = true;
+			obj.used = true;			
+			let currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
+			if(currentElement != -1)
+			{
+				obj.class = getWeaponClass(currentElement);
+			}
 			inventoryList.push(obj);
 			let currentLength = inventoryList.length-1;			
 			obj.inventoryIndex = currentLength;
@@ -362,7 +399,7 @@ function pushInventory(item,gender,maxweight)
 				inventoryList[currentLength].wearedId = length;
 			}	
 			if(obj.type == 'Weapon_Cold' || obj.type == 'Weapon_FireGun_Legal' || obj.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
-			{
+			{				
 				weaponsList.push(obj);
 				let length = weaponsList.length-1;
 				inventoryList[currentLength].wearedId = length;
@@ -587,6 +624,10 @@ function refreshImages(currentClass)
 	});
 	return newElement;	
 };
+function getWeaponClass(currentElement)
+{
+	return weaponsListFull[currentElement].class;
+}
 function refreshInventory(currentIterator)
 {
 	currentWeight = 0;
@@ -606,8 +647,13 @@ function refreshInventory(currentIterator)
 	{
 		case 'person':
 			for (var i = 0; i != 12; i++) {
-				$('.left-inventory ul#person').append('<li classId="' + className[i] + '"></li>'); 
+				$('.left-inventory ul#person').append(`<li classId="${className[i]}"></li>`); 
 			}	
+			break;	
+		case 'weapons':
+			for (var i = 0; i != 8; i++) {
+				$('.left-inventory ul#weapons').append(`<li weaponsClass="${i+1}"></li>`); 
+			}
 			break;
 	}	
     $(eval(currentIterator + 'List')).each(function(index,item)
@@ -651,6 +697,7 @@ function refreshInventory(currentIterator)
 			if(currentElement != -1)
 			{				
 				currentImg = weaponsListFull[currentElement].name;
+				personId = `weaponsClass="${getWeaponClass(currentElement)}"`;
 			}
 			itemTemplate = 
 			'<li ' + currentIterator + '-id="' + index +'" ' + personId + '>\
@@ -668,11 +715,16 @@ function refreshInventory(currentIterator)
 		{		
 			var currentImg = item.type,
 				currentIter = 'inventory',
-				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);	
+				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated),
+				personId = '',	
 				giveBut = '<li id="give">Передать</li>';
 			if(item.type == 'Clothes_Legal' || item.type == 'Clothes_Duty' || item.type == 'Clothes_Illegal' || item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{
-				listBut = '<li id="use">Надеть</li>';		
+				listBut = '<li id="use">Надеть</li>';	
+				if(item.type == 'Clothes_Duty')
+				{
+					giveBut = '';
+				}	
 			}
 			if(item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources' || item.type == 'Documents' || item.type == 'Instrument' || item.type == 'Medical_Preparation' || item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
 			{
@@ -684,19 +736,22 @@ function refreshInventory(currentIterator)
 				{				
 					currentImg = weaponsListFull[currentElement].name;
 					currentIter = 'weapons';
+					personId = `weaponsClass="${getWeaponClass(currentElement)}"`
+					item.class = getWeaponClass(currentElement);
 				}
-				if(item.type == 'Weapon_FireGun_Police')
+				if(item.type == 'Weapon_FireGun_Police' || item.type == 'Clothes_Duty')
 				{
 					giveBut = '';
 				}
 			}
 			else
 			{
+				personId = '';
 				currentImg = item.type;
 				listBut = '<li id="use">Применить</li>';
 			}			
 			itemTemplate = 
-			`<li ${currentIterator}-id="${index}">
+			`<li ${currentIterator}-id="${index}" ${personId}>
 				<div class="itemInv ${shadowClass}">
 					<div class="button-dropdown">
 						<div class="quantity">${item.count}</div>
@@ -716,7 +771,21 @@ function refreshInventory(currentIterator)
 		switch (currentIterator)
 		{
 			case 'weapons':
-				$('.left-inventory ul#weapons').append(itemTemplate);	
+				let currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+				if(currentElement != -1)
+				{
+					$('.left-inventory ul#weapons li').each(function(indexElem,element){						
+						if(parseInt($(element).attr('weaponsClass')) === item.class)
+						{							
+							if($(element).is(':empty'))
+							{		        
+								weaponClassArray[item.class-1] = true;
+								$(element).replaceWith(itemTemplate);
+								$(`.left-inventory ul#weapons li:eq(${item.class})`).get(0).scrollIntoView({inline: "end", behavior: "smooth"});								
+							}	
+						}										
+					});					
+				}	
 				break;
 			case 'person':				
 				$('.left-inventory ul#person li').each(function(indexElem,element){
@@ -783,18 +852,13 @@ function refreshInventory(currentIterator)
 		}		   	
     }); 
 	switch (currentIterator)
-	{		
-		case 'weapons':
-			for (var i = weaponsList.length; i != 8; i++) {
-				$('.left-inventory ul#weapons').append('<li></li>'); 
-			}
-			break;
+	{	
 		case 'inventory':
 			for (var i = inventoryList.length-usedCounter; i != currentLength; i++) {
 				$('.right-inventory ul#inventory').append('<li></li>'); 
 			}
-			break;
-	}    
+			break;		
+		}    
     countWeight();      
 };
 $('.left-inventory .weapons').mousewheel(function(e, delta) {
