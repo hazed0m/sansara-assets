@@ -2,7 +2,8 @@ var cardVal = 0,
 	cashVal = 0,
 	putbackInput = '',
 	withdrawalInput = '',
-	topupInput = '';
+	topupInput = '',
+	maxWithdrawal = 9999999999;
 $('#withdrawal, #putback, #topup, #payments, #payfine').on('click',function(){
 	$('#main-wrapper').fadeOut().css('display','none');
 	let currentEl = '#'+$(this)[0].id+'-wrapper';
@@ -30,8 +31,8 @@ function clearInput()
 		$('#topup-wrapper input').replaceWith(topupInput);		
 	}
 	$('#putback-wrapper input').attr('max',cashVal);	
-	$('#withdrawal-wrapper input').attr('max',cardVal);
-	$('#topup-wrapper input').attr('max',cardVal);
+	$('#withdrawal-wrapper input').attr('max',maxWithdrawal);
+	$('#topup-wrapper input').attr('max',1000);
 	var inputQuantity = [];
     $(function() {
       $("#putback-wrapper input, #withdrawal-wrapper input, #topup-wrapper input").each(function(i) {
@@ -76,10 +77,14 @@ $('.exit-button').on('click',function(){
 // 2)Положить
 // Проверка на наличие налички
 //   Триггер -  сколько он пополняет
-function cashpointInit(card,cash,terminal)
+function cashpointInit(card,cash,terminal,maxwithdrawal,phoneNumber)
 {
+	maxWithdrawal = maxwithdrawal;
 	cardVal = card;
 	cashVal = cash;
+	let numberStr = phoneNumber.toString();
+	numberStr = numberStr.slice(0, 3) + '-' + numberStr.slice(-3);
+	$('#topup-wrapper .number').text(numberStr);
 	$('.bankaccount .cardVal').text(card);
 	$('.terminal-numb').text(terminal);
 	$('#putback-wrapper input').attr('max',cashVal);

@@ -2,6 +2,7 @@ var sellPointList = [],
     businessName = '';
 function pushSellPoint(element,busName)
 {
+  console.log(busName);
   businessName = busName;
   let currentList = JSON.parse(element);
   $(currentList).each(function(index,item){
@@ -52,7 +53,7 @@ function businessRefresh()
         </div>
         <div class="button-wrap">
           <div class="cancel-button">Закрыть</div>
-          <div class="ok-button">Продать</div>
+          <div class="ok-button deactivated">Продать</div>
         </div>
       </div>`;
   $('.col-wrapper').append(buttons);  
@@ -64,11 +65,13 @@ function businessInitialize()
     currentMin = $(this).parent().find('.quantity').attr('min');
     $(this).parent().find('.quantity').val(currentMin);
     $('.current-total-price').text(generateSum());
+    buttonRefresh(); 
   });     
   $('.col-wrapper .max').on('click',function(){
     currentMax = $(this).parent().find('.quantity').attr('max');
     $(this).parent().find('.quantity').val(currentMax);
     $('.current-total-price').text(generateSum());
+    buttonRefresh(); 
   });     
   var inputQuantity = [];
   $(function() {
@@ -90,6 +93,7 @@ function businessInitialize()
         val=val.slice(0, 5);
         $field.val(val);
       }
+      buttonRefresh(); 
       inputQuantity[$thisIndex]=val;
       $('.current-total-price').text(generateSum());
     });      
@@ -109,18 +113,36 @@ function businessInitialize()
       mp.trigger('sellPointItems',genSum,JSON.stringify(sellPointList));
     }    
   }); 
-  var listSum = 0;
-  $(sellPointList).each(function(index,item){    
-    listSum += item.count;
-  }); 
-  if(listSum == 0)
-  {
-    $('.col-wrapper .ok-button').addClass('deactivated');
-  }  
   $('.button-wrapper .cancel-button').on('click',function(){
     mp.trigger('closeSellPoint');
   });
 };
+function checkInputs()
+{
+  let checker = false;
+  $('input.quantity').each(function(index,item){
+      if(parseInt($(item).val()) > 0)
+      {
+        checker = true;
+      }
+  });
+  return checker;
+}
+function buttonRefresh()
+{
+  let listSum = 0;
+  $(sellPointList).each(function(index,item){    
+    listSum += item.count;
+  }); 
+  if(listSum == 0 || !checkInputs())
+  {
+    $('.col-wrapper .ok-button').addClass('deactivated');
+  } 
+  else if(!checkInputs() || listSum > 0)
+  {
+    $('.col-wrapper .ok-button').removeClass('deactivated');
+  } 
+}
 function generateSum()
 {
   let genSum = 0;
@@ -129,5 +151,5 @@ function generateSum()
       let currentCount = $(item).find('.quantity').val();
       genSum += currentPrice * currentCount;
   });
-  return genSum;
+  return Math.floor(genSum);
 };

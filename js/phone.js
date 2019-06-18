@@ -12,6 +12,10 @@ function phoneFadeIn()
 {
 	$('.container').fadeIn();
 }
+function messagePlay()
+{
+	messageAudio.play();
+}
 function phoneToTop()
 {
 	currentTopPosition = $('.container').css('top');
@@ -37,6 +41,10 @@ function pushContactList(item)
 	pushContacts('messages');
 	pushContacts('messages-inner');
 };
+function pushPhoneBalance(count)
+{
+	$('.phoneBalance').text(count);
+}
 $(wallpaperList).each(function(index,item){
 	var active = '';
 	if(index == 0)
@@ -165,6 +173,8 @@ function goHome()
 }
 function toCall(number,type)
 {
+	clearInterval(dialingTimeout);
+	dialingTimeout = null;
 	dialingAudio.pause();
 	dialingAudio.currentTime = 0;
 	incomingAudio.pause();
@@ -264,6 +274,7 @@ $('.number-wrap .call').on('click',function(){
 		checkCall(number);
 	}
 });
+var dialingTimeout = '';
 function outCaller(number)
 {	
 	let active = $('.container > .active')[0].classList[0];	
@@ -271,6 +282,10 @@ function outCaller(number)
 	$('.outCaller-wrapper').find('.number').text(number);
 	$('.outCaller-wrapper').addClass('active').fadeIn();
 	dialingAudio.play();
+	dialingTimeout = setTimeout(function(){
+		console.log('cancel outcoming');
+		mp.trigger("cancelOutcomingCall", getNumber);
+	},15000)
 }
 jQuery.fn.reverse = [].reverse;
 $('.number-wrap .cross').on('click',function(){

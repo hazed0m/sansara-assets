@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="css/menu.css?34">
+        <link rel="stylesheet" href="fonts/font.css">
+        <link rel="stylesheet" href="css/skills.css">
+        <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+        <div id="buttons">
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">
+                <div class="passport-wrap">
+                    <div class="pass-content">
+                        <div class="column-wrap">
+                            <div class="user-wrapper">
+                                <div class="name-wrap">
+                                    <div class="name">{{ pass.name }}</div>
+                                    <div class="name-sub">Имя / Фамилия</div>
+                                </div>
+                                <div class="pass-age">Возраст: <span>{{ pass.age }}</span></div>
+                                <div class="pass-phone">Номер телефона: <span>{{ pass.number }}</span></div>                                    
+                            </div>  
+                            <div class="char-wrapper">
+                                <div class="pass-carlic">Лицензии на вождение - <span>{{ pass.carlic }}</span></div>
+                                <div class="pass-lic">Лицензии - <span>{{ pass.lic }}</span></div>
+                                <div class="pass-carnum mgt30">Номер авто: <span>{{ pass.carnumb }}</span></div>                                    
+                                <div class="pass-live">Место жительства: Дом № <span>{{ pass.housenumb }}</span></div>
+                                <div class="pass-rank">Должность: <span>{{ pass.rank }}</span></div>
+                            </div>    
+                            <div class="pass-number">№ <span>{{ pass.id }}</span></div>
+                            <div class="pass-autograph">Подпись: <span class="autograph"> {{ pass.signature }}</span></div>
+                        </div>
+                    </div>
+                </div>
+            </transition>        
+        </div>              
+    </body> 
+    <script src="https://cdn.rawgit.com/vuejs/vue/v2.1.10/dist/vue.js"></script>
+    <script type="text/javascript" src="js/vue-slide-up-down.umd.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/skills.js"></script>
+    <script src="js/menu.js"></script>
+</html>
