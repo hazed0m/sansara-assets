@@ -3,7 +3,12 @@ var contactsList = 	[],
 	incomingAudio = new Audio('audio/incoming.mp3'),	
 	dialingAudio = new Audio('audio/dialing.mp3'),
 	messageAudio = new Audio('audio/message.mp3'),
-	currentTopPosition = 0;
+	currentTopPosition = 0,
+	myInterval = null,
+    callInterval = null,
+	secondsCounter = 0,
+	minutesCounter = 0,	
+	dialingTimeout = '';
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
@@ -116,10 +121,6 @@ $('.home-but').on('click',function(){
 		$('.settings-wrapper').fadeOut();
 	}
 });
-var myInterval = null,
-    callInterval = null,
-	secondsCounter = 0,
-	minutesCounter = 0;
 $('.main-wrapper .fast-block div').on('click',function(){
 	outCaller($(this).attr('data-number'));
 	checkCall($(this).attr('data-number'));
@@ -141,6 +142,8 @@ function cancelOutcomingCall(){
 		$('.outCaller-wrapper').removeClass('active').fadeOut();
 	}
 	$('.main-wrapper').addClass('active').fadeIn();
+	clearInterval(callInterval);
+	callInterval = null;
 	clearInterval(myInterval);
 	myInterval = null;
 	secondsCounter = 0;
@@ -152,6 +155,8 @@ function cancelIncomingCall()
 	$('.main-wrapper').addClass('active').fadeIn();
 	clearInterval(callInterval);
 	callInterval = null;
+	clearInterval(myInterval);
+	myInterval = null;
 	secondsCounter = 0;
 	minutesCounter = 0;
 };
@@ -163,6 +168,12 @@ $('.incomingCall-wrapper .allow').on('click',function(){
 });
 function goHome()
 {
+	clearInterval(callInterval);
+	callInterval = null;
+	clearInterval(myInterval);
+	myInterval = null;
+	secondsCounter = 0;
+	minutesCounter = 0;
 	dialingAudio.pause();
 	dialingAudio.currentTime = 0;
 	incomingAudio.pause();
@@ -210,7 +221,10 @@ function toCall(number,type)
 	$('.caller-wrapper').addClass('active').fadeIn();
 	clearInterval(callInterval);
 	callInterval = null;
+	clearInterval(myInterval);
+	myInterval = null;
 	secondsCounter = 0;
+	minutesCounter = 0;
 	timerOnCaller();
 }
 function checkCall(number)
@@ -247,7 +261,9 @@ function getCall(number)
 }
 function timerOnCaller()
 {
-	$('.timer .seconds, .timer .minutes').text('00');	
+	$('.timer .seconds, .timer .minutes').text('00');
+	clearInterval(myInterval);
+	myInterval = null;	
 	myInterval = setInterval(function () {
 	  ++secondsCounter;
 	  if(secondsCounter % 60 == 0)
@@ -274,7 +290,6 @@ $('.number-wrap .call').on('click',function(){
 		checkCall(number);
 	}
 });
-var dialingTimeout = '';
 function outCaller(number)
 {	
 	let active = $('.container > .active')[0].classList[0];	
