@@ -269,7 +269,9 @@ eyesColorNext.addEventListener('click', function() {
 eyesColorPrev.addEventListener('click', function() {
     plusSlides(-1);
 });
-
+$('input#personAge').keyup(function() {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
 function showSlide(n) {
     if (n > eyeColors.length) {
         eyesColorIndex = 1;

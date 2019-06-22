@@ -9,6 +9,7 @@ var contactsList = 	[],
 	secondsCounter = 0,
 	minutesCounter = 0,	
 	dialingTimeout = '';
+	document.getElementById('messageAudio').play();
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
@@ -16,10 +17,12 @@ function phoneFadeOut()
 function phoneFadeIn()
 {
 	$('.container').fadeIn();
+	document.getElementById('incomingAudio').play();
 }
 function messagePlay()
 {
 	messageAudio.play();
+	document.getElementById('messageAudio').play();
 }
 function phoneToTop()
 {
