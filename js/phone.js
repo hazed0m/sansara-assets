@@ -1,15 +1,14 @@
 const wallpaperList = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 var contactsList = 	[],
-	incomingAudio = new Audio('audio/incoming.mp3'),	
-	dialingAudio = new Audio('audio/dialing.mp3'),
-	messageAudio = new Audio('audio/message.mp3'),
+	incomingAudio = new Audio('audio/incoming.ogg'),	
+	dialingAudio = new Audio('audio/dialing.ogg'),
+	messageAudio = new Audio('audio/message.ogg'),
 	currentTopPosition = 0,
 	myInterval = null,
     callInterval = null,
 	secondsCounter = 0,
 	minutesCounter = 0,	
 	dialingTimeout = '';
-	document.getElementById('messageAudio').play();
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
@@ -17,12 +16,10 @@ function phoneFadeOut()
 function phoneFadeIn()
 {
 	$('.container').fadeIn();
-	document.getElementById('incomingAudio').play();
 }
 function messagePlay()
 {
 	messageAudio.play();
-	document.getElementById('messageAudio').play();
 }
 function phoneToTop()
 {
