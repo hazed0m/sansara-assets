@@ -116,7 +116,7 @@ function businessInitialize()
     }
   });   
   $('.bottom-wrapper .ok-button').on('click',function(){
-    mp.trigger('sellBusiness');
+    mp.trigger('sellBusiness', businessName);
   });
   $('.button-wrapper .cancel-button').on('click',function(){
     mp.trigger('closeBusiness');

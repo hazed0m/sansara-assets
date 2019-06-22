@@ -88,11 +88,11 @@ $('.main-wrapper .news').on('click',function(){
 	$('.news-wrapper').addClass('active').fadeIn();
     backButtonCheck();
 });
-// $('.main-wrapper .goverment').on('click',function(){
-//     $('.main-wrapper').removeClass('active').fadeOut();
-// 	$('.goverment-wrapper').addClass('active').fadeIn();
-//     backButtonCheck();
-// });
+$('.main-wrapper .goverment').on('click',function(){
+    $('.main-wrapper').removeClass('active').fadeOut();
+	$('.goverment-wrapper').addClass('active').fadeIn();
+    backButtonCheck();
+});
 $('.news-item .video-block').each(function(index,item){
     let curLink = $(this).attr('data-id');
     if(curLink)
