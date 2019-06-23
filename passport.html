@@ -34,7 +34,9 @@
                             <div class="pass-autograph">Подпись: <span class="autograph"> {{ pass.signature }}</span></div>
                         </div>
                     </div>
+                    <div class="close">Закрыть</div>
                 </div>
+                
             </transition>        
         </div>              
     </body> 
@@ -47,6 +49,9 @@
         {
             $('.passport-wrap').fadeOut();
         }
+        $('.passport-wrap .close').on('click',function(){
+            mp.trigger('closePassport');
+        });
     </script>
     <script src="js/menu.js"></script>
 </html>
