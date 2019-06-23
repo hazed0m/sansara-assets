@@ -31,7 +31,7 @@ $('ul li').on('click',function(){
                 console.log(col);
                 $('.col-wrapper').fadeOut();
                 $(this).attr('done','done');
-                mp.trigger(currentAction, col);
+                mp.trigger(currentAction, parseInt(col));
             }
         });
         $('.cancel-button').on('click',function(){

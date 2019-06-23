@@ -80,8 +80,8 @@ $('.exit-button').on('click',function(){
 function cashpointInit(card,cash,terminal,maxwithdrawal,phoneNumber)
 {
 	maxWithdrawal = maxwithdrawal;
-	cardVal = card;
-	cashVal = cash;
+	cardVal = parseInt(card);
+	cashVal = parseInt(cash);
 	let numberStr = phoneNumber.toString();
 	numberStr = numberStr.slice(0, 3) + '-' + numberStr.slice(-3);
 	$('#topup-wrapper .number').text(numberStr);
@@ -102,8 +102,8 @@ function refreshCashpoint()
 //Снятие наличных
 $('#withdrawal-wrapper .button').on('click',function(){
 	let currentVal = $(this).parent().find('input').val();
-	cardVal -= parseInt(currentVal);
-	cashVal += parseInt(currentVal);
+	cardVal = parseInt(cardVal) - parseInt(currentVal);
+	cashVal = parseInt(cashVal) + parseInt(currentVal);
 	refreshCashpoint();
 	$('#withdrawal-wrapper').fadeOut();
 	clearInput();
@@ -114,8 +114,8 @@ $('#withdrawal-wrapper .button').on('click',function(){
 //Пополнение карты
 $('#putback-wrapper .button').on('click',function(){
 	let currentVal = $(this).parent().find('input').val();
-	cardVal += parseInt(currentVal);
-	cashVal -= parseInt(currentVal);
+	cardVal = parseInt(cardVal) + parseInt(currentVal);
+	cashVal = parseInt(cashVal) - parseInt(currentVal);
 	$('#putback-wrapper').fadeOut();
 	clearInput();	
 	refreshCashpoint();
@@ -126,7 +126,7 @@ $('#putback-wrapper .button').on('click',function(){
 //Пополнение телефона
 $('#topup-wrapper .button').on('click',function(){
 	let currentVal = $(this).parent().find('input').val();
-	cardVal -= parseInt(currentVal);
+	cardVal = parseInt(cardVal) - parseInt(currentVal);
 	$('#topup-wrapper').fadeOut();
 	clearInput();	
 	refreshCashpoint();
