@@ -341,7 +341,7 @@ function outCaller(number)
 	dialingAudio.play();
 	dialingTimeout = setTimeout(function(){		
 		callsList.push({number: getNumber, status:'cancel'});
-		mp.trigger("cancelOutcomingCall", getNumber);
+		mp.trigger("cancelOutcomingCall", getNumber, 'cancel');
 	},15000)
 }
 jQuery.fn.reverse = [].reverse;
