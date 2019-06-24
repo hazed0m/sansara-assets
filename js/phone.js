@@ -283,7 +283,8 @@ $('.bottom-block .phone').on('click',function(){
 	$('.dialing-wrapper').addClass('active').fadeIn();
 });
 $('.number-wrap .call').on('click',function(){
-	let number = $(this).parents().find('.this-block').text();
+	let number = $(this).parents().find('.this-block').text();	
+	$(this).parents().find('.this-block').text('');
 	if(number.length >= 6)
 	{	
 		outCaller(number);
@@ -471,7 +472,7 @@ $('.contacts-wrapper .current-wrapper #change-but').on('click',function(){
 	let currentIndex = $('.contacts-wrapper .current-wrapper .selected-contact').attr('data-index');
 	let currentMessage = 'Контакт успешно изменён';
 	$('.contacts-wrapper .current-wrapper .contact-added').text(currentMessage);
-	if(currentNumber.length == 6 && !namePosibilityCheck(currentName) && !numberPosibilityCheck(currentNumber, currentIndex))
+	if(currentNumber.length == 6 && !namePosibilityCheck(currentName,currentIndex) && !numberPosibilityCheck(currentNumber, currentIndex))
 	{
 		$(this).parent().find('#name').replaceWith(currentInputName);
 		$(this).parent().find('#number').replaceWith(currentInputNumber);
@@ -491,7 +492,7 @@ $('.contacts-wrapper .current-wrapper #change-but').on('click',function(){
 		{
 			$('.contacts-wrapper .current-wrapper .change-contact .inform-block').text('Номер состоит из 6 цифр');
 		}
-		if(namePosibilityCheck(currentName))
+		if(namePosibilityCheck(currentName,currentIndex))
 		{
 			$('.contacts-wrapper .current-wrapper .change-contact .inform-block').text('Такое имя существует');
 		}
@@ -505,15 +506,36 @@ $('.contacts-wrapper .current-wrapper #change-but').on('click',function(){
 		}, 1500);	
 	}
 });
+//Удаление
+$('.contacts-wrapper .current-wrapper .trash-but').on('click',function(){
+	$('.confirm-block').fadeIn();
+});
+$('.contacts-wrapper .current-wrapper .confirm-block .confirmTrash').on('click',function(){
+	let currentIndex = parseInt($(this).parent().parent().parent().attr('data-index'));
+	$('.confirm-block').fadeOut();
+	deleteContact(currentIndex);
+	mp.trigger('deleteContact', currentIndex);
+});
+$('.contacts-wrapper .current-wrapper .confirm-block .cancelTrash').on('click',function(){
+	$('.confirm-block').fadeOut();
+});
+function deleteContact(currentIndex)
+{
+	contactsList.splice(currentIndex, 1);	
+	$('.contacts-wrapper .selected-contact').fadeOut(100).removeClass('active');
+	$('.contacts-wrapper .nothing-used').fadeIn(1000).css('display','flex').addClass('active');
+	refreshContacts();		
+};
 var currentInputName = '<input type="text" id="name" placeholder="Имя">';
 var currentInputNumber = '<input type="number" id="number" oninput="maxLengthCheck(this)" placeholder="Номер" min="0" max="999999" maxlength="6">';
 //Сохранение
 $('.contacts-wrapper .current-wrapper #save-but').on('click',function(){
-	let currentName = $(this).parent().find('#name').val();
-	let currentNumber = $(this).parent().find('#number').val();
-	let currentMessage = 'Контакт успешно добавлен';
+	let currentName = $(this).parent().find('#name').val(),
+		currentNumber = $(this).parent().find('#number').val(),
+		currentMessage = 'Контакт успешно добавлен',	
+		currentIndex = $('.contacts-wrapper .current-wrapper .selected-contact').attr('data-index');
 	$('.contacts-wrapper .current-wrapper .contact-added').text(currentMessage);
-	if(currentNumber.length == 6 && !namePosibilityCheck(currentName) && !numberPosibilityCheck(currentNumber))
+	if(currentNumber.length == 6 && !namePosibilityCheck(currentName,currentIndex) && !numberPosibilityCheck(currentNumber,currentIndex))
 	{
 		let obj = {
 			'name': currentName,
@@ -538,11 +560,11 @@ $('.contacts-wrapper .current-wrapper #save-but').on('click',function(){
 		{
 			$('.contacts-wrapper .current-wrapper .create-contact .inform-block').text('Номер состоит из 6 цифр');
 		}
-		if(namePosibilityCheck(currentName))
+		if(namePosibilityCheck(currentName,currentIndex))
 		{
 			$('.contacts-wrapper .current-wrapper .create-contact .inform-block').text('Такое имя существует');
 		}
-		if(numberPosibilityCheck(currentNumber))
+		if(numberPosibilityCheck(currentNumber,currentIndex))
 		{
 			$('.contacts-wrapper .current-wrapper .create-contact .inform-block').text('Такое номер уже записан');
 		}
@@ -552,11 +574,11 @@ $('.contacts-wrapper .current-wrapper #save-but').on('click',function(){
 		}, 1500);	
 	}
 });
-function namePosibilityCheck(currentName)
+function namePosibilityCheck(currentName, currentIndex)
 {
 	var checker = false;
 	$(contactsList).each(function(index,item){
-		if(item.name == currentName)
+		if(item.name == currentName && index != currentIndex)
 		{
 			checker = true;
 		}
@@ -577,12 +599,13 @@ function numberPosibilityCheck(currentNumber, currentIndex)
 function refreshContacts()
 {
 	$('.contacts-wrapper .wrapper').empty();
-	pushContacts('contacts');
+	pushContacts('contacts');	
+	$('#name, #number').val('');
 	contactsInitialize();
 	$('.contacts-wrapper .wrapper .number').first().css('display','none');
 	setTimeout(function(){
-		$('.contacts-wrapper .wrapper .number').first().slideDown();
-	}, 100);
+		$('.contacts-wrapper .wrapper .number').first().slideDown();		
+	}, 100);	
 	mp.trigger('refreshedContacts',JSON.stringify(contactsList));	
 };
 function refreshMessages()

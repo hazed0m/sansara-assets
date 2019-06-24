@@ -506,7 +506,7 @@
 	height:100%;
 	justify-content: center;
 	align-items: center;
-	font-size:12.17px;
+	font-size:13.17px;
 	font-weight:500;
 	display: none;
 }
@@ -684,6 +684,59 @@
 	top:10px;
     right: 20px;
     cursor:pointer;
+}
+.contacts-wrapper .current-wrapper .selected-contact .trash-but
+{
+	width:22px;
+	height:22px;
+	background:url(../img/phone/contacts/trash.svg) no-repeat;
+	background-size: cover;
+	background-position: center;
+	position: absolute;
+	bottom:20px;
+    right: 20px;
+    cursor:pointer;
+}
+.contacts-wrapper .current-wrapper .selected-contact .confirm-block
+{
+	display:none;
+	width: 90%;
+    border: 1px solid #000;
+    background: #f7f7f7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+	transform: translate(-50%,-50%);
+	padding:20px 5px;
+}
+.contacts-wrapper .current-wrapper .selected-contact .confirm-block .title
+{
+	text-align: center;
+	font-size: 16px;
+}
+.contacts-wrapper .current-wrapper .selected-contact .confirm-block .but-wrapper
+{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top:5px;
+}
+.contacts-wrapper .current-wrapper .selected-contact .confirm-block .but-wrapper > div
+{
+	padding:3px 7px;
+	font-size:16px;
+	border-radius:5px;
+	cursor: pointer;
+}
+.contacts-wrapper .current-wrapper .selected-contact .confirm-block .but-wrapper .cancelTrash
+{
+	background:#ed1c24;
+	color:#fff;
+}
+.contacts-wrapper .current-wrapper .selected-contact .confirm-block .but-wrapper .confirmTrash
+{
+	background:#00ff96;
+	color:#fff;
 }
 .contacts-wrapper .caller
 {
