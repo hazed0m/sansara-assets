@@ -448,11 +448,11 @@
 	align-items: center;
 	box-sizing: border-box;
 }
-.history-wrapper .history-block.allow{
+.history-wrapper .history-block.out{
 	border-left:8px solid #00ff96;
 }
-.history-wrapper .history-block.cancel{
-	border-left:8px solid #ed1c24;
+.history-wrapper .history-block.in{
+	border-left:8px solid #dfee10;
 }
 .history-wrapper .history-block:first-child
 {

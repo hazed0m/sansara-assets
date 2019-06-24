@@ -10,6 +10,7 @@ var contactsList = 	[],
 	secondsCounter = 0,
 	minutesCounter = 0,	
 	dialingTimeout = '';
+	// audioList = [incomingAudio,dialingAudio,messageAudio, new Audio('audio/message.ogg') ];
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
@@ -47,6 +48,10 @@ function pushContactList(item)
 	pushContacts('messages');
 	pushContacts('messages-inner');
 };
+function pushHistoryList(number,status)
+{	
+	callsList.push({number:number, status:status});
+}
 function pushPhoneBalance(count)
 {
 	$('.phoneBalance').text(count);
@@ -127,21 +132,11 @@ $('.main-wrapper .fast-block div').on('click',function(){
 	checkCall($(this).attr('data-number'));
 });
 var getNumber = 0;
-$('.incomingCall-wrapper .cancel').on('click',function(){	
-	callsList.push({number: getNumber, status:'cancel'});
+$('.incomingCall-wrapper .cancel').on('click',function(){
 	mp.trigger("cancelIncomingCall",getNumber);
 });
 $('.outCaller-wrapper .cancel, .caller-wrapper .cancel').on('click',function(){
-	let status = '';
-	if($(this).parent().parent().hasClass('outCaller-wrapper'))
-	{
-		status = 'cancel';
-	}
-	if($(this).parent().parent().hasClass('caller-wrapper'))
-	{
-		status = 'allow';
-	}
-	mp.trigger("cancelOutcomingCall",getNumber,status);
+	mp.trigger("cancelOutcomingCall",getNumber);
 });
 function cancelOutcomingCall(){
 	clearInterval(dialingTimeout);
@@ -181,12 +176,8 @@ $('input[type="text"]').keyup(function() {
 $('.incomingCall-wrapper .allow').on('click',function(){
 	mp.trigger("allowIncomingCall",getNumber);
 });
-function goHome(number,status)
+function goHome()
 {
-	if(number != undefined && status != undefined)
-	{
-		callsList.push({number: number, status:status});
-	}
 	clearInterval(dialingTimeout);
 	dialingTimeout = null;
 	clearInterval(callInterval);
@@ -247,7 +238,6 @@ function toCall(number,type)
 	secondsCounter = 0;
 	minutesCounter = 0;
 	timerOnCaller();
-	callsList.push({number: getNumber, status:'allow'});
 }
 function checkCall(number)
 {
@@ -346,8 +336,7 @@ function outCaller(number)
 	$('.outCaller-wrapper').addClass('active').fadeIn();
 	dialingAudio.play();
 	dialingTimeout = setTimeout(function(){		
-		callsList.push({number: getNumber, status:'cancel'});
-		mp.trigger("cancelOutcomingCall", getNumber, 'cancel');
+		mp.trigger("cancelOutcomingCall", getNumber);
 	},15000)
 }
 jQuery.fn.reverse = [].reverse;
