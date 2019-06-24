@@ -513,7 +513,6 @@ $('.contacts-wrapper .current-wrapper .trash-but').on('click',function(){
 $('.contacts-wrapper .current-wrapper .confirm-block .confirmTrash').on('click',function(){
 	let currentIndex = parseInt($(this).parent().parent().parent().attr('data-index'));
 	$('.confirm-block').fadeOut();
-	deleteContact(currentIndex);
 	mp.trigger('deleteContact', currentIndex);
 });
 $('.contacts-wrapper .current-wrapper .confirm-block .cancelTrash').on('click',function(){
