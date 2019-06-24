@@ -9,8 +9,18 @@ var contactsList = 	[],
     callInterval = null,
 	secondsCounter = 0,
 	minutesCounter = 0,	
-	dialingTimeout = '';
-	// audioList = [incomingAudio,dialingAudio,messageAudio, new Audio('audio/message.ogg') ];
+	dialingTimeout = '',
+	audioList = [ incomingAudio,
+				  dialingAudio,
+				  messageAudio, 
+				  new Audio('audio/ringtone/ring1.ogg'),  
+				  new Audio('audio/ringtone/ring2.ogg'),  
+				  new Audio('audio/ringtone/ring3.ogg'),  
+				  new Audio('audio/ringtone/ring4.ogg') 
+				];
+$(audioList).each(function(index,item){
+	$('.ringtone').append(item);
+});
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
@@ -242,11 +252,13 @@ function toCall(number,type)
 function checkCall(number)
 {
 	getNumber = number;
+	pushHistoryList(getNumber, 'out')
 	mp.trigger('PhoneCheckCall',getNumber);
 }
 function getCall(number)
 {	
-	getNumber = number;
+	getNumber = number;	
+	pushHistoryList(getNumber, 'in');
 	let active = $('.container > .active')[0].classList[0],
 		currentName = '';
 	$('.'+active).removeClass('active').fadeOut();
