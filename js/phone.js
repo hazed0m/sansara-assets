@@ -21,6 +21,9 @@ var contactsList = 	[],
 $(audioList).each(function(index,item){
 	$('.ringtone').append(item);
 });
+$('.ringtone audio').each(function(index,item){
+	$(item).attr('controls','true');
+});
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
