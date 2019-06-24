@@ -513,18 +513,14 @@ $('.contacts-wrapper .current-wrapper .trash-but').on('click',function(){
 $('.contacts-wrapper .current-wrapper .confirm-block .confirmTrash').on('click',function(){
 	let currentIndex = parseInt($(this).parent().parent().parent().attr('data-index'));
 	$('.confirm-block').fadeOut();
-	mp.trigger('deleteContact', currentIndex);
+	contactsList.splice(currentIndex, 1);	
+	$('.contacts-wrapper .selected-contact').fadeOut(100).removeClass('active');
+	$('.contacts-wrapper .nothing-used').fadeIn(1000).css('display','flex').addClass('active');
+	refreshContacts();	
 });
 $('.contacts-wrapper .current-wrapper .confirm-block .cancelTrash').on('click',function(){
 	$('.confirm-block').fadeOut();
 });
-function deleteContact(currentIndex)
-{
-	contactsList.splice(currentIndex, 1);	
-	$('.contacts-wrapper .selected-contact').fadeOut(100).removeClass('active');
-	$('.contacts-wrapper .nothing-used').fadeIn(1000).css('display','flex').addClass('active');
-	refreshContacts();		
-};
 var currentInputName = '<input type="text" id="name" placeholder="Имя">';
 var currentInputNumber = '<input type="number" id="number" oninput="maxLengthCheck(this)" placeholder="Номер" min="0" max="999999" maxlength="6">';
 //Сохранение
