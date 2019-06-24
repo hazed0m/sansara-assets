@@ -441,8 +441,10 @@
 	height:22px;
 	background:#ffffff;
 	margin-top:5px;
+	font-size:18px;
 	display: flex;
-    justify-content: center;
+	justify-content: space-between;
+	padding:0 15px;
 	align-items: center;
 	box-sizing: border-box;
 }

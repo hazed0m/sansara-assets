@@ -1,6 +1,6 @@
 const wallpaperList = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 var contactsList = 	[],
-	callsList = [],
+	callsList = [{number:111111,status:'allow'}],
 	incomingAudio = new Audio('audio/incoming.ogg'),	
 	dialingAudio = new Audio('audio/dialing.ogg'),
 	messageAudio = new Audio('audio/message.ogg'),
@@ -290,9 +290,23 @@ function historyRefresh()
 {
 	$('.history-wrapper').empty();
 	$(callsList).each(function(index,item){
+		let currentName = '';
+		$(contactsList).each(function(innerIndex,innerItem){
+			if(innerItem.number == item.number)
+			{
+				currentName = innerItem.name;
+			}
+		});	
+		if(currentName == '')
+		{
+			currentName = 'Неизвестный';
+		}
 		let currentNumber = item.number.toString();
 		currentNumber = currentNumber.slice(0, 3) + '-' + currentNumber.slice(-3);
-		let currentItem = `<div class="history-block ${item.status}">${currentNumber}</div>`;		
+		let currentItem = `<div class="history-block ${item.status}">
+								<div class="name">${currentName}</div>
+								<div class="number">${currentNumber}</div>
+							</div>`;		
 		$('.history-wrapper').prepend(currentItem);
 	});
 };
@@ -312,7 +326,7 @@ function outCaller(number)
 	$('.outCaller-wrapper').find('.number').text(number);
 	$('.outCaller-wrapper').addClass('active').fadeIn();
 	dialingAudio.play();
-	dialingTimeout = setTimeout(function(){
+	dialingTimeout = setTimeout(function(){		
 		callsList.push({number: getNumber, status:'cancel'});
 		mp.trigger("cancelOutcomingCall", getNumber);
 	},15000)
