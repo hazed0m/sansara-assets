@@ -429,6 +429,7 @@
 .dialing-wrapper .history-wrapper
 {
 	width:100%;
+	min-height:117px;
 	max-height:117px;
 	height:auto;
 	overflow-y:scroll;
@@ -440,6 +441,16 @@
 	height:22px;
 	background:#ffffff;
 	margin-top:5px;
+	display: flex;
+    justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+.history-wrapper .history-block.allow{
+	border-left:8px solid #00ff96;
+}
+.history-wrapper .history-block.cancel{
+	border-left:8px solid #ed1c24;
 }
 .history-wrapper .history-block:first-child
 {

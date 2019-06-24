@@ -1,5 +1,6 @@
 const wallpaperList = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 var contactsList = 	[],
+	callsList = [],
 	incomingAudio = new Audio('audio/incoming.ogg'),	
 	dialingAudio = new Audio('audio/dialing.ogg'),
 	messageAudio = new Audio('audio/message.ogg'),
@@ -127,6 +128,7 @@ $('.main-wrapper .fast-block div').on('click',function(){
 });
 var getNumber = 0;
 $('.incomingCall-wrapper .cancel').on('click',function(){	
+	callsList.push({number: getNumber, status:'cancel'});
 	mp.trigger("cancelIncomingCall",getNumber);
 });
 $('.outCaller-wrapper .cancel, .caller-wrapper .cancel').on('click',function(){	
@@ -202,7 +204,7 @@ function toCall(number,type)
 	});	
 	if(type == 'in')
 	{
-		type = 'Входящий вызов';
+		type = 'Входящий вызов';		
 	}
 	else if(type == 'out')
 	{	
@@ -226,6 +228,7 @@ function toCall(number,type)
 	secondsCounter = 0;
 	minutesCounter = 0;
 	timerOnCaller();
+	callsList.push({number: getNumber, status:'allow'});
 }
 function checkCall(number)
 {
@@ -280,8 +283,19 @@ function prettyTime(num) {
 }
 $('.bottom-block .phone').on('click',function(){
 	$('.main-wrapper').removeClass('active').fadeOut();
+	historyRefresh();
 	$('.dialing-wrapper').addClass('active').fadeIn();
 });
+function historyRefresh()
+{
+	$('.history-wrapper').empty();
+	$(callsList).each(function(index,item){
+		let currentNumber = item.number.toString();
+		currentNumber = currentNumber.slice(0, 3) + '-' + currentNumber.slice(-3);
+		let currentItem = `<div class="history-block ${item.status}">${currentNumber}</div>`;		
+		$('.history-wrapper').prepend(currentItem);
+	});
+};
 $('.number-wrap .call').on('click',function(){
 	let number = $(this).parents().find('.this-block').text();	
 	$(this).parents().find('.this-block').text('');
@@ -299,7 +313,7 @@ function outCaller(number)
 	$('.outCaller-wrapper').addClass('active').fadeIn();
 	dialingAudio.play();
 	dialingTimeout = setTimeout(function(){
-		console.log('cancel outcoming');
+		callsList.push({number: getNumber, status:'cancel'});
 		mp.trigger("cancelOutcomingCall", getNumber);
 	},15000)
 }
