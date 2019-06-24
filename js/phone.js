@@ -1,6 +1,6 @@
 const wallpaperList = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 var contactsList = 	[],
-	callsList = [{number:111111,status:'allow'}],
+	callsList = [],
 	incomingAudio = new Audio('audio/incoming.ogg'),	
 	dialingAudio = new Audio('audio/dialing.ogg'),
 	messageAudio = new Audio('audio/message.ogg'),
@@ -131,8 +131,17 @@ $('.incomingCall-wrapper .cancel').on('click',function(){
 	callsList.push({number: getNumber, status:'cancel'});
 	mp.trigger("cancelIncomingCall",getNumber);
 });
-$('.outCaller-wrapper .cancel, .caller-wrapper .cancel').on('click',function(){	
-	mp.trigger("cancelOutcomingCall",getNumber);
+$('.outCaller-wrapper .cancel, .caller-wrapper .cancel').on('click',function(){
+	let status = '';
+	if($(this).parent().parent().hasClass('outCaller-wrapper'))
+	{
+		status = 'cancel';
+	}
+	if($(this).parent().parent().hasClass('caller-wrapper'))
+	{
+		status = 'allow';
+	}
+	mp.trigger("cancelOutcomingCall",getNumber,status);
 });
 function cancelOutcomingCall(){
 	if($('.caller-wrapper').hasClass('active'))
