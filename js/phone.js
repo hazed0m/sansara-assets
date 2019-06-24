@@ -168,8 +168,12 @@ $('input[type="text"]').keyup(function() {
 $('.incomingCall-wrapper .allow').on('click',function(){
 	mp.trigger("allowIncomingCall",getNumber);
 });
-function goHome()
+function goHome(number,status)
 {
+	if(number != undefined && status != undefined)
+	{
+		callsList.push({number: number, status:status});
+	}
 	clearInterval(callInterval);
 	callInterval = null;
 	clearInterval(myInterval);
