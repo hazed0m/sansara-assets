@@ -144,6 +144,8 @@ $('.outCaller-wrapper .cancel, .caller-wrapper .cancel').on('click',function(){
 	mp.trigger("cancelOutcomingCall",getNumber,status);
 });
 function cancelOutcomingCall(){
+	clearInterval(dialingTimeout);
+	dialingTimeout = null;
 	if($('.caller-wrapper').hasClass('active'))
 	{
 		$('.caller-wrapper').removeClass('active').fadeOut();
@@ -162,6 +164,8 @@ function cancelOutcomingCall(){
 };
 function cancelIncomingCall()
 {
+	clearInterval(dialingTimeout);
+	dialingTimeout = null;
 	$('.incomingCall-wrapper').removeClass('active').fadeOut();
 	$('.main-wrapper').addClass('active').fadeIn();
 	clearInterval(callInterval);
@@ -183,6 +187,8 @@ function goHome(number,status)
 	{
 		callsList.push({number: number, status:status});
 	}
+	clearInterval(dialingTimeout);
+	dialingTimeout = null;
 	clearInterval(callInterval);
 	callInterval = null;
 	clearInterval(myInterval);
