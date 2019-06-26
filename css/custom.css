@@ -43,6 +43,21 @@ body {
 	font-weight: 500;
 	text-decoration: underline;
 }
+.custom-input:focus
+{
+	box-shadow: 0 0 10px #f4e331;
+}
+.help-block
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background:#292929;
+	color:#fff;
+	font-size:20px;
+	padding:20px;
+	border-radius: 2px;
+}
 .inputs-wrap {
 	text-align: center;
 }
@@ -204,7 +219,7 @@ body {
 	height:100%;
 }
 .tip-content {
-	padding: 10px 10px;
+	padding: 10px 5px;
 }
 .tip-title {
 	text-shadow: 0 0 5px rgba(244, 227, 49, 0.54);

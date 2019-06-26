@@ -262,14 +262,18 @@ hairInput.textContent =  hairList[currentGender][0].Name;
 eyesColorInput.textContent =  eyeColors[0];
 // Цвет глаз
 function eyesColor() {
-eyesColorNext.addEventListener('click', function() {
-    plusSlides(1);
-});
-
-eyesColorPrev.addEventListener('click', function() {
-    plusSlides(-1);
-});
+    eyesColorNext.addEventListener('click', function() {
+        plusSlides(1);
+    });
+    eyesColorPrev.addEventListener('click', function() {
+        plusSlides(-1);
+    });
+}
 $('input#personAge').keyup(function() {
+    if(this.value == '0')
+    {
+        this.value = '';
+    }
     this.value = this.value.replace(/[^0-9]/g, '');
 });
 function showSlide(n) {
@@ -287,17 +291,17 @@ function showSlide(n) {
 function plusSlides(n) {
     showSlide(eyesColorIndex += n);
 }  
-}
+
 // Цвет волос 
 function hairColor() {
-hairColorNext.addEventListener('click', function() {
-    plusSlides(1);
-});
+    hairColorNext.addEventListener('click', function() {
+        plusSlides(1);
+    });
 
-hairColorPrev.addEventListener('click', function() {
-    plusSlides(-1);
-});
-
+    hairColorPrev.addEventListener('click', function() {
+        plusSlides(-1);
+    });
+}
 function showSlide(n) {
     if (n > hairColors.length) {
         hairColorIndex = 1;
@@ -307,23 +311,23 @@ function showSlide(n) {
     }
 
     hairColorInput.textContent =  hairColors[hairColorIndex - 1];
-    mp.trigger("hairsColor.client", hairColors[hairColorIndex - 1])
+    mp.trigger("hairsColor.client", hairColors[hairColorIndex - 1]);
 }
 
 function plusSlides(n) {
     showSlide(hairColorIndex += n);
 }  
-}
+
 // Волосы 
 function hairs() {
-hairNext.addEventListener('click', function() {
-    plusSlides(1);
-});
+    hairNext.addEventListener('click', function() {
+        plusSlides(1);
+    });
 
-hairPrev.addEventListener('click', function() {
-    plusSlides(-1);
-});
-
+    hairPrev.addEventListener('click', function() {
+        plusSlides(-1);
+    });
+}
 function showSlide(n) {
     if (n > hairList[currentGender].length) {
         hairIndex = 1;
@@ -334,13 +338,13 @@ function showSlide(n) {
     }
 
     hairInput.textContent =  hairList[currentGender][hairIndex - 1].Name;
-    mp.trigger("hairsList.client", hairList[currentGender][hairIndex - 1].ID)
+    mp.trigger("hairsList.client", hairList[currentGender][hairIndex - 1].ID);
 }
 
 function plusSlides(n) {
     showSlide(hairIndex += n);
 }          
-}
+
 
 
 // Папа 
@@ -362,166 +366,166 @@ slidesPlus(motherNext, motherIndex, motherNames, motherInput, mothers);
 
 
 familyRandBtn.addEventListener('click', function() {
-fatherIndex = getRandomInt(0, fathers.length - 1);
-motherIndex = getRandomInt(0, mothers.length - 1);
-resemblance = getRandomInt(0, 100);
-skinTone = getRandomInt(0, 100);
+    fatherIndex = getRandomInt(0, fathers.length - 1);
+    motherIndex = getRandomInt(0, mothers.length - 1);
+    resemblance = getRandomInt(0, 100);
+    skinTone = getRandomInt(0, 100);
 
-fatherInput.textContent = fatherNames[fatherIndex];
-motherInput.textContent = motherNames[motherIndex];
+    fatherInput.textContent = fatherNames[fatherIndex];
+    motherInput.textContent = motherNames[motherIndex];
 
-mp.trigger("inputsRange.client", 'resemblance', resemblance, '');
-mp.trigger("inputsRange.client", 'skinTone', skinTone, '');
+    mp.trigger("inputsRange.client", 'resemblance', resemblance, '');
+    mp.trigger("inputsRange.client", 'skinTone', skinTone, '');
 
-mp.trigger("custom.clientCreate", motherIndex, fatherIndex);
+    mp.trigger("custom.clientCreate", motherIndex, fatherIndex);
 });
 // Смена пола 
 
 btnFemale.addEventListener('click', function() {
-this.classList.add('active');
-btnMale.classList.remove('active');
-currentGender = 1;
-mp.trigger("creator_GenderChange.client", currentGender);
+    this.classList.add('active');
+    btnMale.classList.remove('active');
+    currentGender = 1;
+    mp.trigger("creator_GenderChange.client", currentGender);
 });
 
 btnMale.addEventListener('click', function() {
-this.classList.add('active');
-btnFemale.classList.remove('active');
-currentGender = 0;
-mp.trigger("creator_GenderChange.client", currentGender);
+    this.classList.add('active');
+    btnFemale.classList.remove('active');
+    currentGender = 0;
+    mp.trigger("creator_GenderChange.client", currentGender);
 });   
 
 // Функции
 function getRandomInt(min, max) {
-return Math.floor(Math.random() * (max - min + 1)) + min;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 function slidesPlus(btn, index, names, inputs, genders) {
-btn.addEventListener('click', () => {
-    if (index >= names.length) {
-        index = 0;
-        inputs.textContent = names[index];
-    } else {
-        index = ++index;
-        inputs.textContent = names[index];
-    }
-    switch (genders.length){
-        case 24:
-            fatherIndex = index;
-            break;
-        default: 
-            motherIndex = index;
-            break;
-    }
-    mp.trigger("custom.clientCreate", motherIndex, fatherIndex);
-});
+    inputs.setAttribute('data',index);
+    btn.addEventListener('click', () => {   
+        let curIndex = inputs.getAttribute('data');
+        console.log(names.length);
+        console.log(names);
+        if (curIndex >= names.length-1) {
+            curIndex = 0;
+            inputs.textContent = names[curIndex];
+        } else {
+            curIndex = ++curIndex;
+            inputs.textContent = names[curIndex];
+        }
+        switch (genders.length){
+            case 24:
+                fatherIndex = curIndex;
+                break;
+            default: 
+                motherIndex = curIndex;
+                break;
+        }
+        inputs.setAttribute('data',curIndex);
+        mp.trigger("custom.clientCreate", motherIndex, fatherIndex);
+    });
 }
 
 function slidesMinus(btn, index, names, inputs, genders) {
-btn.addEventListener('click', () => {
-    if (index <= 0) {
-        index = genders.length - 1;
-        inputs.textContent = names[index];
-    } else {
-        index = --index;
-        inputs.textContent = names[index];
-    }
-    switch (genders.length){
-        case 24:
-            fatherIndex = index;
-            break;
-        default: 
-            motherIndex = index;
-            break;
-    }
-    mp.trigger("custom.clientCreate", motherIndex, fatherIndex);
-});
-}
-
+    inputs.setAttribute('data',index);
+    btn.addEventListener('click', () => {
+        let curIndex = inputs.getAttribute('data');
+        if (curIndex <= 0) {
+            curIndex = genders.length - 1;
+            inputs.textContent = names[curIndex];
+        } else {
+            curIndex = --curIndex;
+            inputs.textContent = names[curIndex];
+        }
+        switch (genders.length){
+            case 24:
+                fatherIndex = curIndex;
+                break;
+            default: 
+                motherIndex = curIndex;
+                break;
+        }
+        inputs.setAttribute('data',curIndex);
+        mp.trigger("custom.clientCreate", motherIndex, fatherIndex);
+    });
+};
 function random() {
-fatherIndex = getRandomInt(0, fathers.length - 1);
-motherIndex = getRandomInt(0, mothers.length - 1);
-resemblance = getRandomInt(0, 100);
-skinTone = getRandomInt(0, 100);
+    fatherIndex = getRandomInt(0, fathers.length - 1);
+    motherIndex = getRandomInt(0, mothers.length - 1);
+    resemblance = getRandomInt(0, 100);
+    skinTone = getRandomInt(0, 100);
 
-fatherInput.textContent = fatherNames[fatherIndex];
-motherInput.textContent = motherNames[motherIndex];
+    fatherInput.textContent = fatherNames[fatherIndex];
+    motherInput.textContent = motherNames[motherIndex];
+    $('.features').each(function(index,item){
+        $(item).val(getRandomInt(-100, 100) * 0.01);
+        mp.trigger("featuresSetting.client", $(item).val(), index);       
+    });
+    mp.trigger("inputsRange.client", 'resemblance', resemblance, '');
+    mp.trigger("inputsRange.client", 'skinTone', skinTone, '');
 
-mp.trigger("inputsRange.client", 'resemblance', resemblance, '');
-mp.trigger("inputsRange.client", 'skinTone', skinTone, '');
+    mp.trigger("custom.clientCreate", motherIndex, fatherIndex);
+    let itemId = 0;
 
-mp.trigger("custom.clientCreate", motherIndex, fatherIndex);
-let itemId = 0;
+    for (let i = 0; i < items.length; i++) {
+        opacitys[i] = getRandomInt(0, 100);
+        index[i] = getRandomInt(0, appearanceItemNames[i].length - 1);
+        items[i].textContent = appearanceItemNames[i][index[i]];
 
-for (let i = 0; i < items.length; i++) {
-    opacitys[i] = getRandomInt(0, 100);
-    index[i] = getRandomInt(0, appearanceItemNames[i].length - 1);
-    items[i].textContent = appearanceItemNames[i][index[i]];
+        switch (i) {
+            case 0:
+                itemId = 'blemishesOpacity';
+                break;
+            case 1:
+                itemId = 'facialHairOpacity';
+                break;
+            case 2:
+                itemId = 'eyebrowsOpacity';
+                break;
+            case 3:
+                itemId = 'ageingOpacity';
+                break;
+            case 4:
+                itemId = 'makeupOpacity';
+                break;
+            case 5:
+                itemId = 'blushOpacity';
+                break;
+            case 6:
+                itemId = 'complexionOpacity';
+                break;
+            case 7:
+                itemId = 'sundamageOpacity';
+                break;
+            case 8:
+                itemId = 'lipstickOpacity';
+                break;
+            case 9:
+                itemId = 'frecklesOpacity';
+                break;
+            case 10:
+                itemId = 'chestHairOpacity';
+                break;
+        }
 
-    switch (i) {
-        case 0:
-            itemId = 'blemishesOpacity';
-            break;
-        case 1:
-            itemId = 'facialHairOpacity';
-            break;
-        case 2:
-            itemId = 'eyebrowsOpacity';
-            break;
-        case 3:
-            itemId = 'ageingOpacity';
-            break;
-        case 4:
-            itemId = 'makeupOpacity';
-            break;
-        case 5:
-            itemId = 'blushOpacity';
-            break;
-        case 6:
-            itemId = 'complexionOpacity';
-            break;
-        case 7:
-            itemId = 'sundamageOpacity';
-            break;
-        case 8:
-            itemId = 'lipstickOpacity';
-            break;
-        case 9:
-            itemId = 'frecklesOpacity';
-            break;
-        case 10:
-            itemId = 'chestHairOpacity';
-            break;
+        mp.trigger("inputsRange.client", itemId, opacitys[i], index[i]);
     }
+    for (let i = 0; i < colorIndex.length; i++) {
+        colorIndex[i] = getRandomInt(i, maxHairColor - 1);
+        colorItem[i].textContent = colorIndex[i];
+    }
+    mp.trigger("colors.client", colorIndex[0], colorIndex[1], colorIndex[2], colorIndex[3], colorIndex[4]);
 
-    mp.trigger("inputsRange.client", itemId, opacitys[i], index[i]);
-}
+    eyesColorIndex = getRandomInt(1, eyeColors.length);
+    eyesColorInput.textContent = eyeColors[eyesColorIndex - 1];
+    mp.trigger("eyesColor.client", eyesColorIndex - 1);
 
-for (let i = 0; i < colorIndex.length; i++) {
-    colorIndex[i] = getRandomInt(i, maxHairColor - 1);
-    colorItem[i].textContent = colorIndex[i];
-}
+    hairColorIndex = getRandomInt(1, hairColors.length);
+    hairColorInput.textContent =  hairColors[hairColorIndex - 1];
+    mp.trigger("hairsColor.client", hairColors[hairColorIndex - 1]);
 
-mp.trigger("colors.client", colorIndex[0], colorIndex[1], colorIndex[2], colorIndex[3], colorIndex[4])
-
-for (let i = 0; i < featuresItems.length; i++) {
-    min = -1;
-    featuresItems[i].value = getRandomInt(-100, 100) * 0.01;
-
-    mp.trigger("featuresSetting.client", featuresItems[i].value, i);
-    featuresItems[i].style.backgroundSize = (featuresItems[i].value - min) * 100 / (1 - min) + '% 100%';
-}
-
-eyesColorIndex = getRandomInt(1, eyeColors.length)
-eyesColorInput.textContent = eyeColors[eyesColorIndex - 1];
-mp.trigger("eyesColor.client", eyesColorIndex - 1)
-
-hairColorIndex = getRandomInt(1, hairColors.length);
-hairColorInput.textContent =  hairColors[hairColorIndex - 1];
-mp.trigger("hairsColor.client", hairColors[hairColorIndex - 1])
-
-hairIndex = getRandomInt(1, hairList[currentGender].length)
-hairInput.textContent =  hairList[currentGender][hairIndex - 1].Name;
-mp.trigger("hairsList.client", hairList[currentGender][hairIndex - 1].ID)
+    hairIndex = getRandomInt(1, hairList[currentGender].length);
+    hairInput.textContent =  hairList[currentGender][hairIndex - 1].Name;
+    mp.trigger("hairsList.client", hairList[currentGender][hairIndex - 1].ID);
 
 }
 

@@ -16,7 +16,7 @@
                 </div>
             </div>
             <div class="mask">           
-                <div class="custom-content">
+                <div class="custom-content" id="top">
                     <div class="custom-title">Придумай Имя своему персонажу! <img src="images/custom/info.png" alt="info-ico" class="info"></div>
                     <div class="inputs-wrap">
                         <input type="text" class="custom-input" placeholder="Имя" style="margin-right: 15px;" id="personName" name="personName">
@@ -341,6 +341,9 @@
                 </div>
             </div>   
         </div>
+        <!-- <div class="help-block">
+            <div class="text-block"></div>
+        </div> -->
         <div class="rules-wrap">
             <div class="rules-close"></div>
             <div class="rules-content">
@@ -375,12 +378,57 @@
     
     <script></script>
     <script>
+        $('#personName,#personFamily,#personAge').on('focus',
+            function()
+            {
+                let nameStr = "При вводе имени и фамилии разрешено использование только русского алфавита",
+                    ageStr = "Возраст не может быть меньше 1",
+                    age2Str = "Возраст не может превышать 99 лет";
+                if($(this)[0].id == 'personName')
+                {
+                    $('.tip-content .tip').replaceWith(`<div class="tip"><p>${nameStr}</p></div>`);
+                }
+                if($(this)[0].id == 'personFamily')
+                {
+                    $('.tip-content .tip').replaceWith(`<div class="tip"><p>${nameStr}</p></div>`);
+                }
+                if($(this)[0].id == 'personAge')
+                {
+                    $('.tip-content .tip').replaceWith(`<div class="tip"><p>${ageStr}</p><p>${age2Str}</p></div>`);
+                }
+                $('.tip-wrap').css('display','block');
+            }
+        );
+        $('#personName,#personFamily,#personAge').on('focusout',function(){
+            $('.tip-wrap').css('display','none');
+        });
 		function save() {
-            let personName = document.getElementById('personName').value,
-                personFamily = document.getElementById('personFamily').value,
-                personAge = document.getElementById('personAge').value;
-
-            mp.trigger("custom.client", personName, personFamily, personAge);
+            let personName = document.getElementById('personName'),
+                personFamily = document.getElementById('personFamily'),
+                personAge = document.getElementById('personAge');
+            if(personName.value.length < 2 || personFamily.value.length < 2 || personAge.value.length < 1)
+            {
+                $('.custom-popup').animate({ scrollTop: $('#top').offset().top }, 1400);
+                if(personName.value.length < 2)
+                {
+                    personName.focus();
+                }
+                else if(personFamily.value.length < 2)
+                {
+                    personFamily.focus();
+                }
+                else if(personAge.value.length < 1)
+                {
+                    personAge.focus();
+                }
+                $('.tip-wrap').css({'border-color':'red','box-shadow':'0 0 10px red'});
+            }
+            else
+            {
+                $('.tip-wrap').css({'border-color':'#f4e331','box-shadow':'0 0 10px #f4e331'});
+                mp.trigger("custom.client", personName.value, personFamily.value, personAge.value);
+            }
+           
         };
         
     </script>
@@ -394,6 +442,7 @@
             rule = document.querySelector('.rules-wrap');
 
         info.addEventListener('mouseover', () => {
+            $('.tip-content .tip').replaceWith(`<div class="tip"><span class="yellow">Имя</span> и <span class="yellow">Фамилия</span> должны быть в РП формате<br><br>Правильно: Дональд Трамп <br> Неправильно: Бомж Валера</div>`)
             tip.style.display = 'block';
         });
 
@@ -412,13 +461,11 @@
 
         for (let i = 0; i < inputs.length - 1; i++) {
             inputs[i].addEventListener('input', function(){
-                inputs[i].value = inputs[i].value.replace(/[-\.;":',/<>@?!№%*&^#$()_+=|{}a-zA-Z]/g, '');
+                inputs[i].value = inputs[i].value.replace(/[-\.;":',/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
             });
         }
     </script>
     <script>
-      // This is an old version, for a more recent version look at
-      // https://jsfiddle.net/DRSDavidSoft/zb4ft1qq/2/
       function maxLengthCheck(object)
       {
         if (object.value.length > object.maxLength)
