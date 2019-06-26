@@ -221,6 +221,10 @@ function goHome()
 	dialingPauseInterval = null;
 	clearInterval(dialingPlayInterval);
 	dialingPlayInterval = null;
+	clearInterval(incomingPauseInterval);
+	incomingPauseInterval = null;
+	clearInterval(incomingPlayInterval);
+	incomingPlayInterval = null;
 	secondsCounter = 0;
 	minutesCounter = 0;
 	dialingAudio.pause();
