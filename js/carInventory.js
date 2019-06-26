@@ -3,7 +3,7 @@ var sex = '',
 	maxWeight = 50,
 	inventoryList = [],
 	weaponsList = [],
-	personList = [],
+	luggageList = [],
 	newList = [],
     typeName = 
     [
@@ -132,14 +132,8 @@ function doneAction(action, index, id, currentCount)
     switch(action)
     {
     	case ('remove'):
-			if(id === 'weapons')
-			{
-				let currentWeaponClass = inventoryList[index].class;
-				weaponClassArray[currentWeaponClass-1] = false;
-			}
         	removeElem = eval(id +'List').splice(inventoryList[index].wearedId,1);        			
 			$(eval(id+'List')).each(function(index,item){
-
 				inventoryList[item.inventoryIndex].wearedId = index;
 			});      	
         	if(inventoryList[removeElem[0].inventoryIndex].enabled)
@@ -153,80 +147,31 @@ function doneAction(action, index, id, currentCount)
 				inventoryList[removeElem[0].inventoryIndex].count++;
 				inventoryList[removeElem[0].inventoryIndex].used = false;
 			}
-			refreshInventory('weapons');
-			refreshInventory('person');	
+			refreshInventory('luggage');	
 			refreshInventory('inventory');
             inventoryInitialize();  
-            break;
-
-        case ('use'):
-        	removeElem = inventoryList[index];
-			removeElem.inventoryIndex = index;
-        	useElement(removeElem, index);
-        	refreshInventory('weapons');
-			refreshInventory('person');
-			refreshInventory('inventory');	
-		    inventoryInitialize(); 
-            break;
-        
-        case ('drop'):
-        	if(id == 'inventory')
-        	{
-        		if(inventoryList[index].count < 1 && !inventoryList[index].used)
-        		{
-        			removeElem = eval(id +'List').splice(index,1);
-        			listIndexCheck('weapons');
-    				listIndexCheck('person');
-        		}
-        		else
-        		{
-        			let newCount = inventoryList[index].count;
-        			newCount -= currentCount;
-        			if(newCount < 1 && !inventoryList[index].used)
-        			{
-        				removeElem = eval(id +'List').splice(index,1);
-        				listIndexCheck('weapons');
-        				listIndexCheck('person');
-        			}
-        			else
-        			{
-        				inventoryList[index].count = newCount;
-        			}
-        		}
-        	}
-            refreshInventory('weapons');
-			refreshInventory('person');
-			refreshInventory('inventory');	
-            inventoryInitialize();  
-            break;
-        
-        case ('give'):
-        	if(id == 'inventory')
-        	{
-        		if(inventoryList[index].count < 1 && !inventoryList[index].used)
-        		{
-        			removeElem = eval(id +'List').splice(index,1);
-        			listIndexCheck('weapons');
-        			listIndexCheck('person');
-        		}
-        		else
-        		{
-        			let newCount = inventoryList[index].count;
-        			newCount -= currentCount;
-        			if(newCount < 1 && !inventoryList[index].used)
-        			{
-        				removeElem = eval(id +'List').splice(index,1);
-        				listIndexCheck('weapons');
-        				listIndexCheck('person');
-        			}
-        			else
-        			{
-        				inventoryList[index].count = newCount;
-        			}
-        		}
-        	}
-            refreshInventory('weapons');
-			refreshInventory('person');
+			break;
+			
+        case ('put'):
+			console.log('before count' + index);
+			if(inventoryList[index].count < 1 && !inventoryList[index].used)
+			{
+				removeElem = eval(id +'List').splice(index,1);
+			}
+			else
+			{
+				let newCount = inventoryList[index].count;
+				newCount -= currentCount;
+				if(newCount < 1 && !inventoryList[index].used)
+				{
+					removeElem = eval(id +'List').splice(index,1);
+				}
+				else
+				{
+					inventoryList[index].count = newCount;
+				}
+			}
+			refreshInventory('luggage');
 			refreshInventory('inventory');	
             inventoryInitialize();  
             break;        
@@ -247,7 +192,7 @@ function genFullInventory()
 {
     newList = JSON.stringify(inventoryList);
     newList = JSON.parse(newList);
-	$(personList).each(function(indexPerson,itemPerson){
+	$(luggageList).each(function(indexPerson,itemPerson){
 		let count = newList[itemPerson.inventoryIndex].count;
 		newList[itemPerson.inventoryIndex].count = count + 1;
 		newList[itemPerson.inventoryIndex].enabled = true;
@@ -272,14 +217,14 @@ function useElement(element, index)
 				{
 					inventoryList[index].enabled = true;
 				}
-				personList.push(element); 				
-				let length = personList.length-1;
+				luggageList.push(element); 				
+				let length = luggageList.length-1;
 				inventoryList[index].wearedId = length;
 			}
 			else
 			{				
-				personList.push(element); 	
-				let length = personList.length-1;
+				luggageList.push(element); 	
+				let length = luggageList.length-1;
 				inventoryList[index].wearedId = length;
 			}
 		}
@@ -329,14 +274,14 @@ function useElement(element, index)
 			{
 				inventoryList.splice(index,1);
 				listIndexCheck('weapons');
-				listIndexCheck('person');
+				listIndexCheck('luggage');
 			}
 		}
 		else
 		{
 			inventoryList.splice(index,1);
 			listIndexCheck('weapons');
-			listIndexCheck('person');
+			listIndexCheck('luggage');
 		}
 	}
 };
@@ -350,7 +295,7 @@ function pushInventory(item,gender,maxweight)
 {
 	sex = gender;
 	maxWeight = maxweight;
-	$('.left-inventory .items').css('background-image','url(images/' + sex + '.png');
+	// $('.left-inventory .items').css('background-image','url(images/' + sex + '.png');
     inventoryList = [];
     var itemList = JSON.parse(item);
     $(itemList).each(function(index,item){    	
@@ -394,8 +339,8 @@ function pushInventory(item,gender,maxweight)
 			obj.inventoryIndex = currentLength;
 			if(obj.type == 'Clothes_Legal' || obj.type == 'Clothes_Duty' || obj.type == 'Clothes_Illegal')
 			{
-				personList.push(obj);
-				let length = personList.length-1;
+				luggageList.push(obj);
+				let length = luggageList.length-1;
 				inventoryList[currentLength].wearedId = length;
 			}	
 			if(obj.type == 'Weapon_Cold' || obj.type == 'Weapon_FireGun_Legal' || obj.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
@@ -410,8 +355,7 @@ function pushInventory(item,gender,maxweight)
 	    	inventoryList.push(obj);
 	    }    	
     }); 
-	refreshInventory('weapons');
-	refreshInventory('person');
+	refreshInventory('luggage');
 	refreshInventory('inventory');	
     inventoryInitialize();  
 };
@@ -429,31 +373,20 @@ function inventoryInitialize()
             $(this).parent().find('.dropdown-menu').css('display','block');
         }
 	});	
-	$('#weapons #remove, #person #remove').on('click',function(){
-			var action = $(this)[0].id,		
-				id = $(this).parent().parent()[0].id,
-				index = $(this).parent().attr(id+'-id');	 
-			index = eval(id+'List')[index].inventoryIndex;
-			checkAction(action, index, id);
-	});
-	$('#inventory .dropdown-menu li').on('click',function(){
+	$('#inventory #put, #luggage #remove').on('click',function(){
 		var action = $(this)[0].id,		
-			id = $(this).parent().parent().parent().parent().parent()[0].id,
-			index = $(this).parent().parent().parent().parent().attr(id+'-id');	 	
-		if(action === 'use' || action === 'remove')
-		{			
-			if(action === 'remove')
-			{
-				index = eval(id+'List')[index].inventoryIndex;
-			}
-			checkAction(action, index, id);
-		}
-		if(action === 'drop' || action === 'give')
+			id = $(this).parent().parent()[0].id,
+			index = $(this).parent().attr(id+'-id'),
+			col = 0,
+			input = '<input class="quantity" type="number" min="1" max="150" value="1">',
+			currentMin = 0,
+			currentMax = 0;
+		if(eval(id+'List')[index].count <=1)
 		{
-			var col = 0,
-				input = '<input class="quantity" type="number" min="1" max="150" value="1">',
-				currentMin = 0,
-				currentMax = 0;
+			doneAction(action,index,id);
+		}
+		else
+		{			
 			$('.ok-button').attr('action',action).attr('id',id).attr('index',index).attr('done','undone');
 			$('.col-wrapper').find('.quantity').replaceWith(input);
 			if(id == 'inventory')
@@ -482,38 +415,38 @@ function inventoryInitialize()
 					col = $(this).parent().parent().find('input').val();
 					$('.col-wrapper').fadeOut();
 					$(this).attr('done','done');
-					checkAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
+					doneAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
 				}
 			});
 			$('.cancel-button').on('click',function(){
 				$('.col-wrapper').fadeOut();				
 			});			
 			//Input
-		    var inputQuantity = [];
-		    $(function() {
-		      $(".quantity").each(function(i) {
-		        inputQuantity[i]=this.defaultValue;
-		         $(this).data("idx",i); // save this field's index to access later
-		      });
-		      $(".quantity").on("keyup", function (e) {
-		        var $field = $(this),
-		            val=this.value,
-		            $thisIndex=parseInt($field.data("idx"),10); // retrieve the index
+			var inputQuantity = [];
+			$(function() {
+				$(".quantity").each(function(i) {
+				inputQuantity[i]=this.defaultValue;
+					$(this).data("idx",i); // save this field's index to access later
+				});
+				$(".quantity").on("keyup", function (e) {
+				var $field = $(this),
+					val=this.value,
+					$thisIndex=parseInt($field.data("idx"),10); // retrieve the index
 					//window.console && console.log($field.is(":invalid"));
-		          	//$field.is(":invalid") is for Safari, it must be the last to not error in IE8
-		        if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
-		            this.value = inputQuantity[$thisIndex];
-		            return;
-		        } 
-		        if (val.length > Number($field.attr("maxlength"))) {
-		          val=val.slice(0, 5);
-		          $field.val(val);
-		        }
-		        inputQuantity[$thisIndex]=val;
-		      });      
-		    });	
+					//$field.is(":invalid") is for Safari, it must be the last to not error in IE8
+				if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
+					this.value = inputQuantity[$thisIndex];
+					return;
+				} 
+				if (val.length > Number($field.attr("maxlength"))) {
+					val=val.slice(0, 5);
+					$field.val(val);
+				}
+				inputQuantity[$thisIndex]=val;
+				});      
+			});	
 			$('.col-wrapper').fadeIn();
-		}
+		}	
 	});
 };
 $('.tabs-inventory .tabMenu').on('click',function(){
@@ -584,8 +517,7 @@ function toogleTab(currentTab)
 			});
 			break;
 	}
-	refreshInventory('weapons');
-	refreshInventory('person');
+	refreshInventory('luggage');
 	refreshInventory('inventory');	
     inventoryInitialize(); 
 }
@@ -632,36 +564,22 @@ function refreshInventory(currentIterator)
 {
 	currentWeight = 0;
 	$('#'+currentIterator).empty();
-	var listBut = '',
-		personId = '',
-		itemTemplate = '',
+	var itemTemplate = '',
 		usedCounter = 0,
 		shadowClass = 'legal',
-		currentLength = inventoryList.length < 48 ? '49' : '96';
+		currentLength = inventoryList.length < 48 ? '54' : '108',
+		luggageLength = luggageList.length < 15 ? '15' : '30';
 
-	if(currentLength > 49 || currentLength > 96 || currentLength > 192)
+	if(currentLength > 54 || currentLength > 108 || currentLength > 216)
 	{
 		currentLength += currentLength;
 	}
-	switch (currentIterator)
+	if(luggageLength > 15 || luggageLength > 30 || luggageLength > 60)
 	{
-		case 'person':
-			for (var i = 0; i != 12; i++) {
-				$('.left-inventory ul#person').append(`<li classId="${className[i]}"></li>`); 
-			}	
-			break;	
-		case 'weapons':
-			for (var i = 0; i != 8; i++) {
-				$('.left-inventory ul#weapons').append(`<li weaponsClass="${i+1}"></li>`); 
-			}
-			break;
-	}	
+		luggageLength += luggageLength;
+	}
     $(eval(currentIterator + 'List')).each(function(index,item)
-    {      	
-		if(currentIterator == 'person')
-		{
-			personId = 'classId="' + item.class + '"'			
-		}		
+    {      		
 		if(item.type == 'Weapon_Cold' || item.type == 'Instrument' || item.type == 'Documents' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Clothes_Legal' 
 									  || item.type == 'LegalObject' || item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources' 
 									  || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol' || item.type == 'Ammo' || item.type == 'Medical_Preparation')
@@ -676,10 +594,10 @@ function refreshInventory(currentIterator)
 		{
 			shadowClass = 'form';
 		}	
-		if(currentIterator == 'person')
+		if(currentIterator == 'luggage')
 		{
 			itemTemplate = 
-			'<li ' + currentIterator + '-id="' + index +'" ' + personId + '>\
+			'<li ' + currentIterator + '-id="' + index +'">\
 				<div class="itemInv'+' '+ shadowClass +'" id="remove">\
 					<div class="button-dropdown">\
 						<div class="infoItem dropdown-toggle">\
@@ -690,143 +608,48 @@ function refreshInventory(currentIterator)
 				</div>\
 			</li>';
 		}
-		if(currentIterator == 'weapons')
-		{
-			var currentImg = item.type,
-				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
-			if(currentElement != -1)
-			{				
-				currentImg = weaponsListFull[currentElement].name;
-				personId = `weaponsClass="${getWeaponClass(currentElement)}"`;
-			}
-			itemTemplate = 
-			'<li ' + currentIterator + '-id="' + index +'" ' + personId + '>\
-				<div class="itemInv'+' '+ shadowClass +'" id="remove">\
-					<div class="button-dropdown">\
-						<div class="infoItem dropdown-toggle">\
-							<div class="nameItem">' + item.name + '</div>\
-						</div>\
-						<img src="images/weapons/' + currentImg + '.png" class="itemImg dropdown-toggle">\
-					</div>\
-				</div>\
-			</li>';
-		}
 		if(currentIterator == 'inventory')
 		{		
 			var currentImg = item.type,
 				currentIter = 'inventory',
-				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated),
-				personId = '',	
-				giveBut = '<li id="give">Передать</li>';
-			if(item.type == 'Clothes_Legal' || item.type == 'Clothes_Duty' || item.type == 'Clothes_Illegal' || item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
-			{
-				listBut = '<li id="use">Надеть</li>';	
-				if(item.type == 'Clothes_Duty')
-				{
-					giveBut = '';
-				}	
-			}
-			if(item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources' || item.type == 'Documents' || item.type == 'Instrument' || item.type == 'Medical_Preparation' || item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
-			{
-				listBut = '';
-			}
+				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
 			if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{				
 				if(currentElement != -1)
 				{				
 					currentImg = weaponsListFull[currentElement].name;
 					currentIter = 'weapons';
-					personId = `weaponsClass="${getWeaponClass(currentElement)}"`
 					item.class = getWeaponClass(currentElement);
 				}
 				if(item.type == 'Weapon_FireGun_Police' || item.type == 'Clothes_Duty')
 				{
-					giveBut = '';
+					
 				}
 			}
 			else
 			{
 				personId = '';
 				currentImg = item.type;
-				listBut = '<li id="use">Применить</li>';
 			}			
 			itemTemplate = 
-			`<li ${currentIterator}-id="${index}" ${personId}>
-				<div class="itemInv ${shadowClass}">
+			`<li ${currentIterator}-id="${index}">
+				<div class="itemInv ${shadowClass}" id="put">
 					<div class="button-dropdown">
 						<div class="quantity">${item.count}</div>
 						<div class="infoItem dropdown-toggle">
 							<div class="nameItem">${item.name}</div>
 						</div>
 						<img src="images/${currentIter}/${currentImg}.png" class="itemImg dropdown-toggle">
-						<ul class="dropdown-menu">
-							${listBut}
-							<li id="drop">Выбросить</li>
-							${giveBut}
-						</ul>
 					</div>
 				</div>
 			</li>`;
 		}    		
 		switch (currentIterator)
 		{
-			case 'weapons':
-				let currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
-				if(currentElement != -1)
-				{
-					$('.left-inventory ul#weapons li').each(function(indexElem,element){						
-						if(parseInt($(element).attr('weaponsClass')) === item.class)
-						{							
-							if($(element).is(':empty'))
-							{		        
-								weaponClassArray[item.class-1] = true;
-								$(element).replaceWith(itemTemplate);
-								$(`.left-inventory ul#weapons li:eq(${item.class})`).get(0).scrollIntoView({inline: "end", behavior: "smooth"});								
-							}	
-						}										
-					});					
-				}	
-				break;
-			case 'person':				
-				$('.left-inventory ul#person li').each(function(indexElem,element){
-					if($(element).attr('classId') === item.class)
-					{
-						if($(element).is(':empty'))
-						{		        	
-							$(element).replaceWith(itemTemplate); 
-						}
-						else
-						{							
-							if($(element).attr("person-id") != undefined)
-							{
-								var currentAttr = $(element).attr("person-id");
-								let currentElement = personList[currentAttr].inventoryIndex;
-								let removeElem = personList.splice(currentAttr,1);
-								removeElem[0].enabled = false;
-								removeElem[0].used = false;
-								delete inventoryList[currentElement].wearedId;
-								inventoryList[currentElement].count++;													
-								refreshPerson(currentIterator);
-							}
-							index--;
-							let newElement = personList[index].wearedId--;
-							$(element).replaceWith(
-								'<li ' + currentIterator + '-id="' + index +'" ' + personId + '>\
-									<div class="itemInv'+' '+ shadowClass +'" id="remove">\
-										<div class="button-dropdown">\
-											<div class="infoItem dropdown-toggle">\
-												<div class="nameItem">' + item.name + '</div>\
-											</div>\
-											<img src="images/person/' + refreshImages(item.class) + '.png" class="itemImg dropdown-toggle">\
-											<ul class="dropdown-menu">\
-												' + listBut + '\
-											</ul>\
-										</div>\
-									</div>\
-								</li>'); 		
-						}
-					}
-				});					
+			case 'luggage':				
+				
+				$('.left-inventory ul#luggage').append(itemTemplate);
+								
 				break;
 			case 'inventory':
 				switch(item.enabled)
@@ -857,7 +680,12 @@ function refreshInventory(currentIterator)
 			for (var i = inventoryList.length-usedCounter; i != currentLength; i++) {
 				$('.right-inventory ul#inventory').append('<li></li>'); 
 			}
-			break;		
+			break;
+		case 'luggage':
+			for (var i = luggageList.length; i != luggageLength; i++) {
+				$('.left-inventory ul#luggage').append(`<li luggage-id="${i}"></li>`); 
+			}	
+			break;			
 		}    
     countWeight();      
 };

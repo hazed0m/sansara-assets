@@ -1,7 +1,7 @@
 const wallpaperList = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 var contactsList = 	[],
 	callsList = [],
-	incomingAudio = new Audio('audio/incoming.ogg'),	
+	incomingAudio = new Audio('audio/ringtone/ring3.ogg'),	
 	dialingAudio = new Audio('audio/dialing.ogg'),
 	messageAudio = new Audio('audio/message.ogg'),
 	currentTopPosition = 0,
@@ -10,20 +10,24 @@ var contactsList = 	[],
 	secondsCounter = 0,
 	minutesCounter = 0,	
 	dialingTimeout = '',
-	audioList = [ incomingAudio,
-				  dialingAudio,
-				  messageAudio, 
-				  new Audio('audio/ringtone/ring1.ogg'),  
-				  new Audio('audio/ringtone/ring2.ogg'),  
-				  new Audio('audio/ringtone/ring3.ogg'),  
-				  new Audio('audio/ringtone/ring4.ogg') 
-				];
-$(audioList).each(function(index,item){
-	$('.ringtone').append(item);
-});
-$('.ringtone audio').each(function(index,item){
-	$(item).attr('controls','true');
-});
+	dialingPauseInterval = null,
+	dialingPlayInterval = null,
+	incomingPauseInterval = null,
+	incomingPlayInterval = null;
+// 	audioList = [ incomingAudio,
+// 				  dialingAudio,
+// 				  messageAudio, 
+// 				  new Audio('audio/ringtone/ring1.ogg'),  
+// 				  new Audio('audio/ringtone/ring2.ogg'),  
+// 				  new Audio('audio/ringtone/ring3.ogg'),  
+// 				  new Audio('audio/ringtone/ring4.ogg') 
+// 				];
+// $(audioList).each(function(index,item){
+// 	$('.ringtone').append(item);
+// });
+// $('.ringtone audio').each(function(index,item){
+// 	$(item).attr('controls','true');
+// });
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
@@ -154,6 +158,14 @@ $('.outCaller-wrapper .cancel, .caller-wrapper .cancel').on('click',function(){
 function cancelOutcomingCall(){
 	clearInterval(dialingTimeout);
 	dialingTimeout = null;
+	clearInterval(dialingPauseInterval);
+	dialingPauseInterval = null;
+	clearInterval(dialingPlayInterval);
+	dialingPlayInterval = null;
+	clearInterval(incomingPauseInterval);
+	incomingPauseInterval = null;
+	clearInterval(incomingPlayInterval);
+	incomingPlayInterval = null;
 	if($('.caller-wrapper').hasClass('active'))
 	{
 		$('.caller-wrapper').removeClass('active').fadeOut();
@@ -174,6 +186,14 @@ function cancelIncomingCall()
 {
 	clearInterval(dialingTimeout);
 	dialingTimeout = null;
+	clearInterval(dialingPauseInterval);
+	dialingPauseInterval = null;
+	clearInterval(dialingPlayInterval);
+	dialingPlayInterval = null;
+	clearInterval(incomingPauseInterval);
+	incomingPauseInterval = null;
+	clearInterval(incomingPlayInterval);
+	incomingPlayInterval = null;
 	$('.incomingCall-wrapper').removeClass('active').fadeOut();
 	$('.main-wrapper').addClass('active').fadeIn();
 	clearInterval(callInterval);
@@ -197,6 +217,10 @@ function goHome()
 	callInterval = null;
 	clearInterval(myInterval);
 	myInterval = null;
+	clearInterval(dialingPauseInterval);
+	dialingPauseInterval = null;
+	clearInterval(dialingPlayInterval);
+	dialingPlayInterval = null;
 	secondsCounter = 0;
 	minutesCounter = 0;
 	dialingAudio.pause();
@@ -211,6 +235,14 @@ function toCall(number,type)
 {
 	clearInterval(dialingTimeout);
 	dialingTimeout = null;
+	clearInterval(dialingPauseInterval);
+	dialingPauseInterval = null;
+	clearInterval(dialingPlayInterval);
+	dialingPlayInterval = null;
+	clearInterval(incomingPauseInterval);
+	incomingPauseInterval = null;
+	clearInterval(incomingPlayInterval);
+	incomingPlayInterval = null;
 	dialingAudio.pause();
 	dialingAudio.currentTime = 0;
 	incomingAudio.pause();
@@ -255,7 +287,7 @@ function toCall(number,type)
 function checkCall(number)
 {
 	getNumber = number;
-	pushHistoryList(getNumber, 'out')
+	pushHistoryList(getNumber, 'out');
 	mp.trigger('PhoneCheckCall',getNumber);
 }
 function getCall(number)
@@ -285,6 +317,13 @@ function getCall(number)
 	}, 1000);
 	$('.incomingCall-wrapper').addClass('active').fadeIn();
 	incomingAudio.play();
+	incomingPauseInterval = setInterval(function(){
+		incomingAudio.pause();
+		incomingAudio.currentTime = 0;
+	},4100);	
+	incomingPlayInterval = setInterval(function(){
+		incomingAudio.play();
+	},8200);
 }
 function timerOnCaller()
 {
@@ -350,6 +389,13 @@ function outCaller(number)
 	$('.outCaller-wrapper').find('.number').text(number);
 	$('.outCaller-wrapper').addClass('active').fadeIn();
 	dialingAudio.play();
+	dialingPauseInterval = setInterval(function(){
+		dialingAudio.pause();
+		dialingAudio.currentTime = 0;
+	},2200);	
+	dialingPlayInterval = setInterval(function(){
+		dialingAudio.play();
+	},4400);	
 	dialingTimeout = setTimeout(function(){		
 		mp.trigger("cancelOutcomingCall", getNumber);
 	},15000)
@@ -712,6 +758,19 @@ $('.messages-inner .sender').on('click',function(){
 		$(this).prev().val('');
 		mp.trigger("sendMessage",contactsList[currentIndex].number, currentMessage);
 	}	
+});
+$('.messages-inner input').on('keypress',function(e){
+	var keycode = e.keyCode || e.which;
+	if(keycode == '13')
+	{
+		let currentMessage = $(this).val();
+		if(currentMessage.length > 0)
+		{
+			let currentIndex = $(this).parent().parent().find('.title').attr('data-index');
+			$(this).val('');
+			mp.trigger("sendMessage",contactsList[currentIndex].number, currentMessage);
+		}
+	}		
 });
 function incomingMessage(number, status, time, message)
 {
