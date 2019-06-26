@@ -255,7 +255,7 @@ body {
 .left-inventory .items #person li:nth-child(11):empty:after {
     content: "Обувь";
 }
-.left-inventory .items #person li:nth-child(12):empty:after {
+.left-inventory .items #pers  on li:nth-child(12):empty:after {
     content: "Сумка";
 }
 .left-inventory .weapons
