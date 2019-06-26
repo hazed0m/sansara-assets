@@ -397,6 +397,18 @@ function outCaller(number)
 		dialingAudio.play();
 	},4400);	
 	dialingTimeout = setTimeout(function(){		
+		clearInterval(dialingTimeout);
+		dialingTimeout = null;
+		clearInterval(dialingPauseInterval);
+		dialingPauseInterval = null;
+		clearInterval(dialingPlayInterval);
+		dialingPlayInterval = null;
+		clearInterval(incomingPauseInterval);
+		incomingPauseInterval = null;
+		clearInterval(incomingPlayInterval);
+		incomingPlayInterval = null;
+		dialingAudio.pause();
+		dialingAudio.currentTime = 0;
 		mp.trigger("cancelOutcomingCall", getNumber);
 	},15000)
 }
