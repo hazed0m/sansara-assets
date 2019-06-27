@@ -120,10 +120,20 @@ var sex = '',
 	   "Shoes",
 	   "Bag"
 	];
-	console.log(typeName);
 function checkAction(action, index, id, currentCount)
 {
-    mp.trigger(action, index, id, currentCount);          
+	if(action == 'use')
+	{
+		let removeElem = inventoryList[index];
+		if(!useElementChecker(removeElem))
+		{
+			mp.trigger(action, index, id, currentCount);          
+		}
+	}
+	else
+	{
+		mp.trigger(action, index, id, currentCount); 
+	}
 };
 function doneAction(action, index, id, currentCount)
 {	
@@ -232,7 +242,6 @@ function doneAction(action, index, id, currentCount)
             break;        
     }
 	genFullInventory();	
-	console.log(newList);
     mp.trigger("action.currentInventory", action, JSON.stringify(newList));
 };
 function listIndexCheck(id)
@@ -259,6 +268,27 @@ function genFullInventory()
 		newList[itemWeapons.inventoryIndex].enabled = true;
 	});	
 };
+function useElementChecker(element)
+{
+	let returner = false;
+	if(element.type == 'Clothes_Legal' || element.type == 'Clothes_Duty' || element.type == 'Clothes_Illegal')
+	{
+		if(element.used)
+		{
+			notificationShow('Данная одежда уже одета');
+			returner = true;	
+		}
+	}
+	if(element.type == 'Weapon_Cold' || element.type == 'Weapon_FireGun_Legal' || element.type == 'Weapon_FireGun_Police' || element.type == 'Weapon_FireGun_Illegal')
+	{	
+		if(weaponClassArray[element.class-1] === true)
+		{
+			notificationShow('Вы не можете носить больше одного оружия, данного класса');
+			returner = true;
+		}			
+	}
+	return returner;
+}
 function useElement(element, index)
 {
 	if(element.type == 'Clothes_Legal' || element.type == 'Clothes_Duty' || element.type == 'Clothes_Illegal')
@@ -286,8 +316,7 @@ function useElement(element, index)
 		}
 		else
 		{
-			notificationShow('Данная одежда уже одета');
-			mp.trigger('WrongClothes');			
+			notificationShow('Данная одежда уже одета');	
 		}
 	}	
 	if(element.type == 'Weapon_Cold' || element.type == 'Weapon_FireGun_Legal' || element.type == 'Weapon_FireGun_Police' || element.type == 'Weapon_FireGun_Illegal')
@@ -316,7 +345,6 @@ function useElement(element, index)
 		else
 		{
 			notificationShow('Вы не можете носить больше одного оружия, данного класса');
-			mp.trigger('WrongWeapon');			
 		}			
 	}
 	if(element.type == 'Eat' || element.type == 'Drink' || element.type == 'Alcohol' || element.type == 'Instrument'
@@ -342,10 +370,10 @@ function useElement(element, index)
 	}
 };
 function notificationShow(notification)
-{
+{		
 	$('.info-wrapper .title').text(notification);
 	$('.info-wrapper').fadeIn();
-	setTimeout(() => {$('.info-wrapper').fadeOut()},2000);
+	var currentT = setTimeout(() => {$('.info-wrapper').fadeOut();},3000);
 };
 function pushInventory(item,gender,maxweight)
 {
@@ -389,6 +417,7 @@ function pushInventory(item,gender,maxweight)
 			if(currentElement != -1)
 			{
 				obj.class = getWeaponClass(currentElement);
+				weaponClassArray[obj.class-1] = true;
 			}
 			inventoryList.push(obj);
 			let currentLength = inventoryList.length-1;			
