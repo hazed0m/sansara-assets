@@ -423,7 +423,7 @@ function slidesPlus(btn, index, names, inputs, genders) {
         inputs.setAttribute('data',curIndex);
         mp.trigger("custom.clientCreate", motherIndex, fatherIndex);
     });
-}
+};
 
 function slidesMinus(btn, index, names, inputs, genders) {
     inputs.setAttribute('data',index);

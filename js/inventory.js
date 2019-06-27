@@ -231,7 +231,8 @@ function doneAction(action, index, id, currentCount)
             inventoryInitialize();  
             break;        
     }
-    genFullInventory();
+	genFullInventory();	
+	console.log(newList);
     mp.trigger("action.currentInventory", action, JSON.stringify(newList));
 };
 function listIndexCheck(id)
@@ -293,24 +294,24 @@ function useElement(element, index)
 	{	
 		if(!element.used && weaponClassArray[element.class-1] === false)
 		{		
-				element.used = true;
-				if(element.count != 0)
+			element.used = true;
+			if(element.count != 0)
+			{
+				element.count--;
+				if(element.count == 0)
 				{
-					element.count--;
-					if(element.count == 0)
-					{
-						inventoryList[index].enabled = true;
-					}
-					weaponsList.push(element);
-					let length = weaponsList.length-1;
-					inventoryList[index].wearedId = length;
-				}	
-				else
-				{
-					weaponsList.push(element); 				
-					let length = weaponsList.length-1;
-					inventoryList[index].wearedId = length;
+					inventoryList[index].enabled = true;
 				}
+				weaponsList.push(element);
+				let length = weaponsList.length-1;
+				inventoryList[index].wearedId = length;
+			}	
+			else
+			{
+				weaponsList.push(element); 				
+				let length = weaponsList.length-1;
+				inventoryList[index].wearedId = length;
+			}
 		}		
 		else
 		{
@@ -434,7 +435,7 @@ function inventoryInitialize()
 				id = $(this).parent().parent()[0].id,
 				index = $(this).parent().attr(id+'-id');	 
 			index = eval(id+'List')[index].inventoryIndex;
-			checkAction(action, index, id);
+			doneAction(action, index, id);
 	});
 	$('#inventory .dropdown-menu li').on('click',function(){
 		var action = $(this)[0].id,		
@@ -446,7 +447,7 @@ function inventoryInitialize()
 			{
 				index = eval(id+'List')[index].inventoryIndex;
 			}
-			checkAction(action, index, id);
+			doneAction(action, index, id);
 		}
 		if(action === 'drop' || action === 'give')
 		{
@@ -482,7 +483,7 @@ function inventoryInitialize()
 					col = $(this).parent().parent().find('input').val();
 					$('.col-wrapper').fadeOut();
 					$(this).attr('done','done');
-					checkAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
+					doneAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
 				}
 			});
 			$('.cancel-button').on('click',function(){
@@ -716,8 +717,9 @@ function refreshInventory(currentIterator)
 			var currentImg = item.type,
 				currentIter = 'inventory',
 				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated),
-				personId = '',	
+				personId = '',
 				giveBut = '<li id="give">Передать</li>';
+				listBut = '';
 			if(item.type == 'Clothes_Legal' || item.type == 'Clothes_Duty' || item.type == 'Clothes_Illegal' || item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{
 				listBut = '<li id="use">Надеть</li>';	
@@ -726,9 +728,9 @@ function refreshInventory(currentIterator)
 					giveBut = '';
 				}	
 			}
-			if(item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources' || item.type == 'Documents' || item.type == 'Instrument' || item.type == 'Medical_Preparation' || item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
+			if(item.type == 'Medical_Preparation' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
 			{
-				listBut = '';
+				listBut = '<li id="use">Применить</li>';
 			}
 			if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{				
@@ -748,7 +750,6 @@ function refreshInventory(currentIterator)
 			{
 				personId = '';
 				currentImg = item.type;
-				listBut = '<li id="use">Применить</li>';
 			}			
 			itemTemplate = 
 			`<li ${currentIterator}-id="${index}" ${personId}>
