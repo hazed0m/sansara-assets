@@ -421,6 +421,7 @@
 	justify-content: center;
 	align-items: center;	
 	margin-bottom:5px;
+	position: relative;
 }
 .dialing-wrapper
 {
@@ -434,6 +435,38 @@
 	height:auto;
 	overflow-y:scroll;
 	box-sizing: border-box;
+	position: relative;
+}
+.dialing-wrapper .history-wrapper:empty:after, .dialing-wrapper .this-block:empty:after, .messages-wrapper .wrapper:empty:after, .contacts-wrapper .wrapper:empty:after, .geo-wrapper .wrapper:empty:after
+{
+	text-align: center;
+	position: absolute;
+	width:100%;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+}
+.dialing-wrapper .history-wrapper:empty:after
+{
+	content:'Список вызовов пуст';
+}
+.dialing-wrapper .this-block:empty:after
+{
+	content:'Введите номер';
+	font-size:20px;
+	color:#838282;
+}
+.messages-wrapper .wrapper:empty:after
+{
+	content:'Список сообщений пуст';
+}
+.contacts-wrapper .wrapper:empty:after
+{
+	content:'Список контактов пуст';
+}
+.geo-wrapper .wrapper:empty:after
+{
+	content:'Список контактов пуст';
 }
 .history-wrapper .history-block
 {
@@ -447,7 +480,53 @@
 	padding:0 15px;
 	align-items: center;
 	box-sizing: border-box;
+	cursor: pointer;
+	position: relative;
 }
+/* .history-wrapper .history-block.out:hover
+{
+	box-shadow: 0 0 5px #00ff96;
+}
+.history-wrapper .history-block.in:hover
+{
+	box-shadow: 0 0 5px #dfee10;
+} */
+.history-wrapper .history-block::after
+{
+	content:'';
+	display:none;
+	width: 20px;
+    height: 20px;
+    background:url(../img/phone/caller/allow.png) no-repeat;
+	background-size: cover;
+	position: absolute;
+	top:50%;
+	left:65%;
+	opacity:0;
+	transform: translate(-50%,-50%);	
+}
+.history-wrapper .history-block:hover::after {
+	display: block;
+	animation: sheen 0.5s forwards;
+}
+@keyframes sheen {	
+	0%
+	{
+		opacity:0;
+	}
+	100% {
+	  	opacity:1;
+	}
+  }
+  @keyframes sheen-reverse {	
+	0%
+	{
+		opacity:0;
+	}
+	100% {
+	  	opacity:1;
+	}
+  }
 .history-wrapper .history-block.out{
 	border-left:8px solid #00ff96;
 }
@@ -511,7 +590,7 @@
 }
 .geo-wrapper .current-wrapper
 {
-	height:35px;
+	height:55px;
 }
 .contacts-wrapper .current-wrapper .nothing-used, .contacts-wrapper .current-wrapper .contact-added, .geo-wrapper .current-wrapper .geo-added, .geo-wrapper .current-wrapper .nothing-used
 {
@@ -522,6 +601,7 @@
 	font-size:13.17px;
 	font-weight:500;
 	display: none;
+	text-align: center;
 }
 .contacts-wrapper .wrapper, .geo-wrapper .wrapper
 {

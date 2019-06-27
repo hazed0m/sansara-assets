@@ -156,16 +156,7 @@ $('.outCaller-wrapper .cancel, .caller-wrapper .cancel').on('click',function(){
 	mp.trigger("cancelOutcomingCall",getNumber);
 });
 function cancelOutcomingCall(){
-	clearInterval(dialingTimeout);
-	dialingTimeout = null;
-	clearInterval(dialingPauseInterval);
-	dialingPauseInterval = null;
-	clearInterval(dialingPlayInterval);
-	dialingPlayInterval = null;
-	clearInterval(incomingPauseInterval);
-	incomingPauseInterval = null;
-	clearInterval(incomingPlayInterval);
-	incomingPlayInterval = null;
+	refreshAudioIntervals();
 	if($('.caller-wrapper').hasClass('active'))
 	{
 		$('.caller-wrapper').removeClass('active').fadeOut();
@@ -175,33 +166,14 @@ function cancelOutcomingCall(){
 		$('.outCaller-wrapper').removeClass('active').fadeOut();
 	}
 	$('.main-wrapper').addClass('active').fadeIn();
-	clearInterval(callInterval);
-	callInterval = null;
-	clearInterval(myInterval);
-	myInterval = null;
-	secondsCounter = 0;
-	minutesCounter = 0;
+	refreshCallerIntervals();
 };
 function cancelIncomingCall()
 {
-	clearInterval(dialingTimeout);
-	dialingTimeout = null;
-	clearInterval(dialingPauseInterval);
-	dialingPauseInterval = null;
-	clearInterval(dialingPlayInterval);
-	dialingPlayInterval = null;
-	clearInterval(incomingPauseInterval);
-	incomingPauseInterval = null;
-	clearInterval(incomingPlayInterval);
-	incomingPlayInterval = null;
+	refreshAudioIntervals();
 	$('.incomingCall-wrapper').removeClass('active').fadeOut();
 	$('.main-wrapper').addClass('active').fadeIn();
-	clearInterval(callInterval);
-	callInterval = null;
-	clearInterval(myInterval);
-	myInterval = null;
-	secondsCounter = 0;
-	minutesCounter = 0;
+	refreshCallerIntervals();
 };
 $('input[type="text"]').keyup(function() {
     this.value = this.value.replace(/[^a-zA-Zа-яА-Я0-9,.!?_ ]/g, '');
@@ -209,14 +181,10 @@ $('input[type="text"]').keyup(function() {
 $('.incomingCall-wrapper .allow').on('click',function(){
 	mp.trigger("allowIncomingCall",getNumber);
 });
-function goHome()
+function refreshAudioIntervals()
 {
 	clearInterval(dialingTimeout);
 	dialingTimeout = null;
-	clearInterval(callInterval);
-	callInterval = null;
-	clearInterval(myInterval);
-	myInterval = null;
 	clearInterval(dialingPauseInterval);
 	dialingPauseInterval = null;
 	clearInterval(dialingPlayInterval);
@@ -224,33 +192,33 @@ function goHome()
 	clearInterval(incomingPauseInterval);
 	incomingPauseInterval = null;
 	clearInterval(incomingPlayInterval);
-	incomingPlayInterval = null;
-	secondsCounter = 0;
-	minutesCounter = 0;
+	incomingPlayInterval = null;	
 	dialingAudio.pause();
 	dialingAudio.currentTime = 0;
 	incomingAudio.pause();
 	incomingAudio.currentTime = 0;
+}
+function refreshCallerIntervals()
+{	
+	clearInterval(callInterval);
+	callInterval = null;
+	clearInterval(myInterval);
+	myInterval = null;
+	secondsCounter = 0;
+	minutesCounter = 0;
+}
+function goHome()
+{
+	refreshAudioIntervals();
+	refreshCallerIntervals();
 	let active = $('.container > .active')[0].classList[0];
 	$('.'+active).removeClass('active').fadeOut();
 	$('.main-wrapper').addClass('active').fadeIn();
 }
 function toCall(number,type)
 {
-	clearInterval(dialingTimeout);
-	dialingTimeout = null;
-	clearInterval(dialingPauseInterval);
-	dialingPauseInterval = null;
-	clearInterval(dialingPlayInterval);
-	dialingPlayInterval = null;
-	clearInterval(incomingPauseInterval);
-	incomingPauseInterval = null;
-	clearInterval(incomingPlayInterval);
-	incomingPlayInterval = null;
-	dialingAudio.pause();
-	dialingAudio.currentTime = 0;
-	incomingAudio.pause();
-	incomingAudio.currentTime = 0;
+	refreshAudioIntervals();	
+	refreshCallerIntervals();
 	getNumber = number;
 	let currentName = '';
 	let active = $('.container > .active')[0].classList[0];
@@ -280,12 +248,6 @@ function toCall(number,type)
 	$('.caller-wrapper').find('.number').text(currentName);
 	$('.caller-wrapper').find('.title').text(type);
 	$('.caller-wrapper').addClass('active').fadeIn();
-	clearInterval(callInterval);
-	callInterval = null;
-	clearInterval(myInterval);
-	myInterval = null;
-	secondsCounter = 0;
-	minutesCounter = 0;
 	timerOnCaller();
 }
 function checkCall(number)
@@ -298,6 +260,8 @@ function getCall(number)
 {	
 	getNumber = number;	
 	pushHistoryList(getNumber, 'in');
+	refreshAudioIntervals();	
+	refreshCallerIntervals();
 	let active = $('.container > .active')[0].classList[0],
 		currentName = '';
 	$('.'+active).removeClass('active').fadeOut();
@@ -376,7 +340,18 @@ function historyRefresh()
 							</div>`;		
 		$('.history-wrapper').prepend(currentItem);
 	});
+	refreshHistoryBlock();
 };
+function refreshHistoryBlock()
+{	
+	$('.history-block').on('click',function(){
+		let currentNumber = $(this).find('.number').text();
+		currentNumber = parseInt(currentNumber.replace('-',''));
+		outCaller(currentNumber);
+		checkCall(currentNumber);
+	});
+	$('.history-block').on('hover',function(){$(this).after().fadeIn();},function(){$(this).after().fadeOut()});
+}
 $('.number-wrap .call').on('click',function(){
 	let number = $(this).parents().find('.this-block').text();	
 	$(this).parents().find('.this-block').text('');
@@ -390,7 +365,8 @@ function outCaller(number)
 {	
 	let active = $('.container > .active')[0].classList[0];	
 	$('.'+active).removeClass('active').fadeOut();
-	let currentName = '';
+	getNumber = number;
+	let currentName = getNumber;
 	$(contactsList).each(function(index,item){
 		if(item.number == getNumber)
 		{
@@ -408,18 +384,7 @@ function outCaller(number)
 		dialingAudio.play();
 	},4400);	
 	dialingTimeout = setTimeout(function(){		
-		clearInterval(dialingTimeout);
-		dialingTimeout = null;
-		clearInterval(dialingPauseInterval);
-		dialingPauseInterval = null;
-		clearInterval(dialingPlayInterval);
-		dialingPlayInterval = null;
-		clearInterval(incomingPauseInterval);
-		incomingPauseInterval = null;
-		clearInterval(incomingPlayInterval);
-		incomingPlayInterval = null;
-		dialingAudio.pause();
-		dialingAudio.currentTime = 0;
+		refreshAudioIntervals();
 		mp.trigger("cancelOutcomingCall", getNumber);
 	},15000)
 }
