@@ -390,7 +390,14 @@ function outCaller(number)
 {	
 	let active = $('.container > .active')[0].classList[0];	
 	$('.'+active).removeClass('active').fadeOut();
-	$('.outCaller-wrapper').find('.number').text(number);
+	let currentName = '';
+	$(contactsList).each(function(index,item){
+		if(item.number == getNumber)
+		{
+			currentName = item.name;
+		}
+	});	
+	$('.outCaller-wrapper').find('.number').text(currentName);
 	$('.outCaller-wrapper').addClass('active').fadeIn();
 	dialingAudio.play();
 	dialingPauseInterval = setInterval(function(){

@@ -260,6 +260,13 @@ eyesColor();
 hairColorInput.textContent =  hairColors[0];
 hairInput.textContent =  hairList[currentGender][0].Name;
 eyesColorInput.textContent =  eyeColors[0];
+$('input#personAge').keyup(function() {
+    if(this.value == '0')
+    {
+        this.value = '';
+    }
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
 // Цвет глаз
 function eyesColor() {
     eyesColorNext.addEventListener('click', function() {
@@ -268,29 +275,22 @@ function eyesColor() {
     eyesColorPrev.addEventListener('click', function() {
         plusSlides(-1);
     });
-}
-$('input#personAge').keyup(function() {
-    if(this.value == '0')
-    {
-        this.value = '';
-    }
-    this.value = this.value.replace(/[^0-9]/g, '');
-});
-function showSlide(n) {
-    if (n > eyeColors.length) {
-        eyesColorIndex = 1;
-    }
-    if (n < 1) {
-        eyesColorIndex = eyeColors.length;
+
+    function showSlide(n) {
+        if (n > eyeColors.length) {
+            eyesColorIndex = 1;
+        }
+        if (n < 1) {
+            eyesColorIndex = eyeColors.length;
+        }
+        eyesColorInput.textContent = eyeColors[eyesColorIndex - 1];
+        mp.trigger("eyesColor.client", eyesColorIndex - 1);
     }
 
-    eyesColorInput.textContent = eyeColors[eyesColorIndex - 1];
-    mp.trigger("eyesColor.client", eyesColorIndex - 1);
+    function plusSlides(n) {
+        showSlide(eyesColorIndex += n);
+    }  
 }
-
-function plusSlides(n) {
-    showSlide(eyesColorIndex += n);
-}  
 
 // Цвет волос 
 function hairColor() {
@@ -301,23 +301,23 @@ function hairColor() {
     hairColorPrev.addEventListener('click', function() {
         plusSlides(-1);
     });
-}
-function showSlide(n) {
-    if (n > hairColors.length) {
-        hairColorIndex = 1;
+
+    function showSlide(n) {
+        if (n > hairColors.length) {
+            hairColorIndex = 1;
+        }
+        if (n < 1) {
+            hairColorIndex = hairColors.length;
+        }
+
+        hairColorInput.textContent =  hairColors[hairColorIndex - 1];
+        mp.trigger("hairsColor.client", hairColors[hairColorIndex - 1]);
     }
-    if (n < 1) {
-        hairColorIndex = hairColors.length;
-    }
 
-    hairColorInput.textContent =  hairColors[hairColorIndex - 1];
-    mp.trigger("hairsColor.client", hairColors[hairColorIndex - 1]);
+    function plusSlides(n) {
+        showSlide(hairColorIndex += n);
+    }  
 }
-
-function plusSlides(n) {
-    showSlide(hairColorIndex += n);
-}  
-
 // Волосы 
 function hairs() {
     hairNext.addEventListener('click', function() {
@@ -327,24 +327,24 @@ function hairs() {
     hairPrev.addEventListener('click', function() {
         plusSlides(-1);
     });
-}
-function showSlide(n) {
-    if (n > hairList[currentGender].length) {
-        hairIndex = 1;
+
+    function showSlide(n) {
+        if (n > hairList[currentGender].length) {
+            hairIndex = 1;
+        }
+
+        if (n < 1) {
+            hairIndex = hairList[currentGender].length;
+        }
+
+        hairInput.textContent =  hairList[currentGender][hairIndex - 1].Name;
+        mp.trigger("hairsList.client", hairList[currentGender][hairIndex - 1].ID);
     }
 
-    if (n < 1) {
-        hairIndex = hairList[currentGender].length;
-    }
-
-    hairInput.textContent =  hairList[currentGender][hairIndex - 1].Name;
-    mp.trigger("hairsList.client", hairList[currentGender][hairIndex - 1].ID);
+    function plusSlides(n) {
+        showSlide(hairIndex += n);
+    }          
 }
-
-function plusSlides(n) {
-    showSlide(hairIndex += n);
-}          
-
 
 
 // Папа 
