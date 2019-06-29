@@ -227,7 +227,7 @@ $(function() {
                 currentRangeRotate = 1;
                 break;
         }
-        mp.trigger("cameraMakeup", id, val);
+        mp.trigger("cameraClothes", id, val);
     });
     
     $('input[type=range]').rangeslider({

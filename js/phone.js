@@ -617,12 +617,7 @@ $('.contacts-wrapper .current-wrapper #save-but').on('click',function(){
 	$('.contacts-wrapper .current-wrapper .contact-added').text(currentMessage);
 	if(currentNumber.length == 6 && !namePosibilityCheck(currentName,currentIndex) && !numberPosibilityCheck(currentNumber,currentIndex))
 	{
-		let obj = {
-			'name': currentName,
-			'number': parseInt(currentNumber),
-			'messageList': []
-		};
-		contactsList.unshift(obj);
+		addContact(currentName,currentNumber);
 		let currentElem = $(this);
 		$(this).parent().css('display','none').removeClass('active');
 		$(this).parent().parent().find('.contact-added').fadeIn(300).css('display','flex').addClass('active');
