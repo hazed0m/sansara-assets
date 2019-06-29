@@ -7,6 +7,7 @@ var sex = '',
 	weaponsList = [],
 	luggageList = [],
 	newList = [],
+	luggageAvailable = false,
     typeName = 
     [
         'Eat',                                              
@@ -180,11 +181,18 @@ function doneAction(action, index, id, currentCount)
 			break;
 			
         case ('put'):
-			let removeElem = Object.assign({},inventoryList[index]);
-			useElement(removeElem, index, currentCount);
-			refreshInventory('luggage');
-			refreshInventory('inventory');	
-			inventoryInitialize(); 
+			if(luggageAvailable)
+			{
+				let removeElem = Object.assign({},inventoryList[index]);
+				useElement(removeElem, index, currentCount);
+				refreshInventory('luggage');
+				refreshInventory('inventory');	
+				inventoryInitialize(); 
+			}
+			else
+			{
+				notificationShow('Вы не можете положить в багажник');
+			}
 			break;
 	}	
 };
@@ -245,8 +253,9 @@ function notificationShow(notification)
 	$('.info-wrapper').fadeIn();
 	setTimeout(() => {$('.info-wrapper').fadeOut()},2000);
 };
-function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug)
+function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 {
+	luggageAvailable = curAvailable;
 	maxWeightInventory = maxWeightInv;
 	maxWeightLuggage = maxWeightLug;
     inventoryList = [];
@@ -346,7 +355,7 @@ function inventoryInitialize()
 			input = '<input class="quantity" type="number" min="1" max="150" value="1">',
 			currentMin = 0,
 			currentMax = 0;
-		if(eval(id+'List')[index].count <=1)
+		if(eval(id+'List')[index].count <=1 || !luggageAvailable)
 		{
 			doneAction(action,index,id,1);
 		}
