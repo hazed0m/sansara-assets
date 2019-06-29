@@ -167,8 +167,7 @@ function doneAction(action, index, id, currentCount)
 						eval(id+'List')[index].inventoryIndex = inventoryList.length - 1;
 					}				
 				}				
-				mp.trigger("action.currentLuggage", action, JSON.stringify(luggageList));
-				mp.trigger("action.currentInventory", action, JSON.stringify(inventoryList));
+				mp.trigger("action.currentCarInv", action, JSON.stringify(luggageList),JSON.stringify(inventoryList));
 			}
 			else
 			{
@@ -239,8 +238,7 @@ function useElement(element, index, currentCount)
 		{
 			inventoryList.splice(index, 1);
 		}		
-		mp.trigger("action.currentLuggage", 'put', JSON.stringify(luggageList));
-		mp.trigger("action.currentInventory", 'put', JSON.stringify(inventoryList));
+		mp.trigger("action.currentCarInv", 'put', JSON.stringify(luggageList), JSON.stringify(inventoryList));
 	}
 	else
 	{		

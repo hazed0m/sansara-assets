@@ -676,6 +676,16 @@ function numberPosibilityCheck(currentNumber, currentIndex)
 	});
 	return checker;
 }
+function addContact(name,number)
+{
+	let obj = {
+		'name': name,
+		'number': parseInt(number),
+		'messageList': []
+	};
+	contactsList.unshift(obj);
+	refreshContacts();
+}
 function refreshContacts()
 {
 	$('.contacts-wrapper .wrapper').empty();
