@@ -26,7 +26,6 @@ $('#buy').on('click',function(){
         let makeupPrice = $('.buy-buttons .price span')[0].textContent;
         let cashService = $('.radio-block .active')[0].classList[0];
         $(this).addClass('disabled');
-        makeupRefresh();
         mp.trigger("makeupBuyButton", cashService, makeupPrice);
     }
 });
