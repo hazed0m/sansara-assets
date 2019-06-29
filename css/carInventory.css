@@ -199,6 +199,18 @@ body {
 	margin-top: 36px;
 	position: relative;
 }
+.left-inventory .close
+{
+	position: absolute;
+	top:-35px;
+	left:0;
+	background: #4e5156;
+	padding:10px;
+	border-top-left-radius: 7px;
+	border-top-right-radius: 7px;
+	color:#fff;
+	cursor: pointer;
+}
 .left-inventory hr {	
 	width: 344px;
 	margin-left: 73px;
@@ -786,6 +798,6 @@ input[type="number"]::-webkit-inner-spin-button {
 	    padding: 15px 0 0 0;
 	}
 	.left-inventory .items ul {
-	    padding-left: 62px;
+	    padding-left: 16px;
 	}
 }

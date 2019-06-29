@@ -294,6 +294,7 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 	    	inventoryList.push(obj);
 	    }    	
 	}); 
+	luggageList = [];
 	let lugList = JSON.parse(luggage);
 	$(lugList).each(function(index,item){
 		let obj = 
@@ -322,6 +323,9 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 	refreshInventory('inventory');	
     inventoryInitialize();  
 };
+$('.left-inventory .close').on('click',function(){
+	mp.trigger('closeCarInventory');
+});
 function containsName(nameObj,iterator)
 {
 	let currentElement = -1;
