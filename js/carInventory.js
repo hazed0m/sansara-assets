@@ -1,6 +1,8 @@
 var sex = '',
-	currentWeight = 0,
-	maxWeight = 50,
+	currentWeightLug = 0,
+	currentWeightInv = 0,
+	maxWeightInventory = 50,
+	maxWeightLuggage = 50,
 	inventoryList = [],
 	weaponsList = [],
 	luggageList = [],
@@ -120,169 +122,121 @@ var sex = '',
 	   "Shoes",
 	   "Bag"
 	];
-	console.log(typeName);
 function checkAction(action, index, id, currentCount)
 {
     mp.trigger(action, index, id, currentCount);          
 };
 function doneAction(action, index, id, currentCount)
 {	
-	var removeElem = '';
 	newList = [];	
     switch(action)
     {
     	case ('remove'):
-        	removeElem = eval(id +'List').splice(inventoryList[index].wearedId,1);        			
-			$(eval(id+'List')).each(function(index,item){
-				inventoryList[item.inventoryIndex].wearedId = index;
-			});      	
-        	if(inventoryList[removeElem[0].inventoryIndex].enabled)
-        	{
-        		inventoryList[removeElem[0].inventoryIndex].enabled = false;
-        		inventoryList[removeElem[0].inventoryIndex].count++;
-        		inventoryList[removeElem[0].inventoryIndex].used = false;
-        	}
-			else 
+			let tempWeight = parseFloat(currentCount*eval(id+'List')[index].weight);
+			tempWeight += parseFloat(currentWeightInv);
+			if(tempWeight < maxWeightInventory)
 			{
-				inventoryList[removeElem[0].inventoryIndex].count++;
-				inventoryList[removeElem[0].inventoryIndex].used = false;
-			}
-			refreshInventory('luggage');	
-			refreshInventory('inventory');
-            inventoryInitialize();  
-			break;
-			
-        case ('put'):
-			console.log('before count' + index);
-			if(inventoryList[index].count < 1 && !inventoryList[index].used)
-			{
-				removeElem = eval(id +'List').splice(index,1);
+				if(currentCount == luggageList[index].count)
+				{
+					let removeElem = luggageList.splice(index,1),				
+						currentElement = containsName(removeElem[0].name,'inventory');
+					if(removeElem[0].inventoryIndex != -1  && currentElement != -1)  
+					{		
+						inventoryList[removeElem[0].inventoryIndex].count += parseInt(currentCount);
+					}
+					else
+					{
+						removeElem[0].count = parseInt(currentCount);
+						inventoryList.push(removeElem[0]);
+					}
+				}
+				else
+				{				
+					eval(id+'List')[index].count -=  parseInt(currentCount);
+					let currentElement = containsName(eval(id+'List')[index].name,'inventory');
+					if(eval(id+'List')[index].inventoryIndex != -1  && currentElement != -1)  
+					{		
+						inventoryList[eval(id+'List')[index].inventoryIndex].count += parseInt(currentCount);
+					}
+					else
+					{
+						let removeElem = Object.assign({},eval(id+'List')[index]);
+						removeElem.count = parseInt(currentCount);
+						inventoryList.push(removeElem);
+						eval(id+'List')[index].inventoryIndex = inventoryList.length - 1;
+					}				
+				}				
+				mp.trigger("action.currentLuggage", action, JSON.stringify(luggageList));
+				mp.trigger("action.currentInventory", action, JSON.stringify(inventoryList));
 			}
 			else
 			{
-				let newCount = inventoryList[index].count;
-				newCount -= currentCount;
-				if(newCount < 1 && !inventoryList[index].used)
-				{
-					removeElem = eval(id +'List').splice(index,1);
-				}
-				else
-				{
-					inventoryList[index].count = newCount;
-				}
+				notificationShow('Ваш инвентарь полон');
 			}
+			refreshInventory('luggage');	
+			refreshInventory('inventory');
+			listIndexCheck(id);
+			inventoryInitialize();  
+			break;
+			
+        case ('put'):
+			let removeElem = Object.assign({},inventoryList[index]);
+			useElement(removeElem, index, currentCount);
 			refreshInventory('luggage');
 			refreshInventory('inventory');	
-            inventoryInitialize();  
-            break;        
-    }
-    genFullInventory();
-    mp.trigger("action.currentInventory", action, JSON.stringify(newList));
+			inventoryInitialize(); 
+			break;
+	}	
 };
 function listIndexCheck(id)
 {
 	$(eval(id+'List')).each(function(index,item){
-		if(item.name != inventoryList[item.inventoryIndex].name && item.inventoryIndex != 0)
+		if(item.inventoryIndex < inventoryList.length)
 		{
-			item.inventoryIndex--;
+			if(item.name != inventoryList[item.inventoryIndex].name && item.inventoryIndex != 0)
+			{
+				item.inventoryIndex--;
+			}
 		}
 	});   
 }
-function genFullInventory()
+function useElement(element, index, currentCount)
 {
-    newList = JSON.stringify(inventoryList);
-    newList = JSON.parse(newList);
-	$(luggageList).each(function(indexPerson,itemPerson){
-		let count = newList[itemPerson.inventoryIndex].count;
-		newList[itemPerson.inventoryIndex].count = count + 1;
-		newList[itemPerson.inventoryIndex].enabled = true;
-	});
-	$(weaponsList).each(function(indexWeapons,itemWeapons){
-		let count = newList[itemWeapons.inventoryIndex].count;
-		newList[itemWeapons.inventoryIndex].count = count + 1;
-		newList[itemWeapons.inventoryIndex].enabled = true;
-	});	
-};
-function useElement(element, index)
-{
-	if(element.type == 'Clothes_Legal' || element.type == 'Clothes_Duty' || element.type == 'Clothes_Illegal')
+	let count = 1,
+	    currentElement = -1;
+	if(currentCount != undefined)
 	{
-		if(!element.used)
-		{
-			element.used = true;
-			if(element.count != 0)
-			{
-				element.count--;	
-				if(element.count == 0)
-				{
-					inventoryList[index].enabled = true;
-				}
-				luggageList.push(element); 				
-				let length = luggageList.length-1;
-				inventoryList[index].wearedId = length;
-			}
-			else
-			{				
-				luggageList.push(element); 	
-				let length = luggageList.length-1;
-				inventoryList[index].wearedId = length;
-			}
-		}
-		else
-		{
-			notificationShow('Данная одежда уже одета');
-			mp.trigger('WrongClothes');			
-		}
+		count = currentCount;
 	}	
-	if(element.type == 'Weapon_Cold' || element.type == 'Weapon_FireGun_Legal' || element.type == 'Weapon_FireGun_Police' || element.type == 'Weapon_FireGun_Illegal')
-	{	
-		if(!element.used && weaponClassArray[element.class-1] === false)
-		{		
-				element.used = true;
-				if(element.count != 0)
-				{
-					element.count--;
-					if(element.count == 0)
-					{
-						inventoryList[index].enabled = true;
-					}
-					weaponsList.push(element);
-					let length = weaponsList.length-1;
-					inventoryList[index].wearedId = length;
-				}	
-				else
-				{
-					weaponsList.push(element); 				
-					let length = weaponsList.length-1;
-					inventoryList[index].wearedId = length;
-				}
-		}		
-		else
-		{
-			notificationShow('Вы не можете носить больше одного оружия, данного класса');
-			mp.trigger('WrongWeapon');			
-		}			
-	}
-	if(element.type == 'Eat' || element.type == 'Drink' || element.type == 'Alcohol' || element.type == 'Instrument'
-		|| element.type == 'Medical_Preparation' || element.type == 'Illegal_Object' || element.type == 'LegalObject' 
-		|| element.type == 'Resourses' || element.type == 'Recycled_Resources' || element.type == 'Craft_Resources')
+	let tempWeight = parseFloat(count*element.weight);
+		tempWeight += parseFloat(currentWeightLug);
+	if(tempWeight < maxWeightLuggage)
 	{
-		if(inventoryList[index].count>1)
+		element.inventoryIndex = -1;
+		currentElement = containsName(element.name,'luggage');
+		if(currentElement != -1)
 		{
-			inventoryList[index].count--;
-			if(inventoryList[index].count == 0)
-			{
-				inventoryList.splice(index,1);
-				listIndexCheck('weapons');
-				listIndexCheck('luggage');
-			}
+			luggageList[currentElement].count += parseInt(count);
 		}
 		else
 		{
-			inventoryList.splice(index,1);
-			listIndexCheck('weapons');
-			listIndexCheck('luggage');
+			element.inventoryIndex = index;
+			element.count = parseInt(count);
+			luggageList.push(element); 		
 		}
+		let length = luggageList.length-1;
+		inventoryList[index].wearedId = length;
+		inventoryList[index].count -= parseInt(count);	
+		if(inventoryList[index].count == 0 && inventoryList[index].enabled == false)
+		{
+			inventoryList.splice(index, 1);
+		}		
+		mp.trigger("action.currentLuggage", 'put', JSON.stringify(luggageList));
+		mp.trigger("action.currentInventory", 'put', JSON.stringify(inventoryList));
+	}
+	else
+	{		
+		notificationShow('Ваш багажник полон');
 	}
 };
 function notificationShow(notification)
@@ -291,14 +245,13 @@ function notificationShow(notification)
 	$('.info-wrapper').fadeIn();
 	setTimeout(() => {$('.info-wrapper').fadeOut()},2000);
 };
-function pushInventory(item,gender,maxweight)
+function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug)
 {
-	sex = gender;
-	maxWeight = maxweight;
-	// $('.left-inventory .items').css('background-image','url(images/' + sex + '.png');
+	maxWeightInventory = maxWeightInv;
+	maxWeightLuggage = maxWeightLug;
     inventoryList = [];
-    var itemList = JSON.parse(item);
-    $(itemList).each(function(index,item){    	
+    let invList = JSON.parse(inventory);
+    $(invList).each(function(index,item){    	
     	let obj = 
     	{
     		name: item.name,
@@ -308,16 +261,7 @@ function pushInventory(item,gender,maxweight)
     		itemElem: item.itemElem, 
     		enabled: item.enabled,
     		visible: true 
-    	}
-    	if(obj.type == 'Clothes_Legal' || obj.type == 'Clothes_Duty' || obj.type == 'Clothes_Illegal')
-		{
-	    	$(className).each(function(index,classEl){
-				if(item.name.includes(classEl))
-				{
-					obj.class = classEl;
-				}
-			});
-		}		
+    	}		
 		if(obj.type == 'Ammo')
 		{
 			obj.enabled = false;
@@ -335,30 +279,51 @@ function pushInventory(item,gender,maxweight)
 				obj.class = getWeaponClass(currentElement);
 			}
 			inventoryList.push(obj);
-			let currentLength = inventoryList.length-1;			
-			obj.inventoryIndex = currentLength;
-			if(obj.type == 'Clothes_Legal' || obj.type == 'Clothes_Duty' || obj.type == 'Clothes_Illegal')
-			{
-				luggageList.push(obj);
-				let length = luggageList.length-1;
-				inventoryList[currentLength].wearedId = length;
-			}	
-			if(obj.type == 'Weapon_Cold' || obj.type == 'Weapon_FireGun_Legal' || obj.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
-			{				
-				weaponsList.push(obj);
-				let length = weaponsList.length-1;
-				inventoryList[currentLength].wearedId = length;
-			}			
 		}
 		if(!obj.enabled)
 		{		        
 	    	inventoryList.push(obj);
 	    }    	
-    }); 
+	}); 
+	let lugList = JSON.parse(luggage);
+	$(lugList).each(function(index,item){
+		let obj = 
+    	{
+    		name: item.name,
+    		type: item.type,
+    		weight: parseFloat(item.weight),
+    		count: item.count,
+    		itemElem: item.itemElem, 
+    		enabled: false,
+    		visible: true 
+		}		
+		let currentElement = containsName(obj.name,'inventory');
+		if(currentElement != -1)
+		{
+			obj.inventoryIndex = currentElement;			
+		}
+		luggageList.push(obj);		
+		if(currentElement != -1)
+		{
+			let length = luggageList.length - 1;
+			inventoryList[length].wearedId = length;
+		}
+	});
 	refreshInventory('luggage');
 	refreshInventory('inventory');	
     inventoryInitialize();  
 };
+function containsName(nameObj,iterator)
+{
+	let currentElement = -1;
+	$(eval(iterator+'List')).each(function(index,item){
+		if(nameObj === item.name)
+		{
+			currentElement = index;
+		}
+	});
+	return currentElement;
+}
 function inventoryInitialize()
 {	
 	$('#inventory .itemInv').on('click', function()
@@ -383,24 +348,15 @@ function inventoryInitialize()
 			currentMax = 0;
 		if(eval(id+'List')[index].count <=1)
 		{
-			doneAction(action,index,id);
+			doneAction(action,index,id,1);
 		}
 		else
 		{			
 			$('.ok-button').attr('action',action).attr('id',id).attr('index',index).attr('done','undone');
 			$('.col-wrapper').find('.quantity').replaceWith(input);
-			if(id == 'inventory')
-			{
-				$('.col-wrapper').find('.col-title').text(eval(id+'List')[index].name);
-				$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].count);
-				$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].count);
-			} 
-			else
-			{
-				$('.col-wrapper').find('.col-title').text(inventoryList[eval(id+'List')[index].inventoryIndex].name);
-				$('.col-wrapper').find('.quantity').attr('max',inventoryList[eval(id+'List')[index].inventoryIndex].count);
-				$('.col-wrapper').find('.max-numb').text(inventoryList[eval(id+'List')[index].inventoryIndex].count);
-			}
+			$('.col-wrapper').find('.col-title').text(eval(id+'List')[index].name);
+			$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].count);
+			$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].count);
 			$('.col-wrapper .min').on('click',function(){
 				currentMin = $(this).parent().find('.quantity').attr('min');
 				$(this).parent().find('.quantity').val(currentMin);
@@ -523,27 +479,20 @@ function toogleTab(currentTab)
 }
 function countWeight()
 {
-	if(jQuery.isEmptyObject(newList))
-	{
-		genFullInventory();
-	};
-	$(newList).each(function(index,item){
-		currentWeight += item.weight * item.count;		
-	});		
-	currentWeight = currentWeight.toFixed(2);
-	$('.weight .current').text(currentWeight);
-	$('.weight .max').text(maxWeight);
-};
-function refreshPerson(currentIterator)
-{	
-	$(eval(currentIterator + 'List')).each(function(index,item)
-	{
-		if(item.name != inventoryList[item.inventoryIndex].name)
-		{
-			let currentIndex = item.inventoryIndex;
-			item.inventoryIndex = currentIndex - 1;
-		}
+		currentWeightLug = 0,
+		currentWeightInv = 0;
+	$(luggageList).each(function(index,item){
+		currentWeightLug += item.weight * item.count;		
 	});
+	currentWeightLug = currentWeightLug.toFixed(2);
+	$('.left-inventory .weight .current').text(currentWeightLug);
+	$('.left-inventory .max').text(maxWeightLuggage);
+	$(inventoryList).each(function(index,item){
+		currentWeightInv += item.weight * item.count;		
+	});		
+	currentWeightInv = currentWeightInv.toFixed(2);
+	$('.right-inventory .weight .current').text(currentWeightInv);
+	$('.right-inventory .weight .max').text(maxWeightInventory);
 };
 function refreshImages(currentClass)
 {
@@ -562,19 +511,21 @@ function getWeaponClass(currentElement)
 }
 function refreshInventory(currentIterator)
 {
-	currentWeight = 0;
+	currentWeightLug = 0,
+	currentWeightInv = 0;
 	$('#'+currentIterator).empty();
 	var itemTemplate = '',
 		usedCounter = 0,
 		shadowClass = 'legal',
 		currentLength = inventoryList.length < 48 ? '54' : '108',
-		luggageLength = luggageList.length < 15 ? '15' : '30';
+		luggageLength = luggageList.length < 15 ? '15' : '30',
+		action = '';
 
 	if(currentLength > 54 || currentLength > 108 || currentLength > 216)
 	{
 		currentLength += currentLength;
 	}
-	if(luggageLength > 15 || luggageLength > 30 || luggageLength > 60)
+	if(luggageLength > 30 || luggageLength > 60 || luggageLength > 120)
 	{
 		luggageLength += luggageLength;
 	}
@@ -593,57 +544,47 @@ function refreshInventory(currentIterator)
 		if(item.type == 'Clothes_Duty' || item.type == 'Weapon_FireGun_Police')
 		{
 			shadowClass = 'form';
-		}	
+		}
 		if(currentIterator == 'luggage')
 		{
-			itemTemplate = 
-			'<li ' + currentIterator + '-id="' + index +'">\
-				<div class="itemInv'+' '+ shadowClass +'" id="remove">\
-					<div class="button-dropdown">\
-						<div class="infoItem dropdown-toggle">\
-							<div class="nameItem">' + item.name + '</div>\
-						</div>\
-						<img src="images/person/' + refreshImages(item.class) + '.png" class="itemImg dropdown-toggle" style="transform:scale(0.9);">\
-					</div>\
-				</div>\
-			</li>';
-		}
+			action = 'remove';
+		}	
 		if(currentIterator == 'inventory')
-		{		
-			var currentImg = item.type,
-				currentIter = 'inventory',
-				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
-			if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
+		{
+			action = 'put';
+		}		
+		var currentImg = item.type,
+			currentIter = 'inventory';
+		if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
+		{			
+		    var	currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+			if(currentElement != -1)
 			{				
-				if(currentElement != -1)
-				{				
-					currentImg = weaponsListFull[currentElement].name;
-					currentIter = 'weapons';
-					item.class = getWeaponClass(currentElement);
-				}
-				if(item.type == 'Weapon_FireGun_Police' || item.type == 'Clothes_Duty')
-				{
-					
-				}
+				currentImg = weaponsListFull[currentElement].name;
+				currentIter = 'weapons';
 			}
-			else
+			if(item.type == 'Weapon_FireGun_Police' || item.type == 'Clothes_Duty')
 			{
-				personId = '';
-				currentImg = item.type;
-			}			
-			itemTemplate = 
-			`<li ${currentIterator}-id="${index}">
-				<div class="itemInv ${shadowClass}" id="put">
-					<div class="button-dropdown">
-						<div class="quantity">${item.count}</div>
-						<div class="infoItem dropdown-toggle">
-							<div class="nameItem">${item.name}</div>
-						</div>
-						<img src="images/${currentIter}/${currentImg}.png" class="itemImg dropdown-toggle">
+				
+			}
+		}
+		else
+		{
+			personId = '';
+			currentImg = item.type;
+		}			
+		itemTemplate = 
+		`<li ${currentIterator}-id="${index}">
+			<div class="itemInv ${shadowClass}" id="${action}">
+				<div class="button-dropdown">
+					<div class="quantity">${item.count}</div>
+					<div class="infoItem dropdown-toggle">
+						<div class="nameItem">${item.name}</div>
 					</div>
+					<img src="images/${currentIter}/${currentImg}.png" class="itemImg dropdown-toggle">
 				</div>
-			</li>`;
-		}    		
+			</div>
+		</li>`;		   		
 		switch (currentIterator)
 		{
 			case 'luggage':				
@@ -689,7 +630,3 @@ function refreshInventory(currentIterator)
 		}    
     countWeight();      
 };
-$('.left-inventory .weapons').mousewheel(function(e, delta) {
-    this.scrollLeft -= (delta * 40);
-    e.preventDefault();
-});

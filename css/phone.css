@@ -599,7 +599,7 @@
 	justify-content: center;
 	align-items: center;
 	font-size:13.17px;
-	font-weight:500;
+	font-weight:400;
 	display: none;
 	text-align: center;
 }
@@ -627,7 +627,7 @@
 	justify-content: space-between;
 	padding:0 15px;
 	align-items: center;
-	font-weight:500;
+	font-weight:400;
 	font-size:15.25px;
 	cursor:pointer;
 	box-sizing: border-box;
@@ -706,7 +706,7 @@
 }
 .contacts-wrapper .current-wrapper .create-contact input::-webkit-input-placeholder,.contacts-wrapper .current-wrapper .create-contact input, .contacts-wrapper .current-wrapper .change-contact input::-webkit-input-placeholder,.contacts-wrapper .current-wrapper .change-contact input { 
 	color: #000;
-	font-weight:500;
+	font-weight:400;
 	font-size:13.61px;
 }
 .contacts-wrapper .current-wrapper .create-contact .save-contact, .contacts-wrapper .current-wrapper .change-contact .save-contact, .geo-wrapper .current-wrapper .selected-contact .send-geo
@@ -717,7 +717,7 @@
 	background:#00ff96;
 	color:#fff;
 	font-size:11.72px;
-	font-weight:500;
+	font-weight:400;
 	cursor: pointer;
 	position: absolute;
 	bottom:10px;
@@ -749,7 +749,7 @@
 .contacts-wrapper .current-wrapper .selected-contact, .geo-wrapper .current-wrapper .selected-contact
 {
 	padding:20px 0 0 20px;
-	font-weight:500;
+	font-weight:400;
 	font-size:15px;
 }
 .contacts-wrapper .current-wrapper .selected-contact .number-wrapper
@@ -854,7 +854,7 @@
 	width:50%;
 	height:50%;
 	background:#f7f7f7;
-	font-weight:500;
+	font-weight:400;
 	font-size:14px;
 	border-radius:5px;
 	color:#000;
@@ -882,7 +882,7 @@
 	height:30px; 
 	min-height:30px;
 	background:#fffc9d;
-	font-weight:500;
+	font-weight:400;
 	font-size:15.19px;
 	display: flex;
 	justify-content: flex-start;
@@ -912,7 +912,7 @@
 	width:100%;
 	max-height: 76%;
 	margin-top:20px;	
-	font-weight:500;
+	font-weight:400;
 	overflow-x:auto;
 }
 .messages-wrapper .wrapper .message-border
@@ -999,7 +999,7 @@
 }
 .messages-inner .bottom-window input::-webkit-input-placeholder, .messages-inner .bottom-window input { 
 	color: #000;
-	font-weight:500;
+	font-weight:400;
 	font-size:13.12px;
 }
 .messages-inner .bottom-window .smiles-wrap
@@ -1076,7 +1076,7 @@
 	display: flex;
 	align-items: center;
 	color: #000;
-	font-weight:500;
+	font-weight:400;
 	font-size:12.92px;
 	position: relative;
 	word-break: break-all;
@@ -1134,7 +1134,7 @@
 .messages-inner .wrapper .time
 {
 	color: #000;
-	font-weight:500;
+	font-weight:400;
 }
 .messages-inner .wrapper #incoming .message
 {
@@ -1193,7 +1193,7 @@
 	width:25px;
 	height:25px;
 	border-radius:50%;
-	font-weight:500;
+	font-weight:400;
 	font-size:20px;
 	position: absolute;
 	top:-30px;
