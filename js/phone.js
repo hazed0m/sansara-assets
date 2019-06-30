@@ -10,6 +10,7 @@ var contactsList = 	[],
 	secondsCounter = 0,
 	minutesCounter = 0,	
 	dialingTimeout = null,
+	callTimeout = null,
 	dialingPauseInterval = null,
 	dialingPlayInterval = null,
 	incomingPauseInterval = null,
@@ -184,7 +185,7 @@ $('.incomingCall-wrapper .allow').on('click',function(){
 function refreshAudioIntervals()
 {
 	clearTimeout(dialingTimeout);
-	dialingTimeout = null;
+	dialingTimeout = null;	
 	clearInterval(dialingPauseInterval);
 	dialingPauseInterval = null;
 	clearInterval(dialingPlayInterval);
@@ -200,6 +201,8 @@ function refreshAudioIntervals()
 }
 function refreshCallerIntervals()
 {	
+	clearTimeout(callTimeout);
+	callTimeout = null;
 	clearInterval(callInterval);
 	callInterval = null;
 	clearInterval(myInterval);
@@ -308,6 +311,9 @@ function timerOnCaller()
 	  $('.timer .minutes').text(prettyTime(minutesCounter));
 	  $('.timer .seconds').text(prettyTime(secondsCounter));
 	}, 1000);
+	callTimeout = setTimeout(function(){
+		mp.trigger("cancelOutcomingCall", getNumber);
+	},4200000);
 }
 function prettyTime(num) {
 	return ( num < 10 ? "0" : "" ) + num;
