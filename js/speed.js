@@ -25,6 +25,28 @@ function pushCurrentSpeed(vehicleSpeed)
 {
     $('.info-wrapper .speed').text(vehicleSpeed);
 }
+function engineError(status)
+{
+    if(status)
+    {
+        $('.status-cont .engine').addClass('alert');
+    }
+    else
+    {
+        $('.status-cont .engine').removeClass('alert');
+    }
+}
+function carbodyError(status)
+{
+    if(status)
+    {
+        $('.status-cont .carbody').addClass('alert');
+    }
+    else
+    {
+        $('.status-cont .carbody').removeClass('alert');
+    }
+}
 function gasLines(gas)
 {
     if(gas <= 10)
