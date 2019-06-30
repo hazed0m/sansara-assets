@@ -34,24 +34,15 @@
                             <div class="pass-autograph">Подпись: <span class="autograph"> {{ pass.signature }}</span></div>
                         </div>
                     </div>
-                    <div class="close">Закрыть</div>
-                </div>
-                
+                    <div class="close" @click="clickClose()">Закрыть</div>
+                </div>                
             </transition>        
-        </div>              
+        </div>
+        <div id="animCircle"></div>              
     </body> 
+    <script src="js/vue.js"></script>
     <script src="https://cdn.rawgit.com/vuejs/vue/v2.1.10/dist/vue.js"></script>
     <script type="text/javascript" src="js/vue-slide-up-down.umd.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/skills.js"></script>
-    <script>
-        function closePassport()
-        {
-            $('.passport-wrap').fadeOut();
-        }
-        $('.passport-wrap .close').on('click',function(){
-            mp.trigger('closePassport');
-        });
-    </script>
     <script src="js/menu.js"></script>
 </html>

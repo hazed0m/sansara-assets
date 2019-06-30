@@ -119,7 +119,14 @@ let menu = new Vue({
         pass: {},
         autoLogin: 0
     },
-    methods: {
+    methods: {        
+        closePassport()
+        {
+            $('.passport-wrap').fadeOut();
+        },
+        clickClose(){
+            mp.trigger('closePassport');
+        },
         switching (section){
             switch (section) {
                 case 'passShow':
