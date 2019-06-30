@@ -9,7 +9,7 @@ var contactsList = 	[],
     callInterval = null,
 	secondsCounter = 0,
 	minutesCounter = 0,	
-	dialingTimeout = '',
+	dialingTimeout = null,
 	dialingPauseInterval = null,
 	dialingPlayInterval = null,
 	incomingPauseInterval = null,
@@ -183,7 +183,7 @@ $('.incomingCall-wrapper .allow').on('click',function(){
 });
 function refreshAudioIntervals()
 {
-	clearInterval(dialingTimeout);
+	clearTimeout(dialingTimeout);
 	dialingTimeout = null;
 	clearInterval(dialingPauseInterval);
 	dialingPauseInterval = null;

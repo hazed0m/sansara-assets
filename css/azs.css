@@ -82,7 +82,7 @@
 	color:#ffff00;
 	border-radius: 5px;
 	font-size:18.88px;
-	font-weight: bold;
+	font-weight: 400;
 }
 .currentGas span.gas
 {
@@ -120,7 +120,7 @@
 }
 .selector-block .selector-name
 {
-	font-weight: bold;
+	font-weight: 400;
 }
 .slick::-webkit-slider-runnable-track {
     box-shadow: none;
