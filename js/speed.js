@@ -27,7 +27,7 @@ function pushCurrentSpeed(vehicleSpeed)
 }
 function engineError(status)
 {
-    if(status)
+    if(status == 'true')
     {
         $('.status-cont .engine').addClass('alert');
     }
@@ -38,7 +38,7 @@ function engineError(status)
 }
 function carbodyError(status)
 {
-    if(status)
+    if(status == 'true')
     {
         $('.status-cont .carbody').addClass('alert');
     }

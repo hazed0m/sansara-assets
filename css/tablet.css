@@ -404,17 +404,143 @@
 .ytp-watermark{
     display : none !important;
 }
-.goverment-wrapper .title
+.goverment-wrapper .menu-wrapper .title
 {
-	width:215px;
-	height:55px;
+	width:425px;
+	height:70px;
 	background:url(../img/tablet/goverment-title.png) no-repeat;
 	background-size:contain;
 	background-position: center;
 	margin:20px auto 0 auto;
 	z-index: 99;
     position: absolute;
-    top: 10px;
+    top: 45px;
 	left: 50%;
 	transform: translate(-50%,0);
+}
+.goverment-wrapper .menu-wrapper
+{
+	position: relative;
+	width:100%;
+	height:200px;
+	border-bottom:6px solid #ed1c24;
+	background:url(../img/tablet/goverment-back.png) no-repeat;
+	background-position: center;
+	background-size:cover;
+}
+.goverment-wrapper .menu-wrapper .menu 
+{
+	position: absolute;
+	top:0;
+	left:15%;
+	color:#fff;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.goverment-wrapper .menu .link
+{
+	width:auto;
+	height:54px;	
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin:0 5px;
+	padding:0 15px;
+	box-sizing: content-box;
+	cursor: pointer;
+	font-size:16px;
+}
+.goverment-wrapper .menu .link:hover, .menu .link.active
+{
+	background: rgba(0,0,0,0.17);
+}
+.goverment-wrapper .inner-wrapper
+{
+	width:100%;
+	padding:30px 0;
+}
+.goverment-wrapper .law-wrap .but-block
+{
+	width:100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	-webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+.goverment-wrapper .law-wrap .but-block::after
+{
+	content:'';
+	position: absolute;
+	bottom:-15px;
+	left:50%;
+	transform: translate(-50%,0);
+	border-bottom:3px solid #acacac;
+	border-radius: 10px;
+	width:70%;
+}
+.goverment-wrapper .law-wrap
+{
+	display: flex;
+	justify-content: space-between;	
+	padding:0 3px 0 8px;
+}
+.goverment-wrapper .law-wrap .left-wrap
+{	
+	width:30%;	
+	padding-right: 8px;
+}
+.goverment-wrapper .law-wrap .button
+{
+	width:216px;
+	height:42px;
+	font-size:14px;
+	color:#fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color:#ed1c24;
+	margin-bottom:10px;
+	transition: 0.3s;
+	cursor: pointer;
+	-webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+}
+.goverment-wrapper .law-wrap .button:hover
+{
+	transform: scale(1.04);
+}
+.goverment-wrapper .law-wrap .right-wrap
+{	
+	width:100%;		
+	min-height:55vh;
+	max-height:55vh;
+	overflow-y: scroll;
+}
+.goverment-wrapper .law-wrap .text-block
+{
+	display: none;
+	width:99%;
+	font-size:20px;
+	color:#484c52;
+	background-color:#fff;
+	padding:25px;
+}
+.goverment-wrapper .law-wrap .text-block.active
+{
+	display:block;
+}
+.goverment-wrapper .right-wrap::-webkit-scrollbar{
+    width: 8px;
+}
+.goverment-wrapper .right-wrap::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 4px;  
+} 
+.goverment-wrapper .right-wrap::-webkit-scrollbar-thumb {
+    background: #ed1c24;
+    border-radius: 4px;  
 }

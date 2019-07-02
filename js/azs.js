@@ -21,8 +21,9 @@ $('.close-but').on('click',function(){
 $('#buy').on('click',function(){
     let cashService = $('.radio-block .active')[0].classList[0];
     let currentRange = $('.slick').val();
-    let currentGasoline = $('.selector-block .active').parent().parent().parent().find('.price').text();
+    let currentGasoline = $('.selector-block .active').parent().parent().parent().find('.selector-name').text();
     let fullPrice = $('.price-block .price').text();
+    console.log(currentGasoline);
     mp.trigger("azsBuy", cashService, currentRange, currentGasoline, fullPrice);
 });
 function azsCounter(currentRange)

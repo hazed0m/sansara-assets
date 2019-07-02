@@ -149,5 +149,8 @@ $(document).click(function() {
 	$('.news-item #more').fadeIn();
 	$('.news-item .video-block').delay(400).fadeIn('fast');
 });
-
+$('.law-wrap .button').on('click',function(){
+	$('.law-wrap .text-block.active').removeClass('active');
+	$(`#${this.id}-text`).addClass('active');
+});
 

@@ -359,10 +359,10 @@ function refreshHistoryBlock()
 	$('.history-block').on('hover',function(){$(this).after().fadeIn();},function(){$(this).after().fadeOut()});
 }
 $('.number-wrap .call').on('click',function(){
-	let number = $(this).parents().find('.this-block').text();	
-	$(this).parents().find('.this-block').text('');
+	let number = $(this).parents().find('.this-block').text();
 	if(number.length >= 6)
 	{	
+		$(this).parents().find('.this-block').text('');
 		outCaller(number);
 		checkCall(number);
 	}
