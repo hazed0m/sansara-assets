@@ -37,6 +37,7 @@
             <div class="settings"></div>
             <div class="news"></div>
             <div class="goverment"></div>
+            <div class="cars"></div>
         </div>
         <div class="settings-wrapper">	
 			<i class="fas fa-chevron-left"></i>
@@ -105,7 +106,6 @@
             </div>
         </div>
         <div class="goverment-wrapper">
-            <!-- <iframe src="https://hazed0m.github.io/sansara-site.github.io/" width="100%" height="100%" frameborder="0"></iframe> -->
             <div class="menu-wrapper">
                 <div class="title"></div>
                 <div class="menu">
@@ -116,7 +116,7 @@
                 </div>
             </div>
             <div class="inner-wrapper">
-                <div class="law-wrap">
+                <div class="law-wrap active">
                     <div class="left-wrap">
                         <div class="but-block">
                             <div class="button" id="main-law">Основные законы</div>
@@ -132,12 +132,257 @@
                     
                 </div>
                 <div class="order-wrap">
-                    
+                    <div class="current-wrap">
+                        <div class="point-item-wrap">
+                            <div class="clients-block">
+                                <div class="clients-list">
+                                    <div class="client-item">Александр Нонеймп</div>
+                                    <div class="client-item">Александр Нонеймп</div>
+                                    <div class="client-item">Александр Нонеймп</div>
+                                    <div class="client-item">Александр Нонеймп</div>
+                                    <div class="client-item">Александр Нонеймп</div>
+                                    <div class="client-item">Александр Нонеймп</div>
+                                    <div class="client-item">Александр Нонеймп</div>
+                                    <div class="client-item">Александр Нонеймп</div>
+                                </div>
+                                <div class="button" id="clients">Участники</div>
+                                <div class="button" id="startAction">Участвовать</div>
+                                <div class="button" id="change">Редактировать</div>
+                            </div>
+                            <div class="inform-block">
+                                <div class="timer-wrap">
+                                    <div class="timer-counter">
+                                        <span class="days">34</span>
+                                        <span class="red-circles">:</span>
+                                        <span class="hours">34</span>
+                                        <span class="red-circles">:</span>
+                                        <span class="minutes">34</span>
+                                    </div>
+                                    <div class="timer-text">Осталось времени</div>
+                                </div>
+                                <div class="title-block">Обоссать все раковины Полицейского-Департамента</div>
+                                <div class="pay-block">
+                                    <div class="pay-price"><span class="pay-count">4000000</span>$</div>
+                                    <div class="pay-text">Сумма</div>
+                                </div>    
+                            </div>
+                            <div class="date">01.04</div>
+                        </div>                        
+                        <div class="add-point">
+                            <div class="add-button"><span>+</span></div>
+                            <span class="point-text">Добавить цель</span>
+                        </div>
+                        <div class="newpoint-block">
+                            <div class="close-but">Закрыть</div>
+                            <div class="time-wrap">
+                                <div class="time-title">Время</div>
+                                <div class="time-inputs">
+                                    <input type="text" min="0" placeholder="Дни" id="days">
+                                    <span class="red-circles">:</span>
+                                    <input type="text" max="59" min="0" maxlength="2" placeholder="Часы" id="hours">
+                                    <span class="red-circles">:</span>
+                                    <input type="text" max="59" min="0" maxlength="2" placeholder="Минут" id="minutes">
+                                </div>
+                            </div>
+                            <div class="textarea-block">
+                                <textarea id="point-textarea" id="" placeholder="Введите текст.."></textarea>
+                            </div>
+                            <div class="pay-block">
+                                <input type="text" placeholder="Сумма" id="pay-count">
+                            </div>
+                            <div class="point-button">
+                                Опубликовать
+                            </div>
+                        </div> 
+                    </div>
                 </div>
-                <div class="ads-wrap">
-                    
+                <div class="ads-wrap">                    
+                    <div class="add-ads">Добавить объявление</div>
+                    <div class="list-wrap">
+                        <div class="ads-item">
+                            <div class="ads-date">
+                                <span class="date">01.04</span>
+                                <span class="time">12:43</span>
+                            </div>
+                            <div class="pre-title">Действующий президент</div>
+                            <div class="title">Александр Бубликов</div>
+                            <div class="text">                   
+                                    Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.                         
+                            </div>
+                            <div class="delete-but"></div>
+                            <div class="delete-wrapper">
+                                <div class="delete-title">Вы уверены что хотите удалить пост?</div>
+                                <div class="delete-accept-wrapper">
+                                    <div class="delete-accept" id="yes">Да</div>
+                                    <div class="delete-accept" id="no">Нет</div>
+                                </div>
+                            </div>
+                            <div class="like-wrap">
+                                <div class="like-but"><img src="img/tablet/like.svg" alt=""></div>
+                                <span class="like-val">124</span>
+                            </div>      
+                        </div>
+                        <div class="ads-item">
+                            <div class="ads-date">
+                                <span class="date">01.04</span>
+                                <span class="time">12:43</span>
+                            </div>
+                            <div class="pre-title">Действующий президент</div>
+                            <div class="title">Александр Бубликов</div>
+                            <div class="text">                   
+                                    Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.                         
+                            </div>
+                            <div class="delete-but"></div>
+                            <div class="delete-wrapper">
+                                <div class="delete-title">Вы уверены что хотите удалить пост?</div>
+                                <div class="delete-accept-wrapper">
+                                    <div class="delete-accept" id="yes">Да</div>
+                                    <div class="delete-accept" id="no">Нет</div>
+                                </div>
+                            </div>
+                            <div class="like-wrap">
+                                <div class="like-but"><img src="img/tablet/like.svg" alt=""></div>
+                                <span class="like-val">124</span>
+                            </div>      
+                        </div>
+                        <div class="ads-item">
+                                <div class="ads-date">
+                                    <span class="date">01.04</span>
+                                    <span class="time">12:43</span>
+                                </div>
+                                <div class="pre-title">Действующий президент</div>
+                                <div class="title">Александр Бубликов</div>
+                                <div class="text">                   
+                                        Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.                         
+                                </div>
+                                <div class="delete-but"></div>
+                                <div class="delete-wrapper">
+                                    <div class="delete-title">Вы уверены что хотите удалить пост?</div>
+                                    <div class="delete-accept-wrapper">
+                                        <div class="delete-accept" id="yes">Да</div>
+                                        <div class="delete-accept" id="no">Нет</div>
+                                    </div>
+                                </div>
+                                <div class="like-wrap">
+                                    <div class="like-but"><img src="img/tablet/like.svg" alt=""></div>
+                                    <span class="like-val">124</span>
+                                </div>      
+                            </div>
+                        <div class="ads-item">
+                            <div class="ads-date">
+                                <span class="date">01.04</span>
+                                <span class="time">12:43</span>
+                            </div>
+                            <div class="pre-title">Действующий президент</div>
+                            <div class="title">Александр Бубликов</div>
+                            <div class="text">                   
+                                    Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.                         
+                            </div>
+                            <div class="delete-but"></div>
+                            <div class="delete-wrapper">
+                                <div class="delete-title">Вы уверены что хотите удалить пост?</div>
+                                <div class="delete-accept-wrapper">
+                                    <div class="delete-accept" id="yes">Да</div>
+                                    <div class="delete-accept" id="no">Нет</div>
+                                </div>
+                            </div>
+                            <div class="like-wrap">
+                                <div class="like-but"><img src="img/tablet/like.svg" alt=""></div>
+                                <span class="like-val">124</span>
+                            </div>      
+                        </div>
+                    </div>         
+                    <div class="ads-add-block animated">
+                        <div class="close-but"></div>
+                        <input type="text" id="ads-pretitle" placeholder="Предзаголовок">
+                        <input type="text" id="ads-title" placeholder="Заголовок">
+                        <textarea id="ads-text" placeholder="Введите текст.."></textarea>
+                        <div class="ads-but">Опубликовать</div>
+                    </div>
                 </div>
             </div>    
+        </div>
+        <div class="cars-wrapper">
+            <div class="menu-wrapper">
+                <div class="menu">
+                    <span class="link active" id="autos">Авто</span>
+                    <span class="link" id="motos">Мото</span>
+                    <span class="link" id="trucks">Грузовики</span>
+                    <span class="link" id="boats">Лодки</span>
+                </div>                
+                <div class="forward">
+                    Вернуться к списку
+                </div>
+                <div class="sort-block">
+                    <div id="cars-sort">Сортировка<i class="fas fa-filter"></i></div>
+                    <div class="sort-window controls">
+                        <div id="priceup"  class="sort" data-sort="price:asc" >Цена по возрастанию</div>
+                        <div id="pricedown"  class="sort" data-sort="price:desc">Цена по убыванию</div>
+                        <div id="nameup" class="sort" data-sort="name:asc">Имя по возрастанию</div>
+                        <div id="namedown"  class="sort" data-sort="name:desc">Имя по убыванию</div>
+                        <div id="luggageup" class="sort" data-sort="luggage:asc">Вес по возрастанию</div>
+                        <div id="luggagedown"  class="sort" data-sort="luggage:desc">Вес по убыванию</div>
+                    </div>   
+                </div>
+            </div>
+            <div class="inner-wrapper" data-ref="container"></div>  
+            <div class="current-car-wrapper">
+                <div class="block-wrapper">
+                    <div class="left-wrap">
+                        <div class="title-name"></div>
+                        <div class="title-text"></div>
+                        <div class="color-block">
+                            <div class="color-title">Выберите цвет</div>
+                            <div class="color-wrap">
+                                <div class="color-item active" data-color="0" style="background:#000"></div>
+                                <div class="color-item" data-color="43" style="background:rgb(228, 15, 15)"></div>
+                                <div class="color-item" data-color="81" style="background:rgb(34, 61, 216)"></div>
+                                <div class="color-item" data-color="111" style="background:#fff"></div>
+                            </div>
+                        </div>
+                        <div class="buy-wrap">
+                            <div class="button-wrap">
+                                <div class="buy-button" id="buy"><span class="price"></span><span>$</span></div>
+                            </div>
+                            <div class="radio-block">
+                                <div class="card">
+                                    <img src="img/card.png" alt="card">
+                                    <i class="far fa-circle"></i>
+                                </div>
+                                <div class="cash active">
+                                    <img src="img/cash.png" alt="card">
+                                    <i class="fas fa-circle"></i>
+                                </div>						
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-wrap">
+                        <div class="img-block">
+                            <img src="" alt="">
+                        </div>
+                        <div class="char-block">
+                            <div class="speed-block">
+                                <div class="speed-title">Скорость</div>
+                                <div class="speed-wrap">
+                                    <div class="line-inner"></div>
+                                </div>
+                            </div>
+                            <div class="sit-places">
+                                <div class="char-title">Количество посадочных мест</div>
+                                <div class="sit-item"></div>
+                            </div>
+                            <div class="class-places">
+                                <div class="char-title">Класс транспортного средства</div>
+                                <div class="class-item"></div>
+                            </div>
+                            <div class="luggage-places">
+                                <div class="char-title">Грузоподьёмность</div>
+                                <div class="luggage-item"><span></span>kg</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  
         </div>
         <div class="camera-plug"></div>        
         <div class="back-but">
@@ -146,7 +391,8 @@
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
-	<script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/mixitup.min.js"></script>
 	<script src="js/plyr.js"></script>
     <script src="js/jquery.fullPage.js"></script>
     <script src="js/jquery.fullpage.extensions.min.js"></script>

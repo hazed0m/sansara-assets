@@ -43,6 +43,12 @@
 	font-style: normal;
 }
 @font-face {
+	font-family:"Tahu!";
+	src: url("Tahu!.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
 	font-family: 'SFUI Display';
 	font-style: normal;
 	font-weight: normal;
