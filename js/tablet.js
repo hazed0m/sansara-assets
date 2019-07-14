@@ -1,30 +1,35 @@
 const wallpaperList = [ 0,1,2];
 var mixer = null;
 let autosList = [
-		{ name: 'issi2', hash: '0xB9CB3B69', speed:148 , luggage: 50, type: 'Малолитражка',price: 1001, info: '', places: 2},
-		{ name: 'brioso', hash: '0x5C55CB39', speed: 146, luggage: 40, type: 'Малолитражка',price: 1002, info: '', places: 2},
-		{ name: 'issi2', hash: '0xB9CB3B69', speed: 148, luggage: 50, type: 'Малолитражка',price: 1003, info: '', places: 2},
-		{ name: 'panto', hash: '0xE644E480', speed:143 , luggage: 40, type: 'Малолитражка',price: 1004, info: '', places: 2},
-		{ name: 'prairie', hash: '0xA988D3A2', speed: 148, luggage: 60, type: 'Малолитражка',price: 1005, info: '', places: 2},
-		{ name: 'rhapsody', hash: '0x322CF98F', speed: 148, luggage: 70, type: 'Малолитражка',price: 1006, info: '', places: 2}
+		{ name: 'blista', hash: '0xEB70965F', speed:150 , luggage: 50, type: 'Малолитражка',price: 1001, info: 'Blista - это трёхдверный малолитражный автомобиль (компакт) с типом кузова "хэтчбек", производимый на свет божий придуманный Rockstar (т.е. несуществующей в реальном мире) внутриигровой японской компанией Dinka, при создании которой Rockstar оглядывались на реально существующую японскую компанию Honda.', places: 2},
+		{ name: 'brioso', hash: '0x5C55CB39', speed: 146, luggage: 40, type: 'Малолитражка',price: 1002, info: 'Grotti Brioso R/A довольно быстр и проворен, легко входит в повороты, однако он склонен к переворотам и заносам из-за своих габаритов и распределению веса. Этому малышу тяжело сохранять устойчивость после прыжков и выходить из заносов.', places: 2},
+		{ name: 'issi2', hash: '0xB9CB3B69', speed: 148, luggage: 50, type: 'Малолитражка',price: 1003, info: 'Issi - это двухдверная малолитражный автомобиль (иными словами, компакт) со съёмной крышей, спроектированная и производимая специалистами на фабриках вымышленной, несуществующей в реальном мире, внутриигровой британской компании Weeny, основанной на другой британской (впрочем, скупленной немецкой BMW) компании MINI.', places: 2},
+		{ name: 'panto', hash: '0xE644E480', speed:143 , luggage: 40, type: 'Малолитражка',price: 1004, info: 'Panto - это скромная малолитражка (компакт), спроектированная и производимая выдуманной Rockstar внутриигровой немецкой автомобильной компанией Benefactor, которая, в свою очередь, является пародией на вполне реальную немецкую компанию Mercedes-Benz.', places: 2},
+		{ name: 'prairie', hash: '0xA988D3A2', speed: 148, luggage: 60, type: 'Малолитражка',price: 1005, info: 'Prairie - это малолитражный (компакт) двухдверный спортивный автомобиль, за чьё производство отвечают сотрудники компании выдуманной, несуществующей в реальном мире южнокорейской автомобильной компании Bollokan, основанной на реальной южнокорейской компании Hyundai.', places: 2},
+		{ name: 'rhapsody', hash: '0x322CF98F', speed: 148, luggage: 70, type: 'Малолитражка',price: 1006, info: 'Rhapsody - это двухдверный малолитражный (компакт) автомобиль типа "хэтчбек", производимый на фабриках выдуманной, несуществующей в реальном мире автомобильной американской (предположительно) компании DeClasse.', places: 2},
+		{ name: 'felon', hash: '0xE8A8BDA8', speed: 165, luggage: 60, type: 'Купе',price: 1002, info: 'Felon - это четырёхдверный автомобиль с типом кузова "седан" класса люкс, производимый на свет инженерами и рабочим выдуманной Rockstar внутриигровой (то есть имеющей место быть лишь только в игровой вселенной) итальянской компании Lampadati, основанной на других двух реально существующих итальянский компаниях Jaguar и Maserati.', places: 4},
+		{ name: 'jackal', hash: '0xDAC67112', speed: 170, luggage: 70, type: 'Купе',price: 1003, info: 'Jackal - это четырёхвдверный автомобиль с типом кузова "купе" (что может показаться абсурдным, ведь де-факто это седан, однако во внутриигровой классификации он представлен именно как купе), за чьё производство отвечает несуществующая в реальном мире внутриигровая британская компания Ocelot, основанная на итальянских Maserati и Jaguar.', places: 4},
+		{ name: 'oracle2', hash: '0xE18195B2', speed:165 , luggage: 70, type: 'Купе',price: 1004, info: 'Oracle XS - это четырёхдверный исполнительный седан класса "люкс", классифицированный в игре как "купе", его спроектировали и производят работники выдуманной, внутриигровой немецкой компании Übermacht, чьим прототипом в реальном мире является другая немецкая компания BMW.', places: 4},
+		{ name: 'sentinel2', hash: '0x3412AE2D', speed: 163, luggage: 50, type: 'Купе',price: 1005, info: 'Под капотом у Sentinel XS находится двигатель Twin Turbo Inline 6, обеспечивающий, как уже упоминалось выше, великолепную динамику разгона и максимальную скорость, хотя с этим следует быть осторожным: сотни лошадиных сил, крутящих карданный вал, могут привести к тому, что при неосторожном использовании ручного тормоза колеса машины будут сильно пробуксовывать, особенно на бездорожье.', places: 2},
+		{ name: 'zion', hash: '0xBD1B39C3', speed: 167, luggage: 80, type: 'Купе',price: 1006, info: 'Zion - это двухдверный автомобиль класса "люкс" с типом кузова "купе" (а также Zion Cabrio, являющийся кабриолетом), производимый на свет инженерами и рабочими с фабрик выдуманной, внутриигровой немецкой компании Übermacht, которая основана на такой существующей немецкой компании, как BMW.', places: 2}
 	],
 	motosList = [
 		{ name: 'faggio', hash: '0x9229E4EB', speed:111 , luggage: 10, type: 'Мопед',price: 1001, info: 'Pegassi Faggio Sport разработан и выпускается вымышленной компанией Pegassi, которая является пародией на существующие в реальной жизни компании Ducati и Piaggio. Данное транспортное средство уже появлялось в Grand Theft Auto 4 и при разработке для GTA Online получила минимальные изменения внешнего вида и характеристик.', places: 2},
-		{ name: 'faggio2', hash: '0x350D1AB', speed:160, luggage: 10, type: 'Мопед',price: 1002, info: '', places: 2},
-		{ name: 'faggio3', hash: '0xB328B188', speed:113 , luggage: 10, type: 'Мопед',price: 1003, info: '', places: 2}
+		{ name: 'faggio2', hash: '0x350D1AB', speed:160, luggage: 10, type: 'Мопед',price: 1002, info: 'Faggio - это скутер/мотороллер, производимый на свет белый реально несуществующей итальянской компанией Principe, отвечающей за производство мотоциклов в серии Grand Theft Auto, пародирующей реальные итальянские бренды, такие как Ducati и Piaggio.', places: 2},
+		{ name: 'faggio3', hash: '0xB328B188', speed:113 , luggage: 10, type: 'Мопед',price: 1003, info: 'Faggio Mod - это скутер, за производство которого отвечает выдуманная, несуществующая в реальном мире компания Pegassi, являющиеся пародией на других итальянских производителей Ducati и Piaggio.', places: 2}
 	],
 	trucksList = [
-		{ name: 'packer', hash: '0x21EEE87D', speed: 130, luggage: 0, type: 'Перевозчик',price: 1001, info: '', places: 2},
-		{ name: 'phantom', hash: '0x809AA4CB', speed: 123, luggage: 0, type: 'Перевозчик',price: 1002, info: '', places: 2},
-		{ name: 'pounder2', hash: '0x6290F15B', speed: 135, luggage: 2000, type: 'Перевозчик',price: 1003, info: '', places: 2},
-		{ name: 'terbyte', hash: '0x897AFC65', speed: 117, luggage: 3000, type: 'Перевозчик',price: 1004, info: '', places: 2}
+		{ name: 'packer', hash: '0x21EEE87D', speed: 130, luggage: 0, type: 'Перевозчик',price: 1001, info: 'В GTA 5 MTL Packer гораздо более быстрый и немного более маневренный, чем его предшественники из предыдущих игр серии. У него под капотом находится 6-ти цилиндровый 24-х клапанный турбированный дизельный двигатель F4 Inline 6, дающий тягачу не плохой, для такого класса техники, максимальную скорость - 193 км/ч.', places: 2},
+		{ name: 'phantom', hash: '0x809AA4CB', speed: 123, luggage: 0, type: 'Перевозчик',price: 1002, info: 'Этот классический тягач, используемый, в основном, дальнобойщиками, оснащен достаточной мощным дизельным двигателем F4 Supercharged Inline 6, дающим ему вполне хорошую максимальную скорость в 198 км/ч и динамику разгона - с нуля до 100 км/ч за 8.6 секунды.', places: 2},
+		{ name: 'pounder2', hash: '0x6290F15B', speed: 135, luggage: 2000, type: 'Перевозчик',price: 1003, info: 'Огромные габариты и вес, делают этот грузовик весьма неповоротливым, однако, что касается скорости и ускорения  - тут характеристики весьма впечатляющие, для грузовика такой массы. Двигатель разгоняет Pounder до максимальной скорости в 193 км/ч, что, учитывая пяти тонную массу грузовика, делает его отличным средством, чтобы избавиться от пары надоедливых противников на дороге.', places: 2},
+		{ name: 'terbyte', hash: '0x897AFC65', speed: 117, luggage: 3000, type: 'Перевозчик',price: 1004, info: 'Этот громоздкий мощный автомобиль с цельнометаллическим кузовом скрывает в себе множество сюрпризов. Вам может показаться со стороны, что это простой грузовик, однако приглядевшись получше вы поймете, что перед вами настоящий центр мобильных операций. Характеристика Benefactor Terrorbyte просто поражает.', places: 2}
 	],
 	boatsList = [
-		{ name: 'dinghy', hash: '0x3D961290', speed: 130, luggage: 150, type: 'Катер',price: 1001, info: '', places: 2},
-		{ name: 'jetmax', hash: '0x33581161', speed: 150, luggage: 200, type: 'Катер',price: 1002, info: '', places: 2},
-		{ name: 'seashark', hash: '0xC2974024', speed: 130, luggage: 50, type: 'Джет',price: 1003, info: '', places: 2},
-		{ name: 'toro', hash: '0x3FD5AA2F', speed: 130, luggage: 250, type: 'Катер',price: 1004, info: '', places: 2},
-		{ name: 'tug', hash: '0x82CAC433', speed: 110, luggage: 300, type: 'Баржа',price: 1005, info: '', places: 2}
+		{ name: 'dinghy', hash: '0x3D961290', speed: 130, luggage: 150, type: 'Катер',price: 1001, info: 'Dinghy - моторная надувная лодка, производимая внутриигровой выдуманной компанией, отвечающей за производства различных типов техники, Nagasaki, расположенной в Японии. Прототип компании-производителя - Kawasaki.', places: 2},
+		{ name: 'jetmax', hash: '0x33581161', speed: 150, luggage: 200, type: 'Катер',price: 1002, info: 'Shitzu Jetmax присутствовал в каждой из игр серии Grand Theft Auto, начиная с GTA: Vice City и давно стал символом быстрой водной езды во вселенной GTA. При переходе из части в часть его внешний вид практически не менялся, за исключением лишь окраски, которая менялась в каждой новой GTA, а также после четвёртой части лодка поменяла свою компанию-производитель с итальянской Grotti на уже упомянутую японскую Shitzu.', places: 2},
+		{ name: 'seashark', hash: '0xC2974024', speed: 130, luggage: 50, type: 'Джет',price: 1003, info: 'Seashark - двухместный гражданский гидроцикл, производимый выдуманной внутриигровой компанией Speedophile (компания не имеет реального прототипа).Speedophile Seashark является одним из наиболее быстрых плавательных средств в игре, уступая только Shitzu Jetmax и Pegassi Speeder, гидроцикл уступает многим плавательным средствам по ускорению, хотя в игре это и мало заметно.', places: 2},
+		{ name: 'toro', hash: '0x3FD5AA2F', speed: 130, luggage: 250, type: 'Катер',price: 1004, info: 'Lampadati Toro - это скоростная лодка, которая создавалась на основе Riva Aquarama Lamborghini. По дизайну напоминает лодку Speeder, которую также можно встретить в игре, т.к. в дизайне тоже преобладает дерево и вытянутость форм. Также у Торо есть уникальный звук гудка и особый глубокий шум двигателя. Также на лодке есть установленное освещение и много вариаций цвета деревянных частей палубы.', places: 2},
+		{ name: 'tug', hash: '0x82CAC433', speed: 110, luggage: 300, type: 'Баржа',price: 1005, info: 'Буксир является одной из самых больших управляемых машин в игре (не считая некоторых самолётов). Она может похвастаться крепким корпусом и большой надстройкой с мостиком. Правда, единственным доступным помещением на корабле (назвать это лодкой уже нельзя) является мостик, ни в каюты, ни в машинное отделение спуститься нельзя.', places: 2}
 	];
 $(wallpaperList).each(function(index,item){
 	var active = '';
@@ -135,20 +140,49 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
     backButtonCheck();
 });
 $('.news-item .video-block').each(function(index,item){
-    let curLink = $(this).attr('data-id');
-    if(curLink)
-    {
-      $(this).empty();
-      $(this).append(`<img style="width:100%;height:100%" src="https://img.youtube.com/vi/${curLink}/0.jpg"><i class="fas fa-play"></i>`);
-    }
-  });  
+	let curLink = $(this).attr('data-id');
+	if(curLink)
+	{
+		$(this).empty();
+		$(this).append(`<img style="width:100%;height:100%" src="https://img.youtube.com/vi/${curLink}/0.jpg"><i class="fas fa-play"></i>`);
+	}
+});  
 $(document).ready(function() {
-	$('#fullpage').fullpage({
-		//options here
-		autoScrolling:true,
-		scrollHorizontally: true,
-		loopBottom: true,
-		navigation: true
+	$('.newswrap').bind('mousewheel', function(event) {
+		if (event.originalEvent.wheelDelta >= 0) {
+			let currentElem = $('.newswrap .section.active');		
+			if($(currentElem).prev().length != 0 && !$(currentElem).prev().hasClass('mask'))
+			{
+				$(currentElem).removeClass('active');
+				$(currentElem).find('.news-item').addClass('fadeOutUpBig slow');
+				$(currentElem).prev().find('.news-item').addClass('fadeInUpBig');
+				setTimeout(function(){
+					$(currentElem).find('.news-item').removeClass('fadeOutUpBig slow');
+					$(currentElem).addClass('inactive');
+					$(currentElem).prev().removeClass('inactive').addClass('active');
+				},400);
+				setTimeout(function(){
+					$(currentElem).prev().find('.news-item').removeClass('fadeInUpBig');
+				},900);
+			}
+		}
+		else {
+			let currentElem = $('.newswrap .section.active');		
+			if($(currentElem).next().length != 0)
+			{
+				$(currentElem).removeClass('active');
+				$(currentElem).find('.news-item').addClass('fadeOutDownBig slow');
+				$(currentElem).next().find('.news-item').addClass('fadeInDownBig');
+				setTimeout(function(){
+					$(currentElem).find('.news-item').removeClass('fadeOutDownBig slow');
+					$(currentElem).addClass('inactive');
+					$(currentElem).next().removeClass('inactive').addClass('active');
+				},400);
+				setTimeout(function(){
+					$(currentElem).next().find('.news-item').removeClass('fadeInDownBig');
+				},900);
+			}
+		}
 	});
 	$("[data-fancybox]").fancybox({
         parentEl: ".container"
@@ -170,9 +204,6 @@ $(document).ready(function() {
     	});
 		window.player = player;
     });
-	let currentNav = $('#fp-nav').css('right','0px');
-	$('#fp-nav').remove();
-	$('.news-wrapper').append(currentNav);
 });
 $('.news-item #more').click(function(e) {
 	let h = $('.news-item').innerHeight();
@@ -309,18 +340,20 @@ $('.goverment-wrapper .ads-wrap .ads-item .delete-wrapper .delete-accept').on('c
 	$(this).parent().parent().fadeOut();
 });
 $('.cars-wrapper .menu .link').on('click',function(){
-	if($('.cars-wrapper .inner-wrapper').is(':visible'))
+	if($('.cars-wrapper .current-car-wrapper').is(':visible'))
 	{
-		$(this).parent().find('.active').removeClass('active');
-		$(this).addClass('active');	
-		pushAutoshop();
-		if(mixer != null)
-		{
-			mixer.destroy();
-			mixer.forceRender();
-		}
-		refreshAutoshop();
+		forwardExit();
+		backButtonCheck();
+	}	
+	$(this).parent().find('.active').removeClass('active');
+	$(this).addClass('active');	
+	pushAutoshop();
+	if(mixer != null)
+	{
+		mixer.destroy();
+		mixer.forceRender();
 	}
+	refreshAutoshop();
 });
 function speedPercentage(curSpeed)
 {
