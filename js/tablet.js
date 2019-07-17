@@ -116,6 +116,14 @@ function backButtonCheck()
         if($('.container > .active').hasClass('news-wrapper'))
         {
             $('.back-but').css({'color':'#00aeef','border-color':'#00aeef','background-color':$('.container > .active').css('background-color')});
+		}
+		else if($('.container > .active').hasClass('cars-wrapper'))
+        {
+            $('.back-but').css('border-color','rgba(251,229,2,0.8)');
+		}
+		else if($('.container > .active').hasClass('goverment-wrapper'))
+        {
+            $('.back-but').css('border-color','#ed1c24');
         }
         else
         {
@@ -125,7 +133,7 @@ function backButtonCheck()
     }
     else
     {
-        $('.back-but').fadeOut();
+        $('.back-but').css('display','none');
     }
 }
 $('.back-but').on('click',function(){
@@ -145,7 +153,21 @@ $('.cars-wrapper .forward').on('click',function(){
 	$('.cars-wrapper .current-car-wrapper').scrollTop(0);
 	$('.current-car-wrapper .speed-wrap .line-inner').css('width','0');
 });
-$('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings').on('click',function(){
+$('.ads-wrapper #openAdd').on('click',function(){
+	$(this).parent().find('.add-popap').removeClass('fadeOutDown').addClass('fadeInUp active');
+});
+$('.ads-wrapper .add-popap #closeAdd, .ads-wrapper .add-popap #acceptAdd').on('click',function(){
+	$(this).parent().parent().removeClass('fadeInUp').addClass('fadeOutDown');
+	setTimeout(function(){$(this).parent().parent().removeClass('active');},300);
+	if(this.id == 'acceptAdd')
+	{
+		let currentIter = $('.ads-wrapper').attr('data-type');
+		let currentText = $(this).parent().parent().find('#add-ads-text').val();
+		console.log(currentIter,currentText);
+		mp.trigger('sendAds',currentIter,currentText)
+	}
+});
+$('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork').on('click',function(){
 	let currentClass = this.classList[0];
 	$('.main-wrapper').removeClass('active').fadeOut();
 	if(currentClass == 'cars')
@@ -159,7 +181,15 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 		}
 		refreshAutoshop();
 	}
-	$(`.${currentClass}-wrapper`).addClass('active').fadeIn();
+	if(currentClass == 'adssell' || currentClass == 'adsbuy' || currentClass == 'adsgetworkers' || currentClass == 'adssearchwork')
+	{
+		$('.ads-wrapper .ads-type').text($(this).attr('data-name'));
+		$(`.ads-wrapper`).attr('data-type',currentClass).addClass('active').fadeIn();
+	}
+	else
+	{
+		$(`.${currentClass}-wrapper`).addClass('active').fadeIn();
+	}
     backButtonCheck();
 });
 $('.news-item .video-block').each(function(index,item){
