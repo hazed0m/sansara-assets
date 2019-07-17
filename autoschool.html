@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="fonts/font.css">
+    <link rel="stylesheet" href="css/autoschool.css">
+    <title>Autoschool</title>
+</head>
+<body>
+    <div class="container">
+        <div class="rules-button">Открыть ПДД</div>
+        <div class="wrapper">
+            <div class="mask"></div>
+            <div class="title">
+                Выберите категорию
+            </div>
+            <div class="title-add">
+                Перед сдачей экзамемена, вам нужно будет пройти краткий тест ПДД
+            </div>
+            <div class="license-wrap">
+                <div class="status-wrap">
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                </div>
+                <div class="license-title-wrap" id="Moto">
+                    <div class="license-title">Лицензия категории А</div>
+                    <div class="license-type">Мототранспорт</div>
+                    <div class="license-price">Стоимость сдачи: <span class="price">100</span><span class="currency">$</span></div>
+                </div>
+            </div>
+            <div class="license-wrap">
+                <div class="status-wrap">
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                </div>
+                <div class="license-title-wrap" id="Auto">
+                    <div class="license-title">Лицензия категории B</div>
+                    <div class="license-type">Легковые авто</div>
+                    <div class="license-price">Стоимость сдачи: <span class="price">250</span><span class="currency">$</span></div>
+                </div>
+            </div>
+            <div class="license-wrap locked">
+                <div class="status-wrap">
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                </div>
+                <div class="license-title-wrap" id="Truck">
+                    <div class="license-title">Лицензия категории C</div>
+                    <div class="license-type">Грузовые авто</div>
+                    <div class="license-price">Стоимость сдачи: <span class="price">350</span><span class="currency">$</span></div>
+                </div>
+            </div>
+            <div class="license-wrap locked">
+                <div class="status-wrap">
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                    <div class="status-item"></div>
+                </div>
+                <div class="license-title-wrap" id="Trailer">
+                    <div class="license-title">Лицензия категории D</div>
+                    <div class="license-type">Прицепы</div>
+                    <div class="license-price">Стоимость сдачи: <span class="price">500</span><span class="currency">$</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="rules-wrapper">
+            <div class="rules-title">Правила Дорожного Движения</div>
+            <div class="rules-wrap">
+                <ul class="rules-list">
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                    <li class="rules-item">Запрещено пересекать двойную сплошную</li>
+                </ul>
+            </div>
+            <div class="rules-close">Закрыть</div>
+        </div>
+        <div class="qa-wrapper" data-question="0">
+            <div class="qa-title">Вопрос <span class="question-count">1</span></div>
+            <div class="qa-question"></div>
+            <div class="qa-wrap">
+            </div>
+            <div class="notification">
+                Вы не выбрали ответ
+            </div>
+            <div class="button-next">Далее</div>
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>  
+    <script src="js/autoschool.js"></script>
+</body>
+</html>
