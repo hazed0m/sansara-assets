@@ -542,6 +542,10 @@ function showVerdict(currentIter,final)
         {
             $(item).addClass('active');
         }
+        else
+        {
+            $(item).removeClass('active');
+        }
     });
 }
 function refreshQuestion(currentIter, currentIndex)
