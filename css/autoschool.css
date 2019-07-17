@@ -292,6 +292,8 @@
     background:#363940;
     padding:40px 20px;
     border-top:5px solid #fbe401;
+    text-align: center;
+    line-height: 50px;
 }
 .container .qa-wrapper .qa-title
 {

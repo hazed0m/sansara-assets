@@ -479,6 +479,7 @@ $('#Moto, #Auto, #Truck, #Trailer').on('click',function(){
     {
         $('.mask').fadeIn();
         refreshQuestion(this.id, 0);
+        qaArray = [];
         $('.qa-wrapper').fadeIn();
     }
 });
@@ -513,11 +514,11 @@ $('.qa-wrapper .button-next').on('click',function(){
             });
             if(final >= 4)
             {
-                $('.container .qa-wrapper .notification').text('Вы прошли экзамен').fadeIn();
+                $('.container .qa-wrapper .notification').text(`Вы прошли экзамен! Оценка - ${final}`).fadeIn();
             }
             else
             {
-                $('.container .qa-wrapper .notification').text('Вы завалили экзамен').fadeIn();
+                $('.container .qa-wrapper .notification').text(`Вы завалили экзамен! Оценка - ${final}`).fadeIn();
             }
             setTimeout(function(){
                 $('.container .qa-wrapper .notification, .container .qa-wrapper, .container .mask').fadeOut();
