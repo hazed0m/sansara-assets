@@ -25,7 +25,8 @@ var sex = '',
         'Recycled_Resources',
         'Craft_Resources',
         'Documents',
-        'Ammo'
+		'Ammo',
+		'Key'
     ],
     className = 
     [

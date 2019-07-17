@@ -136,7 +136,123 @@
 	background:url(../img/phone/settings.png) no-repeat;
 	background-size:cover;
 }
-.main-wrapper .settings, .main-wrapper .goverment, .main-wrapper .news, .main-wrapper .cars
+.main-wrapper .adsbuy
+{
+	position:absolute;
+	left:10%;
+	bottom:12%;
+	width:55px;
+	height:55px;
+	background:url(../img/tablet/adsbuy.png) no-repeat;
+	background-size:cover;
+}
+.main-wrapper .adsbuy::after
+{
+    content:'Куплю';
+    position: absolute;
+    bottom:-20px;
+    left:8px;
+	text-align: center;
+    font-size:11.43px;
+    text-shadow:0 0 5px #000;
+	color:#fff;
+}
+.currentads-wrapper
+{
+	display: flex;
+}
+#parallelogram {
+	width: 12px;
+	height: 20px;
+	-webkit-transform: skew(-20deg);
+	   -moz-transform: skew(-20deg);
+	     -o-transform: skew(-20deg);
+	background: #00b9d0;
+	margin-right:9px;
+}
+#parallelogram2 {
+	width: 120px;
+	height: 20px;
+	-webkit-transform: skew(-20deg);
+	   -moz-transform: skew(-20deg);
+	     -o-transform: skew(-20deg);
+	background: #00b9d0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#parallelogram2 .para-text
+{	
+	font-size:13.6px;
+	color:#fff;
+	-webkit-transform: skew(20deg);
+		-moz-transform: skew(20deg);
+			-o-transform: skew(20deg);
+}
+.main-wrapper .adssell
+{
+	position:absolute;
+	left:18%;
+	bottom:12%;
+	width:55px;
+	height:55px;
+	background:url(../img/tablet/adssell.png) no-repeat;
+	background-size:cover;
+}
+.main-wrapper .adssell::after
+{
+    content:'Продам';
+    position: absolute;
+    bottom:-20px;
+	left:5px;
+	text-align: center;
+    font-size:11.43px;
+    text-shadow:0 0 5px #000;
+    color:#fff;
+}
+.main-wrapper .adsgetworkers
+{
+	position:absolute;
+	left:26%;
+	bottom:12%;
+	width:55px;
+	height:55px;
+	background:url(../img/tablet/adsgetworkers.png) no-repeat;
+	background-size:cover;
+}
+.main-wrapper .adsgetworkers::after
+{
+    content:'Приму на работу';
+    position: absolute;
+    bottom:-30px;
+	left:0px;
+	text-align: center;
+    font-size:11.43px;
+    text-shadow:0 0 5px #000;
+    color:#fff;
+}
+.main-wrapper .adssearchwork
+{
+	position:absolute;
+	left:34%;
+	bottom:12%;
+	width:55px;
+	height:55px;
+	background:url(../img/tablet/adssearchwork.png) no-repeat;
+	background-size:cover;
+}
+.main-wrapper .adssearchwork::after
+{
+    content:'Ищу работу';
+    position: absolute;
+    bottom:-30px;
+	left:0px;
+	text-align: center;
+	font-size:11.43px;
+    text-shadow:0 0 5px #000;
+    color:#fff;
+}
+.main-wrapper .settings, .main-wrapper .goverment, .main-wrapper .news, .main-wrapper .cars, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork
 {
     cursor: pointer;
 }
@@ -1446,6 +1562,10 @@
 	align-items: center;
 	margin:5px 0;
 	font-size:17px;
+}
+.cars-wrapper .right-wrap .class-places .class-item
+{
+	text-transform: capitalize;
 }
 .cars-wrapper .right-wrap .sit-places
 {
