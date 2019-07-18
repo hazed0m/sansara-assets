@@ -1227,7 +1227,7 @@
 	cursor: pointer;
 	font-size:14px;
 }
-.cars-wrapper .sort-block #cars-sort
+.cars-wrapper .sort-block #cars-sort, .cars-wrapper #cars-class
 {
 	width:177px;
 	height:38px;
@@ -1240,11 +1240,17 @@
 	font-size:14px;
 	cursor: pointer;
 }
-.cars-wrapper #cars-sort i
+.cars-wrapper #cars-class
 {
-	transition:0.3s;
+	width:160px;
 }
-.cars-wrapper .sort-block .sort-window
+.cars-wrapper .filter-block
+{
+	position: absolute;
+	bottom:10%;
+	left:1%;
+}
+.cars-wrapper .sort-window
 {
 	border-top:2px solid #5a5959;
 	background:#d1d1d1;	
@@ -1259,7 +1265,11 @@
 	font-size:14px;	
 	display:none;
 }
-.cars-wrapper .sort-block .sort-window > div
+.cars-wrapper .filter-block .sort-window .car-filter
+{
+	text-transform: capitalize;
+}
+.cars-wrapper .sort-block .sort-window > div, .cars-wrapper .filter-block .sort-window > div
 {
 	padding:7px 5px;
 	cursor: pointer;

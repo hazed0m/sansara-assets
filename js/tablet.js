@@ -9,11 +9,11 @@ let autosList = [
 		{ name: 'rhapsody', hash: '0x322CF98F', speed: 148, luggage: 70, type: 'компакт',price: 1006, info: 'Rhapsody - это двухдверный малолитражный (компакт) автомобиль типа "хэтчбек", производимый на фабриках выдуманной, несуществующей в реальном мире автомобильной американской (предположительно) компании DeClasse.', places: 2},
 		{ name: 'cogcabrio', hash: '0x13B57D8A', speed: 170, luggage: 50, type: 'купе',price: 1005, info: 'Cognoscenti Cabrio - это двухдверный автомобиль класса "люкс" с кузовом типа "купе" со снимаемой крышей (кабриолет), спроектированный и производимый специалистами из выдуманной, несуществующей в реальном мире внутриигровой британской, но впоследствии скупленной немцами, компанией Enus, являющейся пародией на Rolls Royce и Bentley.', places: 2},
 		{ name: 'exemplar', hash: '0xFFB15B5E', speed: 170, luggage: 50, type: 'купе',price: 1006, info: 'Exemplar - это четырёхдверный автомобиль класса "люкс" с кузовом типа "купе", производимый инженерами и рабочими выдуманной, внутриигровой английской компании Dewbauchee, пародирующей реально существующую английскую компанию Aston Martin.', places: 4},
-		{ name: 'felon', hash: '0xE8A8BDA8', speed: 165, luggage: 60, type: 'Купе',price: 1002, info: 'Felon - это четырёхдверный автомобиль с типом кузова "седан" класса люкс, производимый на свет инженерами и рабочим выдуманной Rockstar внутриигровой (то есть имеющей место быть лишь только в игровой вселенной) итальянской компании Lampadati, основанной на других двух реально существующих итальянский компаниях Jaguar и Maserati.', places: 4},
-		{ name: 'jackal', hash: '0xDAC67112', speed: 170, luggage: 70, type: 'Купе',price: 1003, info: 'Jackal - это четырёхвдверный автомобиль с типом кузова "купе" (что может показаться абсурдным, ведь де-факто это седан, однако во внутриигровой классификации он представлен именно как купе), за чьё производство отвечает несуществующая в реальном мире внутриигровая британская компания Ocelot, основанная на итальянских Maserati и Jaguar.', places: 4},
-		{ name: 'oracle2', hash: '0xE18195B2', speed:165 , luggage: 70, type: 'Купе',price: 1004, info: 'Oracle XS - это четырёхдверный исполнительный седан класса "люкс", классифицированный в игре как "купе", его спроектировали и производят работники выдуманной, внутриигровой немецкой компании Übermacht, чьим прототипом в реальном мире является другая немецкая компания BMW.', places: 4},
-		{ name: 'sentinel2', hash: '0x3412AE2D', speed: 163, luggage: 50, type: 'Купе',price: 1005, info: 'Под капотом у Sentinel XS находится двигатель Twin Turbo Inline 6, обеспечивающий, как уже упоминалось выше, великолепную динамику разгона и максимальную скорость, хотя с этим следует быть осторожным: сотни лошадиных сил, крутящих карданный вал, могут привести к тому, что при неосторожном использовании ручного тормоза колеса машины будут сильно пробуксовывать, особенно на бездорожье.', places: 2},
-		{ name: 'zion', hash: '0xBD1B39C3', speed: 167, luggage: 80, type: 'Купе',price: 1006, info: 'Zion - это двухдверный автомобиль класса "люкс" с типом кузова "купе" (а также Zion Cabrio, являющийся кабриолетом), производимый на свет инженерами и рабочими с фабрик выдуманной, внутриигровой немецкой компании Übermacht, которая основана на такой существующей немецкой компании, как BMW.', places: 2}	
+		{ name: 'felon', hash: '0xE8A8BDA8', speed: 165, luggage: 60, type: 'купе',price: 1002, info: 'Felon - это четырёхдверный автомобиль с типом кузова "седан" класса люкс, производимый на свет инженерами и рабочим выдуманной Rockstar внутриигровой (то есть имеющей место быть лишь только в игровой вселенной) итальянской компании Lampadati, основанной на других двух реально существующих итальянский компаниях Jaguar и Maserati.', places: 4},
+		{ name: 'jackal', hash: '0xDAC67112', speed: 170, luggage: 70, type: 'купе',price: 1003, info: 'Jackal - это четырёхвдверный автомобиль с типом кузова "купе" (что может показаться абсурдным, ведь де-факто это седан, однако во внутриигровой классификации он представлен именно как купе), за чьё производство отвечает несуществующая в реальном мире внутриигровая британская компания Ocelot, основанная на итальянских Maserati и Jaguar.', places: 4},
+		{ name: 'oracle2', hash: '0xE18195B2', speed:165 , luggage: 70, type: 'купе',price: 1004, info: 'Oracle XS - это четырёхдверный исполнительный седан класса "люкс", классифицированный в игре как "купе", его спроектировали и производят работники выдуманной, внутриигровой немецкой компании Übermacht, чьим прототипом в реальном мире является другая немецкая компания BMW.', places: 4},
+		{ name: 'sentinel2', hash: '0x3412AE2D', speed: 163, luggage: 50, type: 'купе',price: 1005, info: 'Под капотом у Sentinel XS находится двигатель Twin Turbo Inline 6, обеспечивающий, как уже упоминалось выше, великолепную динамику разгона и максимальную скорость, хотя с этим следует быть осторожным: сотни лошадиных сил, крутящих карданный вал, могут привести к тому, что при неосторожном использовании ручного тормоза колеса машины будут сильно пробуксовывать, особенно на бездорожье.', places: 2},
+		{ name: 'zion', hash: '0xBD1B39C3', speed: 167, luggage: 80, type: 'купе',price: 1006, info: 'Zion - это двухдверный автомобиль класса "люкс" с типом кузова "купе" (а также Zion Cabrio, являющийся кабриолетом), производимый на свет инженерами и рабочими с фабрик выдуманной, внутриигровой немецкой компании Übermacht, которая основана на такой существующей немецкой компании, как BMW.', places: 2}	
 	],
 	motosList = [
 		{ name: 'faggio', hash: '0x9229E4EB', speed:111 , luggage: 10, type: 'скутер',price: 1001, info: 'Pegassi Faggio Sport разработан и выпускается вымышленной компанией Pegassi, которая является пародией на существующие в реальной жизни компании Ducati и Piaggio. Данное транспортное средство уже появлялось в Grand Theft Auto 4 и при разработке для GTA Online получила минимальные изменения внешнего вида и характеристик.', places: 2},
@@ -49,9 +49,9 @@ let autosList = [
 	],
 	boatsList = [
 		{ name: 'dinghy', hash: '0x3D961290', speed: 130, luggage: 150, type: 'лодка',price: 1001, info: 'Dinghy - моторная надувная лодка, производимая внутриигровой выдуманной компанией, отвечающей за производства различных типов техники, Nagasaki, расположенной в Японии. Прототип компании-производителя - Kawasaki.', places: 2},
-		{ name: 'jetmax', hash: '0x33581161', speed: 150, luggage: 200, type: 'Катер',price: 1002, info: 'Shitzu Jetmax присутствовал в каждой из игр серии Grand Theft Auto, начиная с GTA: Vice City и давно стал символом быстрой водной езды во вселенной GTA. При переходе из части в часть его внешний вид практически не менялся, за исключением лишь окраски, которая менялась в каждой новой GTA, а также после четвёртой части лодка поменяла свою компанию-производитель с итальянской Grotti на уже упомянутую японскую Shitzu.', places: 2},
+		{ name: 'jetmax', hash: '0x33581161', speed: 150, luggage: 200, type: 'катер',price: 1002, info: 'Shitzu Jetmax присутствовал в каждой из игр серии Grand Theft Auto, начиная с GTA: Vice City и давно стал символом быстрой водной езды во вселенной GTA. При переходе из части в часть его внешний вид практически не менялся, за исключением лишь окраски, которая менялась в каждой новой GTA, а также после четвёртой части лодка поменяла свою компанию-производитель с итальянской Grotti на уже упомянутую японскую Shitzu.', places: 2},
 		{ name: 'seashark', hash: '0xC2974024', speed: 130, luggage: 50, type: 'гидроцикл',price: 1003, info: 'Seashark - двухместный гражданский гидроцикл, производимый выдуманной внутриигровой компанией Speedophile (компания не имеет реального прототипа).Speedophile Seashark является одним из наиболее быстрых плавательных средств в игре, уступая только Shitzu Jetmax и Pegassi Speeder, гидроцикл уступает многим плавательным средствам по ускорению, хотя в игре это и мало заметно.', places: 2},
-		{ name: 'toro', hash: '0x3FD5AA2F', speed: 130, luggage: 250, type: 'Катер',price: 1004, info: 'Lampadati Toro - это скоростная лодка, которая создавалась на основе Riva Aquarama Lamborghini. По дизайну напоминает лодку Speeder, которую также можно встретить в игре, т.к. в дизайне тоже преобладает дерево и вытянутость форм. Также у Торо есть уникальный звук гудка и особый глубокий шум двигателя. Также на лодке есть установленное освещение и много вариаций цвета деревянных частей палубы.', places: 2},
+		{ name: 'toro', hash: '0x3FD5AA2F', speed: 130, luggage: 250, type: 'катер',price: 1004, info: 'Lampadati Toro - это скоростная лодка, которая создавалась на основе Riva Aquarama Lamborghini. По дизайну напоминает лодку Speeder, которую также можно встретить в игре, т.к. в дизайне тоже преобладает дерево и вытянутость форм. Также у Торо есть уникальный звук гудка и особый глубокий шум двигателя. Также на лодке есть установленное освещение и много вариаций цвета деревянных частей палубы.', places: 2},
 		{ name: 'tug', hash: '0x82CAC433', speed: 110, luggage: 300, type: 'буксир',price: 1005, info: 'Буксир является одной из самых больших управляемых машин в игре (не считая некоторых самолётов). Она может похвастаться крепким корпусом и большой надстройкой с мостиком. Правда, единственным доступным помещением на корабле (назвать это лодкой уже нельзя) является мостик, ни в каюты, ни в машинное отделение спуститься нельзя.', places: 2}
 	];
 $(wallpaperList).each(function(index,item){
@@ -144,8 +144,7 @@ $('.back-but').on('click',function(){
 function forwardExit()
 {	
 	$('.cars-wrapper .current-car-wrapper, .cars-wrapper .forward').fadeOut();
-	$('.cars-wrapper .inner-wrapper').fadeIn();  
-	$('.cars-wrapper .sort-block').fadeIn();
+	$('.cars-wrapper .inner-wrapper, .cars-wrapper .sort-block, .cars-wrapper .filter-block').fadeIn();
 };
 $('.cars-wrapper .forward').on('click',function(){
 	forwardExit();
@@ -279,7 +278,7 @@ $('.law-wrap .button').on('click',function(){
 	$('.law-wrap .text-block.active').removeClass('active');
 	$(`#${this.id}-text`).addClass('active');
 });
-$('.cars-wrapper #cars-sort').on('click',function(){
+$('.cars-wrapper #cars-sort, .cars-wrapper #cars-class').on('click',function(){
 	if(!$(this).next().is(':visible'))
 	{
 		$(this).next().slideDown().css('display','flex');
@@ -417,12 +416,13 @@ function speedPercentage(curSpeed)
 }
 function pushAutoshop()
 {
-	$('[data-ref="container"]').empty();
-	const currrentWrapper = $('.cars-wrapper .menu .active')[0].id;
-	let currentList = eval(currrentWrapper+'List');
+	$('[data-ref="container"]').empty();	
+	const currentWrapper = $('.cars-wrapper .menu .active')[0].id;
+	let currentList = eval(currentWrapper+'List');
+	appendCarFilter(currentWrapper);	
 	$(currentList).each(function(index,item){
 		let currentItem = `
-		<div class="car-block" data-list='${currrentWrapper}' data-index='${index}' data-price='${item.price}' data-name="${item.name}" data-luggage='${item.luggage}'>
+		<div class="car-block" data-list='${currentWrapper}' data-index='${index}' data-price='${item.price}' data-name="${item.name}" data-luggage='${item.luggage}' data-type='${item.type}'>
 			<div class="car-image">
 				<img src="img/tablet/cars/${item.name}.jpg" alt="">
 			</div>
@@ -457,6 +457,7 @@ function refreshAutoshop()
 		$('.cars-wrapper .inner-wrapper').fadeOut();
 		$('.cars-wrapper .forward').fadeIn();
 		$('.cars-wrapper .sort-block').fadeOut();
+		$('.cars-wrapper .filter-block').fadeOut();		
 		$('.cars-wrapper .current-car-wrapper .title-name').attr('data-index',currentIndex);
 		$('.cars-wrapper .current-car-wrapper .title-name').text(currentList[currentIndex].name);
 		$('.cars-wrapper .current-car-wrapper .title-text').text(currentList[currentIndex].info);
@@ -492,10 +493,33 @@ function refreshAutoshop()
 					}
 					else
 					{
-						$('.cars-wrapper #cars-sort').next().slideUp();
+						$(`.cars-wrapper #${$(this).parent().prev()[0].id}`).next().slideUp();
 					}
 				}
 			}
 		};
 	mixer = mixitup(container, config);
 };
+function appendCarFilter(id)
+{
+	$('.filter-block .sort-window').empty();
+	$('.filter-block .sort-window').append(`<div data-filter="all">Показать все</div> `);	
+	$(uniqueFilter(eval(id+'List'))).each(function(index,item){
+		let template = `<div class="car-filter" data-filter="[data-type='${item}']">${item}</div>`;
+		$('.filter-block .sort-window').append(template);
+	});	
+};
+function uniqueFilter(array)
+{
+	let uniq = [];
+	$(array).each(function(index,item){
+		uniq.push(item.type);
+	});
+	uniq = unique(uniq);
+	return uniq;
+};
+function unique(array) {
+    return $.grep(array, function(el, index) {
+        return index === $.inArray(el, array);
+    });
+}
