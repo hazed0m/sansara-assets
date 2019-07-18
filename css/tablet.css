@@ -1275,7 +1275,7 @@
 	cursor: pointer;
 	width:100%;
 }
-.cars-wrapper .sort-block .sort-window > div:hover
+.cars-wrapper .sort-block .sort-window > div:hover, .cars-wrapper .filter-block .sort-window > div:hover
 {
 	background:#ebe9e9;
 }
