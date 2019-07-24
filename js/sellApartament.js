@@ -4,17 +4,21 @@ $('#close').on('click',function(){
 	mp.trigger('closeSellApartament');
 });
 
-$('#come').on('click',function(){
-	mp.trigger('comeApartament');
+$('#quit').on('click',function(){
+	mp.trigger('quitApartament');
 });
 
 $('#sell').on('click',function(){
 	mp.trigger('sellApartament',number,price)
 });
-function pushSellApartament(numberOf, priceOf)
+function pushSellApartament(status, numberOf, priceOf)
 {
 	number = numberOf;
 	price = priceOf;
+	if(status == 'visitor')
+	{
+		$('.sell-block').css('display','none');
+	}
 	$('.title-numb').text(numberOf);
 	$('.sell-info .price').text(priceOf);
 };

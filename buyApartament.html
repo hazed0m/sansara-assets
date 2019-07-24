@@ -9,7 +9,18 @@
 </head>
 <body>
 	<div class="container">
-		<div class="wrapper">
+		<div class="main-title">Выберите действие:</div>
+		<div class="main-wrapper">			
+			<div class="button" id="come-m">Постучаться</div>
+			<div class="button" id="buy-m">Купить</div>
+			<div class="button" id="close-m">Закрыть</div>
+		</div>
+		<div class="input-wrapper">
+			<input type="text" id="flat" placeholder="Введите номер">
+			<div class="button disabled" id="come">Войти</div>
+			<div class="button" id="close-i">Закрыть</div>
+		</div>
+		<div class="buy-wrapper">
 			<div class="title-block">
 				<div>Квартира</div> 
 				<span>№</span>
@@ -19,27 +30,36 @@
 				<div>Цена </div>
 				<span class="price">0</span>
 				<span>$</span>
+			</div>			
+			<div class="car-block">
+				<div>Мест для парковки</div>
+				<span class="car-numb">1</span>
 			</div>
-		</div>
-		<div class="bottom-wrap">
-			<div class="left-wrap">
-				<div class="radio-block">
-					<div class="card">
-						<img src="img/shop/card.png" alt="card">
-						<i class="far fa-circle"></i>
+			<div class="deedbox-block">
+				<div>Объем хранилища</div>
+				<span class="deedbox-numb"><span>500</span>кг</span>
+				
+			</div>
+			<div class="bottom-wrap">
+				<div class="left-wrap">
+					<div class="radio-block">
+						<div class="card">
+							<img src="img/shop/card.png" alt="card">
+							<i class="far fa-circle"></i>
+						</div>
+						<div class="cash active">
+							<img src="img/shop/cash.png" alt="card">
+							<i class="fas fa-circle"></i>
+						</div>						
 					</div>
-					<div class="cash active">
-						<img src="img/shop/cash.png" alt="card">
-						<i class="fas fa-circle"></i>
-					</div>						
+					<div class="button" id="buy">Купить</div>
 				</div>
-				<div class="button" id="buy">Купить</div>
+				<div class="right-wrap">
+					<div class="button" id="look">Посмотреть интерьер</div>
+					<div class="button" id="close-b">Закрыть</div>
+				</div>
 			</div>
-			<div class="right-wrap">
-				<div class="button" id="look">Посмотреть интерьер</div>
-				<div class="button" id="close">Закрыть</div>
-			</div>
-		</div>
+		</div>		
 	</div>
 	</div>	
 	<script src="js/jquery-3.3.1.min.js"></script>
