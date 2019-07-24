@@ -865,6 +865,7 @@ $('#A, #B, #C, #D').on('click',function(){
     if(!$(this).parent().hasClass('locked'))
     {
         $('.mask').fadeIn();
+        let currentSum = $(this).find('.license-price .price').text();
         refreshQuestion(this.id, 0);
         qaArray = [];
         randArr = getRandList();
@@ -872,6 +873,7 @@ $('#A, #B, #C, #D').on('click',function(){
         clearInterval(myInterval);
         myInterval = null;
         timer();
+        mp.trigger('startExam',currentSum);
     }
 });
 $('.qa-wrapper .button-next').on('click',function(){
@@ -995,7 +997,6 @@ function getRandList()
             }
             while(array.indexOf(currentRand) != -1)
         }
-        console.log(currentRand);
         array.push(currentRand);
     }
     return array;
