@@ -119,9 +119,26 @@ span {
 	border-radius: 5px;
 	display: flex;
 	align-items: center;
+	cursor: pointer;
+	position: relative;
+}
+.social-vk:hover, .social-disc:hover
+{
+	opacity:0.95;
+}
+.social-vk:hover .vk-wrap, .social-disc:hover .discord-wrap
+{
+	transform:scale(1.2);
+}
+.social .copy-info
+{
+	display: none;
+	position: absolute;
+	right:-27px;
 }
 .discord-wrap, .vk-wrap {
-	width: 45px;
+	width: 45px;	
+	transition:0.3s;
 }
 .fa-discord, .fa-vk {
 	font-size: 36px;

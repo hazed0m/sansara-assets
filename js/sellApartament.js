@@ -17,7 +17,7 @@ function pushSellApartament(status, numberOf, priceOf)
 	price = priceOf;
 	if(status == 'visitor')
 	{
-		$('.sell-block').css('display','none');
+		$('.sell-block, #changeLock, #close, #giveKey, #openStorage').css('display','none');
 	}
 	$('.title-numb').text(numberOf);
 	$('.sell-info .price').text(priceOf);

@@ -157,3 +157,17 @@ function sendAccountInfos(type) {
             break;
     }
 };
+let vklink = new ClipboardJS('.social .social-vk');
+    vklink.on('success',function(e){
+    $('.social .social-vk .copy-info').fadeIn();
+    let timeOut = setTimeout(function(){
+        $('.social .social-vk .copy-info').fadeOut();
+    },3000);
+});  
+let discordlink = new ClipboardJS('.social .social-disc');
+    discordlink.on('success',function(e){
+    $('.social .social-disc .copy-info').fadeIn();
+    let timeOut = setTimeout(function(){
+        $('.social .social-disc .copy-info').fadeOut();
+    },3000);
+});  

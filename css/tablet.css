@@ -1724,6 +1724,10 @@
 	overflow-x:scroll;
 	position: relative;
 }
+.ads-wrapper .inner-wrap .socialads-inner
+{
+	max-width: 935px;
+}
 .ads-wrapper .inner-wrap .ads-item
 {	
 	min-width:135px;

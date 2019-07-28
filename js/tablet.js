@@ -119,11 +119,11 @@ function backButtonCheck()
 		}
 		else if($('.container > .active').hasClass('cars-wrapper'))
         {
-            $('.back-but').css('border-color','rgba(251,229,2,0.8)');
+            $('.back-but').css({'color':'#fff','border-color':'rgba(251,229,2,0.8)','background-color':'transparent'});
 		}
 		else if($('.container > .active').hasClass('goverment-wrapper'))
         {
-            $('.back-but').css('border-color','#ed1c24');
+            $('.back-but').css({'color':'#fff','border-color':'#ed1c24','background-color':'transparent'});
         }
         else
         {
@@ -523,3 +523,19 @@ function unique(array) {
         return index === $.inArray(el, array);
     });
 }
+$('.ads-wrapper .currentads-inner, .ads-wrapper .socialads-inner').mousewheel(function(e, delta) {
+    this.scrollLeft -= (delta * 40);
+    e.preventDefault();
+});
+$(function(){
+    var popup = null;
+    var sendObject = {
+      title: 'Тестовое сообщение',
+      value: 5000
+    };
+ 
+    $('.btn-iframe').click(function(){
+      var iframe = $('#ads-frame');
+      iframe[0].contentWindow.postMessage(sendObject,'*');
+    });
+  });
