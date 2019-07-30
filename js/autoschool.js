@@ -854,7 +854,22 @@ let qaArray = [],
     randArr = getRandList(),    
     myInterval = null,
     secondsCounter = 0,
-    minutesCounter = 0;
+    minutesCounter = 0,
+    radioBlock = `
+                <div class="radio-block">
+                    <div class="card">
+                        <img src="img/shop/card.png" alt="card">
+                        <i class="far fa-circle"></i>
+                    </div>
+                    <div class="cash active">
+                        <img src="img/shop/cash.png" alt="card">
+                        <i class="fas fa-circle"></i>
+                    </div>						
+                </div>
+                <div class="examSum">Сумма: <span></span>$</div>
+                <div class="button-next" id="payExam">Оплатить</div>
+            `;
+
 $('.container .rules-button').on('click',function(){
     $('.rules-wrapper,.mask').fadeIn();
 });
@@ -864,16 +879,11 @@ $('.container .rules-wrapper .rules-close').on('click',function(){
 $('#A, #B, #C, #D').on('click',function(){
     if(!$(this).parent().hasClass('locked'))
     {
-        $('.mask').fadeIn();
         let currentSum = $(this).find('.license-price .price').text();
-        refreshQuestion(this.id, 0);
-        qaArray = [];
-        randArr = getRandList();
-        $('.qa-wrapper').fadeIn();                    
-        clearInterval(myInterval);
-        myInterval = null;
-        timer();
-        mp.trigger('startExam',currentSum);
+        let currentExam = this.id;
+        $('.container .notification').empty().append(radioBlock).fadeIn();
+        $('.container .notification .examSum span').text(currentSum);
+        refreshNotification(currentExam,currentSum);
     }
 });
 $('.qa-wrapper .button-next').on('click',function(){
@@ -911,26 +921,68 @@ $('.qa-wrapper .button-next').on('click',function(){
             });
             if(final >= 4)
             {
-                $('.container .qa-wrapper .notification').text(`Вы прошли экзамен! Оценка - ${final}`).fadeIn();
+                $('.container .notification').text(`Вы прошли экзамен! Оценка - ${final}`).fadeIn();
             }
             else
             {
-                $('.container .qa-wrapper .notification').text(`Вы завалили экзамен! Оценка - ${final}`).fadeIn();
+                $('.container .notification').text(`Вы завалили экзамен! Оценка - ${final}`).fadeIn();
             }
             setTimeout(function(){
-                $('.container .qa-wrapper .notification, .container .qa-wrapper, .container .mask').fadeOut();
+                $('.container .notification, .container .qa-wrapper, .container .mask').fadeOut();
             },1700);
             showVerdict(currentIter,final);
         }
     }
     else
     {
-        $('.container .qa-wrapper .notification').text('Вы не выбрали ответ').fadeIn();
+        $('.container .notification').text('Вы не выбрали ответ').fadeIn();
         setTimeout(function(){
-            $('.container .qa-wrapper .notification').fadeOut();
+            $('.container .notification').fadeOut();
         },1200);
     }
 });
+function startExam(currentExam)
+{    
+    $('.mask').fadeIn();
+    refreshQuestion(currentExam, 0);
+    qaArray = [];
+    randArr = getRandList();
+    $('.qa-wrapper').fadeIn();                    
+    clearInterval(myInterval);
+    myInterval = null;
+    timer();
+}
+function errorMessage()
+{
+    $('.container .notification').text('Вам не хватает средств').fadeIn();
+    setTimeout(function(){
+        $('.container .notification').fadeOut();
+    },1200);
+}
+function refreshNotification(currentExam,currentSum)
+{
+    $('.cash, .card').on('click',function(){
+        $(this).each(function(index, item){
+            if(!$(item).hasClass('active'))
+            {
+                $('.cash, .card').each(function(index, item){
+                    if($(item).hasClass('active'))
+                    {
+                        $(item).removeClass('active');          
+                        $(item).find('i').removeClass('fas').addClass('far');
+                    }
+                });
+                $(item).addClass('active');
+                $(item).find('i').removeClass('far').addClass('fas');
+            }       
+        });
+    });
+    $('.notification #payExam').on('click',function(){
+        let currentWay = $('.radio-block .active')[0].classList[0];
+        $('.container .notification').fadeOut();
+        mp.trigger('payExam',currentExam, currentSum,currentWay);
+    });
+}
 function showVerdict(currentIter,final)
 {
     $(`#${currentIter}`).parent().find('.status-item').each(function(index,item)
@@ -1026,9 +1078,9 @@ function timer()
         myInterval = null;	
         minutesCounter = 0;
         secondsCounter = 0;
-        $('.container .qa-wrapper .notification').text(`Время вышло! Попробуйте еще!`).fadeIn();
+        $('.container .notification').text(`Время вышло! Попробуйте еще!`).fadeIn();
         setTimeout(function(){
-            $('.container .qa-wrapper .notification, .container .qa-wrapper, .container .mask').fadeOut();
+            $('.container .notification, .container .qa-wrapper, .container .mask').fadeOut();
         },1700);
       }
     }, 1000);    

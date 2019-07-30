@@ -17,7 +17,8 @@ $('.cash, .card').on('click',function(){
 $('#buy').on('click',function(){
     let cashService = $('.radio-block .active')[0].classList[0];
     let currentPrice = $('.price-block .price').text();
-    let numberOf = $('.title-block title-numb').text();
+    let numberOf = $('.title-block .title-numb').text();
+    console.log(cashService,currentPrice,numberOf);
     mp.trigger("apartamentBuy", numberOf, cashService, currentPrice);
 });
 $('#look').on('click',function(){

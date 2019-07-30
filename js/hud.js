@@ -101,3 +101,10 @@ function initTime()
         setTimeout(updateTime, 60000);
     }); 
 };
+window.onfocus = function () { 
+    mp.trigger('gameActive'); // game active
+}; 
+
+window.onblur = function () { 
+    mp.trigger('gameInactive'); // game inactive
+};

@@ -295,7 +295,7 @@
     z-index: 999;
     padding:10px 40px 15px 40px;
 }
-.container .qa-wrapper .notification
+.container .notification
 {
     display: none;
     position: absolute;
@@ -303,10 +303,11 @@
     left:50%;
     transform:translate(-50%,-50%);
     background:#363940;
-    padding:40px 20px;
+    padding:20px;
     border-top:5px solid #fbe401;
     text-align: center;
     line-height: 50px;
+    z-index: 999;
 }
 .container .qa-wrapper .qa-title
 {
@@ -371,7 +372,45 @@
     display: flex;
     align-items: center;
 }
-.container .qa-wrapper .button-next
+.container .notification .radio-block
+{
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 100%;
+	box-sizing: border-box;
+}
+.container .notification  .examSum
+{
+    line-height: 27px;
+    margin:10px 0;   
+}
+.container .notification  .button-next
+{
+    margin-top:10px;   
+    position: relative;
+}
+.container .notification .radio-block i
+{
+	margin-top:6px;
+	color:#fafafa;
+	font-size:12px;
+}
+.container .notification .radio-block .card, .container .notification .radio-block .cash
+{
+	width:41px;
+	height:45px;
+	display:flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	padding:3px 0;	
+	border-radius:5px;
+	background: #484c52;
+	cursor: pointer;
+	box-sizing: border-box;
+}
+.container .button-next
 {
     width:118px;
     height:34px;

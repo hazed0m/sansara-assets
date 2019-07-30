@@ -55,7 +55,7 @@ let menu = new Vue({
         saveButtonState:false,
         isDisabled: false,
         options: [
-            { text: 'Паспорт', value: 'passShow', status: false },
+            { text: 'Мультипаспорт', value: 'passShow', status: false },
             { text: 'Вызов администрации', value: 'reportShow', status: false },
             { text: 'Эмоции', value: 'animateShow', status: false },
             { text: 'Навыки персонажа', value: 'skillsShow', status: false },
