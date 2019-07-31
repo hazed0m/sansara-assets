@@ -81,6 +81,10 @@
 	cursor: pointer;
 	font-weight:500;
 }
+.button .trigger
+{
+	margin-right: 4px;
+}
 .bottom-wrap .right-wrap
 {
 	display:flex;
