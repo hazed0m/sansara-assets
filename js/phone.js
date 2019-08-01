@@ -1,6 +1,7 @@
 const wallpaperList = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 var contactsList = 	[],
 	callsList = [],
+	carsList = [],
 	incomingAudio = new Audio('audio/ringtone/ring3.ogg'),	
 	dialingAudio = new Audio('audio/dialing.ogg'),
 	messageAudio = new Audio('audio/message.ogg'),
@@ -15,20 +16,6 @@ var contactsList = 	[],
 	dialingPlayInterval = null,
 	incomingPauseInterval = null,
 	incomingPlayInterval = null;
-// 	audioList = [ incomingAudio,
-// 				  dialingAudio,
-// 				  messageAudio, 
-// 				  new Audio('audio/ringtone/ring1.ogg'),  
-// 				  new Audio('audio/ringtone/ring2.ogg'),  
-// 				  new Audio('audio/ringtone/ring3.ogg'),  
-// 				  new Audio('audio/ringtone/ring4.ogg') 
-// 				];
-// $(audioList).each(function(index,item){
-// 	$('.ringtone').append(item);
-// });
-// $('.ringtone audio').each(function(index,item){
-// 	$(item).attr('controls','true');
-// });
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
@@ -48,11 +35,12 @@ function phoneToTop()
 }
 function phoneToBottom()
 {
-	$('.container').css('top',currentTopPosition);
+	$('.container').css('top',carslist);
 }
-function pushContactList(item)
+function pushContactList(item,carslist)
 {
 	let itemList = JSON.parse(item);
+	carsList = JSON.parse(carslist);
 	$(itemList).each(function(index,item){
 		let obj = {
 			'name': item.name,
@@ -132,6 +120,17 @@ $('.main-wrapper .settings').on('click',function(){
 	$('.main-wrapper').removeClass('active').fadeOut();
 	$('.settings-wrapper').addClass('active').fadeIn();
 });
+function homeButChange()
+{
+	if($('.main-wrapper').is(':visible'))
+	{
+		$('.home-but').css('display','none');
+	}
+	else
+	{
+		$('.home-but').fadeIn();
+	}
+}
 $('.home-but').on('click',function(){
 	$('.main-wrapper').fadeIn();
 	let active = $('.container > .active')[0].classList[0];
@@ -420,67 +419,122 @@ $('.bottom-block .phonebook').on('click',function(){
 	pushContacts('contacts');
 	$('.contacts-wrapper').addClass('active').fadeIn();
 });
+function carsNameRefresh()
+{
+	$(carsList).each(function(index,item){
+		if(typeof autosList.find(autosList => autosList.hash === item.name) != 'undefined')
+		{
+			item.name = autosList.find(autosList => autosList.hash === item.name).name;
+			item.type = 'auto';
+			return true;
+		}
+		if(typeof motosList.find(motosList => motosList.hash === item.name) != 'undefined')
+		{
+			item.name = motosList.find(motosList => motosList.hash === item.name).name;
+			item.type = 'moto';
+			return true;
+		}
+		if(typeof trucksList.find(trucksList => trucksList.hash === item.name) != 'undefined')
+		{
+			item.name = trucksList.find(trucksList => trucksList.hash === item.name).name;
+			item.type = 'truck';
+			return true;
+		}
+		if(typeof boatsList.find(boatsList => boatsList.hash === item.name) != 'undefined')
+		{
+			item.name = boatsList.find(boatsList => boatsList.hash === item.name).name;
+			item.type = 'boat';
+			return true;
+		}
+	});
+}
 function pushContacts(currentWrapper)
 {
-	$(`.${currentWrapper}-wrapper .wrapper`).empty();
-	$(contactsList).each(function(index,item){
-		let currentTemplate = '';
-		if(currentWrapper == 'contacts')
-		{
-			currentTemplate = `<div class="number" data-index="${index}" data-number="${item.number}">\
-								 <div class="title-number">${item.name}</div>\
-								 <div class="caller"></div>\
-							  </div>`;
-		}
-		if(currentWrapper == 'geo')
-		{
-			currentTemplate = `<div class="number" data-index="${index}" data-number="${item.number}">\
-								 <div class="title-number">${item.name}</div>\
-								 <div class="geo"></div>\
-							  </div>`;
-		}
-		if(currentWrapper == 'messages')
-		{
-			if(!$.isEmptyObject(item.messageList))
+	$(`.${currentWrapper}-wrapper .wrapper`).empty();	
+	if(currentWrapper == 'getCar')
+	{		
+		carsNameRefresh();
+		$(carsList).each(function(index,item){
+			let parked = '<div class="parked disabled"></div>';
+			if(item.parked == true)
 			{
-				var currentNumber = item.name;
-				if(item.name == 'Неизвестный')
+				parked = `<div class="parked"></div>`;
+			}			
+			currentTemplate = `<div class="number" data-type="${item.type}" data-index="${index}" data-number="${item.number}">
+									<div class="title-wrapper">
+										<div class="title-number">${item.name}</div>
+										<div class="car-number">${item.number}</div>
+									</div>
+									<div class="button-wrapper">
+										${parked}
+										<div class="geo"></div>
+									</div>
+								</div>`;
+			$(`.${currentWrapper}-wrapper .wrapper`).append(currentTemplate);
+		});	
+		refreshGetCar();
+	}
+	else
+	{
+		$(contactsList).each(function(index,item){
+			let currentTemplate = '';
+			if(currentWrapper == 'contacts')
+			{
+				currentTemplate = `<div class="number" data-index="${index}" data-number="${item.number}">
+									 <div class="title-number">${item.name}</div>
+									 <div class="caller"></div>
+								  </div>`;
+			}
+			if(currentWrapper == 'geo')
+			{
+				currentTemplate = `<div class="number" data-index="${index}" data-number="${item.number}">
+									 <div class="title-number">${item.name}</div>
+									 <div class="geo"></div>
+								  </div>`;
+			}
+			if(currentWrapper == 'messages')
+			{
+				if(!$.isEmptyObject(item.messageList))
 				{
-					currentNumber = `${item.name} ( ${item.number} )`;
+					var currentNumber = item.name;
+					if(item.name == 'Неизвестный')
+					{
+						currentNumber = `${item.name} ( ${item.number} )`;
+					}
+					else
+					{
+						currentNumber = item.name;
+					}
+					currentTemplate = `<div class="message-item" data-index="${index}">
+										<div class="message-border">
+											<div class="number">${currentNumber}</div>
+											<div class="time">${item.messageList[item.messageList.length-1].time}</div>
+										</div>
+										<div class="message-text">
+											<div class="text">${item.messageList[item.messageList.length-1].message}</div>
+											<div class="text-3">...</div>
+										</div>
+									</div>`;	
 				}
 				else
 				{
-					currentNumber = item.name;
+					currentTemplate = `<div class="message-item" data-index="${index}">
+										<div class="message-border">
+											<div class="number">${item.name}</div>
+											<div class="time"></div>
+										</div>
+										<div class="message-text">
+											<div class="text">Нажмите, чтобы начать переписку</div>
+											<div class="text-3"></div>
+										</div>
+									</div>`;
 				}
-				currentTemplate = `<div class="message-item" data-index="${index}">
-									<div class="message-border">
-										<div class="number">${currentNumber}</div>
-										<div class="time">${item.messageList[item.messageList.length-1].time}</div>
-									</div>
-									<div class="message-text">
-										<div class="text">${item.messageList[item.messageList.length-1].message}</div>
-										<div class="text-3">...</div>
-									</div>
-								</div>`;	
 			}
-			else
-			{
-				currentTemplate = `<div class="message-item" data-index="${index}">
-									<div class="message-border">
-										<div class="number">${item.name}</div>
-										<div class="time"></div>
-									</div>
-									<div class="message-text">
-										<div class="text">Нажмите, чтобы начать переписку</div>
-										<div class="text-3"></div>
-									</div>
-								</div>`;
-			}
-		}
-		$(`.${currentWrapper}-wrapper .wrapper`).append(currentTemplate);
-	});
-	contactsInitialize();
-	refreshMessagesList();
+			$(`.${currentWrapper}-wrapper .wrapper`).append(currentTemplate);
+		});
+		contactsInitialize();
+		refreshMessagesList();
+	}	
 }
 function pushCurrentMessages(number)
 {	
@@ -841,12 +895,11 @@ $('.messages-inner .smiles-wrap .fa-ellipsis-v').on('click',function(){
 	$('.messages-inner .big-smiles-wrap').fadeIn().css('display','flex');
 	$('.home-but').fadeOut();
 });
+
 $('.messages-inner .big-smiles-wrap .close').on('click',function(){
 	$('.messages-inner .big-smiles-wrap').fadeOut();
 	$('.home-but').fadeIn();
 });
-
-
 
 //Геопозиция
 $('.bottom-block .geo').on('click',function(){
@@ -855,6 +908,47 @@ $('.bottom-block .geo').on('click',function(){
 	refreshGeo();
 	$('.geo-wrapper').addClass('active').fadeIn();
 });
+
+//Список машин
+$('.main-wrapper .getCar').on('click',function(){
+	$('.main-wrapper').removeClass('active').fadeOut();
+	pushContacts('getCar');
+	refreshGeo();
+	$('.getCar-wrapper').addClass('active').fadeIn();
+});
+
+function refreshGetCar()
+{
+	$('.getCar-wrapper .button-wrapper .geo').on('click',function(){
+		let currentElem = carsList[$(this).parent().parent().attr('data-index')];
+		console.log(currentElem);
+		$(this).fadeOut();
+		$('.getCar-wrapper .current-wrapper .nothing-used').css('display','none').removeClass('active');
+		$('.getCar-wrapper .current-wrapper .geo-added').fadeIn(300).css('display','flex').addClass('active');
+		saveTimeout = setTimeout(function(){
+			$('.getCar-wrapper .current-wrapper .geo-added').css('display','none');
+			$('.getCar-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
+		}, 1500);
+		mp.trigger('PhoneSendGeoCar', currentElem.number);
+	});
+	$('.getCar-wrapper .button-wrapper .parked').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			let currentElem = carsList[$(this).parent().parent().attr('data-index')];
+			console.log(currentElem);
+			$(this).fadeOut();
+			$('.getCar-wrapper .current-wrapper .nothing-used').css('display','none').removeClass('active');
+			$('.getCar-wrapper .current-wrapper .geo-added').fadeIn(300).css('display','flex').addClass('active');
+			saveTimeout = setTimeout(function(){
+				$('.getCar-wrapper .current-wrapper .geo-added').css('display','none');
+				$('.getCar-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
+			}, 1500);
+			mp.trigger('PhoneSendParkingCar', currentElem.number);
+		}
+	});
+	
+};
+
 function refreshGeo()
 {
 	$('.geo-wrapper .number .geo').on('click',function(){
