@@ -57,21 +57,21 @@ var className =
        "Значки"
     ],
     clothesArr = [];    
-clothesArr["Маска"] = [];   
-clothesArr["Шляпа"] = [];
-clothesArr["Очки"] = [];
-clothesArr["Аксессуар"] = [];
-clothesArr["Торс"] = [];
-clothesArr["Рубашка"] = [];
-clothesArr["Куртка"] = [];
-clothesArr["Серьги"] = [];
-clothesArr["Браслет"] = [];
-clothesArr["Низ"] = [];
-clothesArr["Часы"] = [];
-clothesArr["Бронежилет"] = [];
-clothesArr["Обувь"] = [];
-clothesArr["Сумка"] = [];
-clothesArr["Значки"] = [];
+    clothesArr["Маска"] = [];   
+    clothesArr["Шляпа"] = [];
+    clothesArr["Очки"] = [];
+    clothesArr["Аксессуар"] = [];
+    clothesArr["Торс"] = [];
+    clothesArr["Рубашка"] = [];
+    clothesArr["Куртка"] = [];
+    clothesArr["Серьги"] = [];
+    clothesArr["Браслет"] = [];
+    clothesArr["Низ"] = [];
+    clothesArr["Часы"] = [];
+    clothesArr["Бронежилет"] = [];
+    clothesArr["Обувь"] = [];
+    clothesArr["Сумка"] = [];
+    clothesArr["Значки"] = [];
 function pushClothesShop(json)
 {
     var itemList = JSON.parse(json);
@@ -79,7 +79,17 @@ function pushClothesShop(json)
         let obj = 
         {
             name: item.name,
-            price: item.price
+            price: item.price,
+            color: parseInt(item.color)
+        }
+        var colorCount = JSON.parse(JSON.stringify(obj.color));
+        if(colorCount != 0)
+        {
+            obj.color = [];
+            for (i=1;i<=colorCount;i++)
+            {
+                obj.color.push(i);
+            }   
         }
         $(className).each(function(index,classEl){
             if(obj.name.includes(classEl))
@@ -116,6 +126,7 @@ function clothesInitialize()
         var parent = $(element).parent().parent().parent()[0].id;
         var itemAttr = $(element).parent().parent().parent().find('.title').attr('data-item');
         var itemIndex = $(element).parent().parent().parent().find('.title').attr('data-index');
+        var currentAttr = $(this).parent().find('.color').attr('color-index');
         if(itemAttr != -1)
         {
             var item = clothesArr[className[itemIndex]][itemAttr].name;
@@ -124,13 +135,23 @@ function clothesInitialize()
         {
             var item = 'current';
         }
-        if($(clicker).hasClass('fa-chevron-left'))
+        if($(clicker).hasClass('fa-chevron-left') && !$(clicker).parent().hasClass('disabled'))
         {
-            mp.trigger("clothesSelectColor", item, 'prev');
+            if(currentAttr > 1)
+            {
+                currentAttr--;
+                $(element).attr('color-index',currentAttr);
+                mp.trigger("clothesSelectColor", item, currentAttr);
+            }
         }
-        if($(clicker).hasClass('fa-chevron-right'))
+        if($(clicker).hasClass('fa-chevron-right') && !$(clicker).parent().hasClass('disabled'))
         {
-            mp.trigger("clothesSelectColor", item, 'next');
+            if(currentAttr != clothesArr[className[itemIndex]][itemAttr].color.length)
+            {
+                currentAttr++;
+                $(element).attr('color-index',currentAttr);
+                mp.trigger("clothesSelectColor", item, currentAttr);
+            }
         }
     });
     $('.title-wrap .fa-chevron-left, .title-wrap .fa-chevron-right').on('click',function(){
@@ -148,6 +169,7 @@ function clothesInitialize()
             $(element).attr('data-counted', false);
             $(element).text(clothesArr[className[currentIndex]][currentAttr].name);
             countPrice();
+            colorInitialize();
             mp.trigger("wearClothes",clothesArr[className[currentIndex]][currentAttr].name);
         }
         if($(clicker).hasClass('fa-chevron-right') && currentAttr < clothesArr[className[currentIndex]].length - 1)
@@ -158,10 +180,30 @@ function clothesInitialize()
             $(element).attr('data-counted', false);
             $(element).text(clothesArr[className[currentIndex]][currentAttr].name);
             countPrice();
+            colorInitialize();
             mp.trigger("wearClothes",clothesArr[className[currentIndex]][currentAttr].name);
         }    
     });
+    $('.clothes-item .remove-but').on('click',function(){
+        let currentId = $(this).parent()[0].id;
+        mp.trigger('removeClothes',currentId);
+    });
 };
+function colorInitialize()
+{
+    $('.clothes-item').each(function(index,item){
+        let id = this.id,
+            element = $(this).find('.title'),
+            currentAttr = parseInt($(element).attr('data-item'));
+        if(currentAttr != -1)
+        {
+            if(clothesArr[className[index]][currentAttr].color != 0)
+            {
+                $(this).find('.toogle').removeClass('disabled');
+            }
+        }        
+    });
+}
 function countPrice()
 {
     var fullPrice = 0;
@@ -245,6 +287,7 @@ $('#resetCamera').on('click',function(){
 });
 var clothesTemplate = `
             <div class="clothes-item" id="Маска">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                     <div class="title" data-index="0" data-item="-1" data-price="0" data-price="0">Маска (<span>Тек.</span>)</div>
@@ -253,12 +296,13 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="clothes-item" id="Шляпа">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                     <div class="title" data-index="1" data-item="-1" data-price="0">Шляпа (<span>Тек.</span>)</div>
@@ -267,12 +311,13 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="clothes-item" id="Очки">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                     <div class="title" data-index="2" data-item="-1" data-price="0">Очки (<span>Тек.</span>)</div>
@@ -281,12 +326,13 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="clothes-item" id="Аксессуар">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                 <div class="title" data-index="3" data-item="-1" data-price="0">Аксессуар (<span>Тек.</span>)</div>
@@ -295,12 +341,13 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="clothes-item" id="Значки">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                 <div class="title" data-index="14" data-item="-1" data-price="0">Значки (<span>Тек.</span>)</div>
@@ -309,7 +356,7 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
@@ -317,6 +364,7 @@ var clothesTemplate = `
             <div class="upper-wrapper">
                 <div class="category">Верх</div>
                 <div class="clothes-item" id="Торс">
+                    <div class="remove-but">Снять</div>
                     <div class="title-wrap">
                         <i class="fas fa-chevron-left"></i>
                     <div class="title" data-index="4" data-item="-1" data-price="0">Торс (<span>Тек.</span>)</div>
@@ -325,12 +373,13 @@ var clothesTemplate = `
                     <div class="toogle">
                         <i class="fas fa-chevron-left"></i>
                         <div class="color-list">
-                            <div class="color">Цвет</div>
+                            <div class="color" color-index="0">Цвет</div>
                         </div>			
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
                 <div class="clothes-item" id="Рубашка">
+                    <div class="remove-but">Снять</div>
                     <div class="title-wrap">
                         <i class="fas fa-chevron-left"></i>
                     <div class="title" data-index="5" data-item="-1" data-price="0">Рубашка (<span>Тек.</span>)</div>
@@ -339,12 +388,13 @@ var clothesTemplate = `
                     <div class="toogle">
                         <i class="fas fa-chevron-left"></i>
                         <div class="color-list">
-                            <div class="color">Цвет</div>
+                            <div class="color" color-index="0">Цвет</div>
                         </div>			
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>
                 <div class="clothes-item" id="Куртка">
+                    <div class="remove-but">Снять</div>
                     <div class="title-wrap">
                         <i class="fas fa-chevron-left"></i>
                     <div class="title" data-index="6" data-item="-1" data-price="0">Куртка (<span>Тек.</span>)</div>
@@ -353,7 +403,7 @@ var clothesTemplate = `
                     <div class="toogle">
                         <i class="fas fa-chevron-left"></i>
                         <div class="color-list">
-                            <div class="color">Цвет</div>
+                            <div class="color" color-index="0">Цвет</div>
                         </div>			
                         <i class="fas fa-chevron-right"></i>
                     </div>
@@ -361,6 +411,7 @@ var clothesTemplate = `
                 <div class="category">Верх</div>
             </div>	
             <div class="clothes-item" id="Серьги">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                 <div class="title" data-index="7" data-item="-1" data-price="0">Серьги (<span>Тек.</span>)</div>
@@ -369,12 +420,13 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="clothes-item" id="Браслет">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                 <div class="title" data-index="8" data-item="-1" data-price="0">Браслет (<span>Тек.</span>)</div>
@@ -383,12 +435,13 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="clothes-item" id="Низ">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                 <div class="title" data-index="9" data-item="-1" data-price="0">Низ (<span>Тек.</span>)</div>
@@ -397,12 +450,13 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="clothes-item" id="Часы">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                 <div class="title" data-index="10" data-item="-1" data-price="0">Часы (<span>Тек.</span>)</div>
@@ -411,12 +465,13 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="clothes-item" id="Бронежилет">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                 <div class="title" data-index="11" data-item="-1" data-price="0">Бронежилет (<span>Тек.</span>)</div>
@@ -425,12 +480,13 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="clothes-item" id="Обувь">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                 <div class="title" data-index="12" data-item="-1" data-price="0">Обувь (<span>Тек.</span>)</div>
@@ -439,12 +495,13 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>
             </div>
             <div class="clothes-item" id="Сумка">
+                <div class="remove-but">Снять</div>
                 <div class="title-wrap">
                     <i class="fas fa-chevron-left"></i>
                 <div class="title" data-index="13" data-item="-1" data-price="0">Сумка (<span>Тек.</span>)</div>
@@ -453,7 +510,7 @@ var clothesTemplate = `
                 <div class="toogle">
                     <i class="fas fa-chevron-left"></i>
                     <div class="color-list">
-                        <div class="color">Цвет</div>
+                        <div class="color" color-index="0">Цвет</div>
                     </div>			
                     <i class="fas fa-chevron-right"></i>
                 </div>

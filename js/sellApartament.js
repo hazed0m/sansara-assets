@@ -14,7 +14,7 @@ function toogleAction(trigger,id)
 {
 	let toogler = parseInt(trigger) == 0 ? 'Открыть' : 'Закрыть';
 	if(id.indexOf('closeSell') != -1)
-	{
+	{	
 		$('#closeSell').find('.trigger').text(toogler);
 	}
 	if(id.indexOf('openStorage') != -1)
