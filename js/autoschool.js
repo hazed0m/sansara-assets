@@ -883,6 +883,7 @@ $('#A, #B, #C, #D').on('click',function(){
         let currentExam = this.id;
         $('.container .notification').empty().append(radioBlock).fadeIn();
         $('.container .notification .examSum span').text(currentSum);
+        $('.notification #payExam').removeClass('disabled');
         refreshNotification(currentExam,currentSum);
     }
 });
@@ -943,14 +944,20 @@ $('.qa-wrapper .button-next').on('click',function(){
 });
 function startExam(currentExam)
 {    
-    $('.mask').fadeIn();
-    refreshQuestion(currentExam, 0);
-    qaArray = [];
-    randArr = getRandList();
-    $('.qa-wrapper').fadeIn();                    
-    clearInterval(myInterval);
-    myInterval = null;
-    timer();
+    if(typeof currentExam != 'undefined')
+    {
+        if(currentExam == 'A' || currentExam == 'B' || currentExam == 'C' || currentExam == 'D')
+        {
+            $('.mask').fadeIn();
+            refreshQuestion(currentExam, 0);
+            qaArray = [];
+            randArr = getRandList();
+            $('.qa-wrapper').fadeIn();                    
+            clearInterval(myInterval);
+            myInterval = null;
+            timer();
+        }
+    }
 }
 function errorMessage()
 {
@@ -978,9 +985,13 @@ function refreshNotification(currentExam,currentSum)
         });
     });
     $('.notification #payExam').on('click',function(){
-        let currentWay = $('.radio-block .active')[0].classList[0];
-        $('.container .notification').fadeOut();
-        mp.trigger('payExam',currentExam, currentSum,currentWay);
+        if(!$(this).hasClass('disabled'))
+        {
+            let currentWay = $('.radio-block .active')[0].classList[0];
+            $('.container .notification').fadeOut();
+            $(this).addClass('disabled');
+            mp.trigger('payExam',currentExam, currentSum,currentWay);
+        }
     });
 }
 function showVerdict(currentIter,final)
@@ -996,6 +1007,7 @@ function showVerdict(currentIter,final)
             $(item).removeClass('active');
         }
     });
+    console.log(1,currentIter,final);
     mp.trigger('examSchool',currentIter,final);
 }
 function refreshQuestion(currentIter, currentIndex)
@@ -1043,7 +1055,6 @@ function getRandList()
         let currentRand = randomInteger(0, max);
         if(array.indexOf(currentRand) != -1)
         {
-            console.log(currentRand,'error');
             do{
                 currentRand = randomInteger(0, max);                
             }
