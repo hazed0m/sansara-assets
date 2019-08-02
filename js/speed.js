@@ -21,9 +21,25 @@ function pushCurrentArrow(vehicleArrowSpeed)
 {
     $('.radius .arrow').css('transform',`rotateZ(${vehicleArrowSpeed}deg`);
 }
-function pushCurrentSpeed(vehicleSpeed)
+function pushCurrentSpeed(vehicleSpeed,durationCount = 1000)
 {
-    $('.info-wrapper .speed').text(vehicleSpeed);
+    let currentSpeed =  $('.info-wrapper .speed').text();
+    if(currentSpeed == '')
+    {
+        $('.info-wrapper .speed').text(0);
+    } 
+    $('.info-wrapper .speed').each(function () {
+        $(this).prop('Counter',currentSpeed).animate({
+            Counter: vehicleSpeed
+        }, {
+            duration: durationCount,
+            easing: 'linear',
+            step: function (now) {
+                $(this).text(Math.ceil(now));
+            }
+        });
+    });
+       
 }
 function engineError(status)
 {
