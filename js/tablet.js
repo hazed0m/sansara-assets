@@ -259,8 +259,7 @@ $('.cash, .card').on('click',function(){
 $('#buy').on('click',function(){
 	if(!$(this).hasClass('disabled'))
 	{
-		let cashService = $('.current-car-wrapper .radio-block .active')[0].classList[0],
-			color = $('.current-car-wrapper .color-block .color-wrap .active').attr('data-color'),
+		let color = $('.current-car-wrapper .color-block .color-wrap .active').attr('data-color'),
 			index = $('.cars-wrapper .current-car-wrapper .title-name').attr('data-index'),
 			price = $('.cars-wrapper .left-wrap .buy-button span.price').text(),
 			currentWrapper = $('.cars-wrapper .current-car-wrapper .title-name').attr('data-type'),
@@ -283,7 +282,8 @@ $('#buy').on('click',function(){
 			break;
 		}
 		$(this).addClass('disabled');
-		mp.trigger("carBuyButton", hash, color, price, cashService, spawn);
+		console.log(hash, color, price, '', spawn);
+		mp.trigger("carBuyButton", hash, color, price, '', spawn);
 	}	
 });
 $('.color-wrap .color-item').on('click',function(){
