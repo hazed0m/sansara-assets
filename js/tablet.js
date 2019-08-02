@@ -277,6 +277,9 @@ $('#buy').on('click',function(){
 			case 'trucks':
 				spawn = '3';
 			break;
+			case 'trailers':
+				spawn = '3';
+			break;
 			case 'boats':
 				spawn = '4';
 			break;
@@ -431,6 +434,14 @@ function refreshAutoshop()
 		$('.cars-wrapper .right-wrap .class-places .class-item').text(currentList[currentIndex].type);
 		$('.cars-wrapper .left-wrap .buy-button span.price').text(currentList[currentIndex].price);
 		$('.cars-wrapper .current-car-wrapper .right-wrap .img-block img').attr('src',$(this).find('img').attr('src'));
+		if(currentWrapper == 'trailers')
+		{
+			$('.cars-wrapper .current-car-wrapper .color-block').css('display','none');
+		}
+		else
+		{
+			$('.cars-wrapper .current-car-wrapper .color-block').css('display','block');
+		}
 		var position = $('.cars-wrapper .current-car-wrapper').scrollTop(); 
 		$('.cars-wrapper .current-car-wrapper').scroll(function() {
 			var scroll = $(this).scrollTop();

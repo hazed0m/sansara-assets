@@ -440,6 +440,12 @@ function carsNameRefresh()
 			item.type = 'truck';
 			return true;
 		}
+		if(typeof trailersList.find(trailersList => trailersList.hash === item.name) != 'undefined')
+		{
+			item.name = trailersList.find(trailersList => trailersList.hash === item.name).name;
+			item.type = 'trailer';
+			return true;
+		}
 		if(typeof boatsList.find(boatsList => boatsList.hash === item.name) != 'undefined')
 		{
 			item.name = boatsList.find(boatsList => boatsList.hash === item.name).name;

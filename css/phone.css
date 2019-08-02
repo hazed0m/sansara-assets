@@ -362,6 +362,12 @@
 	background-size:25%;
 	background-position: 50%;
 }
+.getCar-wrapper .wrapper .number[data-type="trailer"]
+{
+	background:url(../img/autoschool/trailer.png) no-repeat;
+	background-size:25%;
+	background-position: 50%;
+}
 .getCar-wrapper .wrapper .number[data-type="boat"]
 {
 	background:url(../img/autoschool/boat.png) no-repeat;
