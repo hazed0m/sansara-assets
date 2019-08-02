@@ -347,38 +347,38 @@
 .getCar-wrapper .wrapper .number[data-type="auto"]
 {
 	background:url(../img/autoschool/car.png) no-repeat;
-	background-size:30%;
+	background-size:25%;
 	background-position: 50%;
 }
 .getCar-wrapper .wrapper .number[data-type="moto"]
 {
 	background:url(../img/autoschool/moto.png) no-repeat;
-	background-size:25%;
+	background-size:20%;
 	background-position: 50%;
 }
 .getCar-wrapper .wrapper .number[data-type="truck"]
 {
 	background:url(../img/autoschool/truck.png) no-repeat;
-	background-size:25%;
+	background-size:20%;
 	background-position: 50%;
 }
 .getCar-wrapper .wrapper .number[data-type="trailer"]
 {
 	background:url(../img/autoschool/trailer.png) no-repeat;
-	background-size:25%;
+	background-size:20%;
 	background-position: 50%;
 }
 .getCar-wrapper .wrapper .number[data-type="boat"]
 {
 	background:url(../img/autoschool/boat.png) no-repeat;
-	background-size:20%;
-	background-position: 45%;
+	background-size:30%;
+	background-position: 48%;
 }
 .getCar-wrapper .title-wrapper .title-number
 {
 	font-size:20px;
 	text-transform: capitalize;
-	text-shadow: 0 0 3px rgba(15,15,15,0.7);
+	text-shadow: 3px 3px 4px rgba(255,255,255,1);
 }
 .getCar-wrapper .title-wrapper .car-number
 {
