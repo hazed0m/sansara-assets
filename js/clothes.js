@@ -143,12 +143,24 @@ function clothesInitialize()
                 $(element).attr('color-index',currentAttr);
                 mp.trigger("clothesSelectColor", item, currentAttr);
             }
+            else
+            {
+                currentAttr = clothesArr[className[itemIndex]][itemAttr].color.length;
+                $(element).attr('color-index',currentAttr);
+                mp.trigger("clothesSelectColor", item, currentAttr);
+            }
         }
         if($(clicker).hasClass('fa-chevron-right') && !$(clicker).parent().hasClass('disabled'))
         {
             if(currentAttr != clothesArr[className[itemIndex]][itemAttr].color.length)
             {
                 currentAttr++;
+                $(element).attr('color-index',currentAttr);
+                mp.trigger("clothesSelectColor", item, currentAttr);
+            }
+            else
+            {
+                currentAttr = 1;
                 $(element).attr('color-index',currentAttr);
                 mp.trigger("clothesSelectColor", item, currentAttr);
             }
