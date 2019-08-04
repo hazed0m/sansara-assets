@@ -1,3 +1,8 @@
+$(window).on('load', function (e) {
+	$preloader = $(".mask"); 
+	$preloader.delay(350).fadeOut('slow');
+	$('.main-wrapper').fadeIn();	
+});
 const wallpaperList = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 var contactsList = 	[],
 	callsList = [],
@@ -7,7 +12,7 @@ var contactsList = 	[],
 	messageAudio = new Audio('audio/message.ogg'),
 	currentTopPosition = 0,
 	myInterval = null,
-    callInterval = null,
+	callInterval = null,
 	secondsCounter = 0,
 	minutesCounter = 0,	
 	dialingTimeout = null,
@@ -69,7 +74,7 @@ $(wallpaperList).each(function(index,item){
 		active = 'active';
 	}
 	const wallpaperSettingsTemplate = 
- 	'<div class="background'+ ' ' + active +'"data-wallpaper="'+ index +'" style="background-image:url(img/wallpapers/w'+ index +'.png)"></div>';
+	'<div class="background'+ ' ' + active +'"data-wallpaper="'+ index +'" style="background-image:url(img/wallpapers/w'+ index +'.png)"></div>';
 	$('.settings-wrapper').append(wallpaperSettingsTemplate);
 });
 $('.settings-wrapper i').on('click',function(){
@@ -176,7 +181,7 @@ function cancelIncomingCall()
 	refreshCallerIntervals();
 };
 $('input[type="text"]').keyup(function() {
-    this.value = this.value.replace(/[^a-zA-Zа-яА-Я0-9,.!?_ ]/g, '');
+	this.value = this.value.replace(/[^a-zA-Zа-яА-Я0-9,.!?_ ]/g, '');
 });
 $('.incomingCall-wrapper .allow').on('click',function(){
 	mp.trigger("allowIncomingCall",getNumber);
@@ -301,14 +306,14 @@ function timerOnCaller()
 	clearInterval(myInterval);
 	myInterval = null;	
 	myInterval = setInterval(function () {
-	  ++secondsCounter;
-	  if(secondsCounter % 60 == 0)
-	  {
-	  	 secondsCounter = 0;
-	  	 ++minutesCounter;
-	  }
-	  $('.timer .minutes').text(prettyTime(minutesCounter));
-	  $('.timer .seconds').text(prettyTime(secondsCounter));
+	++secondsCounter;
+	if(secondsCounter % 60 == 0)
+	{
+		secondsCounter = 0;
+		++minutesCounter;
+	}
+	$('.timer .minutes').text(prettyTime(minutesCounter));
+	$('.timer .seconds').text(prettyTime(secondsCounter));
 	}, 1000);
 	callTimeout = setTimeout(function(){
 		mp.trigger("cancelOutcomingCall", getNumber);
@@ -487,16 +492,16 @@ function pushContacts(currentWrapper)
 			if(currentWrapper == 'contacts')
 			{
 				currentTemplate = `<div class="number" data-index="${index}" data-number="${item.number}">
-									 <div class="title-number">${item.name}</div>
-									 <div class="caller"></div>
-								  </div>`;
+									<div class="title-number">${item.name}</div>
+									<div class="caller"></div>
+								</div>`;
 			}
 			if(currentWrapper == 'geo')
 			{
 				currentTemplate = `<div class="number" data-index="${index}" data-number="${item.number}">
-									 <div class="title-number">${item.name}</div>
-									 <div class="geo"></div>
-								  </div>`;
+									<div class="title-number">${item.name}</div>
+									<div class="geo"></div>
+								</div>`;
 			}
 			if(currentWrapper == 'messages')
 			{
@@ -768,7 +773,7 @@ function refreshMessages()
 function maxLengthCheck(object)
 {
 if (object.value.length > object.maxLength)
-  object.value = object.value.slice(0, object.maxLength)
+object.value = object.value.slice(0, object.maxLength)
 };
 function refreshMessagesList()
 {
@@ -845,7 +850,7 @@ function incomingMessage(number, status, time, message)
 									status: status,
 									time: time,
 									message: message
-								  });
+								});
 			if($('.messages-inner').hasClass('active') && $('.messages-inner .title').attr('data-index') == index)
 			{
 				refreshMessages();

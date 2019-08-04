@@ -1,3 +1,8 @@
+$(window).on('load', function (e) {
+	$preloader = $(".mask"); 
+	$preloader.delay(350).fadeOut('slow');
+	$('.main-wrapper').fadeIn();	
+});
 const wallpaperList = [ 0,1,2];
 var mixer = null;
 
@@ -8,7 +13,7 @@ $(wallpaperList).each(function(index,item){
 		active = 'active';
 	}
 	const wallpaperSettingsTemplate = 
- 	'<div class="background'+ ' ' + active +'"data-wallpaper="'+ index +'" style="background-image:url(img/tablet/wallpaper/wallpaper'+ index +'.png)"></div>';
+	'<div class="background'+ ' ' + active +'"data-wallpaper="'+ index +'" style="background-image:url(img/tablet/wallpaper/wallpaper'+ index +'.png)"></div>';
 	$('.settings-wrapper').append(wallpaperSettingsTemplate);
 });
 $('.settings-wrapper i').on('click',function(){
@@ -44,8 +49,8 @@ $('.settings-wrapper .apply-but').on('click',function(){
 	const background = 'url(img/tablet/wallpaper/wallpaper' + currentItem + '.png)';
 	$('.main-wrapper').css('background-image', background);
 	$('.settings-wrapper').removeClass('active').fadeOut();
-    $('.main-wrapper').addClass('active').fadeIn();
-    backButtonCheck();
+	$('.main-wrapper').addClass('active').fadeIn();
+	backButtonCheck();
 	mp.trigger('tabletWallpaper',currentItem);
 });
 function settingsInitialize(wallIndex)
@@ -58,35 +63,35 @@ function settingsInitialize(wallIndex)
 }
 function backButtonCheck()
 {
-    if(!$('.container > .active').hasClass('main-wrapper'))
-    {
-        if($('.container > .active').hasClass('news-wrapper'))
-        {
-            $('.back-but').css({'color':'#00aeef','border-color':'#00aeef','background-color':$('.container > .active').css('background-color')});
+	if(!$('.container > .active').hasClass('main-wrapper'))
+	{
+		if($('.container > .active').hasClass('news-wrapper'))
+		{
+			$('.back-but').css({'color':'#00aeef','border-color':'#00aeef','background-color':$('.container > .active').css('background-color')});
 		}
 		else if($('.container > .active').hasClass('cars-wrapper'))
-        {
-            $('.back-but').css({'color':'#fff','border-color':'rgba(251,229,2,0.8)','background-color':'transparent'});
+		{
+			$('.back-but').css({'color':'#fff','border-color':'rgba(251,229,2,0.8)','background-color':'transparent'});
 		}
 		else if($('.container > .active').hasClass('goverment-wrapper'))
-        {
-            $('.back-but').css({'color':'#fff','border-color':'#ed1c24','background-color':'transparent'});
-        }
-        else
-        {
-            $('.back-but').css({'color':'#fff','border-color':'#fff','background-color':'transparent'});
-        }
-        $('.back-but').fadeIn();
-    }
-    else
-    {
-        $('.back-but').css('display','none');
-    }
+		{
+			$('.back-but').css({'color':'#fff','border-color':'#ed1c24','background-color':'transparent'});
+		}
+		else
+		{
+			$('.back-but').css({'color':'#fff','border-color':'#fff','background-color':'transparent'});
+		}
+		$('.back-but').fadeIn();
+	}
+	else
+	{
+		$('.back-but').css('display','none');
+	}
 }
 $('.back-but').on('click',function(){
-    $('.container > .active').removeClass('active').fadeOut();
-    $('.main-wrapper').addClass('active').fadeIn();    
-    backButtonCheck();
+	$('.container > .active').removeClass('active').fadeOut();
+	$('.main-wrapper').addClass('active').fadeIn();    
+	backButtonCheck();
 });
 function forwardExit()
 {	
@@ -136,7 +141,7 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 	{
 		$(`.${currentClass}-wrapper`).addClass('active').fadeIn();
 	}
-    backButtonCheck();
+	backButtonCheck();
 });
 $('.news-item .video-block').each(function(index,item){
 	let curLink = $(this).attr('data-id');
@@ -184,37 +189,37 @@ $(document).ready(function() {
 		}
 	});
 	$("[data-fancybox]").fancybox({
-        parentEl: ".container"
-    });
-    $('[data-fancybox]').on('click',function(){
-    	let currentPlayer = `<div id="player" data-plyr-provider="youtube" 
-				    			data-plyr-embed-id="${$(this).attr('data-id')}">
-				    		</div>`;
-    	$('.fancybox-content iframe').replaceWith(currentPlayer);
-    	const player = new Plyr('#player', {
-    		controls: [ 'play-large', 
-			    		'play', 
-			    		'progress', 
-			    		'current-time', 
-			    		'mute', 
-			    		'volume'
-			    	  ],
-	    	autoplay: true  		
-    	});
+		parentEl: ".container"
+	});
+	$('[data-fancybox]').on('click',function(){
+		let currentPlayer = `<div id="player" data-plyr-provider="youtube" 
+								data-plyr-embed-id="${$(this).attr('data-id')}">
+							</div>`;
+		$('.fancybox-content iframe').replaceWith(currentPlayer);
+		const player = new Plyr('#player', {
+			controls: [ 'play-large', 
+						'play', 
+						'progress', 
+						'current-time', 
+						'mute', 
+						'volume'
+					],
+			autoplay: true  		
+		});
 		window.player = player;
-    });
+	});
 });
 $('.news-item #more').click(function(e) {
 	let h = $('.news-item').innerHeight();
 	$(this).fadeOut();
-    e.stopPropagation();
-    $(this).parent().find('.news-text').animate({
+	e.stopPropagation();
+	$(this).parent().find('.news-text').animate({
 		'height': h
 	}).css('oveflow-y','scroll');
 	$(this).parent().find('.video-block').fadeOut('fast');
 });
 $(document).click(function() {
-    $('.news-item .news-text').animate({
+	$('.news-item .news-text').animate({
 		'height': '112px'
 	}).css('oveflow-y','visible');
 	$('.news-item #more').fadeIn();
@@ -261,7 +266,7 @@ $('#buy').on('click',function(){
 	{
 		let color = $('.current-car-wrapper .color-block .color-wrap .active').attr('data-color'),
 			index = $('.cars-wrapper .current-car-wrapper .title-name').attr('data-index'),
-			price = $('.cars-wrapper .left-wrap .buy-button span.price').text(),
+			price = $('.cars-wrapper .left-wrap .price-block span.price').text(),
 			currentWrapper = $('.cars-wrapper .current-car-wrapper .title-name').attr('data-type'),
 			currentList = eval(currentWrapper+'List'),
 			hash = currentList[index].hash,
@@ -432,7 +437,7 @@ function refreshAutoshop()
 		$('.cars-wrapper .right-wrap .sit-places .sit-item').text(currentList[currentIndex].places);
 		$('.cars-wrapper .right-wrap .luggage-places .luggage-item span').text(currentList[currentIndex].luggage);
 		$('.cars-wrapper .right-wrap .class-places .class-item').text(currentList[currentIndex].type);
-		$('.cars-wrapper .left-wrap .buy-button span.price').text(currentList[currentIndex].price);
+		$('.cars-wrapper .left-wrap .price-block span.price').text(currentList[currentIndex].price);
 		$('.cars-wrapper .current-car-wrapper .right-wrap .img-block img').attr('src',$(this).find('img').attr('src'));
 		if(currentWrapper == 'trailers')
 		{
@@ -494,23 +499,23 @@ function uniqueFilter(array)
 	return uniq;
 };
 function unique(array) {
-    return $.grep(array, function(el, index) {
-        return index === $.inArray(el, array);
-    });
+	return $.grep(array, function(el, index) {
+		return index === $.inArray(el, array);
+	});
 }
 $('.ads-wrapper .currentads-inner, .ads-wrapper .socialads-inner').mousewheel(function(e, delta) {
-    this.scrollLeft -= (delta * 40);
-    e.preventDefault();
+	this.scrollLeft -= (delta * 40);
+	e.preventDefault();
 });
 $(function(){
-    var popup = null;
-    var sendObject = {
-      title: 'Тестовое сообщение',
-      value: 5000
-    };
- 
-    $('.btn-iframe').click(function(){
-      var iframe = $('#ads-frame');
-      iframe[0].contentWindow.postMessage(sendObject,'*');
-    });
-  });
+	var popup = null;
+	var sendObject = {
+	title: 'Тестовое сообщение',
+	value: 5000
+	};
+
+	$('.btn-iframe').click(function(){
+	var iframe = $('#ads-frame');
+	iframe[0].contentWindow.postMessage(sendObject,'*');
+	});
+});
