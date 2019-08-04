@@ -123,19 +123,56 @@ var sex = '',
 	];
 function checkAction(action, index, id, currentCount)
 {
-	if(action == 'use')
-	{
-		let removeElem = inventoryList[index];
-		if(!useElementChecker(removeElem))
-		{
-			mp.trigger(action, index, id, currentCount);          
-		}
-	}
-	else
-	{
-		mp.trigger(action, index, id, currentCount); 
-	}
+	$('.debugger .left-wrap, .debugger .right-wrap').empty();
+	actionDebugger(action, index, id, currentCount);
+	doneAction(action, index, id, currentCount);
+	// if(action == 'use')
+	// {
+	// 	let removeElem = inventoryList[index];
+	// 	if(!useElementChecker(removeElem))
+	// 	{
+	// 		mp.trigger(action, index, id, currentCount);          
+	// 	}
+	// }
+	// else
+	// {
+	// 	mp.trigger(action, index, id, currentCount); 
+	// }
 };
+function actionDebugger(action, index, id, currentCount)
+{	
+	if(typeof action != 'undefined')
+	{
+		let val = `<div class="debug-wrap">
+						<div class="action">${action}</div>
+						<div class="id">${id}</div>
+						<div class="index">${inventoryList[index].name}</div>
+						<div class="currentCount">${currentCount}</div>
+					</div>`;
+		
+		$('.debugger .left-wrap').append(val);
+	}
+	$('.debugger .right-wrap').empty();
+	$('.debugger .right-wrap').append(`<div class="action" style="margin:10px 0">АКТУАЛЬНЫЙ СПИСОК</div>`);
+	$(inventoryList).each(function(index,item){
+		let show = `<div class="debug-wrap" style="display:flex">
+						<div class="action" style="margin-right:25px">${index}</div>
+						<div class="action">${item.name}</div>
+						<div class="id" style="margin-left:25px">${item.count}</div>
+					</div>`;		
+		$('.debugger .right-wrap').append(show);
+	});
+	$('.debugger .right-wrap').append(`<div class="action" style="margin:10px 0">СПИСОК ПОСЛЕ ДЕЙСТВИЯ</div>`);
+	$(newList).each(function(index,item){
+		let show = `
+					<div class="debug-wrap" style="display:flex">
+						<div class="action" style="margin-right:25px">${index}</div>
+						<div class="action">${item.name}</div>
+						<div class="id" style="margin-left:25px">${item.count}</div>
+					</div>`;		
+		$('.debugger .right-wrap').append(show);
+	});	
+}
 function doneAction(action, index, id, currentCount)
 {	
 	var removeElem = '';
@@ -242,7 +279,8 @@ function doneAction(action, index, id, currentCount)
             inventoryInitialize();  
             break;        
     }
-	genFullInventory();	
+	genFullInventory();		
+	actionDebugger(action, index, id, currentCount);
     mp.trigger("action.currentInventory", action, JSON.stringify(newList));
 };
 function listIndexCheck(id)
@@ -458,7 +496,8 @@ function pushInventory(item,gender,maxweight)
 	refreshInventory('weapons');
 	refreshInventory('person');
 	refreshInventory('inventory');	
-    inventoryInitialize();  
+	inventoryInitialize();  	
+	actionDebugger();
 };
 function inventoryInitialize()
 {	
@@ -618,7 +657,7 @@ function toogleTab(currentTab)
 			break;
 		case 'items':
 			$(inventoryList).each(function(index,item){
-				if(item.type == 'Instrument' || item.type == 'Medical_Preparation' || item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
+				if(item.type == 'Instrument' || item.type == 'Medical_Preparation' || item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol' || item.type == 'Key')
 				{
 					item.visible = true;
 				}

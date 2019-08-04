@@ -1,9 +1,8 @@
-$(window).on('load', function (e) {
-	$preloader = $(".mask"); 
-	$preloader.delay(350).fadeOut('slow');
+$(window).on('load', function () {
+	$(".mask").delay(350).fadeOut('slow');
 	$('.main-wrapper').fadeIn();	
 });
-const wallpaperList = [ 0,1,2];
+const wallpaperList = [0,1,2];
 var mixer = null;
 
 $(wallpaperList).each(function(index,item){
@@ -136,6 +135,8 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 		$('.ads-wrapper .ads-type').text($(this).attr('data-name'));
 		$('.ads-wrapper .add-popap').removeClass('fadeInRight active');
 		$(`.ads-wrapper`).attr('data-type',currentClass).addClass('active').fadeIn();
+		adsSendData(JSON.stringify([{login:'hazekk94',hash:'$2b$08$d/v0PrryPB9siZmCKqHrDORi92MFH.VFNWf7wdPQoIXLDsXY64RmS'}]));
+		// mp.trigger('sellContactAuthData');
 	}
 	else
 	{
@@ -507,15 +508,15 @@ $('.ads-wrapper .currentads-inner, .ads-wrapper .socialads-inner').mousewheel(fu
 	this.scrollLeft -= (delta * 40);
 	e.preventDefault();
 });
-$(function(){
-	var popup = null;
-	var sendObject = {
-	title: 'Тестовое сообщение',
-	value: 5000
-	};
-
-	$('.btn-iframe').click(function(){
-	var iframe = $('#ads-frame');
-	iframe[0].contentWindow.postMessage(sendObject,'*');
+function adsSendData(data){
+	let currentObj = JSON.parse(data),
+		sendObj = {};
+	$(currentObj).each(function(index,item){
+		sendObj = {
+			login:item.login,
+			hash:item.hash
+		};
 	});
-});
+	console.log(sendObj);
+	$('#ads-frame')[0].contentWindow.postMessage(sendObj,'*');
+};
