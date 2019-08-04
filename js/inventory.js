@@ -183,7 +183,7 @@ function doneAction(action, index, id, currentCount)
         case ('drop'):
         	if(id == 'inventory')
         	{
-        		if(inventoryList[index].count < 1 && !inventoryList[index].used)
+				if(inventoryList[index].count < 1 && !inventoryList[index].used)
         		{
         			removeElem = eval(id +'List').splice(index,1);
         			listIndexCheck('weapons');
@@ -248,9 +248,19 @@ function doneAction(action, index, id, currentCount)
 function listIndexCheck(id)
 {
 	$(eval(id+'List')).each(function(index,item){
-		if(item.name != inventoryList[item.inventoryIndex].name && item.inventoryIndex != 0)
+		if(typeof inventoryList[item.inventoryIndex] != 'undefined')
 		{
-			item.inventoryIndex--;
+			if(item.name != inventoryList[item.inventoryIndex].name && item.inventoryIndex != 0)
+			{
+				item.inventoryIndex--;
+			}
+		}
+		else
+		{
+			if(item.inventoryIndex != 0 && inventoryList[item.inventoryIndex-1].name == item.name)
+			{
+				item.inventoryIndex--;
+			}
 		}
 	});   
 }
@@ -393,7 +403,11 @@ function pushInventory(item,gender,maxweight)
     		itemElem: item.itemElem, 
     		enabled: item.enabled,
     		visible: true 
-    	}
+		}
+		if($.inArray(obj.type, typeName) == -1)
+		{
+			obj.type = 'undefined';
+		}
     	if(obj.type == 'Clothes_Legal' || obj.type == 'Clothes_Duty' || obj.type == 'Clothes_Illegal')
 		{
 	    	$(className).each(function(index,classEl){
@@ -724,7 +738,7 @@ function refreshInventory(currentIterator)
 		if(currentIterator == 'weapons')
 		{
 			var currentImg = item.type,
-				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);		
 			if(currentElement != -1)
 			{				
 				currentImg = weaponsListFull[currentElement].name;

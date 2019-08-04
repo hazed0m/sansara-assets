@@ -140,30 +140,26 @@ function clothesInitialize()
             if(currentAttr > 1)
             {
                 currentAttr--;
-                $(element).attr('color-index',currentAttr);
-                mp.trigger("clothesSelectColor", item, currentAttr);
             }
             else
             {
                 currentAttr = clothesArr[className[itemIndex]][itemAttr].color.length;
-                $(element).attr('color-index',currentAttr);
-                mp.trigger("clothesSelectColor", item, currentAttr);
             }
+            $(element).attr('color-index',currentAttr);
+            mp.trigger("clothesSelectColor", item, currentAttr);
         }
         if($(clicker).hasClass('fa-chevron-right') && !$(clicker).parent().hasClass('disabled'))
         {
             if(currentAttr != clothesArr[className[itemIndex]][itemAttr].color.length)
             {
                 currentAttr++;
-                $(element).attr('color-index',currentAttr);
-                mp.trigger("clothesSelectColor", item, currentAttr);
             }
             else
             {
                 currentAttr = 1;
-                $(element).attr('color-index',currentAttr);
-                mp.trigger("clothesSelectColor", item, currentAttr);
             }
+            $(element).attr('color-index',currentAttr);
+            mp.trigger("clothesSelectColor", item, currentAttr);
         }
     });
     $('.title-wrap .fa-chevron-left, .title-wrap .fa-chevron-right').on('click',function(){
@@ -173,9 +169,17 @@ function clothesInitialize()
         var currentAttr = $(element).attr('data-item');
         var currentIndex = $(element).attr('data-index');
         var parent = $(element).parent().parent()[0].id;
-        if($(clicker).hasClass('fa-chevron-left') && currentAttr > 0)
+        if($(clicker).hasClass('fa-chevron-left'))
         {
-            currentAttr--;
+            if(currentAttr > 0)
+            {
+                currentAttr--;
+            }
+            else
+            {
+                let length = clothesArr[className[currentIndex]].length - 1;
+                currentAttr = length;
+            }
             $(element).attr('data-item',currentAttr);
             $(element).attr('data-price',clothesArr[className[currentIndex]][currentAttr].price);
             $(element).attr('data-counted', false);
@@ -184,9 +188,16 @@ function clothesInitialize()
             colorInitialize(currentIndex,currentAttr);
             mp.trigger("wearClothes",clothesArr[className[currentIndex]][currentAttr].name);
         }
-        if($(clicker).hasClass('fa-chevron-right') && currentAttr < clothesArr[className[currentIndex]].length - 1)
+        if($(clicker).hasClass('fa-chevron-right'))
         {
-            currentAttr++;
+            if(currentAttr < clothesArr[className[currentIndex]].length - 1)
+            {
+                currentAttr++;
+            }
+            else
+            {
+                currentAttr = 0;
+            }
             $(element).attr('data-item',currentAttr);
             $(element).attr('data-price',clothesArr[className[currentIndex]][currentAttr].price);
             $(element).attr('data-counted', false);
