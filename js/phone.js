@@ -1,8 +1,5 @@
-$(window).on('load', function (e) {
-	$preloader = $(".mask"); 
-	$preloader.delay(350).fadeOut('slow');
-	$('.main-wrapper').fadeIn();	
-});
+$(".mask").fadeOut('slow');
+$('.main-wrapper').fadeIn();	
 const wallpaperList = [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13];
 var contactsList = 	[],
 	callsList = [],
@@ -40,7 +37,7 @@ function phoneToTop()
 }
 function phoneToBottom()
 {
-	$('.container').css('top',carslist);
+	$('.container').css('top',currentTopPosition);
 }
 function pushContactList(item,carslist)
 {

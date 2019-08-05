@@ -1,7 +1,5 @@
-$(window).on('load', function () {
-	$(".mask").delay(350).fadeOut('slow');
-	$('.main-wrapper').fadeIn();	
-});
+$(".mask").delay(350).fadeOut('slow');
+$('.main-wrapper').fadeIn();
 const wallpaperList = [0,1,2];
 var mixer = null;
 
@@ -136,6 +134,7 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 		$('.ads-wrapper .add-popap').removeClass('fadeInRight active');
 		$(`.ads-wrapper`).attr('data-type',currentClass).addClass('active').fadeIn();
 		adsSendData(JSON.stringify([{login:'hazekk94',hash:'$2b$08$d/v0PrryPB9siZmCKqHrDORi92MFH.VFNWf7wdPQoIXLDsXY64RmS'}]));
+		
 		// mp.trigger('sellContactAuthData');
 	}
 	else
@@ -144,6 +143,20 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 	}
 	backButtonCheck();
 });
+urlExists($('#ads-frame').attr('src'));
+function urlExists(url){
+	$.ajax({
+	  type: 'HEAD',
+	  url: url,
+	  success: function(){
+		
+	  },
+	  error: function() {
+		$('.ads-wrapper').append('<div class="mask frameerror" style="color:#fff">Сайт в данный момент недоступен!</div>');
+	  }
+	});
+};
+
 $('.news-item .video-block').each(function(index,item){
 	let curLink = $(this).attr('data-id');
 	if(curLink)

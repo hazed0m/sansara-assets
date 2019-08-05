@@ -125,32 +125,38 @@ function checkAction(action, index, id, currentCount)
 {
 	$('.debugger .left-wrap, .debugger .right-wrap').empty();
 	actionDebugger(action, index, id, currentCount);
-	doneAction(action, index, id, currentCount);
-	// if(action == 'use')
-	// {
-	// 	let removeElem = inventoryList[index];
-	// 	if(!useElementChecker(removeElem))
-	// 	{
-	// 		mp.trigger(action, index, id, currentCount);          
-	// 	}
-	// }
-	// else
-	// {
-	// 	mp.trigger(action, index, id, currentCount); 
-	// }
+	if(action == 'use')
+	{
+		let removeElem = inventoryList[index];
+		if(!useElementChecker(removeElem))
+		{
+			mp.trigger(action, index, id, currentCount);          
+		}
+	}
+	else
+	{
+		mp.trigger(action, index, id, currentCount); 
+	}
 };
 function actionDebugger(action, index, id, currentCount)
 {	
 	if(typeof action != 'undefined')
 	{
-		let val = `<div class="debug-wrap">
-						<div class="action">${action}</div>
-						<div class="id">${id}</div>
-						<div class="index">${inventoryList[index].name}</div>
-						<div class="currentCount">${currentCount}</div>
-					</div>`;
-		
-		$('.debugger .left-wrap').append(val);
+		if(typeof inventoryList[index] != 'undefined')
+		{
+			let val = `<div class="debug-wrap">
+							<div class="action">${action}</div>
+							<div class="id">${id}</div>
+							<div class="index">${inventoryList[index].name}</div>
+							<div class="currentCount">${currentCount}</div>
+						</div>`;
+			
+			$('.debugger .left-wrap').append(val);
+		}
+		else
+		{
+			$('.debugger .left-wrap').append('<div class="action">Последний элемент в массиве был удален</div>');
+		}
 	}
 	$('.debugger .right-wrap').empty();
 	$('.debugger .right-wrap').append(`<div class="action" style="margin:10px 0">АКТУАЛЬНЫЙ СПИСОК</div>`);

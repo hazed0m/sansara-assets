@@ -94,6 +94,15 @@
 	width:100%;
 	height:100%;
 }
+.mask.frameerror
+{
+	background:url(../images/auth/bg.png) no-repeat;
+	background-size:cover;
+	background-position: bottom;
+	width:101%;
+	height:100%;
+	font-size:20px;
+}
 /* Mask */
 .container
 {
