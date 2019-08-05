@@ -5,6 +5,7 @@ var sex = '',
 	weaponsList = [],
 	personList = [],
 	newList = [],
+	actionTime,
     typeName = 
     [
         'Eat',                                              
@@ -125,6 +126,7 @@ function checkAction(action, index, id, currentCount)
 {
 	$('.debugger .left-wrap, .debugger .right-wrap').empty();
 	actionDebugger(action, index, id, currentCount);
+	actionTimeOut();
 	if(action == 'use')
 	{
 		let removeElem = inventoryList[index];
@@ -181,6 +183,11 @@ function actionDebugger(action, index, id, currentCount)
 }
 function doneAction(action, index, id, currentCount)
 {	
+	clearTimeout(actionTime);
+	actionTime = null;
+	$('.mask').each(function(index,item){
+		$(item).fadeOut();
+	});
 	var removeElem = '';
 	newList = [];	
     switch(action)
@@ -430,6 +437,18 @@ function notificationShow(notification)
 	$('.info-wrapper').fadeIn();
 	var currentT = setTimeout(() => {$('.info-wrapper').fadeOut();},3000);
 };
+function actionTimeOut()
+{
+	$('.mask').each(function(index,item){
+		$(item).fadeIn();
+	});
+	actionTime = setTimeout(function(){
+		$('.mask').each(function(index,item){
+			$(item).fadeOut();
+		});
+		mp.trigger('actionTimedOut');
+	}, 3000);
+}
 function pushInventory(item,gender,maxweight)
 {
 	sex = gender;

@@ -118,7 +118,7 @@
 
 .shop-item .inner-item:hover
 {
-	background-size:90% !important;
+	background-size:98% !important;
 	border-radius: 5px;
 }
 .container .shop-wrap .shop-item .inner-item
@@ -135,16 +135,16 @@
 	text-transform: capitalize;
 	font-size:11.38px;
 	color:#fff;
-	height:26px;
+	height:40px;
 	width:100%;
 	background:rgba(0,0,0,0.5);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position:absolute;
-	padding:0 5px;
+	padding:5px 5px 10px 5px;
 	box-sizing: border-box;
-	bottom:7px;		
+	bottom:0;		
 	transition: 0.2s;
 }
 .container .shop-wrap .shop-item:hover .title
