@@ -143,19 +143,19 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 	}
 	backButtonCheck();
 });
-urlExists($('#ads-frame').attr('src'));
-function urlExists(url){
-	$.ajax({
-	  type: 'HEAD',
-	  url: url,
-	  success: function(){
+// urlExists($('#ads-frame').attr('src'));
+// function urlExists(url){
+// 	$.ajax({
+// 	  type: 'HEAD',
+// 	  url: url,
+// 	  success: function(){
 		
-	  },
-	  error: function() {
-		$('.ads-wrapper').append('<div class="mask frameerror" style="color:#fff">Сайт в данный момент недоступен!</div>');
-	  }
-	});
-};
+// 	  },
+// 	  error: function() {
+// 		$('.ads-wrapper').append('<div class="mask frameerror" style="color:#fff">Сайт в данный момент недоступен!</div>');
+// 	  }
+// 	});
+// };
 
 $('.news-item .video-block').each(function(index,item){
 	let curLink = $(this).attr('data-id');
@@ -439,11 +439,8 @@ function refreshAutoshop()
 			currentIndex = $(this).parent().attr('data-index'),
 			currentList = eval(currentWrapper+'List');			
 		$('.cars-wrapper .current-car-wrapper').find('.buy-button.disabled').removeClass('disabled');
-		$('.cars-wrapper .current-car-wrapper').fadeIn();
-		$('.cars-wrapper .inner-wrapper').fadeOut();
-		$('.cars-wrapper .forward').fadeIn();
-		$('.cars-wrapper .sort-block').fadeOut();
-		$('.cars-wrapper .filter-block').fadeOut();		
+		$('.cars-wrapper .current-car-wrapper, .cars-wrapper .forward').fadeIn();
+		$('.cars-wrapper .sort-block, .cars-wrapper .filter-block, .cars-wrapper .inner-wrapper, .back-but').fadeOut();
 		$('.cars-wrapper .current-car-wrapper .title-name').attr('data-type',currentWrapper);
 		$('.cars-wrapper .current-car-wrapper .title-name').attr('data-index',currentIndex);
 		$('.cars-wrapper .current-car-wrapper .title-name').text(currentList[currentIndex].name);

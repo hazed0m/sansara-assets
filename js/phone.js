@@ -41,6 +41,8 @@ function phoneToBottom()
 }
 function pushContactList(item,carslist)
 {
+	contactsList = [],
+	carsList = [];
 	let itemList = JSON.parse(item);
 	let carList = JSON.parse(carslist);
 	$(itemList).each(function(index,item){
@@ -64,8 +66,7 @@ function pushContactList(item,carslist)
 			};
 			carsList.push(obj);
 		}
-	});	
-	
+	});		
 	pushContacts('contacts');
 	pushContacts('geo');
 	pushContacts('messages');

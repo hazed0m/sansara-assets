@@ -1337,7 +1337,6 @@
 	border-radius: 5px;
 	cursor: pointer;
 	font-size:14px;
-	transition: 0.2s;
 }
 .cars-wrapper .forward:hover
 {
@@ -1679,7 +1678,7 @@
 }
 .cars-wrapper .right-wrap .sit-places
 {
-	margin-top:40px;
+	margin-top:30px;
 }
 .cars-wrapper .left-wrap .buy-button
 {
