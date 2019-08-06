@@ -485,7 +485,7 @@ function pushContacts(currentWrapper)
 			$(carsList).each(function(index,item)
 			{
 				let parked = '<div class="parked disabled"></div>';
-				if(item.parked == true)
+				if(item.parked == 'true')
 				{
 					parked = `<div class="parked"></div>`;
 				}			
