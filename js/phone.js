@@ -42,15 +42,30 @@ function phoneToBottom()
 function pushContactList(item,carslist)
 {
 	let itemList = JSON.parse(item);
-	carsList = JSON.parse(carslist);
+	let carList = JSON.parse(carslist);
 	$(itemList).each(function(index,item){
-		let obj = {
-			'name': item.name,
-			'number': item.number,
-			'messageList': []
-		};
-		contactsList.push(obj);
+		if(typeof item.name != "undefined" && typeof item.number != "undefined")
+		{
+			let obj = {
+				'name': item.name,
+				'number': item.number,
+				'messageList': []
+			};
+			contactsList.push(obj);
+		}
 	});	
+	$(carList).each(function(index,item){
+		if(typeof item.name != "undefined" && typeof item.parked != "undefined" && typeof item.number != "undefined")
+		{
+			let obj = {
+				'name': item.name,
+				'parked': item.parked,
+				'number': item.number
+			};
+			carsList.push(obj);
+		}
+	});	
+	
 	pushContacts('contacts');
 	pushContacts('geo');
 	pushContacts('messages');
@@ -460,27 +475,31 @@ function pushContacts(currentWrapper)
 {
 	$(`.${currentWrapper}-wrapper .wrapper`).empty();	
 	if(currentWrapper == 'getCar')
-	{		
-		carsNameRefresh();
-		$(carsList).each(function(index,item){
-			let parked = '<div class="parked disabled"></div>';
-			if(item.parked == true)
+	{	
+		if(carsList.length > 0)
+		{
+			carsNameRefresh();
+			$(carsList).each(function(index,item)
 			{
-				parked = `<div class="parked"></div>`;
-			}			
-			currentTemplate = `<div class="number" data-type="${item.type}" data-index="${index}" data-number="${item.number}">
-									<div class="title-wrapper">
-										<div class="title-number">${item.name}</div>
-										<div class="car-number">${item.number}</div>
-									</div>
-									<div class="button-wrapper">
-										${parked}
-										<div class="geo"></div>
-									</div>
-								</div>`;
-			$(`.${currentWrapper}-wrapper .wrapper`).append(currentTemplate);
-		});	
-		refreshGetCar();
+				let parked = '<div class="parked disabled"></div>';
+				if(item.parked == true)
+				{
+					parked = `<div class="parked"></div>`;
+				}			
+				currentTemplate = `<div class="number" data-type="${item.type}" data-index="${index}" data-number="${item.number}">
+				<div class="title-wrapper">
+				<div class="title-number">${item.name}</div>
+				<div class="car-number">${item.number}</div>
+				</div>
+				<div class="button-wrapper">
+				${parked}
+				<div class="geo"></div>
+				</div>
+				</div>`;
+				$(`.${currentWrapper}-wrapper .wrapper`).append(currentTemplate);
+			});	
+			refreshGetCar();
+		}	
 	}
 	else
 	{
@@ -929,28 +948,28 @@ function refreshGetCar()
 {
 	$('.getCar-wrapper .button-wrapper .geo').on('click',function(){
 		let currentElem = carsList[$(this).parent().parent().attr('data-index')];
-		console.log(currentElem);
 		$(this).fadeOut();
 		$('.getCar-wrapper .current-wrapper .nothing-used').css('display','none').removeClass('active');
 		$('.getCar-wrapper .current-wrapper .geo-added').fadeIn(300).css('display','flex').addClass('active');
 		saveTimeout = setTimeout(function(){
 			$('.getCar-wrapper .current-wrapper .geo-added').css('display','none');
 			$('.getCar-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
-		}, 1500);
+		}, 500);
 		mp.trigger('PhoneSendGeoCar', currentElem.number);
 	});
 	$('.getCar-wrapper .button-wrapper .parked').on('click',function(){
 		if(!$(this).hasClass('disabled'))
 		{
 			let currentElem = carsList[$(this).parent().parent().attr('data-index')];
-			console.log(currentElem);
 			$(this).fadeOut();
+			let currentMessage = $('.getCar-wrapper .current-wrapper .geo-added').text(),
+				parkedMessage = `<span style="text-transform:capitalize;margin-right:5px;">${carsList[$(this).parent().parent().attr('data-index')].name}</span> выгнан из парковки`;
 			$('.getCar-wrapper .current-wrapper .nothing-used').css('display','none').removeClass('active');
-			$('.getCar-wrapper .current-wrapper .geo-added').fadeIn(300).css('display','flex').addClass('active');
+			$('.getCar-wrapper .current-wrapper .geo-added').text('').append(parkedMessage).fadeIn(300).css('display','flex').addClass('active');
 			saveTimeout = setTimeout(function(){
-				$('.getCar-wrapper .current-wrapper .geo-added').css('display','none');
+				$('.getCar-wrapper .current-wrapper .geo-added').css('display','none').text(currentMessage);
 				$('.getCar-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
-			}, 1500);
+			}, 500);
 			mp.trigger('PhoneSendParkingCar', currentElem.number);
 		}
 	});

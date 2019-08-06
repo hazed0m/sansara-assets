@@ -62,7 +62,6 @@ body
 	justify-content: center;
 	align-items: center;
 	border-radius:7px;
-    border-top-right-radius: 0px;
 }
 .info-wrapper .speed-cont .speed
 {

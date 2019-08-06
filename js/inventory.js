@@ -124,9 +124,8 @@ var sex = '',
 	];
 function checkAction(action, index, id, currentCount)
 {
-	$('.debugger .left-wrap, .debugger .right-wrap').empty();
-	actionDebugger(action, index, id, currentCount);
-	actionTimeOut();
+	// $('.debugger .left-wrap, .debugger .right-wrap').empty();
+	// actionDebugger(action, index, id, currentCount);
 	if(action == 'use')
 	{
 		let removeElem = inventoryList[index];
@@ -137,6 +136,10 @@ function checkAction(action, index, id, currentCount)
 	}
 	else
 	{
+		if(action == 'give')
+		{			
+			actionTimeOut();
+		}
 		mp.trigger(action, index, id, currentCount); 
 	}
 };
@@ -183,11 +186,6 @@ function actionDebugger(action, index, id, currentCount)
 }
 function doneAction(action, index, id, currentCount)
 {	
-	clearTimeout(actionTime);
-	actionTime = null;
-	$('.mask').each(function(index,item){
-		$(item).fadeOut();
-	});
 	var removeElem = '';
 	newList = [];	
     switch(action)
@@ -261,7 +259,12 @@ function doneAction(action, index, id, currentCount)
             inventoryInitialize();  
             break;
         
-        case ('give'):
+        case ('give'):			
+			clearTimeout(actionTime);
+			actionTime = null;
+			$('.mask').each(function(index,item){
+				$(item).fadeOut();
+			});
         	if(id == 'inventory')
         	{
         		if(inventoryList[index].count < 1 && !inventoryList[index].used)
@@ -293,7 +296,7 @@ function doneAction(action, index, id, currentCount)
             break;        
     }
 	genFullInventory();		
-	actionDebugger(action, index, id, currentCount);
+	// actionDebugger(action, index, id, currentCount);
     mp.trigger("action.currentInventory", action, JSON.stringify(newList));
 };
 function listIndexCheck(id)
@@ -522,7 +525,7 @@ function pushInventory(item,gender,maxweight)
 	refreshInventory('person');
 	refreshInventory('inventory');	
 	inventoryInitialize();  	
-	actionDebugger();
+	// actionDebugger();
 };
 function inventoryInitialize()
 {	

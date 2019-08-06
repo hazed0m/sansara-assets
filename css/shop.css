@@ -97,11 +97,13 @@
 }
 .container .shop-wrap #legal .inner-item:hover
 {
-    background: rgba(251,228,1,0.4);
+	background: rgba(251,228,1,0.4);
+	background-repeat: no-repeat;
 }
 .container .shop-wrap #illegal .inner-item
 {
-    background-color: rgba(255,0,0,0.4);	
+	background-color: rgba(255,0,0,0.4);	
+	background-repeat: no-repeat;
 }
 .container .shop-wrap #illegal .inner-item:hover
 {
@@ -110,6 +112,7 @@
 .container .shop-wrap #police .inner-item
 {
 	background-color:rgba(13, 79, 202,0.8);
+	background-repeat: no-repeat;
 }
 .container .shop-wrap #police .inner-item:hover
 {
@@ -118,7 +121,7 @@
 
 .shop-item .inner-item:hover
 {
-	background-size:98% !important;
+	background-size:90% !important;
 	border-radius: 5px;
 }
 .container .shop-wrap .shop-item .inner-item
@@ -145,7 +148,7 @@
 	padding:5px 5px 10px 5px;
 	box-sizing: border-box;
 	bottom:0;		
-	transition: 0.2s;
+	transition: height 0.3s;  
 }
 .container .shop-wrap .shop-item:hover .title
 {

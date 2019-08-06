@@ -8,7 +8,7 @@ function speedFadeOut()
 };
 function pushSpeed(vehicleArrowSpeed,vehicleSpeed,gear,gas)
 {
-    pushCurrentGear(gear);
+    // pushCurrentGear(gear);
     pushCurrentArrow(vehicleArrowSpeed);
     pushCurrentSpeed(vehicleSpeed);
     gasLines(gas);

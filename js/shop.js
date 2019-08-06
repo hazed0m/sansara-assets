@@ -167,7 +167,6 @@ function shopListRefresh()
 			let currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
 			if(currentElement != -1)
 			{				
-				console.log(currentElement);
 				currentImg = weaponsList[currentElement].name;
 				legalAttr = `data-legal="${weaponsList[currentElement].legal}"`;
 				legalId = `id="${weaponsList[currentElement].legal}"`;
