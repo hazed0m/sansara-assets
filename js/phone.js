@@ -21,9 +21,12 @@ var contactsList = 	[],
 function phoneFadeOut()
 {
 	$('.container').fadeOut();
+	setTimeout(function(){		
+		goHome();
+	},200);
 }
 function phoneFadeIn()
-{
+{	
 	$('.container').fadeIn();
 }
 function messagePlay()
@@ -41,6 +44,7 @@ function phoneToBottom()
 }
 function pushContactList(item,carslist)
 {
+	goHome();
 	contactsList = [],
 	carsList = [];
 	let itemList = JSON.parse(item);
@@ -231,9 +235,12 @@ function goHome()
 {
 	refreshAudioIntervals();
 	refreshCallerIntervals();
-	let active = $('.container > .active')[0].classList[0];
-	$('.'+active).removeClass('active').fadeOut();
-	$('.main-wrapper').addClass('active').fadeIn();
+	if(!$('.main-wrapper').hasClass('active'))
+	{
+		let active = $('.container > .active')[0].classList[0];
+		$('.'+active).removeClass('active').fadeOut();
+		$('.main-wrapper').addClass('active').fadeIn();
+	}
 }
 function toCall(number,type)
 {
@@ -440,33 +447,28 @@ $('.bottom-block .phonebook').on('click',function(){
 function carsNameRefresh()
 {
 	$(carsList).each(function(index,item){
-		if(typeof autosList.find(autosList => autosList.hash === item.name) != 'undefined')
+		if(typeof autosList.find(autosList => autosList.name === item.name.toLowerCase()) != 'undefined')
 		{
-			item.name = autosList.find(autosList => autosList.hash === item.name).name;
 			item.type = 'auto';
 			return true;
 		}
-		if(typeof motosList.find(motosList => motosList.hash === item.name) != 'undefined')
+		if(typeof motosList.find(motosList => motosList.name === item.name.toLowerCase()) != 'undefined')
 		{
-			item.name = motosList.find(motosList => motosList.hash === item.name).name;
 			item.type = 'moto';
 			return true;
 		}
-		if(typeof trucksList.find(trucksList => trucksList.hash === item.name) != 'undefined')
+		if(typeof trucksList.find(trucksList => trucksList.name === item.name.toLowerCase()) != 'undefined')
 		{
-			item.name = trucksList.find(trucksList => trucksList.hash === item.name).name;
 			item.type = 'truck';
 			return true;
 		}
-		if(typeof trailersList.find(trailersList => trailersList.hash === item.name) != 'undefined')
+		if(typeof trailersList.find(trailersList => trailersList.name === item.name.toLowerCase()) != 'undefined')
 		{
-			item.name = trailersList.find(trailersList => trailersList.hash === item.name).name;
 			item.type = 'trailer';
 			return true;
 		}
-		if(typeof boatsList.find(boatsList => boatsList.hash === item.name) != 'undefined')
+		if(typeof boatsList.find(boatsList => boatsList.name === item.name.toLowerCase()) != 'undefined')
 		{
-			item.name = boatsList.find(boatsList => boatsList.hash === item.name).name;
 			item.type = 'boat';
 			return true;
 		}
