@@ -66,25 +66,25 @@
 }
 @font-face {
 	font-family:"HelveticaNeueCyr";
-	src: url("HelveticaNeueCyr-Medium.otf") format("truetype");
+	src: url("HelveticaNeueCyr-Medium.otf");
 	font-weight: bold;
 	font-style: normal;
 }
 @font-face {
 	font-family:"HelveticaNeueCyr";
-	src: url("HelveticaNeueCyr-Medium.otf") format("truetype");
+	src: url("HelveticaNeueCyr-Medium.otf");
 	font-weight: 500;
 	font-style: normal;
 }
 @font-face {
 	font-family:"HelveticaNeueCyr";
-	src: url("HelveticaNeueCyr-Roman.otf") format("truetype");
+	src: url("HelveticaNeueCyr-Roman.otf");
 	font-weight: normal;
 	font-style: normal;
 }
 @font-face {
 	font-family:"HelveticaNeueCyr";
-	src: url("Helvetica Neue Condensed Black.ttf") format("truetype");
+	src: url("Helvetica Neue Condensed Black.ttf");
 	font-weight: 900;
 	font-style: normal;
 }

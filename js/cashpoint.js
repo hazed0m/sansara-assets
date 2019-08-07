@@ -31,8 +31,23 @@ function clearInput()
 		$('#topup-wrapper input').replaceWith(topupInput);		
 	}
 	$('#putback-wrapper input').attr('max',cashVal);	
-	$('#withdrawal-wrapper input').attr('max',maxWithdrawal);
-	$('#topup-wrapper input').attr('max',1000);
+	if(cardVal < maxWithdrawal)
+	{
+		$('#withdrawal-wrapper input').attr('max',cardVal);
+	}
+	else
+	{
+		$('#withdrawal-wrapper input').attr('max',maxWithdrawal);
+	}
+	if(cardVal < 1000)
+	{
+		$('#topup-wrapper input').attr('max',cardVal);
+	}
+	else
+	{
+		$('#topup-wrapper input').attr('max',1000);
+	}
+	
 	var inputQuantity = [];
     $(function() {
       $("#putback-wrapper input, #withdrawal-wrapper input, #topup-wrapper input").each(function(i) {
@@ -45,7 +60,7 @@ function clearInput()
             $thisIndex=parseInt($field.data("idx"),10); // retrieve the index
 			//window.console && console.log($field.is(":invalid"));
           	//$field.is(":invalid") is for Safari, it must be the last to not error in IE8
-        if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
+        if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") || this.value == '0') {
             this.value = inputQuantity[$thisIndex];
             return;
         } 
@@ -102,35 +117,44 @@ function refreshCashpoint()
 //Снятие наличных
 $('#withdrawal-wrapper .button').on('click',function(){
 	let currentVal = $(this).parent().find('input').val();
-	cardVal = parseInt(cardVal) - parseInt(currentVal);
-	cashVal = parseInt(cashVal) + parseInt(currentVal);
-	refreshCashpoint();
-	$('#withdrawal-wrapper').fadeOut();
-	clearInput();
-	$('#main-wrapper').fadeIn();
-	checkBackButton();
-	mp.trigger("cashpoint.withdrawal",currentVal);
+	if(currentVal != '' && currentVal > 0)
+	{
+		cardVal = parseInt(cardVal) - parseInt(currentVal);
+		cashVal = parseInt(cashVal) + parseInt(currentVal);
+		refreshCashpoint();
+		$('#withdrawal-wrapper').fadeOut();
+		clearInput();
+		$('#main-wrapper').fadeIn();
+		checkBackButton();
+		mp.trigger("cashpoint.withdrawal",currentVal);
+	}
 });
 //Пополнение карты
 $('#putback-wrapper .button').on('click',function(){
 	let currentVal = $(this).parent().find('input').val();
-	cardVal = parseInt(cardVal) + parseInt(currentVal);
-	cashVal = parseInt(cashVal) - parseInt(currentVal);
-	$('#putback-wrapper').fadeOut();
-	clearInput();	
-	refreshCashpoint();
-	$('#main-wrapper').fadeIn();
-	checkBackButton();
-	mp.trigger("cashpoint.putback",currentVal);
+	if(currentVal != '' && currentVal > 0)
+	{
+		cardVal = parseInt(cardVal) + parseInt(currentVal);
+		cashVal = parseInt(cashVal) - parseInt(currentVal);
+		$('#putback-wrapper').fadeOut();
+		clearInput();	
+		refreshCashpoint();
+		$('#main-wrapper').fadeIn();
+		checkBackButton();
+		mp.trigger("cashpoint.putback",currentVal);
+	}
 });
 //Пополнение телефона
 $('#topup-wrapper .button').on('click',function(){
 	let currentVal = $(this).parent().find('input').val();
-	cardVal = parseInt(cardVal) - parseInt(currentVal);
-	$('#topup-wrapper').fadeOut();
-	clearInput();	
-	refreshCashpoint();
-	$('#main-wrapper').fadeIn();
-	checkBackButton();
-	mp.trigger("cashpoint.topup",currentVal);
+	if(currentVal != '' && currentVal > 0)
+	{
+		cardVal = parseInt(cardVal) - parseInt(currentVal);
+		$('#topup-wrapper').fadeOut();
+		clearInput();	
+		refreshCashpoint();
+		$('#main-wrapper').fadeIn();
+		checkBackButton();
+		mp.trigger("cashpoint.topup",currentVal);
+	}
 });
