@@ -1501,11 +1501,11 @@
 {
 	position: absolute;
 	top:-1px;
-	left:-1px;
+	left:0;
 	width:60%;
 	background:#fbe502;
 	box-shadow: 0 0 2px #fbe502;
-	height:9px;
+	height:8px;
 	border-radius: 3px;
 }
 .cars-wrapper .car-block .car-info .car-weight

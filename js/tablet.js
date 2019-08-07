@@ -396,7 +396,7 @@ $('.cars-wrapper .menu .link').on('click',function(){
 });
 function speedPercentage(curSpeed)
 {
-	const max = 300;
+	const max = typeof getMaxSpeed() != 'undefined' ? getMaxSpeed() : 300;
 	let percentage = (curSpeed/max)*100;
 	return percentage;
 }
