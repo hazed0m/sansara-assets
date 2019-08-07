@@ -143,6 +143,9 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 	}
 	backButtonCheck();
 });
+$('.main-wrapper .locker').on('click',function(){
+	mp.trigger('lockTablet');
+});
 // urlExists($('#ads-frame').attr('src'));
 // function urlExists(url){
 // 	$.ajax({

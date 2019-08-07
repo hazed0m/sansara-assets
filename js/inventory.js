@@ -527,6 +527,9 @@ function pushInventory(item,gender,maxweight)
 	inventoryInitialize();  	
 	// actionDebugger();
 };
+$('.left-inventory .close').on('click',function(){
+	mp.trigger('closeInventory');
+});
 function inventoryInitialize()
 {	
 	$('#inventory .itemInv').on('click', function()

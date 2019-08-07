@@ -142,6 +142,9 @@ $('.main-wrapper .settings').on('click',function(){
 	$('.main-wrapper').removeClass('active').fadeOut();
 	$('.settings-wrapper').addClass('active').fadeIn();
 });
+$('.main-wrapper .locker').on('click',function(){
+	mp.trigger('lockPhone');
+});
 function homeButChange()
 {
 	if($('.main-wrapper').is(':visible'))

@@ -229,16 +229,31 @@
 {
 	position:absolute;
 	left:3%;
-	bottom:3%;
+	bottom:16%;
 	width:55px;
 	height:55px;
 	background:url(../img/phone/settings.png) no-repeat;
 	background-size:cover;
 }
+.main-wrapper .locker
+{
+	position:absolute;
+	left:3%;
+	bottom:3%;
+	width:55px;
+	height:55px;
+	background:rgba(155, 17, 17, 0.95);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size:32px;
+	color:#fff;
+	text-shadow: 3px 3px 15px rgba(0,0,0,0.8);
+}
 .main-wrapper .adsbuy
 {
 	position:absolute;
-	left:10%;
+	left:15%;
 	bottom:12%;
 	width:55px;
 	height:55px;
@@ -259,7 +274,7 @@
 .main-wrapper .adssell
 {
 	position:absolute;
-	left:18%;
+	left:23%;
 	bottom:12%;
 	width:55px;
 	height:55px;
@@ -280,7 +295,7 @@
 .main-wrapper .adsgetworkers
 {
 	position:absolute;
-	left:26%;
+	left:31%;
 	bottom:12%;
 	width:55px;
 	height:55px;
@@ -301,7 +316,7 @@
 .main-wrapper .adssearchwork
 {
 	position:absolute;
-	left:34%;
+	left:39%;
 	bottom:12%;
 	width:55px;
 	height:55px;
@@ -319,7 +334,7 @@
     text-shadow:0 0 5px #000;
     color:#fff;
 }
-.main-wrapper .settings, .main-wrapper .goverment, .main-wrapper .news, .main-wrapper .cars, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork
+.main-wrapper .settings, .main-wrapper .locker, .main-wrapper .goverment, .main-wrapper .news, .main-wrapper .cars, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork
 {
 	cursor: pointer;
 	transition: 0.2s;	
@@ -421,7 +436,7 @@
     cursor: pointer;
     font-size:13px;
 }
-.main-wrapper .news:hover, .main-wrapper .goverment:hover, .main-wrapper .cars:hover, .main-wrapper .settings:hover, .main-wrapper .adsbuy:hover, .main-wrapper .adssell:hover, .main-wrapper .adsgetworkers:hover, .main-wrapper .adssearchwork:hover
+.main-wrapper .news:hover, .main-wrapper .locker:hover,.main-wrapper .goverment:hover, .main-wrapper .cars:hover, .main-wrapper .settings:hover, .main-wrapper .adsbuy:hover, .main-wrapper .adssell:hover, .main-wrapper .adsgetworkers:hover, .main-wrapper .adssearchwork:hover
 {
 	border-radius: 50%;
 	box-shadow: 0 0 10px rgba(255,255,255,0.9);
@@ -1652,7 +1667,7 @@
 {
 	position: absolute;
 	top:-1px;
-	left:-1px;
+	left:0px;
 	width:0%;
 	background:#fbe502;
 	box-shadow: 0 0 4px #fbe502;
