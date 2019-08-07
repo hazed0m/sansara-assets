@@ -158,9 +158,8 @@ function getTransportList()
     transportList = transportList.concat(autosList,motosList,trucksList,trailersList,boatsList);
     return JSON.stringify(transportList);
 }
-function getMaxSpeed()
+function getMaxSpeed(currentWrapper)
 {
-    let currentList = JSON.parse(getTransportList()),
-        max = Math.max.apply(null, currentList.map(function(item) { return item.speed; }));
+    let max = Math.max.apply(null, eval(`${currentWrapper}List`).map(function(item) { return item.speed; }));
     return max;
 }

@@ -397,10 +397,14 @@ $('.cars-wrapper .menu .link').on('click',function(){
 	}
 	refreshAutoshop();
 });
-function speedPercentage(curSpeed)
+function speedPercentage(curSpeed,currentWrapper)
 {
-	const max = typeof getMaxSpeed() != 'undefined' ? getMaxSpeed() : 300;
-	let percentage = (curSpeed/max)*100;
+	const max = typeof getMaxSpeed(currentWrapper) != 'undefined' ? getMaxSpeed(currentWrapper) : 300;
+	let percentage = 0;
+	if(max > 0)
+	{
+		percentage = (curSpeed/max)*100;
+	}
 	return percentage;
 }
 function pushAutoshop()
@@ -423,7 +427,7 @@ function pushAutoshop()
 				<div class="speed-block">
 					<div class="speed-title">Скорость</div>
 					<div class="speed-wrap">
-						<div class="line-inner" style="width:${speedPercentage(item.speed)}%;"></div>
+						<div class="line-inner" style="width:${speedPercentage(item.speed,currentWrapper)}%;"></div>
 					</div>
 				</div>
 				<div class="car-weight">
@@ -465,7 +469,7 @@ function refreshAutoshop()
 		$('.cars-wrapper .current-car-wrapper').scroll(function() {
 			var scroll = $(this).scrollTop();
 			if(scroll > position) {
-				$('.speed-wrap .line-inner').css('width',`${speedPercentage(currentList[currentIndex].speed)}%`);
+				$('.speed-wrap .line-inner').css('width',`${speedPercentage(currentList[currentIndex].speed,currentWrapper)}%`);
 			}
 			position = scroll;
 		});
