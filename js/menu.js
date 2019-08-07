@@ -270,4 +270,3 @@ let menu = new Vue({
         }
     }
 });
-

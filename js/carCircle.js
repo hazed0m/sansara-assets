@@ -7,4 +7,4 @@ $('ul li.active').on('click',function(){
     }
     mp.trigger(currentAction);   
 });
-
+$('#animCircle').setCursorPosition(1);

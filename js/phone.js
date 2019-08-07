@@ -499,7 +499,9 @@ function pushContacts(currentWrapper)
 				<div class="geo"></div>
 				</div>
 				</div>`;
+				let debug = `<div>${item.parked}</div><div>${typeof item.parked}</div>`;
 				$(`.${currentWrapper}-wrapper .wrapper`).append(currentTemplate);
+				$(`.${currentWrapper}-wrapper .wrapper`).append(debug);
 			});	
 			refreshGetCar();
 		}	

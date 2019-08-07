@@ -39,6 +39,7 @@ body {
 	border:6px solid #3d4147;
 	margin: 5px;
 	text-align: center;
+	position: relative;
 }
 .menu .center .imagesBlock img {
 	margin-top: 7px;
@@ -74,54 +75,60 @@ body {
     text-align: center;
 	font-size: 20px;
 	text-shadow: 0 0 5px rgba(0,0,0,0.8);
+	word-wrap: break-word;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+	overflow: hidden;
+	padding:0 10px 0 15px;
+	box-sizing: border-box;
 }
 .slot1 {
 	color: white;
 	transform: skew(-45deg) rotate(-22.5deg);
-	margin-left: 16px;
-	margin-top: 164px;
+	margin-left: 11px;
+    margin-top: 168px;
 }
 .slot2 {
 	color: white;
 	transform: skew(-45deg) rotate(-67.6deg);
-	margin-left: 110px;
-    margin-top: 99px;
+	margin-left: 116px;
+    margin-top: 111px;
 }
 .slot3 {
 	color: white;
 	transform: skew(-45deg) rotate(-112.5deg);
-	margin-left: 200px;
+	margin-left: 205px;
     margin-top: 30px;
 }
 .slot4 {
 	color: white;
 	transform: skew(-45deg) rotate(-157.5deg);
-	margin-left: 185px;
-    margin-top: 15px;
+	margin-left: 204px;
+    margin-top: 0px;
 }
 .slot5 {
 	color: white;
 	transform: skew(-45deg) rotate(-202.5deg);
-	margin-left: 105px;
-    margin-top: 20px;
+	margin-left: 117px;
+    margin-top: 4px;
 }
 .slot6 {
 	color: white;
 	transform: skew(-45deg) rotate(-247.5deg);
-	margin-left: 38px;
-    margin-top: 50px;
+	margin-left: 36px;
+    margin-top: 43px;
 }
 .slot7 {
 	color: white;
 	transform: skew(-45deg) rotate(-292.5deg);
-	margin-left: -10px;
-    margin-top:100px;
+	margin-left: -21px;
+    margin-top: 97px;
 }
 .slot8 {
 	color: white;
 	transform: skew(-45deg) rotate(-337.5deg);
-	margin-left: -20px;
-    margin-top: 150px;
+	margin-left: -37px;
+    margin-top: 161px;
 }
 .deactivated
 {
