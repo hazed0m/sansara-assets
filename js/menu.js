@@ -296,7 +296,7 @@ let menu = new Vue({
                     item = true;
                 }
             });
-            mp.trigger('gpsFilter',this.gpsFilterArr[0],this.gpsFilterArr[1],this.gpsFilterArr[2],this.gpsFilterArr[3],this.gpsFilterArr[4],this.gpsFilterArr[5]);
+            mp.trigger('gpsFilter',this.gpsFilterArr);
         },
         gpsInit(array)
         {
