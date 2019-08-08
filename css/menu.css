@@ -187,11 +187,59 @@ body {
     height: 49vh;
     overflow: auto;
 }
-.setting-wrap {
+.setting-wrap, .mapSettings-wrap {
     margin: 10px 0px;    
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.mapSettings-wrap {
+    margin:-20px 0 0 0;
+}
+.map-settings
+{
+    align-items: flex-start;
+}
+.map-title {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.map-settings .gps-item
+{
+    text-transform: capitalize;
+    font-size: 17px;
+    margin:10px 0;
+    color:#fff;
+    position: relative;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+.map-settings .gps-item::after
+{
+    content:'';
+    position: absolute;
+    top:50%;
+    left:-30px;
+    transform: translate(0,-50%);
+    width:15px;
+    height:15px;
+    background:#fff;
+    border-radius: 50%;
+}
+.map-settings .gps-item:hover::after
+{    
+    border:1px solid #fbe401;
+    box-shadow:0 0 5px #fbe401;
+    box-sizing: border-box;
+}
+.map-settings .gps-item.active::after
+{
+    border:2px solid #fff;
+    box-sizing: border-box;
+    background:rgba(80,80,80,1);
+    box-shadow:0 0 5px #fbe401;
 }
 .fast-wrap
 {

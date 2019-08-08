@@ -154,6 +154,21 @@
                     </div>
                 </div>
             </vue-slide-up-down> 
+            <vue-slide-up-down :active="mapSettingsShow" :duration="1000">
+                <div class="mapSettings-wrap" style="order:1;" v-show="mapSettingsShow === true">
+                    <div class="setting-wrap">
+                        <div class="map-settings">
+                            <div class="gps-item">дома</div>
+                            <div class="gps-item">добыча</div>
+                            <div class="gps-item">переработка</div>
+                            <div class="gps-item">крафт</div>
+                            <div class="gps-item">бизнес</div>
+                            <div class="gps-item">инфраструктура</div>
+                        </div>
+                    </div>
+                    <button class="save" :class="saveButtonState ? 'saveText__active' : ''" @click="gpsFilter()" >Применить</button>
+                </div>
+            </vue-slide-up-down>        
             <vue-slide-up-down :active="settingsShow" :duration="1000">
                 <div class="settings-wrap" style="order:1;" v-show="settingsShow === true">
                     <div class="setting-wrap">
@@ -165,7 +180,7 @@
                     </div>
                     <button class="save" :class="saveButtonState ? 'saveText__active' : ''" @click="save()" >Применить</button>
                 </div>
-            </vue-slide-up-down>            
+            </vue-slide-up-down>      
             <transition name="custom-classes-transition"
                         enter-active-class="animated fadeIn"
                         leave-active-class="animated fadeOut">    

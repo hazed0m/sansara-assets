@@ -45,6 +45,7 @@ let menu = new Vue({
         activeClass: 'btn-active',
         phoneNumber:1111111,
         settingsShow: false,
+        mapSettingsShow:false,
         skillsShow: false,
         reportShow: false,
         loginSetShow:false,
@@ -53,14 +54,16 @@ let menu = new Vue({
         setFastAnimIndex: 0,
         animateSettingsShow: false,
         saveButtonState:false,
+        gpsFilterArr: [false,true,false,false,false,false],
         isDisabled: false,
         options: [
             { text: 'Мультипаспорт', value: 'passShow', status: false },
             { text: 'Вызов администрации', value: 'reportShow', status: false },
             { text: 'Эмоции', value: 'animateShow', status: false },
             { text: 'Навыки персонажа', value: 'skillsShow', status: false },
-            { text: 'Настройки аккаунта', value: 'settingsShow', status: false},
+            { text: 'Фильтр GPS', value: 'mapSettingsShow', status: false},
             { text: 'Настройка быстрых эмоций', value: 'settingsAnimShow', status: false},
+            { text: 'Настройки аккаунта', value: 'settingsShow', status: false}
         ],
         animations: [
             { title: 'Искать', dict: 'amb@prop_human_bum_bin@idle_b', name: 'idle_d' },
@@ -155,16 +158,16 @@ let menu = new Vue({
                     switch (this.skillsShow) {
                         case true:
                            $('.categorie-title').each(function(index,item){
-                               if($(item).attr('data-id') == 'settingsShow')
+                               if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow')
                                {
-                                   $(item).fadeIn(1000); 
+                                   $(item).fadeIn(500); 
                                }
                             });
                             this.skillsShow = false;
                             break;
                         case false: 
                             $('.categorie-title').each(function(index,item){
-                               if($(item).attr('data-id') == 'settingsShow')
+                               if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow')
                                {
                                    $(item).css('display','none'); 
                                }
@@ -189,6 +192,35 @@ let menu = new Vue({
                             break;
                     }
                     break;
+                case 'mapSettingsShow':
+                this.passShow = false;
+                this.reportShow = false;
+                this.animateShow = false;
+                this.skillsShow = false;
+                animCircle.settingsAnimShow = false;
+                this.animateSettingsShow = false;
+                this.settingsShow = false;
+                switch (this.mapSettingsShow) {
+                    case true:                        
+                       $('.categorie-title').each(function(index,item){
+                           if($(item).attr('data-id') == 'settingsShow')
+                           {
+                               $(item).fadeIn(500); 
+                           }
+                        });
+                        this.mapSettingsShow = false;
+                        break;
+                    case false: 
+                        $('.categorie-title').each(function(index,item){
+                           if($(item).attr('data-id') == 'settingsShow')
+                           {
+                               $(item).css('display','none'); 
+                           }
+                        });
+                        this.mapSettingsShow = true;
+                        break;
+                }
+                break;
                 case 'settingsAnimShow':
                     this.passShow = false;
                     this.reportShow = false;
@@ -255,6 +287,32 @@ let menu = new Vue({
             this.saveButtonState = true;
             mp.trigger("settingsSave.client", this.autoLogin);
         },
+        gpsFilter()
+        {
+            this.saveButtonState = true;
+            $(this.gpsFilterArr).each(function(index,item){
+                if($(`.gps-item:eq(${index})`).hasClass('active'))
+                {
+                    item = true;
+                }
+            });
+            mp.trigger('gpsFilter',this.gpsFilterArr[0],this.gpsFilterArr[1],this.gpsFilterArr[2],this.gpsFilterArr[3],this.gpsFilterArr[4],this.gpsFilterArr[5]);
+        },
+        gpsInit(array)
+        {
+            this.gpsFilterArr = array;
+            $(this.gpsFilterArr).each(function(index,item){
+                if(item)
+                {
+                    $(`.gps-item:eq(${index})`).addClass('active');
+                }
+                else
+                {
+                    $(`.gps-item:eq(${index})`).removeClass('active');
+
+                }
+            });
+        },
         animate (dict, name) {
             this.animateShow = false;
             mp.trigger("animate.client", dict, name);
@@ -268,5 +326,16 @@ let menu = new Vue({
             this.animateSettingsShow = false;
             mp.trigger("animCircleSave.client", id, this.setFastAnimIndex);
         }
+    }
+});
+$('.gps-item').on('click',function(){
+    menu.saveButtonState = false;
+    if($(this).hasClass('active'))
+    {
+        $(this).removeClass('active');
+    }
+    else
+    {
+        $(this).addClass('active');
     }
 });

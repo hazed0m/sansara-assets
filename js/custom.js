@@ -114,7 +114,14 @@ const appearanceItemNames = [
 // chest hair
 ["Отстствуют", "Естественные", "Полоска", "Дерево", "Волосатый", "Ужасный", "Обезьяна", "Ухоженная обезьяна", "Бикини", "Удар молнии", "Обратная Молния", "Сердце Любви", "Грудь", "Счастливое лицо", "Череп", "Улиточный След", "Слизняк и щипки", "Волосатые руки"]
 ];
-
+function loginError(text)
+{
+	$('.alert-message').text(text);
+	$('.alert').fadeIn();
+	setTimeout(function(){
+		$('.alert').fadeOut()
+	}, 3000);
+}
 let prevs = document.querySelectorAll('.appearancePrev'),
     items = document.querySelectorAll('.appearanceItems'),
     nexts = document.querySelectorAll('.appearanceNext'),

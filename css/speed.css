@@ -1,19 +1,3 @@
-@font-face {
-	font-family: 'HelveticaNeueCyr';
-	src: url('../fonts/HelveticaNeueCyr-Medium.otf');
-	src: local('HelveticaNeueCyr-Medium'),
-		url('../fonts/HelveticaNeueCyr-Medium.otf?#iefix') format('embedded-opentype');
-	font-weight: 500;
-	font-style: normal;
-}
-@font-face {
-	font-family: 'CampOpti-Caps_Cyrillic';
-	src: url('../fonts/CampOpti-Caps_Cyrillic.otf');
-	src: local('CampOpti-Caps_Cyrillic'),
-		url('../fonts/CampOpti-Caps_Cyrillic.otf?#iefix') format('embedded-opentype');
-	font-weight: 500;
-	font-style: normal;
-}
 body
 {
 	width:100%;
