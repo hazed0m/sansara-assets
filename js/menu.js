@@ -139,6 +139,7 @@ let menu = new Vue({
                     this.skillsShow = false;
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
+                    this.mapSettingsShow = false;
                     switch (this.passShow) {
                         case true:
                             this.passShow = false;
@@ -155,6 +156,7 @@ let menu = new Vue({
                     this.animateShow = false;
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
+                    this.mapSettingsShow = false;
                     switch (this.skillsShow) {
                         case true:
                            $('.categorie-title').each(function(index,item){
@@ -183,6 +185,7 @@ let menu = new Vue({
                     this.skillsShow = false;
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
+                    this.mapSettingsShow = false;
                     switch (this.settingsShow) {
                         case true:
                             this.settingsShow = false;
@@ -245,6 +248,7 @@ let menu = new Vue({
                     this.skillsShow = false;
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
+                    this.mapSettingsShow = false;
                     switch (this.reportShow) {
                         case true:
                             this.reportShow = false;
@@ -261,6 +265,7 @@ let menu = new Vue({
                     this.skillsShow = false;
                     this.animateSettingsShow = false;
                     animCircle.settingsAnimShow = false;
+                    this.mapSettingsShow = false;
                     switch (this.animateShow) {
                         case true:
                             this.animateShow = false;

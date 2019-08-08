@@ -218,11 +218,25 @@ function shopListInitialize()
 		});
 		if(checker != -1)
 		{
-			basketList[checker].count++;
+			if(currentElem.type == 'Ammo')
+			{
+				basketList[checker].count += 10;
+			}
+			else
+			{
+				basketList[checker].count++;
+			}				
 		}
 		else
 		{
-			currentElem.count = 1;
+			if(currentElem.type == 'Ammo')
+			{
+				currentElem.count = 10;
+			}
+			else
+			{
+				currentElem.count = 1;
+			}			
 			basketList.push(currentElem);
 		}		
 		basketListRefresh();
@@ -302,14 +316,28 @@ function basketListInitialize()
 	});
 	$('.basket-list .basket-item .plus').on('click',function(){
 		let currentIndex = $(this).parent().parent().attr('data-index');
-		basketList[currentIndex].count++;
+		if(basketList[currentIndex].type == 'Ammo')
+		{
+			basketList[currentIndex].count += 10;
+		}
+		else
+		{
+			basketList[currentIndex].count++;
+		}			
 		basketListRefresh();
 	});
 	$('.basket-list .basket-item .minus').on('click',function(){
 		let currentIndex = $(this).parent().parent().attr('data-index');
 		if(basketList[currentIndex].count>1)
 		{
+			if(basketList[currentIndex].type == 'Ammo')
+		{
+			basketList[currentIndex].count -= 10;
+		}
+		else
+		{
 			basketList[currentIndex].count--;
+		}
 		}		
 		basketListRefresh();
 	});
