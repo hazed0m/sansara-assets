@@ -54,7 +54,7 @@ let menu = new Vue({
         setFastAnimIndex: 0,
         animateSettingsShow: false,
         saveButtonState:false,
-        gpsFilterArr: [false,true,false,false,false,false],
+        gpsFilterArr: [true,true,true,true,true,true],
         isDisabled: false,
         options: [
             { text: 'Мультипаспорт', value: 'passShow', status: false },
