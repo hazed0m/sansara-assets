@@ -220,6 +220,7 @@ let menu = new Vue({
                                $(item).css('display','none'); 
                            }
                         });
+                        this.gpsInit();
                         this.mapSettingsShow = true;
                         break;
                 }
@@ -305,7 +306,10 @@ let menu = new Vue({
         },
         gpsInit(array)
         {
-            this.gpsFilterArr = JSON.parse(array);
+            if(typeof array != 'undefined')
+            {
+                this.gpsFilterArr = JSON.parse(array);
+            }
             $(this.gpsFilterArr).each(function(index,item){
                 if(item)
                 {
