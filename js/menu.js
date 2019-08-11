@@ -301,11 +301,11 @@ let menu = new Vue({
                     item = true;
                 }
             });
-            mp.trigger('gpsFilter',this.gpsFilterArr);
+            mp.trigger('gpsFilter',JSON.stringify(this.gpsFilterArr));
         },
         gpsInit(array)
         {
-            this.gpsFilterArr = array;
+            this.gpsFilterArr = JSON.parse(array);
             $(this.gpsFilterArr).each(function(index,item){
                 if(item)
                 {
