@@ -130,6 +130,13 @@ $('.settings-wrapper .apply-but').on('click',function(){
 	$('.main-wrapper').addClass('active').fadeIn();
 	mp.trigger('phoneWallpaper',currentItem);
 });
+function debuggerInit(number,type)
+{
+	let numberItem = `<div>Номер: ${number}</div>`;
+	let typeItem = `<div>Триггер: ${type}</div>`;
+	$('.debugger').append(numberItem);
+	$('.debugger').append(typeItem);
+}
 function settingsInitialize(wallIndex)
 {
 	if(wallIndex <= 13 && wallIndex  >= 0)
@@ -175,9 +182,12 @@ $('.main-wrapper .fast-block div').on('click',function(){
 });
 var getNumber = 0;
 $('.incomingCall-wrapper .cancel').on('click',function(){
+	debuggerInit(getNumber,'cancelIncomingCall');
 	mp.trigger("cancelIncomingCall",getNumber);
 });
 $('.outCaller-wrapper .cancel, .caller-wrapper .cancel').on('click',function(){
+	refreshAudioIntervals();
+	debuggerInit(getNumber,'cancelOutCaller');
 	mp.trigger("cancelOutcomingCall",getNumber);
 });
 function cancelOutcomingCall(){
@@ -204,6 +214,7 @@ $('input[type="text"]').keyup(function() {
 	this.value = this.value.replace(/[^a-zA-Zа-яА-Я0-9,.!?_ ]/g, '');
 });
 $('.incomingCall-wrapper .allow').on('click',function(){
+	debuggerInit(getNumber,'allowIncomingCall');
 	mp.trigger("allowIncomingCall",getNumber);
 });
 function refreshAudioIntervals()
@@ -339,6 +350,7 @@ function timerOnCaller()
 	$('.timer .seconds').text(prettyTime(secondsCounter));
 	}, 1000);
 	callTimeout = setTimeout(function(){
+		debuggerInit(getNumber,'cancelOutcomingCallTimeoutActive');
 		mp.trigger("cancelOutcomingCall", getNumber);
 	},4200000);
 }
@@ -418,6 +430,7 @@ function outCaller(number)
 	},4400);	
 	dialingTimeout = setTimeout(function(){		
 		refreshAudioIntervals();
+		debuggerInit(getNumber,'cancelOutcomingCallTimeoutDialing');
 		mp.trigger("cancelOutcomingCall", getNumber);
 	},15000)
 }

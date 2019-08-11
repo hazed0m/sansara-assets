@@ -101,11 +101,44 @@ function initTime()
         setTimeout(updateTime, 60000);
     }); 
 };
-$(window).focusin(function() {
-    console.log(0);
-    mp.trigger('gameInactive');
-});
-$(window).focusout(function() {
-    console.log(1);
-    mp.trigger('gameActive');
-});
+// $(window).focusin(function() {
+//     console.log(0);
+//     mp.trigger('gameInactive');
+// });
+// $(window).focusout(function() {
+//     console.log(1);
+//     mp.trigger('gameActive');
+// });
+function keypress(e){
+     
+   
+     
+    switch(e.keyCode){
+         
+        case 73:  // I инвентарь
+             mp.trigger('KeyIpress');
+            break;
+			case 79:  // O инвентарь авто
+             mp.trigger('KeyOpress');
+            break;
+			
+			case 76:  // L аним
+             mp.trigger('KeyLpress');
+            break;
+		    case 75:  // K авто
+            mp.trigger('KeyKpress');
+            break;
+			case 74:  // j перс
+            mp.trigger('KeyJpress');
+            break;
+			case 69:  // E взаимодействие
+            mp.trigger('KeyEpress');
+            break;
+			case 186:  // E взаимодействие
+            mp.trigger('KeyMenuPress');
+            break;
+       
+    }
+}
+
+addEventListener("keydown", keypress);
