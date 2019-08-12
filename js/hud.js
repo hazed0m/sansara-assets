@@ -109,7 +109,7 @@ function initTime()
 //     console.log(1);
 //     mp.trigger('gameActive');
 // });
-function keypressDown(e){     
+function keypressUp(e){     
     switch(e.keyCode){         
         case 73:  // I инвентарь
             mp.trigger('KeyIpress');
@@ -152,10 +152,10 @@ function keypressDown(e){
         break;  
     }
 }
-function keypressUp(e){     
+function keypressDown(e){     
     switch(e.keyCode){        
         case 88:  // X взаимодействие
-        mp.trigger('KeyXpressUp');
+        mp.trigger('KeyXpressDown');
         break;  
     }
 }
