@@ -55,7 +55,8 @@ function clearInput()
          $(this).data("idx",i); // save this field's index to access later
       });
       $("#putback-wrapper input, #withdrawal-wrapper input, #topup-wrapper input").on("keyup", function (e) {
-        var $field = $(this),
+		$(this).parent().removeClass('limited');
+		var $field = $(this),
             val=this.value,
             $thisIndex=parseInt($field.data("idx"),10); // retrieve the index
 			//window.console && console.log($field.is(":invalid"));
@@ -86,12 +87,6 @@ function checkBackButton()
 $('.exit-button').on('click',function(){
 	mp.trigger("cashpoint.exit");
 });
-// 1)Открыл инвентарь - (наличка,счет банка)
-//   1)Проверка счета банка
-//   2)Триггер сколько он снимает
-// 2)Положить
-// Проверка на наличие налички
-//   Триггер -  сколько он пополняет
 function cashpointInit(card,cash,terminal,maxwithdrawal,phoneNumber)
 {
 	maxWithdrawal = maxwithdrawal;
@@ -116,8 +111,9 @@ function refreshCashpoint()
 }
 //Снятие наличных
 $('#withdrawal-wrapper .button').on('click',function(){
-	let currentVal = $(this).parent().find('input').val();
-	if(currentVal != '' && currentVal > 0)
+	let currentVal = parseInt($(this).parent().find('input').val()),
+		currentMax = parseInt($(this).parent().find('input').attr('max'));
+	if(currentVal != '' && currentVal > 0 && currentVal <= currentMax)
 	{
 		cardVal = parseInt(cardVal) - parseInt(currentVal);
 		cashVal = parseInt(cashVal) + parseInt(currentVal);
@@ -128,11 +124,17 @@ $('#withdrawal-wrapper .button').on('click',function(){
 		checkBackButton();
 		mp.trigger("cashpoint.withdrawal",currentVal);
 	}
+	else
+	{
+		$(this).parent().addClass('limited');
+		$(this).parent().find('input').val('');		
+	}
 });
 //Пополнение карты
 $('#putback-wrapper .button').on('click',function(){
-	let currentVal = $(this).parent().find('input').val();
-	if(currentVal != '' && currentVal > 0)
+	let currentVal = parseInt($(this).parent().find('input').val()),
+		currentMax = parseInt($(this).parent().find('input').attr('max'));
+	if(currentVal != '' && currentVal > 0 && currentVal <= currentMax)
 	{
 		cardVal = parseInt(cardVal) + parseInt(currentVal);
 		cashVal = parseInt(cashVal) - parseInt(currentVal);
@@ -143,11 +145,17 @@ $('#putback-wrapper .button').on('click',function(){
 		checkBackButton();
 		mp.trigger("cashpoint.putback",currentVal);
 	}
+	else
+	{
+		$(this).parent().addClass('limited');
+		$(this).parent().find('input').val('');
+	}
 });
 //Пополнение телефона
 $('#topup-wrapper .button').on('click',function(){
-	let currentVal = $(this).parent().find('input').val();
-	if(currentVal != '' && currentVal > 0)
+	let currentVal = parseInt($(this).parent().find('input').val()),
+		currentMax = parseInt($(this).parent().find('input').attr('max'));
+	if(currentVal != '' && currentVal > 0 && currentVal <= currentMax)
 	{
 		cardVal = parseInt(cardVal) - parseInt(currentVal);
 		$('#topup-wrapper').fadeOut();
@@ -156,5 +164,10 @@ $('#topup-wrapper .button').on('click',function(){
 		$('#main-wrapper').fadeIn();
 		checkBackButton();
 		mp.trigger("cashpoint.topup",currentVal);
+	}
+	else
+	{
+		$(this).parent().addClass('limited');
+		$(this).parent().find('input').val('');
 	}
 });
