@@ -299,9 +299,14 @@ let menu = new Vue({
             $(this.gpsFilterArr).each(function(index,item){
                 if($(`.gps-item:eq(${index})`).hasClass('active'))
                 {
-                    item = true;
+                    menu.gpsFilterArr[index] = true;
+                }
+                else
+                {
+                    menu.gpsFilterArr[index] = false;
                 }
             });
+            console.log(this.gpsFilterArr);
             mp.trigger('gpsFilter',JSON.stringify(this.gpsFilterArr));
         },
         gpsInit(array)
@@ -318,7 +323,6 @@ let menu = new Vue({
                 else
                 {
                     $(`.gps-item:eq(${index})`).removeClass('active');
-
                 }
             });
         },
