@@ -84,12 +84,11 @@ function azsInitialize()
             $(e).val(val).change();
             $('.currentGas .gas').text(val);
             azsCounter(val);
-        });
-        
+        });  
         $('input[type=range]').rangeslider({
           polyfill: false,
           change: function(e) {
-              console.log(e)
+              console.log(e)  
           }
         });
     });

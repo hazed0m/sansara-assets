@@ -23,7 +23,7 @@
 	right:25px;
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
-	background-color: #36393f;
+	background-color: #2a2c31;
 	padding:2px 5px;
 	display: flex;
 	justify-content: center;
@@ -36,13 +36,16 @@
 .close-but:hover
 {
 	transform: scale(1.05);
+	right:26px;
 }
 .container .title-block	
 {
 	height:34px;
 	background:#2a2c31;
-	width:100%;
-	border-radius:25px;
+	width:96%;
+	margin:0 auto;
+	border-bottom-right-radius:15px;
+	border-bottom-left-radius:15px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -73,16 +76,15 @@
 }
 .currentGas
 {
-	position: absolute;
-    top: 63%;
-    left: 70%;
-	width:auto;
-	padding:2px 3px;
+	width:fit-content;
+	margin:10px 20px 0 auto;
+	padding:3px 4px;
 	background: #484c52;
 	color:#ffff00;
 	border-radius: 5px;
 	font-size:18.88px;
 	font-weight: 400;
+	box-shadow: inset 0 0 10px rgba(244, 227, 49, 0.3);
 }
 .currentGas span.gas
 {
@@ -114,7 +116,7 @@
 	border-radius: 50%;
 	background:#fff;
 	position: absolute;
-	top:50%;
+	top:49%;
 	left:50%;
 	transform: translate(-55%,-46%);
 }
@@ -167,6 +169,7 @@
 }
 .container .bottom-wrap
 {
+	padding:0 0 10px 0;
 	display: flex;
 	justify-content: space-around;
 	box-sizing: border-box; 
@@ -191,7 +194,7 @@
 	width:122px;
 	height:37px;
 	background: #ffff00;
-	box-shadow: 0 0 10px #fbe401;
+	box-shadow: 0 0 5px #fbe401;
 	color:#435462;
 	display: flex;
 	justify-content: center;
@@ -204,7 +207,7 @@
 .bottom-wrap .price-block
 {
 	width:112px;
-	height:34px;
+	height:37px;
 	background:#43b320;
 	border-radius: 5px;
 	color:#fafafa;
@@ -213,10 +216,10 @@
 	align-items: center;
 	font-size:21.14px;
 	font-weight: bold;	
-	margin-bottom:10px;
 	padding-top:2px;
 	box-sizing: border-box;
 	margin-left:auto;
+	box-shadow: inset 0 0 10px rgba(255,255,255,0.5);
 }
 .bottom-wrap .left-wrap div.card, .bottom-wrap .left-wrap div.cash
 {
@@ -224,7 +227,7 @@
 	height:45px;
 	display:flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: center;
 	padding:3px 0;	
 	border-radius:5px;
@@ -236,7 +239,7 @@
 {
 	display:flex;
 	flex-direction: column;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	width:50%;
 }
@@ -247,6 +250,7 @@
 	align-items: center;
 	width: 80%;
 	box-sizing: border-box;
+	margin-bottom:5px;
 }
 .bottom-wrap .left-wrap .radio-block i
 {
