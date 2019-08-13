@@ -286,7 +286,7 @@ $('#buy').on('click',function(){
 			price = $('.cars-wrapper .left-wrap .price-block span.price').text(),
 			currentWrapper = $('.cars-wrapper .current-car-wrapper .title-name').attr('data-type'),
 			currentList = eval(currentWrapper+'List'),
-			hash = currentList[index].hash,
+			hash = currentList[index].name,
 			spawn = '';		
 		switch(currentWrapper)
 		{
