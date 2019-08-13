@@ -1,3 +1,10 @@
+let angleArrow = [];
+const angleIndex = 2.47
+
+for (i=-155; i <= 91;i++)
+{
+    angleArrow.push(i);
+}
 function speedFadeIn()
 {
     $('#speed').fadeIn();
@@ -17,11 +24,28 @@ function pushCurrentGear(gear)
 {
     $('.info-wrapper .gear').text(gear);
 }
-function pushCurrentArrow(vehicleArrowSpeed)
-{
-    $('.radius .arrow').css('transform',`rotateZ(${vehicleArrowSpeed}deg`);
+function pushCurrentArrow(vehicleArrowSpeed, durationCount = 500)
+{    
+    let currentIndex = vehicleArrowSpeed*angleIndex,
+        currentAngle = angleArrow[currentIndex.toFixed()];       
+    $('.radius .arrow').css(
+        {
+            'transition':`${durationCount}ms`
+        }
+    );    
+    $('.radius .arrow').each(function () {
+        $(this).prop('Counter', $('.radius .arrow').attr('data-angle')).animate({
+            Counter: currentAngle
+        }, {
+            duration: 0,
+            easing: 'linear',
+            step: function (now) {
+                $(this).attr('data-angle',now).css('transform',`rotateZ(${now}deg`)
+            }
+        });
+    });
 }
-function pushCurrentSpeed(vehicleSpeed,durationCount = 1000)
+function pushCurrentSpeed(vehicleSpeed,durationCount = 500)
 {
     let currentSpeed =  $('.info-wrapper .speed').text();
     if(currentSpeed == '')

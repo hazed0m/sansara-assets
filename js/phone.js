@@ -733,7 +733,6 @@ $('.contacts-wrapper .current-wrapper #save-but').on('click',function(){
 			$(currentElem).parent().parent().find('.contact-added').css('display','none');
 			$(currentElem).parent().parent().find('.nothing-used').fadeIn(500).css('display','flex').addClass('active');
 		}, 1500);	
-		refreshContacts();
 		$(this).parent().find('#name').replaceWith(currentInputName);
 		$(this).parent().find('#number').replaceWith(currentInputNumber);
 	}
