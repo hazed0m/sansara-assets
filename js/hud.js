@@ -103,84 +103,55 @@ function initTime()
         setTimeout(updateTime, 60000);
     }); 
 };
-// $(window).focusin(function() {
-//     console.log(0);
-//     mp.trigger('gameInactive');
-// });
-// $(window).focusout(function() {
-//     console.log(1);
-//     mp.trigger('gameActive');
-// });
 function keypressUp(e){  
-    removeEventListener("keyup", keypressUp);
-    setTimeout(function(){
-        switch(e.keyCode){         
-            case 73:  // I инвентарь
-                mp.trigger('KeyIpress');
-            break;
-            case 79:  // O инвентарь авто
-                mp.trigger('KeyOpress');
-            break;
-            case 78:  // O инвентарь авто
-                mp.trigger('KeyNpress');
-            break;
-            case 77:  // O инвентарь авто
-                mp.trigger('KeyMpress');
-            break;
-            case 113:  // O инвентарь авто
-                mp.trigger('KeyF2press');
-            break;
-            case 116:  // O инвентарь авто
-                mp.trigger('KeyF5press');
-            break;
-            case 118:  // O инвентарь авто
-                mp.trigger('KeyF7press');
-            break;
-            case 76:  // L аним
-                mp.trigger('KeyLpress');
-            break;
-            case 75:  // K авто
-                mp.trigger('KeyKpress');
-            break;
-            case 74:  // j перс
-                mp.trigger('KeyJpress');
-            break;
-            case 69:  // E взаимодействие
-                mp.trigger('KeyEpress');
-            break;
-            case 85:  // E взаимодействие
-                mp.trigger('KeyPress');
-            break;       
-            case 88:  // X взаимодействие
-                mp.trigger('KeyXpress');
-            break;  
-        }
-    },sleepTime);
+    switch(e.keyCode){         
+        case 73:  // I инвентарь
+            mp.trigger('KeyIpress');
+        break;
+        case 79:  // O инвентарь авто
+            mp.trigger('KeyOpress');
+        break;
+        case 78:  // O инвентарь авто
+            mp.trigger('KeyNpress');
+        break;
+        case 77:  // O инвентарь авто
+            mp.trigger('KeyMpress');
+        break;
+        case 113:  // O инвентарь авто
+            mp.trigger('KeyF2press');
+        break;
+        case 116:  // O инвентарь авто
+            mp.trigger('KeyF5press');
+        break;
+        case 118:  // O инвентарь авто
+            mp.trigger('KeyF7press');
+        break;
+        case 76:  // L аним
+            mp.trigger('KeyLpress');
+        break;
+        case 75:  // K авто
+            mp.trigger('KeyKpress');
+        break;
+        case 74:  // j перс
+            mp.trigger('KeyJpress');
+        break;
+        case 69:  // E взаимодействие
+            mp.trigger('KeyEpress');
+        break;
+        case 85:  // E взаимодействие
+            mp.trigger('KeyPress');
+        break;       
+        case 88:  // X взаимодействие
+            mp.trigger('KeyXpress');
+        break;  
+    }
 }
 function keypressDown(e){   
-    removeEventListener("keydown", keypressDown); 
-    setTimeout(function(){ 
-        switch(e.keyCode){        
-            case 88:  // X взаимодействие
-                mp.trigger('KeyXpressDown');
-            break;  
-        }
-    },sleepTime);
-}
-function eventUpdate(use)
-{
-    if(use == 'up')
-    {
-        addEventListener("keyup", keypressUp);
-    }
-    if(use == 'down')
-    {
-        addEventListener("keydown", keypressDown);
+    switch(e.keyCode){        
+        case 88:  // X взаимодействие
+            mp.trigger('KeyXpressDown');
+        break;  
     }
 }
-function eventInit(time)
-{
-    addEventListener("keydown", keypressDown);
-    addEventListener("keyup", keypressUp);
-    sleepTime = time;
-}
+$(window).on("keyup", keypressUp);
+$(window).on("keydown", keypressDown);
