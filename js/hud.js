@@ -97,35 +97,9 @@ function cashStatus(cash)
 function initTime(hour,minute)
 {
     let currentHours = hour,
-        currentMinutes = minute,
-        timer = 60000,
-        time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
+        currentMinutes = minute;
+    time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
     $('.hud-time').text(time);
-   
-    setInterval(()=>{
-        if(currentMinutes < 59)
-        {
-            currentMinutes++;
-        }   
-        else
-        {
-            if(currentHours < 23)
-            {
-                currentHours++;
-            }
-            else
-            {
-                currentHours = 0;
-            }
-            currentMinutes = 0;
-        }
-    }, timer);  
-    
-    setInterval(() => {  
-        console.log('update');
-        time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
-        $('.hud-time').text(time);
-    },timer); 
 };
 function keypressUp(e){  
     switch(e.keyCode){         
