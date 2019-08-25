@@ -144,4 +144,7 @@ $(document).ready(function(){
     $('.container .wantedSearch-wrapper .wanted-item').on('click',function(){
         $('.container .wantedSearch-wrapper .mask,.container .wantedSearch-wrapper .wanted-content-wrapper').fadeIn();
     });
+    $('.container .things-wrapper .things-wrap .things-item .edit-button').on('click',function(){
+        console.log(111);
+    });
 });
