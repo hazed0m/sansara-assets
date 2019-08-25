@@ -94,14 +94,38 @@ function cashStatus(cash)
 {
     $('#cash').text(cash);
 };
-function initTime()
+function initTime(hour,minute)
 {
-    let update = setTimeout(function updateTime() {  
-        let date = mp.game.time.getLocalTime(year, month, day, hour, minute, second);
-        hours = `${date.hour}:${date.minute}`;
-        $('.hud-time').text(hours);
-        setTimeout(updateTime, 60000);
-    }); 
+    let currentHours = hour,
+        currentMinutes = minute,
+        timer = 60000,
+        time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
+    $('.hud-time').text(time);
+   
+    setInterval(()=>{
+        if(currentMinutes < 59)
+        {
+            currentMinutes++;
+        }   
+        else
+        {
+            if(currentHours < 23)
+            {
+                currentHours++;
+            }
+            else
+            {
+                currentHours = 0;
+            }
+            currentMinutes = 0;
+        }
+    }, timer);  
+    
+    setInterval(() => {  
+        console.log('update');
+        time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
+        $('.hud-time').text(time);
+    },timer); 
 };
 function keypressUp(e){  
     switch(e.keyCode){         
