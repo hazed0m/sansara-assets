@@ -158,13 +158,22 @@ function initTime(hour,minute)
     $('.hud-time').text(time);
 }
 let package = JSON.stringify({
+    'policemanInfo':[
+        {
+            FullName:'Вася Иванов',
+            Position:'Младший Сержант',
+            Status:true,
+            Time:'2:43:48',
+            OpenedThings:1,
+            ClosedThings:2
+        }
+    ],  
     'personalList':[
         {
             FullName:'Вася Иванов',
             Age: 55,
             Gender:'man',
             Text: 'asdasdada',
-            StatementsID: 15,
             Number: '111111',
             Cars: [
                 'Tyrus [LS245EE]',
@@ -175,14 +184,12 @@ let package = JSON.stringify({
                 {
                     Id: 1,
                     FullName: 'Саша Белый',
-                    Time:'15:38',
-                    Date:'23.03.19'
+                    Date:'15:38@23.03.19'
                 },
                 {
                     Id: 2,
                     FullName: 'Саша Белый',
-                    Time:'15:40',
-                    Date:'23.03.19'
+                    Date:'15:38@23.03.19'
                 }
             ]
         },
@@ -197,7 +204,19 @@ let package = JSON.stringify({
                 'Tyrus [LS845EE]',
                 'Ringo [LS2452E]'
             ],
-            Home:'ул. Лесная 25'
+            Home:'ул. Лесная 25',
+            StatementsID: [
+                {
+                    Id: 1,
+                    FullName: 'Саша Белый',
+                    Date:'15:38@23.03.19'
+                },
+                {
+                    Id: 2,
+                    FullName: 'Саша Белый',
+                    Date:'15:40@23.03.19'
+                }
+            ]
         }
     ],
     'violatorsList':[            
@@ -216,30 +235,16 @@ let package = JSON.stringify({
         {
             StatementID:1,
             PoliceMembers : [
-                {
-                    FullName:'Григорий Упсов',
-                    Position:'Младший Сержант'
-                },
-                {
-                    FullName:'Григорий Упсов',
-                    Position:'Младший Сержант'
-                }
+               'Младший Сержант@Григорий Упсов',
+                'Младший Сержант@Григорий Упсов'
             ],
             Victim :[
-                {
-                    FullName:'Виталька Усов'
-                },
-                {
-                    FullName:'Григорий Трусов'
-                }
+                'Виталька Усов',
+                'Григорий Трусов'
             ],
             Violators: [
-                {
-                    FullName:'Виталька Усов'
-                },
-                {
-                    FullName:'Григорий Трусов'
-                }
+                'Виталька Усов',
+                'Григорий Трусов'
             ],
             Proofs: [
                 'Нож',
@@ -251,106 +256,18 @@ let package = JSON.stringify({
             Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
         },
         {
-            StatementID:12,
+            StatementID:3,
             PoliceMembers : [
-                {
-                    FullName:'Григорий Упсов',
-                    Position:'Младший Сержант'
-                },
-                {
-                    FullName:'Григорий Упсов',
-                    Position:'Младший Сержант'
-                }
+               'Младший Сержант@Григорий Упсов',
+                'Младший Сержант@Григорий Упсов'
             ],
             Victim :[
-                {
-                    FullName:'Виталька Трусов'
-                },
-                {
-                    FullName:'Григорий Усов'
-                }
+                'Виталька Усов',
+                'Григорий Трусов'
             ],
             Violators: [
-                {
-                    FullName:'Виталька Трусов'
-                },
-                {
-                    FullName:'Григорий Усов'
-                }
-            ],
-            Proofs: [
-                'Нож',
-                'Кровь нападавшего'
-            ],
-            ClosedFull: false,
-            InProgress:true,
-            WantedLevel: 5,
-            Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
-        },
-        {
-            StatementID:8,
-            PoliceMembers : [
-                {
-                    FullName:'Григорий Упсов',
-                    Position:'Младший Сержант'
-                },
-                {
-                    FullName:'Григорий Упсов',
-                    Position:'Младший Сержант'
-                }
-            ],
-            Victim :[
-                {
-                    FullName:'Виталька Трусов'
-                },
-                {
-                    FullName:'Григорий Усов'
-                }
-            ],
-            Violators: [
-                {
-                    FullName:'Виталька Трусов'
-                },
-                {
-                    FullName:'Григорий Усов'
-                }
-            ],
-            Proofs: [
-                'Нож',
-                'Кровь нападавшего'
-            ],
-            ClosedFull: false,
-            InProgress:true,
-            WantedLevel: 5,
-            Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
-        },
-        {
-            StatementID:2,
-            PoliceMembers : [
-                {
-                    FullName:'Григорий Упсов',
-                    Position:'Младший Сержант'
-                },
-                {
-                    FullName:'Григорий Упсов',
-                    Position:'Младший Сержант'
-                }
-            ],
-            Victim :[
-                {
-                    FullName:'Виталька Трусов'
-                },
-                {
-                    FullName:'Григорий Усов'
-                }
-            ],
-            Violators: [
-                {
-                    FullName:'Виталька Трусов'
-                },
-                {
-                    FullName:'Григорий Усов'
-                }
+                'Виталька Усов',
+                'Григорий Трусов'
             ],
             Proofs: [
                 'Нож',
@@ -364,30 +281,62 @@ let package = JSON.stringify({
         {
             StatementID:5,
             PoliceMembers : [
-                {
-                    FullName:'Григорий Упсов',
-                    Position:'Младший Сержант'
-                },
-                {
-                    FullName:'Григорий Упсов',
-                    Position:'Младший Сержант'
-                }
+               'Младший Сержант@Григорий Упсов',
+                'Младший Сержант@Григорий Упсов'
             ],
             Victim :[
-                {
-                    FullName:'Виталька Усов'
-                },
-                {
-                    FullName:'Григорий Трусов'
-                }
+                'Виталька Усов',
+                'Григорий Трусов'
             ],
             Violators: [
-                {
-                    FullName:'Виталька Усов'
-                },
-                {
-                    FullName:'Григорий Трусов'
-                }
+                'Виталька Усов',
+                'Григорий Трусов'
+            ],
+            Proofs: [
+                'Нож',
+                'Кровь нападавшего'
+            ],
+            ClosedFull: false,
+            InProgress:true,
+            WantedLevel: 5,
+            Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+        },
+        {
+            StatementID:10,
+            PoliceMembers : [
+               'Младший Сержант@Григорий Упсов',
+                'Младший Сержант@Григорий Упсов'
+            ],
+            Victim :[
+                'Виталька Усов',
+                'Григорий Трусов'
+            ],
+            Violators: [
+                'Виталька Усов',
+                'Григорий Трусов'
+            ],
+            Proofs: [
+                'Нож',
+                'Кровь нападавшего'
+            ],
+            ClosedFull: false,
+            InProgress:true,
+            WantedLevel: 5,
+            Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+        },
+        {
+            StatementID:12,
+            PoliceMembers : [
+               'Младший Сержант@Григорий Упсов',
+                'Младший Сержант@Григорий Упсов'
+            ],
+            Victim :[
+                'Виталька Усов',
+                'Григорий Трусов'
+            ],
+            Violators: [
+                'Виталька Усов',
+                'Григорий Трусов'
             ],
             Proofs: [
                 'Нож',
@@ -409,7 +358,7 @@ function initFiler()
         if(item.ClosedFull == false && item.InProgress == true)
         {
             let policeMembers  = ``,
-                itemText = item.Text.split('@'),
+                itemText = item.Text.split('@'),                
                 textItems = ``,
                 evidenceItems = ``,
                 suspectsItems = ``;
@@ -417,7 +366,7 @@ function initFiler()
                 evidenceItems  += `<div class="evidences-item">${item}</div>`;
             });
             $(item.Violators).each(function(index,item){
-                suspectsItems  += `<div class="suspects-item">${item.FullName}</div>`;
+                suspectsItems  += `<div class="suspects-item">${item}</div>`;
             });
             $(itemText).each(function(index,item){
                 textItems += `
@@ -428,9 +377,10 @@ function initFiler()
                     </div>`;
             });
             $(item.PoliceMembers).each(function(index,item){
+                let itemPolice = item.split('@');
                 policeMembers  += `<div class="things-name">
-                                        [<span class="rank">${item.Position}</span>]
-                                        <span class="name">${item.FullName}</span>
+                                        [<span class="rank">${itemPolice[0]}</span>]
+                                        <span class="name">${itemPolice[1]}</span>
                                     </div> `;
             });
             let template = `
@@ -491,9 +441,10 @@ function initFiler()
                         </div>`;
                 });
                 $(item.PoliceMembers).each(function(index,item){
+                    let itemPolice = item.split('@');
                     policeMembers  += `<div class="archive-name">
-                                            [<span class="rank">${item.Position}</span>]
-                                            <span class="name">${item.FullName}</span>
+                                            [<span class="rank">${itemPolice[0]}</span>]
+                                            <span class="name">${itemPolice[1]}</span>
                                         </div> `;
                 });
                 let template = `
@@ -636,13 +587,14 @@ function personInit(item)
                 carItems += `<p id="carItem">${item}</p>`;
             });
             $(item.StatementsID).each(function(index,item){
+                let itemDate = item.Date.split('@');
                 violationItems += `<div class="violation-item">
                     <div class="title-item">${item.Id}</div>
                     <div class="title-item">${item.FullName}</div>
                     <div class="title-item">
                         <div class="date-wrapper">
-                            <div class="time">${item.Time}</div>
-                            <div class="date">${item.Date}</div>
+                            <div class="time">${itemDate[0]}</div>
+                            <div class="date">${itemDate[1]}</div>
                         </div>
                     </div>
                 </div>`;
@@ -742,19 +694,20 @@ function refreshThingsList()
                 });
                 $(item.Violators).each(function(index,item){
                     suspectsItems  += `<div class="suspects-item">
-                                            ${item.FullName}
+                                            ${item}
                                             <div class="delete-item">
                                                 <i class="fas fa-times"></i>
                                             </div>
                                         </div>`;
                 });
                 $(itemText).each(function(index,item){
-                    textItems += `<textarea id="thing-add-text">${item}</textarea>`;
+                    textItems += `<textarea id="thing-add-text" onkeyup="textarea_resize(event);">${item}</textarea>`;
                 });
                 $(item.PoliceMembers).each(function(index,item){
+                    let itemPolice = item.split('@');
                     policeMembers  += `<div class="things-name">
-                                            [<span class="rank">${item.Position}</span>]
-                                            <span class="name">${item.FullName}</span>
+                                            [<span class="rank">${itemPolice[0]}</span>]
+                                            <span class="name">${itemPolice[1]}</span>
                                         </div> `;
                 });
                 let template = `
@@ -770,6 +723,7 @@ function refreshThingsList()
                             </div>
                             <div class="text-wrapper">
                                 ${textItems}
+                                <div id="text_area_div"></div>
                             </div>          
                             <div class="button" id="add-line">Добавить абзац</div>               
                             <!-- <div class="edit-button"></div> --> 
@@ -796,19 +750,72 @@ function refreshThingsList()
     });
     $('.container .things-wrapper #add-thing').on('click',function(){
         $('.container .add-thing-wrapper, .container .things-wrapper .mask').fadeIn();
-        $('.container .things-wrapper .add-thing-wrapper #thing-add-text').text(
-            `Этот хер, украл у меня еду в Бергер Кинге пока я отходил к кассе за салфетками.Этот хер, украл у меня еду в Бергер Кинге пока я отходил к кассе за салфетками.Этот хер, украл у меня еду в Бергер Кинге пока я отходил к кассе за салфетками.Этот хер, украл у меня еду в Бергер Кинге пока я отходил к кассе за салфетками.
-        `);        
+        let sortedItem = $(filerList).sort((a, b) => (a.StatementID > b.StatementID) ? 1 : -1);
+        let currentId = sortedItem[filerList.length-1].StatementID+1;
+        let template = `
+            <div class="close-but"><i class="fas fa-times"></i></div>
+            <div class="things-item">
+                <div class="left-block">
+                    <div class="title-wrap">
+                        <div class="name-wrap">
+                            <div class="things-title">Дело №${currentId}</div>                            
+                        </div>                
+                        <div class="button" id="entryThing">Присоединится</div>          
+                    </div>
+                    <div class="text-wrapper">
+
+                    </div>          
+                    <div class="button" id="add-line">Добавить абзац</div>               
+                    <!-- <div class="edit-button"></div> --> 
+                    <div class="edit-wrap">
+                        
+                    </div>
+                </div>
+                <div class="right-block">
+                    <div class="suspects-wrapper">
+                        <div class="suspects-title">Подозреваемые</div>
+                        <div class="suspects-wrap">
+
+                        </div>
+                    </div>
+                    <input type="text" placeholder="Имя">
+                    <input type="text" placeholder="Фамилия">
+                    <div class="button" id="add-suspect">Добавить</div>
+                </div>
+            </div>`;  
+        $('.container .add-thing-wrapper').empty().append(template);
+        refreshAddThings();        
     });
 }
 function refreshAddThings()
 {
     $('#add-line').on('click',function(){
         $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper')
-        .append(`<textarea id="thing-add-text"></textarea>`)
+        .append(`<textarea id="thing-add-text" onkeyup="textarea_resize(event);"></textarea><div id="text_area_div"></div>`)
         .animate({scrollTop: ($('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper').innerHeight())}, 900);
+        $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper #thing-add-text').focus();
     });
     $('.container .wrapper .add-thing-wrapper .close-but').on('click',function(){        
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
     });
+}
+function textarea_resize(event, line_height = 10, min_line_count = 2)
+{
+    var min_line_height = min_line_count * line_height;
+    var obj = event.target;
+    var div = document.getElementById('text_area_div');
+    div.innerHTML = obj.value;
+    var obj_height = div.offsetHeight;
+    console.log(obj_height);
+    if (event.keyCode == 13)
+    {
+        console.log('1d');
+        obj_height += line_height/2;
+    }
+    else if(obj_height < min_line_height)
+    {
+        console.log('2d');
+        obj_height = min_line_height;
+    }
+    obj.style.height = obj_height + 'px';
 }

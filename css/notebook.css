@@ -815,7 +815,7 @@
 .container .archive-wrapper .archive-wrap .archive-item .evidences-wrap,
 .container .things-wrapper .things-wrap .things-item .evidences-wrap
 {
-    margin-top:2px;
+    margin-top:5px;
     width:145px;
     height:153px;
     background:#fff;
@@ -976,6 +976,18 @@
     resize:none;
     border:none; 
     text-align: left;
+    overflow: hidden;
+}
+#text_area_div
+{
+  width: 270px;
+  font-family: Arial;
+  font-size: 12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  visibility: hidden;
+  position: absolute;
+  left: -9999px;
 }
 .container .things-wrapper .search-wrap
 {
