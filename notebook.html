@@ -20,7 +20,9 @@
                 <div class="mask"></div>
                 <div class="add-violation">                    
                     <div class="close-but"><i class="fas fa-times"></i></div>
+                    <input type="text" placeholder="Свидетель">
                     <input type="text" placeholder="Нарушение">
+                    <input type="text" placeholder="Потерпевшие">
                     <div class="wanted-title">Уровень розыска</div>
                     <div class="wanted-level">
                         <div class="star" id="s1"><i class="fas fa-star"></i></div>
@@ -37,99 +39,15 @@
                 </div> 
                 <div class="search-block">
                     <input type="text" placeholder="Введите Имя/Номер/Авто">
-                    <div class="button">Поиск</div>
+                    <div class="button" id="searchPerson">Поиск</div>
                     <div class="text-info">
                         <p>*Имя должно быть введено полностью</p>
                         <p>*Номер должен состоять из 6 символов</p>
                         <p>*Введите номер Авто</p>
                     </div>
                 </div>
-                <div class="content-block">
-                    <div class="name-wrapper">
-                        <div class="name">Валера Жмышенко</div>
-                        <div class="age">Возраст:
-                            <span id="age">54</span>
-                        </div>
-                    </div>
-                    <div class="property-wrapper">
-                        <div class="car">Автомобиль:
-                            <span id="carName">Tyrus</span>
-                            [<span id="carNumber">LS245EE</span>]
-                        </div>
-                        <div class="house">Проживание:
-                            <span>Дом №<span id="house">54</span></span>                            
-                        </div>
-                    </div>
-                    <div class="violations-wrapper">
-                        <div class="title-wrap">
-                            <div class="title-item">Нарушение</div>
-                            <div class="title-item">Сотрудник</div>
-                            <div class="title-item">Дата</div>
-                        </div>
-                        <div class="violation-wrap">
-                            <div class="violation-item">
-                                <div class="title-item">Угон авто</div>
-                                <div class="title-item">Саша Белый</div>
-                                <div class="title-item">
-                                    <div class="date-wrapper">
-                                        <div class="time">6:18</div>
-                                        <div class="date">23.03.19</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="violation-item">
-                                <div class="title-item">Угон авто</div>
-                                <div class="title-item">Саша Белый</div>
-                                <div class="title-item">
-                                    <div class="date-wrapper">
-                                        <div class="time">6:18</div>
-                                        <div class="date">23.03.19</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="violation-item">
-                                <div class="title-item">Угон авто</div>
-                                <div class="title-item">Саша Белый</div>
-                                <div class="title-item">
-                                    <div class="date-wrapper">
-                                        <div class="time">6:18</div>
-                                        <div class="date">23.03.19</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="violation-item">
-                                <div class="title-item">Угон авто</div>
-                                <div class="title-item">Саша Белый</div>
-                                <div class="title-item">
-                                    <div class="date-wrapper">
-                                        <div class="time">6:18</div>
-                                        <div class="date">23.03.19</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="violation-item">
-                                <div class="title-item">Угон авто</div>
-                                <div class="title-item">Саша Белый</div>
-                                <div class="title-item">
-                                    <div class="date-wrapper">
-                                        <div class="time">6:18</div>
-                                        <div class="date">23.03.19</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="violation-item">
-                                <div class="title-item">Угон авто</div>
-                                <div class="title-item">Саша Белый</div>
-                                <div class="title-item">
-                                    <div class="date-wrapper">
-                                        <div class="time">6:18</div>
-                                        <div class="date">23.03.19</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>                    
-                    <div class="button" id="add-violation">Добавить запись</div>
+                <div class="content-block animated">
+
                 </div>
             </div>
             <div class="carSearch-wrapper">
@@ -148,106 +66,13 @@
             <div class="wantedSearch-wrapper">
                 <div class="search-wrap">
                     <div class="wanted-wrapper">
-                        <div class="wanted-item">
-                            <div class="wanted-title">
-                                Николай Симонов
-                            </div>
-                            <div class="wanted-level">
-                                <div class="star" id="s1"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s2"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s3"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s4"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s5"><i class="fas fa-star"></i></div>
-                            </div>
-                        </div>
-                        <div class="wanted-item">
-                            <div class="wanted-title">
-                                Николай Симонов
-                            </div>
-                            <div class="wanted-level">
-                                <div class="star" id="s1"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s2"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s3"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s4"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s5"><i class="fas fa-star"></i></div>
-                            </div>
-                        </div>
-                        <div class="wanted-item">
-                            <div class="wanted-title">
-                                Николай Симонов
-                            </div>
-                            <div class="wanted-level">
-                                <div class="star active" id="s1"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s2"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s3"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s4"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s5"><i class="fas fa-star"></i></div>
-                            </div>
-                        </div>
-                        <div class="wanted-item">
-                            <div class="wanted-title">
-                                Николай Симонов
-                            </div>
-                            <div class="wanted-level">
-                                <div class="star" id="s1"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s2"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s3"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s4"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s5"><i class="fas fa-star"></i></div>
-                            </div>
-                        </div>
-                        <div class="wanted-item">
-                            <div class="wanted-title">
-                                Николай Симонов
-                            </div>
-                            <div class="wanted-level">
-                                <div class="star" id="s1"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s2"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s3"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s4"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s5"><i class="fas fa-star"></i></div>
-                            </div>
-                        </div>
-                        <div class="wanted-item">
-                            <div class="wanted-title">
-                                Николай Симонов
-                            </div>
-                            <div class="wanted-level">
-                                <div class="star" id="s1"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s2"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s3"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s4"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s5"><i class="fas fa-star"></i></div>
-                            </div>
-                        </div>
-                        <div class="wanted-item">
-                            <div class="wanted-title">
-                                Николай Симонов
-                            </div>
-                            <div class="wanted-level">
-                                <div class="star" id="s1"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s2"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s3"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s4"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s5"><i class="fas fa-star"></i></div>
-                            </div>
-                        </div>
-                        <div class="wanted-item">
-                            <div class="wanted-title">
-                                Николай Симонов
-                            </div>
-                            <div class="wanted-level">
-                                <div class="star" id="s1"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s2"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s3"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s4"><i class="fas fa-star"></i></div>
-                                <div class="star" id="s5"><i class="fas fa-star"></i></div>
-                            </div>
-                        </div>
+
                     </div>    
                     <div class="add-violation">                    
                         <div class="close-but"><i class="fas fa-times"></i></div>
+                        <input type="text" placeholder="Свидетель">
                         <input type="text" placeholder="Нарушение">
+                        <input type="text" placeholder="Потерпевшие">
                         <div class="wanted-title">Уровень розыска</div>
                         <div class="wanted-level">
                             <div class="star" id="s1"><i class="fas fa-star"></i></div>
@@ -359,7 +184,7 @@
                         <div class="left-block">
                             <div class="title-wrap">
                                 <div class="name-wrap">
-                                    <div class="archive-title">Дело ведёт</div>
+                                    <div class="archive-title">Дело №1</div>
                                     <div class="archive-name">
                                         [<span class="rank">Младший Сержант</span>]
                                         <span class="name"> Неро Рэйнбав</span>
@@ -370,23 +195,23 @@
                             <div class="text-wrapper">
                                 <div class="item-text">
                                     <div class="inner-text">
-                                        Этот хер, украл у меня еду в Бергер Кинге пока 
-                                        я отходил к кассе за салфетками.
-                                        </div>
-                                    <div class="inner-wrap">
-                                        <div class="inner-name">Вася Пупкин</div>
-                                        <div class="inner-time">18:03</div>
+                                    Этот хер, украл у меня еду в Бергер Кинге пока 
+                                    я отходил к кассе за салфетками.
                                     </div>
                                 </div>
                                 <div class="item-text">
                                     <div class="inner-text">
-                                        Этот хер, украл у меня еду в Бергер Кинге пока 
-                                        я отходил к кассе за салфетками.
-                                        </div>
-                                    <div class="inner-wrap">
-                                        <div class="inner-name">Вася Пупкин</div>
-                                        <div class="inner-time">18:03</div>
+                                    Этот хер, украл у меня еду в Бергер Кинге пока 
+                                    я отходил к кассе за салфетками.
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-block">
+                            <div class="evidences-wrapper">
+                                <div class="evidences-title">Улики</div>
+                                <div class="evidences-wrap">
+                                    <div class="evidences-item">Александр Руссков</div>
                                 </div>
                             </div>
                         </div>
@@ -394,165 +219,6 @@
                             <div class="suspects-wrapper">
                                 <div class="suspects-title">Подозреваемые</div>
                                 <div class="suspects-wrap">
-                                    <div class="suspects-item">Александр Руссков</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="archive-item">
-                        <div class="left-block">
-                            <div class="title-wrap">
-                                <div class="name-wrap">
-                                    <div class="archive-title">Дело ведёт</div>
-                                    <div class="archive-name">
-                                        [<span class="rank">Младший Сержант</span>]
-                                        <span class="name"> Неро Рэйнбав</span>
-                                    </div>    
-                                </div>       
-                                <div class="date-wrap">29.03.19</div>                     
-                            </div>
-                            <div class="text-wrapper">
-                                <div class="item-text">
-                                    <div class="inner-text">
-                                        Этот хер, украл у меня еду в Бергер Кинге пока 
-                                        я отходил к кассе за салфетками.
-                                        </div>
-                                    <div class="inner-wrap">
-                                        <div class="inner-name">Вася Пупкин</div>
-                                        <div class="inner-time">18:03</div>
-                                    </div>
-                                </div>
-                                <div class="item-text">
-                                    <div class="inner-text">
-                                        Этот хер, украл у меня еду в Бергер Кинге пока 
-                                        я отходил к кассе за салфетками.
-                                        </div>
-                                    <div class="inner-wrap">
-                                        <div class="inner-name">Вася Пупкин</div>
-                                        <div class="inner-time">18:03</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="rigth-block">
-                            <div class="suspects-wrapper">
-                                <div class="suspects-title">Подозреваемые</div>
-                                <div class="suspects-wrap">
-                                    <div class="suspects-item">Александр Руссков</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="archive-item">
-                        <div class="left-block">
-                            <div class="title-wrap">
-                                <div class="name-wrap">
-                                    <div class="archive-title">Дело ведёт</div>
-                                    <div class="archive-name">
-                                        [<span class="rank">Младший Сержант</span>]
-                                        <span class="name"> Неро Рэйнбав</span>
-                                    </div>    
-                                </div>       
-                                <div class="date-wrap">29.03.19</div>                     
-                            </div>
-                            <div class="text-wrapper">
-                                <div class="item-text">
-                                    <div class="inner-text">
-                                        Этот хер, украл у меня еду в Бергер Кинге пока 
-                                        я отходил к кассе за салфетками.
-                                        </div>
-                                    <div class="inner-wrap">
-                                        <div class="inner-name">Вася Пупкин</div>
-                                        <div class="inner-time">18:03</div>
-                                    </div>
-                                </div>
-                                <div class="item-text">
-                                    <div class="inner-text">
-                                        Этот хер, украл у меня еду в Бергер Кинге пока 
-                                        я отходил к кассе за салфетками.
-                                        </div>
-                                    <div class="inner-wrap">
-                                        <div class="inner-name">Вася Пупкин</div>
-                                        <div class="inner-time">18:03</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="rigth-block">
-                            <div class="suspects-wrapper">
-                                <div class="suspects-title">Подозреваемые</div>
-                                <div class="suspects-wrap">
-                                    <div class="suspects-item">Александр Руссков</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="archive-item">
-                        <div class="left-block">
-                            <div class="title-wrap">
-                                <div class="name-wrap">
-                                    <div class="archive-title">Дело ведёт</div>
-                                    <div class="archive-name">
-                                        [<span class="rank">Младший Сержант</span>]
-                                        <span class="name"> Неро Рэйнбав</span>
-                                    </div>    
-                                </div>       
-                                <div class="date-wrap">29.03.19</div>                     
-                            </div>
-                            <div class="text-wrapper">
-                                <div class="item-text">
-                                    <div class="inner-text">
-                                        Этот хер, украл у меня еду в Бергер Кинге пока 
-                                        я отходил к кассе за салфетками.
-                                        </div>
-                                    <div class="inner-wrap">
-                                        <div class="inner-name">Вася Пупкин</div>
-                                        <div class="inner-time">18:03</div>
-                                    </div>
-                                </div>
-                                <div class="item-text">
-                                    <div class="inner-text">
-                                        Этот хер, украл у меня еду в Бергер Кинге пока 
-                                        я отходил к кассе за салфетками.
-                                        </div>
-                                    <div class="inner-wrap">
-                                        <div class="inner-name">Вася Пупкин</div>
-                                        <div class="inner-time">18:03</div>
-                                    </div>
-                                </div>
-                                <div class="item-text">
-                                    <div class="inner-text">
-                                        Этот хер, украл у меня еду в Бергер Кинге пока 
-                                        я отходил к кассе за салфетками.
-                                        </div>
-                                    <div class="inner-wrap">
-                                        <div class="inner-name">Вася Пупкин</div>
-                                        <div class="inner-time">18:03</div>
-                                    </div>
-                                </div>
-                                <div class="item-text">
-                                    <div class="inner-text">
-                                        Этот хер, украл у меня еду в Бергер Кинге пока 
-                                        я отходил к кассе за салфетками.
-                                        </div>
-                                    <div class="inner-wrap">
-                                        <div class="inner-name">Вася Пупкин</div>
-                                        <div class="inner-time">18:03</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="rigth-block">
-                            <div class="suspects-wrapper">
-                                <div class="suspects-title">Подозреваемые</div>
-                                <div class="suspects-wrap">
-                                    <div class="suspects-item">Александр Руссков</div>
-                                    <div class="suspects-item">Александр Руссков</div>
-                                    <div class="suspects-item">Александр Руссков</div>
-                                    <div class="suspects-item">Александр Руссков</div>
-                                    <div class="suspects-item">Александр Руссков</div>
-                                    <div class="suspects-item">Александр Руссков</div>
-                                    <div class="suspects-item">Александр Руссков</div>
                                     <div class="suspects-item">Александр Руссков</div>
                                 </div>
                             </div>
@@ -562,67 +228,12 @@
             </div>
             <div class="things-wrapper">
                 <div class="things-wrap">
-                    <div class="things-item">
-                        <div class="left-block">
-                            <div class="title-wrap">
-                                <div class="name-wrap">
-                                    <div class="things-title">Дело ведёт</div>
-                                    <div class="things-name">
-                                        [<span class="rank">Младший Сержант</span>]
-                                        <span class="name"> Неро Рэйнбав</span>
-                                    </div>    
-                                </div>       
-                                <div class="button" id="close-thing">Закрыть дело</div>
-                                <div class="date-wrap">29.03.19</div>                     
-                            </div>
-                            <div class="inner-text-wrap">
-                                <div class="text-wrapper">
-                                    <div class="item-text">
-                                        <div class="inner-text">
-                                            Этот хер, украл у меня еду в Бергер Кинге пока 
-                                            я отходил к кассе за салфетками.
-                                            </div>
-                                        <div class="inner-wrap">
-                                            <div class="inner-name">Вася Пупкин</div>
-                                            <div class="inner-time">18:03</div>
-                                        </div>
-                                    </div>
-                                    <div class="item-text">
-                                        <div class="inner-text">
-                                            Этот хер, украл у меня еду в Бергер Кинге пока 
-                                            я отходил к кассе за салфетками.
-                                            </div>
-                                        <div class="inner-wrap">
-                                            <div class="inner-name">Вася Пупкин</div>
-                                            <div class="inner-time">18:03</div>
-                                        </div>
-                                    </div>
-                                    <div class="item-text">
-                                        <div class="inner-text">
-                                            Этот хер, украл у меня еду в Бергер Кинге пока 
-                                            я отходил к кассе за салфетками.
-                                            </div>
-                                        <div class="inner-wrap">
-                                            <div class="inner-name">Вася Пупкин</div>
-                                            <div class="inner-time">18:03</div>
-                                        </div>
-                                    </div>
-                                </div>                         
-                                <div class="edit-button"></div>
-                            </div>   
-                            <div class="edit-wrap">
-                                
-                            </div>
-                        </div>
-                        <div class="rigth-block">
-                            <div class="suspects-wrapper">
-                                <div class="suspects-title">Подозреваемые</div>
-                                <div class="suspects-wrap">
-                                    <div class="suspects-item">Александр Руссков</div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="search-wrap">
+                        <input type="number" placeholder="Введите № дела">
+                        <div class="button" id="search-thing"><i class="fas fa-search"></i></div>
+                        <div class="notification">Дело не найдено</div>
                     </div>
+                    <div class="things-container"></div>
                     <div class="button" id="add-thing">Добавить запись</div>
                     <div class="add-thing-wrapper">
                         <div class="things-item">
@@ -637,41 +248,10 @@
                                     </div>     
                                     <div class="date-wrap">29.03.19</div>                     
                                 </div>
-                                <div class="inner-text-wrap">
-                                    <div class="text-wrapper">
-                                        <div class="item-text">
-                                            <div class="inner-text">
-                                                Этот хер, украл у меня еду в Бергер Кинге пока 
-                                                я отходил к кассе за салфетками.
-                                                </div>
-                                            <div class="inner-wrap">
-                                                <div class="inner-name">Вася Пупкин</div>
-                                                <div class="inner-time">18:03</div>
-                                            </div>
-                                        </div>
-                                        <div class="item-text">
-                                            <div class="inner-text">
-                                                Этот хер, украл у меня еду в Бергер Кинге пока 
-                                                я отходил к кассе за салфетками.
-                                                </div>
-                                            <div class="inner-wrap">
-                                                <div class="inner-name">Вася Пупкин</div>
-                                                <div class="inner-time">18:03</div>
-                                            </div>
-                                        </div>
-                                        <div class="item-text">
-                                            <div class="inner-text">
-                                                Этот хер, украл у меня еду в Бергер Кинге пока 
-                                                я отходил к кассе за салфетками.
-                                                </div>
-                                            <div class="inner-wrap">
-                                                <div class="inner-name">Вася Пупкин</div>
-                                                <div class="inner-time">18:03</div>
-                                            </div>
-                                        </div>
-                                    </div>                         
-                                    <div class="edit-button"></div>
-                                </div>   
+                                <div class="text-wrapper">
+                                    <textarea id="thing-add-text"></textarea>
+                                </div>                         
+                                <!-- <div class="edit-button"></div> --> 
                                 <div class="edit-wrap">
                                     
                                 </div>
@@ -693,8 +273,10 @@
                             </div>
                         </div>
                         <div class="button" id="add-thing-popap">Добавить запись</div>
+                        <div class="close-but"><i class="fas fa-times"></i></div>
                     </div>
                 </div>
+                <div class="mask"></div>
             </div>
             <div class="police-menu">
                 <div class="menu-item active" id="main-wrapper">Главная</div>
@@ -703,8 +285,8 @@
                 <div class="menu-item" id="wantedSearch-wrapper">Лица в розыске</div>
                 <div class="menu-item" id="archive-wrapper">Архив</div>
                 <div class="menu-item" id="things-wrapper">Дела в разработке</div>
-                <div class="menu-item">Список сотрудников</div>
-                <div class="menu-item">Справочник</div>
+                <div class="menu-item" id="employee-wrapper">Список сотрудников</div>
+                <div class="menu-item" id="handbook-wrapper">Справочник</div>
                 <!-- <div class="close-but"><i class="fas fa-times"></i></div> -->
             </div>
             <div class="sansara-menu animated">
