@@ -481,7 +481,6 @@ function initFiler()
     });
     refreshThingsList();
 }
-pushNotebook(policeman,personal,violators,filer);
 function pushNotebook(policeman,personal,violators,filer)
 {
     if(policeman != undefined)
