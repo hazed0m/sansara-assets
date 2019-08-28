@@ -429,7 +429,7 @@ function initFiler()
                     evidenceItems  += `<div class="evidences-item">${item}</div>`;
                 });
                 $(item.Violators).each(function(index,item){
-                    suspectsItems  += `<div class="suspects-item">${item.FullName}</div>`;
+                    suspectsItems  += `<div class="suspects-item">${item}</div>`;
                 });
                 $(itemText).each(function(index,item){
                     textItems += `
@@ -481,7 +481,7 @@ function initFiler()
     });
     refreshThingsList();
 }
-pushNotebook(policeman,personal,violators,filer);
+// pushNotebook(policeman,personal,violators,filer);
 function pushNotebook(policeman,personal,violators,filer)
 {
     if(policeman != undefined)
