@@ -772,8 +772,8 @@
 }
 .container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper
 {
-    min-height: 130px;
-    max-height: 130px;
+    min-height: 182px;
+    max-height: 182px;
 }
 .container .things-wrapper .add-thing-wrapper .left-block
 {
@@ -865,12 +865,29 @@
     box-shadow: 0 0 7px #13238d;
 }
 .container .things-wrapper #edit-thing,
-.container .things-wrapper #entryThing
+.container .things-wrapper #entryThing,
+.container .things-wrapper #add-line,
+.container .things-wrapper #changeThing,
+.container .things-wrapper #addThing,
+.container .add-thing-wrapper #add-suspect
 {
-    margin-top:5px;
+    margin-top:15px;
     margin-right:50px;
-    width:85px;
+    width:95px;
     height:29px;
+}
+#suspect-name
+{
+    margin-top:10px;
+}
+.container .add-thing-wrapper #add-suspect
+{
+    margin-right: 0;
+}
+.container .things-wrapper #changeThing,
+.container .things-wrapper #addThing
+{
+    margin-right:100px;
 }
 .container .things-wrapper .things-wrap .things-item .edit-button
 {
@@ -893,6 +910,14 @@
     display: none;
     z-index:999;
 }
+.container .add-thing-wrapper .button-wrap
+{
+    width:100%;
+    height:100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
 .container .things-wrapper .add-thing-wrapper .things-item
 {
     padding:10px;
@@ -908,6 +933,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
 }
 .container .add-thing-wrapper .right-block .suspects-wrap
 {
@@ -949,15 +975,9 @@
     border:none;
     border-radius:5px;
     font-weight: 500;
-    font-size:15px;
+    font-size:13px;
     text-align:center;
     margin:5px auto;
-}
-.container .add-thing-wrapper .right-block .button
-{
-    width:84px;
-    height:21px;
-    margin-top:10px;
 }
 .container .things-wrapper .things-wrap #add-thing-popap
 {
@@ -968,7 +988,7 @@
 } 
 .container .things-wrapper .right-block
 {
-    margin:0 0 0 5px;
+    margin:0 0 0 10px;
 }
 .container .things-wrapper .add-thing-wrapper .things-item .text-wrapper #thing-add-text
 {

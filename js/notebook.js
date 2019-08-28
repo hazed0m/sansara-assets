@@ -447,7 +447,7 @@ function initFiler()
                                         </div> `;
                 });
                 let template = `
-                    <div class="archive-item" id="thing${item.StatementID}">
+                    <div class="archive-item">
                         <div class="left-block">
                             <div class="title-wrap">
                                 <div class="name-wrap">
@@ -481,6 +481,7 @@ function initFiler()
     });
     refreshThingsList();
 }
+pushNotebook(policeman,personal,violators,filer);
 function pushNotebook(policeman,personal,violators,filer)
 {
     if(policeman != undefined)
@@ -500,24 +501,6 @@ function pushNotebook(policeman,personal,violators,filer)
         filerList = [...JSON.parse(filer)];
     }
 }
-// function pushNotebook(package)
-// {
-//     let obj = JSON.parse(package);
-//     $(obj).each(function(index,item){
-//         if(obj.personalList != undefined)
-//         {
-//             personalList = [...obj.personalList];
-//         }
-//         if(obj.violatorsList != undefined)
-//         {
-//             violatorsList = [...obj.violatorsList];
-//         }
-//         if(obj.filerList != undefined)
-//         {
-//             filerList = [...obj.filerList];
-//         }
-//     });
-// }
 function initPage()
 {
     let currentActive = $('.container .police-menu .menu-item.active')[0].id;
@@ -692,7 +675,7 @@ function refreshThingsList()
     $('.container .things-wrapper .search-wrap .notification').on('click',function(){
         $('.container .things-wrapper .search-wrap input').val('');
         $('.container .things-wrapper .search-wrap .notification').fadeOut();
-    });    
+    });   
     $('.container .things-wrapper #edit-thing').on('click',function(){
         let currentId = $(this).parent().parent().parent()[0].id,
             currentIndex = null;
@@ -711,7 +694,7 @@ function refreshThingsList()
                 });
                 $(item.Violators).each(function(index,item){
                     suspectsItems  += `<div class="suspects-item">
-                                            ${item}
+                                            <span>${item}</span>
                                             <div class="delete-item">
                                                 <i class="fas fa-times"></i>
                                             </div>
@@ -729,20 +712,23 @@ function refreshThingsList()
                 });
                 let template = `
                     <div class="close-but"><i class="fas fa-times"></i></div>
-                    <div class="things-item">
+                    <div class="things-item" id="edit"> 
                         <div class="left-block">
                             <div class="title-wrap">
-                                <div class="name-wrap">
+                                <div class="name-wrap" data-index="${index}">
                                     <div class="things-title">Дело №${item.StatementID}</div>
                                     ${policeMembers}  
                                 </div>                
-                                <div class="button" id="entryThing">Присоединится</div>          
+                                <div class="button" id="entryThing">Присоединиться</div>          
                             </div>
                             <div class="text-wrapper">
                                 ${textItems}
                                 <div id="text_area_div"></div>
                             </div>          
-                            <div class="button" id="add-line">Добавить абзац</div>               
+                            <div class="button-wrap">          
+                                <div class="button" id="add-line">Добавить абзац</div>    
+                                <div class="button" id="changeThing">Изменить дело</div>    
+                            </div>             
                             <!-- <div class="edit-button"></div> --> 
                             <div class="edit-wrap">
                                 
@@ -755,8 +741,8 @@ function refreshThingsList()
                                     ${suspectsItems}           
                                 </div>
                             </div>
-                            <input type="text" placeholder="Имя">
-                            <input type="text" placeholder="Фамилия">
+                            <input type="text" id="suspect-name" placeholder="Имя">
+                            <input type="text" id="suspect-lastname" placeholder="Фамилия">
                             <div class="button" id="add-suspect">Добавить</div>
                         </div>
                     </div>`;  
@@ -768,21 +754,31 @@ function refreshThingsList()
     $('.container .things-wrapper #add-thing').on('click',function(){
         $('.container .add-thing-wrapper, .container .things-wrapper .mask').fadeIn();
         let sortedItem = $(filerList).sort((a, b) => (a.StatementID > b.StatementID) ? 1 : -1);
-        let currentId = sortedItem[filerList.length-1].StatementID+1;
+        let currentId = 0;
+        if(filerList.length > 0)
+        {
+            currentId = sortedItem[filerList.length-1].StatementID+1;
+        }
         let template = `
             <div class="close-but"><i class="fas fa-times"></i></div>
-            <div class="things-item">
+            <div class="things-item" id="add">
                 <div class="left-block">
                     <div class="title-wrap">
                         <div class="name-wrap">
-                            <div class="things-title">Дело №${currentId}</div>                            
-                        </div>                
-                        <div class="button" id="entryThing">Присоединится</div>          
+                            <div class="things-title" data-statement="${currentId}">Дело №${currentId}</div>  
+                            <div class="things-name">
+                                [<span class="rank">${policemanList[0].Position}</span>]
+                                <span class="name">${policemanList[0].FullName}</span>
+                            </div>                          
+                        </div>                         
                     </div>
                     <div class="text-wrapper">
 
-                    </div>          
-                    <div class="button" id="add-line">Добавить абзац</div>               
+                    </div>
+                    <div class="button-wrap">          
+                        <div class="button" id="add-line">Добавить абзац</div>    
+                        <div class="button" id="addThing">Добавить дело</div>    
+                    </div>           
                     <!-- <div class="edit-button"></div> --> 
                     <div class="edit-wrap">
                         
@@ -795,8 +791,8 @@ function refreshThingsList()
 
                         </div>
                     </div>
-                    <input type="text" placeholder="Имя">
-                    <input type="text" placeholder="Фамилия">
+                    <input type="text" id="suspect-name" placeholder="Имя">
+                    <input type="text" id="suspect-lastname" placeholder="Фамилия">
                     <div class="button" id="add-suspect">Добавить</div>
                 </div>
             </div>`;  
@@ -816,30 +812,119 @@ function refreshAddThings()
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
     });
     $('.container .wrapper .add-thing-wrapper #entryThing').on('click',function(){
-        $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').append(`
-            <div class="things-name">
-                [<span class="rank">${policemanList[0].Position}</span>]
-                <span class="name">${policemanList[0].FullName}</span>
-            </div>
-        `);
+        if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
+        {
+            filerList[$(this).prev().attr('data-index')].PoliceMembers.push(`${policemanList[0].Position}@${policemanList[0].FullName}`);
+            $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').append(`
+                <div class="things-name">
+                    [<span class="rank">${policemanList[0].Position}</span>]
+                    <span class="name">${policemanList[0].FullName}</span>
+                </div>
+            `);
+        }
     });
+    $('.container .wrapper .add-thing-wrapper #add-suspect').on('click',function(){
+        let name = $('.container .wrapper .add-thing-wrapper #suspect-name').val(),
+            lastname = $('.container .wrapper .add-thing-wrapper #suspect-lastname').val(),
+            template = `<div class="suspects-item">
+                            <span>${name+ ' ' +lastname}</span>
+                            <div class="delete-item">
+                              <i class="fas fa-times"></i>
+                            </div>
+                        </div>`;
+        if(name.length != 0 && lastname.length != 0)
+        {
+            $(`.container .wrapper .add-thing-wrapper #suspect-name, 
+               .container .wrapper .add-thing-wrapper #suspect-lastname`).val('');
+            if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
+            {
+                filerList[$(this).parent().parent().find('.name-wrap').attr('data-index')].Violators.push(`${name+ ' ' +lastname}`);
+            }
+            $('.container .wrapper .add-thing-wrapper .things-item .suspects-wrap').append(template); 
+        }
+        suspectsRefresh();
+    });   
+    suspectsRefresh();
+    $('.container .things-wrapper .add-thing-wrapper #addThing').on('click',function(){
+        let tempObj = {
+            StatementID: $('.container .add-thing-wrapper .things-title').attr('data-statement'),
+            PoliceMembers: [
+                `${policemanList[0].Position}@${policemanList[0].FullName}`                
+            ],
+            Victim :[],
+            Violators: [],
+            Proofs: [],
+            ClosedFull:false,
+            InProgress:true,
+            WantedLevel: 0,
+            Text: ''
+        };
+        let currentText = ``;
+        $('.container .things-wrapper .add-thing-wrapper #text_area_div').each(function(index,item){
+            if($(item).text().length != 0)
+            {
+                let separator = index > 0 ? '@' : '';
+                currentText += separator + $(item).text();
+            }
+        });
+        console.log(currentText);
+        tempObj.Text = currentText;        
+        $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
+        
+        $('.container .add-thing-wrapper .right-block .suspects-wrap .suspects-item').each(function(index,item){
+            tempObj.Violators.push($(item).find('span').text());
+        });
+        let package = JSON.stringify(tempObj);
+        mp.trigger('addThing',package);
+    });
+    $('.container .add-thing-wrapper #changeThing').on('click',function(){
+        let currentText = ``,
+            currentId = $('.container .things-wrapper .add-thing-wrapper .name-wrap').attr('data-index');
+        $('.container .things-wrapper .add-thing-wrapper #thing-add-text, .container .things-wrapper .add-thing-wrapper #text_area_div').each(function(index,item){
+            if($(item).text().length != 0)
+            {
+                let separator = index > 0 ? '@' : '';
+                currentText += separator + $(item).text();
+            }
+        });
+        filerList[currentId].Text = currentText;
+        let package = JSON.stringify(filerList[currentId]);
+        $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
+        console.log(package);
+        mp.trigger('changeThing',package);
+    });
+}
+function suspectsRefresh()
+{    
+    $('.container .add-thing-wrapper .right-block .suspects-wrap .delete-item').on('click',function(){
+        if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
+        {
+            let currentId = $('.container .things-wrapper .add-thing-wrapper .name-wrap').attr('data-index'),
+                currentItem = $(this).parent().find('span').text();
+            $(filerList[currentId].Violators).each(function(index,item){
+                if(currentItem === item)
+                {
+                    filerList[currentId].Violators.splice(index,1);
+                    return;
+                }
+            });
+        }
+        $(this).parent().remove();
+    }); 
 }
 function textarea_resize(event, line_height = 10, min_line_count = 2)
 {
     var min_line_height = min_line_count * line_height;
     var obj = event.target;
-    var div = document.getElementById('text_area_div');
-    div.innerHTML = obj.value;
+    console.log($(obj).next());
+    $(obj).next().text(obj.value);
     var obj_height = div.offsetHeight;
-    console.log(obj_height);
     if (event.keyCode == 13)
     {
-        console.log('1d');
         obj_height += line_height/2;
     }
     else if(obj_height < min_line_height)
     {
-        console.log('2d');
         obj_height = min_line_height;
     }
     obj.style.height = obj_height + 'px';
