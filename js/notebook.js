@@ -1,5 +1,6 @@
 
-let personalList = {},
+let policemanList = {},
+    personalList = {},
     violatorsList = {},
     filerList = {};
 
@@ -157,198 +158,196 @@ function initTime(hour,minute)
     time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
     $('.hud-time').text(time);
 }
-let package = JSON.stringify({
-    'policemanInfo':[
-        {
-            FullName:'Вася Иванов',
-            Position:'Младший Сержант',
-            Status:true,
-            Time:'2:43:48',
-            OpenedThings:1,
-            ClosedThings:2
-        }
-    ],  
-    'personalList':[
-        {
-            FullName:'Вася Иванов',
-            Age: 55,
-            Gender:'man',
-            Text: 'asdasdada',
-            Number: '111111',
-            Cars: [
-                'Tyrus [LS245EE]',
-                'Tyrus [LS1452E]'
-            ],
-            Home:'ул. Лесная 20',
-            StatementsID: [
-                {
-                    Id: 1,
-                    FullName: 'Саша Белый',
-                    Date:'15:38@23.03.19'
-                },
-                {
-                    Id: 2,
-                    FullName: 'Саша Белый',
-                    Date:'15:38@23.03.19'
-                }
-            ]
-        },
-        {
-            FullName:'Вася Петров',
-            Age: 25,
-            Gender:'man',
-            Text: 'asdasdada',
-            StatementsID: 15,
-            Number: '232235',
-            Cars: [
-                'Tyrus [LS845EE]',
-                'Ringo [LS2452E]'
-            ],
-            Home:'ул. Лесная 25',
-            StatementsID: [
-                {
-                    Id: 1,
-                    FullName: 'Саша Белый',
-                    Date:'15:38@23.03.19'
-                },
-                {
-                    Id: 2,
-                    FullName: 'Саша Белый',
-                    Date:'15:40@23.03.19'
-                }
-            ]
-        }
-    ],
-    'violatorsList':[            
-        {
-            FullName:'Вася Иванов',
-            WantedLevel: 5,
-            StatementID:100
-        },
-        {
-            FullName:'Рубин Иванов',
-            WantedLevel: 2,
-            StatementID:99
-        }            
-    ],
-    'filerList':[
-        {
-            StatementID:1,
-            PoliceMembers : [
-               'Младший Сержант@Григорий Упсов',
-                'Младший Сержант@Григорий Упсов'
-            ],
-            Victim :[
-                'Виталька Усов',
-                'Григорий Трусов'
-            ],
-            Violators: [
-                'Виталька Усов',
-                'Григорий Трусов'
-            ],
-            Proofs: [
-                'Нож',
-                'Кровь нападавшего'
-            ],
-            ClosedFull: false,
-            InProgress:true,
-            WantedLevel: 5,
-            Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
-        },
-        {
-            StatementID:3,
-            PoliceMembers : [
-               'Младший Сержант@Григорий Упсов',
-                'Младший Сержант@Григорий Упсов'
-            ],
-            Victim :[
-                'Виталька Усов',
-                'Григорий Трусов'
-            ],
-            Violators: [
-                'Виталька Усов',
-                'Григорий Трусов'
-            ],
-            Proofs: [
-                'Нож',
-                'Кровь нападавшего'
-            ],
-            ClosedFull: false,
-            InProgress:true,
-            WantedLevel: 5,
-            Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
-        },
-        {
-            StatementID:5,
-            PoliceMembers : [
-               'Младший Сержант@Григорий Упсов',
-                'Младший Сержант@Григорий Упсов'
-            ],
-            Victim :[
-                'Виталька Усов',
-                'Григорий Трусов'
-            ],
-            Violators: [
-                'Виталька Усов',
-                'Григорий Трусов'
-            ],
-            Proofs: [
-                'Нож',
-                'Кровь нападавшего'
-            ],
-            ClosedFull: false,
-            InProgress:true,
-            WantedLevel: 5,
-            Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
-        },
-        {
-            StatementID:10,
-            PoliceMembers : [
-               'Младший Сержант@Григорий Упсов',
-                'Младший Сержант@Григорий Упсов'
-            ],
-            Victim :[
-                'Виталька Усов',
-                'Григорий Трусов'
-            ],
-            Violators: [
-                'Виталька Усов',
-                'Григорий Трусов'
-            ],
-            Proofs: [
-                'Нож',
-                'Кровь нападавшего'
-            ],
-            ClosedFull: false,
-            InProgress:true,
-            WantedLevel: 5,
-            Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
-        },
-        {
-            StatementID:12,
-            PoliceMembers : [
-               'Младший Сержант@Григорий Упсов',
-                'Младший Сержант@Григорий Упсов'
-            ],
-            Victim :[
-                'Виталька Усов',
-                'Григорий Трусов'
-            ],
-            Violators: [
-                'Виталька Усов',
-                'Григорий Трусов'
-            ],
-            Proofs: [
-                'Нож',
-                'Кровь нападавшего'
-            ],
-            ClosedFull: true,
-            InProgress:false,
-            WantedLevel: 5,
-            Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
-        }
-    ]
-});
+let policeman = JSON.stringify([
+    {
+        FullName:'Вася Иванов',
+        Position:'Младший Сержант',
+        Status:true,
+        Time:'2:43:48',
+        OpenedThings:1,
+        ClosedThings:2
+    }
+]); 
+let personal = JSON.stringify([
+    {
+        FullName:'Вася Иванов',
+        Age: 55,
+        Gender:'man',
+        Text: 'asdasdada',
+        Number: '111111',
+        Cars: [
+            'Tyrus [LS245EE]',
+            'Tyrus [LS1452E]'
+        ],
+        Home:'ул. Лесная 20',
+        StatementsID: [
+            {
+                Id: 1,
+                FullName: 'Саша Белый',
+                Date:'15:38@23.03.19'
+            },
+            {
+                Id: 2,
+                FullName: 'Саша Белый',
+                Date:'15:38@23.03.19'
+            }
+        ]
+    },
+    {
+        FullName:'Вася Петров',
+        Age: 25,
+        Gender:'man',
+        Text: 'asdasdada',
+        StatementsID: 15,
+        Number: '232235',
+        Cars: [
+            'Tyrus [LS845EE]',
+            'Ringo [LS2452E]'
+        ],
+        Home:'ул. Лесная 25',
+        StatementsID: [
+            {
+                Id: 1,
+                FullName: 'Саша Белый',
+                Date:'15:38@23.03.19'
+            },
+            {
+                Id: 2,
+                FullName: 'Саша Белый',
+                Date:'15:40@23.03.19'
+            }
+        ]
+    }
+]);
+let violators = JSON.stringify([    
+    {
+        FullName:'Вася Иванов',
+        WantedLevel: 5,
+        StatementID:100
+    },
+    {
+        FullName:'Рубин Иванов',
+        WantedLevel: 2,
+        StatementID:99
+    }            
+]);
+let filer = JSON.stringify([ 
+    {
+        StatementID:1,
+        PoliceMembers : [
+            'Младший Сержант@Григорий Упсов',
+            'Младший Сержант@Григорий Упсов'
+        ],
+        Victim :[
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Violators: [
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Proofs: [
+            'Нож',
+            'Кровь нападавшего'
+        ],
+        ClosedFull: false,
+        InProgress:true,
+        WantedLevel: 5,
+        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+    },
+    {
+        StatementID:3,
+        PoliceMembers : [
+            'Младший Сержант@Григорий Упсов',
+            'Младший Сержант@Григорий Упсов'
+        ],
+        Victim :[
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Violators: [
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Proofs: [
+            'Нож',
+            'Кровь нападавшего'
+        ],
+        ClosedFull: false,
+        InProgress:true,
+        WantedLevel: 5,
+        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+    },
+    {
+        StatementID:5,
+        PoliceMembers : [
+            'Младший Сержант@Григорий Упсов',
+            'Младший Сержант@Григорий Упсов'
+        ],
+        Victim :[
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Violators: [
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Proofs: [
+            'Нож',
+            'Кровь нападавшего'
+        ],
+        ClosedFull: false,
+        InProgress:true,
+        WantedLevel: 5,
+        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+    },
+    {
+        StatementID:10,
+        PoliceMembers : [
+            'Младший Сержант@Григорий Упсов',
+            'Младший Сержант@Григорий Упсов'
+        ],
+        Victim :[
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Violators: [
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Proofs: [
+            'Нож',
+            'Кровь нападавшего'
+        ],
+        ClosedFull: false,
+        InProgress:true,
+        WantedLevel: 5,
+        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+    },
+    {
+        StatementID:12,
+        PoliceMembers : [
+            'Младший Сержант@Григорий Упсов',
+            'Младший Сержант@Григорий Упсов'
+        ],
+        Victim :[
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Violators: [
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Proofs: [
+            'Нож',
+            'Кровь нападавшего'
+        ],
+        ClosedFull: true,
+        InProgress:false,
+        WantedLevel: 5,
+        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+    }
+]);
 function initFiler()
 {
     $(`.container .archive-wrapper .archive-wrap,
@@ -482,25 +481,44 @@ function initFiler()
     });
     refreshThingsList();
 }
-pushNotebook(package);
-function pushNotebook(package)
+pushNotebook(policeman,personal,violators,filer);
+function pushNotebook(policeman,personal,violators,filer)
 {
-    let obj = JSON.parse(package);
-    $(obj).each(function(index,item){
-        if(obj.personalList != undefined)
-        {
-            personalList = [...obj.personalList];
-        }
-        if(obj.violatorsList != undefined)
-        {
-            violatorsList = [...obj.violatorsList];
-        }
-        if(obj.filerList != undefined)
-        {
-            filerList = [...obj.filerList];
-        }
-    });
+    if(policeman != undefined)
+    {
+        policemanList = [...JSON.parse(policeman)];
+    }
+    if(personal != undefined)
+    {
+        personalList = [...JSON.parse(personal)];
+    }
+    if(violators != undefined)
+    {
+        violatorsList = [...JSON.parse(violators)];
+    }
+    if(filer != undefined)
+    {
+        filerList = [...JSON.parse(filer)];
+    }
 }
+// function pushNotebook(package)
+// {
+//     let obj = JSON.parse(package);
+//     $(obj).each(function(index,item){
+//         if(obj.personalList != undefined)
+//         {
+//             personalList = [...obj.personalList];
+//         }
+//         if(obj.violatorsList != undefined)
+//         {
+//             violatorsList = [...obj.violatorsList];
+//         }
+//         if(obj.filerList != undefined)
+//         {
+//             filerList = [...obj.filerList];
+//         }
+//     });
+// }
 function initPage()
 {
     let currentActive = $('.container .police-menu .menu-item.active')[0].id;
@@ -797,6 +815,14 @@ function refreshAddThings()
     });
     $('.container .wrapper .add-thing-wrapper .close-but').on('click',function(){        
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
+    });
+    $('.container .wrapper .add-thing-wrapper #entryThing').on('click',function(){
+        $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').append(`
+            <div class="things-name">
+                [<span class="rank">${policemanList[0].Position}</span>]
+                <span class="name">${policemanList[0].FullName}</span>
+            </div>
+        `);
     });
 }
 function textarea_resize(event, line_height = 10, min_line_count = 2)
