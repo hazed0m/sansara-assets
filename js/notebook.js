@@ -19,6 +19,9 @@ $('#sansara-menu').on('click',function(){
         menu.fadeOut();
     }
 });
+$('#noteExit').on('click',function(){
+    mp.trigger('exitNote');
+});
 $('#police-menu').on('click',function(){
     let menu = $('.container .wrapper .police-menu');
     if(!menu.is(':visible'))
@@ -28,17 +31,30 @@ $('#police-menu').on('click',function(){
         $(this).parent().fadeOut();
     }
 });
+$('.container .wrapper .bottom-panel .left-wrapper  .used-app').on('click',function(){
+    if($(`.wrapper > .active`).is(':visible'))
+    {
+        $(`.wrapper > .active`).fadeOut(500);
+    }
+    else
+    {
+        $(`.wrapper > .active`).fadeIn(500).css('display','flex');
+    }
+});
 $('.container .wrapper .police-menu .close-but').on('click',function(){        
     $('.container .wrapper .police-menu').fadeOut();
 });
 $('.police-menu .menu-item').on('click',function(){
     let currentWrapper = this.id;
-    $('.wrapper > .active').removeClass('active').fadeOut(200);
-    $('.police-menu .menu-item.active').removeClass('active');
-    $(this).addClass('active');
-    $(`.wrapper .${currentWrapper}`).addClass('active').fadeIn(200).css('display','flex');
-    initPage();
-    initFiler();
+    if(!$(this).hasClass('active'))
+    {
+        $('.wrapper > .active').removeClass('active').fadeOut(200);
+        $('.police-menu .menu-item.active').removeClass('active');
+        $(this).addClass('active');
+        $(`.wrapper .${currentWrapper}`).addClass('active').fadeIn(500).css('display','flex');
+        initPage();
+        initFiler();
+    }
 });
 $('.business-wrapper .add-violation .wanted-level .star').hover(
     function()

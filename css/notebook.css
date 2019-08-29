@@ -22,6 +22,8 @@
     top:43px;
     left:277px;
     overflow: hidden;
+    background: url(../img/notebook/program-back.png) no-repeat;
+    background-size: cover;
 }
 .container .main-wrapper
 {
@@ -52,8 +54,15 @@
     cursor: pointer;
     transition:0.2s;
 }
+.container .wrapper .bottom-panel .left-wrapper  .used-app
+{
+    cursor: pointer;
+    padding:0 5px;
+    border-bottom:3px solid #FFB64C;
+}
 .container .wrapper .bottom-panel .menu-but:hover,
-.container .wrapper .sansara-menu .menu-item:hover
+.container .wrapper .sansara-menu .menu-item:hover,
+.container .wrapper .bottom-panel .left-wrapper  .used-app:hover
 {
    opacity:0.7;
 }
