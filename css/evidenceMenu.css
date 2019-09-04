@@ -1,0 +1,114 @@
+*
+{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: "Gotham Pro";
+}
+.container
+{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width: 200px;
+    height:auto;
+    padding:20px;
+    background:#363940;
+    border-radius:5px;
+}
+.container .close-but
+{
+    width:20px;
+    height:20px;
+    background:red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right:1px;
+    border-radius:2px;
+    color:#fff;
+    position: absolute;
+    top:-8px;
+    right:-8px;
+    cursor: pointer;
+}
+.container .input-wrapper
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+}
+.container .input-wrapper input
+{
+    max-width:70px;
+    text-align: center;
+    padding-bottom:4px;
+    border:none;
+    border-bottom:2px solid #fff;
+    background:none;
+    margin:20px 0;
+    color:#fff;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+.container .input-wrapper .button
+{
+    padding:5px 20px;
+    background: #ffe100;
+    color: #000;
+    border-radius:5px;
+    cursor: pointer;
+}
+.container .input-wrapper .button.disabled
+{
+    opacity:0.5;
+    cursor: default;
+}
+.container .evidence-wrapper
+{
+    background:#fff;
+    border-radius:5px;
+    min-height:100px;
+}
+.container .evidence-wrapper .evidence-item
+{
+    display: flex;
+    padding:3px 0 3px 5px;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+.container .evidence-wrapper .evidence-item .toogle
+{
+    width:14px;
+    height:14px;
+    border:1px solid #000;
+    margin-right:6px;
+    border-radius:50%;
+    position: relative;
+}
+.container .evidence-wrapper .evidence-item.active .toogle
+{
+    background: #ffe100;
+}
+
+.container .evidence-wrapper .evidence-item.active .toogle::after
+{
+    content:'';
+    position: absolute;
+    width:7px;
+    height:7px;
+    background:#000;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}

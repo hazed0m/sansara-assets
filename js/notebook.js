@@ -434,7 +434,7 @@ function initFiler()
                 </div>`;
                 $('.container .things-wrapper .things-container').append(template);
             }
-            if(item.ClosedFull == true && item.InProgress == false)
+            if(item.ClosedFull == true && item.InProgress == false || item.ClosedFull == false && item.InProgress == false)
             {
                 let policeMembers  = ``,
                 itemText = item.Text.split('@'),
@@ -516,6 +516,9 @@ function pushNotebook(policeman,personal,violators,filer)
     {
         filerList = [...JSON.parse(filer)];
     }
+    $('.wrapper > .active').removeClass('active').fadeOut(200);
+    $('.police-menu .menu-item.active').removeClass('active');
+    $('.wrapper #main-wrapper').addClass('active').fadeIn(500);
 }
 function initPage()
 {
