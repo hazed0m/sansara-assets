@@ -43,9 +43,14 @@ function pushEvidence(element)
     evidenceList = JSON.parse(element);
     $('.container .evidence-wrapper').empty();
     $(evidenceList).each(function(index,item){
+        let color = '';
+        if(item.Type === 'Illegal_Object' || item.Type === 'Clothes_Illegal' || item.Type === 'Weapon_FireGun_Illegal')
+        {
+            color = 'illegal';
+        }
         let template = `<div class="evidence-item">
                             <div class="toogle"></div>
-                            <div class="name">${item}</div>
+                            <div class="name ${color}">${item.Name}</div>
                         </div>`;
         $('.container .evidence-wrapper').append(template);
     });

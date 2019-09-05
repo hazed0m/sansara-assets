@@ -2,7 +2,9 @@
 let policemanList = {},
     personalList = {},
     violatorsList = {},
-    filerList = {};
+    filerList = {},
+    employeeList = {},
+    handbookList = {};
 
 $('#sansara-menu').on('click',function(){
     let menu = $('.container .wrapper .sansara-menu');
@@ -52,8 +54,29 @@ $('.police-menu .menu-item').on('click',function(){
         $('.police-menu .menu-item.active').removeClass('active');
         $(this).addClass('active');
         $(`.wrapper .${currentWrapper}`).addClass('active').fadeIn(500).css('display','flex');
-        initPage();
-        initFiler();
+        switch(currentWrapper)
+        {
+            case 'wantedSearch-wrapper':
+            {
+                initPage();  
+            }
+            case 'archive-wrapper':
+            {
+                initFiler();
+            }
+            case 'things-wrapper':
+            {
+                initFiler();
+            }
+            case 'employee-wrapper':
+            {
+                initEmployee();
+            }
+            case 'handbook-wrapper':
+            {
+                initHandbook();
+            }
+        }
     }
 });
 $('.business-wrapper .add-violation .wanted-level .star').hover(
@@ -179,7 +202,7 @@ let policeman = JSON.stringify([
         FullName:'Вася Иванов',
         Position:'Младший Сержант',
         Status:true,
-        Time:'2:43:48',
+        Time:'2',
         OpenedThings:1,
         ClosedThings:2
     }
@@ -364,6 +387,94 @@ let filer = JSON.stringify([
         Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
     }
 ]);
+let employee = JSON.stringify([
+    {
+        FullName:'Вася Иванов',
+        Rank:'Младший Сержант',
+        Online:true,
+        Time:'2',
+        OpenedThings:1,
+        ClosedThings:2
+    },
+    {
+        FullName:'Вася Иванов',
+        Rank:'Младший Сержант',
+        Online:false,
+        Time:'2',
+        OpenedThings:1,
+        ClosedThings:2
+    },
+    {
+        FullName:'Вася Иванов',
+        Rank:'Младший Сержант',
+        Online:true,
+        Time:'2',
+        OpenedThings:1,
+        ClosedThings:2
+    },
+    {
+        FullName:'Вася Иванов',
+        Rank:'Младший Сержант',
+        Online:true,
+        Time:'2',
+        OpenedThings:1,
+        ClosedThings:2
+    },
+    {
+        FullName:'Вася Иванов',
+        Rank:'Младший Сержант',
+        Online:true,
+        Time:'2',
+        OpenedThings:1,
+        ClosedThings:2
+    },
+    {
+        FullName:'Вася Иванов',
+        Rank:'Младший Сержант',
+        Online:true,
+        Time:'2',
+        OpenedThings:1,
+        ClosedThings:2
+    },
+    {
+        FullName:'Вася Иванов',
+        Rank:'Младший Сержант',
+        Online:false,
+        Time:'2',
+        OpenedThings:1,
+        ClosedThings:2
+    },
+    {
+        FullName:'Вася Иванов',
+        Rank:'Младший Сержант',
+        Online:false,
+        Time:'2',
+        OpenedThings:1,
+        ClosedThings:2
+    }
+]); 
+let handbook = JSON.stringify([
+    {
+        Name:'Употребление нарк. средств',
+        Penalty:'Ремнем по жопе',
+        Article:'УК 228'
+    },
+    {
+        Name:'Употребление нарк. средств',
+        Penalty:'Ремнем по жопе',
+        Article:'УК 228'
+    },
+    {
+        Name:'Употребление нарк. средств',
+        Penalty:'Ремнем по жопе',
+        Article:'УК 228'
+    },
+    {
+        Name:'Употребление нарк. средств',
+        Penalty:'Ремнем по жопе',
+        Article:'УК 228'
+    }
+]);
 function initFiler()
 {
     $(`.container .archive-wrapper .archive-wrap,
@@ -403,7 +514,16 @@ function initFiler()
                     <div class="left-block">
                         <div class="title-wrap">
                             <div class="name-wrap">
-                                <div class="things-title">Дело №${item.StatementID}</div>
+                                <div class="things-title">
+                                    <span>Дело №${item.StatementID}</span>                                    
+                                    <div class="wanted-level">
+                                        <div class="star ${item.WantedLevel >= 1 ? 'active' : ''}" id="s1"><i class="fas fa-star"></i></div>
+                                        <div class="star ${item.WantedLevel >= 2 ? 'active' : ''}" id="s2"><i class="fas fa-star"></i></div>
+                                        <div class="star ${item.WantedLevel >= 3 ? 'active' : ''}" id="s3"><i class="fas fa-star"></i></div>
+                                        <div class="star ${item.WantedLevel >= 4 ? 'active' : ''}" id="s4"><i class="fas fa-star"></i></div>
+                                        <div class="star ${item.WantedLevel >= 5 ? 'active' : ''}" id="s5"><i class="fas fa-star"></i></div>
+                                    </div>
+                                </div>
                                 ${policeMembers} 
                             </div>       
                             <div class="button" id="edit-thing">Изменить дело</div>              
@@ -467,7 +587,16 @@ function initFiler()
                         <div class="left-block">
                             <div class="title-wrap">
                                 <div class="name-wrap">
-                                    <div class="archive-title">Дело №${item.StatementID}</div>
+                                    <div class="archive-title">
+                                        <span>Дело №${item.StatementID}</span>                                    
+                                        <div class="wanted-level">
+                                            <div class="star ${item.WantedLevel >= 1 ? 'active' : ''}" id="s1"><i class="fas fa-star"></i></div>
+                                            <div class="star ${item.WantedLevel >= 2 ? 'active' : ''}" id="s2"><i class="fas fa-star"></i></div>
+                                            <div class="star ${item.WantedLevel >= 3 ? 'active' : ''}" id="s3"><i class="fas fa-star"></i></div>
+                                            <div class="star ${item.WantedLevel >= 4 ? 'active' : ''}" id="s4"><i class="fas fa-star"></i></div>
+                                            <div class="star ${item.WantedLevel >= 5 ? 'active' : ''}" id="s5"><i class="fas fa-star"></i></div>
+                                        </div>
+                                    </div>
                                     ${policeMembers} 
                                 </div>                  
                             </div>
@@ -497,8 +626,7 @@ function initFiler()
     });
     refreshThingsList();
 }
-// pushNotebook(policeman,personal,violators,filer);
-function pushNotebook(policeman,personal,violators,filer)
+function pushNotebook(policeman,personal,violators,filer,employee,handbook)
 {
     if(policeman != undefined)
     {
@@ -516,9 +644,17 @@ function pushNotebook(policeman,personal,violators,filer)
     {
         filerList = [...JSON.parse(filer)];
     }
-    $('.wrapper > .active').removeClass('active').fadeOut(200);
-    $('.police-menu .menu-item.active').removeClass('active');
-    $('.wrapper #main-wrapper').addClass('active').fadeIn(500);
+    if(employee != undefined)
+    {
+        employeeList = [...JSON.parse(employee)];
+    }
+    if(handbook != undefined)
+    {
+        handbookList = [...JSON.parse(handbook)];
+    }
+    // $('.wrapper > .active').removeClass('active').fadeOut(200);
+    // $('.police-menu .menu-item.active').removeClass('active');
+    // $('.wrapper #main-wrapper').addClass('active').fadeIn(500);
 }
 function initPage()
 {
@@ -738,12 +874,22 @@ function refreshThingsList()
                                     <div class="things-title">Дело №${item.StatementID}</div>
                                     ${policeMembers}  
                                 </div>                
-                                <div class="button" id="entryThing">Присоединиться</div>          
+                                <div class="button" id="entryThing">Присоединиться</div>        
+                            </div>   
+                            <div class="wanted-wrapper">
+                                <div class="wanted-title">Уровень розыска</div>
+                                <div class="wanted-level">
+                                    <div class="star ${item.WantedLevel >= 1 ? 'active' : ''}" id="s1"><i class="fas fa-star"></i></div>
+                                    <div class="star ${item.WantedLevel >= 2 ? 'active' : ''}" id="s2"><i class="fas fa-star"></i></div>
+                                    <div class="star ${item.WantedLevel >= 3 ? 'active' : ''}" id="s3"><i class="fas fa-star"></i></div>
+                                    <div class="star ${item.WantedLevel >= 4 ? 'active' : ''}" id="s4"><i class="fas fa-star"></i></div>
+                                    <div class="star ${item.WantedLevel >= 5 ? 'active' : ''}" id="s5"><i class="fas fa-star"></i></div>
+                                </div>   
                             </div>
                             <div class="text-wrapper">
                                 ${textItems}
                                 <div id="text_area_div"></div>
-                            </div>          
+                            </div> 
                             <div class="button-wrap">          
                                 <div class="button" id="add-line">Добавить абзац</div>    
                                 <div class="button" id="changeThing">Изменить дело</div>    
@@ -841,6 +987,49 @@ function refreshAddThings()
                 </div>
             `);
         }
+    });    
+    $('.container .add-thing-wrapper .wanted-level .star').hover(
+        function()
+        {
+            if(!$('.business-wrapper .add-violation .wanted-level .star').hasClass('activated'))
+            {
+                let currentStar = this.id;            
+                $('.container .add-thing-wrapper .wanted-level .star').find('svg path').css({
+                    'stroke':'#000',
+                    'fill':'#fff'
+                });            
+                for(i=0; i <= currentStar.substring(1); i++)
+                {
+                    $(`.container .add-thing-wrapper .wanted-level .star#s${i}`).find('svg path').css({
+                        'stroke':'#ed8a19',
+                        'fill':'#ed8a19'
+                    });
+                }
+            }
+        }
+    );
+    $('.container .add-thing-wrapper .wanted-level .star').on('click',function(){
+        if(!$('.container .add-thing-wrapper .wanted-level .star').hasClass('activated'))
+        {
+            $(this).addClass('activated');
+        }
+        else
+        {
+            let currentStar = this.id;   
+            $('.container .add-thing-wrapper .wanted-level .star.activated').removeClass('activated');
+            $('.container .add-thing-wrapper .wanted-level .star').find('svg path').css({
+                'stroke':'#000',
+                'fill':'#fff'
+            });  
+            for(i=0; i <= currentStar.substring(1); i++)
+            {
+                $(`.container .add-thing-wrapper .wanted-level .star#s${i}`).find('svg path').css({
+                    'stroke':'#ed8a19',
+                    'fill':'#ed8a19'
+                });
+            }
+            $(this).addClass('activated');
+        }
     });
     $('.container .wrapper .add-thing-wrapper #add-suspect').on('click',function(){
         let name = $('.container .wrapper .add-thing-wrapper #suspect-name').val(),
@@ -863,7 +1052,6 @@ function refreshAddThings()
         }
         suspectsRefresh();
     });   
-    suspectsRefresh();
     $('.container .things-wrapper .add-thing-wrapper #addThing').on('click',function(){
         let tempObj = {
             StatementID: $('.container .add-thing-wrapper .things-title').attr('data-statement'),
@@ -907,6 +1095,13 @@ function refreshAddThings()
             }
         });
         filerList[currentId].Text = currentText;
+        let wantedLevel = $('.container .things-wrapper .add-thing-wrapper .wanted-level .star.activated');
+        console.log(wantedLevel);
+        if(wantedLevel.length != 0)
+        {
+            wantedLevel = wantedLevel[0].id;
+            filerList[currentId].WantedLevel = wantedLevel.slice(1);
+        }
         let package = JSON.stringify(filerList[currentId]);
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
         console.log(package);
@@ -934,10 +1129,9 @@ function suspectsRefresh()
 function textarea_resize(event, line_height = 10, min_line_count = 2)
 {
     var min_line_height = min_line_count * line_height;
-    var obj = event.target;
-    console.log($(obj).next());
+    var obj = event.target;    
     $(obj).next().text(obj.value);
-    var obj_height = div.offsetHeight;
+    var obj_height = $(obj).next()[0].offsetHeight;
     if (event.keyCode == 13)
     {
         obj_height += line_height/2;
@@ -947,4 +1141,82 @@ function textarea_resize(event, line_height = 10, min_line_count = 2)
         obj_height = min_line_height;
     }
     obj.style.height = obj_height + 'px';
+}
+function initEmployee()
+{
+    $(`.container .employee-wrapper .onDuty-wrapper .duty-wrapper,
+       .container .employee-wrapper .notOnDuty-wrapper .duty-wrapper`).empty();
+    $(employeeList).each(function(index,item){
+        if(item.Online)
+        {
+            let template = `<div class="duty-item active">
+                                <div class="name">${item.FullName}</div>
+                                <div class="rank">${item.Rank}</div>
+                                <div class="time">
+                                    <span>${item.Time}</span>ч                              
+                                </div>
+                                <div class="toogle"><img src="img/notebook/arrow.png" alt=""></div>
+                                <div class="toogle-menu">
+                                    <div class="toogle-item" id="upRank"><i class="far fa-hand-point-up"></i></div>
+                                    <div class="toogle-item" id="downRank"><i class="far fa-hand-point-down"></i></div>
+                                    <div class="toogle-item" id="removeRank"><i class="fas fa-user-minus"></i></div>
+                                </div>
+                            </div>`;
+            $('.container .employee-wrapper .onDuty-wrapper .duty-wrapper').append(template);   
+        }
+        else
+        {
+            let template = `<div class="duty-item">
+                                <div class="name">${item.FullName}</div>
+                                <div class="rank">${item.Rank}</div>
+                                <div class="time">
+                                    <span>${item.Time}</span>ч                              
+                                </div>
+                            </div>`;
+            $('.container .employee-wrapper .notOnDuty-wrapper .duty-wrapper').append(template);  
+        }
+    });
+    employeeRefresh();
+}
+function employeeRefresh()
+{
+    $('.container .employee-wrapper .onDuty-wrapper .duty-wrapper .duty-item .toogle').on('click',function(){
+        if(!$(this).next().is(':visible'))
+        {
+            $(this).css({
+                'border-top-left-radius':'0px',
+                'border-bottom-left-radius':'0px'
+            });
+            $(this).find('img').css('transform','rotate(180deg)');
+            $(this).next().fadeIn().css('display','flex');
+        }
+        else
+        {        
+            $(this).css('border-radius','20px');
+            $(this).find('img').css('transform','rotate(0deg)');
+            $(this).next().fadeOut();
+        }
+    });
+    $('.container .employee-wrapper .duty-item .toogle-menu .toogle-item').on('click',function(){
+        let currentId = this.id,
+            name = $(this).parent().parent().find('.name').text(),
+            rank = $(this).parent().parent().find('.rank').text(),
+            time = $(this).parent().parent().find('.time span').text();
+        $(this).parent().prev().css('border-radius','20px');
+        $(this).parent().prev().find('img').css('transform','rotate(0deg)');
+        $(this).parent().fadeOut();
+        mp.trigger('policeOnlineChange',currentId,name,rank,time);
+    });
+}
+function initHandbook()
+{
+    $('.container .handbook-wrapper .wrapper .handbook-items').empty();
+    $(handbookList).each(function(index,item){
+        let template = `<div class="handbook-item">
+                            <div class="name">${item.Name}</div>
+                            <div class="penalty">${item.Penalty}</div>
+                            <div class="article">${item.Article}</div>
+                        </div>`;
+        $('.container .handbook-wrapper .wrapper .handbook-items').append(template);
+    });
 }

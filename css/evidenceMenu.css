@@ -74,7 +74,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .container .evidence-wrapper
 {
-    background:#fff;
+    background:rgb(240,240,240);
     border-radius:5px;
     min-height:100px;
 }
@@ -85,6 +85,10 @@ input[type=number]::-webkit-outer-spin-button {
     justify-content: flex-start;
     align-items: center;
     cursor: pointer;
+}
+.container .evidence-wrapper .evidence-item .name.illegal
+{
+    color:red;
 }
 .container .evidence-wrapper .evidence-item .toogle
 {
