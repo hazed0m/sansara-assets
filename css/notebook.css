@@ -195,7 +195,8 @@
 .container .archive-wrapper,
 .container .things-wrapper,
 .container .employee-wrapper,
-.container .handbook-wrapper
+.container .handbook-wrapper,
+.container .charter-wrapper
 {
     background:url(../img/notebook/program-back.png) no-repeat;
     background-size:cover;
@@ -373,7 +374,9 @@
 .container .archive-wrapper .archive-wrap::-webkit-scrollbar,
 .container .archive-wrapper .archive-wrap .archive-item .text-wrapper::-webkit-scrollbar,
 .container .things-wrapper .things-container::-webkit-scrollbar,
-.container .things-wrapper .things-wrap .things-item .text-wrapper::-webkit-scrollbar
+.container .things-wrapper .things-wrap .things-item .text-wrapper::-webkit-scrollbar,
+.container .charter-wrapper .show-wrapper .text-wrapper::-webkit-scrollbar,
+.container .charter-wrapper .wrapper #editor::-webkit-scrollbar
 {
     width: 6px;
 }
@@ -388,7 +391,8 @@
     width: 4px;
 }
 .violations-wrapper .violation-wrap::-webkit-scrollbar-track,
-.container .wantedSearch-wrapper .wanted-wrapper::-webkit-scrollbar-track
+.container .wantedSearch-wrapper .wanted-wrapper::-webkit-scrollbar-track,
+.container .charter-wrapper .wrapper #editor::-webkit-scrollbar-track
 {
     margin:1px 0;
     background:#e5e5e5;
@@ -411,7 +415,8 @@
 .container .evidences-wrap::-webkit-scrollbar-track,
 .container .employee-wrapper .onDuty-wrapper .duty-wrapper::-webkit-scrollbar-track, 
 .container .employee-wrapper .notOnDuty-wrapper .duty-wrapper::-webkit-scrollbar-track,
-.container .handbook-wrapper .wrapper .handbook-items::-webkit-scrollbar-track
+.container .handbook-wrapper .wrapper .handbook-items::-webkit-scrollbar-track,
+.container .charter-wrapper .show-wrapper .text-wrapper::-webkit-scrollbar-track
 {
     margin:7px 0;
     background:#e5e5e5;
@@ -428,7 +433,9 @@
 .container .evidences-wrap::-webkit-scrollbar-thumb,
 .container .employee-wrapper .onDuty-wrapper .duty-wrapper::-webkit-scrollbar-thumb, 
 .container .employee-wrapper .notOnDuty-wrapper .duty-wrapper::-webkit-scrollbar-thumb,
-.container .handbook-wrapper .wrapper .handbook-items::-webkit-scrollbar-thumb
+.container .handbook-wrapper .wrapper .handbook-items::-webkit-scrollbar-thumb,
+.container .charter-wrapper .show-wrapper .text-wrapper::-webkit-scrollbar-thumb,
+.container .charter-wrapper .wrapper #editor::-webkit-scrollbar-thumb
 {
     background: #0f1636;
 }
@@ -898,7 +905,7 @@
     text-align: center;
     margin-bottom:10px;
 }
-.container .things-wrapper .things-wrap .button 
+.container .things-wrapper .things-wrap .button, .container .charter-wrapper .button
 {
     background: rgb(19,32,119);
     background: linear-gradient(90deg, rgba(19,32,119,1) 44%, rgba(15,24,62,1) 100%);
@@ -921,7 +928,8 @@
     bottom:14px;
     left:17px;
 } 
-.container .things-wrapper .things-wrap .button:hover
+.container .things-wrapper .things-wrap .button:hover,
+.container .charter-wrapper .button:hover
 {
     box-shadow: 0 0 7px #13238d;
 }
@@ -1301,4 +1309,56 @@ input[type=number]::-webkit-outer-spin-button {
 .container .handbook-wrapper .wrapper .handbook-items .handbook-item .article
 {
     min-width:15%;
+}
+.container .charter-wrapper .wrapper
+{
+    background:#fff;
+    width:775px;
+    height:545px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-35%,-50%);
+    border-radius:20px;
+    padding:28px 20px;
+}
+.container .charter-wrapper .wrapper .edit-wrapper
+{
+    margin-top:10px;
+}
+.container .charter-wrapper .wrapper #editor
+{
+    width:100%;
+    min-height:380px;
+    max-height:380px;
+    overflow-y:scroll;
+}
+.ql-snow.ql-toolbar button.ql-link
+{
+    display: none;
+}
+.container .charter-wrapper .title
+{
+    font-weight:400;
+    font-size:18px;
+}
+.container .charter-wrapper .button
+{
+    margin:10px auto;
+}
+.container .charter-wrapper .edit-wrapper
+{
+    display: none;
+}
+.container .charter-wrapper .show-wrapper
+{
+    margin-top:10px;
+    font-size:19px;
+}
+.container .charter-wrapper .show-wrapper .text-wrapper
+{    
+    padding:0 20px;
+    min-height:420px;
+    max-height:420px;
+    overflow-y:scroll;
 }

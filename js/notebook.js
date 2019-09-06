@@ -1220,3 +1220,25 @@ function initHandbook()
         $('.container .handbook-wrapper .wrapper .handbook-items').append(template);
     });
 }
+let editor = new Quill('#editor', {
+    theme: 'snow'
+});
+$('.container .charter-wrapper .show-wrapper #editCharter').on('click',function(){
+    $(this).parent().css('display','none');
+    let currentText = $('.container .charter-wrapper .show-wrapper .text-wrapper').html();
+    editor.disable();
+    $(this).parent().parent().find('.edit-wrapper #editor .ql-editor').empty().append(currentText);
+    $(this).parent().parent().find('.edit-wrapper').fadeIn();
+    charterInit();
+});
+function charterInit()
+{    
+    editor.enable();
+    $('.container .charter-wrapper .edit-wrapper #saveCharter').on('click',function(){
+        let currentText = $('.edit-wrapper #editor .ql-editor').html();
+        console.log(currentText);
+        $('.container .charter-wrapper .show-wrapper .text-wrapper').empty().append(currentText);
+        $(this).parent().fadeOut();
+        $(this).parent().parent().find('.show-wrapper').fadeIn();
+    });
+}
