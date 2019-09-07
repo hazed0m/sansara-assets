@@ -268,14 +268,23 @@
 .container .wantedSearch-wrapper .wanted-content-wrapper .name-wrapper
 {
     padding:23px 22px 15px 22px;
-    text-align: right;
+    /* text-align: right; */
     font-size:15px;
+}
+.container .business-wrapper .content-block .car-wrapper
+{
+    display: flex;
+    flex-wrap:wrap;
+}
+.container .business-wrapper .content-block .car-wrapper > div
+{
+    margin:0 2px;
 }
 .container .business-wrapper .content-block .property-wrapper,
 .container .wantedSearch-wrapper .wanted-content-wrapper .property-wrapper
 {
     padding:0 22px 42px 22px;
-    text-align: right;
+    /* text-align: right; */
     font-size:15px;
 }
 .container .business-wrapper .content-block .property-wrapper span,
@@ -450,7 +459,7 @@
     z-index:99;
     display: none;
 }
-.container .business-wrapper .add-violation,
+.container .things-wrapper .add-violation,
 .container .wantedSearch-wrapper .add-violation
 {
     width:252px;
@@ -466,7 +475,32 @@
     align-items: center;
     z-index: 9999;
 }
-.container .business-wrapper .add-violation .close-but,
+.container .things-wrapper .add-violation .notification
+{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background:#fff;
+    width:80%;
+    height:auto;
+    padding:10px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    display: none;
+}
+.container .things-wrapper .add-violation .notification .title
+{
+    font-size:16px;
+}
+.container .things-wrapper .add-violation .notification .text
+{
+    margin-top:10px;
+    font-size:14px;
+    font-weight:400;
+}
+.container .things-wrapper .add-violation .close-but,
 .container .wantedSearch-wrapper .add-violation .close-but,
 .container .wantedSearch-wrapper .wanted-content-wrapper .close-but,
 .container .add-thing-wrapper .close-but
@@ -487,13 +521,13 @@
     cursor: pointer;
     transition: 0.2s;
 }
-.container .business-wrapper .add-violation .close-but:hover,
+.container .things-wrapper .add-violation .close-but:hover,
 .container .wantedSearch-wrapper .add-violation .close-but:hover
 {
     box-shadow: 0 0 3px rgba(150,150,150,0.8);
     opacity:0.85;
 }
-.container .business-wrapper .add-violation input,
+.container .things-wrapper .add-violation input,
 .container .wantedSearch-wrapper .add-violation input
 {
     width:229px;
@@ -505,7 +539,7 @@
     font-size:17px;
     font-weight: 500;
 }
-.container .business-wrapper .add-violation .wanted-title,
+.container .things-wrapper .add-violation .wanted-title,
 .container .wantedSearch-wrapper .add-violation .wanted-title
 {
     font-size:14px;
@@ -524,7 +558,7 @@
     max-width:fit-content;
     margin-left:10px;
 }
-.container .business-wrapper .add-violation .wanted-level,
+.container .things-wrapper .add-violation .wanted-level,
 .container .wantedSearch-wrapper .wanted-level,
 .container .archive-wrapper .wanted-level,
 .container .things-wrapper .wanted-level
@@ -540,7 +574,7 @@
 {
     font-size:10px;
 }
-.container .business-wrapper .add-violation .wanted-level .star,
+.container .things-wrapper .add-violation .wanted-level .star,
 .container .wantedSearch-wrapper .wanted-level .star,
 .container .archive-wrapper .wanted-level .star,
 .container .things-wrapper .wanted-level .star
@@ -555,14 +589,14 @@
 {
     cursor: default;
 }
-.container .business-wrapper .add-violation .wanted-level .star svg,
+.container .things-wrapper .add-violation .wanted-level .star svg,
 .container .wantedSearch-wrapper .wanted-level .star svg,
 .container .archive-wrapper .wanted-level .star svg,
 .container .things-wrapper .wanted-level .star svg
 {
     transition:0.5s;
 }
-.container .business-wrapper .add-violation .wanted-level .star svg path,
+.container .things-wrapper .add-violation .wanted-level .star svg path,
 .container .wantedSearch-wrapper .wanted-level .star svg path,
 .container .archive-wrapper .wanted-level .star svg path,
 .container .things-wrapper .wanted-level .star svg path
@@ -571,12 +605,12 @@
     stroke-width: 14px;
     fill: #fff;
 }
-/* .container .business-wrapper .add-violation .wanted-level .star:hover svg path
+/* .container .things-wrapper .add-violation .wanted-level .star:hover svg path
 {
     stroke:#ed8a19;
     fill:#ed8a19;
 }*/
-.container .business-wrapper .add-violation .wanted-level .star.active svg path,
+.container .things-wrapper .add-violation .wanted-level .star.active svg path,
 .container .wantedSearch-wrapper .wanted-level .star.active svg path,
 .container .archive-wrapper .wanted-level .star.active svg path,
 .container .things-wrapper .wanted-level .star.active svg path
@@ -584,7 +618,7 @@
     stroke:#ed8a19;
     fill:#ed8a19;
 } 
-.container .business-wrapper .add-violation .buttons-wrap,
+.container .things-wrapper .add-violation .buttons-wrap,
 .container .wantedSearch-wrapper .add-violation .buttons-wrap
 {
     display: flex;
@@ -592,7 +626,7 @@
     align-items: center;
     margin:12px 0 25px 0;
 }
-.container .business-wrapper .add-violation .buttons-wrap .button,
+.container .things-wrapper .add-violation .buttons-wrap .button,
 .container .wantedSearch-wrapper .add-violation .buttons-wrap .button
 {
     width:33px;
@@ -602,17 +636,17 @@
     font-weight:500;
     margin:0 10px;
 }
-.container .business-wrapper .add-violation .buttons-wrap .button.grey,
+.container .things-wrapper .add-violation .buttons-wrap .button.grey,
 .container .wantedSearch-wrapper .add-violation .buttons-wrap .button.grey
 {
     background:#6e6e6e;
 }
-.container .business-wrapper .add-violation .buttons-wrap .button:hover,
+.container .things-wrapper .add-violation .buttons-wrap .button:hover,
 .container .wantedSearch-wrapper .add-violation .buttons-wrap .button:hover
 {
     box-shadow:0 0 5px #13238d;
 }
-.container .business-wrapper .add-violation .buttons-wrap .button.grey:hover,
+.container .things-wrapper .add-violation .buttons-wrap .button.grey:hover,
 .container .wantedSearch-wrapper .add-violation .buttons-wrap .button.grey:hover
 {
     box-shadow:0 0 5px #373737;
@@ -934,6 +968,7 @@
     box-shadow: 0 0 7px #13238d;
 }
 .container .things-wrapper #edit-thing,
+.container .things-wrapper #add-violation,
 .container .things-wrapper #entryThing,
 .container .things-wrapper #add-line,
 .container .things-wrapper #changeThing,
@@ -944,6 +979,11 @@
     margin-right:50px;
     width:95px;
     height:29px;
+}
+.container .things-wrapper #edit-thing,
+.container .things-wrapper #add-violation
+{
+    margin: 0 5px;
 }
 #suspect-name
 {
@@ -1128,6 +1168,12 @@ input[type=number]::-webkit-outer-spin-button {
 {
     justify-content: space-between;
     align-items: center;
+}
+.container .things-wrapper .title-wrap .button-wrapper
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
 }
 .container .employee-wrapper .wrapper
 {

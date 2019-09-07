@@ -4,7 +4,8 @@ let policemanList = {},
     violatorsList = {},
     filerList = {},
     employeeList = {},
-    handbookList = {};
+    handbookList = {},
+    charterText = '';
 
 $('#sansara-menu').on('click',function(){
     let menu = $('.container .wrapper .sansara-menu');
@@ -54,44 +55,22 @@ $('.police-menu .menu-item').on('click',function(){
         $('.police-menu .menu-item.active').removeClass('active');
         $(this).addClass('active');
         $(`.wrapper .${currentWrapper}`).addClass('active').fadeIn(500).css('display','flex');
-        switch(currentWrapper)
-        {
-            case 'wantedSearch-wrapper':
-            {
-                initPage();  
-            }
-            case 'archive-wrapper':
-            {
-                initFiler();
-            }
-            case 'things-wrapper':
-            {
-                initFiler();
-            }
-            case 'employee-wrapper':
-            {
-                initEmployee();
-            }
-            case 'handbook-wrapper':
-            {
-                initHandbook();
-            }
-        }
+        refreshActive(currentWrapper);
     }
 });
-$('.business-wrapper .add-violation .wanted-level .star').hover(
+$('.things-wrapper .add-violation .wanted-level .star').hover(
     function()
     {
-        if(!$('.business-wrapper .add-violation .wanted-level .star').hasClass('activated'))
+        if(!$('.things-wrapper .add-violation .wanted-level .star').hasClass('activated'))
         {
             let currentStar = this.id;            
-            $('.business-wrapper .wanted-level .star').find('svg path').css({
+            $('.things-wrapper .add-violation .wanted-level .star').find('svg path').css({
                 'stroke':'#000',
                 'fill':'#fff'
             });            
             for(i=0; i <= currentStar.substring(1); i++)
             {
-                $(`.business-wrapper .wanted-level .star#s${i}`).find('svg path').css({
+                $(`.things-wrapper .add-violation .wanted-level .star#s${i}`).find('svg path').css({
                     'stroke':'#ed8a19',
                     'fill':'#ed8a19'
                 });
@@ -99,6 +78,36 @@ $('.business-wrapper .add-violation .wanted-level .star').hover(
         }
     }
 );
+function refreshActive(currentWrapper)
+{
+    switch(currentWrapper)
+    {
+        case 'wantedSearch-wrapper':
+        {
+            initPage();  
+        }
+        case 'archive-wrapper':
+        {
+            initFiler();
+        }
+        case 'things-wrapper':
+        {
+            initFiler();
+        }
+        case 'employee-wrapper':
+        {
+            initEmployee();
+        }
+        case 'handbook-wrapper':
+        {
+            initHandbook();
+        }
+        case 'charter-wrapper':
+        {
+            initCharter();
+        }
+    }
+}
 $('.container .wantedSearch-wrapper .add-violation .star').hover(
     function()
     {
@@ -119,22 +128,22 @@ $('.container .wantedSearch-wrapper .add-violation .star').hover(
         }
     }
 );
-$('.business-wrapper .add-violation .wanted-level .star').on('click',function(){
-    if(!$('.business-wrapper .add-violation .wanted-level .star').hasClass('activated'))
+$('.things-wrapper .add-violation .wanted-level .star').on('click',function(){
+    if(!$('.things-wrapper .add-violation .wanted-level .star').hasClass('activated'))
     {
         $(this).addClass('activated');
     }
     else
     {
         let currentStar = this.id;   
-        $('.business-wrapper .add-violation .wanted-level .star.activated').removeClass('activated');
-        $('.business-wrapper .wanted-level .star').find('svg path').css({
+        $('.things-wrapper .add-violation .wanted-level .star.activated').removeClass('activated');
+        $('.things-wrapper .add-violation .wanted-level .star').find('svg path').css({
             'stroke':'#000',
             'fill':'#fff'
         });  
         for(i=0; i <= currentStar.substring(1); i++)
         {
-            $(`.business-wrapper .wanted-level .star#s${i}`).find('svg path').css({
+            $(`.things-wrapper .add-violation .wanted-level .star#s${i}`).find('svg path').css({
                 'stroke':'#ed8a19',
                 'fill':'#ed8a19'
             });
@@ -174,9 +183,6 @@ $('.container .wantedSearch-wrapper .wanted-content-wrapper #add-violation').on(
     });  
     $('.container .wantedSearch-wrapper .add-violation, .container .wantedSearch-wrapper .mask').fadeIn().css('display','flex');
 });
-$('.container .business-wrapper .add-violation .close-but').on('click',function(){     
-    $('.container .business-wrapper .add-violation, .container .business-wrapper .mask').fadeOut();
-});
 $('.container .wantedSearch-wrapper .close-but').on('click',function(){           
     $('.container .mask').css('z-index','99');        
     $('.container .wantedSearch-wrapper .add-violation').fadeOut();
@@ -188,7 +194,7 @@ $('.container .wantedSearch-wrapper .wanted-item').on('click',function(){
     $('.container .wantedSearch-wrapper .mask,.container .wantedSearch-wrapper .wanted-content-wrapper').fadeIn();
 });
 $('.container .add-thing-wrapper .close-but, .container .things-wrapper .mask').on('click',function(){
-    $('.container .add-thing-wrapper, .container .mask').fadeOut();
+    $('.container .add-thing-wrapper, .container .mask, .container .add-violation').fadeOut();
 });
 function initTime(hour,minute)
 {
@@ -238,9 +244,11 @@ let personal = JSON.stringify([
         Gender:'man',
         Text: 'asdasdada',
         StatementsID: 15,
-        Number: '232235',
+        Number: '23',
         Cars: [
             'Tyrus [LS845EE]',
+            'Ringo [LS2452E]',
+            'Ringo [LS2452E]',
             'Ringo [LS2452E]'
         ],
         Home:'ул. Лесная 25',
@@ -475,6 +483,9 @@ let handbook = JSON.stringify([
         Article:'УК 228'
     }
 ]);
+let charter = `<p>*Имя должно быть введено полностью</p>
+               <p>*Номер должен состоять из 6 символов</p>
+               <p>*Введите номер Авто</p>`;
 function initFiler()
 {
     $(`.container .archive-wrapper .archive-wrap,
@@ -525,8 +536,11 @@ function initFiler()
                                     </div>
                                 </div>
                                 ${policeMembers} 
-                            </div>       
-                            <div class="button" id="edit-thing">Изменить дело</div>              
+                            </div>     
+                            <div class="button-wrapper">
+                                <div class="button" id="edit-thing">Изменить дело</div>
+                                <div class="button" id="add-violation">В розыск</div>   
+                            </div>                 
                         </div>
                         <div class="text-wrapper">
                             ${textItems}
@@ -626,7 +640,7 @@ function initFiler()
     });
     refreshThingsList();
 }
-function pushNotebook(policeman,personal,violators,filer,employee,handbook)
+function pushNotebook(policeman,personal,violators,filer,employee,handbook,charter)
 {
     if(policeman != undefined)
     {
@@ -652,9 +666,9 @@ function pushNotebook(policeman,personal,violators,filer,employee,handbook)
     {
         handbookList = [...JSON.parse(handbook)];
     }
-    // $('.wrapper > .active').removeClass('active').fadeOut(200);
-    // $('.police-menu .menu-item.active').removeClass('active');
-    // $('.wrapper #main-wrapper').addClass('active').fadeIn(500);
+    charterText = charter;
+    let currentWrapper = $('.police-menu .menu-item.active')[0].id;
+    refreshActive(currentWrapper);
 }
 function initPage()
 {
@@ -738,8 +752,14 @@ function personInit(item)
         {
             let carItems = ``,
                 violationItems = ``;
-            $(item.Cars).each(function(index,item){
-                carItems += `<p id="carItem">${item}</p>`;
+            $(item.Cars).each(function(innerIndex,innerItem){
+                let iterator = '';
+                console.log(item.Cars.length);
+                if(innerIndex < item.Cars.length-1)
+                {
+                    iterator = ',';
+                }
+                carItems += `<div id="carItem">${innerItem}${iterator}</div>`;
             });
             $(item.StatementsID).each(function(index,item){
                 let itemDate = item.Date.split('@');
@@ -765,8 +785,11 @@ function personInit(item)
                     </div>
                 </div>
                 <div class="property-wrapper">
-                    <div class="car">Автомобиль:
-                    ${carItems}
+                    <div class="car">
+                        <div class="car-title">Автомобиль:</div>
+                        <div class="car-wrapper">
+                        ${carItems}
+                        </div>
                     </div>
                     <div class="house">Проживание:
                         <p id="house">${item.Home}</p>                            
@@ -782,7 +805,6 @@ function personInit(item)
                         ${violationItems}
                     </div>
                 </div>                    
-                <div class="button" id="add-violation">Добавить запись</div>
             `;
             if(!$('.container .business-wrapper .content-block').is(':visible'))
             {
@@ -795,15 +817,8 @@ function personInit(item)
                     $('.container .business-wrapper .content-block').empty().append(template).removeClass('flipOutY').addClass('opened flipInY').css('display','block');
                 },800);
             }
-            refreshPersonalViolation();
         }
     }
-}
-function refreshPersonalViolation()
-{        
-    $('.container .business-wrapper #add-violation').on('click',function(){        
-        $('.container .business-wrapper .add-violation, .container .business-wrapper .mask').fadeIn().css('display','flex');
-    });
 }
 function refreshThingsList()
 {
@@ -827,19 +842,31 @@ function refreshThingsList()
             }
         }
     });
+    $('.container .things-wrapper #add-violation').on('click',function(){  
+        let currentId = $(this).parent().parent().parent().parent()[0].id;
+        currentId = currentId.substr(5);       
+        $('.container .things-wrapper .add-violation').attr('data-index',currentId);
+        $('.container .things-wrapper .add-violation, .container .things-wrapper .mask').fadeIn().css('display','flex');
+        refreshViolation();
+    });    
+    $('.container .things-wrapper .add-violation .close-but').on('click',function(){     
+        $('.container .things-wrapper .add-violation, .container .things-wrapper .mask').fadeOut();
+    });
     $('.container .things-wrapper .search-wrap .notification').on('click',function(){
         $('.container .things-wrapper .search-wrap input').val('');
         $('.container .things-wrapper .search-wrap .notification').fadeOut();
     });   
     $('.container .things-wrapper #edit-thing').on('click',function(){
-        let currentId = $(this).parent().parent().parent()[0].id,
+        let currentId = $(this).parent().parent().parent().parent()[0].id,
             currentIndex = null;
         currentId = currentId.substr(5);
         $('.container .add-thing-wrapper, .container .things-wrapper .mask').fadeIn();        
         $(filerList).each(function(index,item){
+            console.log(parseInt(currentId));
             if(item.StatementID === parseInt(currentId))
             {
                 let policeMembers  = ``,
+                    wantedLevel = ``,
                     itemText = item.Text.split('@'),
                     textItems = ``,
                     evidenceItems = ``,
@@ -865,6 +892,19 @@ function refreshThingsList()
                                             <span class="name">${itemPolice[1]}</span>
                                         </div> `;
                 });
+                if(item.WantedLevel > 0)
+                {
+                    wantedLevel = `<div class="wanted-wrapper">
+                                        <div class="wanted-title">Уровень розыска</div>
+                                        <div class="wanted-level">
+                                            <div class="star ${item.WantedLevel >= 1 ? 'active' : ''}" id="s1"><i class="fas fa-star"></i></div>
+                                            <div class="star ${item.WantedLevel >= 2 ? 'active' : ''}" id="s2"><i class="fas fa-star"></i></div>
+                                            <div class="star ${item.WantedLevel >= 3 ? 'active' : ''}" id="s3"><i class="fas fa-star"></i></div>
+                                            <div class="star ${item.WantedLevel >= 4 ? 'active' : ''}" id="s4"><i class="fas fa-star"></i></div>
+                                            <div class="star ${item.WantedLevel >= 5 ? 'active' : ''}" id="s5"><i class="fas fa-star"></i></div>
+                                        </div>   
+                                    </div>`;
+                }
                 let template = `
                     <div class="close-but"><i class="fas fa-times"></i></div>
                     <div class="things-item" id="edit"> 
@@ -873,19 +913,10 @@ function refreshThingsList()
                                 <div class="name-wrap" data-index="${index}">
                                     <div class="things-title">Дело №${item.StatementID}</div>
                                     ${policeMembers}  
-                                </div>                
+                                </div>       
                                 <div class="button" id="entryThing">Присоединиться</div>        
                             </div>   
-                            <div class="wanted-wrapper">
-                                <div class="wanted-title">Уровень розыска</div>
-                                <div class="wanted-level">
-                                    <div class="star ${item.WantedLevel >= 1 ? 'active' : ''}" id="s1"><i class="fas fa-star"></i></div>
-                                    <div class="star ${item.WantedLevel >= 2 ? 'active' : ''}" id="s2"><i class="fas fa-star"></i></div>
-                                    <div class="star ${item.WantedLevel >= 3 ? 'active' : ''}" id="s3"><i class="fas fa-star"></i></div>
-                                    <div class="star ${item.WantedLevel >= 4 ? 'active' : ''}" id="s4"><i class="fas fa-star"></i></div>
-                                    <div class="star ${item.WantedLevel >= 5 ? 'active' : ''}" id="s5"><i class="fas fa-star"></i></div>
-                                </div>   
-                            </div>
+                            ${wantedLevel}
                             <div class="text-wrapper">
                                 ${textItems}
                                 <div id="text_area_div"></div>
@@ -911,7 +942,7 @@ function refreshThingsList()
                             <div class="button" id="add-suspect">Добавить</div>
                         </div>
                     </div>`;  
-                $('.container .add-thing-wrapper').empty().append(template);
+                $('.container .things-wrapper .add-thing-wrapper').empty().append(template);
                 refreshAddThings();
             }
         });
@@ -937,7 +968,7 @@ function refreshThingsList()
                             </div>                          
                         </div>                         
                     </div>
-                    <div class="text-wrapper">
+                    <div class="text-wrapper" style="margin-top:20px;">
 
                     </div>
                     <div class="button-wrap">          
@@ -963,6 +994,72 @@ function refreshThingsList()
             </div>`;  
         $('.container .add-thing-wrapper').empty().append(template);
         refreshAddThings();        
+    });
+}
+function refreshViolation()
+{
+    $('.container .things-wrapper .add-violation #violationConfirm').on('click',function(){
+        let currentId = $(this).parent().parent().attr('data-index'),
+            witness = $('.container .things-wrapper .add-violation #witness').val(),
+            violation = $('.container .things-wrapper .add-violation #violation').val(),
+            injured = $('.container .things-wrapper .add-violation #injured').val(),
+            wantedLevel = $('.container .things-wrapper .add-violation .wanted-level .star.activated');
+        if(wantedLevel.length != 0)
+        {
+            wantedLevel = wantedLevel[0].id.slice(1);
+        }
+        if(wantedLevel == 0)
+        {
+            let template = 'Выберите уровень розыска';
+            $('.container .things-wrapper .add-violation .notification .text').text(template).fadeIn();
+            $('.container .things-wrapper .add-violation .notification').fadeIn();
+            setTimeout(()=>{
+                $('.container .things-wrapper .add-violation .notification').fadeOut();
+            },1500);
+        }
+        if(witness.length == 0)
+        {
+            let template = 'Добавьте свидетеля';
+            $('.container .things-wrapper .add-violation .notification .text').text(template).fadeIn();
+            $('.container .things-wrapper .add-violation .notification').fadeIn();
+            setTimeout(()=>{
+                $('.container .things-wrapper .add-violation .notification').fadeOut();
+            },1500);
+        }
+        if(violation.length == 0)
+        {
+            let template = 'Добавьте нарушение';
+            $('.container .things-wrapper .add-violation .notification .text').text(template).fadeIn();
+            $('.container .things-wrapper .add-violation .notification').fadeIn();
+            setTimeout(()=>{
+                $('.container .things-wrapper .add-violation .notification').fadeOut();
+            },1500);
+        }
+        if(injured.length == 0)
+        {
+            let template = 'Добавьте потерпевшего';
+            $('.container .things-wrapper .add-violation .notification .text').text(template).fadeIn();
+            $('.container .things-wrapper .add-violation .notification').fadeIn();
+            setTimeout(() => {
+                $('.container .things-wrapper .add-violation .notification').fadeOut();
+            },1500);
+        }
+        if(witness.length > 0 && violation.length > 0 && injured.length > 0 && wantedLevel > 0)
+        {
+            $('.container .things-wrapper .add-violation, .container .things-wrapper .mask').fadeOut();
+            $(`.container .things-wrapper .add-violation #witness,
+               .container .things-wrapper .add-violation #violation,
+               .container .things-wrapper .add-violation #injured`).val('');            
+            $('.container .things-wrapper .add-violation .wanted-level .star').find('svg path').css({
+                'stroke':'#000',
+                'fill':'#fff'
+            }); 
+            $('.container .things-wrapper .add-violation .wanted-level .star.activated').removeClass('activated');
+            mp.trigger('addViolation',currentId,witness,violation,injured,wantedLevel);
+        }
+    });
+    $('.container .things-wrapper .add-violation #violationCancel').on('click',function(){
+        $('.container .things-wrapper .add-violation, .container .things-wrapper .mask').fadeOut();
     });
 }
 function refreshAddThings()
@@ -991,7 +1088,7 @@ function refreshAddThings()
     $('.container .add-thing-wrapper .wanted-level .star').hover(
         function()
         {
-            if(!$('.business-wrapper .add-violation .wanted-level .star').hasClass('activated'))
+            if(!$('.add-thing-wrapper .wanted-level .star').hasClass('activated'))
             {
                 let currentStar = this.id;            
                 $('.container .add-thing-wrapper .wanted-level .star').find('svg path').css({
@@ -1205,7 +1302,7 @@ function employeeRefresh()
         $(this).parent().prev().css('border-radius','20px');
         $(this).parent().prev().find('img').css('transform','rotate(0deg)');
         $(this).parent().fadeOut();
-        mp.trigger('policeOnlineChange',currentId,name,rank,time);
+        mp.trigger('policeOnlineChange',currentId,name);
     });
 }
 function initHandbook()
@@ -1229,16 +1326,51 @@ $('.container .charter-wrapper .show-wrapper #editCharter').on('click',function(
     editor.disable();
     $(this).parent().parent().find('.edit-wrapper #editor .ql-editor').empty().append(currentText);
     $(this).parent().parent().find('.edit-wrapper').fadeIn();
-    charterInit();
+    editCharter();
 });
-function charterInit()
+function initCharter()
+{
+    $('.container .charter-wrapper .show-wrapper .text-wrapper').empty().append(charterText);
+}
+function editCharter()
 {    
     editor.enable();
     $('.container .charter-wrapper .edit-wrapper #saveCharter').on('click',function(){
         let currentText = $('.edit-wrapper #editor .ql-editor').html();
-        console.log(currentText);
         $('.container .charter-wrapper .show-wrapper .text-wrapper').empty().append(currentText);
         $(this).parent().fadeOut();
-        $(this).parent().parent().find('.show-wrapper').fadeIn();
+        $(this).parent().parent().find('.show-wrapper').fadeIn();        
+        mp.trigger('charterText',currentText);
     });
 }
+$('.container .carSearch-wrapper #carSearch').on('click',function(){
+    let number = '',
+        name = '',
+        phone = '',
+        car = '';
+    $('.container .carSearch-wrapper input').each(function(index,item){
+        if($(item).val().length > 0)
+        {
+            switch(item.id)
+            {
+                case 'number':
+                {
+                   number = $(item).val();
+                }
+                case 'name':
+                {
+                   name = $(item).val();
+                }
+                case 'phone':
+                {
+                   phone = $(item).val();
+                }
+                case 'car':
+                {
+                   car = $(item).val();
+                }
+            }
+        }        
+    });
+    mp.trigger('carSearch',number, name, phone, car);
+});
