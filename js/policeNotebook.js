@@ -1372,5 +1372,8 @@ $('.container .carSearch-wrapper #carSearch').on('click',function(){
             }
         }        
     });
-    mp.trigger('carSearch',number, name, phone, car);
+    if(number != '' && name != '' && phone != '' && car != '')
+    {
+        mp.trigger('carSearch',number, name, phone, car);
+    }
 });
