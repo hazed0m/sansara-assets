@@ -205,10 +205,11 @@ function initTime(hour,minute)
 }
 let policeman = JSON.stringify([
     {
-        FullName:'Вася Иванов',
-        Position:'Младший Сержант',
-        Status:true,
-        Time:'2',
+        FullName:'Дмитрий Иванов',
+        Position:'Начальник полиции',
+        HourInDept:0,
+        Status:false,
+        Time:0,
         OpenedThings:1,
         ClosedThings:2
     }
@@ -700,7 +701,6 @@ function initPage()
 }
 $('.container .business-wrapper .search-block #searchPerson').on('click',function(){
     let value = $(this).prev().val();
-    console.log(value);
     searchPerson(value);
 });
 $.inObject = function(obj, value) {
@@ -727,22 +727,23 @@ $.inCars = function(obj, value) {
 };
 function searchPerson(field)
 {
-    $(personalList).each(function(index,item){
-        if($.inCars(item.Cars, field) != -1)
-        {
-            console.log(personalList[index]);
-            personInit(personalList[index]);
-        }
-        else if($.inObject(item, field) != -1)
-        {
-            console.log(personalList[index]);
-            personInit(personalList[index]);
-        }
-        else
-        {
-            console.log('thats wrong');
-        }
-    });
+    mp.trigger('searchPerson',field);
+    // $(personalList).each(function(index,item){
+    //     if($.inCars(item.Cars, field) != -1)
+    //     {
+    //         console.log(personalList[index]);
+    //         personInit(personalList[index]);
+    //     }
+    //     else if($.inObject(item, field) != -1)
+    //     {
+    //         console.log(personalList[index]);
+    //         personInit(personalList[index]);
+    //     }
+    //     else
+    //     {
+    //         console.log('thats wrong');
+    //     }
+    // });
 }
 function personInit(item)
 {
