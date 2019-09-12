@@ -745,8 +745,9 @@ function searchPerson(field)
     //     }
     // });
 }
-function personInit(item)
+function personInit(element)
 {
+    let item = JSON.parse(element);
     if(item !== undefined)
     {
         if(item.FullName != $('.container .business-wrapper .content-block .name').text())
