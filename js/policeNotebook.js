@@ -105,6 +105,7 @@ function postEmployee(item)
 function postPoliceman(item)
 {
     let currentElement = JSON.parse(item);
+    $('#archive-frame')[0].contentWindow.postMessage(currentElement, "*");
     $('#things-frame')[0].contentWindow.postMessage(currentElement, "*");
     window.addEventListener('message', function(event) {
         if (event.data['addViolation']) {
