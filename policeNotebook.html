@@ -47,103 +47,21 @@
                 </div>            
             </div>
             <div class="wantedSearch-wrapper">
-                    <iframe id="wantedSearch-frame" src="http://server.sansararp.com/pd/wantedsearch" frameborder="0" width="100%" height="100%"></iframe>
-            </div>
+                <iframe id="wantedSearch-frame" src="http://server.sansararp.com/pd/wantedsearch" frameborder="0" width="100%" height="100%"></iframe>
+            </div>       
             <div class="archive-wrapper">
-                <div class="archive-wrap">
-                </div>
-            </div>
+                <iframe id="archive-frame" src="http://server.sansararp.com/pd/archive" frameborder="0" width="100%" height="100%"></iframe>
+            </div>     
             <div class="things-wrapper">
-                <div class="things-wrap">
-                    <div class="search-wrap">
-                        <input type="number" placeholder="Введите № дела">
-                        <div class="button" id="search-thing"><i class="fas fa-search"></i></div>
-                        <div class="notification">Дело не найдено</div>
-                    </div>
-                    <div class="things-container"></div>
-                    <div class="button" id="add-thing">Добавить запись</div>
-                    <div class="add-thing-wrapper"></div>                                  
-                    <div class="add-violation">                    
-                        <div class="close-but"><i class="fas fa-times"></i></div>
-                        <input type="text" placeholder="Свидетель" id="witness">
-                        <input type="text" placeholder="Нарушение" id="violation">
-                        <input type="text" placeholder="Потерпевшие" id="injured">
-                        <div class="wanted-title">Уровень розыска</div>
-                        <div class="wanted-level">
-                            <div class="star" id="s1"><i class="fas fa-star"></i></div>
-                            <div class="star" id="s2"><i class="fas fa-star"></i></div>
-                            <div class="star" id="s3"><i class="fas fa-star"></i></div>
-                            <div class="star" id="s4"><i class="fas fa-star"></i></div>
-                            <div class="star" id="s5"><i class="fas fa-star"></i></div>
-                        </div>
-                        <div class="notification">
-                            <div class="title">Предупреждение</div>
-                            <div class="text"></div>
-                        </div>
-                        <div class="wanted-title">Объявить в розыск</div>
-                        <div class="buttons-wrap">
-                            <div class="button" id="violationConfirm">Да</div>
-                            <div class="button grey" id="violationCancel">Нет</div>
-                        </div>
-                    </div> 
-                </div>  
-                <div class="mask"></div>
+                <iframe id="things-frame" src="http://server.sansararp.com/pd/things" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="employee-wrapper">
-                <!-- <div class="wrapper">
-                    <div class="onDuty-wrapper">
-                        <div class="duty-title">
-                        - На службе
-                        </div>
-                        <div class="duty-columns">
-                            <div class="column-item">Имя</div>
-                            <div class="column-item">Ранг</div>
-                            <div class="column-item">Время на посту</div>
-                        </div>
-                        <div class="duty-wrapper">
-                        </div>
-                    </div>
-                    <div class="notOnDuty-wrapper">
-                        <div class="duty-title">
-                        - Не на службе
-                        </div>
-                        <div class="duty-columns">
-                            <div class="column-item">Имя</div>
-                            <div class="column-item">Ранг</div>
-                            <div class="column-item">Время на посту</div>
-                        </div>
-                        <div class="duty-wrapper">
-
-                        </div>
-                    </div>
-                </div> -->
                 <iframe id="employee-frame" src="http://server.sansararp.com/pd/employee" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="handbook-wrapper">
-                    <iframe id="handbook-frame" src="http://server.sansararp.com/pd/handbook" frameborder="0" width="100%" height="100%"></iframe>
-                <!-- <div class="wrapper">
-                    <div class="title-wrap">
-                        <div class="title-item">Нарушение</div>
-                        <div class="title-item">Наказание</div>
-                        <div class="title-item">Статья</div>
-                    </div>
-                    <div class="handbook-items">
-                        
-                    </div>
-                </div> -->
+                <iframe id="handbook-frame" src="http://server.sansararp.com/pd/handbook" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="charter-wrapper">
-                <!-- <div class="wrapper">
-                    <div class="title">-Устав и правила</div>
-                    <div class="show-wrapper">
-                        <div class="text-wrapper"></div>
-                        <div class="button" id="editCharter">Редактировать</div>
-                    </div>
-                    <div class="edit-wrapper">
-                        <div id="editor"></div>
-                        <div class="button" id="saveCharter">Сохранить</div>
-                    </div>
-                </div> -->
                 <iframe id="handbook-frame" src="http://server.sansararp.com/pd/charter" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="police-menu">
@@ -156,7 +74,6 @@
                 <div class="menu-item" id="employee-wrapper">Список сотрудников</div>
                 <div class="menu-item" id="handbook-wrapper">Справочник</div>
                 <div class="menu-item" id="charter-wrapper">Устав</div>
-                <!-- <div class="close-but"><i class="fas fa-times"></i></div> -->
             </div>
             <div class="sansara-menu animated">
                 <div class="menu-item" id="police-menu">Меню</div>
@@ -180,7 +97,6 @@
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/font-awesome.min.js"></script>    
-    <script src="js/quill.min.js"></script>
     <script src="js/policeNotebook.js"></script>
 </body>
 </html>
