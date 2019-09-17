@@ -877,6 +877,11 @@
     min-height: 172px;
     max-height: 172px;
 }
+.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper p
+{
+    min-height: 20px;
+    font-size: 12px;
+}
 .container .things-wrapper .add-thing-wrapper .left-block
 {
     justify-content: flex-start;

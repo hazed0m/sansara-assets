@@ -5,7 +5,8 @@ let policemanList = {},
     filerList = {},
     employeeList = {},
     handbookList = {},
-    charterText = '';
+    charterText = '',
+    currentFiler = {};
 
 $('#sansara-menu').on('click',function(){
     let menu = $('.container .wrapper .sansara-menu');
@@ -104,7 +105,7 @@ function refreshActive(currentWrapper)
         }
         case 'charter-wrapper':
         {
-            initCharter();
+            
         }
     }
 }
@@ -576,7 +577,7 @@ function initFiler()
     });
     refreshThingsList();
 }
-function pushNotebook(policeman,personal,violators,filer,employee,handbook,charter)
+function pushNotebook(policeman,filer)
 {
     if(policeman != undefined)
     {
@@ -797,12 +798,13 @@ function refreshThingsList()
     $('.container .things-wrapper #edit-thing').on('click',function(){
         let currentId = $(this).parent().parent().parent().parent()[0].id,
             currentIndex = null;
-        currentId = currentId.substr(5);
+        currentId = currentId.substr(5);        
         $('.container .add-thing-wrapper, .container .things-wrapper .mask').fadeIn();        
         $(filerList).each(function(index,item){
             console.log(parseInt(currentId));
             if(item.StatementID === parseInt(currentId))
-            {
+            {                
+                currentFiler = jQuery.extend(true, {}, filerList[index]);
                 let policeMembers  = ``,
                     wantedLevel = ``,
                     itemText = item.Text.split('@'),
@@ -821,7 +823,7 @@ function refreshThingsList()
                                         </div>`;
                 });
                 $(itemText).each(function(index,item){
-                    textItems += `<textarea id="thing-add-text" onkeyup="textarea_resize(event);">${item}</textarea>`;
+                    textItems += `<p id="thing-add-text">${item}</p>`;
                 });
                 $(item.PoliceMembers).each(function(index,item){
                     let itemPolice = item.split('@');
@@ -884,6 +886,7 @@ function refreshThingsList()
                 refreshAddThings();
             }
         });
+        suspectsRefresh();
     });
     $('.container .things-wrapper #add-thing').on('click',function(){
         $('.container .add-thing-wrapper, .container .things-wrapper .mask').fadeIn();
@@ -1014,7 +1017,7 @@ function refreshAddThings()
     $('.container .wrapper .add-thing-wrapper #entryThing').on('click',function(){
         if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
         {
-            filerList[$(this).prev().attr('data-index')].PoliceMembers.push(`${policemanList[0].Position}@${policemanList[0].FullName}`);
+            currentFiler.PoliceMembers.push(`${policemanList[0].Position}@${policemanList[0].FullName}`);
             $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').append(`
                 <div class="things-name">
                     [<span class="rank">${policemanList[0].Position}</span>]
@@ -1081,7 +1084,7 @@ function refreshAddThings()
                .container .wrapper .add-thing-wrapper #suspect-lastname`).val('');
             if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
             {
-                filerList[$(this).parent().parent().find('.name-wrap').attr('data-index')].Violators.push(`${name+ ' ' +lastname}`);
+                currentFiler.Violators.push(`${name+ ' ' +lastname}`);
             }
             $('.container .wrapper .add-thing-wrapper .things-item .suspects-wrap').append(template); 
         }
@@ -1129,15 +1132,16 @@ function refreshAddThings()
                 currentText += separator + $(item).text();
             }
         });
-        filerList[currentId].Text = currentText;
+        currentFiler.Text = currentText;
         let wantedLevel = $('.container .things-wrapper .add-thing-wrapper .wanted-level .star.activated');
         console.log(wantedLevel);
         if(wantedLevel.length != 0)
         {
             wantedLevel = wantedLevel[0].id;
-            filerList[currentId].WantedLevel = wantedLevel.slice(1);
+            currentFiler.WantedLevel = parseInt(wantedLevel.slice(1));
         }
-        let package = JSON.stringify(filerList[currentId]);
+        let package = JSON.stringify(currentFiler);
+        console.log(currentFiler);
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
         console.log(package);
         mp.trigger('changeThing',package);
@@ -1150,10 +1154,10 @@ function suspectsRefresh()
         {
             let currentId = $('.container .things-wrapper .add-thing-wrapper .name-wrap').attr('data-index'),
                 currentItem = $(this).parent().find('span').text();
-            $(filerList[currentId].Violators).each(function(index,item){
+            $(currentFiler.Violators).each(function(index,item){
                 if(currentItem === item)
                 {
-                    filerList[currentId].Violators.splice(index,1);
+                    currentFiler.Violators.splice(index,1);
                     return;
                 }
             });
@@ -1274,34 +1278,7 @@ function postEmployee(item)
             mp.trigger('policeOnlineChange',currentId,name);
         }    
     });
-}
-  
-let editor = new Quill('#editor', {
-    theme: 'snow'
-});
-$('.container .charter-wrapper .show-wrapper #editCharter').on('click',function(){
-    $(this).parent().css('display','none');
-    let currentText = $('.container .charter-wrapper .show-wrapper .text-wrapper').html();
-    editor.disable();
-    $(this).parent().parent().find('.edit-wrapper #editor .ql-editor').empty().append(currentText);
-    $(this).parent().parent().find('.edit-wrapper').fadeIn();
-    editCharter();
-});
-function initCharter()
-{
-    $('.container .charter-wrapper .show-wrapper .text-wrapper').empty().append(charterText);
-}
-function editCharter()
-{    
-    editor.enable();
-    $('.container .charter-wrapper .edit-wrapper #saveCharter').on('click',function(){
-        let currentText = $('.edit-wrapper #editor .ql-editor').html();
-        $('.container .charter-wrapper .show-wrapper .text-wrapper').empty().append(currentText);
-        $(this).parent().fadeOut();
-        $(this).parent().parent().find('.show-wrapper').fadeIn();        
-        mp.trigger('charterText',currentText);
-    });
-}
+}  
 $('.container .carSearch-wrapper #carSearch').on('click',function(){
     let number = '',
         name = '',
