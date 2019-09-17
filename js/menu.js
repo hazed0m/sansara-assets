@@ -54,7 +54,7 @@ let menu = new Vue({
         setFastAnimIndex: 0,
         animateSettingsShow: false,
         saveButtonState:false,
-        gpsFilterArr: [true,true,true,true,true,true],
+        gpsFilterArr: [false,false,false,false,false,false],
         isDisabled: false,
         options: [
             { text: 'Мультипаспорт', value: 'passShow', status: false },
@@ -317,8 +317,8 @@ let menu = new Vue({
             }
             $(this.gpsFilterArr).each(function(index,item){
                 if(item)
-                {
-                    $(`.gps-item:eq(${index})`).addClass('active');
+                {                    
+                    $(`.gps-item:eq(${index})`).addClass('active');                    
                 }
                 else
                 {
@@ -348,7 +348,8 @@ $('.gps-item').on('click',function(){
         $(this).removeClass('active');
     }
     else
-    {
+    {        
+        $(`.map-settings .gps-item.active`).removeClass('active');
         $(this).addClass('active');
     }
 });

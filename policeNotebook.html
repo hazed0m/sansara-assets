@@ -47,119 +47,7 @@
                 </div>            
             </div>
             <div class="wantedSearch-wrapper">
-                <div class="search-wrap">
-                    <div class="wanted-wrapper">
-
-                    </div>    
-                    <div class="add-violation">                    
-                        <div class="close-but"><i class="fas fa-times"></i></div>
-                        <input type="text" placeholder="Свидетель">
-                        <input type="text" placeholder="Нарушение">
-                        <input type="text" placeholder="Потерпевшие">
-                        <div class="wanted-title">Уровень розыска</div>
-                        <div class="wanted-level">
-                            <div class="star" id="s1"><i class="fas fa-star"></i></div>
-                            <div class="star" id="s2"><i class="fas fa-star"></i></div>
-                            <div class="star" id="s3"><i class="fas fa-star"></i></div>
-                            <div class="star" id="s4"><i class="fas fa-star"></i></div>
-                            <div class="star" id="s5"><i class="fas fa-star"></i></div>
-                        </div>
-                        <div class="wanted-title">Объявить в розыск</div>
-                        <div class="buttons-wrap">
-                            <div class="button" id="violationConfirm">Да</div>
-                            <div class="button grey" id="violationCancel">Нет</div>
-                        </div>
-                    </div> 
-                    <div class="wanted-content-wrapper">
-                        <div class="name-wrapper">
-                            <div class="name">Валера Жмышенко</div>
-                            <div class="age">Возраст:
-                                <span id="age">54</span>
-                            </div>
-                        </div>
-                        <div class="property-wrapper">
-                            <div class="car">Автомобиль:
-                                <span id="carName">Tyrus</span>
-                                [<span id="carNumber">LS245EE</span>]
-                            </div>
-                            <div class="house">Проживание:
-                                <span>Дом №<span id="house">54</span></span>                            
-                            </div>
-                        </div>
-                        <div class="violations-wrapper">
-                            <div class="title-wrap">
-                                <div class="title-item">Нарушение</div>
-                                <div class="title-item">Сотрудник</div>
-                                <div class="title-item">Дата</div>
-                            </div>
-                            <div class="violation-wrap">
-                                <div class="violation-item">
-                                    <div class="title-item">Угон авто</div>
-                                    <div class="title-item">Саша Белый</div>
-                                    <div class="title-item">
-                                        <div class="date-wrapper">
-                                            <div class="time">6:18</div>
-                                            <div class="date">23.03.19</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="violation-item">
-                                    <div class="title-item">Угон авто</div>
-                                    <div class="title-item">Саша Белый</div>
-                                    <div class="title-item">
-                                        <div class="date-wrapper">
-                                            <div class="time">6:18</div>
-                                            <div class="date">23.03.19</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="violation-item">
-                                    <div class="title-item">Угон авто</div>
-                                    <div class="title-item">Саша Белый</div>
-                                    <div class="title-item">
-                                        <div class="date-wrapper">
-                                            <div class="time">6:18</div>
-                                            <div class="date">23.03.19</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="violation-item">
-                                    <div class="title-item">Угон авто</div>
-                                    <div class="title-item">Саша Белый</div>
-                                    <div class="title-item">
-                                        <div class="date-wrapper">
-                                            <div class="time">6:18</div>
-                                            <div class="date">23.03.19</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="violation-item">
-                                    <div class="title-item">Угон авто</div>
-                                    <div class="title-item">Саша Белый</div>
-                                    <div class="title-item">
-                                        <div class="date-wrapper">
-                                            <div class="time">6:18</div>
-                                            <div class="date">23.03.19</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="violation-item">
-                                    <div class="title-item">Угон авто</div>
-                                    <div class="title-item">Саша Белый</div>
-                                    <div class="title-item">
-                                        <div class="date-wrapper">
-                                            <div class="time">6:18</div>
-                                            <div class="date">23.03.19</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>                    
-                        <div class="button" id="add-violation">Добавить запись</div>
-                        <div class="close-but"><i class="fas fa-times"></i></div>
-                    </div>
-                </div>
-                <div class="mask"></div>
+                    <iframe id="wantedSearch-frame" src="http://server.sansararp.com/pd/wantedsearch" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="archive-wrapper">
                 <div class="archive-wrap">
@@ -202,7 +90,7 @@
                 <div class="mask"></div>
             </div>
             <div class="employee-wrapper">
-                <div class="wrapper">
+                <!-- <div class="wrapper">
                     <div class="onDuty-wrapper">
                         <div class="duty-title">
                         - На службе
@@ -228,10 +116,12 @@
 
                         </div>
                     </div>
-                </div>
+                </div> -->
+                <iframe id="employee-frame" src="http://server.sansararp.com/pd/employee" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="handbook-wrapper">
-                <div class="wrapper">
+                    <iframe id="handbook-frame" src="http://server.sansararp.com/pd/handbook" frameborder="0" width="100%" height="100%"></iframe>
+                <!-- <div class="wrapper">
                     <div class="title-wrap">
                         <div class="title-item">Нарушение</div>
                         <div class="title-item">Наказание</div>
@@ -240,7 +130,7 @@
                     <div class="handbook-items">
                         
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="charter-wrapper">
                 <div class="wrapper">

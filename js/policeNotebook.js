@@ -84,7 +84,7 @@ function refreshActive(currentWrapper)
     {
         case 'wantedSearch-wrapper':
         {
-            initPage();  
+            
         }
         case 'archive-wrapper':
         {
@@ -96,11 +96,11 @@ function refreshActive(currentWrapper)
         }
         case 'employee-wrapper':
         {
-            initEmployee();
+            
         }
         case 'handbook-wrapper':
         {
-            initHandbook();
+           
         }
         case 'charter-wrapper':
         {
@@ -108,26 +108,6 @@ function refreshActive(currentWrapper)
         }
     }
 }
-$('.container .wantedSearch-wrapper .add-violation .star').hover(
-    function()
-    {
-        if(!$('.container .wantedSearch-wrapper .add-violation .star').hasClass('activated'))
-        {
-            let currentStar = this.id;            
-            $('.wantedSearch-wrapper .add-violation .wanted-level .star').find('svg path').css({
-                'stroke':'#000',
-                'fill':'#fff'
-            });            
-            for(i=0; i <= currentStar.substring(1); i++)
-            {
-                $(`.wantedSearch-wrapper .add-violation .wanted-level .star#s${i}`).find('svg path').css({
-                    'stroke':'#ed8a19',
-                    'fill':'#ed8a19'
-                });
-            }
-        }
-    }
-);
 $('.things-wrapper .add-violation .wanted-level .star').on('click',function(){
     if(!$('.things-wrapper .add-violation .wanted-level .star').hasClass('activated'))
     {
@@ -150,51 +130,6 @@ $('.things-wrapper .add-violation .wanted-level .star').on('click',function(){
         }
         $(this).addClass('activated');
     }
-});
-$('.container .wantedSearch-wrapper .add-violation .star').on('click',function(){
-    if(!$('.container .wantedSearch-wrapper .add-violation .star').hasClass('activated'))
-    {
-        $(this).addClass('activated');
-    }
-    else
-    {
-        let currentStar = this.id;   
-        $('.container .wantedSearch-wrapper .add-violation .star.activated').removeClass('activated');
-        $('.wantedSearch-wrapper .add-violation .wanted-level .star').find('svg path').css({
-            'stroke':'#000',
-            'fill':'#fff'
-        });  
-        for(i=0; i <= currentStar.substring(1); i++)
-        {
-            $(`.wantedSearch-wrapper .add-violation .wanted-level .star#s${i}`).find('svg path').css({
-                'stroke':'#ed8a19',
-                'fill':'#ed8a19'
-            });
-        }
-        $(this).addClass('activated');
-    }
-});
-$('.container .wantedSearch-wrapper .wanted-content-wrapper #add-violation').on('click',function(){        
-    $('.container .mask').css('z-index','999');
-    $('.container .wantedSearch-wrapper .add-violation .star.activated').removeClass('activated');
-    $('.wantedSearch-wrapper .add-violation .wanted-level .star').find('svg path').css({
-        'stroke':'#000',
-        'fill':'#fff'
-    });  
-    $('.container .wantedSearch-wrapper .add-violation, .container .wantedSearch-wrapper .mask').fadeIn().css('display','flex');
-});
-$('.container .wantedSearch-wrapper .close-but').on('click',function(){           
-    $('.container .mask').css('z-index','99');        
-    $('.container .wantedSearch-wrapper .add-violation').fadeOut();
-});
-$('.container .wantedSearch-wrapper .wanted-content-wrapper .close-but').on('click',function(){     
-    $('.container .wantedSearch-wrapper .wanted-content-wrapper, .container .wantedSearch-wrapper .mask').fadeOut();
-});
-$('.container .wantedSearch-wrapper .wanted-item').on('click',function(){
-    $('.container .wantedSearch-wrapper .mask,.container .wantedSearch-wrapper .wanted-content-wrapper').fadeIn();
-});
-$('.container .add-thing-wrapper .close-but, .container .things-wrapper .mask').on('click',function(){
-    $('.container .add-thing-wrapper, .container .mask, .container .add-violation').fadeOut();
 });
 function initTime(hour,minute)
 {
@@ -671,37 +606,38 @@ function pushNotebook(policeman,personal,violators,filer,employee,handbook,chart
     let currentWrapper = $('.police-menu .menu-item.active')[0].id;
     refreshActive(currentWrapper);
 }
-function initPage()
-{
-    let currentActive = $('.container .police-menu .menu-item.active')[0].id;
-    if(currentActive == 'wantedSearch-wrapper')
-    {
-        $('.container .wantedSearch-wrapper .wanted-wrapper').empty();
-        let sortedItem = $(violatorsList).sort((a, b) => (a.StatementID > b.StatementID) ? 1 : -1);  
-        $(sortedItem).each(function(index,item){
-            let template = `
-            <div class="wanted-item">
-                <div class="wanted-title">
-                    ${item.FullName}
-                </div>
-                <div class="statement-title">
-                    Дело №${item.StatementID}
-                </div>
-                <div class="wanted-level">
-                    <div class="star ${item.WantedLevel >= 1 ? 'active' : ''}" id="s1"><i class="fas fa-star"></i></div>
-                    <div class="star ${item.WantedLevel >= 2 ? 'active' : ''}" id="s2"><i class="fas fa-star"></i></div>
-                    <div class="star ${item.WantedLevel >= 3 ? 'active' : ''}" id="s3"><i class="fas fa-star"></i></div>
-                    <div class="star ${item.WantedLevel >= 4 ? 'active' : ''}" id="s4"><i class="fas fa-star"></i></div>
-                    <div class="star ${item.WantedLevel >= 5 ? 'active' : ''}" id="s5"><i class="fas fa-star"></i></div>
-                </div>
-            </div>`;                
-            $('.container .wantedSearch-wrapper .wanted-wrapper').append(template);
-        });
-    }
-}
+// function initPage()
+// {
+//     let currentActive = $('.container .police-menu .menu-item.active')[0].id;
+//     if(currentActive == 'wantedSearch-wrapper')
+//     {
+//         $('.container .wantedSearch-wrapper .wanted-wrapper').empty();
+//         let sortedItem = $(violatorsList).sort((a, b) => (a.StatementID > b.StatementID) ? 1 : -1);  
+//         $(sortedItem).each(function(index,item){
+//             let template = `
+//             <div class="wanted-item">
+//                 <div class="wanted-title">
+//                     ${item.FullName}
+//                 </div>
+//                 <div class="statement-title">
+//                     Дело №${item.StatementID}
+//                 </div>
+//                 <div class="wanted-level">
+//                     <div class="star ${item.WantedLevel >= 1 ? 'active' : ''}" id="s1"><i class="fas fa-star"></i></div>
+//                     <div class="star ${item.WantedLevel >= 2 ? 'active' : ''}" id="s2"><i class="fas fa-star"></i></div>
+//                     <div class="star ${item.WantedLevel >= 3 ? 'active' : ''}" id="s3"><i class="fas fa-star"></i></div>
+//                     <div class="star ${item.WantedLevel >= 4 ? 'active' : ''}" id="s4"><i class="fas fa-star"></i></div>
+//                     <div class="star ${item.WantedLevel >= 5 ? 'active' : ''}" id="s5"><i class="fas fa-star"></i></div>
+//                 </div>
+//             </div>`;                
+//             $('.container .wantedSearch-wrapper .wanted-wrapper').append(template);
+//         });
+//     }
+// }
 $('.container .business-wrapper .search-block #searchPerson').on('click',function(){
     let value = $(this).prev().val();
-    searchPerson(value);
+    mp.trigger('searchPerson',field);
+    // searchPerson(value);
 });
 $.inObject = function(obj, value) {
     var foundKey = -1;
@@ -1241,84 +1177,105 @@ function textarea_resize(event, line_height = 10, min_line_count = 2)
     }
     obj.style.height = obj_height + 'px';
 }
-function initEmployee()
+// function initEmployee()
+// {
+//     $(`.container .employee-wrapper .onDuty-wrapper .duty-wrapper,
+//        .container .employee-wrapper .notOnDuty-wrapper .duty-wrapper`).empty();
+//     $(employeeList).each(function(index,item){
+//         if(item.Online)
+//         {
+//             let template = `<div class="duty-item active">
+//                                 <div class="name">${item.FullName}</div>
+//                                 <div class="rank">${item.Rank}</div>
+//                                 <div class="time">
+//                                     <span>${item.Time}</span>ч                              
+//                                 </div>
+//                                 <div class="toogle"><img src="img/notebook/arrow.png" alt=""></div>
+//                                 <div class="toogle-menu">
+//                                     <div class="toogle-item" id="upRank"><i class="far fa-hand-point-up"></i></div>
+//                                     <div class="toogle-item" id="downRank"><i class="far fa-hand-point-down"></i></div>
+//                                     <div class="toogle-item" id="removeRank"><i class="fas fa-user-minus"></i></div>
+//                                 </div>
+//                             </div>`;
+//             $('.container .employee-wrapper .onDuty-wrapper .duty-wrapper').append(template);   
+//         }
+//         else
+//         {
+//             let template = `<div class="duty-item">
+//                                 <div class="name">${item.FullName}</div>
+//                                 <div class="rank">${item.Rank}</div>
+//                                 <div class="time">
+//                                     <span>${item.Time}</span>ч                              
+//                                 </div>
+//                             </div>`;
+//             $('.container .employee-wrapper .notOnDuty-wrapper .duty-wrapper').append(template);  
+//         }
+//     });
+//     employeeRefresh();
+// }
+// function employeeRefresh()
+// {
+//     $('.container .employee-wrapper .onDuty-wrapper .duty-wrapper .duty-item .toogle').on('click',function(){
+//         if(!$(this).next().is(':visible'))
+//         {
+//             $(this).css({
+//                 'border-top-left-radius':'0px',
+//                 'border-bottom-left-radius':'0px'
+//             });
+//             $(this).find('img').css('transform','rotate(180deg)');
+//             $(this).next().fadeIn().css('display','flex');
+//         }
+//         else
+//         {        
+//             $(this).css('border-radius','20px');
+//             $(this).find('img').css('transform','rotate(0deg)');
+//             $(this).next().fadeOut();
+//         }
+//     });
+//     $('.container .employee-wrapper .duty-item .toogle-menu .toogle-item').on('click',function(){
+//         let currentId = this.id,
+//             name = $(this).parent().parent().find('.name').text(),
+//             rank = $(this).parent().parent().find('.rank').text(),
+//             time = $(this).parent().parent().find('.time span').text();
+//         $(this).parent().prev().css('border-radius','20px');
+//         $(this).parent().prev().find('img').css('transform','rotate(0deg)');
+//         $(this).parent().fadeOut();
+//         mp.trigger('policeOnlineChange',currentId,name);
+//     });
+// }
+// function initHandbook()
+// {
+//     $('.container .handbook-wrapper .wrapper .handbook-items').empty();
+//     $(handbookList).each(function(index,item){
+//         let template = `<div class="handbook-item">
+//                             <div class="name">${item.Name}</div>
+//                             <div class="penalty">${item.Penalty}</div>
+//                             <div class="article">${item.Article}</div>
+//                         </div>`;
+//         $('.container .handbook-wrapper .wrapper .handbook-items').append(template);
+//     });
+// }
+
+$('.container .wrapper .police-menu #employee-wrapper').on('click',function(){
+    if(!$(this).attr('data-used'))
+    {
+        mp.trigger('needEmployeeOnline');
+        $(this).attr('data-used',true);
+    }
+});
+function postEmployee(item)
 {
-    $(`.container .employee-wrapper .onDuty-wrapper .duty-wrapper,
-       .container .employee-wrapper .notOnDuty-wrapper .duty-wrapper`).empty();
-    $(employeeList).each(function(index,item){
-        if(item.Online)
-        {
-            let template = `<div class="duty-item active">
-                                <div class="name">${item.FullName}</div>
-                                <div class="rank">${item.Rank}</div>
-                                <div class="time">
-                                    <span>${item.Time}</span>ч                              
-                                </div>
-                                <div class="toogle"><img src="img/notebook/arrow.png" alt=""></div>
-                                <div class="toogle-menu">
-                                    <div class="toogle-item" id="upRank"><i class="far fa-hand-point-up"></i></div>
-                                    <div class="toogle-item" id="downRank"><i class="far fa-hand-point-down"></i></div>
-                                    <div class="toogle-item" id="removeRank"><i class="fas fa-user-minus"></i></div>
-                                </div>
-                            </div>`;
-            $('.container .employee-wrapper .onDuty-wrapper .duty-wrapper').append(template);   
-        }
-        else
-        {
-            let template = `<div class="duty-item">
-                                <div class="name">${item.FullName}</div>
-                                <div class="rank">${item.Rank}</div>
-                                <div class="time">
-                                    <span>${item.Time}</span>ч                              
-                                </div>
-                            </div>`;
-            $('.container .employee-wrapper .notOnDuty-wrapper .duty-wrapper').append(template);  
-        }
-    });
-    employeeRefresh();
-}
-function employeeRefresh()
-{
-    $('.container .employee-wrapper .onDuty-wrapper .duty-wrapper .duty-item .toogle').on('click',function(){
-        if(!$(this).next().is(':visible'))
-        {
-            $(this).css({
-                'border-top-left-radius':'0px',
-                'border-bottom-left-radius':'0px'
-            });
-            $(this).find('img').css('transform','rotate(180deg)');
-            $(this).next().fadeIn().css('display','flex');
-        }
-        else
-        {        
-            $(this).css('border-radius','20px');
-            $(this).find('img').css('transform','rotate(0deg)');
-            $(this).next().fadeOut();
-        }
-    });
-    $('.container .employee-wrapper .duty-item .toogle-menu .toogle-item').on('click',function(){
-        let currentId = this.id,
-            name = $(this).parent().parent().find('.name').text(),
-            rank = $(this).parent().parent().find('.rank').text(),
-            time = $(this).parent().parent().find('.time span').text();
-        $(this).parent().prev().css('border-radius','20px');
-        $(this).parent().prev().find('img').css('transform','rotate(0deg)');
-        $(this).parent().fadeOut();
-        mp.trigger('policeOnlineChange',currentId,name);
+    let currentElement = JSON.parse(item);
+    $('#employee-frame')[0].contentWindow.postMessage(currentElement, "*");
+    window.addEventListener('message', function(event) {
+        if (event.data['currentId']) {
+            const { currentId, name } = event.data;        
+            console.log(currentId,name);
+            mp.trigger('policeOnlineChange',currentId,name);
+        }    
     });
 }
-function initHandbook()
-{
-    $('.container .handbook-wrapper .wrapper .handbook-items').empty();
-    $(handbookList).each(function(index,item){
-        let template = `<div class="handbook-item">
-                            <div class="name">${item.Name}</div>
-                            <div class="penalty">${item.Penalty}</div>
-                            <div class="article">${item.Article}</div>
-                        </div>`;
-        $('.container .handbook-wrapper .wrapper .handbook-items').append(template);
-    });
-}
+  
 let editor = new Quill('#editor', {
     theme: 'snow'
 });

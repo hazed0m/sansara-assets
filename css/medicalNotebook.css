@@ -189,7 +189,7 @@
 }
 .container .business-wrapper,
 .container .carSearch-wrapper,
-.container .wantedSearch-wrapper,
+.container .morgue-wrapper,
 .container .archive-wrapper,
 .container .things-wrapper,
 .container .employee-wrapper,
@@ -206,13 +206,17 @@
     display:none;
     position: relative;
 }
+.container .employee-wrapper
+{
+    display: flex;
+}
 .container .business-wrapper .search-block input
 {
     width:224px;
     height:43px;
     border-radius:12px;
     border:1px solid #0f1636;
-    padding-left:23px;
+    text-align: center;
     font-size:14px;
 }
 .container .business-wrapper .button,
@@ -1215,7 +1219,8 @@ input[type=number]::-webkit-outer-spin-button {
     color:#363636;
 }
 .container .employee-wrapper .onDuty-wrapper .duty-wrapper .duty-item,
-.container .employee-wrapper .notOnDuty-wrapper .duty-wrapper .duty-item
+.container .employee-wrapper .notOnDuty-wrapper .duty-wrapper .duty-item,
+.container .morgue-wrapper .morgue-wrap .morgue-item
 {
     margin:8px 0;
     display: flex;
@@ -1284,6 +1289,31 @@ input[type=number]::-webkit-outer-spin-button {
     height:15px;
     transition:0.3s;
 }
+.container .morgue-wrapper .morgue-title-wrap
+{
+    display: flex;
+    justify-content: space-between;
+    padding:0 25px;
+    font-size:16px;
+}
+.container .morgue-wrapper .morgue-item .index
+{
+    min-width:5%;
+}
+.container .morgue-wrapper .morgue-item .name
+{
+    text-align: center;
+    min-width:46%;
+}
+.container .morgue-wrapper .morgue-item .reason
+{
+    min-width:41%;
+}
+.container .morgue-wrapper .morgue-item .date-wrapper
+{
+    text-align: center;
+    min-width:8%;
+}
 .container .employee-wrapper .onDuty-wrapper .duty-wrapper .duty-item .name,
 .container .employee-wrapper .notOnDuty-wrapper .duty-wrapper .duty-item .name
 {
@@ -1303,7 +1333,8 @@ input[type=number]::-webkit-outer-spin-button {
 {
     min-width:14%;
 }
-.container .handbook-wrapper .wrapper
+.container .handbook-wrapper .wrapper,
+.container .morgue-wrapper .wrapper
 {
     background:#fff;
     width:683px;
