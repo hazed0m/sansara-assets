@@ -125,6 +125,13 @@ function postPoliceman(item)
         }   
     });
 }  
+function refreshFrames()
+{
+    let currentElement = { Refresh:true };
+    $('#archive-frame')[0].contentWindow.postMessage(currentElement, "*");
+    $('#things-frame')[0].contentWindow.postMessage(currentElement, "*");
+    $('#employee-frame')[0].contentWindow.postMessage(currentElement, "*");
+}
 $('.container .carSearch-wrapper #carSearch').on('click',function(){
     let number = '',
         name = '',
