@@ -81,9 +81,9 @@ function pushNotebook(employeeOnline,admin = false)
 }
 $('.container .business-wrapper .search-block #searchStory').on('click',function(){
     let value = $(this).prev().val();
-    mp.trigger('searchPerson',field);
+    mp.trigger('searchHistory',field);
 });
-function personInit(element)
+function historyInit(element)
 {
     let item = JSON.parse(element);
     if(item !== undefined)
