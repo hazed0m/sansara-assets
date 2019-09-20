@@ -71,32 +71,111 @@ let employeeOnline = JSON.stringify([
     {"FullName": 'Ruslan',"Online":true},
     {"FullName":'Adsad',"Online":false}
 ]);
-function pushNotebook(policeman,employeeOnline)
+function pushNotebook(policeman,employeeOnline,admin = false)
 {
+    if(typeof employeeOnline != undefined)
+    {
+        postEmployee(employeeOnline);
+    }    
     if(typeof policeman != undefined)
     {   
         postPoliceman(policeman);
     }
-    if(typeof employeeOnline != undefined)
+    if(typeof admin != undefined)
     {
-        postEmployee(employeeOnline);
-    }
+        let adminStatus = { Admin: admin };
+        $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
+        $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
+    }                      
 }
 $('.container .business-wrapper .search-block #searchPerson').on('click',function(){
     let value = $(this).prev().val();
     mp.trigger('searchPerson',field);
 });
-function searchPerson(field)
+function personInit(element)
 {
-    mp.trigger('searchPerson',field);
+    let item = JSON.parse(element);
+    if(item !== undefined)
+    {
+        if(item.FullName != $('.container .business-wrapper .content-block .name').text())
+        {
+            let carItems = ``,
+                violationItems = ``;
+            $(item.Cars).each(function(innerIndex,innerItem){
+                let iterator = '';
+                console.log(item.Cars.length);
+                if(innerIndex < item.Cars.length-1)
+                {
+                    iterator = ',';
+                }
+                carItems += `<div id="carItem">${innerItem}${iterator}</div>`;
+            });
+            $(item.StatementsID).each(function(index,item){
+                let itemDate = item.Date.split('@');
+                violationItems += `<div class="violation-item">
+                    <div class="title-item">${item.Id}</div>
+                    <div class="title-item">${item.FullName}</div>
+                    <div class="title-item">
+                        <div class="date-wrapper">
+                            <div class="time">${itemDate[0]}</div>
+                            <div class="date">${itemDate[1]}</div>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            let template = `
+                <div class="name-wrapper">
+                    <div class="name">${item.FullName}</div>
+                    <div class="age">Возраст:
+                        <span id="age">${item.Age}</span>
+                    </div>
+                    <div class="number">Номер:
+                        <span id="number">${item.Number}</span>
+                    </div>
+                </div>
+                <div class="property-wrapper">
+                    <div class="car">
+                        <div class="car-title">Автомобиль:</div>
+                        <div class="car-wrapper">
+                        ${carItems}
+                        </div>
+                    </div>
+                    <div class="house">Проживание:
+                        <p id="house">${item.Home}</p>                            
+                    </div>
+                </div>
+                <div class="violations-wrapper">
+                    <div class="title-wrap">
+                        <div class="title-item">Дело №</div>
+                        <div class="title-item">Сотрудник</div>
+                        <div class="title-item">Дата</div>
+                    </div>
+                    <div class="violation-wrap">
+                        ${violationItems}
+                    </div>
+                </div>                    
+            `;
+            if(!$('.container .business-wrapper .content-block').is(':visible'))
+            {
+                $('.container .business-wrapper .content-block').empty().append(template).addClass('opened flipInY').css('display','block');
+            }
+            else
+            {
+                $('.container .business-wrapper .content-block').removeClass('opened flipInY').addClass('flipOutY');
+                setTimeout(()=>{
+                    $('.container .business-wrapper .content-block').empty().append(template).removeClass('flipOutY').addClass('opened flipInY').css('display','block');
+                },800);
+            }
+        }
+    }
 }
 function postEmployee(item)
 {
     let currentElement = JSON.parse(item);
-    $('#employee-frame')[0].contentWindow.postMessage(currentElement, "*");
+    $('#employee-frame')[0].contentWindow.postMessage({"Online":currentElement}, "*");
     window.addEventListener('message', function(event) {
-        if (event.data['policeOnlineChange']) {
-            const { currentId, name } = event.data.policeOnlineChange;        
+        if (event.data['onlineChange']) {
+            const { currentId, name } = event.data.onlineChange;        
             console.log(currentId,name);
             mp.trigger('policeOnlineChange',currentId,name);
         }    
@@ -131,6 +210,9 @@ function refreshFrames()
     $('#archive-frame')[0].contentWindow.postMessage(currentElement, "*");
     $('#things-frame')[0].contentWindow.postMessage(currentElement, "*");
     $('#employee-frame')[0].contentWindow.postMessage(currentElement, "*");
+    setTimeout(function(){
+        updateStatus = false;
+    },500);
 }
 $('.container .carSearch-wrapper #carSearch').on('click',function(){
     let number = '',
