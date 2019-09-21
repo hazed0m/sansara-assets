@@ -177,8 +177,25 @@ $('.home-but').on('click',function(){
 	}
 });
 $('.main-wrapper .fast-block div').on('click',function(){
-	outCaller($(this).attr('data-number'));
-	checkCall($(this).attr('data-number'));
+	let current = $(this).attr('data-number'),
+		text = $(this).attr('data-text');
+		console.log(current);
+	$('.fast-message .message-title span').text(text);
+	$('.fast-message').attr('data-id',current).fadeIn();
+	$('.fast-message #fast-call').on('click',function(){
+		let currentText = $(this).parent().prev().val();
+		if(currentText.length != 0)
+		{
+			$('.fast-message').fadeOut();
+			$(this).parent().prev().val('');
+			let item = $('.fast-message').attr('data-id');
+			console.log(item);
+			mp.trigger('fastCall',item,currentText);
+		}
+	});
+	$('.fast-message #fast-cancel').on('click',function(){
+		$('.fast-message').fadeOut();
+	});
 });
 var getNumber = 0;
 $('.incomingCall-wrapper .cancel').on('click',function(){
@@ -210,7 +227,7 @@ function cancelIncomingCall()
 	$('.main-wrapper').addClass('active').fadeIn();
 	refreshCallerIntervals();
 };
-$('input[type="text"]').keyup(function() {
+$('input[type="text"], textarea').keyup(function() {
 	this.value = this.value.replace(/[^a-zA-Zа-яА-Я0-9,.!?_ ]/g, '');
 });
 $('.incomingCall-wrapper .allow').on('click',function(){

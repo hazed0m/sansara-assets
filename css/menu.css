@@ -38,7 +38,7 @@ body {
     color: #224161;  
 }
 .categorie-title {
-    padding: 15px 0px;
+    padding: 10px 0px;
     padding-left: 56px;
     color: #f7f7f7;
     font-size: 18px;
@@ -653,7 +653,7 @@ body {
         width: 280px;
     }
     .categorie-title {        
-        padding: 13px 0px;
+        padding: 8px 0px;
         padding-left:25px;
         font-size:16px;
     }

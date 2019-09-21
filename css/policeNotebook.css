@@ -5,6 +5,22 @@
     box-sizing: border-box;
     font-family:"Gotham Pro";
 }
+.startup-mask
+{
+    background:rgba(0,0,0,1);
+    z-index: 9999;
+    position: absolute;
+    border-radius: 5px;
+	width:100%;
+	height:100%;
+	margin:auto;	
+	background-repeat:no-repeat;
+	background-size:cover;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .container
 {
     position: absolute;
@@ -36,6 +52,7 @@
     background-position: top;
     width:100%;
     height:100%;
+    border-radius: 5px;
 }
 .container .wrapper .bottom-panel
 {
@@ -212,6 +229,7 @@
     align-items: center;
     display:none;
     position: relative;
+    border-radius: 5px;
 }
 .container .business-wrapper .search-block input
 {

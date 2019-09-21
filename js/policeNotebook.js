@@ -1,7 +1,8 @@
 
 let policemanList = {},
     charterText = '';    
-
+$(".startup-mask").delay(350).fadeOut('slow');
+$('.main-wrapper').fadeIn();
 $('#sansara-menu').on('click',function(){
     let menu = $('.container .wrapper .sansara-menu');
     if(!menu.is(':visible'))

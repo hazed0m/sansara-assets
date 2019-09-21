@@ -160,7 +160,7 @@ let menu = new Vue({
                     switch (this.skillsShow) {
                         case true:
                            $('.categorie-title').each(function(index,item){
-                               if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow')
+                               if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
                                {
                                    $(item).fadeIn(500); 
                                }
@@ -169,7 +169,7 @@ let menu = new Vue({
                             break;
                         case false: 
                             $('.categorie-title').each(function(index,item){
-                               if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow')
+                               if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
                                {
                                    $(item).css('display','none'); 
                                }
@@ -206,7 +206,7 @@ let menu = new Vue({
                 switch (this.mapSettingsShow) {
                     case true:                        
                        $('.categorie-title').each(function(index,item){
-                           if($(item).attr('data-id') == 'settingsShow')
+                           if($(item).attr('data-id') == 'settingsShow'  || $(item).attr('data-id') == 'settingsAnimShow')
                            {
                                $(item).fadeIn(500); 
                            }
@@ -215,7 +215,7 @@ let menu = new Vue({
                         break;
                     case false: 
                         $('.categorie-title').each(function(index,item){
-                           if($(item).attr('data-id') == 'settingsShow')
+                           if($(item).attr('data-id') == 'settingsShow'  || $(item).attr('data-id') == 'settingsAnimShow')
                            {
                                $(item).css('display','none'); 
                            }
@@ -231,6 +231,7 @@ let menu = new Vue({
                     this.animateShow = false;
                     this.settingsShow = false;
                     this.skillsShow = false;
+                    this.mapSettingsShow = false;
                     switch (animCircle.settingsAnimShow) {
                         case true:
                             animCircle.settingsAnimShow = false;
