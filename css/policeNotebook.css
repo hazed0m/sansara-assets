@@ -21,6 +21,10 @@
 	justify-content: center;
 	align-items: center;
 }
+.startup-mask img
+{
+    max-width:300px;
+}
 .container
 {
     position: absolute;

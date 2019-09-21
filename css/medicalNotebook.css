@@ -29,6 +29,26 @@
     background: url(../img/notebook/medical-back.png) no-repeat;
     background-size: cover;
 }
+.startup-mask
+{
+    background:rgba(0,0,0,1);
+    z-index: 9999;
+    position: absolute;
+    border-radius: 5px;
+	width:100%;
+	height:100%;
+	margin:auto;	
+	background-repeat:no-repeat;
+	background-size:cover;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.startup-mask img
+{
+    max-width:300px;
+}
 .container .main-wrapper
 {
     background-size:cover;

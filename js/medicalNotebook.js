@@ -1,3 +1,4 @@
+$(".startup-mask").delay(450).fadeOut('slow');
 $('#sansara-menu').on('click',function(){
     let menu = $('.container .wrapper .sansara-menu');
     if(!menu.is(':visible'))
