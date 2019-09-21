@@ -195,6 +195,7 @@ $('.main-wrapper .fast-block div').on('click',function(){
 	});
 	$('.fast-message #fast-cancel').on('click',function(){
 		$('.fast-message').fadeOut();
+		$(this).parent().prev().val('');
 	});
 });
 var getNumber = 0;
