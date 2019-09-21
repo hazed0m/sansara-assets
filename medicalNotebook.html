@@ -9,13 +9,11 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/medicalNotebook.css">
-    <link href="css/quill.snow.css" rel="stylesheet">
-    <link href="css/quill.bubble.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <div class="wrapper">
-            <div class="business-wrapper">
+            <div class="business-wrapper" id="medical">
                 <div class="mask"></div>
                 <div class="search-block">
                     <input type="text" placeholder="Введите Имя/Номер">
@@ -30,82 +28,16 @@
                 </div>
             </div>
             <div class="morgue-wrapper">
-                <div class="wrapper">
-                    <div class="morgue-title-wrap">
-                        <div class="morgue-title">№</div>
-                        <div class="morgue-title">Имя</div>
-                        <div class="morgue-title">Причина смерти</div>
-                        <div class="morgue-title">Дата</div>
-                    </div>
-                    <div class="morgue-wrap">
-                        <div class="morgue-item">
-                            <div class="index">
-                                #
-                                <span>1</span>
-                            </div>
-                            <div class="name">Жмышенко Валерий</div>
-                            <div class="reason">Ударился мизинцем</div>
-                            <div class="date-wrapper">
-                                <div class="time">6:18</div>
-                                <div class="date">23.03.19</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <iframe id="morgue-frame" src="http://server.sansararp.com/mc/morgue" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="employee-wrapper active">
-                <div class="wrapper">
-                    <div class="onDuty-wrapper">
-                        <div class="duty-title">
-                        - На службе
-                        </div>
-                        <div class="duty-columns">
-                            <div class="column-item">Имя</div>
-                            <div class="column-item">Ранг</div>
-                            <div class="column-item">Время на посту</div>
-                        </div>
-                        <div class="duty-wrapper">
-                        </div>
-                    </div>
-                    <div class="notOnDuty-wrapper">
-                        <div class="duty-title">
-                        - Не на службе
-                        </div>
-                        <div class="duty-columns">
-                            <div class="column-item">Имя</div>
-                            <div class="column-item">Ранг</div>
-                            <div class="column-item">Время на посту</div>
-                        </div>
-                        <div class="duty-wrapper">
-
-                        </div>
-                    </div>
-                </div>
+                <iframe id="employee-frame" src="http://server.sansararp.com/mc/employee" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="handbook-wrapper">
-                <div class="wrapper">
-                    <div class="title-wrap">
-                        <div class="title-item">Наименование</div>
-                        <div class="title-item">Симптом</div>
-                        <div class="title-item">Лечение</div>
-                    </div>
-                    <div class="handbook-items">
-                        
-                    </div>
-                </div>
+                <iframe id="handbook-frame" src="http://server.sansararp.com/mc/handbook" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="charter-wrapper">
-                <div class="wrapper">
-                    <div class="title">-Устав и правила</div>
-                    <div class="show-wrapper">
-                        <div class="text-wrapper"></div>
-                        <div class="button" id="editCharter">Редактировать</div>
-                    </div>
-                    <div class="edit-wrapper">
-                        <div id="editor"></div>
-                        <div class="button" id="saveCharter">Сохранить</div>
-                    </div>
-                </div>
+                <iframe id="charter-frame" src="http://server.sansararp.com/mc/charter" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="police-menu">
                 <div class="menu-item active" id="employee-wrapper">Список сотрудников</div>
@@ -137,7 +69,6 @@
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/font-awesome.min.js"></script>    
-    <script src="js/quill.min.js"></script>
     <script src="js/medicalNotebook.js"></script>
 </body>
 </html>
