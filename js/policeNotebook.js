@@ -233,6 +233,98 @@ let archive = JSON.stringify([
         InProgress:false,
         WantedLevel: 5,
         Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+    },
+    {
+        StatementID:12,
+        PoliceMembers : [
+            'Младший Сержант@Григорий Упсов',
+            'Младший Сержант@Григорий Упсов'
+        ],
+        Victim :[
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Violators: [
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Proofs: [
+            'Нож',
+            'Кровь нападавшего'
+        ],
+        ClosedFull: true,
+        InProgress:false,
+        WantedLevel: 5,
+        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+    },
+    {
+        StatementID:12,
+        PoliceMembers : [
+            'Младший Сержант@Григорий Упсов',
+            'Младший Сержант@Григорий Упсов'
+        ],
+        Victim :[
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Violators: [
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Proofs: [
+            'Нож',
+            'Кровь нападавшего'
+        ],
+        ClosedFull: true,
+        InProgress:false,
+        WantedLevel: 5,
+        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+    },
+    {
+        StatementID:12,
+        PoliceMembers : [
+            'Младший Сержант@Григорий Упсов',
+            'Младший Сержант@Григорий Упсов'
+        ],
+        Victim :[
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Violators: [
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Proofs: [
+            'Нож',
+            'Кровь нападавшего'
+        ],
+        ClosedFull: true,
+        InProgress:false,
+        WantedLevel: 5,
+        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+    },
+    {
+        StatementID:12,
+        PoliceMembers : [
+            'Младший Сержант@Григорий Упсов',
+            'Младший Сержант@Григорий Упсов'
+        ],
+        Victim :[
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Violators: [
+            'Виталька Усов',
+            'Григорий Трусов'
+        ],
+        Proofs: [
+            'Нож',
+            'Кровь нападавшего'
+        ],
+        ClosedFull: true,
+        InProgress:false,
+        WantedLevel: 5,
+        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
     }
 ]);
 let employeeOnline = JSON.stringify([
@@ -264,6 +356,7 @@ function pushNotebook(policeman,filer,archive,employeeOnline,admin = false)
         let adminStatus = { Admin: admin };
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
+        $('.debugger').append("<p>Админ прошел</p>");
     }                      
 }
 $('.container .business-wrapper .search-block #searchPerson').on('click',function(){
@@ -358,11 +451,16 @@ function postEmployee(item)
             mp.trigger('policeOnlineChange',currentId,name);
         }    
     });
+    $('.debugger').append("<p>Сотрудники прошли</p>");
 }  
 function initFiler(elem)
 {
     // $(`.container .archive-wrapper .archive-wrap,
     //     .container .things-wrapper .things-container`).empty();
+    if(elem.length < 1)
+    {
+        $('.debugger').append("<p>Пустой объект</p>");
+    }
     $(elem).each(function(index,item){    
         if(item.ClosedFull == false && item.InProgress == true)
         {
@@ -447,7 +545,7 @@ function initFiler(elem)
                 }
                 $('.container .things-wrapper .things-container').scroll(function() {
                     let currentHeight = $('.container .things-wrapper .things-container .last-in-container').position().top;
-                    console.log(currentHeight,$('.container .archive-wrapper .archive-container').scrollTop());
+                    console.log(currentHeight,$('.container .things-wrapper .things-container').scrollTop());
                     if($('.container .things-wrapper .things-container').scrollTop() > currentHeight){
                         $(".container .things-wrapper #more-things").fadeIn();
                     }
