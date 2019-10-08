@@ -5,6 +5,27 @@
     box-sizing: border-box;
     font-family:"Gotham Pro";
 }
+.searchable
+{
+    position: absolute;
+    top:50px;
+    left:48px;
+    z-index: 999;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+.searchable:before
+{
+    content:'Результат поиска';
+    position: absolute;
+    top:-31px;
+    left:50%;
+    transform: translate(-50%,-50%);
+    padding:10px 20px;
+    background:rgba(0,0,0,0.5);
+    color:#fff;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
 .debugger
 {
     color:#000;
@@ -174,13 +195,13 @@
     left:0;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
-.container .wrapper .police-menu .close-but{
+.container .wrapper .searchable .close-but{
     position: absolute;
-    top:10px;
-    right:-45px;
+    top:-10px;
+    right:-10px;
     width:25px;
     height:25px;
-    background:#7b7b7b;
+    background:#b90606;
     color:#fff;
     border-radius: 50%;
     display: flex;
@@ -482,7 +503,7 @@
 {
     background: #0f1636;
 }
-.container .mask
+.container .mask, .search-mask
 {
     background:rgba(0,0,0,0.4);
     position: absolute;

@@ -356,7 +356,6 @@ function pushNotebook(policeman,filer,archive,employeeOnline,admin = false)
         let adminStatus = { Admin: admin };
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
-        $('.debugger').append("<p>Админ прошел</p>");
     }                      
 }
 $('.container .business-wrapper .search-block #searchPerson').on('click',function(){
@@ -451,15 +450,17 @@ function postEmployee(item)
             mp.trigger('policeOnlineChange',currentId,name);
         }    
     });
-    $('.debugger').append("<p>Сотрудники прошли</p>");
 }  
-function initFiler(elem)
+function initFiler(elem,search = false)
 {
     // $(`.container .archive-wrapper .archive-wrap,
     //     .container .things-wrapper .things-container`).empty();
-    if(elem.length < 1)
+    let searchStatus = '',
+        closeBut = ``; 
+    if(search)
     {
-        $('.debugger').append("<p>Пустой объект</p>");
+        searchStatus = `searchable`;
+        closeBut = `<div class="close-but"><i class="fas fa-times"></i></div>`;
     }
     $(elem).each(function(index,item){    
         if(item.ClosedFull == false && item.InProgress == true)
@@ -491,7 +492,8 @@ function initFiler(elem)
                                     </div> `;
             });
             let template = `
-                <div class="things-item ${index == elem.length - 1 ? 'last-in-container' : ''}" id="thing${item.StatementID}">
+                <div class="things-item ${index == elem.length - 1 ? 'last-in-container' : ''}${searchStatus}" id="thing${item.StatementID}">
+                    ${closeBut}
                     <div class="left-block">
                         <div class="title-wrap">
                             <div class="name-wrap">
@@ -545,7 +547,6 @@ function initFiler(elem)
                 }
                 $('.container .things-wrapper .things-container').scroll(function() {
                     let currentHeight = $('.container .things-wrapper .things-container .last-in-container').position().top;
-                    console.log(currentHeight,$('.container .things-wrapper .things-container').scrollTop());
                     if($('.container .things-wrapper .things-container').scrollTop() > currentHeight){
                         $(".container .things-wrapper #more-things").fadeIn();
                     }
@@ -585,7 +586,8 @@ function initFiler(elem)
                                     </div> `;
             });
             let template = `
-                <div class="archive-item ${index == elem.length - 1 ? 'last-in-container' : ''}" id="archive${item.StatementID}">
+                <div class="archive-item ${index == elem.length - 1 ? 'last-in-container' : ''}${searchStatus}" id="archive${item.StatementID}">
+                ${closeBut}
                     <div class="left-block">
                         <div class="title-wrap">
                             <div class="name-wrap">
@@ -701,6 +703,24 @@ function appendArchive(elem)
     archiveList = [...archiveList,...newList];
     initFiler(newList);
 }
+function searchThing(elem)
+{
+    if(arguments.length > 0)
+    {
+        let item = JSON.parse(elem);
+        initFiler(item,true);
+        $('.container .things-wrapper .search-mask').fadeIn();
+    }
+    else
+    {
+        
+        $('.container .things-wrapper .search-wrap .notification').fadeIn(200);
+        setTimeout(function(){                                 
+            $('.container .things-wrapper .search-wrap input').val('');
+            $('.container .things-wrapper .search-wrap .notification').fadeOut();
+        },1500);
+    }
+}
 function refreshThingsList()
 {
     $('#search-thing').on('click',function(){
@@ -717,13 +737,19 @@ function refreshThingsList()
             else
             {                
                 mp.trigger("searchThing", id);
-            	$('.container .things-wrapper .search-wrap .notification').fadeIn(200);
-            	setTimeout(function(){                                 
-            		$('.container .things-wrapper .search-wrap input').val('');
-            		$('.container .things-wrapper .search-wrap .notification').fadeOut();
-            	},1500);
             }
         }
+    });
+    $('.container .wrapper .searchable .close-but, .things-wrapper .search-mask').on('click',function(){
+        if($(this).hasClass('close-but'))
+        {
+            $(this).parent().remove();
+        }
+        else
+        {
+            $('.things-wrapper .searchable').remove();
+        }
+        $('.things-wrapper .search-mask').fadeOut();
     });
     $(`.container .things-wrapper .things-wrap #more-things`).on('click',function(){
         $(this).fadeOut();
@@ -750,6 +776,11 @@ function refreshThingsList()
     $('.container .things-wrapper #edit-thing').on('click',function(){
         let currentId = $(this).parent().parent().parent().parent()[0].id,
             currentIndex = null;
+        if($(this).parent().parent().parent().parent().hasClass('searchable'))
+        {
+            $(this).parent().parent().parent().parent().css('z-index','99');
+            console.log('searchable');
+        }
         currentId = currentId.substr(5);        
         $('.container .add-thing-wrapper, .container .things-wrapper .mask').fadeIn();        
         $(filerList).each(function(index,item){
