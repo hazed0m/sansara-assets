@@ -1188,7 +1188,7 @@
   position: absolute;
   left: -9999px;
 }
-.container .things-wrapper .search-wrap
+.container .search-wrap
 {
     position: absolute;
     top:-70px;
@@ -1198,7 +1198,7 @@
     padding-top:20px;
     width:100%;
 }
-.container .things-wrapper .search-wrap input
+.container .search-wrap input
 {
     border:none;
     background:rgba(255,255,255,0.9);
@@ -1215,6 +1215,7 @@ input[type=number]::-webkit-outer-spin-button {
     appearance: none;
     margin: 0; 
 }
+.container .archive-wrapper .search-wrap .button,
 .container .things-wrapper .search-wrap .button
 {
     width:auto;
@@ -1223,7 +1224,7 @@ input[type=number]::-webkit-outer-spin-button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
-.container .things-wrapper .search-wrap .notification
+.container .search-wrap .notification
 {
     cursor: pointer;
     display:none;

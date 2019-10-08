@@ -556,6 +556,10 @@ function initFiler(elem,search = false)
                     }
                 });	
             }     
+            if(search)
+            {                
+                 $('.container .things-wrapper .search-mask').fadeIn();
+            }
         }
         if(item.ClosedFull == true && item.InProgress == false || item.ClosedFull == false && item.InProgress == false)
         {
@@ -626,6 +630,10 @@ function initFiler(elem,search = false)
                     </div>
                 </div>`;
             $('.container .archive-wrapper .archive-container').append(template);
+            if(search)
+            {                
+                 $('.container .archive-wrapper .search-mask').fadeIn();
+            }
             if(index == elem.length-1)
             {              
                 if($('.container  .archive-wrapper .archive-wrap .archive-container .last-in-container').length > 1)
@@ -634,7 +642,6 @@ function initFiler(elem,search = false)
                 }
                 $('.container .archive-wrapper .archive-wrap .archive-container').scroll(function() {
                     const currentHeight = $('.container .archive-wrapper .archive-container .last-in-container').position().top;
-                    console.log(currentHeight,$('.container .archive-wrapper .archive-container').scrollTop());
                     if($('.container .archive-wrapper .archive-container').scrollTop() > currentHeight){
                         $(".container .archive-wrapper #more-things").fadeIn();
                     }
@@ -709,11 +716,9 @@ function searchThing(elem)
     {
         let item = JSON.parse(elem);
         initFiler(item,true);
-        $('.container .things-wrapper .search-mask').fadeIn();
     }
     else
-    {
-        
+    {        
         $('.container .things-wrapper .search-wrap .notification').fadeIn(200);
         setTimeout(function(){                                 
             $('.container .things-wrapper .search-wrap input').val('');
@@ -721,35 +726,54 @@ function searchThing(elem)
         },1500);
     }
 }
+function searchArchive(elem)
+{
+    if(arguments.length > 0)
+    {
+        let item = JSON.parse(elem);
+        initFiler(item,true);
+        console.log(1);
+    }
+    else
+    {        
+        $('.container .archive-wrapper .search-wrap .notification').fadeIn(200);
+        setTimeout(function(){                                 
+            $('.container .archive-wrapper .search-wrap input').val('');
+            $('.container .archive-wrapper .search-wrap .notification').fadeOut();
+        },1500);
+    }
+}
 function refreshThingsList()
 {
-    $('#search-thing').on('click',function(){
+    $('#searchThing, #searchArchive').on('click',function(){
         if($(this).prev().val().length != 0)
         {
-            let id  = $(this).prev().val();   
+            let value  = $(this).prev().val();   
             $(this).prev().val('');
-            if($(id).length)
+            if($(value).length)
             {                             
             	$(this).prev().val('');
-            	let top = $(id).offset().top - 150;
+            	let top = $(value).offset().top - 150;
             	$('.container .things-wrapper .things-container').animate({scrollTop: top}, 900);
             }
             else
-            {                
-                mp.trigger("searchThing", id);
+            {          
+                let currentId = this.id;
+                console.log(currentId);      
+                mp.trigger(currentId, value);
             }
         }
     });
-    $('.container .wrapper .searchable .close-but, .things-wrapper .search-mask').on('click',function(){
+    $('.container .wrapper .searchable .close-but, .container .search-mask').on('click',function(){
         if($(this).hasClass('close-but'))
         {
             $(this).parent().remove();
         }
         else
         {
-            $('.things-wrapper .searchable').remove();
+            $('.searchable').remove();
         }
-        $('.things-wrapper .search-mask').fadeOut();
+        $('.search-mask').fadeOut();
     });
     $(`.container .things-wrapper .things-wrap #more-things`).on('click',function(){
         $(this).fadeOut();
