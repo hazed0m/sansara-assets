@@ -760,7 +760,7 @@ function refreshThingsList()
             {          
                 let currentId = this.id;
                 console.log(currentId);      
-                mp.trigger(currentId, value);
+                mp.trigger(currentId, parseInt(value));
             }
         }
     });
