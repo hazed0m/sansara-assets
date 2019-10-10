@@ -8,7 +8,7 @@
 }
 .container
 {
-    width:703px;
+    width:707px;
     /* height:418px; */
     background:#363940;
     border-radius: 10px;
@@ -26,7 +26,8 @@
     display: flex;
     flex-wrap:wrap;
     padding-bottom: 35px;
-
+    max-height: 492px;
+    overflow-y: scroll;
 }
 .container .garage-item 
 {
@@ -47,20 +48,51 @@
     cursor: pointer;
     text-align: center;
 }
-.container #lspd2 .img-block:after
+.container .sheriff.closed#ChevroletTahoe .img-block:after
+{
+    content:'Доступно Шерифу';
+}
+.container .sheriff.closed#FordTaurus .img-block:after
+{
+    content:'Доступно Заместителю Шерифа';
+}
+.container .sheriff.closed#DodgeChargerSheriff .img-block:after
+{
+    content:'Доступно Помощнику Шерифа 1-го ранга';
+}
+.container .detective.closed#Scout .img-block:after
+{
+    content:'Доступно Главе Детективов';
+}
+.container .detective.closed#Declasse .img-block:after,
+.container .detective.closed#PrisonBus .img-block:after
+{
+    content:'Доступно Детективу 1-го ранга';
+}
+.container .detective.closed#Bravado .img-block:after
+{
+    content:'Доступно Детективу 2-го ранга';
+}
+.container .police#PoliceBike .img-block:after,
+.container .police#Buffalo .img-block:after
 {
     content:'Доступно Офицеру 2-го ранга';
 }
-.container #lspd3 .img-block:after,
-.container #lspd4 .img-block:after
+.container .police#Interceptor .img-block:after
 {
-    content:'Доступно Офицеру 3-го ранга';
+    content:'Доступно Офицеру 1-го ранга';
 }
-.container #lspd5 .img-block:after,
-.container #lspd6 .img-block:after,
-.container #lspd7 .img-block:after
+.container .police#PrisonBus .img-block:after,
+.container .police#Transporter .img-block:after,
+.container .police#FordInterceptor .img-block:after
 {
-    content:'Доступно Сержанту 1-го ранга';
+    content:'Доступно Сержанту 3-го ранга';
+}
+.container .police#ChevroletImpala .img-block:after,
+.container .police#DodgeChargerLSPD .img-block:after,
+.container .police#Ferrari458Italia .img-block:after
+{
+    content:'Доступно Лейтенанту 3-го ранга';
 }
 .container .garage-item.active .img-block:after
 {
@@ -75,6 +107,7 @@
     width:100%;
     height:82.5%;
     background:rgba(0,0,0,.7);
+    text-align:center;
 }
 .container .garage-item .img-block
 {
@@ -94,6 +127,7 @@
     width:100%;
     height:100%;
     position: relative;
+    padding-bottom: 35px;
 }
 .container .garage-item .garage-name
 {
@@ -146,4 +180,16 @@
 .button#close
 {
     background-color: #4a4d53;
+}
+.container .garage-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+.container .garage-wrapper::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+}
+ 
+.container .garage-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgb(218, 218, 218);
+  outline: 1px solid #000;
 }
