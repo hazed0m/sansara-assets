@@ -1049,6 +1049,7 @@
     margin-right:50px;
     width:95px;
     height:29px;
+    text-align: center;
 }
 .container .things-wrapper #edit-thing,
 .container .things-wrapper #add-violation

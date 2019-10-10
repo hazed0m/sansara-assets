@@ -328,7 +328,7 @@ let archive = JSON.stringify([
     }
 ]);
 let employeeOnline = JSON.stringify([
-    {"FullName": 'Ruslan',"Online":true},
+    {"FullName": 'Дмитрий Иванов',"Online":true},
     {"FullName":'Adsad',"Online":false}
 ]);
 function pushNotebook(policeman,filer,archive,employeeOnline,admin = false)
@@ -777,11 +777,17 @@ function refreshThingsList()
     });
     $(`.container .things-wrapper .things-wrap #more-things`).on('click',function(){
         $(this).fadeOut();
-        mp.trigger('moreThings');
+        let currentId = $('.things-wrap .last-in-container')[0].id;
+        currentId = currentId.substr(5); 
+        console.log(currentId);
+        mp.trigger('moreThings',currentId);
     });
     $(`.container .archive-wrapper .archive-wrap #more-things`).on('click',function(){
         $(this).fadeOut();
-        mp.trigger('moreArchive');
+        let currentId = $('.archive-wrap .last-in-container')[0].id;
+        currentId = currentId.substr(7); 
+        console.log(currentId);
+        mp.trigger('moreArchive',currentId);
     });
     $('.container .things-wrapper #add-violation').on('click',function(){  
         let currentId = $(this).parent().parent().parent().parent()[0].id;
@@ -869,7 +875,7 @@ function refreshThingsList()
                             </div> 
                             <div class="button-wrap">          
                                 <div class="button" id="add-line">Добавить абзац</div>    
-                                <div class="button" id="changeThing">Изменить дело</div>    
+                                <div class="button" id="changeThing">Сохранить изменения</div>    
                             </div>             
                             <!-- <div class="edit-button"></div> --> 
                             <div class="edit-wrap">
@@ -919,7 +925,7 @@ function refreshThingsList()
                     </div>
                     <div class="button-wrap">          
                         <div class="button" id="add-line">Добавить абзац</div>    
-                        <div class="button" id="addThing">Добавить дело</div>    
+                        <div class="button" id="addThing">Сохранить изменения</div>    
                     </div>           
                     <!-- <div class="edit-button"></div> --> 
                     <div class="edit-wrap">
