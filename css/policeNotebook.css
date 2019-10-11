@@ -930,7 +930,7 @@
 }
 .container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper
 {
-    margin-top:0;
+    margin-top:10px;
     min-height: 172px;
     max-height: 172px;
 }
@@ -1047,7 +1047,7 @@
 {
     margin-top:15px;
     margin-right:50px;
-    width:95px;
+    width:105px;
     height:29px;
     text-align: center;
 }

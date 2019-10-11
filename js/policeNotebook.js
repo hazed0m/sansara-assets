@@ -2,7 +2,17 @@
 let policemanList = {},
     filerList = [],
     archiveList = [],
-    currentFiler = {}, 
+    currentFiler = {
+        StatementID:0,
+        PoliceMembers : [],
+        Victim :[],
+        Violators: [],
+        Proofs: [],
+        ClosedFull:false,
+        InProgress:false,
+        WantedLevel: 0,
+        Text: ''
+    }, 
     charterText = '';    
 $(".startup-mask").delay(450).fadeOut('slow');
 $('#sansara-menu').on('click',function(){
@@ -73,26 +83,14 @@ let policeman = JSON.stringify([
 let filer = JSON.stringify([ 
     {
         StatementID:1,
-        PoliceMembers : [
-            'Младший Сержант@Григорий Упсов',
-            'Младший Сержант@Григорий Упсов'
-        ],
-        Victim :[
-            'Виталька Усов',
-            'Григорий Трусов'
-        ],
-        Violators: [
-            'Виталька Усов',
-            'Григорий Трусов'
-        ],
-        Proofs: [
-            'Нож',
-            'Кровь нападавшего'
-        ],
+        PoliceMembers : null,
+        Victim :null,
+        Violators:null,
+        Proofs: null,
         ClosedFull: false,
         InProgress:true,
-        WantedLevel: 5,
-        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+        WantedLevel: 0,
+        Text: ''
     },
     {
         StatementID:3,
@@ -817,6 +815,15 @@ function refreshThingsList()
             if(item.StatementID === parseInt(currentId))
             {                
                 currentFiler = jQuery.extend(true, {}, filerList[index]);
+                for (let val in currentFiler)
+                {
+                    if(currentFiler[val] == null)
+                    {
+                        console.log('null');
+                        currentFiler[val] = [];
+                    }
+                };
+                console.log(currentFiler);
                 let policeMembers  = ``,
                     wantedLevel = ``,
                     itemText = item.Text.split('@'),
@@ -974,45 +981,45 @@ function refreshViolation()
                 $('.container .things-wrapper .add-violation .notification').fadeOut();
             },1500);
         }
-        if(witness.length == 0)
-        {
-            let template = 'Добавьте свидетеля';
-            $('.container .things-wrapper .add-violation .notification .text').text(template).fadeIn();
-            $('.container .things-wrapper .add-violation .notification').fadeIn();
-            setTimeout(()=>{
-                $('.container .things-wrapper .add-violation .notification').fadeOut();
-            },1500);
-        }
-        if(violation.length == 0)
-        {
-            let template = 'Добавьте нарушение';
-            $('.container .things-wrapper .add-violation .notification .text').text(template).fadeIn();
-            $('.container .things-wrapper .add-violation .notification').fadeIn();
-            setTimeout(()=>{
-                $('.container .things-wrapper .add-violation .notification').fadeOut();
-            },1500);
-        }
-        if(injured.length == 0)
-        {
-            let template = 'Добавьте потерпевшего';
-            $('.container .things-wrapper .add-violation .notification .text').text(template).fadeIn();
-            $('.container .things-wrapper .add-violation .notification').fadeIn();
-            setTimeout(() => {
-                $('.container .things-wrapper .add-violation .notification').fadeOut();
-            },1500);
-        }
-        if(witness.length > 0 && violation.length > 0 && injured.length > 0 && wantedLevel > 0)
+        // if(witness.length == 0)
+        // {
+        //     let template = 'Добавьте свидетеля';
+        //     $('.container .things-wrapper .add-violation .notification .text').text(template).fadeIn();
+        //     $('.container .things-wrapper .add-violation .notification').fadeIn();
+        //     setTimeout(()=>{
+        //         $('.container .things-wrapper .add-violation .notification').fadeOut();
+        //     },1500);
+        // }
+        // if(violation.length == 0)
+        // {
+        //     let template = 'Добавьте нарушение';
+        //     $('.container .things-wrapper .add-violation .notification .text').text(template).fadeIn();
+        //     $('.container .things-wrapper .add-violation .notification').fadeIn();
+        //     setTimeout(()=>{
+        //         $('.container .things-wrapper .add-violation .notification').fadeOut();
+        //     },1500);
+        // }
+        // if(injured.length == 0)
+        // {
+        //     let template = 'Добавьте потерпевшего';
+        //     $('.container .things-wrapper .add-violation .notification .text').text(template).fadeIn();
+        //     $('.container .things-wrapper .add-violation .notification').fadeIn();
+        //     setTimeout(() => {
+        //         $('.container .things-wrapper .add-violation .notification').fadeOut();
+        //     },1500);
+        // }
+        if(wantedLevel > 0)
         {
             $('.container .things-wrapper .add-violation, .container .things-wrapper .mask').fadeOut();
-            $(`.container .things-wrapper .add-violation #witness,
-                .container .things-wrapper .add-violation #violation,
-                .container .things-wrapper .add-violation #injured`).val('');            
+            // $(`.container .things-wrapper .add-violation #witness,
+            //     .container .things-wrapper .add-violation #violation,
+            //     .container .things-wrapper .add-violation #injured`).val('');            
             $('.container .things-wrapper .add-violation .wanted-level .star').find('svg path').css({
                 'stroke':'#000',
                 'fill':'#fff'
             }); 
             $('.container .things-wrapper .add-violation .wanted-level .star.activated').removeClass('activated');
-            mp.trigger('addViolation',currentId,witness,violation,injured,wantedLevel);
+            mp.trigger('addViolation',currentId,wantedLevel);
         }
     });
     $('.container .things-wrapper .add-violation #violationCancel').on('click',function(){
