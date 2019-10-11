@@ -22,7 +22,10 @@ function initClothes()
             if($(this).hasClass('active'))
             {
                 $(this).removeClass('active');
-                $('.button#use').addClass('disabled');
+                if($('.clothes-item.active').length < 1)
+                {
+                    $('.button#use').addClass('disabled');
+                }
             }
             else
             {
