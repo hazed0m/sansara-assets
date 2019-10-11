@@ -331,7 +331,7 @@ let employeeOnline = JSON.stringify([
     {"FullName": 'Дмитрий Иванов',"Online":true},
     {"FullName":'Adsad',"Online":false}
 ]);
-function pushNotebook(policeman,filer,archive,employeeOnline,admin = false)
+function pushNotebook(policeman,filer,archive,employeeOnline,admin)
 {
     if(typeof employeeOnline != undefined)
     {
@@ -1222,3 +1222,19 @@ $('.container .carSearch-wrapper #carSearch').on('click',function(){
         mp.trigger('carSearch',number, name, phone, car);
     }
 });
+function textarea_resize(event, line_height = 10, min_line_count = 2)
+{
+    var min_line_height = min_line_count * line_height;
+    var obj = event.target;    
+    $(obj).next().text(obj.value);
+    var obj_height = $(obj).next()[0].offsetHeight;
+    if (event.keyCode == 13)
+    {
+        obj_height += line_height/2;
+    }
+    else if(obj_height < min_line_height)
+    {
+        obj_height = min_line_height;
+    }
+    obj.style.height = obj_height + 'px';
+}
