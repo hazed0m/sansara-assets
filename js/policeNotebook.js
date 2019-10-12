@@ -1162,7 +1162,7 @@ function refreshAddThings()
         {
             if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
             {
-                currentFiler.PoliceMembers.push(`${policemanList[0].Position}@${policemanList[0].FullName}`);
+                // currentFiler.PoliceMembers.push(`${policemanList[0].Position}@${policemanList[0].FullName}`);
                 let currentThing = $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').attr('data-index');
                 $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap .police-members').append(`
                     <div class="things-name">
@@ -1170,7 +1170,9 @@ function refreshAddThings()
                         <span class="name">${policemanList[0].FullName}</span>
                     </div>
                 `);
+                console.log(filerList[currentThing].StatementID,policemanList[0].FullName);
                 $(this).addClass('disabled');
+                mp.trigger('entryToThing',filerList[currentThing].StatementID,policemanList[0].FullName);
             }            
         }
     });    
@@ -1232,7 +1234,10 @@ function refreshAddThings()
                 .container .wrapper .add-thing-wrapper #suspect-lastname`).val('');
             if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
             {
-                currentFiler.Violators.push(`${name+ ' ' +lastname}`);
+                let currentThing = $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').attr('data-index');
+                console.log(filerList[currentThing].StatementID,`${name+ ' ' +lastname}`);
+                mp.trigger('addViolator',filerList[currentThing].StatementID,`${name+ ' ' +lastname}`);
+                // currentFiler.Violators.push(`${name+ ' ' +lastname}`);
             }
             $('.container .wrapper .add-thing-wrapper .things-item .suspects-wrap').append(template); 
         }
