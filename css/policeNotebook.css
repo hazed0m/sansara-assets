@@ -414,6 +414,13 @@
     font-weight: 500;
     border-radius: 10px;
 }
+.container .things-wrapper .add-thing-wrapper .title-wrap .button-wrapper
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .violations-wrapper .violation-wrap .violation-item:last-child
 {
     margin:0;
@@ -503,7 +510,7 @@
 {
     background: #0f1636;
 }
-.container .mask, .search-mask
+.container .mask, .search-mask, .edit-mask
 {
     background:rgba(0,0,0,0.4);
     position: absolute;
@@ -514,7 +521,12 @@
     z-index:99;
     display: none;
 }
+.edit-mask
+{
+    border-radius: 15px;
+}
 .container .things-wrapper .add-violation,
+.container .archive-wrapper .add-violation,
 .container .wantedSearch-wrapper .add-violation
 {
     width:252px;
@@ -530,7 +542,68 @@
     align-items: center;
     z-index: 9999;
 }
-.container .things-wrapper .add-violation .notification
+.container .things-wrapper .add-thing-wrapper .punishmentMenu
+{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index: 99;
+    background:#fff;
+    border-radius: 10px;
+    width:150px;
+    height:auto;
+    display: none;
+}
+.container .things-wrapper .add-thing-wrapper .punishmentMenu input
+{
+    border:none;
+    width:80%;
+    margin-left:10%;
+    text-align: center;
+    border-bottom:1px solid #363636;
+}
+.container .things-wrapper .add-thing-wrapper .punishmentMenu .punishment-item
+{
+    width:100%;
+    display: flex;
+    padding:3px 0 3px 5px;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+.container .things-wrapper .add-thing-wrapper .punishmentMenu .punishment-item
+{
+    width:14px;
+    height:14px;
+    border:1px solid #000;
+    margin-right:6px;
+    border-radius:50%;
+    position: relative;
+    margin:5px;
+}
+.container .things-wrapper .add-thing-wrapper .punishmentMenu .punishment-item .name
+{
+    margin-left:15px;
+}
+.container .things-wrapper .add-thing-wrapper .punishmentMenu .punishment-item.active .toogle
+{
+    background: #ffe100;
+}
+.container .things-wrapper .add-thing-wrapper .punishmentMenu .punishment-item.active .toogle::after
+{
+    content:'';
+    position: absolute;
+    width:7px;
+    height:7px;
+    background:#000;
+    border-radius:50%;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.container .things-wrapper .add-violation .notification,
+.container .archive-wrapper .add-violation .notification
 {
     position: absolute;
     top:50%;
@@ -545,17 +618,20 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     display: none;
 }
-.container .things-wrapper .add-violation .notification .title
+.container .things-wrapper .add-violation .notification .title,
+.container .archive-wrapper .add-violation .notification .title
 {
     font-size:16px;
 }
-.container .things-wrapper .add-violation .notification .text
+.container .things-wrapper .add-violation .notification .text,
+.container .archive-wrapper .add-violation .notification .text
 {
     margin-top:10px;
     font-size:14px;
     font-weight:400;
 }
 .container .things-wrapper .add-violation .close-but,
+.container .archive-wrapper .add-violation .close-but,
 .container .wantedSearch-wrapper .add-violation .close-but,
 .container .wantedSearch-wrapper .wanted-content-wrapper .close-but,
 .container .add-thing-wrapper .close-but
@@ -575,14 +651,17 @@
     border-radius: 5px;
     cursor: pointer;
     transition: 0.2s;
+    z-index: 99;
 }
 .container .things-wrapper .add-violation .close-but:hover,
+.container .archive-wrapper .add-violation .close-but:hover,
 .container .wantedSearch-wrapper .add-violation .close-but:hover
 {
     box-shadow: 0 0 3px rgba(150,150,150,0.8);
     opacity:0.85;
 }
 .container .things-wrapper .add-violation input,
+.container .archive-wrapper .add-violation input,
 .container .wantedSearch-wrapper .add-violation input
 {
     width:229px;
@@ -595,6 +674,7 @@
     font-weight: 500;
 }
 .container .things-wrapper .add-violation .wanted-title,
+.container .archive-wrapper .add-violation .wanted-title,
 .container .wantedSearch-wrapper .add-violation .wanted-title
 {
     font-size:14px;
@@ -630,6 +710,7 @@
     font-size:10px;
 }
 .container .things-wrapper .add-violation .wanted-level .star,
+.container .archive-wrapper .add-violation .wanted-level .star,
 .container .wantedSearch-wrapper .wanted-level .star,
 .container .archive-wrapper .wanted-level .star,
 .container .things-wrapper .wanted-level .star
@@ -674,6 +755,7 @@
     fill:#ed8a19;
 } 
 .container .things-wrapper .add-violation .buttons-wrap,
+.container .archive-wrapper .add-violation .buttons-wrap,
 .container .wantedSearch-wrapper .add-violation .buttons-wrap
 {
     display: flex;
@@ -682,6 +764,7 @@
     margin:12px 0 25px 0;
 }
 .container .things-wrapper .add-violation .buttons-wrap .button,
+.container .archive-wrapper .add-violation .buttons-wrap .button,
 .container .wantedSearch-wrapper .add-violation .buttons-wrap .button
 {
     width:33px;
@@ -692,6 +775,7 @@
     margin:0 10px;
 }
 .container .things-wrapper .add-violation .buttons-wrap .button.grey,
+.container .archive-wrapper .add-violation .buttons-wrap .button.grey,
 .container .wantedSearch-wrapper .add-violation .buttons-wrap .button.grey
 {
     background:#6e6e6e;
@@ -1040,10 +1124,12 @@
 .container .things-wrapper #edit-thing,
 .container .things-wrapper #add-violation,
 .container .things-wrapper #entryThing,
+.container .things-wrapper #imposePunishment,
 .container .things-wrapper #add-line,
 .container .things-wrapper #changeThing,
 .container .things-wrapper #addThing,
-.container .add-thing-wrapper #add-suspect
+.container .add-thing-wrapper #add-suspect,
+.container .things-wrapper #punishmentSubmit
 {
     margin-top:15px;
     margin-right:50px;
@@ -1051,11 +1137,25 @@
     height:29px;
     text-align: center;
 }
+.container .things-wrapper .disabled#entryThing
+{
+    opacity:0.7;
+}
+.container .things-wrapper #punishmentSubmit
+{
+    margin:10px auto;
+}
+.container .things-wrapper #entryThing,
+.container .things-wrapper #imposePunishment
+{
+    margin:5px;
+}
 .container .things-wrapper #edit-thing,
 .container .things-wrapper #add-violation
 {
     margin: 0 5px;
 }
+
 #suspect-name
 {
     margin-top:10px;
@@ -1082,7 +1182,7 @@
 .container .add-thing-wrapper
 {
     width:fit-content;
-    height:277px;
+    height:auto;
     position: absolute;
     top:50%;
     left:50%;
@@ -1246,6 +1346,12 @@ input[type=number]::-webkit-outer-spin-button {
     display: flex;
     justify-content: space-around;
     align-items: flex-end;
+}
+.container .archive-wrapper .title-wrap .button-wrapper
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
 }
 .container .employee-wrapper .wrapper
 {

@@ -72,11 +72,43 @@ input[type=number]::-webkit-outer-spin-button {
     opacity:0.5;
     cursor: default;
 }
-.container .evidence-wrapper
+.button-wrapper
+{
+    display: flex;
+    justify-content: space-between;
+    width:95%;
+}
+.container .input-wrapper .button-wrapper .button.grey
+{
+    background:#6e6e6e;
+}
+.container .input-wrapper .button-wrapper .button
+{
+    padding: 5px 10px;
+}
+.container .evidence-wrapper, .container .proofs-wrapper
 {
     background:rgb(240,240,240);
     border-radius:5px;
     min-height:100px;
+    max-height:100px;
+    overflow-y:scroll;
+}
+.container .evidence-wrapper::-webkit-scrollbar, 
+.container .proofs-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+.container .evidence-wrapper::-webkit-scrollbar-track, 
+.container .proofs-wrapper::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+} 
+.container .evidence-wrapper::-webkit-scrollbar-thumb, 
+.container .proofs-wrapper::-webkit-scrollbar-thumb {
+    background-color:#000;
+}
+.container .proofs-wrapper
+{
+    padding:5px
 }
 .container .evidence-wrapper .evidence-item
 {

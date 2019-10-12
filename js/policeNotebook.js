@@ -71,13 +71,14 @@ function initTime(hour,minute)
 }
 let policeman = JSON.stringify([
     {
-        FullName:'Дмитрий Ивановasd',
+        FullName:'Григорий Упсов',
         Position:'Начальник полициasdи',
         HourInDept:0,
         Status:false,
         Time:0,
         OpenedThings:1,
-        ClosedThings:2
+        ClosedThings:2,
+        Date: '25.08.2019'
     }
 ]); 
 let filer = JSON.stringify([ 
@@ -338,6 +339,7 @@ function pushNotebook(policeman,filer,archive,employeeOnline,admin)
     if(typeof policeman != undefined)
     {   
         policemanList = JSON.parse(policeman);
+        $('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text(policemanList[0].Date);
     }
     if(typeof filer != undefined)
     {   
@@ -604,7 +606,10 @@ function initFiler(elem,search = false)
                                     </div>
                                 </div>
                                 ${policeMembers} 
-                            </div>                  
+                            </div> 
+                            <div class="button-wrapper">
+                                <div class="button" id="add-violation">В розыск</div>   
+                            </div>                    
                         </div>
                         <div class="text-wrapper">
                             ${textItems}
@@ -653,6 +658,49 @@ function initFiler(elem,search = false)
     });        
     refreshThingsList();
 }
+$('.archive-wrapper .add-violation .wanted-level .star').hover(
+    function()
+    {
+        if(!$('.archive-wrapper .add-violation .wanted-level .star').hasClass('activated'))
+        {
+            let currentStar = this.id;            
+            $('.archive-wrapper .add-violation .wanted-level .star').find('svg path').css({
+                'stroke':'#000',
+                'fill':'#fff'
+            });            
+            for(i=0; i <= currentStar.substring(1); i++)
+            {
+                $(`.archive-wrapper .add-violation .wanted-level .star#s${i}`).find('svg path').css({
+                    'stroke':'#ed8a19',
+                    'fill':'#ed8a19'
+                });
+            }
+        }
+    }
+);	
+$('.archive-wrapper .add-violation .wanted-level .star').on('click',function(){
+    if(!$('.archive-wrapper .add-violation .wanted-level .star').hasClass('activated'))
+    {
+        $(this).addClass('activated');
+    }
+    else
+    {
+        let currentStar = this.id;   
+        $('.archive-wrapper .add-violation .wanted-level .star.activated').removeClass('activated');
+        $('.archive-wrapper .add-violation .wanted-level .star').find('svg path').css({
+            'stroke':'#000',
+            'fill':'#fff'
+        });  
+        for(i=0; i <= currentStar.substring(1); i++)
+        {
+            $(`.archive-wrapper .add-violation .wanted-level .star#s${i}`).find('svg path').css({
+                'stroke':'#ed8a19',
+                'fill':'#ed8a19'
+            });
+        }
+        $(this).addClass('activated');
+    }
+});
 $('.things-wrapper .add-violation .wanted-level .star').hover(
     function()
     {
@@ -790,12 +838,22 @@ function refreshThingsList()
     $('.container .things-wrapper #add-violation').on('click',function(){  
         let currentId = $(this).parent().parent().parent().parent()[0].id;
         currentId = currentId.substr(5);       
-        $('.container .things-wrapper .add-violation').attr('data-index',currentId);
+        $('.container .things-wrapper .add-violation').attr('data-index',currentId); 
         $('.container .things-wrapper .add-violation, .container .things-wrapper .mask').fadeIn().css('display','flex');
+        refreshViolation();
+    }); 
+    $('.container .archive-wrapper #add-violation').on('click',function(){  
+        let currentId = $(this).parent().parent().parent().parent()[0].id;
+        currentId = currentId.substr(7);       
+        $('.container .archive-wrapper .add-violation').attr('data-index',currentId); 
+        $('.container .archive-wrapper .add-violation, .container .archive-wrapper .mask').fadeIn().css('display','flex');
         refreshViolation();
     });    
     $('.container .things-wrapper .add-violation .close-but').on('click',function(){     
         $('.container .things-wrapper .add-violation, .container .things-wrapper .mask').fadeOut();
+    });
+    $('.container .archive-wrapper .add-violation .close-but').on('click',function(){     
+        $('.container .archive-wrapper .add-violation, .container .archive-wrapper .mask').fadeOut();
     });
     $('.container .things-wrapper .search-wrap .notification').on('click',function(){
         $('.container .things-wrapper .search-wrap input').val('');
@@ -829,7 +887,8 @@ function refreshThingsList()
                     itemText = item.Text.split('@'),
                     textItems = ``,
                     evidenceItems = ``,
-                    suspectsItems = ``;
+                    suspectsItems = ``,
+                    policemanEntry = ``;
                 $(item.Proofs).each(function(index,item){
                     evidenceItems  += `<div class="evidences-item">${item}</div>`;
                 });
@@ -845,6 +904,10 @@ function refreshThingsList()
                     textItems += `<p id="thing-add-text">${item}</p>`;
                 });
                 $(item.PoliceMembers).each(function(index,item){
+                    if(item.indexOf(policemanList[0].FullName) != -1)
+                    {
+                        policemanEntry = 'disabled';
+                    }
                     let itemPolice = item.split('@');
                     policeMembers  += `<div class="things-name">
                                             [<span class="rank">${itemPolice[0]}</span>]
@@ -865,17 +928,39 @@ function refreshThingsList()
                                     </div>`;
                 }
                 let template = `
-                    <div class="close-but"><i class="fas fa-times"></i></div>
+                    <div class="edit-mask"></div>
+                    <div class="punishmentMenu">
+                        <div class="close-but" id="closePunishment"><i class="fas fa-times"></i></div>
+                        <div class="punishment-wrapper">
+                            <div class="punishment-item active" id="arrest">
+                                <div class="toogle"></div>
+                                <div class="name">Арест</div>
+                            </div>
+                            <input type="number" id="arrest" placeholder="Срок ареста">
+                            <div class="punishment-item" id="fine">
+                            <div class="toogle"></div>
+                                <div class="name">Штраф</div>
+                            </div>
+                            <input type="number" id="fine" placeholder="Сумма ареста">
+                        </div>
+                        <div class="button" id="punishmentSubmit">Добавить</div>
+                    </div>
+                    <div class="close-but" id="closeEdit"><i class="fas fa-times"></i></div>
                     <div class="things-item" id="edit"> 
                         <div class="left-block">
                             <div class="title-wrap">
                                 <div class="name-wrap" data-index="${index}">
                                     <div class="things-title">Дело №${item.StatementID}</div>
-                                    ${policeMembers}  
+                                    <div class="police-members">
+                                        ${policeMembers}  
+                                    </div>
+                                    ${wantedLevel}
                                 </div>       
-                                <div class="button" id="entryThing">Присоединиться</div>        
-                            </div>   
-                            ${wantedLevel}
+                                <div class="button-wrapper">
+                                    <div class="button ${policemanEntry}" id="entryThing">Присоединиться</div> 
+                                    <div class="button" id="imposePunishment">Назначить наказание</div>        
+                                </div>   
+                            </div>                               
                             <div class="text-wrapper">
                                 ${textItems}
                                 <div id="text_area_div"></div>
@@ -958,11 +1043,43 @@ function refreshThingsList()
 }
 function refreshViolation()
 {
+    $('.container .archive-wrapper .add-violation #violationConfirm').on('click',function(){
+        let currentId = $(this).parent().parent().attr('data-index'),
+            wantedLevel = $('.container .archive-wrapper .add-violation .wanted-level .star.activated');
+        if(wantedLevel.length != 0)
+        {
+            wantedLevel = wantedLevel[0].id.slice(1);
+        }
+        else
+        {
+            wantedLevel = 0;
+        }
+        if(parseInt(wantedLevel) == 0)
+        {
+            let template = 'Выберите уровень розыска';
+            $('.container .archive-wrapper .add-violation .notification .text').text(template).fadeIn();
+            $('.container .archive-wrapper .add-violation .notification').fadeIn();
+            setTimeout(()=>{
+                $('.container .archive-wrapper .add-violation .notification').fadeOut();
+            },1500);
+        }
+        if(wantedLevel > 0)
+        {
+            $('.container .archive-wrapper .add-violation, .container .archive-wrapper .mask').fadeOut();            
+            $('.container .archive-wrapper .add-violation .wanted-level .star').find('svg path').css({
+                'stroke':'#000',
+                'fill':'#fff'
+            }); 
+            $('.container .archive-wrapper .add-violation .wanted-level .star.activated').removeClass('activated');
+            console.log(currentId,wantedLevel);
+            mp.trigger('addViolationArchive',currentId,wantedLevel);
+        }
+    });
     $('.container .things-wrapper .add-violation #violationConfirm').on('click',function(){
         let currentId = $(this).parent().parent().attr('data-index'),
-            witness = $('.container .things-wrapper .add-violation #witness').val(),
-            violation = $('.container .things-wrapper .add-violation #violation').val(),
-            injured = $('.container .things-wrapper .add-violation #injured').val(),
+            // witness = $('.container .things-wrapper .add-violation #witness').val(),
+            // violation = $('.container .things-wrapper .add-violation #violation').val(),
+            // injured = $('.container .things-wrapper .add-violation #injured').val(),
             wantedLevel = $('.container .things-wrapper .add-violation .wanted-level .star.activated');
         if(wantedLevel.length != 0)
         {
@@ -1019,11 +1136,14 @@ function refreshViolation()
                 'fill':'#fff'
             }); 
             $('.container .things-wrapper .add-violation .wanted-level .star.activated').removeClass('activated');
-            mp.trigger('addViolation',currentId,wantedLevel);
+            mp.trigger('addViolationThing',currentId,wantedLevel);
         }
     });
     $('.container .things-wrapper .add-violation #violationCancel').on('click',function(){
         $('.container .things-wrapper .add-violation, .container .things-wrapper .mask').fadeOut();
+    });
+    $('.container .archive-wrapper .add-violation #violationCancel').on('click',function(){
+        $('.container .archive-wrapper .add-violation, .container .archive-wrapper .mask').fadeOut();
     });
 }
 function refreshAddThings()
@@ -1034,19 +1154,24 @@ function refreshAddThings()
         .animate({scrollTop: ($('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper').innerHeight())}, 900);
         $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper #thing-add-text').focus();
     });
-    $('.container .wrapper .add-thing-wrapper .close-but').on('click',function(){        
+    $('.container .wrapper .add-thing-wrapper #closeEdit').on('click',function(){        
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
     });
     $('.container .wrapper .add-thing-wrapper #entryThing').on('click',function(){
-        if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
+        if(!$(this).hasClass('disabled'))
         {
-            currentFiler.PoliceMembers.push(`${policemanList[0].Position}@${policemanList[0].FullName}`);
-            $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').append(`
-                <div class="things-name">
-                    [<span class="rank">${policemanList[0].Position}</span>]
-                    <span class="name">${policemanList[0].FullName}</span>
-                </div>
-            `);
+            if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
+            {
+                currentFiler.PoliceMembers.push(`${policemanList[0].Position}@${policemanList[0].FullName}`);
+                let currentThing = $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').attr('data-index');
+                $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap .police-members').append(`
+                    <div class="things-name">
+                        [<span class="rank">${policemanList[0].Position}</span>]
+                        <span class="name">${policemanList[0].FullName}</span>
+                    </div>
+                `);
+                $(this).addClass('disabled');
+            }            
         }
     });    
     $('.container .add-thing-wrapper .wanted-level .star').hover(
@@ -1146,12 +1271,19 @@ function refreshAddThings()
     });
     $('.container .add-thing-wrapper #changeThing').on('click',function(){
         let currentText = ``,
-            currentId = $('.container .things-wrapper .add-thing-wrapper .name-wrap').attr('data-index');
+            currentId = $('.container .things-wrapper .add-thing-wrapper .name-wrap').attr('data-index'),
+            currentIndex = 0;
         $('.container .things-wrapper .add-thing-wrapper #thing-add-text, .container .things-wrapper .add-thing-wrapper #text_area_div').each(function(index,item){
+            let templateText = $(item).text();    
             if($(item).text().length != 0)
             {
+                currentIndex++;
+                if(this.id == 'text_area_div')
+                {
+                    templateText = `Заявление №${currentIndex} Дата : [${policemanList[0].Date}] Заявитель: ${policemanList[0].FullName} Текст заявления: ${templateText}`;                
+                }
                 let separator = index > 0 ? '@' : '';
-                currentText += separator + $(item).text();
+                currentText += separator + templateText;
             }
         });
         currentFiler.Text = currentText;
@@ -1162,12 +1294,35 @@ function refreshAddThings()
             currentFiler.WantedLevel = parseInt(wantedLevel.slice(1));
         }
         let package = JSON.stringify(currentFiler);
+        console.log(package);
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
         mp.trigger('changeThing',package);					
     });
 }
 function suspectsRefresh()
 {    
+    $('#imposePunishment').on('click',function(){
+        $('.edit-mask,.add-thing-wrapper .punishmentMenu').fadeIn();
+    });
+    $('.punishmentMenu #closePunishment').on('click',function(){
+        $('.edit-mask,.add-thing-wrapper .punishmentMenu').fadeOut();
+    });
+    $('.add-thing-wrapper .punishment-item').on('click',function(){
+        $(this).parent().find('.active').removeClass('active');
+        $(this).addClass('active');
+    });
+    $('.add-thing-wrapper .punishmentMenu #punishmentSubmit').on('click',function(){
+        let currentInfo = $('.punishmentMenu .active').next().val(),
+            currentId = $('.punishmentMenu .active')[0].id;
+        if(currentInfo.length > 0)
+        {
+            $('.punishmentMenu input').val('');
+            $('.punishmentMenu .active').removeClass('active');
+            $('.punishmentMenu #arrest').addClass('active');
+            $('.edit-mask,.add-thing-wrapper .punishmentMenu').fadeOut();
+            mp.trigger('punishmentStatus',currentId,parseInt(currentInfo));
+        }
+    });
     $('.container .add-thing-wrapper .right-block .suspects-wrap .delete-item').on('click',function(){
         if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
         {
