@@ -330,7 +330,7 @@ let employeeOnline = JSON.stringify([
     {"FullName": 'Дмитрий Иванов',"Online":true},
     {"FullName":'Adsad',"Online":false}
 ]);
-function pushNotebook(policeman,filer,archive,employeeOnline,admin)
+function pushNotebook(policeman,filer,archive,employeeOnline,admin,date)
 {
     if(typeof employeeOnline != undefined)
     {
@@ -339,7 +339,10 @@ function pushNotebook(policeman,filer,archive,employeeOnline,admin)
     if(typeof policeman != undefined)
     {   
         policemanList = JSON.parse(policeman);
-        $('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text(policemanList[0].Date);
+    }
+    if(typeof date != undefined)
+    {   
+        $('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text(date);
     }
     if(typeof filer != undefined)
     {   
@@ -1285,7 +1288,7 @@ function refreshAddThings()
                 currentIndex++;
                 if(this.id == 'text_area_div')
                 {
-                    templateText = `Заявление №${currentIndex} Дата : [${policemanList[0].Date}] Заявитель: ${policemanList[0].FullName} Текст заявления: ${templateText}`;                
+                    templateText = `Заявление №${currentIndex} Дата : [${$('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text()}] Заявитель: ${policemanList[0].FullName} Текст заявления: ${templateText}`;                
                 }
                 let separator = index > 0 ? '@' : '';
                 currentText += separator + templateText;
