@@ -77,8 +77,7 @@ let policeman = JSON.stringify([
         Status:false,
         Time:0,
         OpenedThings:1,
-        ClosedThings:2,
-        Date: '25.08.2019'
+        ClosedThings:2
     }
 ]); 
 let filer = JSON.stringify([ 
@@ -91,7 +90,7 @@ let filer = JSON.stringify([
         ClosedFull: false,
         InProgress:true,
         WantedLevel: 0,
-        Text: ''
+        Text: 'asdasd@asdadsad'
     },
     {
         StatementID:3,
@@ -1003,7 +1002,7 @@ function refreshThingsList()
             currentId = sortedItem[filerList.length-1].StatementID+1;
         }
         let template = `
-            <div class="close-but"><i class="fas fa-times"></i></div>
+            <div class="close-but" id="closeAdd"><i class="fas fa-times"></i></div>
             <div class="things-item" id="add">
                 <div class="left-block">
                     <div class="title-wrap">
@@ -1158,6 +1157,9 @@ function refreshAddThings()
         $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper #thing-add-text').focus();
     });
     $('.container .wrapper .add-thing-wrapper #closeEdit').on('click',function(){        
+        $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
+    });
+    $('.container .wrapper .add-thing-wrapper #closeAdd').on('click',function(){        
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
     });
     $('.container .wrapper .add-thing-wrapper #entryThing').on('click',function(){
