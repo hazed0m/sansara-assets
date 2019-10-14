@@ -69,9 +69,9 @@ function initTime(hour,minute)
     time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
     $('.hud-time').text(time);
 }
-let policeman = JSON.stringify([
+let policeman = JSON.stringify(
     {
-        FullName:'Григорий Упсов',
+        FullName:'Велис Сансарович',
         Position:'Начальник полициasdи',
         HourInDept:0,
         Status:false,
@@ -79,7 +79,7 @@ let policeman = JSON.stringify([
         OpenedThings:1,
         ClosedThings:2
     }
-]); 
+); 
 let filer = JSON.stringify([ 
     {
         StatementID:1,
@@ -89,77 +89,73 @@ let filer = JSON.stringify([
         Proofs: null,
         ClosedFull: false,
         InProgress:true,
-        WantedLevel: 0,
         Text: 'asdasd@asdadsad'
     },
     {
-        StatementID:3,
-        PoliceMembers : [
-            'Младший Сержант@Григорий Упсов',
-            'Младший Сержант@Григорий Упсов'
-        ],
-        Victim :[
-            'Виталька Усов',
-            'Григорий Трусов'
-        ],
-        Violators: [
-            'Виталька Усов',
-            'Григорий Трусов'
-        ],
-        Proofs: [
-            'Нож',
-            'Кровь нападавшего'
-        ],
-        ClosedFull: false,
-        InProgress:true,
-        WantedLevel: 5,
-        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+        StatementID:2,
+        PoliceMembers : [],
+        Victim :[],
+        Violators: [],
+        Proofs: [],
+        ClosedFull: 0,
+        InProgress:1,
+        WantedLevel: 0,
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
+    },
+    {
+        StatementID:1,
+        PoliceMembers : [],
+        Victim :[],
+        Violators: [],
+        Proofs: [],
+        ClosedFull: 0,
+        InProgress:1,
+        WantedLevel: 0,
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
+    },
+    {
+        StatementID:2,
+        PoliceMembers : [],
+        Victim :[],
+        Violators: [],
+        Proofs: [],
+        ClosedFull: 0,
+        InProgress:1,
+        WantedLevel: 0,
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
     },
     {
         StatementID:5,
-        PoliceMembers : [
-            'Младший Сержант@Григорий Упсов',
-            'Младший Сержант@Григорий Упсов'
-        ],
-        Victim :[
-            'Виталька Усов',
-            'Григорий Трусов'
-        ],
-        Violators: [
-            'Виталька Усов',
-            'Григорий Трусов'
-        ],
-        Proofs: [
-            'Нож',
-            'Кровь нападавшего'
-        ],
-        ClosedFull: false,
-        InProgress:true,
-        WantedLevel: 5,
-        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+        PoliceMembers : [],
+        Victim :[],
+        Violators: [],
+        Proofs: [],
+        ClosedFull: 0,
+        InProgress:1,
+        WantedLevel: 0,
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
     },
     {
-        StatementID:10,
-        PoliceMembers : [
-            'Младший Сержант@Григорий Упсов',
-            'Младший Сержант@Григорий Упсов'
-        ],
-        Victim :[
-            'Виталька Усов',
-            'Григорий Трусов'
-        ],
-        Violators: [
-            'Виталька Усов',
-            'Григорий Трусов'
-        ],
-        Proofs: [
-            'Нож',
-            'Кровь нападавшего'
-        ],
-        ClosedFull: false,
-        InProgress:true,
-        WantedLevel: 5,
-        Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
+        StatementID:6,
+        PoliceMembers : [],
+        Victim :[],
+        Violators: [],
+        Proofs: [],
+        ClosedFull: 0,
+        InProgress:1,
+        WantedLevel: 0,
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
+    },
+    {
+        StatementID:7,
+        PoliceMembers : [],
+        Victim :[],
+        Violators: [],
+        Proofs: [],
+        ClosedFull: 0,
+        InProgress:1,
+        WantedLevel: 0,
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
     }
 ]);
 let archive = JSON.stringify([
@@ -906,7 +902,7 @@ function refreshThingsList()
                     textItems += `<p id="thing-add-text">${item}</p>`;
                 });
                 $(item.PoliceMembers).each(function(index,item){
-                    if(item.indexOf(policemanList[0].FullName) != -1)
+                    if(item.indexOf(policemanList.FullName) != -1)
                     {
                         policemanEntry = 'disabled';
                     }
@@ -1009,8 +1005,8 @@ function refreshThingsList()
                         <div class="name-wrap">
                             <div class="things-title" data-statement="${currentId}">Дело №${currentId}</div>  
                             <div class="things-name">
-                                [<span class="rank">${policemanList[0].Position}</span>]
-                                <span class="name">${policemanList[0].FullName}</span>
+                                [<span class="rank">${policemanList.Position}</span>]
+                                <span class="name">${policemanList.FullName}</span>
                             </div>                          
                         </div>                         
                     </div>
@@ -1167,17 +1163,17 @@ function refreshAddThings()
         {
             if($('.container .wrapper .add-thing-wrapper .things-item')[0].id === 'edit')
             {
-                // currentFiler.PoliceMembers.push(`${policemanList[0].Position}@${policemanList[0].FullName}`);
+                // currentFiler.PoliceMembers.push(`${policemanList.Position}@${policemanList.FullName}`);
                 let currentThing = $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').attr('data-index');
                 $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap .police-members').append(`
                     <div class="things-name">
-                        [<span class="rank">${policemanList[0].Position}</span>]
-                        <span class="name">${policemanList[0].FullName}</span>
+                        [<span class="rank">${policemanList.Position}</span>]
+                        <span class="name">${policemanList.FullName}</span>
                     </div>
                 `);
-                console.log(filerList[currentThing].StatementID,policemanList[0].FullName);
+                console.log(filerList[currentThing].StatementID,policemanList.FullName);
                 $(this).addClass('disabled');
-                mp.trigger('entryToThing',filerList[currentThing].StatementID,policemanList[0].FullName);
+                // mp.trigger('entryToThing',filerList[currentThing].StatementID,policemanList.FullName);
             }            
         }
     });    
@@ -1241,7 +1237,7 @@ function refreshAddThings()
             {
                 let currentThing = $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').attr('data-index');
                 console.log(filerList[currentThing].StatementID,`${name+ ' ' +lastname}`);
-                mp.trigger('addViolator',filerList[currentThing].StatementID,`${name+ ' ' +lastname}`);
+                // mp.trigger('addViolator',filerList[currentThing].StatementID,`${name+ ' ' +lastname}`);
                 // currentFiler.Violators.push(`${name+ ' ' +lastname}`);
             }
             $('.container .wrapper .add-thing-wrapper .things-item .suspects-wrap').append(template); 
@@ -1252,7 +1248,7 @@ function refreshAddThings()
         let tempObj = {
             StatementID: $('.container .add-thing-wrapper .things-title').attr('data-statement'),
             PoliceMembers: [
-                `${policemanList[0].Position}@${policemanList[0].FullName}`                
+                `${policemanList.Position}@${policemanList.FullName}`                
             ],
             Victim :[],
             Violators: [],
@@ -1284,13 +1280,13 @@ function refreshAddThings()
             currentId = $('.container .things-wrapper .add-thing-wrapper .name-wrap').attr('data-index'),
             currentIndex = 0;
         $('.container .things-wrapper .add-thing-wrapper #thing-add-text, .container .things-wrapper .add-thing-wrapper #text_area_div').each(function(index,item){
-            let templateText = $(item).text();    
             if($(item).text().length != 0)
             {
+                let templateText = $(item).text();    
                 currentIndex++;
                 if(this.id == 'text_area_div')
                 {
-                    templateText = `Заявление №${currentIndex} Дата : [${$('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text()}] Заявитель: ${policemanList[0].FullName} Текст заявления: ${templateText}`;                
+                    templateText = `Заявление №${currentIndex} Дата : [${$('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text()}] Заявитель: ${policemanList.Fullname} Текст заявления: ${templateText}`;                
                 }
                 let separator = index > 0 ? '@' : '';
                 currentText += separator + templateText;

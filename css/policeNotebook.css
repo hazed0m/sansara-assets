@@ -948,6 +948,7 @@
     flex-direction: column;
     justify-content: space-between;
     min-width:485px; 
+    max-width:485px; 
     position: relative;
 }
 .container .archive-wrapper .left-block .title-wrap,
