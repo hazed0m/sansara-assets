@@ -1173,7 +1173,7 @@ function refreshAddThings()
                 `);
                 console.log(filerList[currentThing].StatementID,policemanList.FullName);
                 $(this).addClass('disabled');
-                // mp.trigger('entryToThing',filerList[currentThing].StatementID,policemanList.FullName);
+                mp.trigger('entryToThing',filerList[currentThing].StatementID,policemanList.FullName);
             }            
         }
     });    
@@ -1286,7 +1286,7 @@ function refreshAddThings()
                 currentIndex++;
                 if(this.id == 'text_area_div')
                 {
-                    templateText = `Заявление №${currentIndex} Дата : [${$('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text()}] Заявитель: ${policemanList.Fullname} Текст заявления: ${templateText}`;                
+                    templateText = `Заявление №${currentIndex} Дата : [${$('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text()}] Заявитель: ${policemanList.FullName} Текст заявления: ${templateText}`;                
                 }
                 let separator = index > 0 ? '@' : '';
                 currentText += separator + templateText;
