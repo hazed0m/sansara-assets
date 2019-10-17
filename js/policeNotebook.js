@@ -99,11 +99,11 @@ let filer = JSON.stringify([
         Proofs: [],
         ClosedFull: 0,
         InProgress:1,
-        WantedLevel: 0,
-        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
+        WantedLevel: 5,
+        Text: 'Заявление №1 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@Заявление №2 Дата : [9.9.2019] Заявитель: Велис Сансарович Текст заявления: фывфвфывфвф@Заявление №3 Дата : [9.9.2019] Заявитель: Велис Сансарович Текст заявления: фывфывфывфв@Заявление №4 Дата : [9.9.2019] Заявитель: Велис Сансарович Текст заявления: фвфывфы'
     },
     {
-        StatementID:1,
+        StatementID:3,
         PoliceMembers : [],
         Victim :[],
         Violators: [],
@@ -111,10 +111,10 @@ let filer = JSON.stringify([
         ClosedFull: 0,
         InProgress:1,
         WantedLevel: 0,
-        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: 1hgfhfghgfhgfasdadasdsadddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd@'
     },
     {
-        StatementID:2,
+        StatementID:4,
         PoliceMembers : [],
         Victim :[],
         Violators: [],
@@ -122,7 +122,7 @@ let filer = JSON.stringify([
         ClosedFull: 0,
         InProgress:1,
         WantedLevel: 0,
-        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: 2hgfhfghgfhgf@'
     },
     {
         StatementID:5,
@@ -133,7 +133,7 @@ let filer = JSON.stringify([
         ClosedFull: 0,
         InProgress:1,
         WantedLevel: 0,
-        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: 3hgfhfghgfhgf@'
     },
     {
         StatementID:6,
@@ -144,7 +144,7 @@ let filer = JSON.stringify([
         ClosedFull: 0,
         InProgress:1,
         WantedLevel: 0,
-        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: 4hgfhfghgfhgf@'
     },
     {
         StatementID:7,
@@ -155,7 +155,7 @@ let filer = JSON.stringify([
         ClosedFull: 0,
         InProgress:1,
         WantedLevel: 0,
-        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: hgfhfghgfhgf@'
+        Text: 'Заявление №3 Дата : [1.1.2019 5:01] Заявитель: Дмитрий Иванов Текст заявления: 5hgfhfghgfhgf@'
     }
 ]);
 let archive = JSON.stringify([
@@ -870,6 +870,7 @@ function refreshThingsList()
         $(filerList).each(function(index,item){
             if(item.StatementID === parseInt(currentId))
             {                
+                console.log(currentId);
                 currentFiler = jQuery.extend(true, {}, filerList[index]);
                 for (let val in currentFiler)
                 {
@@ -887,6 +888,7 @@ function refreshThingsList()
                     evidenceItems = ``,
                     suspectsItems = ``,
                     policemanEntry = ``;
+                    console.log(itemText);
                 $(item.Proofs).each(function(index,item){
                     evidenceItems  += `<div class="evidences-item">${item}</div>`;
                 });
@@ -898,8 +900,8 @@ function refreshThingsList()
                                             </div>
                                         </div>`;
                 });
-                $(itemText).each(function(index,item){
-                    textItems += `<p id="thing-add-text">${item}</p>`;
+                $(itemText).each(function(index,textItem){
+                    textItems += `<p id="thing-add-text">${textItem}</p>`;
                 });
                 $(item.PoliceMembers).each(function(index,item){
                     if(item.indexOf(policemanList.FullName) != -1)
@@ -953,12 +955,12 @@ function refreshThingsList()
                                         ${policeMembers}  
                                     </div>
                                     ${wantedLevel}
-                                </div>       
-                                <div class="button-wrapper">
-                                    <div class="button ${policemanEntry}" id="entryThing">Присоединиться</div> 
-                                    <div class="button" id="imposePunishment">Назначить наказание</div>        
-                                </div>   
-                            </div>                               
+                                    <div class="button-wrapper">
+                                        <div class="button ${policemanEntry}" id="entryThing">Присоединиться</div> 
+                                        <div class="button" id="imposePunishment">Назначить наказание</div>        
+                                    </div>                                 
+                                </div>  
+                            </div> 
                             <div class="text-wrapper">
                                 ${textItems}
                                 <div id="text_area_div"></div>
@@ -985,9 +987,9 @@ function refreshThingsList()
                         </div>
                     </div>`;  
                 $('.container .things-wrapper .add-thing-wrapper').empty().append(template);
-                refreshAddThings();
             }
         });
+        refreshAddThings();
         suspectsRefresh();
     });
     $('.container .things-wrapper #add-thing').on('click',function(){
@@ -1171,7 +1173,6 @@ function refreshAddThings()
                         <span class="name">${policemanList.FullName}</span>
                     </div>
                 `);
-                console.log(filerList[currentThing].StatementID,policemanList.FullName);
                 $(this).addClass('disabled');
                 mp.trigger('entryToThing',filerList[currentThing].StatementID,policemanList.FullName);
             }            
@@ -1237,7 +1238,7 @@ function refreshAddThings()
             {
                 let currentThing = $('.container .things-wrapper .add-thing-wrapper .left-block .name-wrap').attr('data-index');
                 console.log(filerList[currentThing].StatementID,`${name+ ' ' +lastname}`);
-                // mp.trigger('addViolator',filerList[currentThing].StatementID,`${name+ ' ' +lastname}`);
+                mp.trigger('addViolator',filerList[currentThing].StatementID,`${name+ ' ' +lastname}`);
                 // currentFiler.Violators.push(`${name+ ' ' +lastname}`);
             }
             $('.container .wrapper .add-thing-wrapper .things-item .suspects-wrap').append(template); 
@@ -1286,7 +1287,7 @@ function refreshAddThings()
                 currentIndex++;
                 if(this.id == 'text_area_div')
                 {
-                    templateText = `Заявление №${currentIndex} Дата : [${$('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text()}] Заявитель: ${policemanList.FullName} Текст заявления: ${templateText}`;                
+                    templateText = `[${$('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text()}] : ${policemanList.FullName} : ${templateText}`;                
                 }
                 let separator = index > 0 ? '@' : '';
                 currentText += separator + templateText;

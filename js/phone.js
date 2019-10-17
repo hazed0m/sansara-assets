@@ -937,17 +937,10 @@ function checkSmile()
 		if($(item).text().includes(':s'))
 		{
 			$(item).addClass('smile');
-			if($(item).text() == ':s1:')
-			{
-				$(item).css('background-image','url(img/phone/sms/smile/b1.png');
-				$(item).empty();
-			}
-			else
-			{
-				let newEl = $(item).text().substring(1,$(item).text().length-1)
-				$(item).css('background-image',`url(img/phone/sms/smile/${newEl}.png`);
-				$(item).empty();
-			}			
+			let newEl = $(item).text().substring(2,$(item).text().length-1);
+			console.log(newEl);
+			$(item).css('background-image',`url(img/phone/sms/smile/${newEl}.png`);
+			$(item).empty();
 		}
 	});
 };

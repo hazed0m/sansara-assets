@@ -130,12 +130,11 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 	}
 	if(currentClass == 'adssell' || currentClass == 'adsbuy' || currentClass == 'adsgetworkers' || currentClass == 'adssearchwork')
 	{
+		$('iframe#ads-frame').attr('src',`http://server.sansararp.com/ads/${currentClass}`);
 		$('.ads-wrapper .ads-type').text($(this).attr('data-name'));
 		$('.ads-wrapper .add-popap').removeClass('fadeInRight active');
-		$(`.ads-wrapper`).attr('data-type',currentClass).addClass('active').fadeIn();
-		adsSendData(JSON.stringify([{login:'hazekk94',hash:'$2b$08$d/v0PrryPB9siZmCKqHrDORi92MFH.VFNWf7wdPQoIXLDsXY64RmS'}]));
-		
-		// mp.trigger('sellContactAuthData');
+		$(`.ads-wrapper`).attr('data-type',currentClass).addClass('active').fadeIn();		
+		mp.trigger('sellContactAuthData');
 	}
 	else
 	{
@@ -530,10 +529,11 @@ function adsSendData(data){
 		sendObj = {};
 	$(currentObj).each(function(index,item){
 		sendObj = {
-			login:item.login,
-			hash:item.hash
+			name: item.name,
+			date: item.date,
+			number: item.number
 		};
 	});
-	console.log(sendObj);
-	$('#ads-frame')[0].contentWindow.postMessage(sendObj,'*');
+	// console.log(sendObj);
+	$('#ads-frame')[0].contentWindow.postMessage({'Ads': sendObj},'*');
 };
