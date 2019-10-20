@@ -355,12 +355,12 @@ function pushNotebook(policeman,filer,archive,employeeOnline,admin,date)
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
     }                      
-    $('.container .business-wrapper .search-block #searchPerson').on('click',function(){
-        let value = $(this).prev().val();
-        console.log(value);
-        mp.trigger('searchPerson',field);
-    });
 }
+$('.container .business-wrapper .search-block #searchPerson').on('click',function(){
+    let value = $(this).prev().val();
+    console.log(value);
+    mp.trigger('searchPersonal',field);
+});
 function personInit(element)
 {
     let item = JSON.parse(element);
