@@ -52,6 +52,10 @@ $('.container .wrapper .bottom-panel .left-wrapper  .used-app').on('click',funct
 $('.container .wrapper .police-menu .close-but').on('click',function(){        
     $('.container .wrapper .police-menu').fadeOut();
 });
+$('.container .business-wrapper .search-block #searchPerson').on('click',function(){
+    let value = $(this).prev().val();
+    mp.trigger('searchPersonal',field);
+});
 $('.police-menu .menu-item').on('click',function(){
     let currentWrapper = this.id;
     if(!$(this).hasClass('active'))
@@ -356,11 +360,6 @@ function pushNotebook(policeman,filer,archive,employeeOnline,admin,date)
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
     }                      
 }
-$('.container .business-wrapper .search-block #searchPerson').on('click',function(){
-    let value = $(this).prev().val();
-    console.log(value);
-    mp.trigger('searchPersonal',field);
-});
 function personInit(element)
 {
     let item = JSON.parse(element);
