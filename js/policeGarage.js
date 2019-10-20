@@ -1,10 +1,10 @@
 let garageList = [
-        { car:'Vapid LSPD', hash:'0x79FBB0C5' },
-        { car:'Buffalo', hash:'0x9F05F101' },
-        { car:'Interceptor', hash:'0x71FA16EA' },
-        { car:'Police Bike', hash:'0xFDEFAEC3' },
-        { car:'Transporter', hash:'0x1B38E955' },
-        { car:'Prison Bus', hash:'0x885F3671' },
+        { car:'Vapid LSPD', hash:'police' },
+        { car:'Buffalo', hash:'police2' },
+        { car:'Interceptor', hash:'police3' },
+        { car:'Police Bike', hash:'policeb' },
+        { car:'Transporter', hash:'policet' },
+        { car:'Prison Bus', hash:'pbus' },
         { car:'Ford Interceptor', hash:'add-on' },
         { car:'Dodge Charger LSPD', hash:'add-on' },
         { car:'Chevrolet Impala', hash:'add-on' },
@@ -14,9 +14,9 @@ let garageList = [
         { car:'Chevrolet Tahoe', hash:'add-on' },
         { car:'Ford Taurus', hash:'add-on' },
         { car:'Scout', hash:'add-on' },
-        { car:'Vapid Detective', hash:'0x8A63C7B9' },
-        { car:'Bravado', hash:'0x432EA949' },
-        { car:'Declasse', hash:'0x9DC66994' }
+        { car:'Vapid Detective', hash:'police4' },
+        { car:'Bravado', hash:'fbi' },
+        { car:'Declasse', hash:'fbi2' }
     ],
     sheriffList =  [
         {
@@ -392,7 +392,13 @@ function initGarage()
     $('.button#use').on('click',function(){
         if($('.garage-item.active').length != 0)
         {
-            let active = $('.garage-item.active').attr('data-id');
+            let active = $('.garage-item.active').attr('data-id'),
+                index = arrayIncludesInObj(garageList,'car',active);
+            console.log(active,index);
+            if(garageList[index].hash != 'add-on')
+            {
+                active = garageList[index].hash;
+            }
             console.log(active);
             $('.button#use').addClass('disabled');
             $('.garage-wrapper .active').removeClass('active');
@@ -402,6 +408,19 @@ function initGarage()
     $('.button#close').on('click',function(){
         mp.trigger('closePoliceGarage');
     });
+}
+const arrayIncludesInObj = (arr, key, valueToCheck) => {
+    let found = -1,
+        index = -1;
+
+    arr.some(value => {
+        index++;
+        if (value[key] === valueToCheck) {
+            found = index;
+            return true; // this will break the loop once found
+        }
+    });
+    return found;
 }
 function openPoliceCars(count)
 {
