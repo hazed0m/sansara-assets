@@ -58,6 +58,14 @@ $('.container .business-wrapper .search-block #searchPerson').on('click',functio
     console.log(value);
     mp.trigger('searchPersonal',value);
 });
+$('.container .recruting-menu input').keyup(function() {
+	this.value = this.value.replace(/[^А-ЯЁа-яё ]/g, '');
+});
+$('.container .main-wrapper .recruting-menu #hireNewbie').on('click',function(){
+    let currentNewbie = $(this).prev().val();
+    console.log(currentNewbie);
+    mp.trigger('hireNewbie',currentNewbie);
+});
 $('.police-menu .menu-item').on('click',function(){
     let currentWrapper = this.id;
     if(!$(this).hasClass('active'))
@@ -357,6 +365,7 @@ function pushNotebook(policeman,filer,archive,employeeOnline,admin,date)
     }
     if(typeof admin != undefined)
     {
+        $('.container .main-wrapper .recruting-menu').fadeIn();
         let adminStatus = { Admin: admin };
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
@@ -370,7 +379,9 @@ function personInit(element)
         if(item.FullName != $('.container .business-wrapper .content-block .name').text())
         {
             let carItems = ``,
-                violationItems = ``;
+                violationItems = ``,
+                textItems = item.Text.split('@'),
+                textItem = ``;
             $(item.Cars).each(function(innerIndex,innerItem){
                 let iterator = '';
                 console.log(item.Cars.length);
@@ -379,6 +390,9 @@ function personInit(element)
                     iterator = ',';
                 }
                 carItems += `<div id="carItem">${innerItem}${iterator}</div>`;
+            });
+            $(textItems).each(function(index,item){
+                textItem += `<p id="text-item">${item}</p> `;
             });
             $(item.StatementsID).each(function(index,item){
                 let itemDate = item.Date.split('@');
@@ -413,6 +427,10 @@ function personInit(element)
                     <div class="house">Проживание:
                         <p id="house">${item.Home}</p>                            
                     </div>
+                </div>
+                <div class="text-wrapper">
+                    <div class="title">Информация:</div>
+                    ${textItem}
                 </div>
                 <div class="violations-wrapper">
                     <div class="title-wrap">

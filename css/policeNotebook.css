@@ -93,15 +93,27 @@
     top:50%;
     left:50%;
     transform:translate(-50%,-50%);
-    width:300px;
-    height:200px;
+    width:400px;
+    /* height:200px; */
     background:#fff;
     border:1px solid #000;
+    padding:10px;
+    border-radius:5px;
+    display: none;
 }
 .container .main-wrapper .recruting-menu .recruting-title
 {
     font-size:20px;
     text-align: center;
+}
+.container .main-wrapper .recruting-menu input
+{
+    margin:15px 0;
+    font-size:18px;
+    width:100%;
+    text-align: center;
+    border:none;
+    border-bottom:2px solid #000;
 }
 .container .wrapper .bottom-panel
 {
@@ -290,6 +302,7 @@
     font-size:14px;
 }
 .container .business-wrapper .button,
+.container .main-wrapper .button,
 .container .wantedSearch-wrapper .button
 {
     margin:10px auto 0 auto;
@@ -354,7 +367,7 @@
 .container .business-wrapper .content-block .property-wrapper,
 .container .wantedSearch-wrapper .wanted-content-wrapper .property-wrapper
 {
-    padding:0 22px 42px 22px;
+    padding:0 22px 22px 22px;
     /* text-align: right; */
     font-size:15px;
 }
@@ -378,6 +391,12 @@
 .container .wantedSearch-wrapper .wanted-content-wrapper .house
 {
     margin-top:15px;
+}
+.business-wrapper .content-block .text-wrapper .title
+{
+    font-size:15px;
+    margin-left:22px;
+    margin-bottom:5px;
 }
 .violations-wrapper .title-wrap
 {
@@ -414,7 +433,7 @@
 .violations-wrapper .violation-wrap
 {
     padding:0 13px;
-    max-height: 211px;
+    max-height: 190px;
     overflow-y: scroll;
 }
 .violations-wrapper .violation-wrap .violation-item
@@ -429,6 +448,14 @@
     font-size:12px;
     font-weight: 500;
     border-radius: 10px;
+}
+.text-wrapper #text-item
+{
+    padding:0 23px;
+    word-wrap: break-word;
+    margin-bottom:10px;
+    font-size:12px;
+    font-weight: 500;
 }
 .container .things-wrapper .add-thing-wrapper .title-wrap .button-wrapper
 {
