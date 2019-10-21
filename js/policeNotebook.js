@@ -381,6 +381,10 @@ function pushNotebook(policeman,filer,archive,employeeOnline,admin,date)
                 console.log(currentId,name, penalty, article);
                 mp.trigger('editHandbook',currentId,name,penalty,article);
             }   
+            if (event.data['getStatus']) {
+                console.log('getStatus');
+                $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
+            } 
         });
     }                      
 }
