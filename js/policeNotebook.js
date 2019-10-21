@@ -56,7 +56,7 @@ $('.container .business-wrapper .search-block #searchPerson').on('click',functio
     let value = $(this).prev().val();
     $(this).prev().val('');
     console.log(value);
-    mp.trigger('searchPersonal',field);
+    mp.trigger('searchPersonal',value);
 });
 $('.police-menu .menu-item').on('click',function(){
     let currentWrapper = this.id;
