@@ -54,6 +54,8 @@ $('.container .wrapper .police-menu .close-but').on('click',function(){
 });
 $('.container .business-wrapper .search-block #searchPerson').on('click',function(){
     let value = $(this).prev().val();
+    $(this).prev().val('');
+    console.log(value);
     mp.trigger('searchPersonal',field);
 });
 $('.police-menu .menu-item').on('click',function(){
@@ -606,7 +608,7 @@ function initFiler(elem,search = false)
                                 ${policeMembers} 
                             </div> 
                             <div class="button-wrapper">
-                                <div class="button" id="add-violation">В розыск</div>   
+                                <div class="button" id="archive-revive">Восстановить и присоедениться</div>   
                             </div>                    
                         </div>
                         <div class="text-wrapper">
@@ -744,12 +746,14 @@ $('.things-wrapper .add-violation .wanted-level .star').on('click',function(){
 });
 function appendThings(elem)
 {
+    $(`.container .things-wrapper .things-wrap #more-things`).removeClass('disabled');
     let newList = JSON.parse(elem);
     filerList = [...filerList,...newList];
     initFiler(newList);
 }
 function appendArchive(elem)
 {
+    $(`.container .archive-wrapper .archive-wrap #more-things`).removeClass('disabled');
     let newList = JSON.parse(elem);
     archiveList = [...archiveList,...newList];
     initFiler(newList);
@@ -820,18 +824,26 @@ function refreshThingsList()
         $('.search-mask').fadeOut();
     });
     $(`.container .things-wrapper .things-wrap #more-things`).on('click',function(){
-        $(this).fadeOut();
-        let currentId = $('.things-wrap .last-in-container')[0].id;
-        currentId = currentId.substr(5); 
-        console.log(currentId);
-        mp.trigger('moreThings',currentId);
+        if(!$(this).hasClass('disabled'))
+        {
+            $(this).fadeOut();
+            let currentId = $('.things-wrap .last-in-container')[0].id;
+            currentId = currentId.substr(5); 
+            console.log(currentId);
+            $(this).addClass('disabled');        
+            mp.trigger('moreThings',currentId);
+        }
     });
     $(`.container .archive-wrapper .archive-wrap #more-things`).on('click',function(){
-        $(this).fadeOut();
-        let currentId = $('.archive-wrap .last-in-container')[0].id;
-        currentId = currentId.substr(7); 
-        console.log(currentId);
-        mp.trigger('moreArchive',currentId);
+        if(!$(this).hasClass('disabled'))
+        {
+            $(this).fadeOut();
+            let currentId = $('.archive-wrap .last-in-container')[0].id;
+            currentId = currentId.substr(7); 
+            console.log(currentId);
+            $(this).addClass('disabled');        
+            mp.trigger('moreArchive',currentId);
+        }
     });
     $('.container .things-wrapper #add-violation').on('click',function(){  
         let currentId = $(this).parent().parent().parent().parent()[0].id;
@@ -839,6 +851,12 @@ function refreshThingsList()
         $('.container .things-wrapper .add-violation').attr('data-index',currentId); 
         $('.container .things-wrapper .add-violation, .container .things-wrapper .mask').fadeIn().css('display','flex');
         refreshViolation();
+    }); 
+    $('.container .archive-wrapper #archive-revive').on('click',function(){  
+        let currentId = $(this).parent().parent().parent().parent()[0].id;
+        currentId = currentId.substr(7);       
+        console.log(currentId);
+        mp.trigger('reviveThing',currentId);
     }); 
     $('.container .archive-wrapper #add-violation').on('click',function(){  
         let currentId = $(this).parent().parent().parent().parent()[0].id;
