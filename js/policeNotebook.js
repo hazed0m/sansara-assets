@@ -430,7 +430,9 @@ function personInit(element)
                 </div>
                 <div class="text-wrapper">
                     <div class="title">Информация:</div>
-                    ${textItem}
+                    <div class="text-wrap">
+                        ${textItem}                    
+                    </div>
                 </div>
                 <div class="violations-wrapper">
                     <div class="title-wrap">
