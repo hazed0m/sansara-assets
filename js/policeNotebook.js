@@ -368,7 +368,20 @@ function pushNotebook(policeman,filer,archive,employeeOnline,admin,date)
         $('.container .main-wrapper .recruting-menu').fadeIn();
         let adminStatus = { Admin: admin };
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
+        $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
+        window.addEventListener('message', function(event) {
+            if (event.data['newHandbook']) {
+                const { currentId, name, penalty, article } = event.data.newHandbook;        
+                console.log(currentId,name, penalty, article);
+                mp.trigger('newHandbook',currentId,name,penalty,article);
+            }  
+            if (event.data['editHandbook']) {
+                const { currentId, name, penalty, article } = event.data.editHandbook;        
+                console.log(currentId,name, penalty, article);
+                mp.trigger('editHandbook',currentId,name,penalty,article);
+            }   
+        });
     }                      
 }
 function personInit(element)
@@ -434,7 +447,7 @@ function personInit(element)
                         ${textItem}                    
                     </div>
                 </div>
-                <div class="violations-wrapper">
+                <div class="violations-wrapper">    
                     <div class="title-wrap">
                         <div class="title-item">Дело №</div>
                         <div class="title-item">Сотрудник</div>
