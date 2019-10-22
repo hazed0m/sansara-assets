@@ -536,4 +536,10 @@ function adsSendData(data){
 	});
 	// console.log(sendObj);
 	$('#ads-frame')[0].contentWindow.postMessage({'Ads': sendObj},'*');
+	window.addEventListener('message', function(event) {       
+		if (event.data['getAds']) {
+			console.log('getAds');
+			$('#ads-frame')[0].contentWindow.postMessage({'Ads': sendObj}, "*");
+		} 
+    });
 };
