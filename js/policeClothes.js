@@ -1,3 +1,33 @@
+let className = 
+    [
+	   "Маска",   
+	   "Шляпа",
+	   "Очки",
+	   "Аксессуар",
+	   "Верх",
+	   "Серьги",
+	   "Браслет",
+	   "Низ",
+	   "Часы",
+	   "Бронежилет",
+	   "Обувь",
+	   "Сумка"
+    ],
+    classNameTranslated = 
+    [
+        'Mask',
+        'Hat',
+        'Glasses',
+        'Acessories',
+        'Top',
+        'Earrings',
+        'Bracelet',
+        'Bottom',
+        'Clock',
+        'Armor',
+        'Shoes',
+        'Bag'
+    ];
 $('.container .clothes-wrapper .clothes-category-title').on('click',function(){
     if(!$(this).next().is(':visible'))
     {

@@ -60,9 +60,14 @@ function settingsInitialize(wallIndex)
 }
 function backButtonCheck()
 {
+	console.log('backButtonCheck');
 	if(!$('.container > .active').hasClass('main-wrapper'))
 	{
 		if($('.container > .active').hasClass('news-wrapper'))
+		{
+			$('.back-but').css({'color':'#00aeef','border-color':'#00aeef','background-color':$('.container > .active').css('background-color')});
+		}
+		else if($('.container > .active').hasClass('ads-wrapper'))
 		{
 			$('.back-but').css({'color':'#00aeef','border-color':'#00aeef','background-color':$('.container > .active').css('background-color')});
 		}

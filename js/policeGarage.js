@@ -18,7 +18,29 @@ let garageList = [
         { car:'Bravado', hash:'fbi' },
         { car:'Declasse', hash:'fbi2' }
     ],
-    sheriffList =  [
+    positionList = [
+        { position: 'Помощник Шерифа 2-го ранга', faction: 'sheriff' },
+        { position: 'Помощник Шерифа 1-го ранга', faction: 'sheriff' },
+        { position: 'Заместитель Шерифа', faction: 'sheriff' },
+        { position: 'Шериф', faction: 'sheriff' },
+        { position: 'Детектив 3-го ранга', faction: 'detective' },
+        { position: 'Детектив 2-го ранга', faction: 'detective' },
+        { position: 'Детектив 1-го ранга', faction: 'detective' },
+        { position: 'Глава Детективов', faction: 'detective' },
+        { position: 'Кадет', faction: 'police' },
+        { position: 'Офицер 3-го ранга', faction: 'police' },
+        { position: 'Офицер 2-го ранга', faction: 'police' },
+        { position: 'Офицер 1-го ранга', faction: 'police' },
+        { position: 'Сержант 3-го ранга', faction: 'police' },
+        { position: 'Сержант 2-го ранга', faction: 'police' },
+        { position: 'Сержант 1-го ранга', faction: 'police' },
+        { position: 'Лейтенант 3-го ранга', faction: 'police' },
+        { position: 'Лейтенант 2-го ранга', faction: 'police' },
+        { position: 'Лейтенант 1-го ранга', faction: 'police' },
+        { position: 'Капитан', faction: 'police' }
+
+    ],
+    factionList =  [
         {
             Position:'Помощник Шерифа 2-го ранга',
             CarList: {
@@ -73,9 +95,7 @@ let garageList = [
                     ],
                     closed:[]
             }
-        }
-    ],
-    detectiveList = [
+        },
         {
             Position:'Детектив 3-го ранга',
             CarList: {
@@ -130,9 +150,7 @@ let garageList = [
                 ],
                 closed:[]
             }
-        }
-    ],
-    policeList = [
+        },
         { 
             Position :'Кадет',
             CarList: {
@@ -339,12 +357,19 @@ let garageList = [
             }
         }
     ];
-function pushGarage(Type,Position)
+function pushGarage(Position)
 {
     $('.container .garage-wrapper').empty();
-    $(eval(Type + 'List')).each(function(index,item){
+    $(factionList).each(function(index,item){
         if(item.Position === Position)
         {
+            let Type = '';
+            $(positionList).each(function(index,item){
+                if(Position == item.position)
+                {
+                    Type = item.faction;
+                }                
+            });
             $(item.CarList.opened).each(function(carIndex,carItem){
                 let currentId = carItem.replace(/[\s{2,}]+/g, '');
                 let template = `

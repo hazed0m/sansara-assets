@@ -88,8 +88,8 @@ var sex = '',
 		'мачете',
 		'выкидной нож',
 		'дубинка',
-		'пистолет',
-		'пистолет mk ii',
+		'пистолет 9 п',
+		'пистолет 9 mk ii',
 		'боевой пистолет',
 		'ар пистолет',
 		'электрошокер',
@@ -493,8 +493,22 @@ function pushInventory(item,gender,maxweight)
 			{
 				obj.count--;
 			}	
-			obj.used = true;			
-			let currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
+			obj.used = true;
+			let currentElement = -1;			
+			if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет 9 mk ii'))
+			{
+				console.log('pistolet');	
+				$(weaponsListTranslated).each(function(index,item){
+					if(item.includes('пистолет 9 п') ||  item.includes('пистолет 9 mk ii'))
+					{
+						currentElement = index;
+					}
+				});
+			}
+			else
+			{
+				currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
+			}
 			if(currentElement != -1)
 			{
 				obj.class = getWeaponClass(currentElement);
@@ -808,7 +822,21 @@ function refreshInventory(currentIterator)
 		if(currentIterator == 'weapons')
 		{
 			var currentImg = item.type,
-				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);		
+				currentElement = -1;			
+			if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет 9 mk ii'))
+			{
+				console.log('pistolet');	
+				$(weaponsListTranslated).each(function(weaponIndex,weaponItem){
+					if(weaponItem.includes('пистолет 9 п') ||  weaponItem.includes('пистолет 9 mk ii'))
+					{
+						currentElement = weaponIndex;
+					}
+				});
+			}
+			else
+			{
+				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+			}	
 			if(currentElement != -1)
 			{				
 				currentImg = weaponsListFull[currentElement].name;
@@ -886,7 +914,21 @@ function refreshInventory(currentIterator)
 		switch (currentIterator)
 		{
 			case 'weapons':
-				let currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+				let currentElement = -1;			
+				if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет 9 mk ii'))
+				{
+					console.log('pistolet');	
+					$(weaponsListTranslated).each(function(weaponIndex,weaponItem){
+						if(weaponItem.includes('пистолет 9 п') ||  weaponItem.includes('пистолет 9 mk ii'))
+						{
+							currentElement = weaponIndex;
+						}
+					});
+				}
+				else
+				{
+					currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+				}	
 				if(currentElement != -1)
 				{
 					$('.left-inventory ul#weapons li').each(function(indexElem,element){						

@@ -28,7 +28,29 @@ let weaponsList = [
         'самозарядная винтовка MK II',
         'снайперская винтовка'
     ],
-    sheriffList =  [
+    positionList = [
+        { position: 'Помощник Шерифа 2-го ранга', faction: 'sheriff' },
+        { position: 'Помощник Шерифа 1-го ранга', faction: 'sheriff' },
+        { position: 'Заместитель Шерифа', faction: 'sheriff' },
+        { position: 'Шериф', faction: 'sheriff' },
+        { position: 'Детектив 3-го ранга', faction: 'detective' },
+        { position: 'Детектив 2-го ранга', faction: 'detective' },
+        { position: 'Детектив 1-го ранга', faction: 'detective' },
+        { position: 'Глава Детективов', faction: 'detective' },
+        { position: 'Кадет', faction: 'police' },
+        { position: 'Офицер 3-го ранга', faction: 'police' },
+        { position: 'Офицер 2-го ранга', faction: 'police' },
+        { position: 'Офицер 1-го ранга', faction: 'police' },
+        { position: 'Сержант 3-го ранга', faction: 'police' },
+        { position: 'Сержант 2-го ранга', faction: 'police' },
+        { position: 'Сержант 1-го ранга', faction: 'police' },
+        { position: 'Лейтенант 3-го ранга', faction: 'police' },
+        { position: 'Лейтенант 2-го ранга', faction: 'police' },
+        { position: 'Лейтенант 1-го ранга', faction: 'police' },
+        { position: 'Капитан', faction: 'police' }
+
+    ],
+    factionList =  [
         {
             Position:'Помощник Шерифа 2-го ранга',
             WeaponList: {
@@ -40,7 +62,6 @@ let weaponsList = [
                     'pistol-50'
                 ],
                 closed:[
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -57,7 +78,6 @@ let weaponsList = [
                     'combat-pistol',
                     'stun-gun',
                     'pistol-50',
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg'
                 ],
@@ -76,7 +96,6 @@ let weaponsList = [
                     'combat-pistol',
                     'stun-gun',
                     'pistol-50',
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -94,7 +113,6 @@ let weaponsList = [
                     'combat-pistol',
                     'stun-gun',
                     'pistol-50',
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -102,9 +120,7 @@ let weaponsList = [
                 ],
                 closed:[]
             }
-        }
-    ],
-    detectiveList = [
+        },
         {
             Position:'Детектив 3-го ранга',
             WeaponList: {
@@ -116,7 +132,6 @@ let weaponsList = [
                     'pistol-50',
                 ],
                 closed:[
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -135,7 +150,6 @@ let weaponsList = [
                     'pistol-50',
                 ],
                 closed:[
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -152,7 +166,6 @@ let weaponsList = [
                     'combat-pistol',
                     'stun-gun',
                     'pistol-50',
-                    'heavy-pistol',
                     'smg' 
                 ],
                 closed:[
@@ -171,7 +184,6 @@ let weaponsList = [
                     'combat-pistol',
                     'stun-gun',
                     'pistol-50',
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -179,9 +191,7 @@ let weaponsList = [
                 ],
                 closed:[]
             }
-        }
-    ],
-    policeList = [
+        },
         { 
             Position :'Кадет',
             WeaponList: {
@@ -193,7 +203,6 @@ let weaponsList = [
                 closed:[
                     'combat-pistol',
                     'pistol-50',
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -212,7 +221,6 @@ let weaponsList = [
                 ],
                 closed:[
                     'pistol-50',
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -231,7 +239,6 @@ let weaponsList = [
                 ],
                 closed:[
                     'pistol-50',
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -250,7 +257,6 @@ let weaponsList = [
                 ],
                 closed:[
                     'pistol-50',
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -269,7 +275,6 @@ let weaponsList = [
                     'pistol-50'
                 ],
                 closed:[
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -288,7 +293,6 @@ let weaponsList = [
                     'pistol-50'
                 ],
                 closed:[
-                    'heavy-pistol',
                     'smg', 
                     'assault-smg', 
                     'combat-pdw',
@@ -308,7 +312,6 @@ let weaponsList = [
                     'smg' 
                 ],
                 closed:[
-                    'heavy-pistol',
                     'assault-smg', 
                     'combat-pdw',
                     'shotgun'
@@ -328,7 +331,6 @@ let weaponsList = [
                     'assault-smg' 
                 ],
                 closed:[
-                    'heavy-pistol',
                     'combat-pdw',
                     'shotgun'
                 ]
@@ -348,7 +350,6 @@ let weaponsList = [
                     'shotgun' 
                 ],
                 closed:[
-                    'heavy-pistol',
                     'combat-pdw'
                 ]
             }
@@ -368,7 +369,7 @@ let weaponsList = [
                     'combat-pdw'
                 ],
                 closed:[
-                    'heavy-pistol'
+                    
                 ]
             }
         },
@@ -387,17 +388,24 @@ let weaponsList = [
                     'combat-pdw'
                 ],
                 closed:[
-                    'heavy-pistol'
+
                 ]
             }
         }
     ];
-function pushWeapons(Type,Position)
+function pushWeapons(Position)
 {
     $('.container .weapon-wrapper').empty();
-    $(eval(Type + 'List')).each(function(index,item){
+    $(factionList).each(function(index,item){
         if(item.Position === Position)
         {
+            let Type = '';
+            $(positionList).each(function(index,item){
+                if(Position == item.position)
+                {
+                    Type = item.faction;
+                }                
+            });
             $(item.WeaponList.opened).each(function(weaponIndex,weaponItem){
                 let currentId = weaponItem.replace(/[\s{2,}]+/g, ''),
                     currentName = weaponsListTranslated[$.inArray(weaponItem,weaponsList)],
