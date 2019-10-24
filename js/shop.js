@@ -164,7 +164,20 @@ function shopListRefresh()
 		if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 		{
 			path = 'weapons';
-			let currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+			if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет 9 mk ii'))
+			{
+				console.log('pistolet');	
+				$(weaponsListTranslated).each(function(weaponIndex,weaponItem){
+					if(weaponItem.includes('пистолет 9 п') ||  weaponItem.includes('пистолет 9 mk ii'))
+					{
+						currentElement = weaponIndex;
+					}
+				});
+			}
+			else
+			{
+				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+			}	
 			if(currentElement != -1)
 			{				
 				currentImg = weaponsList[currentElement].name;

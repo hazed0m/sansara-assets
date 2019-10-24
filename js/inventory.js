@@ -487,6 +487,33 @@ function pushInventory(item,gender,maxweight)
 		{
 			obj.enabled = false;
 		}
+		let currentElement = -1;		
+		if(obj.type == 'Weapon_Cold' || obj.type == 'Weapon_FireGun_Legal' || obj.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
+		{	
+			console.log(obj.name.toLowerCase());	
+			if(obj.name.toLowerCase().includes('пистолет 9'))
+			{
+				console.log('pistolet');	
+				$(weaponsListTranslated).each(function(index,item){
+					console.log(obj.name.toLowerCase(),' ',obj.name.toLowerCase().includes(item),item);
+					if(obj.name.toLowerCase().includes(item))
+					{
+						console.log('include',index);
+						currentElement = index;
+					}
+				});
+			}
+			else
+			{	
+				currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
+			}
+			console.log(currentElement);
+			if(currentElement != -1)
+			{
+				console.log('class',currentElement,getWeaponClass(currentElement));
+				obj.class = getWeaponClass(currentElement);
+			}
+		}
     	if(obj.enabled)
 		{	
 			if(obj.count >= 1)
@@ -494,26 +521,11 @@ function pushInventory(item,gender,maxweight)
 				obj.count--;
 			}	
 			obj.used = true;
-			let currentElement = -1;			
-			if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет 9 mk ii'))
-			{
-				console.log('pistolet');	
-				$(weaponsListTranslated).each(function(index,item){
-					if(item.includes('пистолет 9 п') ||  item.includes('пистолет 9 mk ii'))
-					{
-						currentElement = index;
-					}
-				});
-			}
-			else
-			{
-				currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
-			}
+			console.log(currentElement);
 			if(currentElement != -1)
 			{
-				obj.class = getWeaponClass(currentElement);
 				weaponClassArray[obj.class-1] = true;
-			}
+			}		
 			inventoryList.push(obj);
 			let currentLength = inventoryList.length-1;			
 			obj.inventoryIndex = currentLength;
@@ -524,7 +536,7 @@ function pushInventory(item,gender,maxweight)
 				inventoryList[currentLength].wearedId = length;
 			}	
 			if(obj.type == 'Weapon_Cold' || obj.type == 'Weapon_FireGun_Legal' || obj.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
-			{				
+			{			
 				weaponsList.push(obj);
 				let length = weaponsList.length-1;
 				inventoryList[currentLength].wearedId = length;
