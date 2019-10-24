@@ -1375,14 +1375,16 @@ function suspectsRefresh()
     });
     $('.add-thing-wrapper .punishmentMenu #punishmentSubmit').on('click',function(){
         let currentInfo = $('.punishmentMenu .active').next().val(),
-            currentId = $('.punishmentMenu .active')[0].id;
+            currentId = $('.punishmentMenu .active')[0].id,
+            thingId = $('.container .things-wrapper .add-thing-wrapper .name-wrap').attr('data-index');
         if(currentInfo.length > 0)
         {
             $('.punishmentMenu input').val('');
             $('.punishmentMenu .active').removeClass('active');
             $('.punishmentMenu #arrest').addClass('active');
             $('.edit-mask,.add-thing-wrapper .punishmentMenu').fadeOut();
-            mp.trigger('punishmentStatus',currentId,parseInt(currentInfo));
+            console.log(filerList[thingId].StatementID,currentId,parseInt(currentInfo));
+            mp.trigger('punishmentStatus',filerList[thingId].StatementID,currentId,parseInt(currentInfo));
         }
     });
     $('.container .add-thing-wrapper .right-block .suspects-wrap .delete-item').on('click',function(){
