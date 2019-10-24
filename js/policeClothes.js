@@ -63,12 +63,19 @@ function pushClothes(elem,elem2)
         console.log(arguments);
         admin = true;
         formList = JSON.parse(elem2);
+        $('.container').addClass('admin');
         $('.toogle-wrap, .top-title').fadeIn();
         initAdmin();
     }
 }
 function appendClothes(elem)
 {
+    $('.container .clothes-category-title').next().slideUp();
+    $('.container .clothes-category-title').find('svg').css({
+        'transform':'rotate(360deg)'
+    });
+    $('.button-block #use, #saveSet').addClass('disabled');
+    $('#setText').val('');
     $(classNameTranslated).each(function(index,item){
         $(`.clothes-wrapper #${item}`).empty(); 
     });
@@ -117,17 +124,44 @@ function initClothes()
                 if($('.clothes-item.active').length < 1)
                 {         
                     $('.button#use').addClass('disabled');
+                    if(admin)
+                    {
+                        $('.button#saveSet').addClass('disabled');
+                    }
                 }
                 else
                 {         
                     $('.button#use').removeClass('disabled');
+                    if(admin && $('#setText').val().length > 0)
+                    {
+                        console.log(1);
+                        $('.button#saveSet').removeClass('disabled');
+                    }
                 }
             }
             else
             {     
                 $('.button#use').removeClass('disabled');
+                if(admin && $('#setText').val().length > 0)
+                {
+                    console.log(2);
+                    $('.button#saveSet').removeClass('disabled');
+                }
                 $(`#${$(this).parent()[0].id} .clothes-item.active`).removeClass('active');
                 $(this).addClass('active');
+            }
+        }
+    });
+    $('#setText').keyup(function(){
+        if($('.clothes-item.active').length != 0)
+        {
+            if($(this).val().length > 0)
+            {
+                $('.button#saveSet').removeClass('disabled');
+            }
+            else
+            {
+                $('.button#saveSet').addClass('disabled');
             }
         }
     });
@@ -146,6 +180,25 @@ function initClothes()
             });
             console.log(activeList);
             mp.trigger('LspdUseClothes',activeList);
+        }
+    });
+    $('.button#saveSet').on('click',function(){
+        if($('.clothes-item.active').length != 0)
+        {
+            let activeList = [];
+            $('.clothes-item.active').each(function(index,item){
+                activeList.push($(item).attr('data-id'));
+            });
+            $('.button#saveSet').addClass('disabled');
+            $('.clothes-wrapper .active').removeClass('active');
+            $('.container .clothes-category-title').next().slideUp();
+            $('.container .clothes-category-title').find('svg').css({
+                'transform':'rotate(360deg)'
+            });
+            let name = $(this).prev().val();
+            console.log({ name : name, clothes: activeList });
+            $(this).prev().val('');
+            mp.trigger('LspdSaveClothes',{ name : name, clothes: activeList });
         }
     });
     $('.button#close').on('click',function(){
