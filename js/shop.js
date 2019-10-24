@@ -79,7 +79,7 @@ var shopList = [],
 		'выкидной нож',
 		'дубинка',
 		'пистолет 9 п',
-		'пистолет 9 mk ii',
+		'пистолет mk ii',
 		'боевой пистолет',
 		'ар пистолет',
 		'электрошокер',
@@ -164,11 +164,11 @@ function shopListRefresh()
 		if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 		{
 			path = 'weapons';
-			if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет 9 mk ii'))
+			if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет mk ii'))
 			{
 				console.log('pistolet');	
 				$(weaponsListTranslated).each(function(weaponIndex,weaponItem){
-					if(weaponItem.includes('пистолет 9 п') ||  weaponItem.includes('пистолет 9 mk ii'))
+					if(weaponItem.includes('пистолет 9 п') ||  weaponItem.includes('пистолет mk ii'))
 					{
 						currentElement = weaponIndex;
 					}
