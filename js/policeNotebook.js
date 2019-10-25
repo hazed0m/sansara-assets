@@ -2,6 +2,7 @@
 let policemanList = {},
     filerList = [],
     archiveList = [],
+    clewsList = [],
     currentFiler = {
         StatementID:0,
         PoliceMembers : [],
@@ -76,6 +77,48 @@ $('.police-menu .menu-item').on('click',function(){
         $(`.wrapper .${currentWrapper}`).addClass('active').fadeIn(500).css('display','flex');
     }
 });
+function pushClews(elem)
+{ 
+    $(elem).each(function(index,item){
+        let dateItem = item.Date.split('@');  
+        let template = `<div class="clews-item" data-index="${index}">
+                            <div class="date-wrap">
+                                <div class="time">${dateItem[0]}</div>
+                                <div class="date">${dateItem[1]}</div> 
+                            </div>
+                            <div class="subject">${item.Subject}</div>
+                            <div class="statementId">
+                            №<span>
+                                ${item.StatementID}  
+                                </span>
+                            </div>
+                            <div class="button" id="clewsView">Осмотреть</div>
+                        </div>`;
+        $('.container .clews-wrapper .clews-wrap').append(template);
+    });
+    initClews();
+}
+function appendClews(elem)
+{
+    $(`.container .clews-wrapper .clews-wrap #more-clews`).removeClass('disabled');
+    $('.container .clews-wrapper #more-clews').fadeIn();
+    let newList = JSON.parse(elem);
+    clewsList = [...clewsList,...newList];
+    pushClews(newList);
+}
+function initClews()
+{
+    $('.container .clews-wrapper #clewsView').on('click',function(){
+        let subject = $(this).parent().find('.subject').text(),
+            statementId = $(this).parent().find('.statementId span').text();
+        mp.trigger('viewClews',subject, statementId);
+    });
+    $('.container .clews-wrapper #more-clews').on('click',function(){
+        $('.container .clews-wrapper #more-clews').fadeOut();
+        console.log(clewsList.length);
+        mp.trigger('moreClews',clewsList.length);
+    });
+}
 function initTime(hour,minute)
 {
     let currentHours = hour,
@@ -335,11 +378,17 @@ let archive = JSON.stringify([
         Text: 'Этот хер, украл у меня еду в Бергер Кинге пока@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.@я отходил к кассе за салфетками.'
     }
 ]);
+let clews = JSON.stringify([
+    {Date: '18:39@25.10.2015',StatementID: 15, Subject: 'asdasdadasdadadsadadadadasdadasdada asdasd'},
+    {Date: '18:39@25.10.2015',StatementID: 15, Subject: 'asdasdadasdadadsadadadadasdadasdada asdasd'},
+    {Date: '18:39@25.10.2015',StatementID: 15, Subject: 'asdasdadasdadadsadadadadasdadasdada asdasd'},
+    {Date: '18:39@25.10.2015',StatementID: 15, Subject: 'asdasdadasdadadsadadadadasdadasdada asdasd'}
+]);
 let employeeOnline = JSON.stringify([
     {"FullName": 'Дмитрий Иванов',"Online":true},
     {"FullName":'Adsad',"Online":false}
 ]);
-function pushNotebook(policeman,filer,archive,employeeOnline,admin,date)
+function pushNotebook(policeman,clews,filer,archive,employeeOnline,admin,date)
 {
     if(typeof employeeOnline != undefined)
     {
@@ -357,6 +406,11 @@ function pushNotebook(policeman,filer,archive,employeeOnline,admin,date)
     {   
         filerList = JSON.parse(filer);
         initFiler(filerList);
+    }
+    if(typeof clews != undefined)
+    {
+        clewsList = JSON.parse(clews);
+        pushClews(clewsList);
     }
     if(typeof archive != undefined)
     {   
@@ -582,16 +636,16 @@ function initFiler(elem,search = false)
                 {
                     $('.container .things-wrapper .things-container .last-in-container:eq(0)').removeClass('last-in-container');
                 }
-                $('.container .things-wrapper .things-container').scroll(function() {
-                    let currentHeight = $('.container .things-wrapper .things-container .last-in-container').position().top;
-                    if($('.container .things-wrapper .things-container').scrollTop() > currentHeight){
-                        $(".container .things-wrapper #more-things").fadeIn();
-                    }
-                    else
-                    {
-                        $(".container .things-wrapper #more-things").fadeOut();
-                    }
-                });	
+                // $('.container .things-wrapper .things-container').scroll(function() {
+                //     let currentHeight = $('.container .things-wrapper .things-container .last-in-container').position().top;
+                //     if($('.container .things-wrapper .things-container').scrollTop() > currentHeight){
+                //         $(".container .things-wrapper #more-things").fadeIn();
+                //     }
+                //     else
+                //     {
+                //         $(".container .things-wrapper #more-things").fadeOut();
+                //     }
+                // });	
             }     
             if(search)
             {                
@@ -680,16 +734,16 @@ function initFiler(elem,search = false)
                 {
                     $('.container  .archive-wrapper .archive-wrap .archive-container .last-in-container:eq(0)').removeClass('last-in-container');
                 }
-                $('.container .archive-wrapper .archive-wrap .archive-container').scroll(function() {
-                    const currentHeight = $('.container .archive-wrapper .archive-container .last-in-container').position().top;
-                    if($('.container .archive-wrapper .archive-container').scrollTop() > currentHeight){
-                        $(".container .archive-wrapper #more-things").fadeIn();
-                    }
-                    else
-                    {
-                        $(".container .archive-wrapper #more-things").fadeOut();
-                    }		
-                });	
+                // $('.container .archive-wrapper .archive-wrap .archive-container').scroll(function() {
+                //     const currentHeight = $('.container .archive-wrapper .archive-container .last-in-container').position().top;
+                //     if($('.container .archive-wrapper .archive-container').scrollTop() > currentHeight){
+                //         $(".container .archive-wrapper #more-things").fadeIn();
+                //     }
+                //     else
+                //     {
+                //         $(".container .archive-wrapper #more-things").fadeOut();
+                //     }		
+                // });	
             }  
         }
     });        
@@ -784,6 +838,7 @@ $('.things-wrapper .add-violation .wanted-level .star').on('click',function(){
 function appendThings(elem)
 {
     $(`.container .things-wrapper .things-wrap #more-things`).removeClass('disabled');
+    $('.container .things-wrapper #more-things').fadeIn();
     let newList = JSON.parse(elem);
     filerList = [...filerList,...newList];
     initFiler(newList);
@@ -791,6 +846,7 @@ function appendThings(elem)
 function appendArchive(elem)
 {
     $(`.container .archive-wrapper .archive-wrap #more-things`).removeClass('disabled');
+    $('.container .archive-wrapper #more-things').fadeIn();
     let newList = JSON.parse(elem);
     archiveList = [...archiveList,...newList];
     initFiler(newList);
@@ -1414,12 +1470,12 @@ function refreshFrames()
         updateStatus = false;
     },500);
 }
-$('.container .carSearch-wrapper #carSearch').on('click',function(){
+$('.container .clews-wrapper #carSearch').on('click',function(){
     let number = '',
         name = '',
         phone = '',
         car = '';
-    $('.container .carSearch-wrapper input').each(function(index,item){
+    $('.container .clews-wrapper input').each(function(index,item){
         if($(item).val().length > 0)
         {
             switch(item.id)

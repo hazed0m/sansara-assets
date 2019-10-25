@@ -42,18 +42,17 @@
 
                 </div>
             </div>
-            <div class="carSearch-wrapper">
-                <div class="info-block">                    
-                    <p>*введите номер вызова и данные об авто </p>
-                    <p>(заполните любое поле)</p>
-                </div>    
-                <div class="input-wrapper">
-                    <input type="number" id="number" placeholder="Номер вызова">
-                    <input type="text" id="name" placeholder="Введите имя">
-                    <input type="number" id="phone" placeholder="Введите номер">
-                    <input type="text" id="car" placeholder="Авто">
-                    <div class="button" id="carSearch">Отследить</div>                
-                </div>            
+            <div class="clews-wrapper"> 
+                <div class="clews-title">
+                    <div class="title-item">Дата</div>
+                    <div class="title-item">Улика</div>
+                    <div class="title-item">Номер дела</div>
+                    <div class="title-item"></div>        
+                </div>
+                <div class="clews-wrap">
+                            
+                </div>      
+                <div class="button" id="more-clews">Показать ещё</div>      
             </div>
             <div class="wantedSearch-wrapper">
                 <iframe id="wantedSearch-frame" src="http://server.sansararp.com/pd/wantedsearch" frameborder="0" width="100%" height="100%"></iframe>
@@ -68,7 +67,7 @@
                         <div class="notification">Дело не найдено</div>
                     </div>
                     <div class="archive-container"></div>
-                    <div class="button" id="more-things" style="margin:0 auto;display:none;">Показать ещё</div>
+                    <div class="button" id="more-things" style="margin:0 auto;">Показать ещё</div>
                 </div>
                 <div class="add-violation">                    
                     <div class="close-but"><i class="fas fa-times"></i></div>
@@ -108,7 +107,7 @@
 
                     </div>
                     <div class="button" id="add-thing">Завести дело</div>
-                    <div class="button" id="more-things" style="margin:0 auto;display:none;">Показать ещё</div>
+                    <div class="button" id="more-things" style="margin:0 auto;">Показать ещё</div>
                     <div class="add-thing-wrapper"></div>                                  
                     <div class="add-violation">                    
                         <div class="close-but"><i class="fas fa-times"></i></div>
@@ -148,7 +147,7 @@
             <div class="police-menu">
                 <div class="menu-item active" id="main-wrapper">Главная</div>
                 <div class="menu-item" id="business-wrapper">Личное дело</div>
-                <div class="menu-item" id="carSearch-wrapper">Отследить авто</div>
+                <div class="menu-item" id="clews-wrapper">Список улик</div>
                 <div class="menu-item" id="wantedSearch-wrapper">Лица в розыске</div>
                 <div class="menu-item" id="archive-wrapper">Архив</div>
                 <div class="menu-item" id="things-wrapper">Дела в разработке</div>
