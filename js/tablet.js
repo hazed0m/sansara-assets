@@ -109,7 +109,8 @@ $('.cars-wrapper .forward').on('click',function(){
 $('.ads-wrapper #openAdd').on('click',function(){
 	$(this).parent().find('.add-popap').removeClass('fadeOutRight').addClass('fadeInRight active');
 });
-$('.ads-wrapper .add-popap #closeAdd, .ads-wrapper .add-popap #acceptAdd').on('click',function(){
+$('.ads-wrapper .add-popap #acceptAdd').on('click',function(){
+	console.log(11);
 	$(this).parent().parent().removeClass('fadeInRight').addClass('fadeOutRight');
 	setTimeout(function(){$(this).parent().parent().removeClass('active');},300);
 	if(this.id == 'acceptAdd')
@@ -118,6 +119,9 @@ $('.ads-wrapper .add-popap #closeAdd, .ads-wrapper .add-popap #acceptAdd').on('c
 		let currentText = $(this).parent().parent().find('#add-ads-text').val();
 		mp.trigger('sendAds',currentIter,currentText)
 	}
+});
+$('.ads-wrapper #closeAdd').on('click',function(){
+	console.log(11);
 });
 $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork').on('click',function(){
 	let currentClass = this.classList[0];

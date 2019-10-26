@@ -839,8 +839,15 @@ function refreshInventory(currentIterator)
 			{
 				console.log('pistolet');	
 				$(weaponsListTranslated).each(function(weaponIndex,weaponItem){
-					if(weaponItem.includes('пистолет 9 п') ||  weaponItem.includes('пистолет mk ii'))
+					if(weaponItem.includes('пистолет 9 п') && item.name.toLowerCase().includes('пистолет 9 п'))
 					{
+						console.log('9p',weaponIndex);
+						currentElement = weaponIndex;
+					}
+					if(weaponItem.includes('пистолет mk ii') && item.name.toLowerCase().includes('пистолет mk ii'))
+					{
+						console.log('mkii',weaponIndex);
+
 						currentElement = weaponIndex;
 					}
 				});
@@ -852,6 +859,7 @@ function refreshInventory(currentIterator)
 			if(currentElement != -1)
 			{				
 				currentImg = weaponsListFull[currentElement].name;
+				console.log(currentImg);
 				personId = `weaponsClass="${getWeaponClass(currentElement)}"`;
 			}
 			itemTemplate = 
@@ -870,10 +878,31 @@ function refreshInventory(currentIterator)
 		{		
 			var currentImg = item.type,
 				currentIter = 'inventory',
-				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated),
 				personId = '',
 				giveBut = '<li id="give">Передать</li>';
-				listBut = '';
+				listBut = '',
+				currentElement = -1;			
+			if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет mk ii'))
+			{
+				console.log('pistolet');	
+				$(weaponsListTranslated).each(function(weaponIndex,weaponItem){
+					if(weaponItem.includes('пистолет 9 п') && item.name.toLowerCase().includes('пистолет 9 п'))
+					{
+						console.log('9p',weaponIndex);
+						currentElement = weaponIndex;
+					}
+					if(weaponItem.includes('пистолет mk ii') && item.name.toLowerCase().includes('пистолет mk ii'))
+					{
+						console.log('mkii',weaponIndex);
+
+						currentElement = weaponIndex;
+					}
+				});
+			}
+			else
+			{
+				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+			}	
 			if(item.type == 'Clothes_Legal' || item.type == 'Clothes_Duty' || item.type == 'Clothes_Illegal' || item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{
 				listBut = '<li id="use">Надеть</li>';	
