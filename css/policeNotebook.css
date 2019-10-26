@@ -1048,6 +1048,16 @@
     justify-content: space-between;
     margin-bottom:20px;
 }
+.container .archive-wrapper .archive-wrap .archive-item.punishment,
+.container .things-wrapper .things-wrap .things-item.punishment
+{   
+    box-shadow:inset 0 0 5px #ed8a19;
+}
+.container .archive-wrapper .archive-wrap .archive-item.closed,
+.container .things-wrapper .things-wrap .things-item.closed
+{   
+    box-shadow:inset 0 0 5px #1ad148;
+}
 .container .archive-wrapper .archive-wrap .archive-item:last-child,
 .container .archive-wrapper .archive-wrap .archive-item .text-wrapper .item-text:last-child,
 .container .archive-wrapper .archive-wrap .archive-item .suspects-item:last-child,

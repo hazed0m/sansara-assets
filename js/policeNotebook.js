@@ -146,7 +146,8 @@ let filer = JSON.stringify([
         Proofs: null,
         ClosedFull: false,
         InProgress:true,
-        Text: 'asdasd@asdadsad'
+        Text: 'asdasd@asdadsad',
+        PunishmentType:''
     },
     {
         StatementID:2,
@@ -583,7 +584,7 @@ function initFiler(elem,search = false)
                                     </div> `;
             });
             let template = `
-                <div class="things-item ${index == elem.length - 1 ? 'last-in-container' : ''}${searchStatus}" id="thing${item.StatementID}">
+                <div class="things-item ${ item.ClosedFull ? 'closed' : ''} ${ item.PunishmentType != "" ? 'punishment' : ''} ${index == elem.length - 1 ? 'last-in-container' : ''}${searchStatus}" id="thing${item.StatementID}">
                     ${closeBut}
                     <div class="left-block">
                         <div class="title-wrap">
@@ -681,7 +682,7 @@ function initFiler(elem,search = false)
                                     </div> `;
             });
             let template = `
-                <div class="archive-item ${index == elem.length - 1 ? 'last-in-container' : ''}${searchStatus}" id="archive${item.StatementID}">
+                <div class="archive-item ${ item.ClosedFull ? 'closed' : ''} ${ item.PunishmentType != "" ? 'punishment' : ''} ${index == elem.length - 1 ? 'last-in-container' : ''}${searchStatus}" id="archive${item.StatementID}">
                 ${closeBut}
                     <div class="left-block">
                         <div class="title-wrap">
