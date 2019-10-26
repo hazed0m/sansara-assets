@@ -28,7 +28,8 @@
     max-height: 345px;
     overflow-y:scroll;
 }
-.container .weapon-item 
+.container .weapon-item,
+.container .ammo-item 
 {
     transition:0.2s;
     display: flex;
@@ -43,6 +44,11 @@
     margin-bottom:5px;
     cursor: pointer;
 }
+.container .ammo-item 
+{
+    height:40px;
+    margin:0 10px 5px 10px;
+}
 .container .weapon-item:last-child
 {
     margin:0;
@@ -51,7 +57,12 @@
 {
     max-width:40px;
 }
-.container .weapon-item.closed:after
+.container .ammo-item img
+{
+    max-width:20px;
+}
+.container .weapon-item.closed:after,
+.container .ammo-item.closed:after
 {
     display: flex;
     justify-content: center;
@@ -67,11 +78,14 @@
     font-size:14px;
 }
 .container .weapon-item.active .weapon-name,
-.container .weapon-item.closed .weapon-name
+.container .weapon-item.closed .weapon-name,
+.container .ammo-item.active .ammo-name,
+.container .ammo-item.closed .ammo-name
 {
     color:#000;
 }
-.container .weapon-item.active:after
+.container .weapon-item.active:after,
+.container .ammo-item.active:after
 {
     content:'Выбрано';
     display: flex;
@@ -192,4 +206,46 @@
 .container .police.closed#combat-pdw::after
 {
     content:'Доступно Лейтенанту 1-го ранга';
+}
+.ammo-item .col-wrap
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.ammo-item .col-wrap .col-box
+{
+	min-width:20px;
+	padding:0 2px;
+	box-sizing: border-box;
+	height:20px;
+	border:1px solid #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size:13.66px;
+	text-shadow:0 0 5px #000;
+}
+.ammo-item .col-wrap .minus
+{
+	margin-right:5px;
+	text-shadow:0 0 5px #000;
+}
+.ammo-item .col-wrap .plus
+{
+	margin-left:4px;
+	text-shadow:0 0 5px #000;
+	margin-top:-4px;
+}
+.ammo-item .col-wrap .minus,
+.ammo-item .col-wrap .plus
+{
+    font-size: 24px;
+    font-weight: 900;
+}
+.ammo-item .col-wrap .minus:hover,
+.ammo-item .col-wrap .plus:hover
+{
+	color:#fbe401;
+	cursor:pointer;
 }

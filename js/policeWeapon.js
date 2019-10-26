@@ -29,20 +29,16 @@ let weaponsList = [
         'снайперская винтовка'
     ],
     bulletsList = [
-        'патроны 9 П',
-        'патроны 9 П Mk II',
+        '',
+        '',
         'патроны 9 БП',
-        'патроны .22 АР',
+        '',
         'патроны .50 П',
         'патроны 25 ТП',
-        'патроны 9 М SMG',
         'патроны 9 SMG',
-        'патроны 9 SMG Mk II',
         'патроны 5.45 SMG',
         'патроны 4.6 PDW',
         'патроны 12 ПД Mk II',
-        'патроны 12 О',
-        'патроны 7.62 ШВ',
         'патроны 5.56 КВ',
         'патроны 7.62 СВ Mk ll',
         'патроны 8.60 СВ'
@@ -427,13 +423,27 @@ function pushWeapons(Position)
             });
             $(item.WeaponList.opened).each(function(weaponIndex,weaponItem){
                 let currentId = weaponItem.replace(/[\s{2,}]+/g, ''),
-                    currentName = weaponsListTranslated[$.inArray(weaponItem,weaponsList)],
+                    ident = $.inArray(weaponItem,weaponsList),
+                    currentName = weaponsListTranslated[ident],
                     template = `
                     <div class="weapon-item ${Type}" id="${currentId}" data-id="${currentName}">
                         <div class="weapon-name">${currentName}</div>
                         <img src="images/weapons/${weaponItem}.png" alt="">
                     </div>`;
                 $('.container .weapon-wrapper').append(template);
+                if(bulletsList[ident] != '')
+                {
+                    let ammo = `<div class="ammo-item" id="${currentId}Ammo" data-id="${bulletsList[ident]}">
+                                    <div class="ammo-name">${bulletsList[ident]}</div>
+                                    <img src="images/inventory/Ammo.png" alt="">
+                                    <div class="col-wrap">
+                                        <div class="minus">-</div>
+                                        <div class="col-box">0</div>		
+                                        <div class="plus">+</div>
+                                    </div>
+                                </div>`;
+                    $('.container .weapon-wrapper').append(ammo);
+                }
             });
             $(item.WeaponList.closed).each(function(weaponIndex,weaponItem){
                 let currentId = weaponItem.replace(/[\s{2,}]+/g, ''),
@@ -451,6 +461,23 @@ function pushWeapons(Position)
 }
 function initWeapons()
 {
+    $('.ammo-item .plus').on('click',function(){
+        let currentCount = parseInt($(this).prev().text());
+        $(this).prev().text(currentCount+=10);
+        $('.button#use').removeClass('disabled');
+    });
+    $('.ammo-item .minus').on('click',function(){
+        let currentCount = parseInt($(this).next().text());
+        currentCount -= 10;
+        if(currentCount >= 0)
+        {
+            $(this).next().text(currentCount);
+            if(currentCount == 0)
+            {
+                $('.button#use').addClass('disabled');
+            }
+        }
+    });
     $('.weapon-item').on('click',function(){
         if(!$(this).hasClass('closed'))
         {
@@ -468,13 +495,32 @@ function initWeapons()
         }
     });
     $('.button#use').on('click',function(){
-        if($('.weapon-item.active').length != 0)
+        let activeWeapon = $('.weapon-item.active').attr('data-id'),
+            activeAmmo = $('.ammo-item'),
+            ammoArr = [];
+        if(activeAmmo.length > 0)
         {
-            let active = $('.weapon-item.active').attr('data-id');
-            console.log(active);
-            $('.button#use').addClass('disabled');
-            $('.weapon-wrapper .active').removeClass('active');
-            mp.trigger('LspdUseWeapon',active);
+            $(activeAmmo).each(function(index,item){
+                let currentCount = parseInt($(item).find('.col-box').text());
+                $(item).find('.col-box').text(0);
+                if(currentCount > 0)
+                {
+                    let obj = { ammo: $(item).attr('data-id'), count: currentCount };
+                    ammoArr.push(obj);
+                }
+            });
+        }
+        console.log(ammoArr);        
+        if(activeWeapon == undefined)
+        {
+            activeWeapon = '';  
+        }
+        $('.button#use').addClass('disabled');
+        $('.weapon-wrapper .active').removeClass('active');            
+        if(activeWeapon.length != 0 || ammoArr.length > 0)
+        {
+            console.log(activeWeapon,ammoArr);
+            mp.trigger('LspdUseWeapon',activeWeapon,ammoArr);
         }
     });
     $('.button#close').on('click',function(){
