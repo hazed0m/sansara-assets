@@ -69,7 +69,7 @@ function backButtonCheck()
 		}
 		else if($('.container > .active').hasClass('ads-wrapper'))
 		{
-			$('.back-but').css({'color':'#00aeef','border-color':'#00aeef','background-color':$('.container > .active').css('background-color')});
+			$('.back-but').css({'color':'#484c52','border-color':'#484c52','background-color':$('.container > .active').css('background-color')});
 		}
 		else if($('.container > .active').hasClass('cars-wrapper'))
 		{
