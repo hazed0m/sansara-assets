@@ -405,6 +405,24 @@ let weaponsList = [
                 closed:[
 
                 ]
+            },
+            {
+                Position :'Шеф ПД',
+                WeaponList: {
+                opened:[
+                    'flashlight',
+                    'nightstick', 
+                    'stun-gun',
+                    'combat-pistol',
+                    'pistol-50',
+                    'smg', 
+                    'assault-smg', 
+                    'shotgun', 
+                    'combat-pdw'
+                ],
+                closed:[
+
+                ]
             }
         }
     ];
