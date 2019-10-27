@@ -407,8 +407,7 @@ let weaponsList = [
                 ]
             }
         }
-    ],
-    ammoArr = [];
+    ];
 function pushWeapons(Position)
 {
     $('.container .weapon-wrapper').empty();
@@ -497,7 +496,8 @@ function initWeapons()
     });
     $('.button#use').on('click',function(){
         let activeWeapon = $('.weapon-item.active').attr('data-id'),
-            activeAmmo = $('.ammo-item');
+            activeAmmo = $('.ammo-item'),
+            ammoArr = [];
         if(activeAmmo.length > 0)
         {
             $(activeAmmo).each(function(index,item){
@@ -518,8 +518,7 @@ function initWeapons()
         $('.button#use').addClass('disabled');
         $('.weapon-wrapper .active').removeClass('active');
         console.log(activeWeapon,ammoArr);
-        mp.trigger('LspdUseWeapon',activeWeapon,ammoArr);
-        ammoArr = [];
+        mp.trigger('LspdUseWeapon',activeWeapon,JSON.stringify(ammoArr));
     });
     $('.button#close').on('click',function(){
         mp.trigger('closePoliceAmmunition');
