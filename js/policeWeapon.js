@@ -62,8 +62,8 @@ let weaponsList = [
         { position: 'Лейтенант 3-го ранга', faction: 'police' },
         { position: 'Лейтенант 2-го ранга', faction: 'police' },
         { position: 'Лейтенант 1-го ранга', faction: 'police' },
-        { position: 'Капитан', faction: 'police' }
-
+        { position: 'Капитан', faction: 'police' },
+        { position: 'Шеф ПД', faction: 'police' }
     ],
     factionList =  [
         {
@@ -405,10 +405,11 @@ let weaponsList = [
                 closed:[
 
                 ]
-            },
-            {
-                Position :'Шеф ПД',
-                WeaponList: {
+            }
+        },
+        {
+            Position :'Шеф ПД',
+            WeaponList: {
                 opened:[
                     'flashlight',
                     'nightstick', 
