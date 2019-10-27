@@ -300,7 +300,7 @@ let weaponsList = [
         { 
             Position :'Сержант 2-го ранга',
             WeaponList: {
-                oopened:[
+                opened:[
                     'flashlight',
                     'nightstick', 
                     'stun-gun',
