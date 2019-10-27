@@ -355,6 +355,24 @@ let garageList = [
                 ],
                 closed:[]
             }
+        },
+        { 
+            Position :'Шеф ПД',
+            CarList: {
+                opened:[
+                    'Vapid LSPD',
+                    'Police Bike',
+                    'Buffalo',
+                    'Interceptor',
+                    'Prison Bus',
+                    'Transporter',
+                    'Ford Interceptor',
+                    'Chevrolet Impala',
+                    'Dodge Charger LSPD', 
+                    'Ferrari 458 Italia'
+                ],
+                closed:[]
+            }
         }
     ];
 function pushGarage(Position)
