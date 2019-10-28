@@ -689,7 +689,7 @@ function initWardrobe()
             $('.button#use').addClass('disabled');
             $('.wardrobe-wrapper .active').removeClass('active');
             console.log(activeWardrobe);
-            mp.trigger('LspdUseWardrobe',activeWardrobe);
+            mp.trigger('LspdUseWardrobe',JSON.stringify(activeWardrobe));
         }
     });
     $('.button#close').on('click',function(){
