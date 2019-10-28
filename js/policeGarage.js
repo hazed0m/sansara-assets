@@ -5,14 +5,12 @@ let garageList = [
         { car:'Police Bike', hash:'policeb' },
         { car:'Transporter', hash:'policet' },
         { car:'Prison Bus', hash:'pbus' },
-        { car:'Ford Interceptor', hash:'add-on' },
-        { car:'Dodge Charger LSPD', hash:'add-on' },
-        { car:'Chevrolet Impala', hash:'add-on' },
-        { car:'Ferrari 458 Italia', hash:'add-on' },
-        { car:'Ford Crown Victoria', hash:'add-on' },
-        { car:'Dodge Charger Sheriff', hash:'add-on' },
-        { car:'Chevrolet Tahoe', hash:'add-on' },
-        { car:'Ford Taurus', hash:'add-on' },
+        { car:'Cheval Fugitive', hash:'add-on' },
+        { car:'GS 350', hash:'add-on' },
+        { car:'Cruiser Utility', hash:'add-on' },
+        { car:'Cayman S', hash:'add-on' },
+        { car:'Vapid Sheriff', hash:'sheriff' },
+        { car:'Sheriff SUV', hash:'sheriff2' },
         { car:'Scout', hash:'add-on' },
         { car:'Vapid Detective', hash:'police4' },
         { car:'Bravado', hash:'fbi' },
@@ -45,13 +43,11 @@ let garageList = [
             Position:'Помощник Шерифа 2-го ранга',
             CarList: {
                 opened:[
-                    'Ford Crown Victoria',
+                    'Vapid Sheriff',
                     'Prison Bus'
                 ],
                 closed:[
-                    'Dodge Charger Sheriff',
-                    'Ford Taurus',	
-                    'Chevrolet Tahoe'
+                    'Sheriff SUV'
                 ]
             }
         },
@@ -59,13 +55,11 @@ let garageList = [
             Position:'Помощник Шерифа 1-го ранга',
             CarList: {
                 opened:[
-                    'Ford Crown Victoria',
+                    'Vapid Sheriff',
                     'Prison Bus',	
-                    'Dodge Charger Sheriff'
+                    'Sheriff SUV'
                 ],
                 closed:[
-                    'Ford Taurus',
-                    'Chevrolet Tahoe'
                 ]
             }
         },
@@ -73,13 +67,12 @@ let garageList = [
             Position:'Заместитель Шерифа',
             CarList: {
                 opened:[
-                    'Ford Crown Victoria',
-                    'Prison Bus',	
-                    'Dodge Charger Sheriff',
-                    'Ford Taurus'
+                    'Vapid Sheriff',
+                    'Sheriff SUV',
+                    'Prison Bus'
                 ],
                 closed:[
-                    'Chevrolet Tahoe'
+                    
                 ]
             }
         },
@@ -87,10 +80,8 @@ let garageList = [
             Position:'Шериф',
             CarList: {
                     opened:[
-                        'Chevrolet Tahoe',
-                        'Ford Taurus',	
-                        'Dodge Charger Sheriff',
-                        'Ford Crown Victoria',
+                        'Vapid Sheriff',
+                        'Sheriff SUV',
                         'Prison Bus'
                     ],
                     closed:[]
@@ -134,7 +125,6 @@ let garageList = [
                     'Declasse'
                 ],
                 closed:[
-                    'Scout'
                 ]
             }
         },
@@ -145,8 +135,7 @@ let garageList = [
                     'Vapid Detective',
                     'Bravado',
                     'Prison Bus',
-                    'Declasse',
-                    'Scout'
+                    'Declasse'
                 ],
                 closed:[]
             }
@@ -163,10 +152,10 @@ let garageList = [
                     'Interceptor',
                     'Prison Bus',
                     'Transporter',
-                    'Ford Interceptor',
-                    'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'	
+                    'Cheval Fugitive',
+                    'Cruiser Utility',
+                    'GS 350', 
+                    'Cayman S'	
                 ]
             }
         },
@@ -182,10 +171,10 @@ let garageList = [
                     'Interceptor',
                     'Prison Bus',
                     'Transporter',
-                    'Ford Interceptor',
-                    'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'Cheval Fugitive',
+                    'Cruiser Utility',
+                    'GS 350', 
+                    'Cayman S'
                 ]
             }
         },
@@ -199,12 +188,12 @@ let garageList = [
                 ],
                 closed:[                    
                     'Interceptor',
-                    'Ford Interceptor',
+                    'Cheval Fugitive',
                     'Transporter',
                     'Prison Bus',
                     'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'GS 350', 
+                    'Cayman S'
                 ]
             }
         },
@@ -218,12 +207,12 @@ let garageList = [
                     'Interceptor'
                 ],
                 closed:[                    
-                    'Ford Interceptor',
+                    'Cheval Fugitive',
                     'Transporter',
                     'Prison Bus',
                     'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'GS 350', 
+                    'Cayman S'
                 ]
             }
         },
@@ -235,14 +224,14 @@ let garageList = [
                     'Police Bike',
                     'Buffalo',
                     'Interceptor',
+                    'Cheval Fugitive',                    
                     'Prison Bus',
-                    'Transporter',
-                    'Ford Interceptor'
+                    'Transporter'
                 ],
                 closed:[                    
                     'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'GS 350', 
+                    'Cayman S'
                 ]
             }
         },
@@ -254,14 +243,14 @@ let garageList = [
                     'Police Bike',
                     'Buffalo',
                     'Interceptor',
+                    'Cheval Fugitive',
                     'Prison Bus',
-                    'Transporter',
-                    'Ford Interceptor'
+                    'Transporter'
                 ],
                 closed:[                    
                     'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'GS 350', 
+                    'Cayman S'
                 ]
             }
         },
@@ -273,14 +262,14 @@ let garageList = [
                     'Police Bike',
                     'Buffalo',
                     'Interceptor',
+                    'Cheval Fugitive',
                     'Prison Bus',
-                    'Transporter',
-                    'Ford Interceptor'
+                    'Transporter'
                 ],
                 closed:[                    
                     'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'GS 350', 
+                    'Cayman S'
                 ]
             }
         },
@@ -292,12 +281,12 @@ let garageList = [
                     'Police Bike',
                     'Buffalo',
                     'Interceptor',
+                    'Cheval Fugitive',
                     'Prison Bus',
                     'Transporter',
-                    'Ford Interceptor',
-                    'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'Cruiser Utility',
+                    'GS 350', 
+                    'Cayman S'
                 ],
                 closed:[]
             }
@@ -310,12 +299,12 @@ let garageList = [
                     'Police Bike',
                     'Buffalo',
                     'Interceptor',
+                    'Cheval Fugitive',
                     'Prison Bus',
                     'Transporter',
-                    'Ford Interceptor',
-                    'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'Cruiser Utility',
+                    'GS 350', 
+                    'Cayman S'
                 ],
                 closed:[]
             }
@@ -328,12 +317,12 @@ let garageList = [
                     'Police Bike',
                     'Buffalo',
                     'Interceptor',
+                    'Cheval Fugitive',
                     'Prison Bus',
                     'Transporter',
-                    'Ford Interceptor',
-                    'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'Cruiser Utility',
+                    'GS 350', 
+                    'Cayman S'
                 ],
                 closed:[]
             }
@@ -346,12 +335,12 @@ let garageList = [
                     'Police Bike',
                     'Buffalo',
                     'Interceptor',
+                    'Cheval Fugitive',
                     'Prison Bus',
                     'Transporter',
-                    'Ford Interceptor',
-                    'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'Cruiser Utility',
+                    'GS 350', 
+                    'Cayman S'
                 ],
                 closed:[]
             }
@@ -362,14 +351,19 @@ let garageList = [
                 opened:[
                     'Vapid LSPD',
                     'Police Bike',
+                    'Vapid Sheriff',
+                    'Prison Bus',	
+                    'Sheriff SUV',
                     'Buffalo',
                     'Interceptor',
-                    'Prison Bus',
+                    'Vapid Detective',
+                    'Bravado',
+                    'Declasse',
                     'Transporter',
-                    'Ford Interceptor',
-                    'Chevrolet Impala',
-                    'Dodge Charger LSPD', 
-                    'Ferrari 458 Italia'
+                    'Cheval Fugitive',
+                    'Cruiser Utility',
+                    'GS 350', 
+                    'Cayman S'
                 ],
                 closed:[]
             }
@@ -437,7 +431,7 @@ function initGarage()
         {
             let active = $('.garage-item.active').attr('data-id'),
                 index = arrayIncludesInObj(garageList,'car',active);
-            console.log(active,index);
+            // console.log(active,index);
             if(garageList[index].hash != 'add-on')
             {
                 active = garageList[index].hash;
