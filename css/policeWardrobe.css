@@ -1,0 +1,195 @@
+*
+{
+    font-family: 'Montserrat';
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    color:#fff;
+}
+.container
+{
+    width:354px;
+    height:444px;
+    background:#363940;
+    border-radius: 10px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.container .wrapper .title
+{
+    padding: 22px 0 18px 25px;
+}
+.container .wardrobe-wrapper
+{
+    display: flex;
+    flex-wrap:wrap;
+    max-height: 345px;
+    overflow-y:scroll;
+}
+.container .wardrobe-item
+{
+    transition:0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    height:45px;
+    background:rgba(0,0,0,0.2);
+    padding:0 25px;
+    font-size:16px;
+    position: relative;
+    margin-bottom:5px;
+    cursor: pointer;
+}
+.container .wardrobe-item:last-child
+{
+    margin:0;
+} 
+.container .wardrobe-item img
+{
+    max-width:40px;
+}
+.container .wardrobe-item.closed:after
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(150,150,150,.3);
+    cursor: pointer;
+    font-size:14px;
+}
+.container .wardrobe-item.active .wardrobe-name,
+.container .wardrobe-item.closed .wardrobe-name
+{
+    color:#000;
+}
+.container .wardrobe-item.active:after
+{
+    content:'Выбрано';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,.3);
+    font-size:16px;
+    
+}
+.container .wrapper
+{
+    width:100%;
+    height:100%;
+    position: relative;
+}
+.container .button-block
+{
+    position: absolute;
+    bottom:-16px;
+    left:50%;
+    transform: translate(-50%,0%);
+    display: flex;
+}
+.container .button-block .button
+{
+    margin:0 10px;
+    font-family: 'Montserrat';
+    font-size:11px;
+    color:#fff;
+    box-shadow:0 0 5px rgba(0,0,0,0.5);
+    width:121px;
+    height:34px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition:0.2s;
+}
+.container .button-block .button.disabled
+{
+    opacity:0.7;
+}
+.button-block .button:hover
+{
+    /* box-shadow: inset 0 0 5px rgba(255,255,255, 0.5); */
+    transform: scale(1.1);
+}
+.button#use
+{
+    background-color: #344054;
+}
+.button#close
+{
+    background-color: #4a4d53;
+}
+.container .wardrobe-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+.container .wardrobe-wrapper::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+} 
+.container .wardrobe-wrapper::-webkit-scrollbar-thumb {
+    background-color: rgb(218, 218, 218);
+    outline: 1px solid #000;
+}
+.container .sheriff.closed#heavy-pistol::after,
+.container .sheriff.closed#smg::after,
+.container .sheriff.closed#assault-smg::after
+{
+    content:'Доступно Помощнику Шерифа 1-го ранга';
+}
+.container .sheriff.closed#combat-pdw::after,
+.container .sheriff.closed#shotgun::after
+{
+    content:'Доступно Заместителю Шерифа';
+}
+.container .detective.closed#heavy-pistol::after,
+.container .detective.closed#smg::after
+{
+    content:'Доступно Детективу 1-го ранга';
+}
+.container .detective.closed#combat-pdw::after,
+.container .detective.closed#shotgun::after,
+.container .detective.closed#assault-smg::after
+{
+    content:'Доступно Главе Детективов';
+}
+.container .police.closed#heavy-pistol::after
+{
+    content:'Недоступен';
+}
+.container .police.closed#combat-pistol::after
+{
+    content:'Доступно Офицеру 3-го ранга';
+}
+.container .police.closed#pistol-50::after
+{
+    content:'Доступно Сержанту 3-го ранга';
+}
+.container .police.closed#smg::after
+{
+    content:'Доступно Сержанту 1-го ранга';
+}
+.container .police.closed#assault-smg::after
+{
+    content:'Доступно Лейтенанту 3-го ранга';
+}
+.container .police.closed#shotgun::after
+{
+    content:'Доступно Лейтенанту 2-го ранга';
+}
+.container .police.closed#combat-pdw::after
+{
+    content:'Доступно Лейтенанту 1-го ранга';
+}
