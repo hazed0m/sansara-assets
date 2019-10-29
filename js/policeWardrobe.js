@@ -1,4 +1,4 @@
-let wardrobeMaleList = [
+let wardrobeMaleSetList = [
         {
             name:'Комплект ПД м 1',
             clothes: [
@@ -320,7 +320,18 @@ let wardrobeMaleList = [
             ]
         }
     ],
-    wardrobeFemaleList = [
+    wardrobeMaleClothesList = [
+        "Низ м брюки ПД",
+        "Низ м брюки 2 ПД 1",
+        "Аксессуар м значок ПД",
+        "Аксессуар м удостоверение ПД",
+        "Шляпа м кепка ПД",										
+        "Шляпа м шлем с защитой ПД",										
+        "Шляпа м шлем с защитой 1 ПД",											
+        "Шляпа м шлем с защитой 2 ПД",										
+        "Шляпа м шлем с защитой 3 ПД"	
+    ],
+    wardrobeFemaleSetList = [
         {
             name:'Комплект ПД ж 1',
             clothes: [
@@ -641,7 +652,45 @@ let wardrobeMaleList = [
                 'Рубашка ж бронежилет ПД'
             ]
         }
+    ],
+    wardrobeFemaleClothesList = [
+        "Низ ж брюки ПД",								
+        "Низ ж юбка ПД", 
+        "Низ ж брюки 2 ПД",    
+        "Аксессуар ж значок ПД", 								
+        "Аксессуар ж удостоверение ПД", 								
+        "Шляпа ж кепкаПД 45", 		
+        "Шляпа ж шлем с защитой ПД 122", 						
+        "Шляпа ж шлем с защитой 1 ПД 123", 					
+        "Шляпа ж шлем с защитой 2 ПД 124", 						
+        "Шляпа ж шлем с защитой 3 ПД 125"
+    ],
+    wardrobeNames = [
+        'Низ',
+        'Аксессуар',
+        'Шляпа'
+    ],
+    wardrobeNamesTranslated = [
+        'Bottom',
+        'Accessories',
+        'Hat'
     ];
+$('.container .wardrobe-wrapper .wardrobe-category-title').on('click',function(){
+    if(!$(this).next().is(':visible'))
+    {
+        $(this).next().slideDown();
+        $(this).find('svg').css({
+            'transform':'rotate(180deg)'
+        });
+    }
+    else
+    {
+        $(this).next().slideUp();
+        $(this).find('svg').css({
+            'transform':'rotate(360deg)'
+        });
+    }
+});
 function pushWardrobe(sex)
 {
     if(sex == 'man')
@@ -652,14 +701,27 @@ function pushWardrobe(sex)
     {
         sex = 'Female'
     }
-    $('.container .wardrobe-wrapper').empty();
-    $(eval(`wardrobe${sex}List`)).each(function(index,item){
+    $('.container .wardrobe-wrapper #Set').empty();
+    $(eval(`wardrobe${sex}SetList`)).each(function(index,item){
         let template = `
-            <div class="wardrobe-item" id="${sex}" data-index="${index}">
+            <div class="wardrobe-item" id="${sex}" data-index="${index}" data-list="wardrobe${sex}SetList">
                 <div class="wardrobe-name">${item.name}</div>
                 <img src="images/inventory/Clothes_Duty.png" alt="">
             </div>`;
-        $('.container .wardrobe-wrapper').append(template);
+        $('.container .wardrobe-wrapper #Set').append(template);
+    });
+    $(eval(`wardrobe${sex}ClothesList`)).each(function(index,item){
+        $(wardrobeNames).each(function(indexEl,classEl){
+            if(item.includes(classEl))
+            {
+                let template = `
+                    <div class="wardrobe-item" id="${sex}" data-index="${index}" data-list="wardrobe${sex}ClothesList">
+                        <div class="wardrobe-name">${item}</div>
+                        <img src="images/person/${wardrobeNamesTranslated[indexEl]}.png" alt="">
+                    </div>`;
+                $(`.container .wardrobe-wrapper #${wardrobeNamesTranslated[indexEl]}`).append(template);
+            }
+        });
     });
     initWardrobe();
 }
@@ -667,7 +729,8 @@ function initWardrobe()
 {
     $('.wardrobe-item').on('click',function(){
         if(!$(this).hasClass('closed'))
-        {
+        {   
+            let id = $(this).parent()[0].id;
             if($(this).hasClass('active'))
             {
                 $(this).removeClass('active');
@@ -676,7 +739,7 @@ function initWardrobe()
             else
             {
                 $('.button#use').removeClass('disabled');
-                $('.wardrobe-item.active').removeClass('active');
+                $(`#${id} .wardrobe-item.active`).removeClass('active');
                 $(this).addClass('active');
             }
         }
@@ -684,12 +747,26 @@ function initWardrobe()
     $('.button#use').on('click',function(){
         if($('.wardrobe-item.active').length != 0)
         {
-            let sex = $('.wardrobe-item.active')[0].id,
-                activeWardrobe = $(eval(`wardrobe${sex}List`))[$('.wardrobe-item.active').attr('data-index')];      
+            let activeList = [];
+            $('.wardrobe-item.active').each(function(index,item){
+                let element = null;                
+                element = $(eval($(item).attr('data-list')));
+                if($(this).parent()[0].id != 'Set')
+                {
+                    element = { name : element[$(item).attr('data-index')], clothes : [ element[$(item).attr('data-index')] ]};
+                }
+                else
+                {
+                    element = eval($(item).attr('data-list'))[$(item).attr('data-index')];
+                    console.log('Set',element);
+                }
+                console.log(element);
+                activeList.push(element);
+            });      
+            console.log(activeList);
             $('.button#use').addClass('disabled');
             $('.wardrobe-wrapper .active').removeClass('active');
-            console.log(activeWardrobe);
-            mp.trigger('LspdUseWardrobe',JSON.stringify(activeWardrobe));
+            mp.trigger('LspdUseWardrobe',JSON.stringify(activeList));
         }
     });
     $('.button#close').on('click',function(){

@@ -28,6 +28,28 @@
     max-height: 345px;
     overflow-y:scroll;
 }
+.container .wardrobe-wrapper .wardrobe-category-title
+{
+    background:rgba(0,0,0,0.2);
+    width:100%;
+    min-height:52px;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding:0 20px;
+    color:#ededed;
+    cursor: pointer;    
+    margin:5px 0;
+}
+.container .wardrobe-wrapper .wardrobe-category-title svg
+{
+    transition: 0.2s;
+}
+.container .wardrobe-wrapper .wardrobe-category-wrapper
+{
+    display: none;
+    width:100%;
+}
 .container .wardrobe-item
 {
     transition:0.2s;
