@@ -766,6 +766,10 @@ function initWardrobe()
             console.log(activeList);
             $('.button#use').addClass('disabled');
             $('.wardrobe-wrapper .active').removeClass('active');
+            $('.container .wardrobe-category-title').next().slideUp();
+            $('.container .wardrobe-category-title').find('svg').css({
+                'transform':'rotate(360deg)'
+            });
             mp.trigger('LspdUseWardrobe',JSON.stringify(activeList));
         }
     });

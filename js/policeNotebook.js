@@ -59,13 +59,18 @@ $('.container .business-wrapper .search-block #searchPerson').on('click',functio
     console.log(value);
     mp.trigger('searchPersonal',value);
 });
-$('.container .recruting-menu input').keyup(function() {
+$('.container .recruting-menu input, .container .licence-menu input').keyup(function() {
 	this.value = this.value.replace(/[^А-ЯЁа-яё ]/g, '');
 });
 $('.container .main-wrapper .recruting-menu #hireNewbie').on('click',function(){
     let currentNewbie = $(this).prev().val();
     console.log(currentNewbie);
     mp.trigger('hireNewbie',currentNewbie);
+});
+$('.container .main-wrapper .licence-menu #giveLicence').on('click',function(){
+    let currentPolice = $(this).prev().val();
+    console.log(currentPolice);
+    mp.trigger('giveLicence',currentPolice);
 });
 $('.police-menu .menu-item').on('click',function(){
     let currentWrapper = this.id;
@@ -420,11 +425,12 @@ function pushNotebook(policeman,clews,filer,archive,employeeOnline,admin,date)
     }
     if(typeof admin != undefined)
     {
-        $('.container .main-wrapper .recruting-menu').fadeIn();
+        $('.container .main-wrapper .recruting-menu, .container .main-wrapper .licence-menu').fadeIn();
         let adminStatus = { Admin: admin };
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
+        $('#wantedSearch-frame')[0].contentWindow.postMessage(adminStatus, "*"); 
         window.addEventListener('message', function(event) {
             if (event.data['newHandbook']) {
                 const { currentId, name, penalty, article } = event.data.newHandbook;        
@@ -435,7 +441,12 @@ function pushNotebook(policeman,clews,filer,archive,employeeOnline,admin,date)
                 const { currentId, name, penalty, article } = event.data.editHandbook;        
                 console.log(currentId,name, penalty, article);
                 mp.trigger('editHandbook',currentId,name,penalty,article);
-            }   
+            }
+            if (event.data['removeWanted']) {
+                const { name } = event.data.removeWanted;        
+                console.log(name);
+                mp.trigger('removeWanted',name);
+            }  
             if (event.data['getStatus']) {
                 console.log('getStatus');
                 $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
