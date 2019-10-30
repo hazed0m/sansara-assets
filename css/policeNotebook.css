@@ -1177,7 +1177,7 @@
 {
     padding: 20px;
     min-width: 630px;
-    max-height:400px;
+    /* max-height:400px; */
 }
 .container .things-wrapper .add-thing-wrapper .button-wrapper
 {

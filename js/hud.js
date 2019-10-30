@@ -143,6 +143,9 @@ function keypressUp(e){
             mp.trigger('KeyXpress');
         break;
         case 89:  // Y взаимодействие
+            mp.trigger('KeyYpress');
+        break;  
+		  case 72:  // Y взаимодействие
             mp.trigger('KeyPolice');
         break;  
     }

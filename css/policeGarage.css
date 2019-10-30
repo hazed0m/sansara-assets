@@ -52,15 +52,7 @@
     cursor: pointer;
     text-align: center;
 }
-.container .sheriff.closed#ChevroletTahoe .img-block:after
-{
-    content:'Доступно Шерифу';
-}
-.container .sheriff.closed#FordTaurus .img-block:after
-{
-    content:'Доступно Заместителю Шерифа';
-}
-.container .sheriff.closed#DodgeChargerSheriff .img-block:after
+.container .sheriff.closed#SheriffSUV .img-block:after
 {
     content:'Доступно Помощнику Шерифа 1-го ранга';
 }
@@ -88,13 +80,13 @@
 }
 .container .police#PrisonBus .img-block:after,
 .container .police#Transporter .img-block:after,
-.container .police#FordInterceptor .img-block:after
+.container .police#ChevalFugitive .img-block:after
 {
     content:'Доступно Сержанту 3-го ранга';
 }
 .container .police#ChevroletImpala .img-block:after,
-.container .police#DodgeChargerLSPD .img-block:after,
-.container .police#Ferrari458Italia .img-block:after
+.container .police#GS350 .img-block:after,
+.container .police#CaymanS .img-block:after
 {
     content:'Доступно Лейтенанту 3-го ранга';
 }

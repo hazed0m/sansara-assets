@@ -23,6 +23,7 @@ $('.container .input-wrapper .button').on('click',function(){
         if(arr.length>0)
         {
             let caseNumber = $('.container .input-wrapper input').val();
+            console.log(arr);
             mp.trigger('evidenceList',parseInt(caseNumber),JSON.stringify(arr));
         }
     }

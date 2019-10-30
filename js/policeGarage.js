@@ -68,8 +68,8 @@ let garageList = [
             CarList: {
                 opened:[
                     'Vapid Sheriff',
-                    'Sheriff SUV',
-                    'Prison Bus'
+                    'Prison Bus',
+                    'Sheriff SUV'
                 ],
                 closed:[
                     
@@ -81,8 +81,8 @@ let garageList = [
             CarList: {
                     opened:[
                         'Vapid Sheriff',
-                        'Sheriff SUV',
-                        'Prison Bus'
+                        'Prison Bus',
+                        'Sheriff SUV'
                     ],
                     closed:[]
             }
