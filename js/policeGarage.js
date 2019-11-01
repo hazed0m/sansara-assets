@@ -1,20 +1,19 @@
 let garageList = [
-        { car:'Vapid LSPD', hash:'police' },
-        { car:'Buffalo', hash:'police2' },
-        { car:'Interceptor', hash:'police3' },
-        { car:'Police Bike', hash:'policeb' },
-        { car:'Transporter', hash:'policet' },
-        { car:'Prison Bus', hash:'pbus' },
-        { car:'Cheval Fugitive', hash:'add-on' },
-        { car:'GS 350', hash:'add-on' },
-        { car:'Cruiser Utility', hash:'add-on' },
-        { car:'Cayman S', hash:'add-on' },
-        { car:'Vapid Sheriff', hash:'sheriff' },
-        { car:'Sheriff SUV', hash:'sheriff2' },
-        { car:'Scout', hash:'add-on' },
-        { car:'Vapid Detective', hash:'police4' },
-        { car:'Bravado', hash:'fbi' },
-        { car:'Declasse', hash:'fbi2' }
+        { car:'Vapid LSPD', hash:'police', luggage : '70', fuel: '70' },
+        { car:'Buffalo', hash:'police2', luggage : '60', fuel: '80' },
+        { car:'Interceptor', hash:'police3', luggage : '50', fuel: '80' },
+        { car:'Police Bike', hash:'policeb', luggage : '10', fuel: '30' },
+        { car:'Transporter', hash:'policet', luggage : '', fuel: '' },
+        { car:'Prison Bus', hash:'pbus', luggage : '150', fuel: '100' },
+        { car:'Cheval Fugitive', hash:'add-on', luggage : '70', fuel: '70' },
+        { car:'GS 350', hash:'add-on', luggage : '60', fuel: '70' },
+        { car:'Cruiser Utility', hash:'add-on', luggage : '100', fuel: '100' },
+        { car:'Cayman S', hash:'add-on', luggage : '30', fuel: '60' },
+        { car:'Vapid Sheriff', hash:'sheriff', luggage : '70', fuel: '70' },
+        { car:'Sheriff SUV', hash:'sheriff2', luggage : '100', fuel: '100' },
+        { car:'Vapid Detective', hash:'police4', luggage : '70', fuel: '70' },
+        { car:'Bravado', hash:'fbi', luggage : '50', fuel: '80' },
+        { car:'Declasse', hash:'fbi2', luggage : '100', fuel: '100' }
     ],
     positionList = [
         { position: 'Помощник Шерифа 2-го ранга', faction: 'sheriff' },
@@ -96,8 +95,7 @@ let garageList = [
                 closed:[
                     'Bravado',
                     'Prison Bus',
-                    'Declasse',
-                    'Scout'
+                    'Declasse'
                 ]
             }
         },
@@ -110,8 +108,7 @@ let garageList = [
                 ],
                 closed:[
                     'Prison Bus',
-                    'Declasse',
-                    'Scout'
+                    'Declasse'
                 ]
             }
         },
@@ -383,11 +380,30 @@ function pushGarage(Position)
                 }                
             });
             $(item.CarList.opened).each(function(carIndex,carItem){
-                let currentId = carItem.replace(/[\s{2,}]+/g, '');
-                let template = `
+                let currentId = carItem.replace(/[\s{2,}]+/g, ''),
+                    currentIndex = arrayIncludesInObj(garageList,'car',carItem),
+                    template = `
                 <div class="garage-item ${Type}" id="${currentId}" data-id="${carItem}">
                     <div class="img-block">
                         <img src="img/policeGarage/${carItem}.jpg" alt="">
+                        <div class="characters">
+                            <div class="char-wrapper">
+                                <div class="char-title">
+                                    Объем багажника
+                                </div>
+                                <div class="char-item">
+                                    ${garageList[currentIndex].luggage}
+                                </div>
+                            </div>
+                            <div class="char-wrapper">
+                                <div class="char-title">
+                                    Объем бака
+                                </div>
+                                <div class="char-item">
+                                    ${garageList[currentIndex].fuel}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="garage-name">${carItem}</div>
                 </div>`;

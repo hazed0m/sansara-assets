@@ -1,17 +1,7 @@
 let evidenceList = [];
-$('.container .input-wrapper input').on('keyup',function(){
-    let arr = getEvidences();
-    if($(this).val().length>0 && arr.length>0)
-    {
-        $(this).next().removeClass('disabled');
-    }
-    else
-    {
-        $(this).next().addClass('disabled');
-    }
-});
+
 $('.container .close-but').on('click',function(){
-    mp.trigger('closeEvidenceMenu');
+    mp.trigger('closeChooseMedicalMenu');
 });
 $('.container .input-wrapper .button').on('click',function(){
     if(!$(this).hasClass('disabled'))
@@ -19,9 +9,9 @@ $('.container .input-wrapper .button').on('click',function(){
         let arr = getEvidences();
         if(arr.length>0)
         {
-            let caseNumber = $('.container .input-wrapper input').val();
+            // let caseNumber = $('.container .input-wrapper input').val();
             console.log(arr);
-            mp.trigger('evidenceList',parseInt(caseNumber),JSON.stringify(arr));
+            mp.trigger('ChooseMedicalList',JSON.stringify(arr));
         }
     }
 });
@@ -41,14 +31,9 @@ function pushEvidence(element)
     evidenceList = JSON.parse(element);
     $('.container .evidence-wrapper').empty();
     $(evidenceList).each(function(index,item){
-        let color = '';
-        if(item.Type === 'Illegal_Object' || item.Type === 'Clothes_Illegal' || item.Type === 'Weapon_FireGun_Illegal')
-        {   
-            color = 'illegal';
-        }
         let template = `<div class="evidence-item">
                             <div class="toogle"></div>
-                            <div class="name ${color}">${item.Name}</div>
+                            <div class="name">${item.Name}</div>
                         </div>`;
         $('.container .evidence-wrapper').append(template);
     });
@@ -64,6 +49,15 @@ function evidenceRefresh()
         else
         {
             $(this).addClass('active')
+        }
+        let arr = getEvidences();
+        if(arr.length>0)
+        {
+            $('.input-wrapper .button').removeClass('disabled');
+        }
+        else
+        {
+            $('.input-wrapper .button').addClass('disabled');
         }
     });
 }
