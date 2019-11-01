@@ -26,7 +26,7 @@ function getEvidences()
     });
     return result;
 }
-function pushEvidence(element)
+function pushMedicalChoose(element)
 {
     evidenceList = JSON.parse(element);
     $('.container .evidence-wrapper').empty();
