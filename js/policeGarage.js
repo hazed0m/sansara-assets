@@ -385,7 +385,7 @@ function pushGarage(Position)
                     template = `
                 <div class="garage-item ${Type}" id="${currentId}" data-id="${carItem}">
                     <div class="img-block">
-                        <img src="img/policeGarage/${carItem}.jpg" alt="">
+                        <img src="img/policeGarage/${carItem}.png" alt="">
                         <div class="characters">
                             <div class="char-wrapper">
                                 <div class="char-title">

@@ -1,13 +1,3 @@
-$('.container .input-wrapper input').on('keyup',function(){
-    if($(this).val().length>0)
-    {
-        $('#submit').removeClass('disabled');
-    }
-    else
-    {
-        $('#submit').addClass('disabled');
-    }
-});
 $('.container .close-but, #close').on('click',function(){
     mp.trigger('closeTextMedicalMenu');
 });
