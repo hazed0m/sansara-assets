@@ -148,6 +148,9 @@ function keypressUp(e){
 		  case 72:  // Y взаимодействие
             mp.trigger('KeyPolice');
         break;  
+        case 71:  // G взаимодействие
+            mp.trigger('KeyGpress');
+        break;
     }
 }
 function keypressDown(e){   

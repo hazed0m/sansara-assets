@@ -69,6 +69,11 @@ $('.container .main-wrapper .recruting-menu #hireNewbie').on('click',function(){
 });
 $('.container .main-wrapper .licence-menu #giveLicence').on('click',function(){
     let currentPolice = $(this).prev().val();
+    $(this).prev().val('');
+    $('.licence-menu .show-wrapper').fadeIn().css('display','flex');
+    setTimeout(function(){
+        $('.licence-menu .show-wrapper').fadeOut();
+    },1000);
     console.log(currentPolice);
     mp.trigger('giveLicence',currentPolice);
 });

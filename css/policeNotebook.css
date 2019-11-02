@@ -121,6 +121,21 @@
     font-size:20px;
     text-align: center;
 }
+.container .main-wrapper .licence-menu .show-wrapper
+{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    color:#fff;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
 .container .main-wrapper .recruting-menu input,
 .container .main-wrapper .licence-menu input
 {

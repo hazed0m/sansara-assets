@@ -1099,3 +1099,6 @@ function timer()
 function prettyTime(num) {
 	return ( num < 10 ? "0" : "" ) + num;
 }
+$('.container .close-but').on('click',function(){
+    mp.trigger('closeAutoschool');
+});
