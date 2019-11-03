@@ -74,72 +74,72 @@ $('input[type="text"], input[type="password"]').keyup(function() {
         }
     }    
 });
-var verifyLoginCallback = function(response) {
-    if(response)
+$('.form-input__wrap input').keyup(function(){
+    if($(this).parent().parent()[0].id === 'signin')
     {
-        $('.form-input__wrap input').keyup(function(){
-            if($(this).parent().parent()[0].id === 'signin')
-            {
-                if($('#loginName').val().length >= 6 && $('#loginPass').val().length >= 6)
-                {
-                    $('.login').removeClass('disabled');
-                }
-                else
-                {
-                    $('.login').addClass('disabled');
-                }
-            }          
-        });
         if($('#loginName').val().length >= 6 && $('#loginPass').val().length >= 6)
         {
             $('.login').removeClass('disabled');
         }
-    }    
-    else
+        else
+        {
+            $('.login').addClass('disabled');
+        }
+    }          
+});
+// var verifyLoginCallback = function(response) {
+//     if(response)
+//     {
+//         if($('#loginName').val().length >= 6 && $('#loginPass').val().length >= 6)
+//         {
+//             $('.login').removeClass('disabled');
+//         }
+//     }    
+//     else
+//     {
+//         alert('fail');
+//     }     
+//};
+$('.form-input__wrap input').keyup(function(){
+    if($(this).parent().parent()[0].id === 'signup')
     {
-        alert('fail');
-    }     
-};
-var verifyRegisterCallback = function(response) {
-    if(response)
-    {
-        $('.form-input__wrap input').keyup(function(){
-            if($(this).parent().parent()[0].id === 'signup')
-            {
-                if($('#newLoginName').val().length >= 6 && $('#newLoginPass').val().length >= 6 && emailValidate)
-                {
-                    $('.register').removeClass('disabled');
-                }
-                else
-                {
-                    $('.register').addClass('disabled');
-                }
-            }           
-        });
         if($('#newLoginName').val().length >= 6 && $('#newLoginPass').val().length >= 6 && emailValidate)
         {
             $('.register').removeClass('disabled');
         }
-    }    
-    else
-    {
-        alert('fail');
-    }     
-};
-var regCaptcha;
-var onloadCallback = function() {
+        else
+        {
+            $('.register').addClass('disabled');
+        }
+    }           
+});
+// var verifyRegisterCallback = function(response) {
+//     if($('#newLoginName').val().length >= 6 && $('#newLoginPass').val().length >= 6 && emailValidate)
+//     {
+//         $('.register').removeClass('disabled');
+//     }
+//     if(response)
+//     {
+//     }    
+//     else
+//     {
+//         alert('fail');
+//     }     
+// };
+// var regCaptcha;
+// var onloadCallback = function() {
    
-    regCaptcha = grecaptcha.render('g-recaptcha1', {
-        'sitekey' : '6LcShqcUAAAAAEFfGkm9KKambio8Ik5XGbD3Lruz',
-        'callback' : verifyRegisterCallback,
-        'theme' : 'dark'
-    });
-    grecaptcha.render('g-recaptcha', {
-    'sitekey' : '6LcShqcUAAAAAEFfGkm9KKambio8Ik5XGbD3Lruz',
-    'callback' : verifyLoginCallback,
-    'theme' : 'dark'
-    });
-};
+//     regCaptcha = grecaptcha.render('g-recaptcha1', {
+//         'sitekey' : '6LcShqcUAAAAAEFfGkm9KKambio8Ik5XGbD3Lruz',
+//         'callback' : verifyRegisterCallback,
+//         'theme' : 'dark'
+//     });
+//     grecaptcha.render('g-recaptcha', {
+//     'sitekey' : '6LcShqcUAAAAAEFfGkm9KKambio8Ik5XGbD3Lruz',
+//     'callback' : verifyLoginCallback,
+//     'theme' : 'dark'
+//     });
+// };
 function sendAccountInfos(type) {
     switch (type) {
         case 0: 
