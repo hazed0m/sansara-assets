@@ -3,11 +3,12 @@ $('.container .input-wrapper input').on('keyup',function(){
     let arr = getEvidences();
     if($(this).val().length>0 && arr.length>0)
     {
-        $(this).next().removeClass('disabled');
+        $(this).next().removeClass('disabled');        
     }
     else
     {
         $(this).next().addClass('disabled');
+        inputStatus = false;
     }
 });
 $('.container .close-but').on('click',function(){
@@ -60,10 +61,21 @@ function evidenceRefresh()
         if($(this).hasClass('active'))
         {
             $(this).removeClass('active')
+            console.log('if');
+            if($('.container .evidence-wrapper .evidence-item.active').length == 0)
+            {
+                console.log('if2');
+                $('.button').addClass('disabled');
+            }
         }
         else
         {
-            $(this).addClass('active')
+            $(this).addClass('active');
+            if($('.container input').val().length > 0)
+            {
+                console.log('else');
+                $('.button').removeClass('disabled');
+            }
         }
     });
 }
