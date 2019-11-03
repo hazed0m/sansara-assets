@@ -111,7 +111,7 @@
 {
     content:'Доступно Сержанту 3-го ранга';
 }
-.container .police#ChevroletImpala .img-block:after,
+.container .police#CruiserUtility .img-block:after,
 .container .police#GS350 .img-block:after,
 .container .police#CaymanS .img-block:after
 {
@@ -138,6 +138,7 @@
     height:135px;
     cursor: pointer;
     overflow: hidden;
+    background-size: cover;
 }
 .container .garage-item .img-block img
 {

@@ -274,7 +274,8 @@
 {
     box-shadow:0 0 5px rgba(0,0,0,1);
 }
-.container .wrapper .police-menu .menu-item
+.container .wrapper .police-menu .menu-item,
+.container .wrapper .police-menu .reload-item
 {
     width:165px;
     height:34px;
@@ -288,6 +289,15 @@
     font-size:14px;
     transition:0.2s;
     cursor: pointer;
+}
+.container .wrapper .police-menu .reload-item
+{
+    display: none;
+    position: absolute;
+    bottom:10px;
+    background: #36393F;
+    color:#fff;
+    box-shadow:0 0 10px rgb(19,32,119);
 }
 .container .wrapper .police-menu .menu-item.active
 {
@@ -413,6 +423,7 @@
     transition: 0.2s;
 }
 .container .business-wrapper .search-block .button:hover,
+.container .main-wrapper .button:hover,
 .container .business-wrapper .content-block .button:hover,
 .container .wantedSearch-wrapper .wanted-content-wrapper .button:hover
 {
@@ -1311,6 +1322,7 @@
     height:29px;
     text-align: center;
 }
+.container .main-wrapper .disabled,
 .container .things-wrapper .disabled#entryThing
 {
     opacity:0.7;

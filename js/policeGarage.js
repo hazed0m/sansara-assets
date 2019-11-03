@@ -3,7 +3,7 @@ let garageList = [
         { car:'Buffalo', hash:'police2', luggage : '60', fuel: '80' },
         { car:'Interceptor', hash:'police3', luggage : '50', fuel: '80' },
         { car:'Police Bike', hash:'policeb', luggage : '10', fuel: '30' },
-        { car:'Transporter', hash:'policet', luggage : '', fuel: '' },
+        { car:'Transporter', hash:'policet', luggage : '150', fuel: '100' },
         { car:'Prison Bus', hash:'pbus', luggage : '150', fuel: '100' },
         { car:'Cheval Fugitive', hash:'add-on', luggage : '70', fuel: '70' },
         { car:'GS 350', hash:'add-on', luggage : '60', fuel: '70' },
@@ -385,7 +385,7 @@ function pushGarage(Position)
                     template = `
                 <div class="garage-item ${Type}" id="${currentId}" data-id="${carItem}">
                     <div class="img-block">
-                        <img src="img/policeGarage/${carItem}.png" alt="">
+                        <img src="img/policeGarage/${currentId}.jpg" alt="">
                         <div class="characters">
                             <div class="char-wrapper">
                                 <div class="char-title">
@@ -414,7 +414,7 @@ function pushGarage(Position)
                 let template = `
                 <div class="garage-item ${Type} closed" id="${currentId}" data-id="${carItem}">
                     <div class="img-block">
-                        <img src="img/policeGarage/${carItem}.jpg" alt="">
+                        <img src="img/policeGarage/${currentId}.jpg" alt="">
                     </div>
                     <div class="garage-name">${carItem}</div>
                 </div>`;

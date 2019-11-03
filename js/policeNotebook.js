@@ -70,6 +70,7 @@ $('.container .main-wrapper .recruting-menu #hireNewbie').on('click',function(){
 $('.container .main-wrapper .licence-menu #giveLicence').on('click',function(){
     let currentPolice = $(this).prev().val();
     $(this).prev().val('');
+    $(this).addClass('disabled');
     $('.licence-menu .show-wrapper').fadeIn().css('display','flex');
     setTimeout(function(){
         $('.licence-menu .show-wrapper').fadeOut();
@@ -87,6 +88,17 @@ $('.police-menu .menu-item').on('click',function(){
         $(`.wrapper .${currentWrapper}`).addClass('active').fadeIn(500).css('display','flex');
     }
 });
+function reloadNotebook()
+{
+    $('.container .wrapper .police-menu .reload-item').removeClass('disabled').fadeIn().css('display','flex');
+    $('.container .wrapper .police-menu .reload-item').on('click',function(){
+        if(!$(this).hasClass('disabled'))
+        {
+            $(this).addClass('disabled').fadeOut();
+            mp.trigger('reloadNotebook');
+        }
+    });
+}
 function pushClews(elem)
 { 
     $(elem).each(function(index,item){
@@ -431,6 +443,16 @@ function pushNotebook(policeman,clews,filer,archive,employeeOnline,admin,date)
     if(typeof admin != undefined)
     {
         $('.container .main-wrapper .recruting-menu, .container .main-wrapper .licence-menu').fadeIn();
+        $('.container .main-wrapper .recruting-menu input, .container .main-wrapper .licence-menu input').keyup(function(){
+            if($(this).val().length > 0)
+            {
+                $(this).next().removeClass('disabled');
+            }
+            else
+            {
+                $(this).next().addClass('disabled');
+            }
+        });
         let adminStatus = { Admin: admin };
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
