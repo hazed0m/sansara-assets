@@ -80,6 +80,10 @@ $('.container .main-wrapper .licence-menu #giveLicence').on('click',function(){
 });
 $('.police-menu .menu-item').on('click',function(){
     let currentWrapper = this.id;
+    if(currentWrapper == 'archive-wrapper' && currentWrapper == 'things-wrapper')
+    {
+        $(`.${currentWrapper} .searchable`).remove();
+    }
     if(!$(this).hasClass('active'))
     {
         $('.wrapper > .active').removeClass('active').fadeOut(200);

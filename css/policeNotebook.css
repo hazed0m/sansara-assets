@@ -7,11 +7,19 @@
 }
 .searchable
 {
-    position: absolute;
-    top:50px;
-    left:48px;
+    position: fixed;
+    top: 166px;
+    left: 650px;
     z-index: 999;
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
+}
+.archive-item.searchable .right-block
+{
+    margin-left:10px;
+}
+.archive-item.searchable #archive-revive
+{
+    margin-right:10px;
 }
 .searchable:before
 {
