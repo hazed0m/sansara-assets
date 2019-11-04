@@ -96,7 +96,8 @@ var shopList = [],
 		'карабин винтовка',
 		'самозарядная винтовка mk ii',
 		'снайперская винтовка'
-	];
+	],
+	ammoCount = [];
 $('.cash, .card').on('click',function(){
 	$(this).each(function(index, item){
 		if($(item).hasClass('active'))
@@ -135,8 +136,30 @@ $('#buy').on('click',function(){
 $('.exit-but').on('click',function(){
 	mp.trigger("shopExit");
 });
-function pushShopList(element, shopType)
+function pushShopList(element, shopType, ammocount)
 {
+	if(shopType == 'weapons')
+	{
+		ammoCount = JSON.parse(ammocount);
+		$(ammoList).each(function(index,item){
+			$(ammoCount).each(function(countIndex,countItem){
+				if(item.name == countItem.name)
+				{
+					item.count -= countItem.count;
+					let str = '' + item.count;
+					if(str[str.length-1] != 0)
+					{
+						str -= parseInt(str[str.length-1]);
+						item.count = str;
+					}
+					if(item.count < 0)
+					{
+						item.count = 0;
+					}
+				}
+			});
+		});
+	}
 	shopList = [];
 	currentShopType = shopType;
 	let currentElem = JSON.parse(element);
@@ -319,6 +342,14 @@ function translateType(type)
 }
 function basketListInitialize()
 {	
+	$(ammoList).each(function(index,item){
+        $(shopList).each(function(countIndex,countItem){
+            if(item.name == countItem.name)
+            {
+                countItem.max = item.count;
+            }
+        });
+    });
 	$('.basket-list .basket-item .close').on('click',function(){
 		$(this).parent().fadeOut(300);
 		setTimeout(function(){
@@ -331,7 +362,10 @@ function basketListInitialize()
 		let currentIndex = $(this).parent().parent().attr('data-index');
 		if(basketList[currentIndex].type == 'Ammo')
 		{
-			basketList[currentIndex].count += 10;
+			if(basketList[currentIndex].max != basketList[currentIndex].count)
+			{
+				basketList[currentIndex].count += 10;
+			}
 		}
 		else
 		{

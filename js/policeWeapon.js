@@ -426,9 +426,11 @@ let weaponsList = [
                 ]
             }
         }
-    ];
-function pushWeapons(Position)
+    ],
+    ammoCount = [];
+function pushWeapons(Position,ammoInv)
 {
+    ammoCount = JSON.parse(ammoInv);
     $('.container .weapon-wrapper').empty();
     $(factionList).each(function(index,item){
         if(item.Position === Position)
@@ -476,14 +478,35 @@ function pushWeapons(Position)
             });
         }
     });
+    $(ammoList).each(function(index,item){
+        $(ammoCount).each(function(countIndex,countItem){
+            if(item.name == countItem.name)
+            {
+                item.count -= countItem.count;
+                let str = '' + item.count;
+                if(str[str.length-1] != 0)
+                {
+                    str -= parseInt(str[str.length-1]);
+                    item.count = str;
+                }
+                if(item.count < 0)
+                {
+                    item.count = 0;
+                }
+            }
+        });
+    });
     initWeapons();
 }
 function initWeapons()
 {
     $('.ammo-item .plus').on('click',function(){
         let currentCount = parseInt($(this).prev().text());
-        $(this).prev().text(currentCount+=10);
-        $('.button#use').removeClass('disabled');
+        if($(this).attr('max') != currentCount)
+        {
+            $(this).prev().text(currentCount+=10);
+            $('.button#use').removeClass('disabled');
+        }
     });
     $('.ammo-item .minus').on('click',function(){
         let currentCount = parseInt($(this).next().text());
@@ -493,7 +516,10 @@ function initWeapons()
             $(this).next().text(currentCount);
             if(currentCount == 0)
             {
-                $('.button#use').addClass('disabled');
+                if($('.weapon-item.active').length == 0)
+                {
+                    $('.button#use').addClass('disabled');
+                }
             }
         }
     });
@@ -512,6 +538,16 @@ function initWeapons()
                 $(this).addClass('active');
             }
         }
+    });
+    $(ammoList).each(function(index,item){
+        $('.ammo-item').each(function(domIndex,domItem){
+            let currentAmmo = $(domItem).attr('data-id');
+            if(item.name == currentAmmo)
+            {
+                console.log(1);
+                $(domItem).find('.plus').attr('max',item.count);
+            }
+        });
     });
     $('.button#use').on('click',function(){
         let activeWeapon = $('.weapon-item.active').attr('data-id'),
