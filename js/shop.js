@@ -138,7 +138,7 @@ $('.exit-but').on('click',function(){
 });
 function pushShopList(element, shopType, ammocount)
 {
-	if(shopType == 'weapons')
+	if(shopType.toLowerCase() == 'ammo')
 	{
 		ammoCount = JSON.parse(ammocount);
 		$(ammoList).each(function(index,item){
@@ -161,7 +161,7 @@ function pushShopList(element, shopType, ammocount)
 		});
 	}
 	shopList = [];
-	currentShopType = shopType;
+	currentShopType = shopType.toLowerCase();
 	let currentElem = JSON.parse(element);
 	$(currentElem).each(function(index,item){
 		let obj = {
