@@ -191,31 +191,47 @@ function doneAction(action, index, id, currentCount)
     switch(action)
     {
     	case ('remove'):
-			if(id === 'weapons')
+			removeElem = eval(id +'List').splice(inventoryList[index].wearedId,1);        			
+			if(!inventoryList[index].name.includes('Бронежилет'))
 			{
-				let currentWeaponClass = inventoryList[index].class;
-				weaponClassArray[currentWeaponClass-1] = false;
-			}
-        	removeElem = eval(id +'List').splice(inventoryList[index].wearedId,1);        			
-			$(eval(id+'List')).each(function(index,item){
+				if(id === 'weapons')
+				{
+					let currentWeaponClass = inventoryList[index].class;
+					weaponClassArray[currentWeaponClass-1] = false;
+				}
+				$(eval(id+'List')).each(function(index,item){
 
-				inventoryList[item.inventoryIndex].wearedId = index;
-			});      	
-        	if(inventoryList[removeElem[0].inventoryIndex].enabled)
-        	{
-        		inventoryList[removeElem[0].inventoryIndex].enabled = false;
-        		inventoryList[removeElem[0].inventoryIndex].count++;
-        		inventoryList[removeElem[0].inventoryIndex].used = false;
-        	}
-			else 
+					inventoryList[item.inventoryIndex].wearedId = index;
+				});      	
+				if(inventoryList[removeElem[0].inventoryIndex].enabled)
+				{
+					inventoryList[removeElem[0].inventoryIndex].enabled = false;
+					inventoryList[removeElem[0].inventoryIndex].count++;
+					inventoryList[removeElem[0].inventoryIndex].used = false;
+				}
+				else 
+				{
+					inventoryList[removeElem[0].inventoryIndex].count++;
+					inventoryList[removeElem[0].inventoryIndex].used = false;
+				}
+			}		
+			else
 			{
-				inventoryList[removeElem[0].inventoryIndex].count++;
 				inventoryList[removeElem[0].inventoryIndex].used = false;
+				inventoryList[removeElem[0].inventoryIndex].enabled = false;
+				if(inventoryList[removeElem[0].inventoryIndex].count < 1 && !inventoryList[removeElem[0].inventoryIndex].used)
+        		{
+					let temp = inventoryList.splice(removeElem[0].inventoryIndex,1);
+					console.log(temp);
+        			listIndexCheck('weapons');
+    				listIndexCheck('person');
+        		}
 			}
 			refreshInventory('weapons');
 			refreshInventory('person');	
 			refreshInventory('inventory');
-            inventoryInitialize();  
+			inventoryInitialize();  			
+			
             break;
 
         case ('use'):

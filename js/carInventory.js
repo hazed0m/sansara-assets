@@ -317,6 +317,9 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 			inventoryList[length].wearedId = length;
 		}
 	});
+	$(ammoList).each(function(index,item){
+		item.temp = item.count;
+	});
 	refreshInventory('luggage');
 	refreshInventory('inventory');	
     inventoryInitialize();  
@@ -337,6 +340,28 @@ function containsName(nameObj,iterator)
 }
 function inventoryInitialize()
 {	
+	$(ammoList).each(function(index,item){
+		item.count = item.temp;
+		$(inventoryList).each(function(countIndex,countItem){
+			if(countItem.type == 'Ammo')
+			{
+				if(item.name == countItem.name)
+				{
+					item.count -= countItem.count;
+					if(item.count < 0)
+					{
+						item.count = 0;
+					}
+				}
+			}
+		});
+		$(luggageList).each(function(countIndex,countItem){
+			if(item.name == countItem.name)
+			{
+				countItem.max = item.count;
+			}
+		});
+	});
 	$('#inventory .itemInv').on('click', function()
 	{   
         if($(this).parent().find('.dropdown-menu').is(':visible'))
@@ -359,63 +384,78 @@ function inventoryInitialize()
 				input = '<input class="quantity" type="number" min="1" max="150" value="1">',
 				currentMin = 0,
 				currentMax = 0;
-			if(eval(id+'List')[index].count <=1 || !luggageAvailable)
+			if(eval(id+'List')[index].max == 0)
 			{
-				doneAction(action,index,id,1);
+				notificationShow('Вы исчерпали лимит патронов');
 			}
 			else
-			{			
-				$('.ok-button').attr('action',action).attr('id',id).attr('index',index).attr('done','undone');
-				$('.col-wrapper').find('.quantity').replaceWith(input);
-				$('.col-wrapper').find('.col-title').text(eval(id+'List')[index].name);
-				$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].count);
-				$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].count);
-				$('.col-wrapper .min').on('click',function(){
-					currentMin = $(this).parent().find('.quantity').attr('min');
-					$(this).parent().find('.quantity').val(currentMin);
-				});			
-				$('.col-wrapper .max').on('click',function(){
-					currentMax = $(this).parent().find('.quantity').attr('max');
-					$(this).parent().find('.quantity').val(currentMax);
-				});			
-				$('.ok-button').on('click',function(){
-					if($(this).attr('done') == 'undone')
+			{	
+				if(eval(id+'List')[index].count <=1 || !luggageAvailable)
+				{
+					doneAction(action,index,id,1);
+				}
+				else
+				{			
+					$('.ok-button').attr('action',action).attr('id',id).attr('index',index).attr('done','undone');
+					$('.col-wrapper').find('.quantity').replaceWith(input);
+					$('.col-wrapper').find('.col-title').text(eval(id+'List')[index].name);
+					if(eval(id+'List')[index].max == undefined)
 					{
-						col = $(this).parent().parent().find('input').val();
-						$('.col-wrapper').fadeOut();
-						$(this).attr('done','done');
-						doneAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
+						$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].count);
+						$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].count);
 					}
-				});
-				$('.cancel-button').on('click',function(){
-					$('.col-wrapper').fadeOut();				
-				});			
-				//Input
-				var inputQuantity = [];
-				$(function() {
-					$(".quantity").each(function(i) {
-					inputQuantity[i]=this.defaultValue;
-						$(this).data("idx",i); // save this field's index to access later
+					else
+					{
+						$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].max);
+						$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].max);
+					}
+					$('.col-wrapper .min').on('click',function(){
+						currentMin = $(this).parent().find('.quantity').attr('min');
+						$(this).parent().find('.quantity').val(currentMin);
+					});			
+					$('.col-wrapper .max').on('click',function(){
+						currentMax = $(this).parent().find('.quantity').attr('max');
+						$(this).parent().find('.quantity').val(currentMax);
+					});			
+					$('.ok-button').on('click',function(){
+						if($(this).attr('done') == 'undone')
+						{
+							col = $(this).parent().parent().find('input').val();
+							$('.col-wrapper').fadeOut();
+							$(this).attr('done','done');
+							doneAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
+						}
 					});
-					$(".quantity").on("keyup", function (e) {
-					var $field = $(this),
-						val=this.value,
-						$thisIndex=parseInt($field.data("idx"),10); // retrieve the index
-						//window.console && console.log($field.is(":invalid"));
-						//$field.is(":invalid") is for Safari, it must be the last to not error in IE8
-					if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
-						this.value = inputQuantity[$thisIndex];
-						return;
-					} 
-					if (val.length > Number($field.attr("maxlength"))) {
-						val=val.slice(0, 5);
-						$field.val(val);
-					}
-					inputQuantity[$thisIndex]=val;
-					});      
-				});	
-				$('.col-wrapper').fadeIn();
-			}	
+					$('.cancel-button').on('click',function(){
+						$('.col-wrapper').fadeOut();				
+					});			
+					//Input
+					var inputQuantity = [];
+					$(function() {
+						$(".quantity").each(function(i) {
+						inputQuantity[i]=this.defaultValue;
+							$(this).data("idx",i); // save this field's index to access later
+						});
+						$(".quantity").on("keyup", function (e) {
+						var $field = $(this),
+							val=this.value,
+							$thisIndex=parseInt($field.data("idx"),10); // retrieve the index
+							//window.console && console.log($field.is(":invalid"));
+							//$field.is(":invalid") is for Safari, it must be the last to not error in IE8
+						if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
+							this.value = inputQuantity[$thisIndex];
+							return;
+						} 
+						if (val.length > Number($field.attr("maxlength"))) {
+							val=val.slice(0, 5);
+							$field.val(val);
+						}
+						inputQuantity[$thisIndex]=val;
+						});      
+					});	
+					$('.col-wrapper').fadeIn();
+				}	
+			}
 		}
 		else
 		{
