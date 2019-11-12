@@ -27,15 +27,15 @@ $('.cash, .card').on('click',function(){
 $('#buy').on('click',function(){
     if(!$(this).hasClass('disabled'))
     {
-        let clothesPrice = $('.buy-buttons .price span')[0].textContent;
+        let mechanicalPrice = $('.buy-buttons .price span')[0].textContent;
         let cashService = $('.radio-block .active')[0].classList[0];
         let output = JSON.stringify(generateJsonOutput());
         $(this).addClass('disabled');
         modsRefresh();   
-        if(clothesPrice != 0)
+        if(mechanicalPrice != 0)
         {
-            console.log("mechanicalBuyButton", cashService, clothesPrice, output);
-            mp.trigger("mechanicalBuyButton", cashService, clothesPrice, output);
+            console.log("mechanicalBuyButton", cashService, mechanicalPrice, output);
+            mp.trigger("mechanicalBuyButton", cashService, mechanicalPrice, output);
         }
     }
 });
@@ -183,7 +183,7 @@ function modsInitialize()
             $(element).attr('data-counted', false);
             $(element).text(modsArr[currentIndex].name+`(${currentAttr})`);
             countPrice();
-            mp.trigger("putMechanical",modsArr[currentIndex].name);
+            mp.trigger("putMechanical",modsArr[currentIndex].id, currentAttr);
         }    
     });
     $('.mod-item .remove-but').on('click',function(){
