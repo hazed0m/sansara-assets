@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="fonts/font.css">
+	<link rel="stylesheet" href="css/mechanical.css">
+	<link rel="stylesheet" href="css/slider.css?124">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+</head>
+<body>
+	<div class="container">
+		<div class="main-block">
+			<div class="wrapper">		
+				
+			</div>
+			<div class="buy-buttons">
+				<div class="left-wrap">
+					<div class="radio-block">
+						<div class="card">
+							<img src="img/card.png" alt="card">
+							<i class="far fa-circle"></i>
+						</div>
+						<div class="cash active">
+							<img src="img/cash.png" alt="card">
+							<i class="fas fa-circle"></i>
+						</div>						
+					</div>
+					<div class="btn exit">Выйти</div>
+				</div>
+				<div class="right-wrap">
+					<div class="price"><span>0</span>$</div>
+					<div class="button disabled" id="buy">Купить</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<div class="information">
+		<div class="title">Внимание!</div>
+		<div class="text">
+			При выборе данной татуировки ваша предыдущая татуировка будет удалена
+		</div>
+		<div class="end">Продолжить?</div>
+		<div class="button-block">
+			<div class="button" id="pass">Продолжить</div>
+			<div class="button" id="cancel">Отмена</div>
+		</div>
+	</div>
+	<div class="rotate">
+		<div class="height-block">
+			<div class="title">Высота камеры</div>
+			<input type="range" class="slick appearanceOpacity" value="0" min="-1" max="1" step="0.01" id="cameraHeight">
+		</div>
+		<div class="rotate-block">
+			<div class="title">Поворот камеры</div>
+			<input type="range" class="slick appearanceOpacity" value="0" min="-1" max="1" step="0.01" id="cameraRotate">
+		</div>
+		<div class="button" id="resetCamera">Сбросить</div>
+	</div>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/slider.min.js"></script>
+	<script src="js/mechanical.js"></script>
+</body>
+</html>
