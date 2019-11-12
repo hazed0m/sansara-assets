@@ -27,7 +27,7 @@ $('.cash, .card').on('click',function(){
 $('#buy').on('click',function(){
     if(!$(this).hasClass('disabled'))
     {
-        let mechanicalPrice = $('.buy-buttons .price span')[0].textContent;
+        let mechanicalPrice = parseInt($('.buy-buttons .price span')[0].textContent);
         let cashService = $('.radio-block .active')[0].classList[0];
         let output = JSON.stringify(generateJsonOutput());
         $(this).addClass('disabled');
