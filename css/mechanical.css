@@ -304,10 +304,16 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	text-align: center;
 	font-size:14px;
 	border-radius: 5px;
 	cursor: pointer;
 	font-family:'HelveticaNeueCyr';
+}
+.rotate .button
+{
+	width:165px;
+	height: 34px;
 }
 .buy-buttons .price
 {
@@ -459,8 +465,9 @@
 	position:absolute;
 	bottom:10px;
 	right:10px;
-	width:239px;
-	height:155px;
+	/* width:239px;
+	height:155px; */
+	padding:20px;
 	border-radius:10px;
 	background:#36393f;
 	display:flex;

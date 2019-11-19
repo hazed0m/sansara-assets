@@ -66,23 +66,38 @@ const modsList = [
     { name: 'armor',translatedName: '',id:'16'},
     { name: 'turbo',translatedName: '',id:'18'},
     { name: 'xenon',translatedName: '',id:'22'},
-    { name: 'frontWheels',translatedName: '',id:'23'},
-    { name: 'backWheels',translatedName: '',id:'24'},
-    { name: 'plateholders',translatedName: '',id:'25'},
-    { name: 'trimDesign',translatedName: '',id:'27'},
-    { name: 'ornaments',translatedName: '',id:'28'},
-    { name: 'dialDesign',translatedName: '',id:'30'},
-    { name: 'steeringWheel',translatedName: '',id:'33'},
-    { name: 'shiftLever',translatedName: '',id:'34'},
-    { name: 'plaques',translatedName: '',id:'35'},
-    { name: 'hydraulics',translatedName: '',id:'38'},
-    { name: 'livery',translatedName: '',id:'48'},
-    { name: 'plate',translatedName: '',id:'62'},
-    { name: 'colour1',translatedName: '',id:'66'},
-    { name: 'colour2',translatedName: '',id:'67'},
-    { name: 'windowTint',translatedName: '',id:'69'},
-    { name: 'dashboardColor',translatedName: '',id:'74'},
-    { name: 'trimColor',translatedName: '',id:'75'}    
+    { name: 'frontWheels',translatedName: 'передние шины',id:'23'},
+    { name: 'backWheels',translatedName: 'задние шины',id:'24'},
+    { name: 'plateholders',translatedName: 'держатели пластин',id:'25'},
+    { name: 'vanityPlates',translatedName: 'номерной знак',id:'26'},
+    { name: 'trimDesign',translatedName: 'отделка салона',id:'27'},
+    { name: 'ornaments',translatedName: 'принт',id:'28'},
+    { name: 'dashboard',translatedName: 'панель',id:'29'},
+    { name: 'dialDesign',translatedName: 'дизайн спидометра',id:'30'},
+    { name: 'doorSpeaker',translatedName: 'дверной динамик',id:'31'},
+    { name: 'seats',translatedName: 'сиденья',id:'32'},
+    { name: 'steeringWheel',translatedName: 'руль',id:'33'},
+    { name: 'shiftLever',translatedName: 'коробка передач',id:'34'},
+    { name: 'plaques',translatedName: 'диски',id:'35'},
+    { name: 'speakers',translatedName: 'динамики',id:'36'},
+    { name: 'trunk',translatedName: 'багажник',id:'37'},
+    { name: 'hydraulics',translatedName: 'гидроусилитель',id:'38'},
+    { name: 'engineBlock',translatedName: 'двигатель',id:'39'},
+    { name: 'airfilter',translatedName: 'воздушные фильтры',id:'40'},
+    { name: 'struts',translatedName: 'распорка',id:'41'},
+    { name: 'archCover',translatedName: 'арочное покрытие',id:'42'},
+    { name: 'aerials',translatedName: 'антена',id:'43'},
+    { name: 'trim',translatedName: 'отделка',id:'44'},
+    { name: 'tank',translatedName: 'бак',id:'45'},
+    { name: 'windows',translatedName: 'окна',id:'46'},
+    { name: 'unknown',translatedName: 'неизвестно',id:'47'},
+    { name: 'livery',translatedName: 'отраска',id:'48'},
+    { name: 'windowTint',translatedName: 'тонировка',id:'55'},
+    { name: 'plate',translatedName: 'цвет дисков',id:'62'},
+    { name: 'colour1',translatedName: 'основной цвет',id:'66'},
+    { name: 'colour2',translatedName: 'дополнительный цвет',id:'67'},
+    { name: 'dashboardColor',translatedName: 'цвет панели',id:'74'},
+    { name: 'trimColor',translatedName: 'цвет салона',id:'75'}
 ];
 let modsArr = [];
 $(modsList).each(function(index,item){
@@ -127,7 +142,7 @@ function modsInit()
                     <div class="remove-but">Снять</div>
                     <div class="title-wrap">
                         <i class="fas fa-chevron-left"></i>
-                    <div class="title" data-index="${index}" data-item="0" data-price="0">${item.name}</div>
+                    <div class="title" data-index="${index}" data-item="0" data-price="0">${item.translatedName}</div>
                         <i class="fas fa-chevron-right"></i>
                     </div>
                 </div>`;
@@ -227,33 +242,33 @@ function generateJsonOutput()
     console.log('after',arr);
     return arr;
 };
-let currentRangeRotate = 0;
-$(function() {
-    $('.rotate input[type="range"]').on('input change', function(e) {
-        let id = e.target.id,
-            val = e.target.value;
-        $(e).val(val).change();
-        switch (id) {
-            case 'cameraHeight':
-                currentRangeRotate = 0;
-                break;
-            case 'cameraRotate':
-                currentRangeRotate = 1;
-                break;
-        }
-        mp.trigger("cameraMechanical", id, val);
-    });
+// let currentRangeRotate = 0;
+// $(function() {
+//     $('.rotate input[type="range"]').on('input change', function(e) {
+//         let id = e.target.id,
+//             val = e.target.value;
+//         $(e).val(val).change();
+//         switch (id) {
+//             case 'cameraHeight':
+//                 currentRangeRotate = 0;
+//                 break;
+//             case 'cameraRotate':
+//                 currentRangeRotate = 1;
+//                 break;
+//         }
+//         mp.trigger("cameraMechanical", id, val);
+//     });
     
-    $('input[type=range]').rangeslider({
-      polyfill: false,
-      change: function(e) {
-          console.log(e)
-      }
-    });
-});
+//     $('input[type=range]').rangeslider({
+//       polyfill: false,
+//       change: function(e) {
+//           console.log(e)
+//       }
+//     });
+// });
 $('#resetCamera').on('click',function(){
-    let fillWidth = $('.rotate .rangeslider--horizontal').css('width');
-    $('.rotate .rangeslider__fill').css('width', `${parseInt(fillWidth)/2}px`);
-    $('.rotate .rangeslider__handle').css('left', `${(parseInt(fillWidth)/2)-6}px`);
-    mp.trigger("resetCamera");
+    // let fillWidth = $('.rotate .rangeslider--horizontal').css('width');
+    // $('.rotate .rangeslider__fill').css('width', `${parseInt(fillWidth)/2}px`);
+    // $('.rotate .rangeslider__handle').css('left', `${(parseInt(fillWidth)/2)-6}px`);
+    mp.trigger("mechanicalLookCar");
 });
