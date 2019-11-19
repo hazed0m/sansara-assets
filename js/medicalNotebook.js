@@ -64,7 +64,7 @@ function refreshFrames()
     $('#employee-frame')[0].contentWindow.postMessage(currentElement, "*");
 }
 let employeeOnline = JSON.stringify([
-    {"FullName": 'Ruslan',"Online":true},
+    {"FullName":'Дмитрий Иванов',"Online":true},
     {"FullName":'Adsad',"Online":false}
 ]);
 function pushNotebook(employeeOnline,admin = false)
@@ -75,6 +75,17 @@ function pushNotebook(employeeOnline,admin = false)
     } 
     if(typeof admin != undefined)
     {
+        $('.container .main-wrapper .recruting-menu').fadeIn();
+        $('.container .main-wrapper .recruting-menu input').keyup(function(){
+            if($(this).val().length > 0)
+            {
+                $(this).next().removeClass('disabled');
+            }
+            else
+            {
+                $(this).next().addClass('disabled');
+            }
+        });
         let adminStatus = { Admin: admin };
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");

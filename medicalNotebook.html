@@ -18,24 +18,19 @@
                     <img src="img/logo-sansara.png" alt="sansara">
                 </div> 
             </div>
-            <div class="business-wrapper" id="medical">
-                <div class="mask"></div>
-                <div class="search-block">
-                    <input type="text" placeholder="Введите Имя/Номер">
-                    <div class="button" id="searchStory">Поиск</div>
-                    <div class="text-info">
-                        <p>*Имя должно быть введено полностью</p>
-                        <p>*Номер должен состоять из 6 символов</p>
+            <div class="main-wrapper active">
+                <div class="recruting-menu">
+                    <div class="recruting-title">
+                        Принять на службу
                     </div>
-                </div>
-                <div class="content-block animated">
-
+                    <input type="text" placeholder="Введите Фамилию и Имя новобранца">
+                    <div class="button disabled" id="hireNewbie">Нанять</div>
                 </div>
             </div>
             <div class="morgue-wrapper">
                 <iframe id="morgue-frame" src="http://server.sansararp.com/mc/morgue" frameborder="0" width="100%" height="100%"></iframe>
             </div>
-            <div class="employee-wrapper active">
+            <div class="employee-wrapper">
                 <iframe id="employee-frame" src="http://server.sansararp.com/mc/employee" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="handbook-wrapper">
@@ -45,8 +40,8 @@
                 <iframe id="charter-frame" src="http://server.sansararp.com/mc/charter" frameborder="0" width="100%" height="100%"></iframe>
             </div>
             <div class="police-menu">
-                <div class="menu-item active" id="employee-wrapper">Список сотрудников</div>
-                <div class="menu-item" id="business-wrapper">История болезней</div>
+                <div class="menu-item active" id="main-wrapper">Главная</div>
+                <div class="menu-item" id="employee-wrapper">Список сотрудников</div>
                 <div class="menu-item" id="morgue-wrapper">Морг</div>
                 <div class="menu-item" id="handbook-wrapper">Cправочник</div>
                 <div class="menu-item" id="charter-wrapper">Устав</div>

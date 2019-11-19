@@ -211,7 +211,7 @@
 {
    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
-.container .business-wrapper,
+.container .main-wrapper,
 .container .carSearch-wrapper,
 .container .morgue-wrapper,
 .container .archive-wrapper,
@@ -230,9 +230,91 @@
     display:none;
     position: relative;
 }
-.container .employee-wrapper
+.container .main-wrapper
 {
     display: flex;
+}
+.container .main-wrapper .recruting-menu
+{
+    position: absolute;
+    top:35%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:400px;
+    /* height:200px; */
+    background:#fff;
+    border:1px solid #000;
+    padding:10px;
+    border-radius:5px;
+    display: none;
+}
+.container .main-wrapper .licence-menu
+{
+    position: absolute;
+    top:60%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:400px;
+    /* height:200px; */
+    background:#fff;
+    border:1px solid #000;
+    padding:10px;
+    border-radius:5px;
+    display: none;
+}
+.container .main-wrapper .recruting-menu .recruting-title,
+.container .main-wrapper .licence-menu .licence-title
+{
+    font-size:20px;
+    text-align: center;
+}
+.container .main-wrapper .licence-menu .show-wrapper
+{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.8);
+    color:#fff;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+}
+.container .main-wrapper .recruting-menu input,
+.container .main-wrapper .licence-menu input
+{
+    margin:15px 0;
+    font-size:18px;
+    width:100%;
+    text-align: center;
+    border:none;
+    border-bottom:2px solid #000;
+}
+.container .main-wrapper .button
+{
+    margin:10px auto 0 auto;
+    width:138px;
+    height:35px;
+    background:#ed145b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+    font-size:16px;
+    cursor: pointer;
+    border-radius:20px;
+    transition: 0.2s;
+}
+.container .main-wrapper .disabled
+{
+    opacity:0.7;
+}
+.container .main-wrapper .button:hover
+{
+    box-shadow:0 0 5px #0f1636;
 }
 .container .business-wrapper .search-block
 {
