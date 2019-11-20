@@ -13,7 +13,6 @@ let speedoWindow = null,
 	tickCount = 0,
 	spendingFuelPerTick = 0,
 	maxSpeed = 0;	
-	
 mp.events.add('getVehicleData', (maxfuel,currentfuel,enginehealth,bodyhealth,spending,number) =>
 {	
 	tickCount = 300000;	
