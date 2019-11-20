@@ -13,14 +13,7 @@ let speedoWindow = null,
 	tickCount = 0,
 	spendingFuelPerTick = 0,
 	maxSpeed = 0;	
-
-// mp.events.add('playerEnterVehicle', playerEnterVehicleHandler);
-// mp.events.add('playerLeaveVehicle', destroyWindow);
-// function playerEnterVehicleHandler(vehicleStatus, seatStatus)
-// {
-// 	seat = seatStatus;
-// 	mp.gui.chat.push(`seat = ${seat}`);
-// }
+	
 mp.events.add('getVehicleData', (maxfuel,currentfuel,enginehealth,bodyhealth,spending,number) =>
 {	
 	tickCount = 300000;	
