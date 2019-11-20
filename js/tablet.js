@@ -123,7 +123,7 @@ $('.ads-wrapper .add-popap #acceptAdd').on('click',function(){
 $('.ads-wrapper #closeAdd').on('click',function(){
 	console.log(11);
 });
-$('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork').on('click',function(){
+$('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork, .main-wrapper .customs').on('click',function(){
 	let currentClass = this.classList[0];
 	$('.main-wrapper').removeClass('active').fadeOut();
 	if(currentClass == 'cars')

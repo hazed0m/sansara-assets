@@ -134,7 +134,7 @@
     background:url(../img/tablet/wallpaper/wallpaper1.png) no-repeat;
     background-size: cover;
 }
-.main-wrapper, .settings-wrapper, .news-wrapper, .fancybox-container, .goverment-wrapper, .cars-wrapper, .ads-wrapper
+.main-wrapper, .customs-wrapper, .settings-wrapper, .news-wrapper, .fancybox-container, .goverment-wrapper, .cars-wrapper, .ads-wrapper
 {    	
     position: absolute;
     width:99%;
@@ -334,7 +334,7 @@
     text-shadow:0 0 5px #000;
     color:#fff;
 }
-.main-wrapper .settings, .main-wrapper .locker, .main-wrapper .goverment, .main-wrapper .news, .main-wrapper .cars, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork
+.main-wrapper .settings, .main-wrapper .customs, .main-wrapper .locker, .main-wrapper .goverment, .main-wrapper .news, .main-wrapper .cars, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork
 {
 	cursor: pointer;
 	transition: 0.2s;	
@@ -366,7 +366,7 @@
 {
     opacity:0.8;
 }
-.settings-wrapper, .news-wrapper, .goverment-wrapper, .cars-wrapper, .ads-wrapper
+.settings-wrapper, .customs-wrapper, .news-wrapper, .goverment-wrapper, .cars-wrapper, .ads-wrapper
 {
 	display:none;
 }
@@ -436,7 +436,7 @@
     cursor: pointer;
     font-size:13px;
 }
-.main-wrapper .news:hover, .main-wrapper .locker:hover,.main-wrapper .goverment:hover, .main-wrapper .cars:hover, .main-wrapper .settings:hover, .main-wrapper .adsbuy:hover, .main-wrapper .adssell:hover, .main-wrapper .adsgetworkers:hover, .main-wrapper .adssearchwork:hover
+.main-wrapper .news:hover, .main-wrapper .customs:hover, .main-wrapper .locker:hover,.main-wrapper .goverment:hover, .main-wrapper .cars:hover, .main-wrapper .settings:hover, .main-wrapper .adsbuy:hover, .main-wrapper .adssell:hover, .main-wrapper .adsgetworkers:hover, .main-wrapper .adssearchwork:hover
 {
 	border-radius: 50%;
 	box-shadow: 0 0 10px rgba(255,255,255,0.9);
@@ -497,6 +497,26 @@
     position: absolute;
     bottom:-20px;
     left:-6.5px;
+    font-size:11.43px;
+    text-shadow:0 0 5px #000;
+    color:#fff;
+}
+.main-wrapper .customs
+{
+	position:absolute;
+	right:3%;
+	bottom:68%;
+	width:55px;
+	height:55px;
+	background:url(../img/tablet/customs.png) no-repeat;
+	background-size:contain;
+}
+.main-wrapper .customs::after
+{
+    content:'Механики';
+    position: absolute;
+    bottom:-20px;
+    left:0px;
     font-size:11.43px;
     text-shadow:0 0 5px #000;
     color:#fff;
