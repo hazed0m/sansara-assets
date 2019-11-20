@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="fonts/font.css">
+	<link rel="stylesheet" href="css/carInventory.css">
+</head>
+<body>
+	<div class="inventory">		
+		<div class="left-inventory">			
+			<div class="close">Закрыть</div>
+			<div class="items">
+				<ul id="luggage"></ul>
+			</div>
+			<div class="weight">
+				<span class="current">0</span><span>/</span><span class="max">50</span>kg
+			</div>	
+		</div>
+		<div class="right-inventory">			
+			<div class="tabs-inventory">
+				<ul>
+					<li class="tabMenu active" filter="all">Всё</li>
+					<li class="tabMenu" filter="weapons">Оружие</li>
+					<li class="tabMenu" filter="clothes">Одежда</li>
+					<li class="tabMenu" filter="resources">Ресурсы</li>
+					<li class="tabMenu" filter="items">Предметы</li>
+				</ul>
+			</div>		
+			<div class="item-inventory">
+				<div class="items">
+					<ul id="inventory">
+						 
+					</ul>
+				</div>
+				<div class="weight">
+					<span class="current">0</span><span>/</span><span class="max">50</span>kg
+				</div>				
+			</div>
+			<hr color="#484c52">	
+		</div>
+	</div>
+	<div class="info-wrapper">
+		<div class="title"></div>
+	</div>
+	<div class="col-wrapper">
+		<div class="title">Введите количество: <span class="col-title">AK-47</span></div>
+		<div class="input-wrapper">
+			<div class="min">
+				<div class="min-title">MIN</div>
+				<div class="min-numb">1</div>
+			</div>
+			<input class="quantity" type="number" min="1" max="150" value="1">
+			<div class="max">
+				<div class="max-title">MAX</div>
+				<div class="max-numb">150</div>
+			</div>
+		</div>	
+		<div class="button-wrapper">
+			<div class="ok-button">Ок</div>
+			<div class="cancel-button">Отменить</div>
+		</div>
+	</div>
+</body>
+	<script src="js/jquery-3.3.1.min.js" ></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.mousewheel.min.js"></script>
+	<script src="js/jquery.scrollTo.min.js"></script>
+	<script src="js/ammoList.js"></script>
+	<script src="js/carInventory.js"></script>
+</html>

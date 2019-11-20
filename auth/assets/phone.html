@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>phone</title>
+	<link rel="stylesheet" href="fonts/font.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/phone.css">
+</head>
+<body>
+	<div class="debugger" style="background:#000;color:#fff;padding:20px;width:fit-content;">
+
+	</div>
+	<div class="container">	
+		<div class="mask">
+			<div class="img-block animated delay flipOutY">
+				<img src="img/logo-sansara.png" alt="sansara">
+			</div> 
+		</div>
+		<div class="main-wrapper active" style="background-image:url(img/wallpapers/w0.png)">
+			<div class="operator">YOTA</div>
+			<div class="network"></div>
+			<div class="wi-fi"></div>
+			<div class="battery"></div>
+			<div class="time-block">
+				<div class="time">
+					<span class="hours">20</span>
+					<span class="del">:</span>
+					<span class="minutes">35</span>
+				</div>
+				<div class="date">
+					<span class="day">Пятница</span>
+					<span class="numb-day">29</span>
+					<span class="month">Февраля</span>
+				</div>
+			</div>
+			<div class="balance-wrapper">
+				<span>Баланс: </span>
+				<div class="phoneBalance"></div>
+				<span>$</span>
+			</div>
+			<div class="settings"></div>
+			<div class="locker"><i class="fas fa-power-off"></i></div>
+			<div class="fast-block">
+				<div class="ambulance" data-number="ambulance" data-text="Скорую"></div>
+				<div class="police" data-number="police" data-text="Полицию"></div>
+				<div class="taxi" data-number="taxi" data-text="Такси"></div>
+				<div class="service" data-number="service" data-text="Эвакуатор"></div>
+			</div>
+			<div class="fast-message">
+				<div class="message-title">
+					Вызвать <span>Полицию</span>
+				</div>
+				<textarea id="fast-message"></textarea>
+				<div class="button-wrap">
+					<div class="button" id="fast-call">Отправить</div>
+					<div class="button" id="fast-cancel">Отмена</div>
+				</div>
+			</div>
+			<div class="getCar"></div>
+			<div class="bottom-block">
+				<div class="phone"></div>
+				<div class="phonebook"></div>
+				<div class="sms"></div>
+				<div class="geo"></div>
+			</div>
+		</div>
+		<div class="settings-wrapper">
+			<div class="ringtone">
+				
+			</div>	
+			<i class="fas fa-chevron-left"></i>
+			<i class="fas fa-chevron-right"></i>
+			<div class="apply-but">Применить</div>	
+		</div>
+		<div class="outCaller-wrapper">
+			<div class="wrapper">
+				<div class="caller-ico"></div>
+				<div class="title">Исходящий вызов</div>
+				<div class="number">655-342</div>
+				<div class="cancel"></div>
+			</div>
+		</div>
+		<div class="caller-wrapper">
+			<div class="wrapper">
+				<div class="caller-ico"></div>
+				<div class="title">Исходящий звонок</div>
+				<div class="number">655-342</div>
+				<div class="timer">
+					<span class="minutes">00</span>
+					<span class="del">:</span>
+					<span class="seconds">00</span>
+				</div>
+				<div class="cancel"></div>
+			</div>
+		</div>
+		<div class="incomingCall-wrapper">
+			<div class="wrapper">
+				<div class="caller-ico"></div>
+				<div class="title">Входящий вызов</div>
+				<div class="number"></div>
+				<div class="but-wrap">
+					<div class="allow"></div>	
+					<div class="cancel"></div>
+				</div>	
+			</div>	
+		</div>
+		<div class="dialing-wrapper">
+			<div class="history-wrapper">
+			</div>
+			<div class="wrapper">
+				<div class="this-block"></div>
+				<div class="number-wrap">
+					<div class="number">1</div>
+					<div class="number">2</div>
+					<div class="number">3</div>
+				</div>
+				<div class="number-wrap">
+					<div class="number">4</div>
+					<div class="number">5</div>
+					<div class="number">6</div>
+				</div>	
+				<div class="number-wrap">
+					<div class="number">7</div>
+					<div class="number">8</div>
+					<div class="number">9</div>
+				</div>	
+				<div class="number-wrap">
+					<div class="call"></div>
+					<div class="number">0</div>
+					<div class="cross">X</div>
+				</div>	
+			</div>			
+		</div>
+		<div class="contacts-wrapper">
+			<div class="current-wrapper">
+				<div class="nothing-used active">	
+					Нажмите на контакт для отображения
+				</div>
+				<div class="contact-added">	
+					Контакт успешно добавлен
+				</div>
+				<div class="create-contact">
+					<div class="delete"><span>x</span></div>	
+					<input type="text" id="name" placeholder="Имя">
+					<input type="number" id="number" oninput="maxLengthCheck(this)" placeholder="Номер" min="0" max="999999" maxlength="6">
+					<div class="save-contact" id="save-but">Добавить</div>
+					<div class="inform-block">Такое имя существует</div>
+				</div>
+				<div class="selected-contact">
+					<div class="delete"><span>x</span></div>	
+					<div class="name"></div>
+					<div class="number-wrapper">
+						<span class="number"></span>
+						<span class="title">Номер</span>
+					</div>
+					<div class="change-but"></div>
+					<div class="trash-but"></div>
+					<div class="confirm-block">
+						<div class="title">Вы уверены?</div>
+						<div class="but-wrapper">
+							<div class="confirmTrash">Да</div>
+							<div class="cancelTrash">Нет</div>
+						</div>
+					</div>
+				</div>
+				<div class="change-contact">
+					<div class="delete"><span>x</span></div>	
+					<input type="text" id="name" placeholder="Имя">
+					<input type="number" id="number" oninput="maxLengthCheck(this)" placeholder="Номер" min="0" max="999999" maxlength="6">
+					<div class="save-contact" id="change-but">Изменить</div>
+					<div class="inform-block">Такое имя существует</div>
+				</div>
+			</div>
+			<div class="wrapper"></div>
+			<div class="add-contact">+</div>
+		</div>
+		<div class="messages-wrapper">
+			<div class="title">
+				Сообщения
+			</div>
+			<div class="wrapper"></div>
+		</div>
+		<div class="messages-inner">
+			<div class="title-wrap">
+				<div class="back-but">Назад</div>
+				<div class="title">
+					Даня механик
+				</div>
+			</div>
+			<div class="wrapper">				
+			</div>
+			<div class="bottom-window">
+				<input type="text" placeholder="Сообщение..">
+				<span class="sender"></span>
+				<div class="smiles-wrap">
+					<div class="smile" id="s1"></div>
+					<div class="smile" id="s2"></div>
+					<div class="smile" id="s3"></div>
+					<div class="smile" id="s4"></div>
+					<div class="smile" id="s5"></div>
+					<i class="fas fa-ellipsis-v"></i>
+				</div>
+				<div class="big-smiles-wrap">
+					<div class="close"><i class="fas fa-times"></i></div>
+					<div class="smile" id="s1"></div>
+					<div class="smile" id="s2"></div>
+					<div class="smile" id="s3"></div>
+					<div class="smile" id="s4"></div>
+					<div class="smile" id="s5"></div>
+					<div class="smile" id="s6"></div>
+					<div class="smile" id="s7"></div>
+					<div class="smile" id="s8"></div>
+					<div class="smile" id="s9"></div>
+					<div class="smile" id="s10"></div>
+					<div class="smile" id="s11"></div>
+					<div class="smile" id="s12"></div>
+					<div class="smile" id="s13"></div>
+					<div class="smile" id="s14"></div>
+					<div class="smile" id="s15"></div>
+					<div class="smile" id="s16"></div>
+					<div class="smile" id="s17"></div>
+					<div class="smile" id="s18"></div>
+					<div class="smile" id="s19"></div>
+					<div class="smile" id="s20"></div>
+					<div class="smile" id="s21"></div>
+				</div>
+			</div>
+		</div>
+		<div class="geo-wrapper">
+			<div class="current-wrapper">
+				<div class="nothing-used active">	
+					Выберите контакт для отправки геопозиции
+				</div>
+				<div class="geo-added">	
+					Геопозиция успешно отправлена
+				</div>
+			</div>
+			<div class="wrapper">	
+			</div>
+		</div>
+		<div class="getCar-wrapper">
+			<div class="current-wrapper">
+				<div class="nothing-used active">	
+					Выберите машину для отправки геопозиции или для выгона с парковки
+				</div>
+				<div class="geo-added">	
+					Геопозиция успешно отправлена
+				</div>
+			</div>
+			<div class="wrapper">	
+			</div>
+		</div>
+		<div class="home-but">
+			<div class="home"></div>
+		</div>
+		<audio id="incomingAudio" src="audio/incoming.ogg" type="audio/ogg"></audio>
+		<audio id="dialingAudio" src="audio/dialing.ogg" type="audio/ogg"></audio>
+		<audio id="messageAudio" src="audio/message.ogg" type="audio/ogg"></audio>
+	</div>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/transportList.js"></script>
+	<script src="js/phone.js"></script>
+</body>
+</html>

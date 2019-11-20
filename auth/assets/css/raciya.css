@@ -1,0 +1,286 @@
+@font-face {
+	font-family: 'HelveticaNeueCyr';
+	src: url('../fonts/HelveticaNeueCyr-Medium.eot');
+	src: local('HelveticaNeueCyr-Medium'),
+		url('../fonts/HelveticaNeueCyr-Medium.eot?#iefix') format('embedded-opentype')
+	font-weight: 500;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'HelveticaNeueCyr';
+	src: url('../fonts/HelveticaNeueCyr-Bold.eot');
+	src: local('HelveticaNeueCyr-Bold'),
+		url('../fonts/HelveticaNeueCyr-Bold.eot?#iefix') format('embedded-opentype')
+	font-weight: bold;
+	font-style: normal;
+}
+.container
+{
+	position:absolute;
+	top:60%;
+	transform: translate(0,-50%);
+	right:15px;
+	width:157px;
+	height:339px;
+	background: url(../img/raciya/raciya-back.png) no-repeat;
+	background-size:cover;
+}
+.wrapper 
+{
+	position: absolute;
+	top:17.4%;
+	left:8%;
+	width:125px;
+	height:183px;
+	border:3px solid #1a1a1a;
+	border-radius:5px;
+}
+.wrapper .lcd
+{
+	margin:8px auto 0 auto;
+	width:104px;
+	height:76px;
+	background:#fdff5e;
+	box-shadow: 0 0 10px #fdff5e;
+	border-radius:5px;
+	border-top:1px solid #7a7b2d;
+	border-left:1px solid #7a7b2d;
+	position: relative;
+}
+.wrapper .lcd .wi-fi
+{
+	position: absolute;
+	top:5px;
+	left:5px;
+	width:15px;
+	height:15px;
+	background: url(../img/raciya/wi-fi.png) no-repeat;
+}
+.wrapper .lcd .headphone
+{
+	position: absolute;
+	top:5px;
+	left:25px;
+	width:12px;
+	height:12px;
+	background: url(../img/raciya/headphone.png) no-repeat;
+}
+.wrapper .lcd-wrapper
+{
+	padding:0 2px;
+	width: 100%;
+	height: 100%;
+	display:flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.lcd-wrapper .channel-name
+{
+	padding-top:10px;
+	font-size:13px;
+	font-family: 'HelveticaNeueCyr';
+}
+.lcd-wrapper .channel-numb
+{
+	text-align: center;
+	padding-top:10px;
+	width:50%;
+	font-size:46px;
+	font-family: 'HelveticaNeueCyr';
+}
+.volume-wrap .dynamic
+{
+	margin-left:3px;
+	width:17px;
+	height:17px;
+	background-size: cover;
+	background: url(../img/raciya/dynamic.png) no-repeat;
+}
+.volume-wrap
+{
+	padding-right:4px; 
+	box-sizing: border-box;
+}
+.volume-block .volume-item
+{
+	width:19px;
+	height:4px;
+	background: rgba(0,0,0,0.5);
+	margin-top:1px;
+}
+.volume-block .volume-item.active
+{
+	background: rgba(0,0,0,1);
+}
+.button-block
+{
+	margin-top:10px;
+	padding:0 2px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.button-block .big-button
+{
+	width:40px;
+	height:80px;
+	border:2px solid rgba(0,0,0,1);
+	border-radius: 5px;
+	box-sizing: border-box;
+	background:#383838;
+}
+.big-button .volume
+{
+	width:100%;
+	height:50%;
+	cursor: pointer;
+}
+.button-block .little-button
+{
+	width:36px;
+	height:34px;
+	border:2px solid rgba(0,0,0,1);
+	border-radius: 5px;
+	box-sizing: border-box;
+	background:#383838;
+	cursor: pointer;
+}
+.button-wrap .little-button:last-child
+{
+	margin-top:6px;
+}
+.button-wrap .headphone-big
+{
+	background:url(../img/raciya/headphone-big.png) no-repeat;
+	background-size:65%;
+	background-position: center;
+}
+.button-wrap .exit
+{
+	background:url(../img/raciya/exit.png) no-repeat;
+	background-size:60%;
+	background-position: center;
+}
+.button-wrap .arrow-up
+{
+	background:url(../img/raciya/arrow-up.png) no-repeat;
+	background-size:50%;
+	background-position: center;
+}
+.button-wrap .arrow-down
+{
+	background:url(../img/raciya/arrow-down.png) no-repeat;
+	background-size:50%;
+	background-position: center;
+}
+.big-button .up
+{
+	background:url(../img/raciya/volume-up.png) no-repeat;
+	background-size:50%;
+	background-position: center;
+}
+.big-button .down
+{
+	padding-left:5px;
+	background:url(../img/raciya/volume-down.png) no-repeat;
+	background-size:55%;
+	background-position: center;
+}
+/*@media(max-width:1920px) and (max-height:1080px), (max-width:1920px) and (max-height:1200px)
+{
+	.container
+	{
+		transform: scale(0.8);
+	}
+	.container
+	{
+	    bottom: -1.5%;
+   		right: 0%;
+	}
+}
+@media(max-width:1366px) and (max-height:768px), (max-width:1280px) and (max-height:768px), (max-width:1280px) and (max-height:720px)
+{
+	.container
+	{
+		transform: scale(0.7);
+	}
+	.container
+	{
+        bottom: -5%;
+	    right: -1%;
+	}
+}
+@media(max-width:1024px) and (max-height:768px), (max-width:800px) and (max-height:600px)
+{
+	.container
+	{
+		transform: scale(0.6);
+	}
+	.container
+	{
+	    bottom: -2.5%;
+   		right: -3.5%;
+	}
+}*/
+@media (max-width:3840px) and (max-height:2160px)
+{
+	.container
+	{
+		top:91.5%;
+	}
+}
+@media (max-width:3440px) and (max-height:1440px)
+{
+	.container
+	{
+		top:87%;
+	}
+}
+@media (max-width:2560px) and (max-height:1600px)
+{
+	.container
+	{
+		top:87%;
+	}
+}
+@media (max-width:1920px) and (max-height:1200px), (max-width:1920px) and (max-height:1080px)
+{
+	.container
+	{
+		top:87.5%;
+		transform:scale(0.7) translate(0,-70%);
+		right:-15px;
+	}
+}
+@media (max-width:1600px) and (max-height:1050px), (max-width:1440px) and (max-height:1050px)
+{
+	.container
+	{
+		top:87%;
+	}
+}
+@media (max-width:1600px) and (max-height:900px), (max-width:1440px) and (max-height:900px)
+{
+	.container
+	{
+		transform:scale(0.65) translate(0,-75%);
+		top:86.5%;
+		right:-20px;
+	}
+}
+@media (max-width:1280px) and (max-height:800px), (max-width:1024px) and (max-height:768px), (max-width:800px) and (max-height:600px),(max-width:1366px) and (max-height:768px), (max-width:1280px) and (max-height:768px), (max-width:1280px) and (max-height:720px)
+{
+	.container
+	{
+		top:86%;
+		transform:scale(0.6) translate(0,-85%);
+		right:-25px;
+	}
+}
+@media (max-width:1280px) and (max-height:720px)
+{
+	.container
+	{
+		top:85%;
+	}	
+}

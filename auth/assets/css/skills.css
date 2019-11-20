@@ -1,0 +1,191 @@
+.skills-wrap
+{
+	width:98%;
+	height:auto;
+	border-radius: 5px;
+	background:#36393f;
+	padding:0 12px;
+	box-sizing: border-box;
+	font-family: 'HelveticaNeueCyr';
+	color:#ffffff;
+}
+.wrapper .block-wrap
+{
+	width:243px;
+	height:88px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	background:#484c52;
+	margin:0 auto;
+	margin-bottom:8px;
+	padding:13px 10px 12px 17px;
+	display: flex;
+	justify-content:flex-start;
+	align-items: center;
+}
+.wrapper .block-wrap:last-child
+{
+	margin:0 auto;
+}
+.block-wrap .level-wrap .level-logo
+{
+	width:40px;
+	height:40px;
+	background:url(../img/back-level.png) no-repeat;
+	background-size:cover;
+	position: relative;
+}
+.block-wrap .level-wrap
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	font-size:13.19px;
+	font-weight: bold;
+}
+.block-wrap .level-wrap .level
+{
+	margin-top:7px;
+}
+#instrumets
+{
+	height:98px;
+}
+.block-wrap .title-wrap
+{
+	margin-left:34px;
+	display: flex;
+	flex-direction: column;
+}
+.block-wrap .line-wrap
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+.block-wrap .line-wrap .line-back
+{
+	width:140px;
+	background:#848484;
+	height:10px;
+	border-radius:15px;
+	position: relative;
+}
+.block-wrap .line-wrap .line-back .line-thumb
+{
+	position: absolute;
+	top:0;
+	left:0;
+	width:50%;
+	height:100%;
+	background:#f4e331;
+	border-radius:15px;
+}
+.block-wrap .title-wrap .title
+{
+	margin-right:auto;
+	font-size:18.69px;
+	position: relative;
+	font-weight: 500;
+}
+.block-wrap .title-wrap .title-add
+{
+	font-weight: 500;
+}
+.block-wrap .title-wrap .title:before
+{
+	position: absolute;
+	bottom:18%;
+	left:-14px;
+	content: '';
+	background: url(../img/beforetitle.png) no-repeat;
+	background-size: contain;
+	width:12px;
+	height:12px;
+}
+.block-wrap:nth-child(1) .level-wrap .level-logo:after
+{
+	content:'';
+	position: absolute;
+	width:49px;
+	height:49px;
+	background:url(../img/level1.png) no-repeat;
+	background-size:contain;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+.block-wrap:nth-child(2) .level-wrap .level-logo:after
+{
+	content:'';
+	position: absolute;
+	width:49px;
+	height:59px;
+	background:url(../img/level2.png) no-repeat;
+	background-size:contain;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+.block-wrap:nth-child(3) .level-wrap .level-logo:after
+{
+	content:'';
+	position: absolute;
+	width:50px;
+	height:52px;
+	background:url(../img/level3.png) no-repeat;
+	background-size:contain;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+.block-wrap:nth-child(4) .level-wrap .level-logo:after
+{
+	content:'';
+	position: absolute;
+	width:53px;
+	height:53px;
+	background:url(../img/level4.png) no-repeat;
+	background-size:contain;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+.block-wrap:nth-child(5) .level-wrap .level-logo:after
+{
+	content:'';
+	position: absolute;
+	width:55px;
+	height:55px;
+	background:url(../img/level5.png) no-repeat;
+	background-size:contain;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+.block-wrap:nth-child(6) .level-wrap .level-logo:after
+{
+	content:'';
+	position: absolute;
+	width:32px;
+	height:55px;
+	background:url(../img/level6.png) no-repeat;
+	background-size:cover;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+.block-wrap .title-wrap
+{
+	font-weight: 500;
+}
+.block-wrap .title-wrap .line-numb
+{
+	margin-bottom:5px;
+}
+.block-wrap .title-wrap .line-ed
+{
+	margin-top:4px;
+}

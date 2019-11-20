@@ -1,0 +1,219 @@
+*
+{
+    font-family: 'Montserrat';
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    color:#fff;
+}
+.container
+{
+    width:707px;
+    /* height:418px; */
+    background:#363940;
+    border-radius: 10px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.container .wrapper .title
+{
+    padding: 22px 0 18px 25px;
+}
+.container .garage-wrapper
+{
+    display: flex;
+    flex-wrap:wrap;
+    padding-bottom: 35px;
+    max-height: 492px;
+    overflow-y: scroll;
+}
+.container .garage-item 
+{
+    transition:0.2s;
+    position: relative;
+}
+.container .characters
+{
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:20px 20px 50px 20px;
+    transition:0.2s;
+}
+.container .characters .char-wrapper
+{
+    display: flex;
+    justify-content: space-between;
+    width:100%;
+    margin:10px 0;
+}
+.container .garage-item:hover .characters
+{
+    display: flex;
+}
+.container .garage-item.closed
+{
+    cursor: default;
+}
+.container .garage-item.closed .img-block:after
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:82.5%;
+    background:rgba(52,64,84,.80);
+    cursor: pointer;
+    text-align: center;
+}
+.container .sheriff.closed#SheriffSUV .img-block:after
+{
+    content:'Доступно Помощнику Шерифа 1-го ранга';
+}
+.container .detective.closed#Scout .img-block:after
+{
+    content:'Доступно Главе Детективов';
+}
+.container .detective.closed#Declasse .img-block:after,
+.container .detective.closed#PrisonBus .img-block:after
+{
+    content:'Доступно Детективу 1-го ранга';
+}
+.container .detective.closed#Bravado .img-block:after
+{
+    content:'Доступно Детективу 2-го ранга';
+}
+.container .police#PoliceBike .img-block:after,
+.container .police#Buffalo .img-block:after
+{
+    content:'Доступно Офицеру 2-го ранга';
+}
+.container .police#Interceptor .img-block:after
+{
+    content:'Доступно Офицеру 1-го ранга';
+}
+.container .police#PrisonBus .img-block:after,
+.container .police#Transporter .img-block:after,
+.container .police#ChevalFugitive .img-block:after
+{
+    content:'Доступно Сержанту 3-го ранга';
+}
+.container .police#CruiserUtility .img-block:after,
+.container .police#GS350 .img-block:after,
+.container .police#CaymanS .img-block:after
+{
+    content:'Доступно Лейтенанту 3-го ранга';
+}
+.container .garage-item.active .img-block:after
+{
+    content:'Выбрано';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:82.5%;
+    background:rgba(0,0,0,.7);
+    text-align:center;
+}
+.container .garage-item .img-block
+{
+    width:234px;
+    height:135px;
+    cursor: pointer;
+    overflow: hidden;
+    background-size: cover;
+}
+.container .garage-item .img-block img
+{
+    width:100%;
+    height:100%;
+    transition:0.2s;
+}
+.container .wrapper
+{
+    width:100%;
+    height:100%;
+    position: relative;
+    padding-bottom: 35px;
+}
+.container .garage-item .garage-name
+{
+    /* width:170px; */
+    height:29px;
+    background:#1c222d;
+    font-size:19px;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    padding:3px 0 0 10px; 
+}
+.container .button-block
+{
+    position: absolute;
+    bottom:-16px;
+    left:50%;
+    transform: translate(-50%,0%);
+    display: flex;
+}
+.container .button-block .button
+{
+    margin:0 10px;
+    font-family: 'Montserrat';
+    font-size:11px;
+    color:#fff;
+    box-shadow:0 0 5px rgba(0,0,0,0.5);
+    width:121px;
+    height:34px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition:0.2s;
+}
+.container .button-block .button.disabled
+{
+    opacity:0.7;
+}
+.button-block .button:hover,
+.container .garage-item .img-block img:hover
+{
+    /* box-shadow: inset 0 0 5px rgba(255,255,255, 0.5); */
+    transform: scale(1.1);
+}
+.button#use
+{
+    background-color: #344054;
+}
+.button#close
+{
+    background-color: #4a4d53;
+}
+.container .garage-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+ 
+.container .garage-wrapper::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+}
+ 
+.container .garage-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgb(218, 218, 218);
+  outline: 1px solid #000;
+}

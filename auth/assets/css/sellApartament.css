@@ -1,0 +1,149 @@
+* {
+	font-family: "HelveticaNeueCyr";
+	padding:0;
+	margin:0;
+	color:#fff;
+}
+.container
+{
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	width:368px;
+	border-radius:25px;
+	background: #36393f;
+	padding:10px 10px 14px 10px;
+	box-sizing: border-box;
+}
+.container .title-block, .container .price-block	
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color:#fff;	
+	font-weight: bold;
+}
+.container .title-block div	
+{
+	font-size:17.44px;
+	margin-right:5px;
+}
+.container .title-block span
+{
+	font-size:17.44px;
+}
+.container .price-block	span
+{
+	font-size:18.97px;
+	color:#38ec00;
+}
+.container .price-block	div
+{
+	font-size:13.39px;
+	margin-right:5px;
+	margin-top:5px;
+}
+.container .bottom-wrap
+{
+	margin-top:5px;
+	display: flex;
+	justify-content: space-around;
+	box-sizing: border-box; 
+}
+.bottom-wrap .btn:hover, .button:hover, .radio-block div:hover
+{
+	transform: scale(1.05);
+}
+.bottom-wrap .left-wrap
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding-left:2px;
+	height: 100%;
+	width:50%;
+	align-items: center;
+}
+.bottom-wrap .button
+{
+	margin-top:10px;
+	width:165px;
+	height:42px;
+	background: #ffff00;
+	box-shadow: 0 0 10px #fbe401;
+	color:#435462;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size:15.36px;
+	border-radius: 3px;
+	cursor: pointer;
+	font-weight:500;
+}
+.button .trigger
+{
+	margin-right: 4px;
+}
+.bottom-wrap .right-wrap
+{
+	display:flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	align-items: center;
+	width:50%;
+}
+.bottom-wrap .left-wrap .button, .bottom-wrap .right-wrap #giveKey, .bottom-wrap .right-wrap #openStorage
+{
+	background:#484c52;
+	color:#fff;
+	box-shadow:none;
+}
+.sell-block
+{
+	margin-top:15px;
+	display: flex;
+	justify-content:space-around;
+	align-items: center;
+}
+.sell-block .button
+{
+	width:93px;
+	height:23px;
+	background:#484c52;
+	color:#fff;
+	font-size:11px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+.sell-block .sell-info
+{
+	font-size:11.88px;
+}
+.sell-block .sell-info span
+{
+	color:#ff1919;
+}
+@media(max-width:1920px) and (max-height:1080px), (max-width:1920px) and (max-height:1200px)
+{
+	.container
+	{
+		transform: scale(0.8) translate(-60%,-60%);
+	}
+}
+@media(max-width:1366px) and (max-height:768px), (max-width:1280px) and (max-height:768px), (max-width:1280px) and (max-height:720px)
+{
+	.container
+	{
+		transform: scale(0.7) translate(-70%,-70%);
+	}
+}
+@media(max-width:1024px) and (max-height:768px), (max-width:800px) and (max-height:600px)
+{
+	.container
+	{
+		transform: scale(0.6) translate(-83%,-83%);
+	}
+}

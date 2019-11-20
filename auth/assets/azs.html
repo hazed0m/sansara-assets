@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>azs</title>
+	<link rel="stylesheet" href="css/slider.css?124">
+	<link rel="stylesheet" href="fonts/font.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+	<link rel="stylesheet" href="css/azs.css">
+</head>
+<body>
+	<div class="container">
+		<div class="close-but">Закрыть</div>
+		<div class="wrapper">
+			<div class="title-block">
+				<div>АЗС</div> 
+				<span>№</span>
+				<span class="title-numb"></span>
+			</div>
+			<div class="selector-wrap">
+
+			</div>
+		</div>
+		<input type="range" class="slick appearanceOpacity" value="0" min="0" max="100" step="1" id="col">
+		
+		<div class="bottom-wrap">
+			<div class="left-wrap">
+				<div class="radio-block">
+					<div class="card">
+						<img src="img/shop/card.png" alt="card">
+						<i class="far fa-circle"></i>
+					</div>
+					<div class="cash active">
+						<img src="img/shop/cash.png" alt="card">
+						<i class="fas fa-circle"></i>
+					</div>						
+				</div>
+				<div class="button" id="buy">Оплатить</div>
+			</div>
+			<div class="right-wrap">
+				<div class="currentGas"><span class="gas">0</span>л</div>
+				<div class="price-block"><span class="price">0</span>$</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/slider.min.js"></script>
+	<script src="js/azs.js"></script>
+</body>
+</html>

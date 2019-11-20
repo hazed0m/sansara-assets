@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="css/menu.css?34">
+        <link rel="stylesheet" href="fonts/font.css">
+        <link rel="stylesheet" href="css/skills.css">
+        <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+        <div class="menu-wrap hide" id="buttons">
+            <div class="menu-content">
+                <div class="menu-title">Меню игрока</div>
+            </div>
+            <div class="categorie-wrap" v-for="option in options" >
+                <div class="categorie-title" @click="switching(option.value)" :data-id="option.value">{{ option.text }}</div>
+            </div>
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">
+                <div class="categorie-wrap" v-show="admin === 1 || admin === 2 || admin === 3">
+                    <div class="categorie-title">Панель Куратора</div>
+                </div>
+            </transition> 
+            <transition name="custom-classes-transition"
+                enter-active-class="animated fadeIn"
+                leave-active-class="animated fadeOut">    
+                <div class="categorie-wrap" v-show="admin === 2 || admin === 3">
+                    <div class="categorie-title">Панель Админа</div>
+                </div>
+            </transition> 
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">
+                <div class="categorie-wrap" v-show="admin === 3">
+                    <div class="categorie-title">Панель Разработчика</div>
+                </div>
+            </transition>     
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">
+                <div class="passport-wrap" v-show="passShow === true">
+                        <div class="pass-content">
+                             <div class="column-wrap">
+                                <div class="user-wrapper">
+                                    <div class="name-wrap">
+                                        <div class="name">{{ pass.name }}</div>
+                                        <div class="name-sub">Имя / Фамилия</div>
+                                    </div>
+                                    <div class="pass-age">Возраст: <span>{{ pass.age }}</span></div>
+                                    <div class="pass-phone">Номер телефона: <span>{{ pass.number }}</span></div>                                    
+                                </div>  
+                                <div class="char-wrapper mgt30">
+                                    <div class="pass-carlic">Лицензии на вождение - <span>{{ pass.carlic }}</span></div>
+                                    <div class="pass-lic">Лицензии - <span>{{ pass.lic }}</span></div>
+                                    <!-- <div class="pass-carnum mgt30">Номер авто: <span>{{ pass.carnumb }}</span></div>                                     -->
+                                    <div class="pass-live mgt30">Место жительства: <span>{{ pass.housenumb }}</span></div>
+                                    <div class="pass-rank">Должность: <span>{{ pass.rank }}</span></div>
+                                </div>    
+                                <div class="pass-number">№ <span>{{ pass.id }}</span></div>
+                                <div class="pass-autograph">Подпись: <span class="autograph"> {{ pass.signature }}</span></div>
+                             </div>
+                        </div>
+                </div>
+            </transition> 
+            <vue-slide-up-down :active="skillsShow" :duration="1000">
+                <div class="skills-wrap" v-show="skillsShow === true">
+                    <div class="wrapper">
+                        <div class="block-wrap" id="strength">
+                            <div class="level-wrap">
+                                <div class="level-logo"></div>
+                                <div class="level">Ур. <span class="level-numb">15</span></div>
+                            </div>
+                            <div class="title-wrap">
+                                <div class="title">Сила</div>
+                                <div class="line-wrap">
+                                    <div class="line-numb"><span class="current">10</span>/<span class="max">12</span></div>
+                                    <div class="line-back"><div class="line-thumb"></div></div>
+                                    <div class="line-ed">EXP</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-wrap" id="speed">
+                            <div class="level-wrap">
+                                <div class="level-logo"></div>
+                                <div class="level">Ур. <span class="level-numb">15</span></div>
+                            </div>
+                            <div class="title-wrap">
+                                <div class="title">Скорость</div>
+                                <div class="line-wrap">
+                                    <div class="line-numb"><span class="current">10</span>/<span class="max">12</span></div>
+                                    <div class="line-back"><div class="line-thumb"></div></div>
+                                    <div class="line-ed">EXP</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-wrap" id="sells">
+                            <div class="level-wrap">
+                                <div class="level-logo"></div>
+                                <div class="level">Ур. <span class="level-numb">15</span></div>
+                            </div>
+                            <div class="title-wrap">
+                                <div class="title">Торговля</div>
+                                <div class="line-wrap">
+                                    <div class="line-numb"><span class="current">10</span>/<span class="max">12</span></div>
+                                    <div class="line-back"><div class="line-thumb"></div></div>
+                                    <div class="line-ed">EXP</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-wrap" id="luck">
+                            <div class="level-wrap">
+                                <div class="level-logo"></div>
+                                <div class="level">Ур. <span class="level-numb">15</span></div>
+                            </div>
+                            <div class="title-wrap">
+                                <div class="title">Удача</div>
+                                <div class="line-wrap">
+                                    <div class="line-numb"><span class="current">10</span>/<span class="max">12</span></div>
+                                    <div class="line-back"><div class="line-thumb"></div></div>
+                                    <div class="line-ed">EXP</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-wrap" id="instrumets">
+                            <div class="level-wrap">
+                                <div class="level-logo"></div>
+                                <div class="level">Ур. <span class="level-numb">15</span></div>
+                            </div>
+                            <div class="title-wrap">
+                                <div class="title">Владение</div>
+                                <div class="title-add">Инструментами</div>
+                                <div class="line-wrap">
+                                    <div class="line-numb"><span class="current">10</span>/<span class="max">12</span></div>
+                                    <div class="line-back"><div class="line-thumb"></div></div>
+                                    <div class="line-ed">EXP</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="block-wrap" id="endurance">
+                            <div class="level-wrap">
+                                <div class="level-logo"></div>
+                                <div class="level">Ур. <span class="level-numb">15</span></div>
+                            </div>
+                            <div class="title-wrap">
+                                <div class="title">Выносливость</div>
+                                <div class="line-wrap">
+                                    <div class="line-numb"><span class="current">10</span>/<span class="max">12</span></div>
+                                    <div class="line-back"><div class="line-thumb"></div></div>
+                                    <div class="line-ed">EXP</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </vue-slide-up-down> 
+            <vue-slide-up-down :active="mapSettingsShow" :duration="1000">
+                <div class="mapSettings-wrap" style="order:1;" v-show="mapSettingsShow === true">
+                    <div class="setting-wrap">
+                        <div class="map-settings">
+                            <div class="gps-item">дома</div>
+                            <div class="gps-item">добыча</div>
+                            <div class="gps-item">переработка</div>
+                            <div class="gps-item">крафт</div>
+                            <div class="gps-item">бизнес</div>
+                            <div class="gps-item">инфраструктура</div>
+                        </div>
+                    </div>
+                    <button class="save" :class="saveButtonState ? 'saveText__active' : ''" @click="gpsFilter()" >Применить</button>
+                </div>
+            </vue-slide-up-down>        
+            <vue-slide-up-down :active="settingsShow" :duration="1000">
+                <div class="settings-wrap" style="order:1;" v-show="settingsShow === true">
+                    <div class="setting-wrap">
+                        <div class="setting-title">Автологин</div>
+                        <div class="setting-btn__wrap">
+                            <button class="setting-btn" :class="autoLogin === 1 ? activeClass : ''" @click="autoLoginF('on')">Вкл.</button>
+                            <button class="setting-btn" :class="autoLogin === 0 ? activeClass : ''" @click="autoLoginF('off')">Выкл.</button>
+                        </div>
+                    </div>
+                    <button class="save" :class="saveButtonState ? 'saveText__active' : ''" @click="save()" >Применить</button>
+                </div>
+            </vue-slide-up-down>      
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">    
+                <div class="report-wrap" v-show="reportShow === true">
+                    <div class="report-content">
+                        <div class="report-close" @click="reportShow = false;"></div>
+                        <div class="report-title">Введите текст жалобы/вопроса</div>
+                        <textarea  class="report-input" type="text" placeholder="Введите сообщение..." style="resize: none;padding:10px;">
+                        </textarea>
+                        <div class="report-subtitle">Внимание! За оффтоп либо дезинформацию, вы получите блокировку чата на определенный срок!</div>
+                        <button class="report-btn">Отправить</button>
+                    </div>
+                </div>
+            </transition>    
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">
+                <div class="animation-wrap" v-show="animateShow === true">
+                    <div class="animation-name" v-for="animation in animations" @click="animate(animation.dict, animation.name)">{{ animation.title }}</div>
+                </div>
+            </transition>      
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">
+                <div class="animation-wrap animation-2" v-show="animateSettingsShow === true">
+                    <div class="animation-name" v-for="(animation, index) in animations" @click="setFastAnim(index)">{{ animation.title }}</div>
+                </div>
+            </transition>     
+        </div>
+        <div id="animCircle">
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut" :duration="{ enter: 200, leave: 100 }">
+                <div class="settings-wrap animCircle" v-if="settingsAnimShow">
+                    <div class="setting-wrap" style="margin:0">
+                        <div class="setting-btn__wrap fast-wrap">
+                            <div class="setting-wrap cursor" v-for="(fastAnimLists, index) in fastAnimList" @click="showAnimSettingsMenu(fastAnimLists.id, index)">
+                                <div class="setting-text" :class="[fastAnimLists.active ? 'anim-text__active' : '']">Эмоции {{ index + 1 }}</div>
+                                <div class="anim-text" :class="[fastAnimLists.active ? 'anim-text__active' : '']" >{{ fastAnimLists.title }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </transition>    
+        </div>
+    </body> 
+    <script src="https://cdn.rawgit.com/vuejs/vue/v2.1.10/dist/vue.js"></script>
+    <script type="text/javascript" src="js/vue-slide-up-down.umd.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/skills.js"></script>
+    <script src="js/menu.js"></script>
+</html>

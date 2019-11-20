@@ -1,0 +1,67 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="css/roll.css">
+        <link rel="stylesheet" href="fonts/font.css">
+	</head>
+	<body>
+        <div id="animCircle">
+            <div class="animation-circle-wrap">
+                <div class="menu">
+                    <div class="center">
+                        <div class="imagesBlock">
+                            <img src="images/hud/roll.png" alt="">
+                        </div>
+                    </div>
+                    <ul>
+                        <li class="active">
+                            <div class="slot slot1" data-action="showPassport" style="margin-left:33px;margin-top:149px;padding:0;">показать </br>паспорт</div>
+                        </li>
+                        <li class="active">
+                            <div class="slot slot2" data-action="giveMoney" style="margin-left:124px;margin-top:109px;padding:0;">передать </br>деньги</div>
+                        </li>
+                        <li class="active">
+                            <div class="slot slot3" data-action="takePassport" style="margin-left:185px;margin-top:37px;padding:0;padding:0;">попросить </br>паспорт</div>
+                        </li>
+                        <li class="active">
+                            <div class="slot slot4" data-action="takeSearch" style="margin-left:179px;margin-top:8px;padding:0;">произвести </br>обыск</div>
+                        </li>                                              
+                        <li class="active">
+                            <div class="slot slot5" data-action="meet" style="margin-left:105px;margin-top:13px;padding:0;">познакомиться</div>
+                        </li> 
+                        <li class="active">
+                            <div class="slot slot6" data-action="takeHandcuff" style="margin-left:46px;margin-top:58px;padding:0;">надеть <br>снять <br>наручники</div>
+                        </li>                          
+                        <li class="active">
+                            <div class="slot slot7" data-action="giveHouseKeys" style="margin-left:3px;margin-top:94px;padding:0;">передать </br>ключи </br>от квартиры</div>
+                        </li>
+                        <li class="active">
+                            <div class="slot slot8" data-action="takeBag" style="margin-left:-3px;margin-top: 137px;padding:0;">надеть <br>снять <br>мешок</div>
+                        </li>                   
+                    </ul>
+                </div>          
+            </div>
+            <div class="col-wrapper">
+                <div class="title">Введите количество денег:</div>
+                <div class="input-wrapper">
+                    <div class="min">
+                        <div class="min-title">MIN</div>
+                        <div class="min-numb">1</div>
+                    </div>
+                    <input class="quantity" type="number" min="1" max="10000" value="1">
+                    <div class="max">
+                        <div class="max-title">MAX</div>
+                        <div class="max-numb">10000</div>
+                    </div>
+                </div>	
+                <div class="button-wrapper">
+                    <div class="ok-button">Ок</div>
+                    <div class="cancel-button">Отменить</div>
+                </div>
+            </div>
+        </div>
+    </body> 
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/funcCircle.js"></script>
+</html>

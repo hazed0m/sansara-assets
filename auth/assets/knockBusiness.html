@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>knockBusiness</title>	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">	
+	<link rel="stylesheet" href="fonts/font.css">
+	<link rel="stylesheet" href="css/knockBusiness.css">
+</head>
+<body>
+	<div class="container">
+		<div class="close-but">Закрыть</div>
+		<div class="wrapper">
+			<div class="title"></div>
+			<div class="input-wrapper">
+	          <div class="min">
+	            <div class="min-title">MIN</div>
+	            <div class="min-numb">1</div>
+	          </div>
+	          <input class="quantity" type="number" min="1" max="15" value="1">
+	          <div class="max">
+	            <div class="max-title">MAX</div>
+	            <div class="max-numb">15</div>
+	          </div>
+	        </div>
+		</div>
+		<div class="bottom-wrap">
+			<div class="button" id="buy">Отмыть</div>
+			<div class="notification">20% Ваших средств уйдут на взятки.</div>
+			<div class="current-holder">
+				<span>Владелец:</span>
+				<span class="holder"></span>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/knockBusiness.js"></script>
+</body>
+</html>

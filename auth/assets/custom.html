@@ -1,0 +1,481 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <link rel="stylesheet" href="css/custom.css?12">
+        <link rel="stylesheet" href="css/slider.css?124">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+        <link rel="stylesheet" href="fonts/font.css">
+	</head>
+	<body>
+        <div class="custom-popup">
+            <div class="tip-wrap">
+                <div class="tip-content">
+                    <div class="tip-title">Подсказка</div>
+                    <div class="tip"><span class="yellow">Имя</span> и <span class="yellow">Фамилия</span> должны быть в РП формате<br><br>Правильно: Дональд Трамп <br> Неправильно: Бомж Валера</div>
+                </div>
+            </div>
+            <div class="mask">           
+                <div class="custom-content" id="top">
+                    <div class="custom-title">Придумай Имя своему персонажу! <img src="images/custom/info.png" alt="info-ico" class="info"></div>
+                    <div class="inputs-wrap">
+                        <input type="text" class="custom-input" placeholder="Имя" style="margin-right: 15px;" id="personName" name="personName">
+                        <input type="text" class="custom-input" placeholder="Фамилия" id="personFamily" name="personFamily">                    
+                    </div>
+                    <div class="age-wrap">
+                        <div class="age-title">Возраст</div>
+                        <input type="text" min="1" max="99" oninput="maxLengthCheck(this)" maxlength = "2" class="custom-input age" placeholder="" id="personAge" name="personAge">
+                    </div>
+                    <div class="sex-wrap">
+                        <div class="sex-title">Выберите Пол:</div>
+                        <button class="sex-btn active" id="male">Мужской</button>
+                        <button class="sex-btn" id="female">Женский</button>
+                    </div>
+                    <!-- Мама/Папа -->
+                    <div class="sex-title">Папа</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev" id="fatherPrev"></div>
+                            <div class="slider-item" id="Father">Папа</div>
+                            <div class="arrow-next" id="fatherNext"></div>
+                        </div>
+                    </div>
+
+                    <div class="sex-title">Мама</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev" id="motherPrev"></div>
+                            <div class="slider-item" id="Mother">Волосы 1</div>
+                            <div class="arrow-next" id="motherNext"></div>
+                        </div>
+                    </div>
+
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Cходство с родителями</div>
+                        <input type="range" class="slick" value="0" min="0" max="100" step="1" id="resemblance">                     
+                        </div>
+                    </div>
+
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Тон кожи</div>
+                        <input type="range" class="slick" value="0" min="0" max="100" step="1" id="skinTone">
+                    </div>
+                    <button class="continue" id="Randomize">Случайные родители</button>
+
+                    <!-- Особенности -->
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Ширина носа</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="noseWidth">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Высота носа</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="noseHeight">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Длина носа</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="noseLength">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Переносица</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="noseBridge">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Кончик носа</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="noseTip">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Сдвиг переносицы</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="noseBridgeShift">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Высота брови</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="browHeight">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Ширина брови</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="browWidth">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Высота скулы</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="cboneHeight">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Ширина скулы</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="cboneWidth">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Ширина щек</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="cheekWidth">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Глаза</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="eyes">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Губы</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="lips">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Ширина челюсти</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="jawWidth">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Длина подбородка</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="chinLength">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Положение подбородка</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="chinPos">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Ширина подбородка</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="chinWidth">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Форма подбородка</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="chinShape">
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Ширина шеи</div>
+                        <input type="range" class="slick features" value="-1" min="-1" max="1" step="0.01" id="neckWidth">
+                    </div>
+                    <div class="sex-title">Прическа</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev" id="hairPrev"></div>
+                            <div class="slider-item" id="Hair">Прическа</div>
+                            <div class="arrow-next" id="hairNext"></div>
+                        </div>
+                    </div>
+                    <div class="sex-title">Цвет волос</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev" id="hairColorPrev"></div>
+                            <div class="slider-item" id="HairColor">Цвет волос</div>
+                            <div class="arrow-next" id="hairColorNext"></div>
+                        </div>
+                    </div>
+                    <div class="sex-title">Цвет Глаз</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev" id="eyesPrev"></div>
+                            <div class="slider-item" id="eyesInput">Цвет Глаз</div>
+                            <div class="arrow-next" id="eyesNext"></div>
+                        </div>
+                    </div>
+                    <div class="sex-title">Дефекты</div>
+                    <div class="slider ">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev"></div>
+                            <div class="slider-item appearanceItems">Дефекты</div>
+                            <div class="arrow-next appearanceNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Дефекты прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="blemishesOpacity">
+                    </div>
+                    <div class="sex-title">Борода</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev" id="eyesPrev"></div>
+                            <div class="slider-item appearanceItems" id="eyes">Дефекты</div>
+                            <div class="arrow-next appearanceNext" id="eyesNext"></div>
+                        </div>
+                    </div>
+                    <div class="sex-title">Цвет бороды</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev colorPrev"></div>
+                            <div class="slider-item colorItem">Дефекты</div>
+                            <div class="arrow-next colorNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Борода прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="facialHairOpacity">
+                    </div>
+                    <div class="sex-title">Брови</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev"></div>
+                            <div class="slider-item appearanceItems">Дефекты</div>
+                            <div class="arrow-next appearanceNext"></div>
+                        </div>
+                    </div>
+                    <div class="sex-title">Цвет Бровей</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev colorPrev"></div>
+                            <div class="slider-item colorItem">Дефекты</div>
+                            <div class="arrow-next colorNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Брови прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="eyebrowsOpacity">
+                    </div>
+                    <div class="sex-title">Старость</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev"></div>
+                            <div class="slider-item appearanceItems">Дефекты</div>
+                            <div class="arrow-next appearanceNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Старость прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="ageingOpacity">
+                    </div>
+                    <div class="sex-title">Косметика</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev"></div>
+                            <div class="slider-item appearanceItems">Дефекты</div>
+                            <div class="arrow-next appearanceNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Косметика Прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="makeupOpacity">
+                    </div>
+                    <div class="sex-title">Румянец</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev"></div>
+                            <div class="slider-item appearanceItems">Дефекты</div>
+                            <div class="arrow-next appearanceNext"></div>
+                        </div>
+                    </div>
+                    <div class="sex-title">Цвет румянца</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev colorPrev"></div>
+                            <div class="slider-item colorItem">Дефекты</div>
+                            <div class="arrow-next colorNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Румянец прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="blushOpacity">
+                    </div>
+                    <div class="sex-title">Цвет лица</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev"></div>
+                            <div class="slider-item appearanceItems">Дефекты</div>
+                            <div class="arrow-next appearanceNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Цвет лица прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="complexionOpacity">
+                    </div>
+                    <div class="sex-title">Загар</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev"></div>
+                            <div class="slider-item appearanceItems">Дефекты</div>
+                            <div class="arrow-next appearanceNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Загар прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="sundamageOpacity">
+                    </div>
+                    <div class="sex-title">Губная помада</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev"></div>
+                            <div class="slider-item appearanceItems">Дефекты</div>
+                            <div class="arrow-next appearanceNext"></div>
+                        </div>
+                    </div>
+                    <div class="sex-title">Цвет губ</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev colorPrev"></div>
+                            <div class="slider-item colorItem">Дефекты</div>
+                            <div class="arrow-next colorNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Губная помада прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="lipstickOpacity">
+                    </div>
+                    <div class="sex-title">Родинки и веснушки</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev"></div>
+                            <div class="slider-item appearanceItems">Дефекты</div>
+                            <div class="arrow-next appearanceNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Родинки и веснушки прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="frecklesOpacity">
+                    </div>
+                    <div class="sex-title">Волосы на груди</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev appearancePrev"></div>
+                            <div class="slider-item appearanceItems">Дефекты</div>
+                            <div class="arrow-next appearanceNext"></div>
+                        </div>
+                    </div>
+                    <div class="range-wrap">
+                        <div class="range-title sex-title">Волосы на груди прозрачность</div>
+                        <input type="range" class="slick appearanceOpacity" value="100" min="0" max="100" step="1" id="chestHairOpacity">
+                    </div>
+                    <div class="sex-title">Цвет волос на груди</div>
+                    <div class="slider">
+                        <div class="controls">
+                            <div class="arrow-prev colorPrev"></div>
+                            <div class="slider-item colorItem">Дефекты</div>
+                            <div class="arrow-next colorNext"></div>
+                        </div>
+                    </div>
+                    <button class="continue" onclick = "random();" style="margin-bottom: 50px;">Случайный персонаж</button>
+                    <button class="continue" onclick = "save();">Продолжить..</button>
+                    <div class="offer">Перед продолжением, прочитайте <span class="offer_under">Правила</span></div>
+                </div>
+            </div>   
+        </div>
+        <!-- <div class="help-block">
+            <div class="text-block"></div>
+        </div> -->
+        <div class="alert" style="display: none;">
+            <i class="fal fa-info-circle"></i>
+            <div class="alert-message"></div>
+        </div>
+        <div class="rules-wrap">
+            <div class="rules-close"></div>
+            <div class="rules-content">
+                <div class="rules-title">Какое нибудь пользовательское соглашение</div>
+                <div class="rules-subtitle">Fortuna Role Play <br>Пользовательское соглашение</div>
+                    <div class="rules">Текст Fortuna Role Play. Fortuna Role Play. Fortuna Role Play.  Fortuna Role Play.  Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play.  Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play.Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play. Fortuna Role Play.  Fortuna Role Play. Fortuna Role Play. Fortuna Role Play.  </div>
+            </div>
+        </div>
+        <div class="help">F3 -Включить/Выключить блокировку кнопок.</div>
+    </body> 
+    <script>
+        inputsAll = document.getElementsByTagName('input');
+
+        for (let i = 0; i < inputsAll.length; i++) {
+            inputsAll[i].addEventListener('input', function(e) {
+                let min = e.target.min, 
+                    max = e.target.max,
+                    val = e.target.value;
+                inputsAll[i].style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%';
+            });
+            inputsAll[i].addEventListener('change', function(e) {
+                let min = e.target.min, 
+                    max = e.target.max,
+                    val = e.target.value;
+                inputsAll[i].style.backgroundSize = (val - min) * 100 / (max - min) + '% 100%';
+            });
+        }
+    </script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/font-awesome.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/slider.min.js"></script>
+    
+    <script></script>
+    <script>
+        $('#personName,#personFamily,#personAge').on('focus',
+            function()
+            {
+                let nameStr = "При вводе имени и фамилии разрешено использование только русского алфавита",
+                    ageStr = "Возраст не может быть меньше 1",
+                    age2Str = "Возраст не может превышать 99 лет";
+                if($(this)[0].id == 'personName')
+                {
+                    $('.tip-content .tip').replaceWith(`<div class="tip"><p>${nameStr}</p></div>`);
+                }
+                if($(this)[0].id == 'personFamily')
+                {
+                    $('.tip-content .tip').replaceWith(`<div class="tip"><p>${nameStr}</p></div>`);
+                }
+                if($(this)[0].id == 'personAge')
+                {
+                    $('.tip-content .tip').replaceWith(`<div class="tip"><p>${ageStr}</p><p>${age2Str}</p></div>`);
+                }
+                $('.tip-wrap').css('display','block');
+            }
+        );
+        $('#personName,#personFamily,#personAge').on('focusout',function(){
+            $('.tip-wrap').css('display','none');
+        });
+		function save() {
+            let personName = document.getElementById('personName'),
+                personFamily = document.getElementById('personFamily'),
+                personAge = document.getElementById('personAge');
+            if(personName.value.length < 2 || personFamily.value.length < 2 || personAge.value.length < 1)
+            {
+                $('.custom-popup').animate({ scrollTop: $('#top').offset().top }, 1400);
+                if(personName.value.length < 2)
+                {
+                    personName.focus();
+                }
+                else if(personFamily.value.length < 2)
+                {
+                    personFamily.focus();
+                }
+                else if(personAge.value.length < 1)
+                {
+                    personAge.focus();
+                }
+                $('.tip-wrap').css({'border-color':'red','box-shadow':'0 0 10px red'});
+            }
+            else
+            {
+                $('.tip-wrap').css({'border-color':'#f4e331','box-shadow':'0 0 10px #f4e331'});
+                mp.trigger("custom.client", personName.value, personFamily.value, personAge.value);
+            }
+           
+        };
+        
+    </script>
+    <script>
+        let inputs = document.querySelectorAll('.custom-input'),
+            info = document.querySelector('.info'),
+            tip = document.querySelector('.tip-wrap'),
+            mask = document.querySelector('.mask'),
+            rulesMore = document.querySelector('.offer_under'),
+            close = document.querySelector('.rules-close'),
+            rule = document.querySelector('.rules-wrap');
+
+        info.addEventListener('mouseover', () => {
+            $('.tip-content .tip').replaceWith(`<div class="tip"><span class="yellow">Имя</span> и <span class="yellow">Фамилия</span> должны быть в РП формате<br><br>Правильно: Дональд Трамп <br> Неправильно: Бомж Валера</div>`)
+            tip.style.display = 'block';
+        });
+
+        info.addEventListener('mouseout', () => {
+            tip.style.display = 'none';
+        });
+
+        rulesMore.addEventListener('click', () => {
+            rule.style.display = 'block';
+        });
+
+        close.addEventListener('click', () => {
+            rule.style.display = 'none';
+        });
+
+
+        for (let i = 0; i < inputs.length - 1; i++) {
+            inputs[i].addEventListener('input', function(){
+                inputs[i].value = inputs[i].value.replace(/[-\.;":',/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
+            });
+        }
+    </script>
+    <script>
+      function maxLengthCheck(object)
+      {
+        if (object.value.length > object.maxLength)
+          object.value = object.value.slice(0, object.maxLength)
+      }
+    </script>
+</html>
