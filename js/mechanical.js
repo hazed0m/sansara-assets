@@ -47,25 +47,25 @@ $('.btn.exit').on('click',function(){
     mp.trigger("mechanicalExit");
 });
 const modsList = [      
-    { name: 'spoilers',translatedName: '',id:'0'},
-    { name: 'frontBumper',translatedName: '',id:'1'},
-    { name: 'rearBumper',translatedName: '',id:'2'},
-    { name: 'sideSkirt',translatedName: '',id:'3'},
-    { name: 'exhaust',translatedName: '',id:'4'},
-    { name: 'frame',translatedName: '',id:'5'},
-    { name: 'grille',translatedName: '',id:'6'},
-    { name: 'hood',translatedName: '',id:'7'},
-    { name: 'fender',translatedName: '',id:'8'},
-    { name: 'rightFender',translatedName: '',id:'9'},
-    { name: 'roof',translatedName: '',id:'10'},
-    { name: 'engine',translatedName: '',id:'11'},
-    { name: 'brakes',translatedName: '',id:'12'},
-    { name: 'transmission',translatedName: '',id:'13'},
-    { name: 'horns',translatedName: '',id:'14'},
-    { name: 'suspension',translatedName: '',id:'15'},
-    { name: 'armor',translatedName: '',id:'16'},
-    { name: 'turbo',translatedName: '',id:'18'},
-    { name: 'xenon',translatedName: '',id:'22'},
+    { name: 'spoilers',translatedName: 'спойлер',id:'0'},
+    { name: 'frontBumper',translatedName: 'передний бампер',id:'1'},
+    { name: 'rearBumper',translatedName: 'задний бампер',id:'2'},
+    { name: 'sideSkirt',translatedName: 'юбка',id:'3'},
+    { name: 'exhaust',translatedName: 'выхлопная труба',id:'4'},
+    { name: 'frame',translatedName: 'рама',id:'5'},
+    { name: 'grille',translatedName: 'решетка радиатора',id:'6'},
+    { name: 'hood',translatedName: 'капот',id:'7'},
+    { name: 'fender',translatedName: 'фендер',id:'8'},
+    { name: 'rightFender',translatedName: 'правый фендер',id:'9'},
+    { name: 'roof',translatedName: 'крыша',id:'10'},
+    { name: 'engine',translatedName: 'двигатель',id:'11'},
+    { name: 'brakes',translatedName: 'тормозные колодки',id:'12'},
+    { name: 'transmission',translatedName: 'трансмиссия',id:'13'},
+    { name: 'horns',translatedName: 'сигнал',id:'14'},
+    { name: 'suspension',translatedName: 'подвеска',id:'15'},
+    { name: 'armor',translatedName: 'броня',id:'16'},
+    { name: 'turbo',translatedName: 'турбо',id:'18'},
+    { name: 'xenon',translatedName: 'ксенон',id:'22'},
     { name: 'frontWheels',translatedName: 'передние шины',id:'23'},
     { name: 'backWheels',translatedName: 'задние шины',id:'24'},
     { name: 'plateholders',translatedName: 'держатели пластин',id:'25'},
@@ -126,6 +126,7 @@ function pushMechanicalShop(json)
             if(obj.id == classEl.id)
             {
                 obj.name = classEl.name;
+                obj.translatedName = classEl.translatedName;
                 modsArr.push(obj);
             }
         });        
@@ -178,7 +179,7 @@ function modsInitialize()
             $(element).attr('data-item',currentAttr);
             $(element).attr('data-price',modsArr[currentIndex].price[currentAttr]);
             $(element).attr('data-counted', false);
-            $(element).text(modsArr[currentIndex].name+`(${currentAttr})`);
+            $(element).text(modsArr[currentIndex].translatedName +` (${currentAttr})`);
             countPrice();
             console.log(modsArr[currentIndex].id, currentAttr);
             mp.trigger("putMechanical",modsArr[currentIndex].id, currentAttr);
@@ -196,7 +197,7 @@ function modsInitialize()
             $(element).attr('data-item',currentAttr);
             $(element).attr('data-price',modsArr[currentIndex].price[currentAttr]);
             $(element).attr('data-counted', false);
-            $(element).text(modsArr[currentIndex].name+`(${currentAttr})`);
+            $(element).text(modsArr[currentIndex].translatedName +` (${currentAttr})`);
             countPrice();
             mp.trigger("putMechanical",modsArr[currentIndex].id, currentAttr);
         }    
