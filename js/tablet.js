@@ -123,6 +123,21 @@ $('.ads-wrapper .add-popap #acceptAdd').on('click',function(){
 $('.ads-wrapper #closeAdd').on('click',function(){
 	console.log(11);
 });
+let transportInfo = JSON.stringify({
+		Name: 'Sansara INC.',
+		Owner: 'Человек ин Дастриал',
+		Gain: 2352525253,
+		TrucksCount:2,
+		WorkersList:[
+			'Александр Булкин',
+			'Въячеслав Ломакин'
+		]
+	});
+function initCustoms(transportObj)
+{
+	let transportInfo = transportObj;
+	$('.main-wrapper .customs').css('display','block');
+}
 $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork, .main-wrapper .customs').on('click',function(){
 	let currentClass = this.classList[0];
 	$('.main-wrapper').removeClass('active').fadeOut();
@@ -136,6 +151,17 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 			mixer.forceRender();
 		}
 		refreshAutoshop();
+	}
+	if(currentClass == 'customs')
+	{
+		forwardExit();
+		pushCustoms(transportInfo);
+		if(mixer != null)
+		{
+			mixer.destroy();
+			mixer.forceRender();
+		}
+		refreshCustoms();
 	}
 	if(currentClass == 'adssell' || currentClass == 'adsbuy' || currentClass == 'adsgetworkers' || currentClass == 'adssearchwork')
 	{
@@ -254,7 +280,7 @@ $('.law-wrap .button').on('click',function(){
 	$('.law-wrap .text-block.active').removeClass('active');
 	$(`#${this.id}-text`).addClass('active');
 });
-$('.cars-wrapper #cars-sort, .cars-wrapper #cars-class').on('click',function(){
+$('.cars-wrapper #cars-sort, .cars-wrapper #cars-class, .customs-wrapper #transport-sort').on('click',function(){
 	if(!$(this).next().is(':visible'))
 	{
 		$(this).next().slideDown().css('display','flex');
@@ -415,6 +441,60 @@ function speedPercentage(curSpeed,currentWrapper)
 	}
 	return percentage;
 }
+function pushCustoms(transportObj)
+{
+	let transportInfo = JSON.parse(transportObj);
+	$('.customs-wrapper .service-wrapper .current-input .next-title').text(transportInfo.Name);
+	$('.customs-wrapper .service-wrapper .changable-input input').val(transportInfo.Name);
+	$('.customs-wrapper .service-wrapper .owner-wrapper .next-title').text(transportInfo.Owner);
+	$('.customs-wrapper .service-wrapper .gain-wrapper .next-title span').text(transportInfo.Gain);
+	$('.customs-wrapper .employers-wrapper .already-wrapper .next-title span').text(transportInfo.TrucksCount);
+	$('.customs-wrapper .employers-wrapper .employers-list').empty();
+	$(transportInfo.WorkersList).each(function(index,item){
+		let template = `
+			<div class="employee-item hired" data-count="${index+1}">
+				<div class="name">
+					${item}
+				</div>
+				<div class="button" id="dissmisal">Уволить</div>
+			</div>`;
+		$('.customs-wrapper .employers-wrapper .employers-list').append(template);
+	});
+	let addTemplate = `
+		<div class="employee-item add" data-count="+">
+			<input type="text" placeholder="Введите Имя">
+			<div class="button" id="hire">Принять</div>
+		</div>`;
+	$('.customs-wrapper .employers-wrapper .employers-list').append(addTemplate);
+	$('[data-ref="transport-container"]').empty();	
+	$('.customs-wrapper .shop-page .title-wrap .title span').text(towTruckList.length);
+	$(towTruckList).each(function(index,item){
+		let currentItem = `
+		<div class="transport-block" data-list='${'mechanical'}' data-index='${index}' data-price='${item.price}' data-name="${item.name}" data-luggage='${item.luggage}' data-type='${item.type}'>
+			<div class="mask">Куплено</div>
+			<div class="car-image">
+				<img src="img/tablet/cars/${item.hash}.jpg" alt="">
+			</div>
+			<div class="car-info">			
+				<div class="title-block">
+					<div class="car-name">${item.name}</div>
+				</div>
+				<div class="speed-block">
+					<div class="speed-wrap">
+						<div class="line-inner" style="width:${speedPercentage(item.speed,'towTruck')}%;"></div>						
+					</div>
+					<div class="speed-title">Мощность</div>
+				</div>
+				<div class="title-block">
+					<div class="car-price"><span>${item.price}</span>$</div>
+					<div class="button" id="buyTransport">Купить</div>
+				</div>	
+			</div>					
+		</div>`
+		$('[data-ref="transport-container"]').append(currentItem);
+	});	
+	refreshCustoms();
+}
 function pushAutoshop()
 {
 	$('[data-ref="container"]').empty();	
@@ -447,6 +527,79 @@ function pushAutoshop()
 		$('[data-ref="container"]').append(currentItem);
 	});	
 };
+function refreshCustoms()
+{
+	$('.customs-wrapper .employers-wrapper .employers-list .employee-item .button').on('click',function(){
+		let id = this.id;
+		console.log(id);	
+		if(id == 'dissmisal')	
+		{
+			let name = $(this).prev().text().trim();
+			console.log(name);
+			mp.trigger('dissmisalMechanical',name);
+		}
+		if(id == 'hire')	
+		{
+			let name = $(this).prev().val();
+			console.log(name);
+			$(this).prev().val('');
+			mp.trigger('hireMechanical',name);
+		}
+	});
+	$('.customs-wrapper .transport-block .title-block .button').on('click',function(){
+		let parent = $(this).parent().parent().parent(),
+			price = parseInt($(parent).attr('data-price')),
+			name = $(parent).attr('data-name');
+		parent.find('.mask').fadeIn().css('display','flex');
+		setTimeout(function(){
+			parent.find('.mask').fadeOut();
+		},1000);
+		mp.trigger('buyTransportMechanics',name,price);
+	});
+	$('.customs-wrapper .service-wrapper .changable-input .button#changeName').on('click',function(){
+		$(this).parent().css('display','none');
+		let name = $('.customs-wrapper .service-wrapper .changable-input input').val();
+		// $('.customs-wrapper .service-wrapper .current-input .next-title').text(name);
+		$('.customs-wrapper .service-wrapper .current-input').css('display','flex');
+		mp.trigger('changeNameMechanical',name);
+	});
+	$('.customs-wrapper .service-wrapper .edit-icon').on('click',function(){
+		$(this).parent().css('display','none');
+		$('.customs-wrapper .service-wrapper  .changable-input').css('display','flex');
+	});
+	$('.customs-wrapper .menu-wrapper .menu-item').on('click',function(){
+		let id = this.id;
+		console.log(id);
+		if(!$(`.${id}-page`).hasClass('active'))
+		{
+			$('.customs-wrapper').find('.active').css('display','none').removeClass('active');
+			$(`.${id}-page`).css('display','block').addClass('active');
+		}
+	});
+	let container = document.querySelector('[data-ref="transport-container"]'),
+		config = {
+			animation: {
+				duration: 350
+			},
+			selectors: {
+				target: '.transport-block'
+			},
+			callbacks: {
+				onMixClick: function(state, originalEvent) {
+					if($(this).hasClass('mixitup-control-active'))
+					{
+						originalEvent.stopPropagation();
+						originalEvent.preventDefault();
+					}
+					else
+					{
+						$(`.customs-wrapper #${$(this).parent().prev()[0].id}`).next().slideUp();
+					}
+				}
+			}
+		};
+	mixer = mixitup(container, config);
+}
 function refreshAutoshop()
 {		
 	$('.car-block .car-image').on('click',function(){
