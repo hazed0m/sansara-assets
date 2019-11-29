@@ -531,31 +531,40 @@ function pushAutoshop()
 function refreshCustoms()
 {
 	$('.customs-wrapper .employers-wrapper .employers-list .employee-item .button').on('click',function(){
-		let id = this.id;
-		console.log(id);	
-		if(id == 'dissmisal')	
+		if(!$(this).hasClass('disabled'))
 		{
-			let name = $(this).prev().text().trim();
-			console.log(name);
-			mp.trigger('dissmisalMechanical',name);
-		}
-		if(id == 'hire')	
-		{
-			let name = $(this).prev().val();
-			console.log(name);
-			$(this).prev().val('');
-			mp.trigger('hireMechanical',name);
+			let id = this.id;
+			console.log(id);	
+			$(this).addClass('disabled');
+			if(id == 'dissmisal')	
+			{
+				let name = $(this).prev().text().trim();
+				console.log(name);
+				mp.trigger('dissmisalMechanical',name);
+			}
+			if(id == 'hire')	
+			{
+				let name = $(this).prev().val();
+				console.log(name);
+				$(this).prev().val('');
+				mp.trigger('hireMechanical',name);
+			}
 		}
 	});
 	$('.customs-wrapper .transport-block .title-block .button').on('click',function(){
-		let parent = $(this).parent().parent().parent(),
-			price = parseInt($(parent).attr('data-price')),
-			name = $(parent).attr('data-name');
-		parent.find('.mask').fadeIn().css('display','flex');
-		setTimeout(function(){
-			parent.find('.mask').fadeOut();
-		},1000);
-		mp.trigger('buyTransportMechanics',name,price);
+		if(!$(this).hasClass('disabled'))
+		{
+			let parent = $(this).parent().parent().parent(),
+				price = parseInt($(parent).attr('data-price')),
+				name = $(parent).attr('data-name');
+			parent.find('.mask').fadeIn().css('display','flex');
+			$(this).addClass('disabled');
+			setTimeout(() => {
+				parent.find('.mask').fadeOut();
+				$(this).removeClass('disabled');
+			},1000);
+			mp.trigger('buyTransportMechanics',name,price);
+		}
 	});
 	$('.customs-wrapper .service-wrapper .changable-input .button#changeName').on('click',function(){
 		$(this).parent().css('display','none');
