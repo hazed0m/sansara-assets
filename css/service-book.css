@@ -1,0 +1,200 @@
+*
+{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family:"HelveticaNeueCyr";
+}
+.container  
+{
+    width:1249px;
+    height:649px;
+    background:url(../img/service-book/back.png) no-repeat;
+    background-position: center;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0.6);
+}
+.container .wrapper
+{
+    width:100%;
+    height:100%;
+    position: relative;
+}
+.container .close-but
+{
+    position: absolute;
+    top:40px;
+    right:10px;
+}
+.container .close-but,
+.container .buttons-wrapper .left,
+.container .buttons-wrapper .right
+{    
+    transition: 0.2s;
+    border-radius:50%;
+    width:50px;
+    height:50px;
+    cursor: pointer;
+}
+.container .buttons-wrapper .left,
+.container .buttons-wrapper .right
+{
+    position: absolute; 
+    top:0;
+}
+.container .buttons-wrapper
+{
+    position: absolute;
+    bottom:100px;
+    width:100%;
+}
+.container .close-but img,
+.container .buttons-wrapper .left img,
+.container .buttons-wrapper .right img
+{
+    width:100%;
+    height:100%;
+}
+.container .buttons-wrapper .left
+{
+    left:35px;
+}
+.container .buttons-wrapper .right
+{
+    right:35px;
+}
+.container .close-but:hover,
+.container .buttons-wrapper .left:hover,
+.container .buttons-wrapper .right:hover
+{
+    box-shadow:inset 0 0 10px rgba(0,0,0,0.3);
+}
+.container .page
+{
+    width:50%;
+    height:70%;
+    position: absolute;
+    top:52%;
+    left:50%;
+    transform:translate(-100%,-50%);
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    display: none;
+}
+.container .page.active
+{    
+    display: flex;
+}
+.container .page .page-item
+{
+    position: relative;
+}
+.container .page .page-item:before
+{
+    content:'';
+    position: absolute;
+    top:60%;
+    left:-50px;
+    transform:translate(0,-50%);
+}
+.container .page .page-item#carNumber:before
+{
+    width:36px;
+    height:36px;
+    background:url(../img/service-book/number.png) no-repeat;
+    background-position: center;
+}
+.container .page .page-item#sellDate:before
+{
+    width:36px;
+    height:36px;
+    background:url(../img/service-book/date.png) no-repeat;
+    background-position: center;
+}
+.container .page .page-item#carType:before
+{
+    width:36px;
+    height:36px;
+    background:url(../img/service-book/car.png) no-repeat;
+    background-position: center;
+}
+.container .page .page-item#carScore:before
+{
+    width:36px;
+    height:36px;
+    background:url(../img/service-book/km.png) no-repeat;
+    background-position: center;
+}
+.container .page .page-item#dateOf:before
+{
+    width:36px;
+    height:36px;
+    background:url(../img/service-book/date2.png) no-repeat;
+    background-position: center;
+}
+.container .page .page-item#doneWorks:before
+{
+    width:36px;
+    height:36px;
+    background:url(../img/service-book/works.png) no-repeat;
+    background-position: center;
+}
+.container .page .page-item .top-block
+{
+    width:196px;
+    height:20px;
+    border-top-left-radius:10px;
+    border-top-right-radius:10px;
+    background:rgba(184,242,177,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+    font-weight:500;
+    text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    margin-left:10px;
+}
+.container .page .page-item .text-block
+{
+    width:450px;
+    height:50px;
+    background:#fff;
+    border:1px solid rgba(184,242,177,0.9);
+    border-radius: 5px;
+    font-size:24px;
+    font-weight:500;
+    display: flex;
+    align-items: center;
+    padding-left:10px;
+}
+.container .page .page-item .text-block.big
+{
+    height:195px;
+    max-height:195px;
+    overflow-x: hidden;
+    overflow-y:scroll;
+    flex-direction: column;
+    align-items: flex-start;
+    padding:5px 0 5px 10px;
+}
+.container .page .page-item .text-block.big p
+{
+    margin:0;
+    padding:0;
+    text-indent:7px;
+}
+.container .page .page-item .text-block.big::-webkit-scrollbar {
+    width: 8px;
+}
+   
+.container .page .page-item .text-block.big::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+   
+.container .page .page-item .text-block.big::-webkit-scrollbar-thumb {
+    background-color: rgba(184,242,177,0.7);
+    outline: 1px solid rgba(184,242,177,0.7);
+}
