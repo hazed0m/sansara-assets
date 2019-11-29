@@ -123,19 +123,20 @@ $('.ads-wrapper .add-popap #acceptAdd').on('click',function(){
 $('.ads-wrapper #closeAdd').on('click',function(){
 	console.log(11);
 });
-let transportInfo = JSON.stringify({
-		Name: 'Sansara INC.',
-		Owner: 'Человек ин Дастриал',
-		Gain: 2352525253,
-		TrucksCount:2,
-		WorkersList:[
-			'Александр Булкин',
-			'Въячеслав Ломакин'
-		]
-	});
+// let transportInfo = JSON.stringify({
+// 		Name: 'Sansara INC.',
+// 		Owner: 'Человек ин Дастриал',
+// 		Gain: 2352525253,
+// 		TrucksCount:2,
+// 		WorkersList:[
+// 			'Александр Булкин',
+// 			'Въячеслав Ломакин'
+// 		]
+// 	});
+let transportInfo = [];
 function initCustoms(transportObj)
 {
-	let transportInfo = transportObj;
+	transportInfo = transportObj;
 	$('.main-wrapper .customs').css('display','block');
 }
 $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork, .main-wrapper .customs').on('click',function(){
@@ -443,7 +444,7 @@ function speedPercentage(curSpeed,currentWrapper)
 }
 function pushCustoms(transportObj)
 {
-	let transportInfo = JSON.parse(transportObj);
+	transportInfo = JSON.parse(transportObj);
 	$('.customs-wrapper .service-wrapper .current-input .next-title').text(transportInfo.Name);
 	$('.customs-wrapper .service-wrapper .changable-input input').val(transportInfo.Name);
 	$('.customs-wrapper .service-wrapper .owner-wrapper .next-title').text(transportInfo.Owner);
