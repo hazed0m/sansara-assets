@@ -39,6 +39,17 @@
 	font-size:10px;
 	cursor: pointer;
 }
+.container .wrapper input.stoName
+{
+	margin:20px auto 0 auto;
+	display: flex;
+	background:none;
+	border:none;
+	border-bottom:1px solid #fff;
+	padding:0 0 10px 10px;
+	font-size:18px;
+	color:#fff;
+}
 .close-but:hover
 {
 	transform: scale(1.05);
