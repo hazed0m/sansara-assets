@@ -1545,6 +1545,10 @@
 	min-height: 29px;
 	text-transform: capitalize;
 }
+.cars-wrapper .car-block .title-block
+{
+	justify-content: space-around;
+}
 .customs-wrapper .transport-block .title-block
 {
 	border-radius:0;
