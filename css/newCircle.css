@@ -26,6 +26,21 @@
     border-radius: 50%;
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
 }
+.container .wrapper .central-circle 
+{
+    width:132px;
+    height:132px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    box-shadow: 0 0 25px rgba(255,255,255,1);
+    background:url(../img/fractionCircle/central.png) no-repeat;
+    background-position: center;
+    background-size:contain;
+    z-index: 99999;
+}
 .container .wrapper .small-circle .inner
 {
     width:100%;
