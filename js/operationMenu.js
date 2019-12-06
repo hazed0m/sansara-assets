@@ -284,7 +284,7 @@ function pushRoom(name)
         {
             $(currentObj[key]).each(function(index,item){
                 let template = `
-                    <div class="list-elem" data-name="${key}">${item}</div>
+                    <div class="list-elem" data-name="">${item}</div>
                 `;
                 $('.container .wrapper .list-wrapper').append(template);
             });
@@ -298,7 +298,7 @@ function pushRoom(name)
                 `;
             });
             let wrapper = `<div class="list-wrap">
-                <div class="list-title ${currentObj[key] == null ? `clickable" data-name="${name}` : 'slidable'}">${key}${currentObj[key] == null ? '' : '<i class="fas fa-arrow-down"></i>'}</div>
+                <div class="list-title ${currentObj[key] == null ? `clickable" data-name="` : 'slidable'}">${key}${currentObj[key] == null ? '' : '<i class="fas fa-arrow-down"></i>'}</div>
                 <div class="inner-wrap">${template}</div>
             </div>`;
             $('.container .wrapper .list-wrapper').append(wrapper);
