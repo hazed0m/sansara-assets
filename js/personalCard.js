@@ -5,11 +5,17 @@ function pushPersonalCard(elem)
     $(personalCard).each(function(index,item){
         $('.container .title-wrapper').text(item.title);
         let viewArr = item.view.split('@');
-        $(viewArr).each(function(viewIndex,viewItem){
+        for (let i = viewArr.length-1; i >= 0;i--)
+        {
             $('.container .view-wrapper').append(`
-                <div class="view-item">${viewItem}</div>
+                <div class="view-item">${viewArr[i]}</div>
             `);
-        });
+        }
+        // $(viewArr).each(function(viewIndex,viewItem){
+        //     $('.container .view-wrapper').append(`
+        //         <div class="view-item">${viewItem}</div>
+        //     `);
+        // });
     });
 }
 $('.container .wrapper .button').on('click',function(){
