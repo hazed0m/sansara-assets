@@ -89,6 +89,13 @@ function pushNotebook(employeeOnline,admin = false)
         let adminStatus = { Admin: admin };
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
+        $('#hireNewbie').on('click',function(){
+            let val = $(this).prev().val();
+            $(this).prev().val('');
+            $(this).addClass('disabled');
+            console.log(val);
+            mp.trigger('hireNewbieMedical',val);
+        });
     }
 }
 // $('.container .business-wrapper .search-block #searchStory').on('click',function(){
