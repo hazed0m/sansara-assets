@@ -89,7 +89,24 @@ function pushNotebook(employeeOnline,admin = false)
         });
         let adminStatus = { Admin: admin };
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
+        $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
+        window.addEventListener('message', function(event) {
+            if (event.data['newHandbook']) {
+                const { currentId, name, penalty, article } = event.data.newHandbook;        
+                console.log(currentId,name, penalty, article);
+                mp.trigger('newMedicalHandbook',currentId,name,penalty,article);
+            }  
+            if (event.data['editHandbook']) {
+                const { currentId, name, penalty, article } = event.data.editHandbook;        
+                console.log(currentId,name, penalty, article);
+                mp.trigger('editMedicalHandbook',currentId,name,penalty,article);
+            }
+            if (event.data['getStatus']) {
+                console.log('getStatus');
+                $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
+            } 
+        });
         $('#hireNewbie').on('click',function(){
             let val = $(this).prev().val();
             $(this).prev().val('');
