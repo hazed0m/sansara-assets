@@ -145,7 +145,13 @@ let menu = new Vue({
                             this.passShow = false;
                             break;
                         case false: 
-                            this.passShow = true;
+                            this.passShow = true;                            
+                            $('.categorie-title').each(function(index,item){
+                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                                {
+                                    $(item).fadeIn(500); 
+                                }
+                            });
                             break;
                     }
                     break;
@@ -159,20 +165,20 @@ let menu = new Vue({
                     this.mapSettingsShow = false;
                     switch (this.skillsShow) {
                         case true:
-                           $('.categorie-title').each(function(index,item){
-                               if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
-                               {
-                                   $(item).fadeIn(500); 
-                               }
+                            $('.categorie-title').each(function(index,item){
+                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                                {
+                                    $(item).fadeIn(500); 
+                                }
                             });
                             this.skillsShow = false;
                             break;
                         case false: 
                             $('.categorie-title').each(function(index,item){
-                               if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
-                               {
-                                   $(item).css('display','none'); 
-                               }
+                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                                {
+                                    $(item).css('display','none'); 
+                                }
                             });
                             this.skillsShow = true;
                             break;
@@ -206,7 +212,7 @@ let menu = new Vue({
                 switch (this.mapSettingsShow) {
                     case true:                        
                        $('.categorie-title').each(function(index,item){
-                           if($(item).attr('data-id') == 'settingsShow'  || $(item).attr('data-id') == 'settingsAnimShow')
+                           if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
                            {
                                $(item).fadeIn(500); 
                            }
@@ -239,7 +245,6 @@ let menu = new Vue({
                             break;
                         case false: 
                             animCircle.settingsAnimShow = true;
-
                             break;
                     }
                     break;
@@ -256,7 +261,13 @@ let menu = new Vue({
                             this.reportShow = false;
                             break;
                         case false: 
-                            this.reportShow = true;
+                            this.reportShow = true;                            
+                            $('.categorie-title').each(function(index,item){
+                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                                {
+                                    $(item).fadeIn(500); 
+                                }
+                            });
                             break;
                     }
                     break;
@@ -273,7 +284,13 @@ let menu = new Vue({
                             this.animateShow = false;
                             break;
                         case false: 
-                            this.animateShow = true;
+                            this.animateShow = true;                            
+                            $('.categorie-title').each(function(index,item){
+                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                                {
+                                    $(item).fadeIn(500); 
+                                }
+                            });
                             break;
                     }
                     break;
