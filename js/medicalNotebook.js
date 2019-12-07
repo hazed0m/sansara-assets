@@ -23,7 +23,7 @@ $('#police-menu').on('click',function(){
         $(this).parent().fadeOut();
     }
 });
-$('.container .wrapper .bottom-panel .left-wrapper  .used-app').on('click',function(){
+$('.container .wrapper .bottom-panel .left-wrapper .used-app').on('click',function(){
     if($(`.wrapper > .active`).is(':visible'))
     {
         $(`.wrapper > .active`).fadeOut(500);
@@ -77,6 +77,7 @@ function pushNotebook(employeeOnline,admin = false)
     {
         $('.container .main-wrapper .recruting-menu').fadeIn();
         $('.container .main-wrapper .recruting-menu input').keyup(function(){
+            this.value = this.value.replace(/[-\.;":',/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
             if($(this).val().length > 0)
             {
                 $(this).next().removeClass('disabled');
