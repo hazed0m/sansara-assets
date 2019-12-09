@@ -5,18 +5,20 @@ function pushPersonalCard(elem)
     $(personalCard).each(function(index,item){
         $('.container .title-wrapper').text(item.title);
         let viewArr = item.view.split('@');
-        for (let i = viewArr.length-1; i >= 0;i--)
-        {
-            $('.container .view-wrapper').append(`
-                <div class="view-item">${viewArr[i]}</div>
-            `);
-        }
-        // $(viewArr).each(function(viewIndex,viewItem){
+        // for (let i = viewArr.length-1; i >= 0;i--)
+        // {
         //     $('.container .view-wrapper').append(`
-        //         <div class="view-item">${viewItem}</div>
+        //         <div class="view-item">${viewArr[i]}</div>
         //     `);
-        // });
+        // }
+        $(viewArr).each(function(viewIndex,viewItem){
+            $('.container .view-wrapper').append(`
+                <div class="view-item">${viewItem}</div>
+            `);
+        });
     });
+    let element = document.querySelector('.container .view-wrapper');
+    element.scrollTop = element.scrollHeight;
 }
 $('.container .wrapper .button').on('click',function(){
     let id = this.id;

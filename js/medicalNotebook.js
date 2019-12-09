@@ -116,66 +116,75 @@ function pushNotebook(employeeOnline,admin = false)
         });
     }
 }
-// $('.container .business-wrapper .search-block #searchStory').on('click',function(){
-//     let value = $(this).prev().val();
-//     mp.trigger('searchHistory',field);
-// });
-// function historyInit(element)
-// {
-//     let item = JSON.parse(element);
-//     if(item !== undefined)
-//     {
-//         if(item.FullName != $('.container .business-wrapper .content-block .name').text())
-//         {
-//             let carItems = ``,
-//                 violationItems = ``;
-//             $(item.Therapies).each(function(index,item){
-//                 let itemDate = item.Date.split('@');
-//                 violationItems += `<div class="violation-item">
-//                     <div class="title-item">${item.Diagnosis}</div>
-//                     <div class="title-item">${item.FullName}</div>
-//                     <div class="title-item">
-//                         <div class="date-wrapper">
-//                             <div class="time">${itemDate[0]}</div>
-//                             <div class="date">${itemDate[1]}</div>
-//                         </div>
-//                     </div>
-//                 </div>`;
-//             });
-//             let template = `
-//                 <div class="name-wrapper">
-//                     <div class="name">${item.FullName}</div>
-//                     <div class="age">Возраст:
-//                         <span id="age">${item.Age}</span>
-//                     </div>
-//                     <div class="number">Номер:
-//                         <span id="number">${item.Number}</span>
-//                     </div>
-//                 </div>
-//                 <div class="violations-wrapper">
-//                     <div class="title-wrap">
-//                         <div class="title-item">Диагноз</div>
-//                         <div class="title-item">Врач</div>
-//                         <div class="title-item">Дата</div>
-//                     </div>
-//                     <div class="violation-wrap">
-//                         ${violationItems}
-//                     </div>
-//                 </div>                    
-//             `;
-//             if(!$('.container .business-wrapper .content-block').is(':visible'))
-//             {
-//                 $('.container .business-wrapper .content-block').empty().append(template).addClass('opened flipInY').css('display','block');
-//             }
-//             else
-//             {
-//                 $('.container .business-wrapper .content-block').removeClass('opened flipInY').addClass('flipOutY');
-//                 setTimeout(()=>{
-//                     $('.container .business-wrapper .content-block').empty().append(template).removeClass('flipOutY').addClass('opened flipInY').css('display','block');
-//                 },800);
-//             }
-//         }
-//     }
-// }
-
+$('.container .business-wrapper .search-block #searchDNA').on('click',function(){
+    let value = $(this).prev().val();
+    console.log(value);
+    if(value.length != 0)
+    {
+        mp.trigger('searchDNA',field);
+    }
+});
+function personInit(element)
+{
+    let item = JSON.parse(element);
+    if(item !== undefined)
+    {
+        if(item.FullName != $('.container .business-wrapper .content-block .name').text())
+        {
+            let carItems = ``,
+                violationItems = ``;
+            $(item.Therapies).each(function(index,item){
+                let itemDate = item.Date.split('@');
+                violationItems += `<div class="violation-item">
+                    <div class="title-item">${item.Diagnosis}</div>
+                    <div class="title-item">${item.FullName}</div>
+                    <div class="title-item">
+                        <div class="date-wrapper">
+                            <div class="time">${itemDate[0]}</div>
+                            <div class="date">${itemDate[1]}</div>
+                        </div>
+                    </div>
+                </div>`;
+            });
+            let template = `
+                <div class="name-wrapper">
+                    <div class="name">${item.FullName}</div>
+                    <div class="age">Возраст:
+                        <span id="age">${item.Age}</span>
+                    </div>
+                    <div class="blood">Группа крови:
+                        <span id="blood">${item.Blood}</span>
+                    </div>
+                    <div class="number">Номер:
+                        <span id="number">${item.Number}</span>
+                    </div>
+                </div>
+                <div class="violations-wrapper">
+                    <div class="title-wrap">
+                        <div class="title-item">Диагноз</div>
+                        <div class="title-item">Врач</div>
+                        <div class="title-item">Дата</div>
+                    </div>
+                    <div class="violation-wrap">
+                        ${violationItems}
+                    </div>
+                </div>                    
+            `;
+            if(!$('.container .business-wrapper .content-block').is(':visible'))
+            {
+                $('.container .business-wrapper .content-block').empty().append(template).addClass('opened flipInY').css('display','block');
+            }
+            else
+            {
+                $('.container .business-wrapper .content-block').removeClass('opened flipInY').addClass('flipOutY');
+                setTimeout(()=>{
+                    $('.container .business-wrapper .content-block').empty().append(template).removeClass('flipOutY').addClass('opened flipInY').css('display','block');
+                },800);
+            }
+        }
+    }
+}
+$('.container .business-wrapper input').keyup(function(){
+    this.value = this.value.replace(/[-\.;":',/<>@?!№%*&^#$()_+=|{}а-яА-Я0-9]/g, '');
+});
 
