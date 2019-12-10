@@ -5,12 +5,12 @@
     margin:0;
     box-sizing: border-box;
 }
-body
+/* body
 {
     background:url(../img/fractionCircle/game.png) no-repeat;
     background-size:cover;
     height: 100vh;
-}
+} */
 .container
 {
     position: absolute;
@@ -70,11 +70,18 @@ body
     /* border: 1px solid #fff; */
     /* background: rgba(0,0,0,0.5); */
 }
-.container .wrapper .small-circle .inner .small-item:hover
+.container .wrapper .small-circle .inner .small-item.active:hover
 {
     background-position: center;
     background-size: cover;
     background: url(../img/fractionCircle/ys.png) no-repeat;
+}
+.container .wrapper .small-circle .inner .small-item.disabled
+{
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+    filter: grayscale(1);
+    cursor:default;
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(1)
 {
@@ -169,7 +176,7 @@ body
     overflow: hidden;
     cursor: pointer;
 }
-.container .wrapper .big-circle#section2 .inner .big-item div
+.container .wrapper .big-circle .inner .big-item div
 {
     color:#fff;
     font-size:20px;
@@ -184,17 +191,25 @@ body
 {
     transform: rotate(0deg) translate(-51%,-50%);
 }
-.container .wrapper .big-circle#section2 .inner .big-item:nth-child(1) div
+.container .wrapper .big-circle#section2 .inner .big-item#Mechanical:nth-child(1) div
 {
-    transform: rotate(-90deg) translate(-73%,-21%);
+    transform: rotate(-90deg) translate(-78%,-42%);
+}
+.container .wrapper .big-circle#section2 .inner .big-item#Medical:nth-child(1) div
+{
+    transform: rotate(-90deg) translate(-84%,-80%);
 }
 .container .wrapper .big-circle#section2 .inner .big-item:nth-child(2)
 {
     transform:rotate(180deg) translate(0%,64%);
 }
-.container .wrapper .big-circle#section2 .inner .big-item:nth-child(2) div
+.container .wrapper .big-circle#section2 .inner .big-item#Mechanical:nth-child(2) div
 {
-    transform:rotate(-90deg) translate(-81%,-55%);
+    transform:rotate(-90deg) translate(-65%,-8%);
+}
+.container .wrapper .big-circle#section2 .inner .big-item#Medical:nth-child(2) div
+{
+    transform:rotate(-90deg) translate(-77%,-40%);
 }
 /* BIG 3  */
 .container .wrapper .big-circle#section3 .inner .big-item
@@ -219,13 +234,25 @@ body
 {
     transform: rotate(0deg) translate(-50%,-62.5%);
 }
+.container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(1) div
+{
+    transform: rotate(-60deg) translate(-49%,55%);
+}
 .container .wrapper .big-circle#section3 .inner .big-item:nth-child(2)
 {
     transform:rotate(126deg) translate(-84%,40.5%);
 }
+.container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(2) div
+{
+    transform:rotate(-56deg) translate(-44%,66%);
+}
 .container .wrapper .big-circle#section3 .inner .big-item:nth-child(3)
 {
     transform:rotate(238deg) translate(65%,11%);
+}
+.container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(3) div
+{
+    transform: rotate(124deg) translate(47%,-78%);
 }
 /* BIG 4  */
 .container .wrapper .big-circle#section4 .inner .big-item
