@@ -554,7 +554,7 @@ function refreshCustoms()
 			$(this).addClass('disabled');
 			if(id == 'dissmisal')	
 			{
-				let name = $(this).prev().text().trim();
+				let name = $(this).prev().prev().text().trim();
 				console.log(name);
 				mp.trigger('dissmisalMechanical',name);
 			}

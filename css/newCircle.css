@@ -67,8 +67,8 @@ body
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #fff;
-    background: rgba(0,0,0,0.5);
+    /* border: 1px solid #fff; */
+    /* background: rgba(0,0,0,0.5); */
 }
 .container .wrapper .small-circle .inner .small-item:hover
 {
@@ -111,7 +111,7 @@ body
 .container .wrapper .small-circle .inner .small-item:nth-child(9)
 {
     transform:rotate(321deg) translate(-49.5%,-49%);
-    border-top-right-radius: 100%;
+    border-top-right-radius: 80%;
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(1) img
 {
@@ -156,6 +156,7 @@ body
     background:url(../img/fractionCircle/big.png) no-repeat;
     background-size:cover;
 } 
+/* BIG 2  */
 .container .wrapper .big-circle#section2 .inner .big-item
 {
     position: absolute;
@@ -168,6 +169,11 @@ body
     overflow: hidden;
     cursor: pointer;
 }
+.container .wrapper .big-circle#section2 .inner .big-item div
+{
+    color:#fff;
+    font-size:20px;
+}
 .container .wrapper .big-circle#section2 .inner .big-item:hover
 {
     background-position: center;
@@ -178,7 +184,81 @@ body
 {
     transform: rotate(0deg) translate(-51%,-50%);
 }
+.container .wrapper .big-circle#section2 .inner .big-item:nth-child(1) div
+{
+    transform: rotate(-90deg) translate(-73%,-21%);
+}
 .container .wrapper .big-circle#section2 .inner .big-item:nth-child(2)
 {
     transform:rotate(180deg) translate(0%,64%);
+}
+.container .wrapper .big-circle#section2 .inner .big-item:nth-child(2) div
+{
+    transform:rotate(-90deg) translate(-81%,-55%);
+}
+/* BIG 3  */
+.container .wrapper .big-circle#section3 .inner .big-item
+{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-51%,-50%);
+    width: 367px;
+    height: 586px;
+    transform-origin: 75% 57%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.container .wrapper .big-circle#section3 .inner .big-item:hover
+{
+    background-position: center;
+    background-size: cover;
+    background: url(../img/fractionCircle/b3.png) no-repeat;
+}
+.container .wrapper .big-circle#section3 .inner .big-item:nth-child(1)
+{
+    transform: rotate(0deg) translate(-50%,-62.5%);
+}
+.container .wrapper .big-circle#section3 .inner .big-item:nth-child(2)
+{
+    transform:rotate(126deg) translate(-84%,40.5%);
+}
+.container .wrapper .big-circle#section3 .inner .big-item:nth-child(3)
+{
+    transform:rotate(238deg) translate(65%,11%);
+}
+/* BIG 4  */
+.container .wrapper .big-circle#section4 .inner .big-item
+{
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-51%,-50%);
+    width: 181px;
+    height: 501px;
+    transform-origin: 75% 57%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.container .wrapper .big-circle#section4 .inner .big-item:hover
+{
+    background-position: center;
+    background-size: cover;
+    background: url(../img/fractionCircle/b4.png) no-repeat;
+}
+.container .wrapper .big-circle#section4 .inner .big-item:nth-child(1)
+{
+    transform:rotate(0deg) translate(-101.5%,-49.5%);
+}
+.container .wrapper .big-circle#section4 .inner .big-item:nth-child(2)
+{
+    transform:rotate(90deg) translate(-285%,-1.5%);
+}
+.container .wrapper .big-circle#section4 .inner .big-item:nth-child(3)
+{
+    transform:rotate(180deg) translate(-154%,65%);
+}
+.container .wrapper .big-circle#section4 .inner .big-item:nth-child(4)
+{
+    transform:rotate(270deg) translate(31%,17.5%);
 }
