@@ -450,6 +450,11 @@ function speedPercentage(curSpeed,currentWrapper)
 	}
 	return percentage;
 }
+function updateCustoms(transportObj)
+{
+	transportInfo = JSON.parse(transportObj);
+	pushCustoms(transportInfo);
+}
 function pushCustoms(transportObj)
 {
 	$('.customs-wrapper .service-wrapper .current-input .next-title').text(transportInfo.Name);

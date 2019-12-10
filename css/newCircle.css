@@ -5,6 +5,12 @@
     margin:0;
     box-sizing: border-box;
 }
+body
+{
+    background:url(../img/fractionCircle/game.png) no-repeat;
+    background-size:cover;
+    height: 100vh;
+}
 .container
 {
     position: absolute;
@@ -19,12 +25,13 @@
     left:50%;
     transform:translate(-50%,-50%);
     background:url(../img/fractionCircle/small.png) no-repeat;
-    width: 478px;
-    height: 478px;
+    background-position: center;
+    width: 515px;
+    height: 515px;
     z-index: 9999;
     overflow: hidden;
     border-radius: 50%;
-    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    /* box-shadow: 0 0 25px rgba(0,0,0,0.5); */
 }
 .container .wrapper .central-circle 
 {
@@ -52,11 +59,16 @@
     top: 30%;
     left: 20%;
     transform: translate(-50%,-50%);
-    width: 189px;
-    height: 171px;
-    transform-origin: 75% 57%;
+    width: 210px;
+    height: 189px;
+    transform-origin: 73% 55%;
     overflow: hidden;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #fff;
+    background: rgba(0,0,0,0.5);
 }
 .container .wrapper .small-circle .inner .small-item:hover
 {
@@ -66,27 +78,27 @@
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(1)
 {
-    transform: rotate(1deg) translate(-49.5%,-51%);
+    transform: rotate(1deg) translate(-50%,-49%);
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(2)
 {
-    transform:rotate(41deg) translate(-50%,-52%);
+    transform:rotate(41deg) translate(-50%,-50%);
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(3)
 {
-    transform: rotate(81deg) translate(-50%,-52%);
+    transform: rotate(82deg) translate(-51%,-49%);
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(4)
 {
-    transform: rotate(121deg) translate(-51%,-50.5%);
+    transform: rotate(122deg) translate(-51%,-48.5%);
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(5)
 {
-    transform:rotate(161deg) translate(-51%,-50%);
+    transform:rotate(162deg) translate(-51%,-48%);
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(6)
 {
-    transform:rotate(201deg) translate(-50%,-49%);
+    transform:rotate(202deg) translate(-50%,-49%);
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(7)
 {
@@ -94,20 +106,55 @@
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(8)
 {
-    transform:rotate(281deg) translate(-49%,-49%);
+    transform:rotate(281deg) translate(-50%,-48%);
 }
 .container .wrapper .small-circle .inner .small-item:nth-child(9)
 {
-    transform:rotate(321deg) translate(-49%,-50%);
+    transform:rotate(321deg) translate(-49.5%,-49%);
+    border-top-right-radius: 100%;
+}
+.container .wrapper .small-circle .inner .small-item:nth-child(1) img
+{
+    transform:rotate(-1deg) translate(-25%,24%); 
+}
+.container .wrapper .small-circle .inner .small-item:nth-child(2) img
+{
+    transform:rotate(-41deg) translate(-20%,-26%);
+}
+.container .wrapper .small-circle .inner .small-item:nth-child(3) img
+{
+    transform: rotate(-82deg) translate(-14%,-41%); 
+}
+.container .wrapper .small-circle .inner .small-item:nth-child(4) img
+{
+    transform: rotate(-122deg) translate(9%,-35%);
+}
+.container .wrapper .small-circle .inner .small-item:nth-child(5) img
+{
+    transform:rotate(-162deg) translate(30%,-26%); 
+}
+.container .wrapper .small-circle .inner .small-item:nth-child(6) img
+{
+    transform:rotate(-202deg) translate(27%,-5%);
+}
+.container .wrapper .small-circle .inner .small-item:nth-child(7) img
+{
+    transform:rotate(-241deg) translate(17%,8%); 
+}
+.container .wrapper .small-circle .inner .small-item:nth-child(8) img
+{
+    transform:rotate(-281deg) translate(5%,35%);
+}
+.container .wrapper .small-circle .inner .small-item:nth-child(9) img
+{
+    transform:rotate(-321deg) translate(-11%,20%);
 }
 .container .wrapper .big-circle
 {
-    width: 695px;
-    height: 695px;
-}
-.container .wrapper .big-circle#section2
-{
-    background:url(../img/fractionCircle/big2.png) no-repeat;
+    width: 734px;
+    height: 734px;
+    background:url(../img/fractionCircle/big.png) no-repeat;
+    background-size:cover;
 } 
 .container .wrapper .big-circle#section2 .inner .big-item
 {
@@ -115,8 +162,8 @@
     top: 50%;
     left: 25%;
     transform: translate(-51%,-50%);
-    width: 345px;
-    height: 695px;
+    width: 367px;
+    height: 734px;
     transform-origin: 75% 57%;
     overflow: hidden;
     cursor: pointer;
