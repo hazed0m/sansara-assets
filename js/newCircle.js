@@ -52,7 +52,12 @@ function addFractionCircle(fractionName)
         document.querySelectorAll('.big-circle#section4 .big-item').forEach(function(item,index){
             circleType = new CircleType(item).radius(200);
         });
-    }   
+    } 
+    $('.container .wrapper .big-circle .inner .big-item').on('click',function(){
+        let id = this.id;
+        console.log(`FractionCircle`,id,$(this).text());
+        mp.trigger(`FractionCircle`,id,$(this).text());
+    });  
 }
 let player = JSON.stringify([
     { 
@@ -85,5 +90,8 @@ function initPlayerCircle(elem)
 $('.container .wrapper .small-circle .inner .small-item').on('click',function(){
     let id = this.id;
     console.log(id);
-    mp.trigger('PlayerCircle',id);
+    if($(this).hasClass('active'))
+    {
+        mp.trigger('PlayerCircle',id);
+    }
 });
