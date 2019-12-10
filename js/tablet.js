@@ -123,20 +123,28 @@ $('.ads-wrapper .add-popap #acceptAdd').on('click',function(){
 $('.ads-wrapper #closeAdd').on('click',function(){
 	console.log(11);
 });
-// let transportInfo = JSON.stringify({
-// 		Name: 'Sansara INC.',
-// 		Owner: 'Человек ин Дастриал',
-// 		Gain: 2352525253,
-// 		TrucksCount:2,
-// 		WorkersList:[
-// 			'Александр Булкин',
-// 			'Въячеслав Ломакин'
-// 		]
-// 	});
+let transportAcc = JSON.stringify({
+		Name: 'Sansara INC.',
+		Owner: 'Человек ин Дастриал',
+		Gain: 2352525253,
+		TrucksCount:2,
+		WorkersList:[
+			{
+				FullName:'Александр Булкин',
+				Date: '23.12.2019',
+				Online:true
+			},
+			{
+				FullName:'Въячеслав Ломакин',
+				Date: '15.12.2019',
+				Online:false
+			}
+		]
+	});
 let transportInfo = [];
 function initCustoms(transportObj)
-{
-	transportInfo = transportObj;
+{	
+	transportInfo = JSON.parse(transportObj);
 	$('.main-wrapper .customs').css('display','block');
 }
 $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork, .main-wrapper .customs').on('click',function(){
@@ -155,7 +163,7 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 	}
 	if(currentClass == 'customs')
 	{
-		forwardExit();
+		forwardExit();		
 		pushCustoms(transportInfo);
 		if(mixer != null)
 		{
@@ -444,7 +452,6 @@ function speedPercentage(curSpeed,currentWrapper)
 }
 function pushCustoms(transportObj)
 {
-	transportInfo = JSON.parse(transportObj);
 	$('.customs-wrapper .service-wrapper .current-input .next-title').text(transportInfo.Name);
 	$('.customs-wrapper .service-wrapper .changable-input input').val(transportInfo.Name);
 	$('.customs-wrapper .service-wrapper .owner-wrapper .next-title').text(transportInfo.Owner);
@@ -455,9 +462,13 @@ function pushCustoms(transportObj)
 		let template = `
 			<div class="employee-item hired" data-count="${index+1}">
 				<div class="name">
-					${item}
+					${item.FullName}
+				</div>
+				<div class="date">
+					${item.Date}
 				</div>
 				<div class="button" id="dissmisal">Уволить</div>
+				${item.Online ? '<div class="online"></div>' : '<div class="offline"></div>'}				
 			</div>`;
 		$('.customs-wrapper .employers-wrapper .employers-list').append(template);
 	});

@@ -2089,6 +2089,39 @@
 {
 	margin-top:0;
 }
+.customs-wrapper .employers-wrapper .employers-list .employee-item .date
+{
+	padding:0;
+	position: absolute;
+	top:50%;
+	transform:translate(0%,-50%);
+	right:25%;
+	color:#515355;
+	font-size:18px;
+}
+.customs-wrapper .employers-wrapper .employers-list .employee-item .online,
+.customs-wrapper .employers-wrapper .employers-list .employee-item .offline
+{
+	position: absolute;
+	top:50%;
+	transform:translate(0%,-50%);
+	right:-8%;
+	width:15px;
+	height:15px;
+	border-radius:50%;
+}
+.customs-wrapper .employers-wrapper .employers-list .employee-item .online
+{	
+	background:rgb(2, 190, 2);
+	border:2px solid rgba(0,0,0,0.5);
+	box-shadow:0 0 3px #60dd4e;
+}
+.customs-wrapper .employers-wrapper .employers-list .employee-item .offline
+{
+	background:rgb(105, 105, 105);
+	border:2px solid rgba(0,0,0,0.5);
+	box-shadow:0 0 3px rgb(68, 71, 68);
+}
 .customs-wrapper .employers-wrapper .employers-list .employee-item:last-child
 {
 	margin-bottom:0;
