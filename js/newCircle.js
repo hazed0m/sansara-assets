@@ -1,16 +1,32 @@
 let menuTitleList = {
     'Police':[
-        'собрать улики',
-        'отобрать права',
-        'отобрать лицензию на оружие'
+        { 
+            id:'собрать улики'
+        },
+        { 
+            id:'отобрать права'
+        },
+        { 
+            id:'отобрать лицензию на оружие'
+        }
     ],
     'Medical':[
-        'провести осмотр',
-        'посмотреть мед.карту'
+        { 
+            id:'провести осмотр',
+            img:'img/fractionCircle/watchPatient.png'
+        },
+        {
+            id:'посмотреть мед.карту',
+            img:'img/fractionCircle/medicalCard.png'
+        }
     ],
     'Mechanical':[
-        'провести диагностику',
-        'посмотреть сервисную книжку'
+        { 
+            id:'провести диагностику'
+        },
+        { 
+            id:'посмотреть сервисную книжку'
+        }
     ]
 };
 function addFractionCircle(fractionName)
@@ -18,7 +34,8 @@ function addFractionCircle(fractionName)
     $('.big-circle').remove();
     let items = '';
      $(menuTitleList[fractionName]).each(function(index,item){
-        items += `<div class="big-item" id="${fractionName}"><span>${item}</span></div>`;
+        // ${item.img != undefined ? `<img src="${item.img}">` : item.id}
+        items += `<div class="big-item" id="${fractionName}"><span>${item.id}</span></div>`;
      });
      let template = `
         <div class="big-circle" id="section${menuTitleList[fractionName].length}">
@@ -36,7 +53,8 @@ function addFractionCircle(fractionName)
     }
     if(menuTitleList[fractionName].length == 3)
     {
-        document.querySelectorAll('.big-circle#section3 .big-item').forEach(function(item,index){
+        document.querySelectorAll('.big-circle#section3 .big-item')
+        .forEach(function(item,index){
             if(index == 2)
             {
                circleType = new CircleType(item).dir(-1).radius(240);
