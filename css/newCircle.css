@@ -5,18 +5,20 @@
     margin:0;
     box-sizing: border-box;
 }
-/* body
+body
 {
-    background:url(../img/fractionCircle/game.png) no-repeat;
+    /* background:url(../img/fractionCircle/game.png) no-repeat;
     background-size:cover;
-    height: 100vh;
-} */
+    height: 100vh; */
+}
 .container
 {
     position: absolute;
     top:50%;
     left:50%;
-    transform:translate(-50%,-50%);     
+    transform:translate(-50%,-50%);   
+    font-family: 'Montserrat';
+    font-weight:900;  
 }
 .container .wrapper .small-circle
 {
