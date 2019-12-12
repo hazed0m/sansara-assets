@@ -71,6 +71,12 @@
 	font-style: 900;
 }
 @font-face {
+	font-family: 'Montserrat';
+	src: url('Montserrat-SemiBold.ttf') format('truetype');
+	font-weight: 500;
+	font-style: 500;
+}
+@font-face {
 	font-family:"HelveticaNeueCyr";
 	src: url("HelveticaNeueCyr-Medium.otf");
 	font-weight: bold;
@@ -92,5 +98,17 @@
 	font-family:"HelveticaNeueCyr";
 	src: url("Helvetica Neue Condensed Black.ttf");
 	font-weight: 900;
+	font-style: normal;
+}
+@font-face {
+	font-family:"BeautifulBloom-Alt";
+	src: url("BeautifulBloom-Alt.otf");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family:"BeautifulBloom-Regular";
+	src: url("BeautifulBloom-Regular.otf");
+	font-weight: normal;
 	font-style: normal;
 }
