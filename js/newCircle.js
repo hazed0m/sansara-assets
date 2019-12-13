@@ -24,8 +24,11 @@ let menuTitleList = {
         { 
             id:'провести диагностику'
         },
+        {
+            id:'погрузить на эвакуатор'
+        },
         { 
-            id:'посмотреть сервисную книжку'
+            id:'открыть сервисную книжку'
         }
     ]
 };
@@ -35,7 +38,7 @@ function addFractionCircle(fractionName)
     let items = '';
      $(menuTitleList[fractionName]).each(function(index,item){
         // ${item.img != undefined ? `<img src="${item.img}">` : item.id}
-        items += `<div class="big-item" id="${fractionName}"><span>${item.id}</span></div>`;
+        items += `<div class="big-item" id="${fractionName}"><div class="big-text"><span>${item.id}</span></div></div>`;
      });
      let template = `
         <div class="big-circle" id="section${menuTitleList[fractionName].length}">
@@ -47,31 +50,31 @@ function addFractionCircle(fractionName)
     let circleType = null;
     if(menuTitleList[fractionName].length == 2)
     {
-        document.querySelectorAll('.big-circle#section2 .big-item').forEach(function(item,index){
-            circleType = new CircleType(item).radius(270);
+        document.querySelectorAll('.big-circle#section2 .big-item .big-text').forEach(function(item,index){
+            circleType = new CircleType(item).radius(280);
         });
     }
     if(menuTitleList[fractionName].length == 3)
     {
-        document.querySelectorAll('.big-circle#section3 .big-item')
+        document.querySelectorAll('.big-circle#section3 .big-item .big-text')
         .forEach(function(item,index){
             if(index == 2)
             {
-               circleType = new CircleType(item).dir(-1).radius(240);
+               circleType = new CircleType(item).dir(-1).radius(300);
             }
             else
             {
-                circleType = new CircleType(item).radius(240);
+                circleType = new CircleType(item).radius(300);
             }
         });
     }
     if(menuTitleList[fractionName].length == 4)
     {
-        document.querySelectorAll('.big-circle#section4 .big-item').forEach(function(item,index){
+        document.querySelectorAll('.big-circle#section4 .big-item .big-text').forEach(function(item,index){
             circleType = new CircleType(item).radius(200);
         });
     } 
-    $('.container .wrapper .big-circle .inner .big-item').on('click',function(){
+    $('.container .wrapper .big-circle .inner .big-item .big-text').on('click',function(){
         let id = this.id;
         console.log(`FractionCircle`,id,$(this).text());
         mp.trigger(`FractionCircle`,id,$(this).text());

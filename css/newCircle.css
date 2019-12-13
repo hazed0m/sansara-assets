@@ -85,6 +85,11 @@ body
     filter: grayscale(1);
     cursor:default;
 }
+ .container .wrapper .small-circle .inner .small-item.disabled img
+ {
+     opacity:0.2;
+ }
+
 .container .wrapper .small-circle .inner .small-item:nth-child(1)
 {
     transform: rotate(1deg) translate(-50%,-49%);
@@ -180,8 +185,9 @@ body
 }
 .container .wrapper .big-circle .inner .big-item div
 {
-    color:#fff;
+    color:rgb(184, 184, 184);
     font-size:20px;
+    text-transform: uppercase;
 }
 .container .wrapper .big-circle#section2 .inner .big-item:hover
 {
@@ -193,25 +199,17 @@ body
 {
     transform: rotate(0deg) translate(-50%,-50%);
 }
-.container .wrapper .big-circle#section2 .inner .big-item#Mechanical:nth-child(1) div
+.container .wrapper .big-circle#section2 .inner .big-item#Medical:nth-child(1) .big-text div
 {
-    transform: rotate(-90deg) translate(-78%,-42%);
-}
-.container .wrapper .big-circle#section2 .inner .big-item#Medical:nth-child(1) div
-{
-    transform: rotate(-90deg) translate(-84%,-80%);
+    transform:rotate(-85deg) translate(-85%,-93%);
 }
 .container .wrapper .big-circle#section2 .inner .big-item:nth-child(2)
 {
     transform:rotate(180deg) translate(-0.5%,64%);
 }
-.container .wrapper .big-circle#section2 .inner .big-item#Mechanical:nth-child(2) div
+.container .wrapper .big-circle#section2 .inner .big-item#Medical:nth-child(2) .big-text div
 {
-    transform:rotate(-90deg) translate(-65%,-8%);
-}
-.container .wrapper .big-circle#section2 .inner .big-item#Medical:nth-child(2) div
-{
-    transform:rotate(-90deg) translate(-77%,-40%);
+    transform:rotate(-89deg) translate(-86%,-71%);
 }
 /* BIG 3  */
 .container .wrapper .big-circle#section3 .inner .big-item
@@ -234,27 +232,39 @@ body
 }
 .container .wrapper .big-circle#section3 .inner .big-item:nth-child(1)
 {
-    transform: rotate(0deg) translate(-50%,-62.5%);
+    transform: rotate(0deg) translate(-50.8%,-62.9%);
 }
-.container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(1) div
+.container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(1) .big-text div
 {
-    transform: rotate(-60deg) translate(-49%,55%);
+    transform:rotate(-62deg) translate(-47%,37%);
+}
+.container .wrapper .big-circle#section3 .inner .big-item#Mechanical:nth-child(1) .big-text div
+{
+    transform: rotate(-61deg) translate(-46%,40%);
 }
 .container .wrapper .big-circle#section3 .inner .big-item:nth-child(2)
 {
-    transform:rotate(124deg) translate(-86.5%,39%);
+    transform:rotate(120deg) translate(-92.1%,36.2%);
 }
-.container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(2) div
+.container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(2) .big-text div
 {
-    transform:rotate(-62deg) translate(-48%,39%);
+    transform:rotate(-58deg) translate(-48%,64%);
+}
+.container .wrapper .big-circle#section3 .inner .big-item#Mechanical:nth-child(2) .big-text div
+{
+    transform:rotate(-60deg) translate(-44%,43%);
 }
 .container .wrapper .big-circle#section3 .inner .big-item:nth-child(3)
 {
-    transform:rotate(238deg) translate(65%,11%);
+    transform:rotate(240deg) translate(65.5%,8.9%);
 }
-.container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(3) div
+.container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(3) .big-text div
 {
-    transform: rotate(122deg) translate(45%,-46%);
+    transform:rotate(122deg) translate(48%,-56%);
+}
+.container .wrapper .big-circle#section3 .inner .big-item#Mechanical:nth-child(3) .big-text div
+{
+    transform: rotate(120deg) translate(52%,-59%);
 }
 /* BIG 4  */
 .container .wrapper .big-circle#section4 .inner .big-item

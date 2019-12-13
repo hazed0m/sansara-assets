@@ -42,6 +42,7 @@ let doc = JSON.stringify({
 });
 function pushFractionDocument(elem)
 {
+    $('.container').empty();
     docInfo = JSON.parse(elem);
     let fractionTitle = docInfo.Fraction == 'police' ? '<div class="title">Police Department</div>': '' || docInfo.Fraction == 'medical' ? '<div class="title">Emergency Services</div>': '',
         signsList = '';
