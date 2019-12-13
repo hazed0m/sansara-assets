@@ -183,11 +183,34 @@ body
     overflow: hidden;
     cursor: pointer;
 }
-.container .wrapper .big-circle .inner .big-item div
+.container .wrapper .big-circle .inner .big-item .big-text
 {
+    position: absolute;
+    left:-100%;
     color:rgb(184, 184, 184);
     font-size:20px;
     text-transform: uppercase;
+    z-index: -1;
+}
+.container .wrapper .big-circle .inner .big-item img
+{
+    max-width:75px;
+    height:75px;
+    position: absolute;
+    top:50%;
+    transform:translate(-50%,-50%);
+    z-index: 9;
+}
+.container .wrapper .big-circle .inner .big-item:hover img
+{
+    opacity:0;
+    transition:0.2s;
+}
+.container .wrapper .big-circle .inner .big-item:hover .big-text
+{
+    position: relative;
+    left:0%;
+    transition:0.3s;
 }
 .container .wrapper .big-circle#section2 .inner .big-item:hover
 {
@@ -199,6 +222,10 @@ body
 {
     transform: rotate(0deg) translate(-50%,-50%);
 }
+.container .wrapper .big-circle#section2 .inner .big-item:nth-child(1) img
+{
+    left:17%;
+}
 .container .wrapper .big-circle#section2 .inner .big-item#Medical:nth-child(1) .big-text div
 {
     transform:rotate(-85deg) translate(-85%,-93%);
@@ -206,6 +233,10 @@ body
 .container .wrapper .big-circle#section2 .inner .big-item:nth-child(2)
 {
     transform:rotate(180deg) translate(-0.5%,64%);
+}
+.container .wrapper .big-circle#section2 .inner .big-item:nth-child(2) img
+{
+    right:64%;
 }
 .container .wrapper .big-circle#section2 .inner .big-item#Medical:nth-child(2) .big-text div
 {
@@ -234,6 +265,11 @@ body
 {
     transform: rotate(0deg) translate(-50.8%,-62.9%);
 }
+.container .wrapper .big-circle#section3 .inner .big-item:nth-child(1) img
+{ 
+    top:40%;
+    left:24%;
+}
 .container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(1) .big-text div
 {
     transform:rotate(-62deg) translate(-47%,37%);
@@ -246,6 +282,12 @@ body
 {
     transform:rotate(120deg) translate(-92.1%,36.2%);
 }
+.container .wrapper .big-circle#section3 .inner .big-item:nth-child(2) img
+{ 
+    top: 28%;
+    right: 61%;
+    transform:rotate(-120deg);
+}
 .container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(2) .big-text div
 {
     transform:rotate(-58deg) translate(-48%,64%);
@@ -257,6 +299,12 @@ body
 .container .wrapper .big-circle#section3 .inner .big-item:nth-child(3)
 {
     transform:rotate(240deg) translate(65.5%,8.9%);
+}
+.container .wrapper .big-circle#section3 .inner .big-item:nth-child(3) img
+{ 
+    top: 29%;
+    right: 61%;
+    transform:rotate(-240deg);
 }
 .container .wrapper .big-circle#section3 .inner .big-item#Police:nth-child(3) .big-text div
 {

@@ -1,13 +1,16 @@
 let menuTitleList = {
     'Police':[
         { 
-            id:'собрать улики'
+            id:'собрать улики',
+            img:'img/fractionCircle/getClews.png'
         },
         { 
-            id:'отобрать права'
+            id:'отобрать права',
+            img:'img/fractionCircle/getCarRights.png'
         },
         { 
-            id:'отобрать лицензию на оружие'
+            id:'отобрать лицензию на оружие',
+            img:'img/fractionCircle/getWeaponLicence.png'
         }
     ],
     'Medical':[
@@ -22,13 +25,16 @@ let menuTitleList = {
     ],
     'Mechanical':[
         { 
-            id:'провести диагностику'
+            id:'провести диагностику',
+            img:'img/fractionCircle/doDiagnostic.png'
         },
         {
-            id:'погрузить на эвакуатор'
+            id:'погрузить на эвакуатор',
+            img:'img/fractionCircle/evacuation.png'
         },
         { 
-            id:'открыть сервисную книжку'
+            id:'открыть сервисную книжку',
+            img:'img/fractionCircle/serviceBook.png'
         }
     ]
 };
@@ -37,8 +43,13 @@ function addFractionCircle(fractionName)
     $('.big-circle').remove();
     let items = '';
      $(menuTitleList[fractionName]).each(function(index,item){
-        // ${item.img != undefined ? `<img src="${item.img}">` : item.id}
-        items += `<div class="big-item" id="${fractionName}"><div class="big-text"><span>${item.id}</span></div></div>`;
+        items += `
+                <div class="big-item" id="${fractionName}">
+                    <img src="${item.img}">
+                    <div class="big-text">
+                        <span>${item.id}</span>
+                    </div>
+                </div>`;
      });
      let template = `
         <div class="big-circle" id="section${menuTitleList[fractionName].length}">
