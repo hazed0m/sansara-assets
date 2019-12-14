@@ -91,29 +91,29 @@ function addFractionCircle(fractionName)
         mp.trigger(`FractionCircle`,id,$(this).text());
     });  
 }
-let player = JSON.stringify([
+let player = [
     { 
-        id:'handcuff', 
-        status: false
+        id:'takeHandcuff', 
+        status: 'hide'
     },
     {
-        id: 'putBag',
-        status: false
+        id: 'takeBag',
+        status: 'hide'
     },
     {
         id: 'repair',
-        status: false
+        status: 'hide'
     },
     {
         id: 'reanimation',
-        status: false
+        status: 'hide'
     }
-]);
+];
 function initPlayerCircle(elem)
 {
-    let playerStatus = JSON.parse(elem);
+    let playerStatus = elem;
     $(playerStatus).each(function(index,item){
-        if(!item.status)
+        if(item.status == 'hide')
         {
             $(`.small-item#${item.id}`).removeClass('active').addClass('disabled');
         }
