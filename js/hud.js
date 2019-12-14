@@ -151,6 +151,9 @@ function keypressUp(e){
         case 71:  // G взаимодействие
             mp.trigger('KeyGpress');
         break;
+        case 17:  // Ctrl 
+            mp.trigger('KeyCtrlpress');
+        break;
     }
 }
 function keypressDown(e){   

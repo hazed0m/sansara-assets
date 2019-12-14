@@ -214,21 +214,38 @@ function shopListRefresh()
 			legalAttr = ``;
 			path = 'inventory';
 			currentImg = item.type;
-		}
-		let template = `
-			<div class="shop-item" ${legalId}>
-				<div class="inner-item" ${legalAttr} data-index="${index}" style="background-image:url(images/${path}/${currentImg}.png);">
-					<div class="title">
-						<span class="title-text">${item.name}</span>
+		}		
+		let template = ``;
+		if(currentShopType == 'products')
+		{
+			template = `
+				<div class="shop-item" ${legalId}>
+					<div class="inner-item" ${legalAttr} data-index="${index}" style="background-image:url(images/inventory/items/${item.name.toLowerCase() == 'йогурт 1%' ? 'йогурт1' : `${item.name.toLowerCase().replace(/\s+/g,'')}`}.png);">
+						<div class="title">
+							<span class="title-text">${item.name}</span>
+						</div>
+						<div class="price"><span>${item.price}</span>$</div>
 					</div>
-					<div class="price"><span>${item.price}</span>$</div>
 				</div>
-			</div>
-		`;
+			`;
+		}
+		else
+		{
+			template = `
+				<div class="shop-item" ${legalId}>
+					<div class="inner-item" ${legalAttr} data-index="${index}" style="background-image:url(images/${path}/${currentImg}.png);">
+						<div class="title">
+							<span class="title-text">${item.name}</span>
+						</div>
+						<div class="price"><span>${item.price}</span>$</div>
+					</div>
+				</div>
+			`;
+		}
 		$(container).append(template);
 	});
 	let emptyTemplate = `<div class="shop-item"></div>`;
-		currentLength = shopList.length < 20 ? '20' : '40';
+		currentLength = shopList.length < 20 ? 20 : 40;
 
 	if(currentLength > 20 || currentLength > 40 || currentLength > 80)
 	{
@@ -306,21 +323,43 @@ function basketListRefresh()
 			path = 'inventory';
 			currentImg = item.type;
 		}
-		let template = `
-			<div class="basket-item" data-index="${index}">
-				<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
-				<div class="icon" ${legalId}><img src="images/${path}/${currentImg}.png" alt=""></div>
-				<div class="title-wrap">
-					<div class="title-item">${item.name}</div>
-					<div class="class-item">${translateType(item.type)}</div>
-				</div>
-				<div class="col-wrap">
-					<div class="minus">-</div>
-					<div class="col-box">${item.count}</div>		
-					<div class="plus">+</div>
-				</div>
-			</div>	
-		`;
+		let template = ``;
+		if(currentShopType == 'products')
+		{
+			template = `
+				<div class="basket-item" data-index="${index}">
+					<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+					<div class="icon" ${legalId}><img src="images/inventory/items/${item.name.toLowerCase() == 'йогурт 1%' ? 'йогурт1' : `${item.name.toLowerCase().replace(/\s+/g,'')}`}.png" alt=""></div>
+					<div class="title-wrap">
+						<div class="title-item">${item.name}</div>
+						<div class="class-item">${translateType(item.type)}</div>
+					</div>
+					<div class="col-wrap">
+						<div class="minus">-</div>
+						<div class="col-box">${item.count}</div>		
+						<div class="plus">+</div>
+					</div>
+				</div>	
+			`;
+		}
+		else
+		{
+			template = `
+				<div class="basket-item" data-index="${index}">
+					<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+					<div class="icon" ${legalId}><img src="images/${path}/${currentImg}.png" alt=""></div>
+					<div class="title-wrap">
+						<div class="title-item">${item.name}</div>
+						<div class="class-item">${translateType(item.type)}</div>
+					</div>
+					<div class="col-wrap">
+						<div class="minus">-</div>
+						<div class="col-box">${item.count}</div>		
+						<div class="plus">+</div>
+					</div>
+				</div>	
+			`;
+		}
 		$(container).append(template);
 		if(item.count > 1)
 		{
