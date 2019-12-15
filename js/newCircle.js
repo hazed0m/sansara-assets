@@ -2,38 +2,46 @@ let menuTitleList = {
     'Police':[
         { 
             id:'собрать улики',
+            button:'searchEvidence',
             img:'img/fractionCircle/getClews.png'
         },
         { 
             id:'отобрать права',
+            button:'takeCarLicence',
             img:'img/fractionCircle/getCarRights.png'
         },
         { 
             id:'отобрать лицензию на оружие',
+            button:'takeWeaponLicence',
             img:'img/fractionCircle/getWeaponLicence.png'
         }
     ],
     'Medical':[
         { 
             id:'провести осмотр',
+            button:'watchPatient',
             img:'img/fractionCircle/watchPatient.png'
         },
         {
             id:'посмотреть мед.карту',
+            button:'showMedicalCard',
             img:'img/fractionCircle/medicalCard.png'
         }
     ],
     'Mechanical':[
         { 
             id:'провести диагностику',
+            button:'doDiagnostic',
             img:'img/fractionCircle/doDiagnostic.png'
         },
         {
             id:'погрузить на эвакуатор',
+            button:'evacuation',
             img:'img/fractionCircle/evacuation.png'
         },
         { 
             id:'открыть сервисную книжку',
+            button:'serviceBook',
             img:'img/fractionCircle/serviceBook.png'
         }
     ]
@@ -44,7 +52,7 @@ function addFractionCircle(fractionName)
     let items = '';
      $(menuTitleList[fractionName]).each(function(index,item){
         items += `
-                <div class="big-item" id="${fractionName}">
+                <div class="big-item" id="${fractionName}" data-name="${item.button}">
                     <img src="${item.img}">
                     <div class="big-text">
                         <span>${item.id}</span>
@@ -85,10 +93,10 @@ function addFractionCircle(fractionName)
             circleType = new CircleType(item).radius(200);
         });
     } 
-    $('.container .wrapper .big-circle .inner .big-item .big-text').on('click',function(){
-        let id = this.id;
-        console.log(`FractionCircle`,id,$(this).text());
-        mp.trigger(`FractionCircle`,id,$(this).text());
+    $('.container .wrapper .big-circle .inner .big-item').on('click',function(){
+        let id = $(this).attr('data-name');
+        console.log(id);
+        mp.trigger(id);
     });  
 }
 let player = [
@@ -124,6 +132,6 @@ $('.container .wrapper .small-circle .inner .small-item').on('click',function(){
     console.log(id);
     if($(this).hasClass('active'))
     {
-        mp.trigger('PlayerCircle',id);
+        mp.trigger(id);
     }
 });
