@@ -273,7 +273,7 @@ function doneAction(action, index, id, currentCount)
             refreshInventory('weapons');
 			refreshInventory('person');
 			refreshInventory('inventory');	
-            inventoryInitialize();  
+            inventoryInitialize();  в
             break;
         
         case ('give'):			
@@ -513,10 +513,10 @@ function pushInventory(item,gender,maxweight,moneyCount = 10000)
 			{
 				console.log('pistolet');	
 				$(weaponsListTranslated).each(function(index,item){
-					console.log(obj.name.toLowerCase(),' ',obj.name.toLowerCase().includes(item),item);
+					// console.log(obj.name.toLowerCase(),' ',obj.name.toLowerCase().includes(item),item);
 					if(obj.name.toLowerCase().includes(item))
 					{
-						console.log('include',index);
+						// console.log('include',index);
 						currentElement = index;
 					}
 				});
@@ -1017,7 +1017,7 @@ function refreshInventory(currentIterator)
 					giveBut = '';
 				}	
 			}
-			if(item.type == 'Medical_Preparation' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
+			if(item.type == 'Medical_Preparation' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol' || item.type == 'Documents')
 			{
 				listBut = '<li id="use">Применить</li>';
 			}
