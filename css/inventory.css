@@ -32,6 +32,23 @@ body {
 	border-radius: 5px;
 	z-index: 99999999999;
 }
+.right-inventory .button#giveMoney
+{
+	padding:10px 20px;
+	background: #36393f;
+	color:#fff;
+	position: absolute;
+	bottom:30px;
+	left:90px;
+	border-radius:5px;
+	cursor: pointer;
+	transition: 0.2s;
+	font-size:20px;
+}
+.right-inventory .button#giveMoney:hover
+{	
+	box-shadow: 0 0 10px #cecece;
+}
 .right-inventory .mask::after
 {
 	content:"Ожидание подтверждения";
@@ -482,6 +499,13 @@ body {
 	border-radius:10px;
 	padding:20px 15px;
 }
+.col-wrapper .max-numb
+{
+	width:100%;
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+	text-overflow: ellipsis; /* Добавляем многоточие */
+	text-align: center;
+}
 .info-wrapper .title
 {
 	text-align: center;
@@ -554,6 +578,14 @@ body {
 	background:#fcfd12;
 	font-weight:500;
 	box-shadow:0 0 5px #fcfd12;
+}
+.button-wrapper .ok-button.disabled
+{
+	opacity:0.5;
+}
+.button-wrapper .ok-button.disabled:hover
+{
+	transform:scale(1);
 }
 .button-wrapper #done
 {

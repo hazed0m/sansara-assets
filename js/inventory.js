@@ -6,6 +6,7 @@ var sex = '',
 	personList = [],
 	newList = [],
 	actionTime,
+	maxMoney,
     typeName = 
     [
         'Eat',                                              
@@ -468,8 +469,9 @@ function actionTimeOut()
 		mp.trigger('actionTimedOut');
 	}, 3000);
 }
-function pushInventory(item,gender,maxweight)
+function pushInventory(item,gender,maxweight,moneyCount = 10000)
 {
+	maxMoney = moneyCount;
 	sex = gender;
 	maxWeight = maxweight;
 	$('.left-inventory .items').css('background-image','url(images/' + sex + '.png');
@@ -682,6 +684,89 @@ $('.tabs-inventory .tabMenu').on('click',function(){
 	});
 	$(this).addClass('active');
 	toogleTab($(this).attr('filter'));
+});
+$('.right-inventory #giveMoney').on('click',function(){
+	var col = 0,
+		input = '<input class="quantity" type="number" min="1" max="150">',
+		currentMin = 0,
+		currentMax = 0;
+	$('.ok-button').attr('action','giveMoney').attr('done','undone');
+	$('.col-wrapper').find('.quantity').replaceWith(input);
+	if(maxMoney <= 0)
+	{
+		$('.col-wrapper').find('.quantity').attr('min',parseInt(maxMoney));
+		$('.col-wrapper').find('.quantity').attr('max',parseInt(maxMoney));
+		$('.col-wrapper').find('.quantity').val(parseInt(maxMoney));
+		$('.col-wrapper').find('.min-numb').text(parseInt(maxMoney));
+		$('.col-wrapper').find('.max-numb').text(parseInt(maxMoney));
+		$('.col-wrapper .ok-button').addClass('disabled');
+	}
+	else
+	{		
+		$('.col-wrapper').find('.quantity').val(1);
+		$('.col-wrapper').find('.col-title').text('Передача средств');
+		$('.col-wrapper').find('.quantity').attr('max',parseInt(maxMoney));
+		$('.col-wrapper').find('.max-numb').text(parseInt(maxMoney));
+	}
+	$('.col-wrapper .min').on('click',function(){
+		currentMin = $(this).parent().find('.quantity').attr('min');
+		$(this).parent().find('.quantity').val(currentMin);
+	});			
+	$('.col-wrapper .max').on('click',function(){
+		currentMax = $(this).parent().find('.quantity').attr('max');
+		$(this).parent().find('.quantity').val(currentMax);
+	});			
+	$('.ok-button').on('click',function(){
+		if($(this).attr('done') == 'undone')
+		{
+			col = $(this).parent().parent().find('input').val();
+			if(col <= maxMoney && col != 0)
+			{
+				$('.col-wrapper').fadeOut();
+				$(this).attr('done','done');
+				console.log($('.ok-button').attr('action'), col);
+				mp.trigger($('.ok-button').attr('action'), parseInt(col));
+			}
+		}
+	});
+	$('.cancel-button').on('click',function(){
+		$('.col-wrapper').fadeOut();				
+	});			
+	//Input
+	var inputQuantity = [];
+	$(function() {
+	  $(".quantity").each(function(i) {
+		inputQuantity[i]=this.defaultValue;
+		 $(this).data("idx",i); // save this field's index to access later
+	  });
+	  $(".quantity").on("keyup", function (e) {
+		var $field = $(this),
+			val=this.value,
+			$thisIndex=parseInt($field.data("idx"),10); // retrieve the index
+			//window.console && console.log($field.is(":invalid"));
+			  //$field.is(":invalid") is for Safari, it must be the last to not error in IE8
+		if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
+			this.value = inputQuantity[$thisIndex];
+			return;
+		} 
+		if (val.length > Number($field.attr("maxlength"))) {
+		  val=val.slice(0, 5);
+		  $field.val(val);
+		}
+		inputQuantity[$thisIndex]=val;
+		
+		if(this.value == 0 || this.value == '' || this.value == ' ')
+		{
+			$('.col-wrapper .ok-button').addClass('disabled');
+		}
+		else
+		{
+			$('.col-wrapper .ok-button').removeClass('disabled');
+
+		}
+	  });      
+	});	
+	$('.col-wrapper').fadeIn();
 });
 function toogleTab(currentTab)
 {
@@ -897,7 +982,8 @@ function refreshInventory(currentIterator)
 				personId = '',
 				giveBut = '<li id="give">Передать</li>';
 				listBut = '',
-				currentElement = -1;			
+				currentElement = -1,
+				itemImg = `<img src="images/${currentIter}/${currentImg}.png" class="itemImg dropdown-toggle">`;		
 			if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет mk ii'))
 			{
 				console.log('pistolet');	
@@ -919,6 +1005,10 @@ function refreshInventory(currentIterator)
 			{
 				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
 			}	
+			if(item.type == 'Clothes_Legal' || item.type == 'Clothes_Duty' || item.type == 'Clothes_Illegal')
+			{
+				itemImg = `<img src="images/person/${refreshImages(item.class)}.png" class="itemImg dropdown-toggle">`;				
+			}
 			if(item.type == 'Clothes_Legal' || item.type == 'Clothes_Duty' || item.type == 'Clothes_Illegal' || item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{
 				listBut = '<li id="use">Надеть</li>';	
@@ -931,11 +1021,16 @@ function refreshInventory(currentIterator)
 			{
 				listBut = '<li id="use">Применить</li>';
 			}
+			if(item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
+			{
+				itemImg = `<img src="images/${currentIter}/items/${item.name.toLowerCase().replace(/\s+/g,'')}.png" class="itemImg dropdown-toggle">`;
+			}
 			if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{				
 				if(currentElement != -1)
 				{				
 					currentImg = weaponsListFull[currentElement].name;
+					itemImg = `<img src="images/weapons/${currentImg}.png" class="itemImg dropdown-toggle">`;
 					currentIter = 'weapons';
 					personId = `weaponsClass="${getWeaponClass(currentElement)}"`
 					item.class = getWeaponClass(currentElement);
@@ -958,7 +1053,7 @@ function refreshInventory(currentIterator)
 						<div class="infoItem dropdown-toggle">
 							<div class="nameItem">${item.name}</div>
 						</div>
-						<img src="images/${currentIter}/${currentImg}.png" class="itemImg dropdown-toggle">
+						${itemImg}
 						<ul class="dropdown-menu">
 							${listBut}
 							<li id="drop">Выбросить</li>

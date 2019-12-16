@@ -117,15 +117,24 @@ let player = [
         status: 'hide'
     }
 ];
-function initPlayerCircle(elem)
+function initPlayerCircle(takeHandcuff = 'true',takeBag = 'true',repair = 'true',reanimation = 'true')
 {
-    let playerStatus = elem;
-    $(playerStatus).each(function(index,item){
-        if(item.status == 'hide')
-        {
-            $(`.small-item#${item.id}`).removeClass('active').addClass('disabled');
-        }
-    });
+    if(takeHandcuff == 'false')    
+    {
+        $(`.small-item#takeHandcuff`).removeClass('active').addClass('disabled');
+    }
+    if(takeBag == 'false')
+    {
+        $(`.small-item#takeBag`).removeClass('active').addClass('disabled');
+    }
+    if(repair == 'false')
+    {
+        $(`.small-item#repair`).removeClass('active').addClass('disabled');
+    }
+    if(reanimation == 'false')
+    {
+        $(`.small-item#reanimation`).removeClass('active').addClass('disabled');
+    }
 }
 $('.container .wrapper .small-circle .inner .small-item').on('click',function(){
     let id = this.id;
