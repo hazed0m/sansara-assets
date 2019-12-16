@@ -535,7 +535,7 @@ function pushContacts(currentWrapper)
 				</div>`;
 				let debug = `<div>${item.parked}</div><div>${typeof item.parked}</div>`;
 				$(`.${currentWrapper}-wrapper .wrapper`).append(currentTemplate);
-				$(`.${currentWrapper}-wrapper .wrapper`).append(debug);
+				// $(`.${currentWrapper}-wrapper .wrapper`).append(debug);
 			});	
 			refreshGetCar();
 		}	
