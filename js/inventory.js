@@ -276,40 +276,43 @@ function doneAction(action, index, id, currentCount)
             inventoryInitialize();  в
             break;
         
-        case ('give'):			
-			clearTimeout(actionTime);
-			actionTime = null;
-			$('.mask').each(function(index,item){
-				$(item).fadeOut();
-			});
-        	if(id == 'inventory')
-        	{
-        		if(inventoryList[index].count < 1 && !inventoryList[index].used)
-        		{
-        			removeElem = eval(id +'List').splice(index,1);
-        			listIndexCheck('weapons');
-        			listIndexCheck('person');
-        		}
-        		else
-        		{
-        			let newCount = inventoryList[index].count;
-        			newCount -= currentCount;
-        			if(newCount < 1 && !inventoryList[index].used)
-        			{
-        				removeElem = eval(id +'List').splice(index,1);
-        				listIndexCheck('weapons');
-        				listIndexCheck('person');
-        			}
-        			else
-        			{
-        				inventoryList[index].count = newCount;
-        			}
-        		}
-        	}
-            refreshInventory('weapons');
-			refreshInventory('person');
-			refreshInventory('inventory');	
-            inventoryInitialize();  
+		case ('give'):			
+			if(inventoryList[index].type != 'Documents')
+			{
+				clearTimeout(actionTime);
+				actionTime = null;
+				$('.mask').each(function(index,item){
+					$(item).fadeOut();
+				});
+				if(id == 'inventory')
+				{
+					if(inventoryList[index].count < 1 && !inventoryList[index].used)
+					{
+						removeElem = eval(id +'List').splice(index,1);
+						listIndexCheck('weapons');
+						listIndexCheck('person');
+					}
+					else
+					{
+						let newCount = inventoryList[index].count;
+						newCount -= currentCount;
+						if(newCount < 1 && !inventoryList[index].used)
+						{
+							removeElem = eval(id +'List').splice(index,1);
+							listIndexCheck('weapons');
+							listIndexCheck('person');
+						}
+						else
+						{
+							inventoryList[index].count = newCount;
+						}
+					}
+				}
+				refreshInventory('weapons');
+				refreshInventory('person');
+				refreshInventory('inventory');	
+				inventoryInitialize();  		
+			}
             break;        
     }
 	genFullInventory();		
