@@ -8,14 +8,8 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
         <link rel="stylesheet" href="fonts/font.css">
 	</head>
-	<body>
+	<body>        
         <div class="custom-popup">
-            <div class="tip-wrap">
-                <div class="tip-content">
-                    <div class="tip-title">Подсказка</div>
-                    <div class="tip"><span class="yellow">Имя</span> и <span class="yellow">Фамилия</span> должны быть в РП формате<br><br>Правильно: Дональд Трамп <br> Неправильно: Бомж Валера</div>
-                </div>
-            </div>
             <div class="mask">           
                 <div class="custom-content" id="top">
                     <div class="custom-title">Придумай Имя своему персонажу! <img src="images/custom/info.png" alt="info-ico" class="info"></div>
@@ -25,7 +19,7 @@
                     </div>
                     <div class="age-wrap">
                         <div class="age-title">Возраст</div>
-                        <input type="text" min="1" max="99" oninput="maxLengthCheck(this)" maxlength = "2" class="custom-input age" placeholder="" id="personAge" name="personAge">
+                        <input type="text" min="18" max="99" oninput="maxLengthCheck(this)" maxlength = "2" class="custom-input age" placeholder="" id="personAge" name="personAge">
                     </div>
                     <div class="sex-wrap">
                         <div class="sex-title">Выберите Пол:</div>
@@ -342,6 +336,14 @@
                 </div>
             </div>   
         </div>
+        <div class="tip-wrap">
+            <div class="tip-content">
+                <div class="tip-title">Подсказка</div>
+                <div class="tip">
+                    <span class="yellow">Имя</span> и <span class="yellow">Фамилия</span> должны быть в РП формате<br><br>Правильно: Дональд Трамп <br> Неправильно: Бомж Валера
+                </div>
+            </div>
+        </div>
         <!-- <div class="help-block">
             <div class="text-block"></div>
         </div> -->
@@ -388,7 +390,7 @@
             function()
             {
                 let nameStr = "При вводе имени и фамилии разрешено использование только русского алфавита",
-                    ageStr = "Возраст не может быть меньше 1",
+                    ageStr = "Возраст не может быть меньше 18 лет",
                     age2Str = "Возраст не может превышать 99 лет";
                 if($(this)[0].id == 'personName')
                 {
@@ -412,7 +414,7 @@
             let personName = document.getElementById('personName'),
                 personFamily = document.getElementById('personFamily'),
                 personAge = document.getElementById('personAge');
-            if(personName.value.length < 2 || personFamily.value.length < 2 || personAge.value.length < 1)
+            if(personName.value.length < 2 || personFamily.value.length < 2 || personAge.value.length < 1 ||  personAge.value < 18)
             {
                 $('.custom-popup').animate({ scrollTop: $('#top').offset().top }, 1400);
                 if(personName.value.length < 2)
@@ -425,6 +427,11 @@
                 }
                 else if(personAge.value.length < 1)
                 {
+                    personAge.focus();
+                }
+                else if(personAge.value < 18)
+                {
+                    personAge.value = 18;
                     personAge.focus();
                 }
                 $('.tip-wrap').css({'border-color':'red','box-shadow':'0 0 10px red'});
@@ -475,7 +482,9 @@
       function maxLengthCheck(object)
       {
         if (object.value.length > object.maxLength)
-          object.value = object.value.slice(0, object.maxLength)
+        { 
+            object.value = object.value.slice(0, object.maxLength);
+        }
       }
     </script>
 </html>

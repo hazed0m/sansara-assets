@@ -1,11 +1,10 @@
 body {
 	margin: 0;
 	user-select: none;
+	display: flex;
 }
 .custom-popup {
-	position: absolute;
-	top: 0;
-	left: 0;
+	position: relative;
 	background-color: #36393f;
 	height: 55vh;
 	overflow: auto;
@@ -235,12 +234,13 @@ body {
 	border:1px solid #f4e331;
 	box-shadow: 0 0 10px #f4e331;
 	display: none;
-    width: 70%;
-    height: auto;
-	position: absolute;
-    top: 50%;
+    width: 300px;
+	height: fit-content;
+	margin:20px 0 0 20px;
+	/* position: absolute;
+    bottom: 0%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%); */
 	z-index: 999;
 	background: #36393f url(../images/custom/tip.png) no-repeat center center;
 	background-size: cover;

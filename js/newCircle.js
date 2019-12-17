@@ -1,51 +1,52 @@
 let menuTitleList = {
-    'Police':[
-        { 
-            id:'собрать улики',
-            button:'searchEvidence',
-            img:'img/fractionCircle/getClews.png'
-        },
-        { 
-            id:'отобрать права',
-            button:'takeCarLicence',
-            img:'img/fractionCircle/getCarRights.png'
-        },
-        { 
-            id:'отобрать лицензию на оружие',
-            button:'takeWeaponLicence',
-            img:'img/fractionCircle/getWeaponLicence.png'
-        }
-    ],
-    'Medical':[
-        { 
-            id:'провести осмотр',
-            button:'watchPatient',
-            img:'img/fractionCircle/watchPatient.png'
-        },
-        {
-            id:'посмотреть мед.карту',
-            button:'showMedicalCard',
-            img:'img/fractionCircle/medicalCard.png'
-        }
-    ],
-    'Mechanical':[
-        { 
-            id:'провести диагностику',
-            button:'doDiagnostic',
-            img:'img/fractionCircle/doDiagnostic.png'
-        },
-        {
-            id:'погрузить на эвакуатор',
-            button:'evacuation',
-            img:'img/fractionCircle/evacuation.png'
-        },
-        { 
-            id:'открыть сервисную книжку',
-            button:'serviceBook',
-            img:'img/fractionCircle/serviceBook.png'
-        }
-    ]
-};
+        'Police':[
+            { 
+                id:'собрать улики',
+                button:'searchEvidence',
+                img:'img/fractionCircle/getClews.png'
+            },
+            { 
+                id:'отобрать права',
+                button:'takeCarLicence',
+                img:'img/fractionCircle/getCarRights.png'
+            },
+            { 
+                id:'отобрать лицензию на оружие',
+                button:'takeWeaponLicence',
+                img:'img/fractionCircle/getWeaponLicence.png'
+            }
+        ],
+        'Medical':[
+            { 
+                id:'провести осмотр',
+                button:'watchPatient',
+                img:'img/fractionCircle/watchPatient.png'
+            },
+            {
+                id:'посмотреть мед.карту',
+                button:'showMedicalCard',
+                img:'img/fractionCircle/medicalCard.png'
+            }
+        ],
+        'Mechanical':[
+            { 
+                id:'провести диагностику',
+                button:'doDiagnostic',
+                img:'img/fractionCircle/doDiagnostic.png'
+            },
+            {
+                id:'погрузить на эвакуатор',
+                button:'evacuation',
+                img:'img/fractionCircle/evacuation.png'
+            },
+            { 
+                id:'открыть сервисную книжку',
+                button:'serviceBook',
+                img:'img/fractionCircle/serviceBook.png'
+            }
+        ]
+    },
+    maxMoney = 10000;
 function addFractionCircle(fractionName)
 {
     $('.big-circle').remove();
@@ -139,8 +140,92 @@ function initPlayerCircle(takeHandcuff = 'true',takeBag = 'true',repair = 'true'
 $('.container .wrapper .small-circle .inner .small-item').on('click',function(){
     let id = this.id;
     console.log(id);
-    if($(this).hasClass('active'))
+    if($(this).hasClass('active') && id != 'giveMoney')
     {
         mp.trigger(id);
     }
+});
+$('#giveMoney').on('click',function(){
+	var col = 0,
+		input = '<input class="quantity" type="number" min="1" max="150">',
+		currentMin = 0,
+        currentMax = 0;
+    $('.container .wrapper').fadeOut();
+	$('.ok-button').attr('action','giveMoney').attr('done','undone');
+	$('.col-wrapper').find('.quantity').replaceWith(input);
+	if(maxMoney <= 0)
+	{
+		$('.col-wrapper').find('.quantity').attr('min',parseInt(maxMoney));
+		$('.col-wrapper').find('.quantity').attr('max',parseInt(maxMoney));
+		$('.col-wrapper').find('.quantity').val(parseInt(maxMoney));
+		$('.col-wrapper').find('.min-numb').text(parseInt(maxMoney));
+		$('.col-wrapper').find('.max-numb').text(parseInt(maxMoney));
+		$('.col-wrapper .ok-button').addClass('disabled');
+	}
+	else
+	{		
+		$('.col-wrapper').find('.quantity').val(1);
+		$('.col-wrapper').find('.col-title').text('Передача средств');
+		$('.col-wrapper').find('.quantity').attr('max',parseInt(maxMoney));
+		$('.col-wrapper').find('.max-numb').text(parseInt(maxMoney));
+	}
+	$('.col-wrapper .min').on('click',function(){
+		currentMin = $(this).parent().find('.quantity').attr('min');
+		$(this).parent().find('.quantity').val(currentMin);
+	});			
+	$('.col-wrapper .max').on('click',function(){
+		currentMax = $(this).parent().find('.quantity').attr('max');
+		$(this).parent().find('.quantity').val(currentMax);
+	});			
+	$('.ok-button').on('click',function(){
+		if($(this).attr('done') == 'undone')
+		{
+			col = $(this).parent().parent().find('input').val();
+			if(col <= maxMoney && col != 0)
+			{
+				$('.col-wrapper').fadeOut();
+				$(this).attr('done','done');
+				console.log($('.ok-button').attr('action'), col);
+				mp.trigger($('.ok-button').attr('action'), parseInt(col));
+			}
+		}
+	});
+	$('.cancel-button').on('click',function(){
+		$('.col-wrapper').fadeOut();				
+	});			
+	//Input
+	var inputQuantity = [];
+	$(function() {
+	  $(".quantity").each(function(i) {
+		inputQuantity[i]=this.defaultValue;
+		 $(this).data("idx",i); // save this field's index to access later
+	  });
+	  $(".quantity").on("keyup", function (e) {
+		var $field = $(this),
+			val=this.value,
+			$thisIndex=parseInt($field.data("idx"),10); // retrieve the index
+			//window.console && console.log($field.is(":invalid"));
+			  //$field.is(":invalid") is for Safari, it must be the last to not error in IE8
+		if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
+			this.value = inputQuantity[$thisIndex];
+			return;
+		} 
+		if (val.length > Number($field.attr("maxlength"))) {
+		  val=val.slice(0, 5);
+		  $field.val(val);
+		}
+		inputQuantity[$thisIndex]=val;
+		
+		if(this.value == 0 || this.value == '' || this.value == ' ')
+		{
+			$('.col-wrapper .ok-button').addClass('disabled');
+		}
+		else
+		{
+			$('.col-wrapper .ok-button').removeClass('disabled');
+
+		}
+	  });      
+	});	
+	$('.col-wrapper').fadeIn();
 });
