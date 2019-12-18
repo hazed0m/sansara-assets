@@ -90,7 +90,8 @@ function pushFractionDocument(elem)
     if(docInfo.SignsList.length == 0)
     {
         template = `
-        <div class="${docInfo.Fraction}-wrapper" id="${docInfo.Fraction}">
+        <div class="${docInfo.Fraction}-wrapper" id="${docInfo.Fraction}">        
+            <div class="button" id="closeDocument">Закрыть документ</div>     
             <div class="title-wrapper">
                 <div class="title">State</div>
                 <div class="big-title">San Andreas</div>
@@ -105,7 +106,7 @@ function pushFractionDocument(elem)
                 </div>
             </div>  
             <div class="sign-wrapper">
-                <div class="button" id="signDocument">Подписать документ</div>
+                <div class="button" id="signDocument">Подписать документ</div>           
             </div>
         </div>`;
     }
@@ -119,7 +120,8 @@ function pushFractionDocument(elem)
             signsList += signItem;
         });
         template = `
-        <div class="${docInfo.Fraction}-wrapper">
+        <div class="${docInfo.Fraction}-wrapper">            
+            <div class="button" id="closeDocument">Закрыть документ</div>  
             <div class="title-wrapper">
                 <div class="title">State</div>
                 <div class="big-title">San Andreas</div>
@@ -134,7 +136,7 @@ function pushFractionDocument(elem)
             <div class="sign-wrapper">
                 <div class="inner-wrapper">
                     ${signsList}
-                </div>
+                </div>  
             </div>
         </div>`;
     }    
@@ -142,16 +144,22 @@ function pushFractionDocument(elem)
     $('.container .sign-wrapper #signDocument').on('click',function(){
         let title = $('.container .text-wrapper input').val(),
             text = $('.container .text-wrapper textarea').val(),
-            name = docInfo.FullName,
             type = docInfo.Fraction;
-        $(this).fadeOut();
-        $('.container .sign-wrapper').append(` 
-                <div class="inner-wrapper">
-                    <div class="sign-item">
-                        <div class="sign">${name}</div>
-                    </div>
-                </div>`);
-        console.log('signDocument',type,name,title,text);
-        mp.trigger('signDocument',type,name,title,text);
+        if(title.length != 0 && text.length != 0)
+        {
+            $(this).fadeOut();
+            console.log('signDocument',type,name,title,text);
+            mp.trigger('signDocument',type,name,title,text);
+        }
+        else
+        {
+            $(this).css('box-shadow','0 0 10px red');
+            setTimeout(() => {
+                $(this).css('box-shadow','0 0 10px transparent');
+            },500);
+        }
+    });
+    $('.container #closeDocument').on('click',function(){
+        mp.trigger('closeDocument');
     });
 }
