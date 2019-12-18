@@ -1,6 +1,6 @@
 let docInfo = '';
 let doc = JSON.stringify({
-        FullName: 'Velis',
+        Name: 'Velis',
         Fraction:'global',
         Title:'Принятие закона об Амнистии идиотов после отягощенного судилища',
         Text:`Далеко-далеко за словесными горами в стране гласных и согласных 
@@ -43,7 +43,7 @@ let doc = JSON.stringify({
     }),
     docEmpty = JSON.stringify({
         Fraction:'global',
-        FullName: 'Velis',
+        Name: 'Velis',
         Title:'Принятие закона об Амнистии идиотов после отягощенного судилища',
         Text:`Далеко-далеко за словесными горами в стране гласных и согласных 
         живут рыбные тексты. Вдали от всех живут они в буквенных домах 
@@ -144,6 +144,7 @@ function pushFractionDocument(elem)
     $('.container .sign-wrapper #signDocument').on('click',function(){
         let title = $('.container .text-wrapper input').val(),
             text = $('.container .text-wrapper textarea').val(),
+            name = docInfo.Name,
             type = docInfo.Fraction;
         if(title.length != 0 && text.length != 0)
         {
