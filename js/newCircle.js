@@ -118,7 +118,7 @@ let player = [
         status: 'hide'
     }
 ];
-function initPlayerCircle(takeHandcuff = 'true',takeBag = 'true',repair = 'true',reanimation = 'true')
+function initPlayerCircle(takeHandcuff = 'true',takeBag = 'true',reanimation = 'true')
 {
     if(takeHandcuff == 'false')    
     {
@@ -128,13 +128,16 @@ function initPlayerCircle(takeHandcuff = 'true',takeBag = 'true',repair = 'true'
     {
         $(`.small-item#takeBag`).removeClass('active').addClass('disabled');
     }
-    if(repair == 'false')
-    {
-        $(`.small-item#repair`).removeClass('active').addClass('disabled');
-    }
     if(reanimation == 'false')
     {
         $(`.small-item#reanimation`).removeClass('active').addClass('disabled');
+    }
+}
+function initCarCircle(repair = 'true')
+{
+    if(repair == 'false')
+    {
+        $(`.small-item#repair`).removeClass('active').addClass('disabled');
     }
 }
 $('.container .wrapper .small-circle .inner .small-item').on('click',function(){
