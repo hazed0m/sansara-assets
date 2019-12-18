@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>coma</title>
-	<link rel="stylesheet" href="css/coma.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>comaTimer</title>
+    <link rel="stylesheet" href="fonts/font.css">
+    <link rel="stylesheet" href="css/comaTimer.css">
 </head>
 <body>
-	<div class="container">
-		<div class="text-title">Вы погибли... Вас не смогли спасти врачи</div>
-		<div class="text-add">Мда. ну а что вы ожидали от бюджетной медицины?..</div>
-	</div>
-	<script src="js/jquery-3.3.1.min.js"></script>
-	<script src="js/coma.js"></script>
+    <div class="container">
+        <div class="text-wrapper">
+            <div class="text">Вы получили
+                <span></span>...
+            </div>
+            <div class="text">Врачи уже в пути</div>
+        </div>
+        <div class="counter-wrapper">
+            <div class="circle">
+                <div class="number" counter="button">10</div>
+            </div>
+        </div>
+        <div class="coma-wrapper">
+            <div class="button-wrapper">
+                <div class="button" id="toHospital">Очнуться в больнице</div>
+                <div class="button" id="waitAmbulance">Дождаться врача</div>
+            </div>
+        </div>
+        <div class="death-wrapper">
+            <div class="text-title">Вы погибли... Вас не смогли спасти врачи</div>
+            <div class="text-add">Мда. ну а что вы ожидали от бюджетной медицины?..</div>
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/comaTimer.js"></script>
 </body>
 </html>
