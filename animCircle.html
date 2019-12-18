@@ -2,24 +2,19 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-        <link rel="stylesheet" href="css/roll.css">
         <link rel="stylesheet" href="fonts/font.css">
+        <link rel="stylesheet" href="css/newCircle.css">
 	</head>
 	<body>
-        <div id="animCircle">
-            <div class="animation-circle-wrap">
-                <div class="menu">
-                    <div class="center">
-                        <div class="imagesBlock">                           
-                            <img src="images/hud/roll.png" alt="">
-                        </div>
-                    </div>
-                    <ul>
-                        <li v-for="(fastAnimLists, index) in fastAnimList" @click="circleAnim(fastAnimLists.id, index)">
+        <div class="container" id="animCircle">
+            <div class="wrapper">
+                <div class="small-circle" id="animCircle">
+                    <div class="inner">
+                        <div v-for="(fastAnimLists, index) in fastAnimList" @click="circleAnim(fastAnimLists.id, index)" class="small-item" :id="fastAnimLists.title" :class="fastAnimLists.id != -1 ? 'active':'disabled'">
                             <div class="slot" :class="fastAnimLists.class" v-if="fastAnimLists.title === 'Отсутствует'">Отсутствует</div>
                             <div v-else class="slot" :class="fastAnimLists.class">{{ fastAnimLists.title }}</div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>          
             </div>
         </div>
@@ -28,4 +23,6 @@
     <script src="js/vue.js"></script>
     <script src="js/vue-slide-up-down.umd.js"></script>
     <script src="js/menu.js"></script>
+    <script src="js/circletype.min.js"></script>
+    <script src="js/newCircle.js"></script>
 </html>

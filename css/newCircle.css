@@ -85,11 +85,29 @@ body
     filter: grayscale(1);
     cursor:default;
 }
- .container .wrapper .small-circle .inner .small-item.disabled img
- {
-     opacity:0.2;
- }
-
+.container .wrapper .small-circle .inner .small-item.disabled img
+{
+    opacity:0.2;
+}
+.container .wrapper .small-circle .inner .small-item .slot
+{
+    color:#c7c7c7;
+    display: block;
+    text-align: center;
+	font-size: 20px;
+	text-shadow: 0 0 5px rgba(0,0,0,0.8);
+	word-wrap: break-word;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width:160px;
+	padding:0 10px 0 15px;
+	box-sizing: border-box;
+}
+.container .wrapper .small-circle .inner .small-item.disabled .slot
+{
+    opacity:0.6;
+}
 .container .wrapper .small-circle .inner .small-item:nth-child(1)
 {
     transform: rotate(1deg) translate(-50%,-49%);
@@ -127,6 +145,46 @@ body
     transform:rotate(321deg) translate(-49.5%,-49%);
     border-top-right-radius: 80%;
 }
+
+/* animCircle */
+.container .wrapper .small-circle#animCircle .inner .small-item:nth-child(1) .slot
+{
+    transform:rotate(-1deg) translate(-6%,105%); 
+}
+.container .wrapper .small-circle#animCircle .inner .small-item:nth-child(2) .slot
+{
+    transform:rotate(-41deg) translate(-19%,-20%);
+}
+.container .wrapper .small-circle#animCircle .inner .small-item:nth-child(3) .slot
+{
+    transform:rotate(-81deg) translate(-5%,-59%); 
+}
+.container .wrapper .small-circle#animCircle .inner .small-item:nth-child(4) .slot
+{
+    transform:rotate(-122deg) translate(-9%,-11%);
+}
+.container .wrapper .small-circle#animCircle .inner .small-item:nth-child(5) .slot
+{
+    transform:rotate(-162deg) translate(-3%,-92%); 
+}
+.container .wrapper .small-circle#animCircle .inner .small-item:nth-child(6) .slot
+{
+    transform:rotate(-202deg) translate(10%,-58%);
+}
+.container .wrapper .small-circle#animCircle .inner .small-item:nth-child(7) .slot
+{
+    transform:rotate(-241deg) translate(9%,57%); 
+}
+.container .wrapper .small-circle#animCircle .inner .small-item:nth-child(8) .slot
+{
+    transform:rotate(-281deg) translate(-1%,33%);
+}
+.container .wrapper .small-circle#animCircle .inner .small-item:nth-child(9) .slot
+{
+    transform:rotate(-321deg) translate(5%,54%);
+}
+
+
 /* personCircle */
 .container .wrapper .small-circle#personCircle .inner .small-item:nth-child(1) img
 {

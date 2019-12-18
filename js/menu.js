@@ -9,7 +9,8 @@ let animCircle = new Vue({
             { id: -1, title: 'Отсутствует', class: 'slot5', dict: '', name: '', active: false },
             { id: -1, title: 'Отсутствует', class: 'slot6', dict: '', name: '', active: false },
             { id: -1, title: 'Отсутствует', class: 'slot7', dict: '', name: '', active: false },
-            { id: -1, title: 'Отсутствует', class: 'slot8', dict: '', name: '', active: false }
+            { id: -1, title: 'Отсутствует', class: 'slot8', dict: '', name: '', active: false },
+            { id: -1, title: 'Отсутствует', class: 'slot9', dict: '', name: '', active: false }
         ],
         settingsAnimShow: false,
         isActive: true

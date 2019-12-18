@@ -140,7 +140,8 @@ function initCarCircle(repair = 'true')
         $(`.small-item#repair`).removeClass('active').addClass('disabled');
     }
 }
-$('.container .wrapper .small-circle .inner .small-item').on('click',function(){
+$(`.container .wrapper .small-circle#personCircle .inner .small-item,
+   .container .wrapper .small-circle#carCircle .inner .small-item`).on('click',function(){
     let id = this.id;
     console.log(id);
     if($(this).hasClass('active') && id != 'giveMoney')
