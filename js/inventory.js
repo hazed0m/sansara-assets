@@ -273,7 +273,7 @@ function doneAction(action, index, id, currentCount)
             refreshInventory('weapons');
 			refreshInventory('person');
 			refreshInventory('inventory');	
-            inventoryInitialize();  в
+            inventoryInitialize();  
             break;
         
 		case ('give'):			

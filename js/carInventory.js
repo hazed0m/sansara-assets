@@ -89,7 +89,7 @@ var sex = '',
 		'мачете',
 		'выкидной нож',
 		'дубинка',
-		'пистолет',
+		'пистолет 9 п',
 		'пистолет mk ii',
 		'боевой пистолет',
 		'ар пистолет',
@@ -573,14 +573,14 @@ function refreshInventory(currentIterator)
 	currentWeightLug = 0,
 	currentWeightInv = 0;
 	$('#'+currentIterator).empty();
-	var itemTemplate = '',
+	let itemTemplate = '',
 		usedCounter = 0,
 		shadowClass = 'legal',
-		currentLength = inventoryList.length < 48 ? '54' : '108',
 		luggageLength = luggageList.length < 15 ? '15' : '30',
-		action = '';
+		action = '',
+		currentLength = inventoryList.length < 48 ? '49' : '96';
 
-	if(currentLength > 54 || currentLength > 108 || currentLength > 216)
+	if(currentLength > 49 || currentLength > 96 || currentLength > 192)
 	{
 		currentLength += currentLength;
 	}
@@ -590,6 +590,9 @@ function refreshInventory(currentIterator)
 	}
     $(eval(currentIterator + 'List')).each(function(index,item)
     {      		
+		let currentImg = item.type,
+			currentIter = 'inventory',
+			itemImg = `<img src="images/inventory/${currentImg}.png" class="itemImg dropdown-toggle">`;
 		if(item.type == 'Weapon_Cold' || item.type == 'Instrument' || item.type == 'Documents' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Clothes_Legal' 
 									  || item.type == 'LegalObject' || item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources' 
 									  || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol' || item.type == 'Ammo' || item.type == 'Medical_Preparation')
@@ -604,6 +607,41 @@ function refreshInventory(currentIterator)
 		{
 			shadowClass = 'form';
 		}
+		if(item.type == 'Clothes_Legal' || item.type == 'Clothes_Duty' || item.type == 'Clothes_Illegal')
+		{
+	    	$(className).each(function(index,classEl){
+				if(item.name.includes(classEl))
+				{
+					item.class = classEl;
+				}
+			});
+			itemImg = `<img src="images/person/${refreshImages(item.class)}.png" class="itemImg dropdown-toggle">`;				
+		}
+		if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет mk ii'))
+			{
+				console.log('pistolet');	
+				$(weaponsListTranslated).each(function(weaponIndex,weaponItem){
+					if(weaponItem.includes('пистолет 9 п') && item.name.toLowerCase().includes('пистолет 9 п'))
+					{
+						console.log('9p',weaponIndex);
+						currentElement = weaponIndex;
+					}
+					if(weaponItem.includes('пистолет mk ii') && item.name.toLowerCase().includes('пистолет mk ii'))
+					{
+						console.log('mkii',weaponIndex);
+
+						currentElement = weaponIndex;
+					}
+				});
+			}
+			else
+			{
+				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+			}	
+		if(item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
+		{
+			itemImg = `<img src="images/inventory/items/${item.name.toLowerCase().replace(/\s+/g,'')}.png" class="itemImg dropdown-toggle">`;
+		}
 		if(currentIterator == 'luggage')
 		{
 			action = 'remove';
@@ -611,27 +649,17 @@ function refreshInventory(currentIterator)
 		if(currentIterator == 'inventory')
 		{
 			action = 'put';
-		}		
-		var currentImg = item.type,
-			currentIter = 'inventory';
+		}					
 		if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
-		{			
-		    var	currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+		{			   
 			if(currentElement != -1)
-			{				
+			{			
+				console.log('weapon');	
 				currentImg = weaponsListFull[currentElement].name;
-				currentIter = 'weapons';
+				itemImg = `<img src="images/weapons/${currentImg}.png" class="itemImg dropdown-toggle">`;
+				console.log(itemImg);	
 			}
-			if(item.type == 'Weapon_FireGun_Police' || item.type == 'Clothes_Duty')
-			{
-				
-			}
-		}
-		else
-		{
-			personId = '';
-			currentImg = item.type;
-		}			
+		}		
 		itemTemplate = 
 		`<li ${currentIterator}-id="${index}">
 			<div class="itemInv ${shadowClass}" id="${action}">
@@ -640,7 +668,7 @@ function refreshInventory(currentIterator)
 					<div class="infoItem dropdown-toggle">
 						<div class="nameItem">${item.name}</div>
 					</div>
-					<img src="images/${currentIter}/${currentImg}.png" class="itemImg dropdown-toggle">
+					${itemImg}
 				</div>
 			</div>
 		</li>`;		   		
