@@ -598,7 +598,7 @@ function inventoryInitialize()
 				id = $(this).parent().parent()[0].id,
 				index = $(this).parent().attr(id+'-id');	 
 			index = eval(id+'List')[index].inventoryIndex;
-			doneAction(action, index, id);
+			checkAction(action, index, id);
 	});
 	$('#inventory .dropdown-menu li').on('click',function(){
 		var action = $(this)[0].id,		
@@ -610,7 +610,7 @@ function inventoryInitialize()
 			{
 				index = eval(id+'List')[index].inventoryIndex;
 			}
-			doneAction(action, index, id);
+			checkAction(action, index, id);
 		}
 		if(action === 'drop' || action === 'give')
 		{
@@ -646,7 +646,7 @@ function inventoryInitialize()
 					col = $(this).parent().parent().find('input').val();
 					$('.col-wrapper').fadeOut();
 					$(this).attr('done','done');
-					doneAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
+					checkAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
 				}
 			});
 			$('.cancel-button').on('click',function(){
