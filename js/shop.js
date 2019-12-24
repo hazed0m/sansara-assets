@@ -1,6 +1,7 @@
 var shopList = [],
 	basketList = [],
 	currentShopType = '',
+	shopType = '',
 	typeName = 
     [
         'Eat',                                              
@@ -126,6 +127,23 @@ $('#buy').on('click',function(){
     {
 		let output = JSON.stringify(basketList);
 		$('.basket-item').fadeOut();
+		if(shopType.toLowerCase() == 'ammo')
+		{
+			$(ammoList).each(function(index,item){
+				$(basketList).each(function(countIndex,countItem){
+					if(item.name == countItem.name)
+					{
+						item.count -= countItem.count;
+					}
+				});
+				$(shopList).each(function(countIndex,countItem){
+					if(item.name == countItem.name)
+					{
+						countItem.max = item.count;
+					}
+				});
+			});
+		}
 		basketList = [];
 		setTimeout(function(){
 			shopListRefresh();
@@ -136,8 +154,9 @@ $('#buy').on('click',function(){
 $('.exit-but').on('click',function(){
 	mp.trigger("shopExit");
 });
-function pushShopList(element, shopType, ammocount)
+function pushShopList(element, shoptype, ammocount)
 {
+	shopType = shoptype;
 	if(shopType.toLowerCase() == 'ammo')
 	{
 		ammoCount = JSON.parse(ammocount);
@@ -240,7 +259,7 @@ function shopListRefresh()
 		else
 		{
 			let style = '';
-			if(item.max == 0)
+			if(item.max < 10)
 			{
 				style = 'disabled';
 			}
