@@ -317,6 +317,8 @@ function doneAction(action, index, id, currentCount)
     }
 	genFullInventory();		
 	// actionDebugger(action, index, id, currentCount);
+    console.log("action.currentInventory", action,newList);
+
     mp.trigger("action.currentInventory", action, JSON.stringify(newList));
 };
 function listIndexCheck(id)

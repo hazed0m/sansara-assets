@@ -135,12 +135,14 @@ function doneAction(action, index, id, currentCount)
     	case ('remove'):
 			let tempWeight = parseFloat(currentCount*eval(id+'List')[index].weight);
 			tempWeight += parseFloat(currentWeightInv);
+			console.log(tempWeight);
 			if(tempWeight < maxWeightInventory)
 			{
 				if(currentCount == luggageList[index].count)
 				{
-					let removeElem = luggageList.splice(index,1),				
-						currentElement = containsName(removeElem[0].name,'inventory');
+					let removeElem = [Object.assign({},eval(id+'List')[index])];				
+					console.log(1,removeElem);
+					let currentElement = containsName(removeElem[0].name,'inventory');
 					if(removeElem[0].inventoryIndex != -1  && currentElement != -1)  
 					{		
 						inventoryList[removeElem[0].inventoryIndex].count += parseInt(currentCount);
@@ -153,7 +155,7 @@ function doneAction(action, index, id, currentCount)
 				}
 				else
 				{				
-					eval(id+'List')[index].count -=  parseInt(currentCount);
+					// eval(id+'List')[index].count -=  parseInt(currentCount);
 					let currentElement = containsName(eval(id+'List')[index].name,'inventory');
 					if(eval(id+'List')[index].inventoryIndex != -1  && currentElement != -1)  
 					{		
@@ -171,7 +173,7 @@ function doneAction(action, index, id, currentCount)
 			}
 			else
 			{
-				notificationShow('Ваше хранилище переполнено');
+				notificationShow('Ваш сейф полон');
 			}
 			refreshInventory('luggage');	
 			refreshInventory('inventory');
@@ -182,15 +184,18 @@ function doneAction(action, index, id, currentCount)
         case ('put'):
 			if(luggageAvailable)
 			{
-				let removeElem = Object.assign({},inventoryList[index]);
-				useElement(removeElem, index, currentCount);
-				refreshInventory('luggage');
-				refreshInventory('inventory');	
-				inventoryInitialize(); 
+				if(inventoryList[index].type == 'Documents')
+				{
+					let removeElem = Object.assign({},inventoryList[index]);
+					useElement(removeElem, index, currentCount);
+					refreshInventory('luggage');
+					refreshInventory('inventory');	
+					inventoryInitialize(); 
+				}
 			}
 			else
 			{
-				notificationShow('Вы не можете положить в хранилище');
+				notificationShow('Вы не можете положить в сейф');
 			}
 			break;
 	}	
@@ -252,7 +257,7 @@ function useElement(element, index, currentCount)
 	}
 	else
 	{		
-		notificationShow('Ваше хранилище переполнено');
+		notificationShow('Ваш сейф полон');
 	}
 };
 function notificationShow(notification)
@@ -268,63 +273,69 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 	maxWeightLuggage = maxWeightLug;
     inventoryList = [];
     let invList = JSON.parse(inventory);
-    $(invList).each(function(index,item){    	
-    	let obj = 
-    	{
-    		name: item.name,
-    		type: item.type,
-    		weight: parseFloat(item.weight),
-    		count: item.count,
-    		itemElem: item.itemElem, 
-    		enabled: item.enabled,
-    		visible: true 
-    	}		
-		if(obj.type == 'Ammo')
+    $(invList).each(function(index,item){ 
+		if(item.type == 'Documents')   	
 		{
-			obj.enabled = false;
-		}
-    	if(obj.enabled)
-		{	
-			if(obj.count >= 1)
+			let obj = 
 			{
-				obj.count--;
-			}	
-			obj.used = true;			
-			let currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
-			if(currentElement != -1)
+				name: item.name,
+				type: item.type,
+				weight: parseFloat(item.weight),
+				count: item.count,
+				itemElem: item.itemElem, 
+				enabled: item.enabled,
+				visible: true 
+			}		
+			if(obj.type == 'Ammo')
 			{
-				obj.class = getWeaponClass(currentElement);
+				obj.enabled = false;
 			}
-			inventoryList.push(obj);
+			if(obj.enabled)
+			{	
+				if(obj.count >= 1)
+				{
+					obj.count--;
+				}	
+				obj.used = true;			
+				let currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
+				if(currentElement != -1)
+				{
+					obj.class = getWeaponClass(currentElement);
+				}
+				inventoryList.push(obj);
+			}
+			if(!obj.enabled)
+			{		        
+				inventoryList.push(obj);
+			}    	
 		}
-		if(!obj.enabled)
-		{		        
-	    	inventoryList.push(obj);
-	    }    	
 	}); 
 	luggageList = [];
 	let lugList = JSON.parse(luggage);
 	$(lugList).each(function(index,item){
-		let obj = 
-    	{
-    		name: item.name,
-    		type: item.type,
-    		weight: parseFloat(item.weight),
-    		count: item.count,
-    		itemElem: item.itemElem, 
-    		enabled: false,
-    		visible: true 
-		}		
-		let currentElement = containsName(obj.name,'inventory');
-		if(currentElement != -1)
+		if(item.type == 'Documents')   	
 		{
-			obj.inventoryIndex = currentElement;			
-		}
-		luggageList.push(obj);		
-		if(currentElement != -1)
-		{
-			let length = luggageList.length - 1;
-			inventoryList[length].wearedId = length;
+			let obj = 
+			{
+				name: item.name,
+				type: item.type,
+				weight: parseFloat(item.weight),
+				count: item.count,
+				itemElem: item.itemElem, 
+				enabled: false,
+				visible: true 
+			}		
+			let currentElement = containsName(obj.name,'inventory');
+			if(currentElement != -1)
+			{
+				obj.inventoryIndex = currentElement;			
+			}
+			luggageList.push(obj);		
+			if(currentElement != -1)
+			{
+				let length = luggageList.length - 1;
+				inventoryList[length].wearedId = length;
+			}
 		}
 	});
 	$(ammoList).each(function(index,item){

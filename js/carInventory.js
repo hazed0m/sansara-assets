@@ -171,7 +171,7 @@ function doneAction(action, index, id, currentCount)
 			}
 			else
 			{
-				notificationShow('Ваш инвентарь полон');
+				notificationShow('Ваш багажник полон');
 			}
 			refreshInventory('luggage');	
 			refreshInventory('inventory');
@@ -618,26 +618,26 @@ function refreshInventory(currentIterator)
 			itemImg = `<img src="images/person/${refreshImages(item.class)}.png" class="itemImg dropdown-toggle">`;				
 		}
 		if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет mk ii'))
-			{
-				console.log('pistolet');	
-				$(weaponsListTranslated).each(function(weaponIndex,weaponItem){
-					if(weaponItem.includes('пистолет 9 п') && item.name.toLowerCase().includes('пистолет 9 п'))
-					{
-						console.log('9p',weaponIndex);
-						currentElement = weaponIndex;
-					}
-					if(weaponItem.includes('пистолет mk ii') && item.name.toLowerCase().includes('пистолет mk ii'))
-					{
-						console.log('mkii',weaponIndex);
+		{
+			console.log('pistolet');	
+			$(weaponsListTranslated).each(function(weaponIndex,weaponItem){
+				if(weaponItem.includes('пистолет 9 п') && item.name.toLowerCase().includes('пистолет 9 п'))
+				{
+					console.log('9p',weaponIndex);
+					currentElement = weaponIndex;
+				}
+				if(weaponItem.includes('пистолет mk ii') && item.name.toLowerCase().includes('пистолет mk ii'))
+				{
+					console.log('mkii',weaponIndex);
 
-						currentElement = weaponIndex;
-					}
-				});
-			}
-			else
-			{
-				currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
-			}	
+					currentElement = weaponIndex;
+				}
+			});
+		}
+		else
+		{
+			currentElement = $.inArray(item.name.toLowerCase(), weaponsListTranslated);
+		}	
 		if(item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
 		{
 			itemImg = `<img src="images/inventory/items/${item.name.toLowerCase().replace(/\s+/g,'')}.png" class="itemImg dropdown-toggle">`;

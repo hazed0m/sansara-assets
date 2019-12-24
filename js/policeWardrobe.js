@@ -329,7 +329,8 @@ let wardrobeMaleSetList = [
         "Шляпа м шлем с защитой ПД",										
         "Шляпа м шлем с защитой 1 ПД",											
         "Шляпа м шлем с защитой 2 ПД",										
-        "Шляпа м шлем с защитой 3 ПД"	
+        "Шляпа м шлем с защитой 3 ПД",
+        "Бронежилет"	
     ],
     wardrobeFemaleSetList = [
         {
@@ -663,17 +664,20 @@ let wardrobeMaleSetList = [
         "Шляпа ж шлем с защитой ПД 122", 						
         "Шляпа ж шлем с защитой 1 ПД 123", 					
         "Шляпа ж шлем с защитой 2 ПД 124", 						
-        "Шляпа ж шлем с защитой 3 ПД 125"
+        "Шляпа ж шлем с защитой 3 ПД 125",
+        "Бронежилет"
     ],
     wardrobeNames = [
         'Низ',
         'Аксессуар',
-        'Шляпа'
+        'Шляпа',
+        'Бронежилет'
     ],
     wardrobeNamesTranslated = [
         'Bottom',
         'Accessories',
-        'Hat'
+        'Hat',
+        'Armor'
     ];
 $('.container .wardrobe-wrapper .wardrobe-category-title').on('click',function(){
     if(!$(this).next().is(':visible'))

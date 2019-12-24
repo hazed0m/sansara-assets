@@ -132,6 +132,15 @@
 	position:relative;
 	background-repeat:no-repeat;
 }
+.container .shop-wrap .shop-item .inner-item.disabled
+{
+	opacity:0.5;
+	cursor:default;
+}
+.container .shop-wrap .shop-item .inner-item.disabled .price
+{
+	display: none;
+}
 .container .shop-wrap .shop-item .inner-item .title
 {
 	text-transform: capitalize;

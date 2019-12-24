@@ -188,7 +188,7 @@ let garageList = [
                     'Cheval Fugitive',
                     'Transporter',
                     'Prison Bus',
-                    'Chevrolet Impala',
+                    'Cruiser Utility',
                     'GS 350', 
                     'Cayman S'
                 ]
@@ -207,7 +207,7 @@ let garageList = [
                     'Cheval Fugitive',
                     'Transporter',
                     'Prison Bus',
-                    'Chevrolet Impala',
+                    'Cruiser Utility',
                     'GS 350', 
                     'Cayman S'
                 ]
@@ -226,7 +226,7 @@ let garageList = [
                     'Transporter'
                 ],
                 closed:[                    
-                    'Chevrolet Impala',
+                    'Cruiser Utility',
                     'GS 350', 
                     'Cayman S'
                 ]
@@ -245,7 +245,7 @@ let garageList = [
                     'Transporter'
                 ],
                 closed:[                    
-                    'Chevrolet Impala',
+                    'Cruiser Utility',
                     'GS 350', 
                     'Cayman S'
                 ]
@@ -264,7 +264,7 @@ let garageList = [
                     'Transporter'
                 ],
                 closed:[                    
-                    'Chevrolet Impala',
+                    'Cruiser Utility',
                     'GS 350', 
                     'Cayman S'
                 ]

@@ -158,7 +158,7 @@ function pushShopList(element, shopType, ammocount)
 					}
 				}
 			});
-		});
+		});	
 	}
 	shopList = [];
 	currentShopType = shopType.toLowerCase();
@@ -176,7 +176,15 @@ function pushShopList(element, shopType, ammocount)
 	clearBasket();
 };
 function shopListRefresh()
-{
+{		
+	$(ammoList).each(function(index,item){
+		$(shopList).each(function(countIndex,countItem){
+			if(item.name == countItem.name)
+			{
+				countItem.max = item.count;
+			}
+		});
+	});
 	let container = $('.shop-inner');
 	container.empty();
 	$(shopList).each(function(index,item){
@@ -231,9 +239,14 @@ function shopListRefresh()
 		}
 		else
 		{
+			let style = '';
+			if(item.max == 0)
+			{
+				style = 'disabled';
+			}
 			template = `
 				<div class="shop-item" ${legalId}>
-					<div class="inner-item" ${legalAttr} data-index="${index}" style="background-image:url(images/${path}/${currentImg}.png);">
+					<div class="inner-item ${style}" ${legalAttr} data-index="${index}" style="background-image:url(images/${path}/${currentImg}.png);">
 						<div class="title">
 							<span class="title-text">${item.name}</span>
 						</div>
@@ -262,37 +275,47 @@ function shopListInitialize()
 	$('.shop-inner .inner-item').on('click',function(){
 		let currentIndex = $(this).attr('data-index'),
 		    currentElem = shopList[currentIndex],
-		    checker = -1;
-		$(basketList).each(function(index,item){
-			if(item.name == currentElem.name)
-			{
-				checker = index;
-			}
-		});
-		if(checker != -1)
+			checker = -1;
+		if(currentElem.max != 0)
 		{
-			if(currentElem.type == 'Ammo')
+			$(basketList).each(function(index,item){
+				if(item.name == currentElem.name)
+				{
+					checker = index;
+				}
+			});
+			if(checker != -1)
 			{
-				basketList[checker].count += 10;
+				if(currentElem.type == 'Ammo')
+				{
+					basketList[checker].count += 10;
+				}
+				else
+				{
+					basketList[checker].count++;
+				}				
 			}
 			else
 			{
-				basketList[checker].count++;
-			}				
+				if(currentElem.type == 'Ammo')
+				{
+					if(currentElem.max != 0)
+					{
+						currentElem.count = 10;
+					}
+					else
+					{
+						currentElem.count = 0;
+					}
+				}
+				else
+				{
+					currentElem.count = 1;
+				}			
+				basketList.push(currentElem);
+			}		
+			basketListRefresh();		
 		}
-		else
-		{
-			if(currentElem.type == 'Ammo')
-			{
-				currentElem.count = 10;
-			}
-			else
-			{
-				currentElem.count = 1;
-			}			
-			basketList.push(currentElem);
-		}		
-		basketListRefresh();
 	});
 };
 function basketListRefresh()
@@ -326,10 +349,15 @@ function basketListRefresh()
 		let template = ``;
 		if(currentShopType == 'products')
 		{
+			let imgName = item.name.toLowerCase().replace(/\s+/g,'');
+			if(item.name.toLowerCase() == 'йогурт 1%')
+			{
+				imgName = 'йогурт1';
+			}
 			template = `
 				<div class="basket-item" data-index="${index}">
 					<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
-					<div class="icon" ${legalId}><img src="images/inventory/items/${item.name.toLowerCase() == 'йогурт 1%' ? 'йогурт1' : `${item.name.toLowerCase().replace(/\s+/g,'')}`}.png" alt=""></div>
+					<div class="icon" ${legalId}><img src="images/inventory/items/${imgName}.png" alt=""></div>
 					<div class="title-wrap">
 						<div class="title-item">${item.name}</div>
 						<div class="class-item">${translateType(item.type)}</div>
@@ -381,14 +409,6 @@ function translateType(type)
 }
 function basketListInitialize()
 {	
-	$(ammoList).each(function(index,item){
-        $(shopList).each(function(countIndex,countItem){
-            if(item.name == countItem.name)
-            {
-                countItem.max = item.count;
-            }
-        });
-    });
 	$('.basket-list .basket-item .close').on('click',function(){
 		$(this).parent().fadeOut(300);
 		setTimeout(function(){
@@ -401,9 +421,13 @@ function basketListInitialize()
 		let currentIndex = $(this).parent().parent().attr('data-index');
 		if(basketList[currentIndex].type == 'Ammo')
 		{
-			if(basketList[currentIndex].max != basketList[currentIndex].count)
+			if(basketList[currentIndex].max != basketList[currentIndex].count && basketList[currentIndex].max != 0)
 			{
 				basketList[currentIndex].count += 10;
+			}
+			if(basketList[currentIndex].max == 0)
+			{
+				basketList[currentIndex].count = 0;
 			}
 		}
 		else
