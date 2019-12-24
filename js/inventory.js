@@ -316,7 +316,7 @@ function doneAction(action, index, id, currentCount)
             break;        
     }
 	genFullInventory();		
-	// actionDebugger(action, index, id, currentCount);
+	actionDebugger(action, index, id, currentCount);
     console.log("action.currentInventory", action,newList);
 
     mp.trigger("action.currentInventory", action, JSON.stringify(newList));
@@ -598,7 +598,7 @@ function inventoryInitialize()
 				id = $(this).parent().parent()[0].id,
 				index = $(this).parent().attr(id+'-id');	 
 			index = eval(id+'List')[index].inventoryIndex;
-			checkAction(action, index, id);
+			doneAction(action, index, id);
 	});
 	$('#inventory .dropdown-menu li').on('click',function(){
 		var action = $(this)[0].id,		
@@ -610,7 +610,7 @@ function inventoryInitialize()
 			{
 				index = eval(id+'List')[index].inventoryIndex;
 			}
-			checkAction(action, index, id);
+			doneAction(action, index, id);
 		}
 		if(action === 'drop' || action === 'give')
 		{
@@ -646,7 +646,7 @@ function inventoryInitialize()
 					col = $(this).parent().parent().find('input').val();
 					$('.col-wrapper').fadeOut();
 					$(this).attr('done','done');
-					checkAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
+					doneAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
 				}
 			});
 			$('.cancel-button').on('click',function(){
