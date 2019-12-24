@@ -169,7 +169,7 @@ function doneAction(action, index, id, currentCount)
 						eval(id+'List')[index].inventoryIndex = inventoryList.length - 1;
 					}				
 				}				
-				mp.trigger("action.currentAppInv", action, JSON.stringify(luggageList),JSON.stringify(inventoryList));
+				mp.trigger("action.currentDocInv", action, JSON.stringify(luggageList),JSON.stringify(inventoryList));
 			}
 			else
 			{
