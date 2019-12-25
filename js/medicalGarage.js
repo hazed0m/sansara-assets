@@ -3,13 +3,20 @@ let garageList = [
         { car:'Baller LE LWB', hash:'baller3', luggage : '50', fuel: '250' }
     ],
     positionList = [
-        { position: 'Медик', faction: 'medical' },
-        { position: 'Заместитель Главного врача', faction: 'medical' },
-        { position: 'Главный врач', faction: 'medical' }
+        { position: 'Интерн', faction: 'medical' },
+        { position: 'Ординатор', faction: 'medical' },
+        { position: 'Врач 5-ой квалификации', faction: 'medical' },
+        { position: 'Врач 4-ой квалификации', faction: 'medical' },
+        { position: 'Врач 3-ой квалификации', faction: 'medical' },
+        { position: 'Врач 2-ой квалификации', faction: 'medical' },
+        { position: 'Врач 1-ой квалификации', faction: 'medical' },
+        { position: 'Врач высшей квалификации', faction: 'medical' },
+        { position: 'Заместитель глав. врача', faction: 'medical' },
+        { position: 'Глав. врач', faction: 'medical' }
     ],
     factionList =  [
         {
-            Position:'Медик',
+            Position:'Интерн',
             CarList: {
                 opened:[
                     'Brute Ambulance'
@@ -20,7 +27,84 @@ let garageList = [
             }
         },
         {
-            Position:'Заместитель Главного врача',
+            Position:'Ординатор',
+            CarList: {
+                opened:[
+                    'Brute Ambulance'
+                ],
+                closed:[
+                    'Baller LE LWB'
+                ]
+            }
+        },
+        {
+            Position:'Врач 5-ой квалификации',
+            CarList: {
+                opened:[
+                    'Brute Ambulance'
+                ],
+                closed:[
+                    'Baller LE LWB'
+                ]
+            }
+        },
+        {
+            Position:'Врач 4-ой квалификации',
+            CarList: {
+                opened:[
+                    'Brute Ambulance'
+                ],
+                closed:[
+                    'Baller LE LWB'
+                ]
+            }
+        },
+        {
+            Position:'Врач 3-ой квалификации',
+            CarList: {
+                opened:[
+                    'Brute Ambulance'
+                ],
+                closed:[
+                    'Baller LE LWB'
+                ]
+            }
+        },
+        {
+            Position:'Врач 2-ой квалификации',
+            CarList: {
+                opened:[
+                    'Brute Ambulance'
+                ],
+                closed:[
+                    'Baller LE LWB'
+                ]
+            }
+        },
+        {
+            Position:'Врач 1-ой квалификации',
+            CarList: {
+                opened:[
+                    'Brute Ambulance'
+                ],
+                closed:[
+                    'Baller LE LWB'
+                ]
+            }
+        },
+        {
+            Position:'Врач высшей квалификации',
+            CarList: {
+                opened:[
+                    'Brute Ambulance'
+                ],
+                closed:[
+                    'Baller LE LWB'
+                ]
+            }
+        },
+        {
+            Position:'Заместитель глав. врача',
             CarList: {
                 opened:[
                     'Brute Ambulance',
@@ -31,7 +115,7 @@ let garageList = [
             }
         },
         {
-            Position:'Главный врач',
+            Position:'Глав. врач',
             CarList: {
                 opened:[
                     'Brute Ambulance',

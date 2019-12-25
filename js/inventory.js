@@ -1028,7 +1028,8 @@ function refreshInventory(currentIterator)
 			}
 			if(item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
 			{
-				itemImg = `<img src="images/${currentIter}/items/${item.name.toLowerCase().replace(/\s+/g,'')}.png" class="itemImg dropdown-toggle">`;
+				let imgName = item.name.toLowerCase().replace(/\s+/g,'');
+				itemImg = `<img src="images/${currentIter}/items/${productTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
 			}
 			if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{				

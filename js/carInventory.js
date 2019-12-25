@@ -640,7 +640,8 @@ function refreshInventory(currentIterator)
 		}	
 		if(item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
 		{
-			itemImg = `<img src="images/inventory/items/${item.name.toLowerCase().replace(/\s+/g,'')}.png" class="itemImg dropdown-toggle">`;
+			let imgName = item.name.toLowerCase().replace(/\s+/g,'');
+			itemImg = `<img src="images/${currentIter}/items/${productTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
 		}
 		if(currentIterator == 'luggage')
 		{

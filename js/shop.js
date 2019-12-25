@@ -245,9 +245,10 @@ function shopListRefresh()
 		let template = ``;
 		if(currentShopType == 'products')
 		{
+			let imgName = item.name.toLowerCase().replace(/\s+/g,'');
 			template = `
 				<div class="shop-item" ${legalId}>
-					<div class="inner-item" ${legalAttr} data-index="${index}" style="background-image:url(images/inventory/items/${item.name.toLowerCase() == 'йогурт 1%' ? 'йогурт1' : `${item.name.toLowerCase().replace(/\s+/g,'')}`}.png);">
+					<div class="inner-item" ${legalAttr} data-index="${index}" style="background-image:url(images/inventory/items/${productTranslate(imgName)}.png);">
 						<div class="title">
 							<span class="title-text">${item.name}</span>
 						</div>
@@ -369,14 +370,10 @@ function basketListRefresh()
 		if(currentShopType == 'products')
 		{
 			let imgName = item.name.toLowerCase().replace(/\s+/g,'');
-			if(item.name.toLowerCase() == 'йогурт 1%')
-			{
-				imgName = 'йогурт1';
-			}
 			template = `
 				<div class="basket-item" data-index="${index}">
 					<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
-					<div class="icon" ${legalId}><img src="images/inventory/items/${imgName}.png" alt=""></div>
+					<div class="icon" ${legalId}><img src="images/inventory/items/${productTranslate(imgName)}.png" alt=""></div>
 					<div class="title-wrap">
 						<div class="title-item">${item.name}</div>
 						<div class="class-item">${translateType(item.type)}</div>
