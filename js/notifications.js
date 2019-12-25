@@ -146,8 +146,10 @@ function sendAccountInfos(type) {
             loginName = document.getElementById("newLoginName").value;
             loginPass = document.getElementById("newLoginPass").value;
             loginEmail = document.getElementById("newLoginEmail").value;
+            loginPromo = document.getElementById("newLoginPromo").value;
             $('.register').addClass('disabled');
-            mp.trigger("registerLogin.client", type, loginName, loginPass, loginEmail);
+            console.log(type, loginName, loginPass, loginEmail,loginPromo);
+            mp.trigger("registerLogin.client", type, loginName, loginPass, loginEmail,loginPromo);
             break;
         case 1:
             loginName = document.getElementById("loginName").value;
