@@ -323,9 +323,16 @@ function refreshList()
     $('.container .wrapper .list-wrapper .list-elem, .container .wrapper .list-wrapper .list-title.clickable').on('click',function(){
         let elem = $(this).text(),
             title = $(this).attr('data-name');
-        console.log('chooseOperation',title,elem);
-        mp.trigger('chooseOperation',title,elem);
-        
+        if($(this).hasClass('clickable'))
+        {
+            console.log('chooseOperation','',elem);
+            mp.trigger('chooseOperation','',elem);
+        }
+        else
+        {
+            console.log('chooseOperation',title,elem);
+            mp.trigger('chooseOperation',title,elem);
+        } 
     });
     $('.container .close-but').on('click',function(){
         mp.trigger('closeOperationsMenu');
