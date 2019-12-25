@@ -44,7 +44,7 @@ $('.form-btn').on('click', function() {
     }
 });
 $('input[type="text"], input[type="password"]').keyup(function() {
-    if($(this)[0].id != 'newLoginEmail')
+    if($(this)[0].id != 'newLoginEmail' && $(this)[0].id != 'newLoginPromo')
     {
         console.log($(this)[0].id);
         if($(this).val().length < 6)

@@ -316,8 +316,8 @@ function doneAction(action, index, id, currentCount)
             break;        
     }
 	genFullInventory();		
-	actionDebugger(action, index, id, currentCount);
-    console.log("action.currentInventory", action,newList);
+	// actionDebugger(action, index, id, currentCount);
+    // console.log("action.currentInventory", action,newList);
 
     mp.trigger("action.currentInventory", action, JSON.stringify(newList));
 };
