@@ -134,7 +134,7 @@
     background:url(../img/tablet/wallpaper/wallpaper1.png) no-repeat;
     background-size: cover;
 }
-.main-wrapper, .customs-wrapper, .settings-wrapper, .news-wrapper, .fancybox-container, .goverment-wrapper, .cars-wrapper, .ads-wrapper
+.main-wrapper, .customs-wrapper, .transportCompany-wrapper,.settings-wrapper, .news-wrapper, .fancybox-container, .goverment-wrapper, .cars-wrapper, .ads-wrapper
 {    	
     position: absolute;
     width:99%;
@@ -334,7 +334,7 @@
     text-shadow:0 0 5px #000;
     color:#fff;
 }
-.main-wrapper .settings, .main-wrapper .customs, .main-wrapper .locker, .main-wrapper .goverment, .main-wrapper .news, .main-wrapper .cars, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork
+.main-wrapper .settings, .main-wrapper .transportCompany, .main-wrapper .customs, .main-wrapper .locker, .main-wrapper .goverment, .main-wrapper .news, .main-wrapper .cars, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork
 {
 	cursor: pointer;
 	transition: 0.2s;	
@@ -366,7 +366,7 @@
 {
     opacity:0.8;
 }
-.settings-wrapper, .customs-wrapper, .news-wrapper, .goverment-wrapper, .cars-wrapper, .ads-wrapper
+.settings-wrapper, .customs-wrapper, .transportCompany-wrapper,.news-wrapper, .goverment-wrapper, .cars-wrapper, .ads-wrapper
 {
 	display:none;
 }
@@ -436,7 +436,7 @@
     cursor: pointer;
     font-size:13px;
 }
-.main-wrapper .news:hover, .main-wrapper .customs:hover, .main-wrapper .locker:hover,.main-wrapper .goverment:hover, .main-wrapper .cars:hover, .main-wrapper .settings:hover, .main-wrapper .adsbuy:hover, .main-wrapper .adssell:hover, .main-wrapper .adsgetworkers:hover, .main-wrapper .adssearchwork:hover
+.main-wrapper .news:hover, .main-wrapper .transportCompany:hover, .main-wrapper .customs:hover, .main-wrapper .locker:hover,.main-wrapper .goverment:hover, .main-wrapper .cars:hover, .main-wrapper .settings:hover, .main-wrapper .adsbuy:hover, .main-wrapper .adssell:hover, .main-wrapper .adsgetworkers:hover, .main-wrapper .adssearchwork:hover
 {
 	border-radius: 50%;
 	box-shadow: 0 0 10px rgba(255,255,255,0.9);
@@ -518,6 +518,28 @@
     position: absolute;
     bottom:-20px;
     left:0px;
+    font-size:11.43px;
+    text-shadow:0 0 5px #000;
+    color:#fff;
+}
+.main-wrapper .transportCompany
+{
+	position:absolute;
+	right:3%;
+	bottom:68%;
+	width:55px;
+	height:55px;
+	background:url(../img/tablet/transportCompany.png) no-repeat;
+	background-size:contain;
+	display: none;
+}
+.main-wrapper .transportCompany::after
+{
+	content:'Транспортная кампания';
+	text-align: center;
+    position: absolute;
+    bottom:-30px;
+    left:-10px;
     font-size:11.43px;
     text-shadow:0 0 5px #000;
     color:#fff;
@@ -1354,7 +1376,7 @@
 	font-size:15px;
 	transition:0.3s;
 }
-.cars-wrapper .sort-block, .customs-wrapper .sort-block
+.cars-wrapper .sort-block, .customs-wrapper .sort-block, .transportCompany-wrapper .sort-block
 {
 	position: absolute;
 	bottom:20px;
@@ -1378,7 +1400,7 @@
 {
 	box-shadow: 0 0 8px rgba(255,255,255,0.9);
 }
-.cars-wrapper .sort-block #cars-sort, .cars-wrapper #cars-class, .customs-wrapper #transport-sort
+.cars-wrapper .sort-block #cars-sort, .cars-wrapper #cars-class, .customs-wrapper #transport-sort, .transportCompany-wrapper #transport-sort
 {
 	width:177px;
 	height:38px;
@@ -1401,7 +1423,7 @@
 	bottom:10%;
 	left:1%;
 }
-.cars-wrapper .sort-window, .customs-wrapper .sort-window
+.cars-wrapper .sort-window, .customs-wrapper .sort-window, .transportCompany-wrapper .sort-window
 {
 	border-top:2px solid #5a5959;
 	background:#d1d1d1;	
@@ -1416,7 +1438,7 @@
 	font-size:14px;	
 	display:none;
 }
-.customs-wrapper .sort-window
+.customs-wrapper .sort-window, .transportCompany-wrapper .sort-window
 {
 	z-index: 99;
 }
@@ -1426,13 +1448,14 @@
 }
 .cars-wrapper .sort-block .sort-window > div, 
 .cars-wrapper .filter-block .sort-window > div,
-.customs-wrapper .sort-window > div
+.customs-wrapper .sort-window > div,
+.transportCompany-wrapper .sort-window > div
 {
 	padding:7px 5px;
 	cursor: pointer;
 	width:100%;
 }
-.customs-wrapper .sort-window > div:hover,.cars-wrapper .sort-block .sort-window > div:hover, .cars-wrapper .filter-block .sort-window > div:hover
+.customs-wrapper .sort-window > div:hover,.transportCompany-wrapper .sort-window > div:hover,.cars-wrapper .sort-block .sort-window > div:hover, .cars-wrapper .filter-block .sort-window > div:hover
 {
 	background:#ebe9e9;
 }
@@ -1449,7 +1472,8 @@
 	background: rgba(251,229,2,0.8);
 }
 .cars-wrapper .inner-wrapper,
-.customs-wrapper .transport-wrapper
+.customs-wrapper .transport-wrapper,
+.transportCompany-wrapper .transport-wrapper
 {
 	max-height:401px;	
 	border-bottom-left-radius:5px;
@@ -1462,12 +1486,15 @@
 	flex-wrap: wrap;
 	overflow-y: scroll;
 }
-.customs-wrapper .transport-wrapper
+.customs-wrapper .transport-wrapper,
+.transportCompany-wrapper .transport-wrapper
+
 {
 	height: fit-content!important;
 }
 .cars-wrapper .inner-wrapper .car-block,
-.customs-wrapper .transport-block
+.customs-wrapper .transport-block,
+.transportCompany-wrapper .transport-block
 {
 	width:231px;
 	height:219px;
@@ -1475,7 +1502,8 @@
 	margin:10px 5px 0 5px;
 	position: relative;
 }
-.customs-wrapper .transport-block .mask
+.customs-wrapper .transport-block .mask,
+.transportCompany-wrapper .transport-block .mask
 {
 	width:101%;
 	height:101%;
@@ -1484,11 +1512,13 @@
 	border-radius: 0;
 	display: none;
 }
-.customs-wrapper .transport-block .car-name
+.customs-wrapper .transport-block .car-name,
+.transportCompany-wrapper .transport-block .car-name
 {	
 	margin-bottom:10px;
 }
-.customs-wrapper .transport-block
+.customs-wrapper .transport-block,
+.transportCompany-wrapper .transport-block
 {
 	border-radius: 0;
 	height: fit-content;
@@ -1501,14 +1531,16 @@
 	font-size:25px;
 }
 .cars-wrapper .car-block .car-image,
-.customs-wrapper .transport-block .car-image
+.customs-wrapper .transport-block .car-image,
+.transportCompany-wrapper .transport-block .car-image
 {
 	width:100%;
 	height: 122px;	
 	overflow: hidden;
 }
 .cars-wrapper .car-block .car-image img,
-.customs-wrapper .transport-block .car-image img
+.customs-wrapper .transport-block .car-image img,
+.transportCompany-wrapper .transport-block .car-image img
 {
 	width:100%;
 	height:100%;
@@ -1516,11 +1548,13 @@
 	border-top-right-radius:5px;
 	cursor: pointer;
 }
-.customs-wrapper .transport-block .car-image img
+.customs-wrapper .transport-block .car-image img,
+.transportCompany-wrapper .transport-block .car-image img
 {
 	cursor:default;
 }
-.customs-wrapper .transport-block .car-image img
+.customs-wrapper .transport-block .car-image img,
+.transportCompany-wrapper .transport-block .car-image img
 {
 	border-radius: 0;
 }
@@ -1528,12 +1562,14 @@
 {
 	transform: scale(1.05);
 }
-.customs-wrapper .transport-block:hover .car-image img
+.customs-wrapper .transport-block:hover .car-image img,
+.transportCompany-wrapper .transport-block:hover .car-image img
 {
 	transform: scale(1.20);
 }
 .cars-wrapper .car-block .title-block,
-.customs-wrapper .transport-block .title-block
+.customs-wrapper .transport-block .title-block,
+.transportCompany-wrapper .transport-block .title-block
 {
 	background:#fbe502;
 	display: flex;
@@ -1549,7 +1585,8 @@
 {
 	justify-content: space-around;
 }
-.customs-wrapper .transport-block .title-block
+.customs-wrapper .transport-block .title-block,
+.transportCompany-wrapper .transport-block .title-block
 {
 	border-radius:0;
 	background:#1c1c1e;
@@ -1558,17 +1595,20 @@
 	font-weight: 500;
 }
 .cars-wrapper .car-block .title-block .car-price,
-.customs-wrapper .transport-block .title-block .car-price
+.customs-wrapper .transport-block .title-block .car-price,
+.transportCompany-wrapper .transport-block .title-block .car-price
 {
 	background:rgba(0,0,0,0.15);
 	border-radius: 3px;
 	padding:1px 4px;
 }
-.customs-wrapper .transport-block .title-block .car-price
+.customs-wrapper .transport-block .title-block .car-price,
+.transportCompany-wrapper .transport-block .title-block .car-price
 {
 	padding:0;
 }
-.customs-wrapper .transport-block .title-block .button
+.customs-wrapper .transport-block .title-block .button,
+.transportCompany-wrapper .transport-block .title-block .button
 {
 	background:#d1d1d1;
 	color:#141416;
@@ -1577,12 +1617,14 @@
 	cursor: pointer;
 	transition:0.3s;
 }
-.customs-wrapper .transport-block .title-block .button:hover
+.customs-wrapper .transport-block .title-block .button:hover,
+.transportCompany-wrapper .transport-block .title-block .button:hover
 {
 	box-shadow:0 0 10px rgba(255,255,255,0.7);
 }
 .cars-wrapper .car-block .car-info,
-.customs-wrapper .transport-block .car-info
+.customs-wrapper .transport-block .car-info,
+.transportCompany-wrapper .transport-block .car-info
 {
 	background:#dbc800;
 	padding:8px 12px;
@@ -1590,14 +1632,16 @@
 	border-bottom-right-radius:5px;
 	width:100%;
 }
-.customs-wrapper .transport-block .car-info
+.customs-wrapper .transport-block .car-info,
+.transportCompany-wrapper .transport-block .car-info
 {
 	background:#1c1c1e;
 	color:#d1d1d1;
 	border-radius: 0;
 }
 .cars-wrapper .car-block .car-info .speed-title,
-.customs-wrapper .transport-block .car-info .speed-title
+.customs-wrapper .transport-block .car-info .speed-title,
+.transportCompany-wrapper .transport-block .car-info .speed-title
 {
 	font-size:13px;
 	padding-bottom:5px;
@@ -1605,7 +1649,8 @@
 	margin-left:auto;
 	width:fit-content;
 }
-.customs-wrapper .transport-block .car-info .speed-title
+.customs-wrapper .transport-block .car-info .speed-title,
+.transportCompany-wrapper .transport-block .car-info .speed-title
 {
 	margin:0;
 	color:#525254;
@@ -1613,7 +1658,8 @@
 	text-align:left;
 }
 .cars-wrapper .car-block .car-info .speed-wrap,
-.customs-wrapper .transport-block .car-info .speed-wrap
+.customs-wrapper .transport-block .car-info .speed-wrap,
+.transportCompany-wrapper .transport-block .car-info .speed-wrap
 {
 	width:100%;
 	background:#383838;
@@ -1624,7 +1670,8 @@
 	position: relative;
 }
 .cars-wrapper .car-block .car-info .speed-wrap .line-inner,
-.customs-wrapper .transport-block .car-info .speed-wrap .line-inner
+.customs-wrapper .transport-block .car-info .speed-wrap .line-inner,
+.transportCompany-wrapper .transport-block .car-info .speed-wrap .line-inner
 {
 	position: absolute;
 	top:-1px;
@@ -1635,42 +1682,49 @@
 	height:8px;
 	border-radius: 3px;
 }
-.customs-wrapper .transport-block .car-info .speed-wrap .line-inner
+.customs-wrapper .transport-block .car-info .speed-wrap .line-inner,
+.transportCompany-wrapper .transport-block .car-info .speed-wrap .line-inner
 {
 	background:#d1d1d1;
 	box-shadow: 0 0 2px #d1d1d1;
 }
 .cars-wrapper .car-block .car-info .car-weight,
-.customs-wrapper .transport-block .car-info .car-weight
+.customs-wrapper .transport-block .car-info .car-weight,
+.transportCompany-wrapper .transport-block .car-info .car-weight
 {
 	font-size:13px;
 	text-align: center;
 }
 .cars-wrapper .inner-wrapper::-webkit-scrollbar, 
 .cars-wrapper .current-car-wrapper::-webkit-scrollbar,
-.customs-wrapper .transport-wrapper::-webkit-scrollbar
+.customs-wrapper .transport-wrapper::-webkit-scrollbar,
+.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar
 {
     width: 8px;
 }
 .cars-wrapper .inner-wrapper::-webkit-scrollbar-track, 
 .cars-wrapper .current-car-wrapper::-webkit-scrollbar-track,
-.customs-wrapper .transport-wrapper::-webkit-scrollbar-track
+.customs-wrapper .transport-wrapper::-webkit-scrollbar-track,
+.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar-track
 {
     background: #ffffff;
     border-radius: 10px;  
 } 
-.customs-wrapper .transport-wrapper::-webkit-scrollbar-track
+.customs-wrapper .transport-wrapper::-webkit-scrollbar-track,
+.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar-track
 {
 	background:#1c1c1e;
 }
 .cars-wrapper .inner-wrapper::-webkit-scrollbar-thumb, 
 .cars-wrapper .current-car-wrapper::-webkit-scrollbar-thumb,
-.customs-wrapper .transport-wrapper::-webkit-scrollbar-thumb 
+.customs-wrapper .transport-wrapper::-webkit-scrollbar-thumb,
+.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar-thumb 
 {
     background: #fbe502;
     border-radius: 10px;  
 }
-.customs-wrapper .transport-wrapper::-webkit-scrollbar-thumb 
+.customs-wrapper .transport-wrapper::-webkit-scrollbar-thumb,
+.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar-thumb 
 {
 	background:#d1d1d1;
 }
@@ -1925,7 +1979,8 @@
 {
 	box-shadow: 0 0 5px rgba(0,0,0,0.8);
 }
-.customs-wrapper .header-wrapper
+.customs-wrapper .header-wrapper,
+.transportCompany-wrapper .header-wrapper
 {
 	width:100%;
 	height:120px;	
@@ -1938,16 +1993,19 @@
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
-.customs-wrapper .header-wrapper .logo img
+.customs-wrapper .header-wrapper .logo img,
+.transportCompany-wrapper .header-wrapper .logo img
 {
 	width:80%;
 }
-.customs-wrapper .menu-wrapper
+.customs-wrapper .menu-wrapper,
+.transportCompany-wrapper .menu-wrapper
 {
 	display: flex;
 	padding-right:130px;
 }
-.customs-wrapper .service-wrapper
+.customs-wrapper .service-wrapper,
+.transportCompany-wrapper .service-wrapper
 {
 	width:100%;
 	height:90px;
@@ -1956,21 +2014,26 @@
 	justify-content: space-around;
 	align-items: center;
 }
-.customs-wrapper .service-wrapper .title
+.customs-wrapper .service-wrapper .title,
+.transportCompany-wrapper .service-wrapper .title
 {
 	color:#5d5d5f;
 	font-size:14px;
 }
-.customs-wrapper .service-wrapper .current-input
+.customs-wrapper .service-wrapper .current-input,
+.transportCompany-wrapper .service-wrapper .current-input
 {
 	display: flex;
 }
 .customs-wrapper .service-wrapper .current-input,
-.customs-wrapper .service-wrapper .changable-input
+.customs-wrapper .service-wrapper .changable-input,
+.transportCompany-wrapper .service-wrapper .current-input,
+.transportCompany-wrapper .service-wrapper .changable-input
 {
 	min-width:150px;
 }
-.customs-wrapper .service-wrapper .changable-input
+.customs-wrapper .service-wrapper .changable-input,
+.transportCompany-wrapper .service-wrapper .changable-input
 {
 	/* padding:5px 0; */
 	/* display: flex; */
@@ -1978,7 +2041,8 @@
 	min-height:24px;
 	position: relative;
 }
-.customs-wrapper .service-wrapper .changable-input .button
+.customs-wrapper .service-wrapper .changable-input .button,
+.transportCompany-wrapper .service-wrapper .changable-input .button
 {
 	padding:3px 7px;
 	color:#fff;
@@ -1990,11 +2054,13 @@
 	position: absolute;
 	right:-35px;
 }
-.customs-wrapper .service-wrapper .changable-input .button:hover
+.customs-wrapper .service-wrapper .changable-input .button:hover,
+.transportCompany-wrapper .service-wrapper .changable-input .button:hover
 {
 	box-shadow: 0 0 5px rgba(255,255,255,0.6);
 }
-.customs-wrapper .service-wrapper .changable-input input
+.customs-wrapper .service-wrapper .changable-input input,
+.transportCompany-wrapper .service-wrapper .changable-input input
 {
 	width:fit-content;
 	max-width:140px;
@@ -2002,30 +2068,35 @@
 	font-size:20px!important;
 	margin-left: -5px;
 }
-.customs-wrapper .service-wrapper .edit-icon
+.customs-wrapper .service-wrapper .edit-icon,
+.transportCompany-wrapper .service-wrapper .edit-icon
 {
 	margin:-3px 0 0 10px;
 	transition: 0.2s;
 	cursor: pointer;
 }
-.customs-wrapper .service-wrapper .edit-icon:hover
+.customs-wrapper .service-wrapper .edit-icon:hover,
+.transportCompany-wrapper .service-wrapper .edit-icon:hover
 {
 	transform:scale(1.1);
 }
-.customs-wrapper .service-wrapper .next-title
+.customs-wrapper .service-wrapper .next-title,
+.transportCompany-wrapper .service-wrapper .next-title
 {
 	color:#fff;
 	font-size:20px;
 	margin-left:-5px;
 }
-.customs-wrapper .menu-wrapper .menu-item
+.customs-wrapper .menu-wrapper .menu-item,
+.transportCompany-wrapper .menu-wrapper .menu-item
 {
 	color:#fff;
 	margin:0 20px;
 	cursor: pointer;
 	transition: 0.2s;
 }
-.customs-wrapper .menu-wrapper .menu-item:hover
+.customs-wrapper .menu-wrapper .menu-item:hover,
+.transportCompany-wrapper .menu-wrapper .menu-item:hover
 {
 	transform:scale(1.1);
 }
@@ -2043,12 +2114,40 @@
 	border-bottom-left-radius: 10px;
 	border-bottom-right-radius: 10px;
 }
-.customs-wrapper .employers-wrapper .title
+/* .transportCompany-wrapper .employers-wrapper::before
+{
+	content:'';
+	position: absolute;
+	top:0;
+	left:50%;
+	transform:translate(-50%,0);
+	width:60%;
+	height:3px;
+	background:#000;
+} */
+.transportCompany-wrapper .employers-wrapper	
+{
+	width:100%;
+	height:63.5%;
+	border-bottom:8px solid #f7bb38;
+	background:url(../img/customs/gradient1.png) no-repeat;
+	background-position: bottom;	
+	display: flex;
+	flex-direction: column;
+	padding-top:25px;
+	margin:0 auto;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	/* position: relative; */
+}
+.customs-wrapper .employers-wrapper .title,
+.transportCompany-wrapper .employers-wrapper .title
 {
 	color:#5d5d5f;
 	text-shadow:0 0 5px #000;
 }
-.customs-wrapper .employers-wrapper .already-wrapper 
+.customs-wrapper .employers-wrapper .already-wrapper,
+.transportCompany-wrapper .employers-wrapper .already-wrapper 
 {
 	display: flex;
 	flex-direction: column;
@@ -2056,40 +2155,49 @@
 	align-items:center;
 	height:43%;
 }
-.customs-wrapper .employers-wrapper .already-wrapper .title
+.customs-wrapper .employers-wrapper .already-wrapper .title,
+.transportCompany-wrapper .employers-wrapper .already-wrapper .title
 {
 	font-size:20px;
 	color:#f5f5f5;
 }
 .customs-wrapper .employers-wrapper .already-wrapper .next-title,
-.customs-wrapper .shop-page .title
+.customs-wrapper .shop-page .title,
+.transportCompany-wrapper .employers-wrapper .already-wrapper .next-title,
+.transportCompany-wrapper .shop-page .title
 {
 	color:#9e9e9f;
 	font-size:16px;
 }
 .customs-wrapper .employers-wrapper .already-wrapper .next-title span,
-.customs-wrapper .shop-page .title span
+.customs-wrapper .shop-page .title span,
+.transportCompany-wrapper .employers-wrapper .already-wrapper .next-title span,
+.transportCompany-wrapper .shop-page .title span
 {
 	color:#fff;
 	font-size:20px;
 }
-.customs-wrapper .sort-block 
+.customs-wrapper .sort-block,
+.transportCompany-wrapper .sort-block 
 {
 	right:0;
 	bottom:-10px;
 }
-.customs-wrapper .employers-wrapper .inner-wrapper
+.customs-wrapper .employers-wrapper .inner-wrapper,
+.transportCompany-wrapper .employers-wrapper .inner-wrapper
 {
 	padding:0 20%;	
 	overflow-y:scroll;
 	overflow-x: hidden;
 	max-height: 180px;
 }
-.customs-wrapper .employers-wrapper .employers-list .employee-item:first-child
+.customs-wrapper .employers-wrapper .employers-list .employee-item:first-child,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:first-child
 {
 	margin-top:0;
 }
-.customs-wrapper .employers-wrapper .employers-list .employee-item .date
+.customs-wrapper .employers-wrapper .employers-list .employee-item .date,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .date
 {
 	padding:0;
 	position: absolute;
@@ -2100,7 +2208,9 @@
 	font-size:18px;
 }
 .customs-wrapper .employers-wrapper .employers-list .employee-item .online,
-.customs-wrapper .employers-wrapper .employers-list .employee-item .offline
+.customs-wrapper .employers-wrapper .employers-list .employee-item .offline,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .online,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .offline
 {
 	position: absolute;
 	top:50%;
@@ -2110,40 +2220,51 @@
 	height:15px;
 	border-radius:50%;
 }
-.customs-wrapper .employers-wrapper .employers-list .employee-item .online
+.customs-wrapper .employers-wrapper .employers-list .employee-item .online,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .online
 {	
 	background:rgb(2, 190, 2);
 	border:2px solid rgba(0,0,0,0.5);
 	box-shadow:0 0 3px #60dd4e;
 }
-.customs-wrapper .employers-wrapper .employers-list .employee-item .offline
+.customs-wrapper .employers-wrapper .employers-list .employee-item .offline,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .offline
 {
 	background:rgb(105, 105, 105);
 	border:2px solid rgba(0,0,0,0.5);
 	box-shadow:0 0 3px rgb(68, 71, 68);
 }
-.customs-wrapper .employers-wrapper .employers-list .employee-item:last-child
+.customs-wrapper .employers-wrapper .employers-list .employee-item:last-child,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:last-child
 {
 	margin-bottom:0;
 }
-.customs-wrapper .employers-wrapper .main-wrap .title
+.customs-wrapper .employers-wrapper .main-wrap .title,
+.transportCompany-wrapper .employers-wrapper .main-wrap .title
 {
 	padding:0 20%;	
 	margin-bottom:10px;
 }
-.customs-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar{
+.customs-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar,
+.transportCompany-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar
+{
     width: 4px;
 }
-.customs-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-track{
+.customs-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-track,
+.transportCompany-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-track
+{
     background: #272729;
 	border-radius: 4px;  
 	box-shadow: 0 0 5px #272729;
 } 
-.customs-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-thumb {
+.customs-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-thumb,
+.transportCompany-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-thumb 
+{
     background: #60dd4e;
     border-radius: 4px;  
 }
-.customs-wrapper .employers-wrapper	.employers-list
+.customs-wrapper .employers-wrapper	.employers-list,
+.transportCompany-wrapper .employers-wrapper .employers-list
 {
 	width:100%;
 	display:flex;
@@ -2151,7 +2272,8 @@
 	justify-content: center;
 	align-items: center;	
 }
-.customs-wrapper .employers-wrapper	.employers-list .employee-item
+.customs-wrapper .employers-wrapper	.employers-list .employee-item,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item
 {
 	margin:10px 0;
 	height:46px;
@@ -2165,30 +2287,38 @@
 	padding:0 30px;	
 	font-size:18px;
 }
-.customs-wrapper .employers-wrapper	.employers-list .employee-item input::-webkit-input-placeholder{
+.customs-wrapper .employers-wrapper	.employers-list .employee-item input::-webkit-input-placeholder,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item input::-webkit-input-placeholder
+{
 	color:#9e9e9f;
 }
 .customs-wrapper .employers-wrapper	.employers-list .employee-item input,
-.customs-wrapper .service-wrapper .changable-input input
+.customs-wrapper .service-wrapper .changable-input input,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item input,
+.transportCompany-wrapper .service-wrapper .changable-input input
 {
 	background:none;
 	color:#fff;
 	border:none;
 	font-size:18px;
 }
-.customs-wrapper .employers-wrapper	.employers-list .employee-item .button
+.customs-wrapper .employers-wrapper	.employers-list .employee-item .button,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .button
 {
 	background:#202022;
 	color:#9e9e9f;
 	transition:0.3s;
 	cursor: pointer;
 }
-.customs-wrapper .employers-wrapper	.employers-list .employee-item .button:hover
+.customs-wrapper .employers-wrapper	.employers-list .employee-item .button:hover,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .button:hover
 {
 	color:#fff;
 }
 .customs-wrapper .employers-wrapper	.employers-list .employee-item:before,
-.customs-wrapper .employers-wrapper	.employers-list .employee-item:after
+.customs-wrapper .employers-wrapper	.employers-list .employee-item:after,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:before,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:after
 {
 	height:46px;
 	width:100%;
@@ -2197,7 +2327,13 @@
 	top:0;
 	z-index: -1;
 }
-.customs-wrapper .employers-wrapper	.employers-list .employee-item:before
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:before,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:after
+{
+	background:#29292b;
+}
+.customs-wrapper .employers-wrapper	.employers-list .employee-item:before,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:before
 {		
 	content:attr(data-count);
 	left:-310px;	
@@ -2205,12 +2341,14 @@
     justify-content: center;
 	align-items: center;
 }
-.customs-wrapper .employers-wrapper	.employers-list .employee-item:after
+.customs-wrapper .employers-wrapper	.employers-list .employee-item:after,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:after
 {
 	content:'';
 	right:-300px;
 }
-.customs-wrapper .main-page
+.customs-wrapper .main-page,
+.transportCompany-wrapper .main-page
 {
 	height: 100%;
 	/* display: none; */
@@ -2226,25 +2364,42 @@
 	border-bottom-right-radius: 10px;
 	padding:0 12%;
 }
-.customs-wrapper .shop-page .title-wrap
+.transportCompany-wrapper .shop-page
+{
+	display: none;
+	height: 76.5%;
+	border-bottom:8px solid #f7bb38;
+	background:url(../img/customs/gradient1.png) no-repeat;
+	background-position: bottom;	
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	padding:0 12%;
+}
+.customs-wrapper .shop-page .title-wrap,
+.transportCompany-wrapper .shop-page .title-wrap
 {
 	margin-top:15px;
 	display: flex;
 	justify-content: space-between;
 	position: relative;
 }
-.customs-wrapper .shop-page .title-wrap .title
+.customs-wrapper .shop-page .title-wrap .title,
+.transportCompany-wrapper .shop-page .title-wrap .title
 {	
 	margin-top:5px;
 }
-.customs-wrapper .transport-wrapper
+.customs-wrapper .transport-wrapper,
+.transportCompany-wrapper .transport-wrapper
 {
 	margin-top:25px;
 	max-height:370px;
 }
 .customs-wrapper .transport-block:first-child,
 .customs-wrapper .transport-block:nth-child(2),
-.customs-wrapper .transport-block:nth-child(3)
+.customs-wrapper .transport-block:nth-child(3),
+.transportCompany-wrapper .transport-block:first-child,
+.transportCompany-wrapper .transport-block:nth-child(2),
+.transportCompany-wrapper .transport-block:nth-child(3)
 {
 	margin-top:0;
 }

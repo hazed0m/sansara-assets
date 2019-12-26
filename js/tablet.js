@@ -147,7 +147,12 @@ function initCustoms(transportObj)
 	transportInfo = JSON.parse(transportObj);
 	$('.main-wrapper .customs').css('display','block');
 }
-$('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork, .main-wrapper .customs').on('click',function(){
+function initTransportCompany(transportObj)
+{	
+	transportInfo = JSON.parse(transportObj);
+	$('.main-wrapper .transportCompany').css('display','block');
+}
+$('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork, .main-wrapper .customs, .main-wrapper .transportCompany').on('click',function(){
 	let currentClass = this.classList[0];
 	$('.main-wrapper').removeClass('active').fadeOut();
 	if(currentClass == 'cars')
@@ -171,6 +176,17 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 			mixer.forceRender();
 		}
 		refreshCustoms();
+	}
+	if(currentClass == 'transportCompany')
+	{
+		forwardExit();		
+		pushTransportCompany(transportInfo);
+		if(mixer != null)
+		{
+			mixer.destroy();
+			mixer.forceRender();
+		}
+		refreshTransportCompany();
 	}
 	if(currentClass == 'adssell' || currentClass == 'adsbuy' || currentClass == 'adsgetworkers' || currentClass == 'adssearchwork')
 	{
@@ -289,7 +305,7 @@ $('.law-wrap .button').on('click',function(){
 	$('.law-wrap .text-block.active').removeClass('active');
 	$(`#${this.id}-text`).addClass('active');
 });
-$('.cars-wrapper #cars-sort, .cars-wrapper #cars-class, .customs-wrapper #transport-sort').on('click',function(){
+$('.cars-wrapper #cars-sort, .cars-wrapper #cars-class, .customs-wrapper #transport-sort, .transportCompany-wrapper #transport-sort').on('click',function(){
 	if(!$(this).next().is(':visible'))
 	{
 		$(this).next().slideDown().css('display','flex');
@@ -483,7 +499,7 @@ function pushCustoms(transportObj)
 			<div class="button" id="hire">Принять</div>
 		</div>`;
 	$('.customs-wrapper .employers-wrapper .employers-list').append(addTemplate);
-	$('[data-ref="transport-container"]').empty();	
+	$('.customs-wrapper [data-ref="transport-container"]').empty();	
 	$('.customs-wrapper .shop-page .title-wrap .title span').text(towTruckList.length);
 	$(towTruckList).each(function(index,item){
 		let currentItem = `
@@ -508,42 +524,10 @@ function pushCustoms(transportObj)
 				</div>	
 			</div>					
 		</div>`
-		$('[data-ref="transport-container"]').append(currentItem);
+		$('.customs-wrapper [data-ref="transport-container"]').append(currentItem);
 	});	
 	refreshCustoms();
 }
-function pushAutoshop()
-{
-	$('[data-ref="container"]').empty();	
-	const currentWrapper = $('.cars-wrapper .menu .active')[0].id;
-	let currentList = eval(currentWrapper+'List');
-	appendCarFilter(currentWrapper);	
-	$(currentList).each(function(index,item){
-		let currentItem = `
-		<div class="car-block" data-list='${currentWrapper}' data-index='${index}' data-price='${item.price}' data-name="${item.name}" data-luggage='${item.luggage}' data-type='${item.type}'>
-			<div class="car-image">
-				<img src="img/tablet/cars/${item.name}.jpg" alt="">
-			</div>
-			<div class="title-block">
-				<div class="car-name">${item.name}</div>
-				<div class="car-price">${item.price}$</div>
-			</div>
-			<div class="car-info">
-				<div class="speed-block">
-					<div class="speed-title">Скорость</div>
-					<div class="speed-wrap">
-						<div class="line-inner" style="width:${speedPercentage(item.speed,currentWrapper)}%;"></div>
-					</div>
-				</div>
-				<div class="car-weight">
-					Грузоподъемность:
-					<span class="weight">${item.luggage}кг</span>   
-				</div>
-			</div>
-		</div>`
-		$('[data-ref="container"]').append(currentItem);
-	});	
-};
 function refreshCustoms()
 {
 	$('.customs-wrapper .employers-wrapper .employers-list .employee-item .button').on('click',function(){
@@ -596,13 +580,14 @@ function refreshCustoms()
 	$('.customs-wrapper .menu-wrapper .menu-item').on('click',function(){
 		let id = this.id;
 		console.log(id);
-		if(!$(`.${id}-page`).hasClass('active'))
+		if(!$(`.customs-wrapper .${id}-page`).hasClass('active'))
 		{
+			console.log(1);
 			$('.customs-wrapper').find('.active').css('display','none').removeClass('active');
-			$(`.${id}-page`).css('display','block').addClass('active');
+			$(`.customs-wrapper .${id}-page`).css('display','block').addClass('active');
 		}
 	});
-	let container = document.querySelector('[data-ref="transport-container"]'),
+	let container = document.querySelector('.customs-wrapper [data-ref="transport-container"]'),
 		config = {
 			animation: {
 				duration: 350
@@ -625,6 +610,177 @@ function refreshCustoms()
 			}
 		};
 	mixer = mixitup(container, config);
+}
+function pushTransportCompany(transportObj)
+{
+	$('.transportCompany-wrapper .service-wrapper .current-input .next-title').text(transportInfo.Name);
+	$('.transportCompany-wrapper .service-wrapper .changable-input input').val(transportInfo.Name);
+	$('.transportCompany-wrapper .service-wrapper .owner-wrapper .next-title').text(transportInfo.Owner);
+	$('.transportCompany-wrapper .service-wrapper .gain-wrapper .next-title span').text(transportInfo.Gain);
+	$('.transportCompany-wrapper .employers-wrapper .already-wrapper .next-title span').text(transportInfo.TrucksCount);
+	$('.transportCompany-wrapper .employers-wrapper .employers-list').empty();
+	$(transportInfo.WorkersList).each(function(index,item){
+		let template = `
+			<div class="employee-item hired" data-count="${index+1}">
+				<div class="name">
+					${item.FullName}
+				</div>
+				<div class="date">
+					${item.Date}
+				</div>
+				<div class="button" id="dissmisal">Уволить</div>
+				${item.Online ? '<div class="online"></div>' : '<div class="offline"></div>'}				
+			</div>`;
+		$('.transportCompany-wrapper .employers-wrapper .employers-list').append(template);
+	});
+	let addTemplate = `
+		<div class="employee-item add" data-count="+">
+			<input type="text" placeholder="Введите Имя">
+			<div class="button" id="hire">Принять</div>
+		</div>`;
+	$('.transportCompany-wrapper .employers-wrapper .employers-list').append(addTemplate);
+	$('.transportCompany-wrapper [data-ref="transport-company-container"]').empty();	
+	$('.transportCompany-wrapper .shop-page .title-wrap .title span').text(towTruckList.length);
+	$(towTruckList).each(function(index,item){
+		let currentItem = `
+		<div class="transport-block" data-list='${'mechanical'}' data-index='${index}' data-price='${item.price}' data-name="${item.name}" data-luggage='${item.luggage}' data-type='${item.type}'>
+			<div class="mask">Куплено</div>
+			<div class="car-image">
+				<img src="img/tablet/cars/${item.hash}.jpg" alt="">
+			</div>
+			<div class="car-info">			
+				<div class="title-block">
+					<div class="car-name">${item.name}</div>
+				</div>
+				<div class="speed-block">
+					<div class="speed-wrap">
+						<div class="line-inner" style="width:${speedPercentage(item.speed,'towTruck')}%;"></div>						
+					</div>
+					<div class="speed-title">Мощность</div>
+				</div>
+				<div class="title-block">
+					<div class="car-price"><span>${item.price}</span>$</div>
+					<div class="button" id="buyTransport">Купить</div>
+				</div>	
+			</div>					
+		</div>`
+		$('.transportCompany-wrapper [data-ref="transport-company-container"]').append(currentItem);
+	});	
+	refreshTransportCompany();
+}
+function refreshTransportCompany()
+{
+	$('.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .button').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			let id = this.id;
+			console.log(id);	
+			$(this).addClass('disabled');
+			if(id == 'dissmisal')	
+			{
+				let name = $(this).prev().prev().text().trim();
+				console.log(name);
+				mp.trigger('dissmisalTransportCompany',name);
+			}
+			if(id == 'hire')	
+			{
+				let name = $(this).prev().val();
+				console.log(name);
+				$(this).prev().val('');
+				mp.trigger('hireTransportCompany',name);
+			}
+		}
+	});
+	$('.transportCompany-wrapper .transport-block .title-block .button').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			let parent = $(this).parent().parent().parent(),
+				price = parseInt($(parent).attr('data-price')),
+				name = $(parent).attr('data-name');
+			parent.find('.mask').fadeIn().css('display','flex');
+			$(this).addClass('disabled');
+			setTimeout(() => {
+				parent.find('.mask').fadeOut();
+				$(this).removeClass('disabled');
+			},1000);
+			mp.trigger('buyAutoTransportCompany',name,price);
+		}
+	});
+	$('.transportCompany-wrapper .service-wrapper .changable-input .button#changeName').on('click',function(){
+		$(this).parent().css('display','none');
+		let name = $('.transportCompany-wrapper .service-wrapper .changable-input input').val();
+		// $('.transportCompany-wrapper .service-wrapper .current-input .next-title').text(name);
+		$('.transportCompany-wrapper .service-wrapper .current-input').css('display','flex');
+		mp.trigger('changeNameTransportCompany',name);
+	});
+	$('.transportCompany-wrapper .service-wrapper .edit-icon').on('click',function(){
+		$(this).parent().css('display','none');
+		$('.transportCompany-wrapper .service-wrapper  .changable-input').css('display','flex');
+	});
+	$('.transportCompany-wrapper .menu-wrapper .menu-item').on('click',function(){
+		let id = this.id;
+		console.log(id);
+		if(!$(`.transportCompany-wrapper .${id}-page`).hasClass('active'))
+		{
+			$('.transportCompany-wrapper').find('.active').css('display','none').removeClass('active');
+			$(`.transportCompany-wrapper .${id}-page`).css('display','block').addClass('active');
+		}
+	});
+	let container = document.querySelector('.transportCompany-wrapper [data-ref="transport-company-container"]'),
+		config = {
+			animation: {
+				duration: 350
+			},
+			selectors: {
+				target: '.transport-block'
+			},
+			callbacks: {
+				onMixClick: function(state, originalEvent) {
+					if($(this).hasClass('mixitup-control-active'))
+					{
+						originalEvent.stopPropagation();
+						originalEvent.preventDefault();
+					}
+					else
+					{
+						$(`.customs-wrapper #${$(this).parent().prev()[0].id}`).next().slideUp();
+					}
+				}
+			}
+		};
+	mixer = mixitup(container, config);
+}
+function pushAutoshop()
+{
+	$('[data-ref="container"]').empty();	
+	const currentWrapper = $('.cars-wrapper .menu .active')[0].id;
+	let currentList = eval(currentWrapper+'List');
+	appendCarFilter(currentWrapper);	
+	$(currentList).each(function(index,item){
+		let currentItem = `
+		<div class="car-block" data-list='${currentWrapper}' data-index='${index}' data-price='${item.price}' data-name="${item.name}" data-luggage='${item.luggage}' data-type='${item.type}'>
+			<div class="car-image">
+				<img src="img/tablet/cars/${item.name}.jpg" alt="">
+			</div>
+			<div class="title-block">
+				<div class="car-name">${item.name}</div>
+				<div class="car-price">${item.price}$</div>
+			</div>
+			<div class="car-info">
+				<div class="speed-block">
+					<div class="speed-title">Скорость</div>
+					<div class="speed-wrap">
+						<div class="line-inner" style="width:${speedPercentage(item.speed,currentWrapper)}%;"></div>
+					</div>
+				</div>
+				<div class="car-weight">
+					Грузоподъемность:
+					<span class="weight">${item.luggage}кг</span>   
+				</div>
+			</div>
+		</div>`
+		$('[data-ref="container"]').append(currentItem);
+	});	
 }
 function refreshAutoshop()
 {		
@@ -684,7 +840,7 @@ function refreshAutoshop()
 			}
 		};
 	mixer = mixitup(container, config);
-};
+}
 function appendCarFilter(id)
 {
 	$('.filter-block .sort-window').empty();
@@ -693,7 +849,7 @@ function appendCarFilter(id)
 		let template = `<div class="car-filter" data-filter="[data-type='${item}']">${item}</div>`;
 		$('.filter-block .sort-window').append(template);
 	});	
-};
+}
 function uniqueFilter(array)
 {
 	let uniq = [];
@@ -702,7 +858,7 @@ function uniqueFilter(array)
 	});
 	uniq = unique(uniq);
 	return uniq;
-};
+}
 function unique(array) {
 	return $.grep(array, function(el, index) {
 		return index === $.inArray(el, array);

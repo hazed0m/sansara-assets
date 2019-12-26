@@ -669,7 +669,32 @@ function refreshInventory(currentIterator)
 				itemImg = `<img src="images/weapons/${currentImg}.png" class="itemImg dropdown-toggle">`;
 				console.log(itemImg);	
 			}
-		}			
+		}		
+		if(item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Medical_Preparation')
+		{
+			console.log(item.name);
+			if(item.name == 'стяжка' || item.name == 'пакет' || item.name == 'запчасти' || item.name == 'бинт' || item.name == 'адреналин')
+			{
+				let objectImg = [
+					'стяжка',
+					'пакет',
+					'запчасти',
+					'бинт',
+					'адреналин'
+				];
+				let currentIndex = -1;
+				$(objectImg).each(function(indexEl,itemEl){
+					if(itemEl == item.name)
+					{
+						currentIndex = indexEl;
+					}
+				});
+				if(currentIndex != -1)
+				{
+					itemImg = `<img src="images/${currentIter}/objects/${currentIndex}.png" class="itemImg dropdown-toggle">`;
+				}
+			}
+		}	
 		itemTemplate = 
 		`<li ${currentIterator}-id="${index}">
 			<div class="itemInv ${shadowClass}" id="${action}">

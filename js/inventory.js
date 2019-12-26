@@ -1021,10 +1021,38 @@ function refreshInventory(currentIterator)
 				{
 					giveBut = '';
 				}	
+			}			
+			if(item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Medical_Preparation')
+			{
+				console.log(item.name);
+				if(item.name == 'стяжка' || item.name == 'пакет' || item.name == 'запчасти' || item.name == 'бинт' || item.name == 'адреналин')
+				{
+					let objectImg = [
+						'стяжка',
+						'пакет',
+						'запчасти',
+						'бинт',
+						'адреналин'
+					];
+					let currentIndex = -1;
+					$(objectImg).each(function(indexEl,itemEl){
+						if(itemEl == item.name)
+						{
+							currentIndex = indexEl;
+						}
+					});
+					if(currentIndex != -1)
+					{
+						itemImg = `<img src="images/${currentIter}/objects/${currentIndex}.png" class="itemImg dropdown-toggle">`;
+					}
+				}
 			}
 			if(item.type == 'Medical_Preparation' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol' || item.type == 'Documents')
 			{
-				listBut = '<li id="use">Применить</li>';
+				if(item.name != 'адреналин')
+				{
+					listBut = '<li id="use">Применить</li>';
+				}
 			}
 			if(item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
 			{

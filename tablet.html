@@ -56,6 +56,7 @@
             <div class="goverment"></div>
             <div class="cars"></div>
             <div class="customs"></div>
+            <div class="transportCompany"></div>
         </div>
         <div class="settings-wrapper">	
 			<i class="fas fa-chevron-left"></i>
@@ -488,6 +489,81 @@
                     </div>
                 </div>                
                 <div class="transport-wrapper" data-ref="transport-container"></div>
+            </div>
+        </div>
+        <div class="transportCompany-wrapper">
+            <div class="header-wrapper">
+                <div class="logo">
+                    <img src="img/customs/logo1.png" alt="">
+                </div>
+                <div class="menu-wrapper">
+                    <div class="menu-item" id="main">Главная</div>
+                    <div class="menu-item" id="shop">Спец. Техника</div>
+                </div>
+            </div>
+            <div class="main-page active">
+                <div class="service-wrapper">
+                    <div class="name-wrapper">
+                        <div class="title">Автосервис</div>
+                        <div class="title-input">
+                            <div class="current-input">
+                                <span class="next-title"></span>
+                                <div class="edit-icon">
+                                    <img src="img/customs/edit.png" alt="">
+                                </div>
+                            </div>
+                            <div class="changable-input">
+                                <input type="text" value="" value="">
+                                <div class="button" id="changeName">
+                                    ОК
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="owner-wrapper">
+                        <div class="title">Владелец</div>
+                        <div class="next-title"></div>
+                    </div>
+                    <div class="gain-wrapper">
+                        <div class="title">Прибыль за день</div>
+                        <div class="next-title">
+                            $<span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="employers-wrapper">
+                    <div class="main-wrap">
+                        <div class="title">Список сотрудников</div>
+                        <div class="inner-wrapper">                    
+                            <div class="employers-list"></div>
+                        </div>
+                        <div class="already-wrapper">
+                            <div class="title">Автомобили</div>
+                            <div class="next-title">
+                                Техники доступно: <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shop-page">
+                <div class="title-wrap">
+                    <div class="title">Техники доступно:
+                        <span>1</span>
+                    </div>
+                    <div class="sort-block">
+                        <div id="transport-sort">Сортировка<i class="fas fa-sort"></i></div>
+                        <div class="sort-window controls">
+                            <div id="priceup"  class="sort" data-sort="price:asc" >Цена по возрастанию</div>
+                            <div id="pricedown"  class="sort" data-sort="price:desc">Цена по убыванию</div>
+                            <div id="nameup" class="sort" data-sort="name:asc">Имя по возрастанию</div>
+                            <div id="namedown"  class="sort" data-sort="name:desc">Имя по убыванию</div>
+                            <div id="luggageup" class="sort" data-sort="luggage:asc">Вес по возрастанию</div>
+                            <div id="luggagedown"  class="sort" data-sort="luggage:desc">Вес по убыванию</div>
+                        </div>   
+                    </div>
+                </div>                
+                <div class="transport-wrapper" data-ref="transport-company-container"></div>
             </div>
         </div>
         <div class="camera-plug"></div>        

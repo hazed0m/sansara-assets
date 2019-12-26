@@ -9,6 +9,8 @@
 {
     width:920px;
     background:url(../img/notebook/medical-back.png) no-repeat;
+    background-position: 70% 101%;
+    background-size: 101%;
     border:2px solid rgba(0,0,0,0.7);
     border-radius: 5px;
     position: absolute;
