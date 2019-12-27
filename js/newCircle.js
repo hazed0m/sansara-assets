@@ -43,7 +43,12 @@ let menuTitleList = {
                 id:'открыть сервисную книжку',
                 button:'serviceBook',
                 img:'img/fractionCircle/serviceBook.png'
-            }
+            },
+            { 
+                id:'перевернуть машину',
+                button:'reverseCar',
+                img:'img/fractionCircle/evacuation.png'
+            }            
         ]
     },
     maxMoney = 10000;
@@ -91,7 +96,14 @@ function addFractionCircle(fractionName)
     if(menuTitleList[fractionName].length == 4)
     {
         document.querySelectorAll('.big-circle#section4 .big-item .big-text').forEach(function(item,index){
-            circleType = new CircleType(item).radius(200);
+            if(index == 3)
+            {
+               circleType = new CircleType(item).dir(-1).radius(280);
+            }
+            else
+            {
+                circleType = new CircleType(item).radius(280);
+            }
         });
     } 
     $('.container .wrapper .big-circle .inner .big-item').on('click',function(){

@@ -446,8 +446,46 @@ body
 {
     transform:rotate(270deg) translate(37.5%,15.5%);
 }
-
-
+.container .wrapper .big-circle#section4 .inner .big-item#Mechanical:nth-child(1) .big-text div
+{
+    transform:rotate(-89deg) translate(-113%,-5%);
+}
+.container .wrapper .big-circle#section4 .inner .big-item#Mechanical:nth-child(2) .big-text div
+{
+    transform:rotate(-89.5deg) translate(-118%,-16%);
+}
+.container .wrapper .big-circle#section4 .inner .big-item#Mechanical:nth-child(3) .big-text div
+{
+    transform:rotate(-91deg) translate(-108%,-2%);
+}
+.container .wrapper .big-circle#section4 .inner .big-item#Mechanical:nth-child(4) .big-text div
+{
+    transform: rotate(91deg) translate(119%,19%);
+}
+.container .wrapper .big-circle#section4 .inner .big-item:nth-child(1) img
+{ 
+    top: 40%;
+    right: 46%;
+    transform: rotate(0deg);
+}
+.container .wrapper .big-circle#section4 .inner .big-item:nth-child(2) img
+{ 
+    top: 43%;
+    right: 48%;
+    transform: rotate(-89deg);
+}
+.container .wrapper .big-circle#section4 .inner .big-item:nth-child(3) img
+{ 
+    top: 43%;
+    right: 48%;
+    transform: rotate(-180deg);
+}
+.container .wrapper .big-circle#section4 .inner .big-item:nth-child(4) img
+{ 
+    top: 42%;
+    right: 47%;
+    transform: rotate(-269deg);
+}
 .col-wrapper
 {
 	display: none;

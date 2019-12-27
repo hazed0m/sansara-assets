@@ -12,13 +12,13 @@ const
                 ]
         },
         {   
-            question:'Взаимодействия каких транспортных средств описаны в ПДД?', 
+            question:'Взаимодействия каких транспортных средств описаны в ПТД?', 
             answersList:[   
                     {   answer:`Все`, status:true
                     },
                     {   answer:`Только автомобили`, status:false
                     },
-                    {   answer:`Автомобили и вертолеты и пешеходы`, status:false
+                    {   answer:`Автомобили,вертолеты и пешеходы`, status:false
                     }
                 ]
         },
@@ -476,7 +476,7 @@ const
                 ]
         },
         {   
-            question:'На перекрестке легковая едет с севера на юг, грузовик востока на запад, внедорожник с запада на восток. Дороги равнозначны. В каком порядке они должны проехать?', 
+            question:'На перекрестке легковая едет с севера на юг, грузовик с востока на запад, внедорожник с запада на восток. Дороги равнозначны. В каком порядке они должны проехать?', 
             answersList:[   
                     {   answer:`Легковая, внедорожник, грузовик`, status:false
                     },
@@ -537,7 +537,7 @@ const
                     },
                     {   answer:`Получить разрешение на выделение специальных участков дорог`, status:true
                     },
-                    {   answer:`Отказаться от идеи, дрифт запрещен ПДД`, status:false
+                    {   answer:`Отказаться от идеи, дрифт запрещен ПТД`, status:false
                     }
                 ]
         },
@@ -557,9 +557,9 @@ const
             answersList:[   
                     {   answer:`Бросить машину. Вызвать такси`, status:false
                     },
-                    {   answer:`Вызвать СТО`, status:false
+                    {   answer:`Вызвать эвакуатор`, status:false
                     },
-                    {   answer:`Включить аварийный сигнал и вызвать СТО`, status:true
+                    {   answer:`Включить аварийный сигнал и вызвать эвакуатор`, status:true
                     }
                 ]
         },
@@ -922,21 +922,32 @@ $('.qa-wrapper .button-next').on('click',function(){
             });
             if(final >= 4)
             {
-                $('.container .notification').text(`Вы прошли экзамен! Оценка - ${final}`).fadeIn();
+                $('.container .notification').html(`
+                    <span>Вы прошли экзамен! Оценка - ${final}</span>
+                    <div class="button" id="notifSubmit">Ок</div> 
+                `).fadeIn();
             }
             else
             {
-                $('.container .notification').text(`Вы завалили экзамен! Оценка - ${final}`).fadeIn();
+                $('.container .notification').html(`
+                    <span>Вы завалили экзамен! Оценка - ${final}</span>
+                    <div class="button" id="notifSubmit">Ок</div> 
+                `).fadeIn();
             }
-            setTimeout(function(){
-                $('.container .notification, .container .qa-wrapper, .container .mask').fadeOut();
-            },1700);
-            showVerdict(currentIter,final);
+            // setTimeout(function(){
+            //     $('.container .notification, .container .qa-wrapper, .container .mask').fadeOut();
+            // },1700);
+            $('.container .notification #notifSubmit').on('click',() => {
+                showVerdict(currentIter,final);
+            });
         }
     }
     else
     {
-        $('.container .notification').text('Вы не выбрали ответ').fadeIn();
+        $('.container .notification').html(`
+            <span>Вы не выбрали ответ</span>
+            <div class="button" id="notifSubmit">Ок</div> 
+        `).fadeIn();
         setTimeout(function(){
             $('.container .notification').fadeOut();
         },1200);
@@ -961,10 +972,13 @@ function startExam(currentExam)
 }
 function errorMessage()
 {
-    $('.container .notification').text('Вам не хватает средств').fadeIn();
-    setTimeout(function(){
-        $('.container .notification').fadeOut();
-    },1200);
+    $('.container .notification').html(`
+        <span>Вам не хватает средств</span>
+        <div class="button" id="notifSubmit">Ок</div> 
+    `).fadeIn();
+    $('.container .notification #notifSubmit').on('click',() => {
+        $('.container .notification, .container .qa-wrapper, .container .mask').fadeOut();
+    });
 }
 function refreshNotification(currentExam,currentSum)
 {
@@ -1008,16 +1022,17 @@ function showVerdict(currentIter,final)
         }
     });
     console.log(1,currentIter,final);
+    $('.container .notification, .qa-wrapper, .container .mask').fadeOut();
     mp.trigger('examSchool',currentIter,final);
 }
 function refreshQuestion(currentIter, currentIndex)
 {
-    $('.qa-wrapper .qa-question').text(eval(`qaList`)[randArr[currentIndex]].question);
+    $('.qa-wrapper .qa-question').text(qaList[randArr[currentIndex]].question);
     $('.qa-wrapper .question-count').text(parseInt(currentIndex)+1);    
     $('.qa-wrapper .qa-wrap').empty();
     $('.qa-wrapper').attr('data-question',currentIndex).attr('data-iterator',currentIter);
       
-    $(eval(`qaList`)[randArr[currentIndex]].answersList).each(function(index,item){
+    $(qaList[randArr[currentIndex]].answersList).each(function(index,item){
         let template = `<div class="question-item" data-answer="${item.status}">
                             <div class="trigger"></div>
                             <div class="question-text">
@@ -1031,24 +1046,29 @@ function refreshQuestion(currentIter, currentIndex)
         $(this).addClass('active');
     });
 }
-function initSchool(catArr)
+function initSchool(catC,catD)
 {
-    let currentCat = JSON.parse(catArr);
     let catList = $('.license-wrap');
-    $(currentCat).each(function(index,item){
-        if(item == 'false')
-        {
-            $(catList[index]).addClass('locked');
-        }
-        else
-        {
-            $(catList[index]).removeClass('locked');
-        }
-    });
+    if(catC == 'true')
+    {
+        $(catList[2]).removeClass('locked');
+    }
+    if(catD == 'true')
+    {
+        $(catList[3]).removeClass('locked');
+    }
+    if(catC == 'false')
+    {
+        $(catList[2]).addClass('locked');
+    }
+    if(catD == 'false')
+    {
+        $(catList[3]).addClass('locked');
+    }
 }
 function getRandList()
 {
-    let max = qaList.length;
+    let max = qaList.length-1;
     let array = [];
     for (i = 0; i < 5; i++)
     {
@@ -1083,16 +1103,19 @@ function timer()
       }
 	  $('.timer .minutes').text(prettyTime(minutesCounter));
 	  $('.timer .seconds').text(prettyTime(secondsCounter));
-      if(minutesCounter == 5)
+      if(minutesCounter == 1)
       {	         
         clearInterval(myInterval);
         myInterval = null;	
         minutesCounter = 0;
         secondsCounter = 0;
-        $('.container .notification').text(`Время вышло! Попробуйте еще!`).fadeIn();
-        setTimeout(function(){
+        $('.container .notification').html(`
+            <span>Время вышло! Попробуйте еще!</span>
+            <div class="button" id="notifSubmit">Ок</div> 
+        `);
+        $('.container .notification #notifSubmit').on('click',() => {
             $('.container .notification, .container .qa-wrapper, .container .mask').fadeOut();
-        },1700);
+        });
       }
     }, 1000);    
 }
