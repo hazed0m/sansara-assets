@@ -47,7 +47,7 @@ let menuTitleList = {
             { 
                 id:'перевернуть машину',
                 button:'reverseCar',
-                img:'img/fractionCircle/evacuation.png'
+                img:'img/fractionCircle/reverseCar.png'
             }            
         ]
     },
