@@ -156,6 +156,33 @@ function keypressUp(e){
         break;
     }
 }
+function runOnKeys(func, ...codes) {
+    let pressed = new Set();
+
+    document.addEventListener('keydown', function(event) {
+      console.log(event.code);
+      pressed.add(event.code);
+      for (let code of codes) { // все ли клавиши из набора нажаты?
+        if (!pressed.has(code)) {
+          return;
+        }
+      }
+
+      // да, все
+
+      // во время показа alert, если посетитель отпустит клавиши - не возникнет keyup
+      // при этом JavaScript "пропустит" факт отпускания клавиш, а pressed[keyCode] останется true
+      // чтобы избежать "залипания" клавиши -- обнуляем статус всех клавиш, пусть нажимает всё заново
+      pressed.clear();
+
+      func();
+    });
+
+    document.addEventListener('keyup', function(event) {
+      pressed.delete(event.code);
+    });
+
+};
 function keypressDown(e){   
     switch(e.keyCode){        
         case 88:  // X взаимодействие
@@ -165,3 +192,13 @@ function keypressDown(e){
 }
 $(window).on("keyup", keypressUp);
 $(window).on("keydown", keypressDown);
+runOnKeys(
+    () =>  mp.trigger('KeyZLeftAltpress'),
+    'KeyZ',
+    'AltLeft'
+);
+runOnKeys(
+    () =>  mp.trigger('KeyXLeftAltpress'),
+    'KeyX',
+    'AltLeft'
+);
