@@ -197,8 +197,3 @@ runOnKeys(
     'KeyZ',
     'AltLeft'
 );
-runOnKeys(
-    () =>  mp.trigger('KeyXLeftAltpress'),
-    'KeyX',
-    'AltLeft'
-);
