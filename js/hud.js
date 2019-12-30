@@ -154,6 +154,16 @@ function keypressUp(e){
         case 17:  // Ctrl 
             mp.trigger('KeyCtrlpress');
         break;
+        case 90:  // Z 
+            mp.trigger('KeyZpress');
+        break;
+        case 18:  // alt
+            mp.trigger('KeyAltpress');
+        break;
+        case 114:  // alt
+            mp.trigger('KeyF3press');
+        break;
+
     }
 }
 function runOnKeys(func, ...codes) {
