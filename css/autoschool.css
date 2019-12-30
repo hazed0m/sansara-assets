@@ -47,6 +47,11 @@
     cursor: pointer;
     transition: 0.3s;
 }
+.container #closeExam
+{
+    background:#7b7c80;
+    color:#fafafa;
+}
 .container .notification .button
 {
     background:#ffe100;

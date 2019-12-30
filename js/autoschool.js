@@ -868,10 +868,11 @@ let qaArray = [],
                 </div>
                 <div class="examSum">Сумма: <span></span>$</div>
                 <div class="button-next" id="payExam">Оплатить</div>
+                <div class="button-next" id="closeExam">Отмена</div>
             `;
 
 $('.container .rules-button').on('click',function(){
-    $('.rules-wrapper,.mask').fadeIn();
+    $('.rules-wrapper, .mask').fadeIn();
 });
 $('.container .rules-wrapper .rules-close').on('click',function(){
     $('.rules-wrapper, .mask').fadeOut();
@@ -882,6 +883,7 @@ $('#A, #B, #C, #D').on('click',function(){
         let currentSum = $(this).find('.license-price .price').text();
         let currentExam = this.id;
         $('.container .notification').empty().append(radioBlock).fadeIn();
+        $('.mask').fadeIn();
         $('.container .notification .examSum span').text(currentSum);
         $('.notification #payExam').removeClass('disabled');
         refreshNotification(currentExam,currentSum);
@@ -1002,10 +1004,13 @@ function refreshNotification(currentExam,currentSum)
         if(!$(this).hasClass('disabled'))
         {
             let currentWay = $('.radio-block .active')[0].classList[0];
-            $('.container .notification').fadeOut();
+            $('.container .notification, .mask').fadeOut();
             $(this).addClass('disabled');
             mp.trigger('payExam',currentExam, currentSum,currentWay);
         }
+    });    
+    $('.container #closeExam').on('click',function(){
+        $('.container .notification, .mask').fadeOut();
     });
 }
 function showVerdict(currentIter,final)

@@ -33,6 +33,14 @@ mp.events.add('getVehicleData', (maxfuel,currentfuel,enginehealth,bodyhealth,spe
 	{
 		currentFuel = currentfuel;
 	}
+	if(enginehealth == null)
+	{
+		enginehealth = 1000;
+	}
+	if(bodyhealth == null)
+	{
+		bodyhealth = 1000;
+	}
 	engineHealth = enginehealth;
 	bodyHealth = bodyhealth;
 	spendingFuel = spending;
