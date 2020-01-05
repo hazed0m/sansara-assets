@@ -884,11 +884,10 @@ function refreshInventory(currentIterator)
 		itemTemplate = '',
 		usedCounter = 0,
 		shadowClass = 'legal',
-		currentLength = inventoryList.length < 48 ? '49' : '96';
-
-	if(currentLength > 49 || currentLength > 96 || currentLength > 192)
+		currentLength = inventoryList.length;
+	if(currentLength < 40)
 	{
-		currentLength += currentLength;
+		currentLength = 40 - currentLength;
 	}
 	switch (currentIterator)
 	{
@@ -1197,7 +1196,7 @@ function refreshInventory(currentIterator)
 	switch (currentIterator)
 	{	
 		case 'inventory':
-			for (var i = inventoryList.length-usedCounter; i != currentLength; i++) {
+			for (var i = inventoryList.length-usedCounter; i != 40; i++) {
 				$('.right-inventory ul#inventory').append('<li></li>'); 
 			}
 			break;		

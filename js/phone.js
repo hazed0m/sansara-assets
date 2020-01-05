@@ -313,6 +313,7 @@ function checkCall(number)
 {
 	getNumber = number;
 	pushHistoryList(getNumber, 'out');
+	console.log(getNumber);
 	mp.trigger('PhoneCheckCall',getNumber);
 }
 function getCall(number)

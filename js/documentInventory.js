@@ -725,12 +725,12 @@ function refreshInventory(currentIterator)
 	switch (currentIterator)
 	{	
 		case 'inventory':
-			for (var i = inventoryList.length-usedCounter; i != currentLength; i++) {
+			for (var i = inventoryList.length-usedCounter; i != 40; i++) {
 				$('.right-inventory ul#inventory').append('<li></li>'); 
 			}
 			break;
 		case 'luggage':
-			for (var i = luggageList.length; i != luggageLength; i++) {
+			for (var i = luggageList.length; i != 40; i++) {
 				$('.left-inventory ul#luggage').append(`<li luggage-id="${i}"></li>`); 
 			}	
 			break;			
