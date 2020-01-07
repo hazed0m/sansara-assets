@@ -482,6 +482,20 @@ function pushCustoms(transportObj)
 	$(transportInfo.WorkersList).each(function(index,item){
 		let template = `
 			<div class="employee-item hired" data-count="${index+1}">
+				<div class="info-wrapper">
+					<div class="info-item">
+						<div class="info-name">Вызовов:</div>
+						<div class="info-data"> ${item.Calls}</div>
+					</div>
+					<div class="info-item">
+						<div class="info-name">Починок:</div>
+						<div class="info-data"> ${item.Repairs}</div>
+					</div>
+					<div class="info-item">
+						<div class="info-name">Капиталок:</div>
+						<div class="info-data"> ${item.Capitals}</div>
+					</div>
+				</div>
 				<div class="name">
 					${item.FullName}
 				</div>
@@ -611,6 +625,11 @@ function refreshCustoms()
 		};
 	mixer = mixitup(container, config);
 }
+function updateTransportCompany(transportObj)
+{
+	transportInfo = JSON.parse(transportObj);
+	pushTransportCompany(transportInfo);
+}
 function pushTransportCompany(transportObj)
 {
 	$('.transportCompany-wrapper .service-wrapper .current-input .next-title').text(transportInfo.Name);
@@ -622,6 +641,16 @@ function pushTransportCompany(transportObj)
 	$(transportInfo.WorkersList).each(function(index,item){
 		let template = `
 			<div class="employee-item hired" data-count="${index+1}">
+				<div class="info-wrapper">
+					<div class="info-item">
+						<div class="info-name">Вызовов:</div>
+						<div class="info-data"> ${item.Calls}</div>
+					</div>
+					<div class="info-item">
+						<div class="info-name">Починок:</div>
+						<div class="info-data"> ${item.Milage}</div>
+					</div>
+				</div>
 				<div class="name">
 					${item.FullName}
 				</div>
@@ -640,8 +669,8 @@ function pushTransportCompany(transportObj)
 		</div>`;
 	$('.transportCompany-wrapper .employers-wrapper .employers-list').append(addTemplate);
 	$('.transportCompany-wrapper [data-ref="transport-company-container"]').empty();	
-	$('.transportCompany-wrapper .shop-page .title-wrap .title span').text(towTruckList.length);
-	$(towTruckList).each(function(index,item){
+	$('.transportCompany-wrapper .shop-page .title-wrap .title span').text(transportCompanyCarsList.length);
+	$(transportCompanyCarsList).each(function(index,item){
 		let currentItem = `
 		<div class="transport-block" data-list='${'mechanical'}' data-index='${index}' data-price='${item.price}' data-name="${item.name}" data-luggage='${item.luggage}' data-type='${item.type}'>
 			<div class="mask">Куплено</div>

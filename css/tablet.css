@@ -2080,12 +2080,52 @@
 {
 	/* transform:scale(1.1); */
 }
+.customs-wrapper .employers-wrapper .employers-list .employee-item:hover .info-wrapper,
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:hover .info-wrapper
+{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.customs-wrapper .info-wrapper,
+.transportCompany-wrapper .info-wrapper
+{	
+	min-width:360px;
+	transition:0.9s;
+	display: none;
+	position: absolute;
+    background: #60dd4e;
+    border-radius: 10px;
+    padding: 10px;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%,-30%);
+    font-size: 16px;
+    z-index: 9999;
+}
+.transportCompany-wrapper .info-wrapper
+{
+	min-width:320px;
+	background: #f7bb38;
+}
+.customs-wrapper .info-wrapper .info-item,
+.transportCompany-wrapper .info-wrapper .info-item
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.customs-wrapper .info-wrapper .info-item
+{
+	margin:0 10px;
+}
 .customs-wrapper .service-wrapper .next-title,
 .transportCompany-wrapper .service-wrapper .next-title
 {
 	color:#fff;
 	font-size:20px;
 	margin-left:-5px;
+	text-align: center;
 }
 .customs-wrapper .menu-wrapper .menu-item,
 .transportCompany-wrapper .menu-wrapper .menu-item

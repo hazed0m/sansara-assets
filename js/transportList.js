@@ -156,7 +156,12 @@ towTruckList = [
     { name: 'Towtruck Large', hash: 'towtruck', speed:167, luggage: 100, type: 'эвакуатор',price: 16100, info: '', places: 2},
     { name: 'Vapid Tow Truck', hash: 'towtruck2', speed:161, luggage: 50, type: 'эвакуатор',price: 16200, info: '', places: 2},
     { name: 'MTL Flatbed', hash: 'flatbed', speed:209, luggage: 100, type: 'эвакуатор',price: 16300, info: '', places: 2}
-];
+],
+transportCompanyCarsList = [
+    { name: 'Declasse Burrito', hash: 'burrito5', speed:209, luggage: 1000, type: 'эвакуатор',price: 16100, info: '', places: 2},
+    { name: 'Jobuilt Phantom', hash: 'phantom3', speed:198, luggage: 0, type: 'эвакуатор',price: 16200, info: '', places: 2},
+    { name: 'Trailer S', hash: 'trailers3', speed:0, luggage: 7000, type: 'эвакуатор',price: 16300, info: '', places: 0}
+]
 function getTransportList()
 {
     let transportList = [];
