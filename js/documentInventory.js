@@ -138,38 +138,39 @@ function doneAction(action, index, id, currentCount)
 			console.log(tempWeight);
 			if(tempWeight < maxWeightInventory)
 			{
-				if(currentCount == luggageList[index].count)
-				{
-					let removeElem = [Object.assign({},eval(id+'List')[index])];				
-					console.log(1,removeElem);
-					let currentElement = containsName(removeElem[0].name,'inventory');
-					if(removeElem[0].inventoryIndex != -1  && currentElement != -1)  
-					{		
-						inventoryList[removeElem[0].inventoryIndex].count += parseInt(currentCount);
-					}
-					else
-					{
-						removeElem[0].count = parseInt(currentCount);
-						inventoryList.push(removeElem[0]);
-					}
-				}
-				else
-				{				
-					// eval(id+'List')[index].count -=  parseInt(currentCount);
-					let currentElement = containsName(eval(id+'List')[index].name,'inventory');
-					if(eval(id+'List')[index].inventoryIndex != -1  && currentElement != -1)  
-					{		
-						inventoryList[eval(id+'List')[index].inventoryIndex].count += parseInt(currentCount);
-					}
-					else
-					{
-						let removeElem = Object.assign({},eval(id+'List')[index]);
-						removeElem.count = parseInt(currentCount);
-						inventoryList.push(removeElem);
-						eval(id+'List')[index].inventoryIndex = inventoryList.length - 1;
-					}				
-				}				
-				mp.trigger("action.currentDocInv", action, JSON.stringify(luggageList),JSON.stringify(inventoryList));
+				pushSearchElement(JSON.stringify(luggageList[index]));
+			// 	if(currentCount == luggageList[index].count)
+			// 	{
+			// 		let removeElem = [Object.assign({},eval(id+'List')[index])];				
+			// 		console.log(1,removeElem);
+			// 		let currentElement = containsName(removeElem[0].name,'inventory');
+			// 		if(removeElem[0].inventoryIndex != -1  && currentElement != -1)  
+			// 		{		
+			// 			inventoryList[removeElem[0].inventoryIndex].count += parseInt(currentCount);
+			// 		}
+			// 		else
+			// 		{
+			// 			removeElem[0].count = parseInt(currentCount);
+			// 			inventoryList.push(removeElem[0]);
+			// 		}
+			// 	}
+			// 	else
+			// 	{				
+			// 		// eval(id+'List')[index].count -=  parseInt(currentCount);
+			// 		let currentElement = containsName(eval(id+'List')[index].name,'inventory');
+			// 		if(eval(id+'List')[index].inventoryIndex != -1  && currentElement != -1)  
+			// 		{		
+			// 			inventoryList[eval(id+'List')[index].inventoryIndex].count += parseInt(currentCount);
+			// 		}
+			// 		else
+			// 		{
+			// 			let removeElem = Object.assign({},eval(id+'List')[index]);
+			// 			removeElem.count = parseInt(currentCount);
+			// 			inventoryList.push(removeElem);
+			// 			eval(id+'List')[index].inventoryIndex = inventoryList.length - 1;
+			// 		}				
+			// 	}				
+			// 	mp.trigger("action.currentDocInv", action, JSON.stringify(luggageList),JSON.stringify(inventoryList));
 			}
 			else
 			{
@@ -199,6 +200,7 @@ function doneAction(action, index, id, currentCount)
 								${itemImg}
 							</div>
 						</div>`;
+					$('.show-wrapper .find-icon').empty();
 					$('.left-inventory .show-wrapper').slideDown().css('display','flex');
 					$('.show-wrapper .find-icon').append(template);
 					$('.left-inventory .show-wrapper .button-wrapper .button#putDocument').on('click',function(){
@@ -229,6 +231,7 @@ $('#searchConfirm').on('click',function(){
 });
 function pushSearchElement(elem)
 {
+	$('.search-wrapper .find-item .find-icon').empty();
 	let element = JSON.parse(elem), 
 		itemImg = `<img src="images/inventory/${element.type}.png" class="itemImg dropdown-toggle">`,
 		template = `
@@ -241,7 +244,7 @@ function pushSearchElement(elem)
 			</div>
 		</div>`;
 	$('.left-inventory .search-wrapper .find-item').slideDown().css('display','flex');
-	$('.search-wrapper .find-icon').append(template);
+	$('.search-wrapper .find-item .find-icon').append(template);
 	$('#previewDocument').on('click',function(){
 		console.log(element.name);
 		mp.trigger('previewDocument',element.name);
@@ -249,10 +252,18 @@ function pushSearchElement(elem)
 	$('#takeDocument').on('click',function(){
 		console.log(elem);
 		$('.left-inventory .search-wrapper .find-item').slideUp();
-		$('.search-wrapper .find-icon').empty();
+		$('.search-wrapper .find-item .find-icon').empty();
 		mp.trigger('takeDocument',elem);
 	});
 }
+$('.left-inventory .search-wrapper .find-item .button#cancel').on('click',function(){
+	$('.left-inventory .search-wrapper .find-item').slideUp();
+	$('.search-wrapper .find-item .find-icon').empty();
+});
+$('.left-inventory .show-wrapper .button#cancel').on('click',function(){
+	$('.left-inventory .show-wrapper').slideUp();
+	$('.show-wrapper .find-icon').empty();
+});
 function listIndexCheck(id)
 {
 	$(eval(id+'List')).each(function(index,item){
@@ -468,67 +479,67 @@ function inventoryInitialize()
 				{
 					doneAction(action,index,id,1);
 				}
-				else
-				{			
-					$('.ok-button').attr('action',action).attr('id',id).attr('index',index).attr('done','undone');
-					$('.col-wrapper').find('.quantity').replaceWith(input);
-					$('.col-wrapper').find('.col-title').text(eval(id+'List')[index].name);
-					if(eval(id+'List')[index].max == undefined)
-					{
-						$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].count);
-						$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].count);
-					}
-					else
-					{
-						$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].max);
-						$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].max);
-					}
-					$('.col-wrapper .min').on('click',function(){
-						currentMin = $(this).parent().find('.quantity').attr('min');
-						$(this).parent().find('.quantity').val(currentMin);
-					});			
-					$('.col-wrapper .max').on('click',function(){
-						currentMax = $(this).parent().find('.quantity').attr('max');
-						$(this).parent().find('.quantity').val(currentMax);
-					});			
-					$('.ok-button').on('click',function(){
-						if($(this).attr('done') == 'undone')
-						{
-							col = $(this).parent().parent().find('input').val();
-							$('.col-wrapper').fadeOut();
-							$(this).attr('done','done');
-							doneAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
-						}
-					});
-					$('.cancel-button').on('click',function(){
-						$('.col-wrapper').fadeOut();				
-					});			
-					//Input
-					var inputQuantity = [];
-					$(function() {
-						$(".quantity").each(function(i) {
-						inputQuantity[i]=this.defaultValue;
-							$(this).data("idx",i); // save this field's index to access later
-						});
-						$(".quantity").on("keyup", function (e) {
-						var $field = $(this),
-							val=this.value,
-							$thisIndex=parseInt($field.data("idx"),10); // retrieve the index
-							//window.console && console.log($field.is(":invalid"));
-							//$field.is(":invalid") is for Safari, it must be the last to not error in IE8
-						if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
-							this.value = inputQuantity[$thisIndex];
-							return;
-						} 
-						if (val.length > Number($field.attr("maxlength"))) {
-							val=val.slice(0, 5);
-							$field.val(val);
-						}
-						inputQuantity[$thisIndex]=val;
-						});      
-					});	
-					$('.col-wrapper').fadeIn();
-				}	
+				// else
+				// {			
+				// 	$('.ok-button').attr('action',action).attr('id',id).attr('index',index).attr('done','undone');
+				// 	$('.col-wrapper').find('.quantity').replaceWith(input);
+				// 	$('.col-wrapper').find('.col-title').text(eval(id+'List')[index].name);
+				// 	if(eval(id+'List')[index].max == undefined)
+				// 	{
+				// 		$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].count);
+				// 		$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].count);
+				// 	}
+				// 	else
+				// 	{
+				// 		$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].max);
+				// 		$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].max);
+				// 	}
+				// 	$('.col-wrapper .min').on('click',function(){
+				// 		currentMin = $(this).parent().find('.quantity').attr('min');
+				// 		$(this).parent().find('.quantity').val(currentMin);
+				// 	});			
+				// 	$('.col-wrapper .max').on('click',function(){
+				// 		currentMax = $(this).parent().find('.quantity').attr('max');
+				// 		$(this).parent().find('.quantity').val(currentMax);
+				// 	});			
+				// 	$('.ok-button').on('click',function(){
+				// 		if($(this).attr('done') == 'undone')
+				// 		{
+				// 			col = $(this).parent().parent().find('input').val();
+				// 			$('.col-wrapper').fadeOut();
+				// 			$(this).attr('done','done');
+				// 			doneAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
+				// 		}
+				// 	});
+				// 	$('.cancel-button').on('click',function(){
+				// 		$('.col-wrapper').fadeOut();				
+				// 	});			
+				// 	//Input
+				// 	var inputQuantity = [];
+				// 	$(function() {
+				// 		$(".quantity").each(function(i) {
+				// 		inputQuantity[i]=this.defaultValue;
+				// 			$(this).data("idx",i); // save this field's index to access later
+				// 		});
+				// 		$(".quantity").on("keyup", function (e) {
+				// 		var $field = $(this),
+				// 			val=this.value,
+				// 			$thisIndex=parseInt($field.data("idx"),10); // retrieve the index
+				// 			//window.console && console.log($field.is(":invalid"));
+				// 			//$field.is(":invalid") is for Safari, it must be the last to not error in IE8
+				// 		if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
+				// 			this.value = inputQuantity[$thisIndex];
+				// 			return;
+				// 		} 
+				// 		if (val.length > Number($field.attr("maxlength"))) {
+				// 			val=val.slice(0, 5);
+				// 			$field.val(val);
+				// 		}
+				// 		inputQuantity[$thisIndex]=val;
+				// 		});      
+				// 	});	
+				// 	$('.col-wrapper').fadeIn();
+				// }	
 			}
 		}
 		else

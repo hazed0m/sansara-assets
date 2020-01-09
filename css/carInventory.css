@@ -569,7 +569,7 @@ body {
 	font-size:13.88px;
 	cursor: pointer;
 }
-.col-wrapper .min:hover, .col-wrapper .max:hover, .button-wrapper div:hover
+.col-wrapper .min:hover, .col-wrapper .max:hover, .button-wrapper div:hover, .left-inventory .button:hover
 {
 	transform:scale(1.1);
 }
