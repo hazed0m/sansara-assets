@@ -417,19 +417,19 @@ $('.goverment-wrapper .order-wrap .clients-block #clients').on('click',function(
 		$(this).prev().fadeOut();
 	}
 });
-$('.goverment-wrapper .ads-wrap .add-ads').on('click',function(){
+$('.goverment-wrapper .ads-wrap .add-ads, .goverment-wrapper .auction-wrap .add-ads').on('click',function(){
 	$(this).parent().find('.list-wrap').css('width','69%');
 	$(this).parent().find('.ads-add-block').removeClass('zoomOutRight').addClass('zoomInRight').css('display','flex');
 });
-$('.goverment-wrapper .ads-wrap .ads-add-block .close-but').on('click',function(){
+$('.goverment-wrapper .ads-wrap .ads-add-block .close-but, .goverment-wrapper .auction-wrap .ads-add-block .close-but').on('click',function(){
 	$(this).parent().parent().find('.list-wrap').css('width','100%');
 	$(this).parent().parent().find('.ads-add-block').removeClass('zoomInRight').addClass('zoomOutRight');
 	setTimeout(() => {$(this).parent().parent().find('.ads-add-block').css('display','none');},700)
 });
-$('.goverment-wrapper .ads-wrap .ads-item .delete-but').on('click',function(){
+$('.goverment-wrapper .ads-wrap .ads-item .delete-but, .goverment-wrapper .auction-wrap .ads-item .accept-but').on('click',function(){
 	$(this).next().fadeIn();
 });
-$('.goverment-wrapper .ads-wrap .ads-item .delete-wrapper .delete-accept').on('click',function(){
+$('.goverment-wrapper .ads-wrap .ads-item .delete-wrapper .delete-accept, .goverment-wrapper .auction-wrap .ads-item .delete-wrapper .delete-accept').on('click',function(){
 	if(this.id == 'yes')
 	{
 		console.log('yeap');
@@ -647,7 +647,7 @@ function pushTransportCompany(transportObj)
 						<div class="info-data"> ${item.Calls}</div>
 					</div>
 					<div class="info-item">
-						<div class="info-name">Починок:</div>
+						<div class="info-name">Пробег:</div>
 						<div class="info-data"> ${item.Milage}</div>
 					</div>
 				</div>

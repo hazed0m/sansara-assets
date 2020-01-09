@@ -186,8 +186,27 @@ function doneAction(action, index, id, currentCount)
 			{
 				if(inventoryList[index].type == 'Documents')
 				{
-					let removeElem = Object.assign({},inventoryList[index]);
-					useElement(removeElem, index, currentCount);
+					// let removeElem = Object.assign({},inventoryList[index]);
+					// useElement(removeElem, index, currentCount);
+					console.log(inventoryList[index]);
+					let itemImg = `<img src="images/inventory/${inventoryList[index].type}.png" class="itemImg dropdown-toggle">`,
+					    template = `
+						<div class="itemInv" id="${action}">
+							<div class="button-dropdown">
+								<div class="infoItem dropdown-toggle">
+									<div class="nameItem">${inventoryList[index].name}</div>
+								</div>
+								${itemImg}
+							</div>
+						</div>`;
+					$('.left-inventory .show-wrapper').slideDown().css('display','flex');
+					$('.show-wrapper .find-icon').append(template);
+					$('.left-inventory .show-wrapper .button-wrapper .button#putDocument').on('click',function(){
+						let currentDocument = inventoryList[index];
+						$('.left-inventory .show-wrapper').slideUp();
+						$('.show-wrapper .find-icon').empty();
+						mp.trigger('putDocument', currentDocument);
+					});
 					refreshInventory('luggage');
 					refreshInventory('inventory');	
 					inventoryInitialize(); 
@@ -200,6 +219,40 @@ function doneAction(action, index, id, currentCount)
 			break;
 	}	
 };
+$('#searchConfirm').on('click',function(){
+	let data = $(this).prev().val();
+	if(data.length != 0)
+	{
+		console.log(data);
+		mp.trigger('searchDocument',data);
+	}
+});
+function pushSearchElement(elem)
+{
+	let element = JSON.parse(elem), 
+		itemImg = `<img src="images/inventory/${element.type}.png" class="itemImg dropdown-toggle">`,
+		template = `
+		<div class="itemInv">
+			<div class="button-dropdown">
+				<div class="infoItem dropdown-toggle">
+					<div class="nameItem">${element.name}</div>
+				</div>
+				${itemImg}
+			</div>
+		</div>`;
+	$('.left-inventory .search-wrapper .find-item').slideDown().css('display','flex');
+	$('.search-wrapper .find-icon').append(template);
+	$('#previewDocument').on('click',function(){
+		console.log(element.name);
+		mp.trigger('previewDocument',element.name);
+	});
+	$('#takeDocument').on('click',function(){
+		console.log(elem);
+		$('.left-inventory .search-wrapper .find-item').slideUp();
+		$('.search-wrapper .find-icon').empty();
+		mp.trigger('takeDocument',elem);
+	});
+}
 function listIndexCheck(id)
 {
 	$(eval(id+'List')).each(function(index,item){

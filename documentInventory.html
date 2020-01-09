@@ -11,11 +11,30 @@
 		<div class="left-inventory">			
 			<div class="close">Закрыть</div>
 			<div class="items">
-				<ul id="luggage"></ul>
+				<div class="search-wrapper">
+					<div class="search-item">
+						<input type="number" id="searchInput" placeholder="Введите № документа">
+						<div class="button" id="searchConfirm">Найти</div>
+					</div>
+					<div class="find-item">
+						<div class="find-icon"></div>
+						<div class="button-wrapper">
+							<div class="button" id="takeDocument">Сделать копию</div>
+							<div class="button" id="previewDocument">Посмотреть</div>
+						</div>
+					</div>
+					<div class="show-wrapper">
+						<div class="find-icon"></div>
+						<div class="button-wrapper">
+							<div class="button" id="putDocument">Положить</div>
+						</div>
+					</div>
+				</div>
+				<ul id="luggage" style="margin-top:60px;"></ul>
 			</div>
-			<div class="weight">
+			<!-- <div class="weight">
 				<span class="current">0</span><span>/</span><span class="max">50</span>kg
-			</div>	
+			</div>	 -->
 		</div>
 		<div class="right-inventory">			
 			<div class="tabs-inventory">
@@ -28,9 +47,9 @@
 						 
 					</ul>
 				</div>
-				<div class="weight">
+				<!-- <div class="weight">
 					<span class="current">0</span><span>/</span><span class="max">0</span>kg
-				</div>				
+				</div>				 -->
 			</div>
 		</div>
 	</div>
