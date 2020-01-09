@@ -204,7 +204,7 @@ function doneAction(action, index, id, currentCount)
 					$('.left-inventory .show-wrapper').slideDown().css('display','flex');
 					$('.show-wrapper .find-icon').append(template);
 					$('.left-inventory .show-wrapper .button-wrapper .button#putDocument').on('click',function(){
-						let currentDocument = inventoryList[index];
+						let currentDocument = JSON.stringify(inventoryList[index]);
 						$('.left-inventory .show-wrapper').slideUp();
 						$('.show-wrapper .find-icon').empty();
 						mp.trigger('putDocument', currentDocument);
