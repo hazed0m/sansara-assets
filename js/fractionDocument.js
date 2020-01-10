@@ -164,16 +164,18 @@ function pushFractionDocument(elem)
         if(docInfo.SignsList.length == 0)
         {
             let title = $('.container .text-wrapper input').val(),
+                name = docInfo.Name,
                 text = $('.container .text-wrapper textarea').val();
-            console.log(title,text);
-            mp.trigger('closeDocument',title,text);
+            console.log(name,title,text);
+            mp.trigger('closeDocument',name,title,text);
         }        
         else
         {
             let title = docInfo.Title,
+                name = docInfo.Name,
                 text = docInfo.Text;
-            console.log(title,text);
-            mp.trigger('closeDocument',title,text);
+            console.log(name,title,text);
+            mp.trigger('closeDocument',name,title,text);
         }
     });
 }
