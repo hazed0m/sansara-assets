@@ -161,6 +161,19 @@ function pushFractionDocument(elem)
         }
     });
     $('.container #closeDocument').on('click',function(){
-        mp.trigger('closeDocument');
+        if(docInfo.SignsList.length == 0)
+        {
+            let title = $('.container .text-wrapper input').val(),
+                text = $('.container .text-wrapper textarea').val();
+            console.log(title,text);
+            mp.trigger('closeDocument',title,text);
+        }        
+        else
+        {
+            let title = docInfo.Title,
+                text = docInfo.Text;
+            console.log(title,text);
+            mp.trigger('closeDocument',title,text);
+        }
     });
 }

@@ -106,6 +106,9 @@ function keypressUp(e){
         case 73:  // I инвентарь
             mp.trigger('KeyIpress');
         break;
+        case 72:  // I инвентарь
+            mp.trigger('KeyHpress');
+        break;
         case 79:  // O инвентарь авто
             mp.trigger('KeyOpress');
         break;
