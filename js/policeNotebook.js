@@ -446,7 +446,10 @@ function pushNotebook(policeman,clews,filer,archive,employeeOnline,admin,date)
     }
     if(typeof admin != undefined)
     {
-        $('.container .main-wrapper .recruting-menu, .container .main-wrapper .licence-menu').fadeIn();
+        if(admin == 'admin')
+        {
+            $('.container .main-wrapper .recruting-menu, .container .main-wrapper .licence-menu').fadeIn();
+        }
         $('.container .main-wrapper .recruting-menu input, .container .main-wrapper .licence-menu input').keyup(function(){
             if($(this).val().length > 0)
             {

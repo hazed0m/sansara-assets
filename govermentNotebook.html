@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>note</title>
+    <link rel="stylesheet" href="fonts/font.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="css/govermentNotebook.css">
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="startup-mask">
+                <div class="img-block animated delay flipOutY">
+                    <img src="img/logo-sansara.png" alt="sansara">
+                </div> 
+            </div>
+            <div class="main-wrapper active">
+                <div class="recruting-menu">
+                    <div class="recruting-title">
+                        Принять на работу
+                    </div>
+                    <input type="text" placeholder="Введите Имя и Фамилию">
+                    <div class="button disabled" id="hireNewbie">Принять</div>
+                </div>
+            </div>
+            <!-- <div class="business-wrapper">
+                <div class="mask"></div>
+                <div class="search-block">
+                    <input type="text" placeholder="Введите ДНК">
+                    <div class="button" id="searchDNA">Поиск</div>
+                </div>
+                <div class="content-block animated">
+
+                </div>
+            </div> -->
+            <div class="tax-wrapper">
+                <div class="tax-wrap">
+                    <div class="title">
+                        Налоги
+                    </div>
+                    <div class="tax-table">
+                        <div class="title-table">
+                            <div class="title-item">Наименование</div>
+                            <div class="title-item">За неделю</div>
+                            <div class="title-item">Бизнес</div>
+                        </div>
+                        <div class="list-table">
+                            <div class="list-item" id="realty">
+                                <div class="list-title">Недвижимость</div>
+                                <div class="list-week"><span></span>$</div>
+                                <div class="list-all"><span></span>$</div>
+                            </div>
+                            <div class="list-item" id="transport">
+                                <div class="list-title">Транспорт</div>
+                                <div class="list-week"><span></span>$</div>
+                                <div class="list-all"><span></span>$</div>
+                            </div>
+                            <div class="list-item" id="business">
+                                <div class="list-title">Бизнес</div>
+                                <div class="list-week"><span></span>$</div>
+                                <div class="list-all"><span></span>$</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="deptors-wrap">
+                    <div class="title">Должники</div>
+                    <div class="title-table">
+                        <div class="title-item">
+                            Имя
+                        </div>
+                        <div class="title-items-list">
+                            <div class="title-list-item">Транспорт</div>
+                            <div class="title-list-item">Недвиж.</div>
+                            <div class="title-list-item">Бизнес</div>
+                        </div>
+                    </div>
+                    <div class="deptors-list" data-page="1"></div>
+                    <div class="pagination-wrap">
+                        <div class="button" id="prev"><i class="fas fa-arrow-left"></i></div>
+                        <div class="page-number">1</div>
+                        <div class="button" id="next"><i class="fas fa-arrow-right"></i></div>
+                    </div>
+                    <div class="mask"></div>
+                    <div class="accept-window">
+                        <div class="close-but"><i class="fas fa-times"></i></div>
+                        <div class="auction-name">
+                            Должник:
+                            <span></span>
+                        </div>
+                        <div class="auction-type">
+                            Тип:
+                            <span></span>
+                        </div>
+                        <input type="number" placeholder="Введите цену">
+                        <div class="button disabled" id="startAuction">Начать аукцион</div>
+                    </div>
+                </div>
+            </div>
+            <div class="deals-wrapper">
+                <div class="deals-inner">
+                    <div class="title">Оформление сделки</div>
+                    <div class="input-wrapper">
+                        <div class="deal-item-wrap" id="dealNumber">
+                            <div class="deal-title">Номер сделки</div>
+                            <input type="number" placeholder="Введите номер документа">
+                        </div>
+                        <div class="deal-item-wrap" id="buyerInfo">
+                            <div class="deal-title">Данные покупателя</div>
+                            <input type="text" placeholder="Введите Имя и Фамилию">
+                        </div>
+                        <div class="deal-item-wrap" id="sellerInfo">
+                            <div class="deal-title">Данные продавца</div>
+                            <input type="text" placeholder="Введите Имя и Фамилию">
+                        </div>
+                    </div>
+                    <div class="info-wrapper">
+                        <div class="info-item-wrap">
+                            <div class="info-title">Предмет сделки</div>
+                            <div class="dropdown-button" id="transport">
+                                <span>Транспорт</span>     
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                            <div class="dropdown-list">
+                                <div class="dropdown-item" id="transport">Транспорт</div>
+                                <div class="dropdown-item" id="realty">Недвижимость</div>
+                                <div class="dropdown-item" id="business">Бизнес</div>
+                                <div class="dropdown-item" id="trans-company">Транс. компания</div>
+                                <div class="dropdown-item" id="customs">Автомастерская</div>
+                            </div>
+                        </div>
+                        <div class="info-item-wrap">
+                            <div class="info-title">Информация</div>
+                            <div class="mask-list">
+                                <div class="mask-item active" id="transport">
+                                    <input type="number" placeholder="Номер авто">
+                                </div>
+                                <div class="mask-item" id="realty">
+                                    <span>д.</span>
+                                    <input type="number" placeholder="">
+                                    <span>кв.</span>
+                                    <input type="number" placeholder="">
+                                </div>
+                                <div class="mask-item" id="business">
+                                    <input type="text" placeholder="Название организации">
+                                </div>
+                                <div class="mask-item" id="trans-company">
+                                    <input type="text" placeholder="Название организации">
+                                </div>
+                                <div class="mask-item" id="customs">
+                                    <input type="text" placeholder="Название организации">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-item-wrap" id="dealSum">
+                            <div class="info-title">Сумма сделки</div>
+                            <input type="number" placeholder="Введите сумму">
+                        </div>
+                    </div>
+                    <div class="button disabled" id="doneDeal">Оформить сделку</div>
+                </div>
+            </div>
+            <div class="employee-wrapper">
+                <iframe id="employee-frame" src="http://server.sansararp.com/goverment/employee" frameborder="0" width="100%" height="100%"></iframe>
+            </div>
+            <div class="charter-wrapper">
+                <iframe id="charter-frame" src="http://server.sansararp.com/goverment/charter" frameborder="0" width="100%" height="100%"></iframe>
+            </div>
+            <div class="police-menu">
+                <div class="menu-item active" id="main-wrapper">Главная</div>
+                <div class="menu-item" id="tax-wrapper">Налоги</div>
+                <div class="menu-item" id="employee-wrapper">Сотрудники</div>
+                <div class="menu-item" id="deals-wrapper">Сделки</div>
+                <div class="menu-item" id="charter-wrapper">Устав</div>
+                <!-- <div class="close-but"><i class="fas fa-times"></i></div> -->
+            </div>
+            <div class="sansara-menu animated">
+                <div class="menu-item" id="police-menu">Меню</div>
+                <div class="menu-item" id="noteExit">Выйти</div>
+            </div>
+            <div class="bottom-panel">
+                <div class="left-wrapper">
+                    <div class="menu-but" id="sansara-menu"></div>
+                    <div class="used-app"><img src="img/notebook/goverment-ico.png" alt=""></div>
+                </div>
+                <div class="right-wrapper">
+                    <div class="wi-fi"></div>
+                    <div class="lang">РУС</div>
+                    <div class="time-wrapper">
+                        <div class="time">15:00</div>
+                        <div class="date">22.03.2019</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/font-awesome.min.js"></script>    
+    <script src="js/govermentNotebook.js"></script>
+</body>
+</html>

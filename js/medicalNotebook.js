@@ -75,7 +75,10 @@ function pushNotebook(employeeOnline,admin = false)
     } 
     if(typeof admin != undefined)
     {
-        $('.container .main-wrapper .recruting-menu').fadeIn();
+        if(admin == 'admin')
+        {
+            $('.container .main-wrapper .recruting-menu').fadeIn();
+        }
         $('.container .main-wrapper .recruting-menu input').keyup(function(){
             this.value = this.value.replace(/[-\.;":',/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
             if($(this).val().length > 0)
