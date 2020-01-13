@@ -643,6 +643,11 @@ function refreshInventory(currentIterator)
 			let imgName = item.name.toLowerCase().replace(/\s+/g,'');
 			itemImg = `<img src="images/${currentIter}/items/${productTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
 		}
+		if(item.type == 'Instrument')
+		{
+			let imgName = item.name.toLowerCase().replace(/\s+/g,'');
+			itemImg = `<img src="images/${currentIter}/instruments/${instrumentTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
+		}
 		if(currentIterator == 'luggage')
 		{
 			action = 'remove';

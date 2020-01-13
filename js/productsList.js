@@ -58,7 +58,25 @@ let productsList = [
     'шаурмаизиндейки',
     'эклер',
     'эспрессо'
+],
+instrumentsList = [
+    'топор',
+    'лопата',
+    'садовыеножницы',
+    'кирка',
+    'серп'
 ];
+function instrumentTranslate(cyrillic)
+{
+    let currentIndex = '';
+    $(instrumentsList).each(function(index,item){
+        if(item == cyrillic)
+        {
+            currentIndex = index;
+        }
+    });
+    return currentIndex;
+}
 function productTranslate(cyrillic)
 {
     let currentIndex = '';

@@ -1058,6 +1058,11 @@ function refreshInventory(currentIterator)
 				let imgName = item.name.toLowerCase().replace(/\s+/g,'');
 				itemImg = `<img src="images/${currentIter}/items/${productTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
 			}
+			if(item.type == 'Instrument')
+			{
+				let imgName = item.name.toLowerCase().replace(/\s+/g,'');
+				itemImg = `<img src="images/${currentIter}/instruments/${instrumentTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
+			}
 			if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{				
 				if(currentElement != -1)
