@@ -197,8 +197,8 @@ function fineInit(finesList)
 			{
 				cardVal -= count;		
 				console.log(car,fine,count);
-				$('.bankaccount .cardVal').text(cardVal);
-				mp.trigger('payFine',car,fine,count);
+				refreshCashpoint();
+				mp.trigger('payFine',car,fine,count,cardVal);
 			}
 			else
 			{
@@ -236,8 +236,8 @@ function accountInit(accountsList)
 				cardVal -= count;		
 				console.log(account,count);
 				$(this).addClass('disabled');
-				$('.bankaccount .cardVal').text(cardVal);
-				mp.trigger('payAccount',account,count);
+				refreshCashpoint();
+				mp.trigger('payAccount',account,count,cardVal);
 			}
 			else
 			{
