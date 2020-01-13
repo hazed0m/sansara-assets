@@ -73,39 +73,39 @@ function addFractionCircle(fractionName)
         </div>`;
     $('.container .wrapper').append(template);
     let circleType = null;
-    if(menuTitleList[fractionName].length == 2)
-    {
-        document.querySelectorAll('.big-circle#section2 .big-item .big-text').forEach(function(item,index){
-            circleType = new CircleType(item).radius(280);
-        });
-    }
-    if(menuTitleList[fractionName].length == 3)
-    {
-        document.querySelectorAll('.big-circle#section3 .big-item .big-text')
-        .forEach(function(item,index){
-            if(index == 2)
-            {
-               circleType = new CircleType(item).dir(-1).radius(300);
-            }
-            else
-            {
-                circleType = new CircleType(item).radius(300);
-            }
-        });
-    }
-    if(menuTitleList[fractionName].length == 4)
-    {
-        document.querySelectorAll('.big-circle#section4 .big-item .big-text').forEach(function(item,index){
-            if(index == 3)
-            {
-               circleType = new CircleType(item).dir(-1).radius(280);
-            }
-            else
-            {
-                circleType = new CircleType(item).radius(280);
-            }
-        });
-    } 
+    // if(menuTitleList[fractionName].length == 2)
+    // {
+    //     document.querySelectorAll('.big-circle#section2 .big-item .big-text').forEach(function(item,index){
+    //         circleType = new CircleType(item).radius(280);
+    //     });
+    // }
+    // if(menuTitleList[fractionName].length == 3)
+    // {
+    //     document.querySelectorAll('.big-circle#section3 .big-item .big-text')
+    //     .forEach(function(item,index){
+    //         if(index == 2)
+    //         {
+    //            circleType = new CircleType(item).dir(-1).radius(300);
+    //         }
+    //         else
+    //         {
+    //             circleType = new CircleType(item).radius(300);
+    //         }
+    //     });
+    // }
+    // if(menuTitleList[fractionName].length == 4)
+    // {
+    //     document.querySelectorAll('.big-circle#section4 .big-item .big-text').forEach(function(item,index){
+    //         if(index == 3)
+    //         {
+    //            circleType = new CircleType(item).dir(-1).radius(280);
+    //         }
+    //         else
+    //         {
+    //             circleType = new CircleType(item).radius(280);
+    //         }
+    //     });
+    // } 
     $('.container .wrapper .big-circle .inner .big-item').on('click',function(){
         let id = $(this).attr('data-name');
         console.log(id);
