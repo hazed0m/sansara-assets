@@ -11,6 +11,12 @@
 	background:#ebebec;
 	font-family: 'Gotham Pro';
 }
+#payments-wrapper .buttons-wrapper .payments-button.disabled,
+#payfine-wrapper .buttons-wrapper .payfine-button.disabled
+{
+    opacity:0.7;
+    cursor: default;
+}
 #main-wrapper, #payfine-wrapper, #payments-wrapper, #topup-wrapper, #putback-wrapper, #withdrawal-wrapper
 {
 	border-top:8px solid #ee3a3d;
@@ -49,6 +55,18 @@
 	background:url(../img/logo.png) no-repeat;
 	background-position: center;
 	background-size: cover;
+}
+.notification-wrapper
+{
+	display: none;
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-51.2%,-50%);
+	background:#fff;
+	padding:40px 25px;
+	border:2px solid #ee3a3d;
+	box-shadow: 0 0 100px #ee3a3d;
 }
 .logo-block .logo-text
 {

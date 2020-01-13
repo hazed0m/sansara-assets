@@ -87,7 +87,70 @@ function checkBackButton()
 $('.exit-button').on('click',function(){
 	mp.trigger("cashpoint.exit");
 });
-function cashpointInit(card,cash,terminal,maxwithdrawal,phoneNumber)
+let accountsList = JSON.stringify([
+	{ 
+		Account: 'Квартира №455',
+		Count: 500
+	},
+	{ 
+		Account: 'Квартира №455',
+		Count: 500
+	},
+	{ 
+		Account: 'Квартира №455',
+		Count: 500
+	},
+	{ 
+		Account: 'Квартира №455',
+		Count: 500
+	},
+	{ 
+		Account: 'Квартира №455',
+		Count: 224
+	},
+	{ 
+		Account: 'Квартира №455',
+		Count: 133
+	}
+]);
+let finesList = JSON.stringify([
+	{
+		Car:'Tyzeract',
+		Fine:'Превышение скорости',
+		Count:25552
+	},
+	{
+		Car:'Tyzeract',
+		Fine:'Превышение скорости',
+		Count:25552
+	},
+	{
+		Car:'Tyzeract',
+		Fine:'Превышение скорости',
+		Count:25552
+	},
+	{
+		Car:'Tyzeract',
+		Fine:'Превышение скорости',
+		Count:25552
+	},
+	{
+		Car:'Tyzeract',
+		Fine:'Превышение скорости',
+		Count:25552
+	},
+	{
+		Car:'Buffalo',
+		Fine:'Дтп',
+		Count:25552
+	},
+	{
+		Car:'Tyzeract',
+		Fine:'Превышение скорости',
+		Count:25552
+	}
+]);
+function cashpointInit(card,cash,terminal,maxwithdrawal,phoneNumber,accountsList,finesList)
 {
 	maxWithdrawal = maxwithdrawal;
 	cardVal = parseInt(card);
@@ -104,6 +167,87 @@ function cashpointInit(card,cash,terminal,maxwithdrawal,phoneNumber)
 	$('#topup-wrapper input').attr('max',cardVal);
 	topupInput = $('#topup-wrapper input')[0].outerHTML;
 	clearInput();
+	fineInit(finesList);
+	accountInit(accountsList)
+}
+function fineInit(finesList)
+{
+	finesList = JSON.parse(finesList);
+	$('#payfine-wrapper .buttons-wrapper').empty();
+	$(finesList).each(function(index,item){
+		let template = `
+			<div class="payfine-button" data-car="${item.Car}" data-fine="${item.Fine}" data-count="${item.Count}">
+				<div class="button-wrap">
+					<div class="button-title">${item.Car}</div>
+					<div class="button-note">${item.Fine}</div>
+				</div>	
+				<div class="button-wrap">	
+					<div class="button-price">${item.Count}<span></span>$</div>
+				</div>			
+			</div>`;
+		$('#payfine-wrapper .buttons-wrapper').append(template);
+	});
+	$('#payfine-wrapper .buttons-wrapper .payfine-button').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			let car = $(this).attr('data-car'),
+				fine = $(this).attr('data-fine'),
+				count = $(this).attr('data-count');
+			if(cardVal >= count)
+			{
+				cardVal -= count;		
+				console.log(car,fine,count);
+				$('.bankaccount .cardVal').text(cardVal);
+				mp.trigger('payFine',car,fine,count);
+			}
+			else
+			{
+				$('.notification-wrapper').fadeIn();
+				setTimeout(function(){
+					$('.notification-wrapper').fadeOut();
+				},1500);
+			}			
+		}
+	});
+}
+function accountInit(accountsList)
+{
+	accountsList = JSON.parse(accountsList);
+	$('#payments-wrapper .buttons-wrapper').empty();
+	$(accountsList).each(function(index,item){
+		let template = `
+			<div class="payments-button" data-account="${item.Account}" data-count="${item.Count}">
+				<div class="button-wrap">
+					<div class="button-title">${item.Account}</div>
+				</div>	
+				<div class="button-wrap">	
+					<div class="button-price">${item.Count}<span></span>$</div>
+				</div>			
+			</div>`;
+		$('#payments-wrapper .buttons-wrapper').append(template);
+	});
+	$('#payments-wrapper .buttons-wrapper .payments-button').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			let account = $(this).attr('data-account'),
+				count = $(this).attr('data-count');
+			if(cardVal >= count)
+			{
+				cardVal -= count;		
+				console.log(account,count);
+				$(this).addClass('disabled');
+				$('.bankaccount .cardVal').text(cardVal);
+				mp.trigger('payAccount',account,count);
+			}
+			else
+			{
+				$('.notification-wrapper').fadeIn();
+				setTimeout(function(){
+					$('.notification-wrapper').fadeOut();
+				},1500);
+			}
+		}
+	});
 }
 function refreshCashpoint()
 {
