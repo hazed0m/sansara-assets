@@ -125,7 +125,9 @@ $('.ads-wrapper #closeAdd').on('click',function(){
 });
 let transportAcc = JSON.stringify({
 		Name: 'Sansara INC.',
-		Owner: 'Человек ин Дастриал',
+		Owner: 'Человек ин Дастриал',		
+		DistanceFare: 25,
+		CallsFare:211,
 		Gain: 2352525253,
 		TrucksCount:2,
 		WorkersList:[
@@ -633,7 +635,11 @@ function updateTransportCompany(transportObj)
 function pushTransportCompany(transportObj)
 {
 	$('.transportCompany-wrapper .service-wrapper .current-input .next-title').text(transportInfo.Name);
-	$('.transportCompany-wrapper .service-wrapper .changable-input input').val(transportInfo.Name);
+	$('.transportCompany-wrapper .service-wrapper .name-wrapper .changable-input input').val(transportInfo.Name);
+	$('.transportCompany-wrapper .service-wrapper .fare-wrapper #distanceFare span').text(transportInfo.DistanceFare);
+	$('.transportCompany-wrapper .service-wrapper .fare-wrapper #callsFare span').text(transportInfo.CallsFare);
+	$('.transportCompany-wrapper .service-wrapper .fare-wrapper .changable-input #distanceFareInput input').val(transportInfo.DistanceFare);
+	$('.transportCompany-wrapper .service-wrapper .fare-wrapper .changable-input #callsFareInput input').val(transportInfo.CallsFare);
 	$('.transportCompany-wrapper .service-wrapper .owner-wrapper .next-title').text(transportInfo.Owner);
 	$('.transportCompany-wrapper .service-wrapper .gain-wrapper .next-title span').text(transportInfo.Gain);
 	$('.transportCompany-wrapper .employers-wrapper .already-wrapper .next-title span').text(transportInfo.TrucksCount);
@@ -683,7 +689,7 @@ function pushTransportCompany(transportObj)
 				</div>
 				<div class="speed-block">
 					<div class="speed-wrap">
-						<div class="line-inner" style="width:${speedPercentage(item.speed,'towTruck')}%;"></div>						
+						<div class="line-inner" style="width:${speedPercentage(item.speed,'transportCompanyCars')}%;"></div>						
 					</div>
 					<div class="speed-title">Мощность</div>
 				</div>
@@ -736,15 +742,33 @@ function refreshTransportCompany()
 		}
 	});
 	$('.transportCompany-wrapper .service-wrapper .changable-input .button#changeName').on('click',function(){
-		$(this).parent().css('display','none');
 		let name = $('.transportCompany-wrapper .service-wrapper .changable-input input').val();
 		// $('.transportCompany-wrapper .service-wrapper .current-input .next-title').text(name);
-		$('.transportCompany-wrapper .service-wrapper .current-input').css('display','flex');
-		mp.trigger('changeNameTransportCompany',name);
+		if(name.length != 0)
+		{
+			$(this).parent().css('display','none');
+			$('.transportCompany-wrapper .service-wrapper .name-wrapper .current-input').css('display','flex');
+			mp.trigger('changeNameTransportCompany',name);
+		}
 	});
-	$('.transportCompany-wrapper .service-wrapper .edit-icon').on('click',function(){
+	$('.transportCompany-wrapper .service-wrapper .changable-input .button#changeFare').on('click',function(){
+		let callsFare = $('.transportCompany-wrapper .service-wrapper .changable-input #callsFareInput input').val(),
+			distanceFare = $('.transportCompany-wrapper .service-wrapper .changable-input #distanceFareInput input').val();
+		if(callsFare.length != 0 && distanceFare.length != 0)
+		{
+			$(this).parent().css('display','none');
+			console.log(callsFare,distanceFare);
+			$('.transportCompany-wrapper .service-wrapper .fare-wrapper .next-title').css('display','flex');
+			mp.trigger('changeFareTransportCompany',callsFare,distanceFare);
+		}
+	});
+	$('.transportCompany-wrapper .service-wrapper .name-wrapper .edit-icon').on('click',function(){
 		$(this).parent().css('display','none');
-		$('.transportCompany-wrapper .service-wrapper  .changable-input').css('display','flex');
+		$('.transportCompany-wrapper .service-wrapper .name-wrapper .changable-input').css('display','flex');
+	});
+	$('.transportCompany-wrapper .service-wrapper .fare-wrapper .edit-icon').on('click',function(){
+		$(this).parent().css('display','none');
+		$('.transportCompany-wrapper .service-wrapper .fare-wrapper .changable-input').css('display','flex');
 	});
 	$('.transportCompany-wrapper .menu-wrapper .menu-item').on('click',function(){
 		let id = this.id;

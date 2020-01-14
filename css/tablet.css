@@ -2123,13 +2123,14 @@ input::-webkit-inner-spin-button {
 	box-shadow: 0 0 5px rgba(255,255,255,0.6);
 }
 .customs-wrapper .service-wrapper .changable-input input,
-.transportCompany-wrapper .service-wrapper .changable-input input
+.transportCompany-wrapper .service-wrapper .name-wrapper .changable-input input
 {
 	width:fit-content;
 	max-width:140px;
 	position: absolute;
 	font-size:20px!important;
 	margin-left: -5px;
+	border-bottom:1px solid #fff;
 }
 .customs-wrapper .service-wrapper .edit-icon,
 .transportCompany-wrapper .service-wrapper .edit-icon
@@ -2189,6 +2190,37 @@ input::-webkit-inner-spin-button {
 	font-size:20px;
 	margin-left:-5px;
 	text-align: center;
+}
+.transportCompany-wrapper .service-wrapper .fare-wrapper .changable-input
+{
+	color:#fff;
+	font-size:20px;
+	margin-left:-20px;
+}
+.transportCompany-wrapper .service-wrapper .fare-wrapper .changable-input .button
+{
+	right:-50px;
+}
+.transportCompany-wrapper .service-wrapper .fare-wrapper .changable-input .input-wrap
+{
+	display: flex;
+	align-items: center;
+}
+.transportCompany-wrapper .service-wrapper .fare-wrapper .changable-input input
+{
+	margin-left:5px;
+	border-bottom:1px solid #fff;
+	width:30px;
+}
+.transportCompany-wrapper .service-wrapper .fare-wrapper .next-title
+{
+	display: flex;
+	align-items: center;
+	margin-left:-20px;
+}
+.transportCompany-wrapper .service-wrapper .fare-wrapper div
+{
+	margin:0 4px;
 }
 .customs-wrapper .menu-wrapper .menu-item,
 .transportCompany-wrapper .menu-wrapper .menu-item

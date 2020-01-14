@@ -158,9 +158,12 @@ towTruckList = [
     { name: 'MTL Flatbed', hash: 'flatbed', speed:209, luggage: 100, type: 'эвакуатор',price: 16300, info: '', places: 2}
 ],
 transportCompanyCarsList = [
-    { name: 'Declasse Burrito', hash: 'burrito5', speed:209, luggage: 1000, type: 'эвакуатор',price: 16100, info: '', places: 2},
-    { name: 'Jobuilt Phantom', hash: 'phantom3', speed:198, luggage: 0, type: 'эвакуатор',price: 16200, info: '', places: 2},
-    { name: 'Trailer S', hash: 'trailers3', speed:0, luggage: 7000, type: 'эвакуатор',price: 16300, info: '', places: 0}
+    { name: 'Vapid Taxi', hash: 'taxi', speed:230, luggage: 60, type: 'такси',price: 16100, info: '', places: 4},
+    { name: 'Brute Rental', hash: 'rentalbus', speed:116, luggage: 80, type: 'такси',price: 16100, info: '', places: 4},
+    { name: 'Maibatsu Mule', hash: 'mule4', speed:130, luggage: 1200, type: 'грузовик',price: 16100, info: '', places: 4},
+    { name: 'Declasse Burrito', hash: 'burrito5', speed:209, luggage: 1000, type: 'фургон',price: 16100, info: '', places: 2},
+    { name: 'Jobuilt Phantom', hash: 'phantom3', speed:198, luggage: 0, type: 'тягач',price: 16200, info: '', places: 2},
+    { name: 'Trailer S', hash: 'trailers3', speed:0, luggage: 7000, type: 'прицеп',price: 16300, info: '', places: 0}
 ]
 function getTransportList()
 {

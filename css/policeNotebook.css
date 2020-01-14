@@ -83,12 +83,12 @@
     top:42px;
     left:277px;
     overflow: hidden;
-    background: url(../img/notebook/program-back.png) no-repeat;
+    background: url(../img/notebook/program-back.jpg) no-repeat;
     background-size: cover;
 }
 .container .main-wrapper
 {
-    background:url(../img/notebook/police-wall.png) no-repeat;
+    background:url(../img/notebook/police-wall.jpg) no-repeat;
     background-size:cover;
     background-position: top;
     width:100%;
