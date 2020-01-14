@@ -512,18 +512,17 @@ function personInit(element)
                 textItem += `<p id="text-item">${item}</p> `;
             });
             $(item.StatementsID).each(function(index,item){
-                let itemDate = item.Date.split('@');
                 violationItems += `<div class="violation-item">
                     <div class="title-item">${item.Id}</div>
-                    <div class="title-item">${item.FullName}</div>
-                    <div class="title-item">
-                        <div class="date-wrapper">
-                            <div class="time">${itemDate[0]}</div>
-                            <div class="date">${itemDate[1]}</div>
-                        </div>
-                    </div>
+                    <div class="title-item">${item.Car}</div>
                 </div>`;
             });
+            // <div class="car">
+            //     <div class="car-title">Автомобиль:</div>
+            //     <div class="car-wrapper">
+            //     ${carItems}
+            //     </div>
+            // </div>
             let template = `
                 <div class="name-wrapper">
                     <div class="name">${item.FullName}</div>
@@ -535,12 +534,7 @@ function personInit(element)
                     </div>
                 </div>
                 <div class="property-wrapper">
-                    <div class="car">
-                        <div class="car-title">Автомобиль:</div>
-                        <div class="car-wrapper">
-                        ${carItems}
-                        </div>
-                    </div>
+                    
                     <div class="house">Проживание:
                         <p id="house">${item.Home}</p>                            
                     </div>
@@ -554,8 +548,7 @@ function personInit(element)
                 <div class="violations-wrapper">    
                     <div class="title-wrap">
                         <div class="title-item">Дело №</div>
-                        <div class="title-item">Сотрудник</div>
-                        <div class="title-item">Дата</div>
+                        <div class="title-item">Автомобиль</div>
                     </div>
                     <div class="violation-wrap">
                         ${violationItems}

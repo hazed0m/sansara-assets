@@ -464,7 +464,7 @@
 .container .business-wrapper .content-block .name-wrapper,
 .container .wantedSearch-wrapper .wanted-content-wrapper .name-wrapper
 {
-    padding:23px 22px 15px 22px;
+    padding:15px 22px 5px 22px;
     /* text-align: right; */
     font-size:15px;
 }
@@ -480,7 +480,7 @@
 .container .business-wrapper .content-block .property-wrapper,
 .container .wantedSearch-wrapper .wanted-content-wrapper .property-wrapper
 {
-    padding:0 22px 22px 22px;
+    padding:0 22px 10px 22px;
     /* text-align: right; */
     font-size:15px;
 }
@@ -503,7 +503,7 @@
 .container .wantedSearch-wrapper .wanted-content-wrapper .age,
 .container .wantedSearch-wrapper .wanted-content-wrapper .house
 {
-    margin-top:15px;
+    margin-top:5px;
 }
 .business-wrapper .content-block .text-wrapper .title
 {
@@ -513,13 +513,13 @@
 }
 .business-wrapper .content-block .text-wrapper .text-wrap
 {
-    max-height:70px;
+    max-height:156px;
     overflow-y:scroll;
 }
 .violations-wrapper .title-wrap
 {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     font-size:11px;
     color:#4c4c4c;
@@ -527,52 +527,49 @@
     text-align: center;
     padding-bottom:13px;
 }
-.violations-wrapper .violation-item .title-item:first-child
+.violations-wrapper .violation-item .title-item
 {
-    min-width:40px;
+    min-width:50%;
+    max-width:50%;
+    text-align:center;
+}
+.violations-wrapper .title-wrap .title-item
+{
+    min-width:40%;
+    max-width:40%;
     text-align:center;
 }
 .violations-wrapper .violation-item .title-item:nth-child(2)
 {
     max-width: 150px;
 }
-.violations-wrapper .title-wrap .title-item
-{
-    padding:0 20px;
-}
-.violations-wrapper .title-wrap .title-item:nth-child(2)
-{
-    margin-right:10px;
-}
-.violations-wrapper .title-wrap .title-item:nth-child(3)
-{
-    margin-right:14px;
-}
 .violations-wrapper .violation-wrap
 {
     padding:0 13px;
-    max-height: 163px;
+    max-height: 114px;
     overflow-y: scroll;
 }
 .violations-wrapper .violation-wrap .violation-item
 {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     background:#ececec;
-    margin-bottom:10px;
-    min-height:34px;
+    margin-bottom:7px;
+    min-height:23px;
     padding:0 23px;
-    font-size:12px;
+    font-size:13px;
     font-weight: 500;
     border-radius: 10px;
 }
 .text-wrapper #text-item
 {
-    padding:0 23px;
+    margin:0 15px 7px 15px;
+    background:#ececec;
     word-wrap: break-word;
-    margin-bottom:10px;
-    font-size:12px;
+    padding:5px 5px;
+    font-size:13px;
+    border-radius: 10px;
     font-weight: 500;
 }
 .container .things-wrapper .add-thing-wrapper .title-wrap .button-wrapper
