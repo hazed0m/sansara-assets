@@ -490,7 +490,7 @@ function pushCustoms(transportObj)
 						<div class="info-data"> ${item.Calls}</div>
 					</div>
 					<div class="info-item">
-						<div class="info-name">Починок:</div>
+						<div class="info-name">Ремонтов:</div>
 						<div class="info-data"> ${item.Repairs}</div>
 					</div>
 					<div class="info-item">
@@ -645,16 +645,17 @@ function pushTransportCompany(transportObj)
 	$('.transportCompany-wrapper .employers-wrapper .already-wrapper .next-title span').text(transportInfo.TrucksCount);
 	$('.transportCompany-wrapper .employers-wrapper .employers-list').empty();
 	$(transportInfo.WorkersList).each(function(index,item){
+		
+		// <div class="info-item">
+		// 	<div class="info-name">Пробег:</div>
+		// 	<div class="info-data"> ${item.Milage}</div>
+		// </div>
 		let template = `
 			<div class="employee-item hired" data-count="${index+1}">
 				<div class="info-wrapper">
 					<div class="info-item">
 						<div class="info-name">Вызовов:</div>
 						<div class="info-data"> ${item.Calls}</div>
-					</div>
-					<div class="info-item">
-						<div class="info-name">Пробег:</div>
-						<div class="info-data"> ${item.Milage}</div>
 					</div>
 				</div>
 				<div class="name">

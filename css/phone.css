@@ -338,29 +338,36 @@
 {
 	background:url(../img/phone/ambulance.png) no-repeat;
 	background-size:cover;
-	width:58px;
-	height:58px;
+	width:50px;
+	height:50px;
 }
 .fast-block .police
 {
 	background:url(../img/phone/police.png) no-repeat;
 	background-size:cover;
-	width:58px;
-	height:58px;
+	width:50px;
+	height:50px;
 }
 .fast-block .taxi
 {
 	background:url(../img/phone/taxi.png) no-repeat;
 	background-size:cover;
-	width:58px;
-	height:58px;
+	width:50px;
+	height:50px;
+}
+.fast-block .transport
+{
+	background:url(../img/phone/transport.png) no-repeat;
+	background-size:cover;
+	width:50px;
+	height:50px;
 }
 .fast-block .service
 {
 	background:url(../img/phone/service.png) no-repeat;
 	background-size:cover;
-	width:58px;
-	height:58px;
+	width:50px;
+	height:50px;
 }
 .main-wrapper .bottom-block 
 {

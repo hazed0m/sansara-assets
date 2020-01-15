@@ -180,6 +180,14 @@ $('.main-wrapper .fast-block div').on('click',function(){
 	let current = $(this).attr('data-number'),
 		text = $(this).attr('data-text');
 		console.log(current);
+	if(current != 'police')
+	{
+		$('.main-wrapper .fast-message textarea').attr('maxlength',30);
+	}
+	else
+	{
+		$('.main-wrapper .fast-message textarea').attr('maxlength','');
+	}
 	$('.fast-message .message-title span').text(text);
 	$('.fast-message').attr('data-id',current).fadeIn();
 	$('.fast-message #fast-call').on('click',function(){

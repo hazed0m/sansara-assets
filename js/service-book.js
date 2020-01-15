@@ -4,15 +4,21 @@ $('.container .close-but').on('click',function(){
 $('.container .buttons-wrapper .left, .container .buttons-wrapper .right').on('click',function(){
     let currentPage = $('.container .page.active'),
         id = currentPage[0].id;
-    if(id == 'page1')
+    if($(this).hasClass('left'))
     {
-        $(currentPage).removeClass('active');
-        $(currentPage).next().addClass('active');
+        if($(currentPage).prev().hasClass('page'))
+        {
+            $(currentPage).removeClass('active');
+            $(currentPage).prev().addClass('active');
+        }
     }
-    if(id == 'page2')
+    if($(this).hasClass('right'))
     {
-        $(currentPage).removeClass('active');
-        $(currentPage).prev().addClass('active');
+        if($(currentPage).next().hasClass('page'))
+        {
+            $(currentPage).removeClass('active');
+            $(currentPage).next().addClass('active');
+        }
     }
 });
 let serviceBook = [];
