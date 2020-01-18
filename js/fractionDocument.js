@@ -137,27 +137,40 @@ function pushFractionDocument(elem)
                 <div class="inner-wrapper">
                     ${signsList}
                 </div>  
+                <div class="button" id="signDocument">Подписать документ</div>           
             </div>
         </div>`;
     }    
     $('.container').append(template);
     $('.container .sign-wrapper #signDocument').on('click',function(){
-        let title = $('.container .text-wrapper input').val(),
-            text = $('.container .text-wrapper textarea').val(),
-            name = docInfo.Name,
-            type = docInfo.Fraction;
-        if(title.length != 0 && text.length != 0)
+        if($('.container .text-wrapper input').length != 0 && $('.container .text-wrapper textarea').length != 0)
         {
-            $(this).fadeOut();
-            console.log('signDocument',type,name,title,text);
-            mp.trigger('signDocument',type,name,title,text);
+            let title = $('.container .text-wrapper input').val(),
+                text = $('.container .text-wrapper textarea').val(),
+                name = docInfo.Name,
+                type = docInfo.Fraction;
+            if(title.length != 0 && text.length != 0)
+            {
+                $(this).fadeOut();
+                console.log('signDocument',type,name,title,text);
+                mp.trigger('signDocument',type,name,title,text);
+            }
+            else
+            {
+                $(this).css('box-shadow','0 0 10px red');
+                setTimeout(() => {
+                    $(this).css('box-shadow','0 0 10px transparent');
+                },500);
+            }            
         }
         else
         {
-            $(this).css('box-shadow','0 0 10px red');
-            setTimeout(() => {
-                $(this).css('box-shadow','0 0 10px transparent');
-            },500);
+            let title = docInfo.Title,
+                name = docInfo.Name,
+                text = docInfo.Text,
+                type = docInfo.Fraction;
+            console.log('signDocument',type,name,title,text);
+            mp.trigger('signDocument',type,name,title,text);
         }
     });
     $('.container #closeDocument').on('click',function(){
