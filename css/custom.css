@@ -34,6 +34,52 @@ body {
 	font-size: 12px;
 	font-weight: 300;
 }
+.rotate
+{
+	position:absolute;
+	bottom:10px;
+	right:10px;
+	width:239px;
+	height:113px;
+	border-radius:10px;
+	background:#36393f;
+	display:flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+.rotate .height-block, .rotate .rotate-block
+{
+	width:100%;
+	display:flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+.buy-buttons .button, .rotate .button
+{
+	width:104px;
+	height: 33px;
+	background: #fbe401;
+	box-shadow: 0 0 10px #fbe401;
+	color:#435462;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size:15px;
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.rotate .title
+{
+	font-size:14px;
+	color:#fafafa;
+}
+.rotate .rangeslider {
+    width: 80%!important;
+    margin: 10px auto;
+}
 .alert-message {
 	width: 90%;
 	box-sizing: border-box;

@@ -590,6 +590,7 @@ $(function() {
                 opacitys[currentRange] = val;
                 break;
         }
+        console.log("inputsRange.client", id, val, index[currentRange]);
         mp.trigger("inputsRange.client", id, val, index[currentRange]);
     });
     
@@ -600,3 +601,19 @@ $(function() {
       }
     });
 });
+$(window).on("keyup", keypressUp);
+$(window).on("keydown", keypressDown);
+function keypressUp(e){  
+    switch(e.keyCode){         
+        case 32:  // Alt
+            mp.trigger('KeyAltpress');
+        break;
+    }
+}
+function keypressDown(e){   
+    switch(e.keyCode){        
+        case 32:  // Alt
+        mp.trigger('KeyAltpressDown');
+        break;  
+    }
+}

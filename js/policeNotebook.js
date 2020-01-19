@@ -412,7 +412,7 @@ let clews = JSON.stringify([
     {Date: '18:39@25.10.2015',StatementID: 15, Subject: 'asdasdadasdadadsadadadadasdadasdada asdasd'}
 ]);
 let employeeOnline = JSON.stringify([
-    {"FullName": 'Дмитрий Иванов',"Online":true},
+    {"FullName": 'Дмитрий Иванов',"Online":false},
     {"FullName":'Adsad',"Online":false}
 ]);
 function pushNotebook(policeman,clews,filer,archive,employeeOnline,admin,date)
