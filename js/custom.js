@@ -601,19 +601,19 @@ $(function() {
       }
     });
 });
-$(window).on("keyup", keypressUp);
-$(window).on("keydown", keypressDown);
 function keypressUp(e){  
     switch(e.keyCode){         
-        case 32:  // Alt
-            mp.trigger('KeyAltpress');
+        case 32:  // Space
+        mp.trigger('KeySpacepress');
         break;
     }
 }
 function keypressDown(e){   
     switch(e.keyCode){        
-        case 32:  // Alt
-        mp.trigger('KeyAltpressDown');
+        case 32:  // Space
+        mp.trigger('KeySpacepressDown');
         break;  
     }
 }
+$(window).on("keyup", keypressUp);
+$(window).on("keydown", keypressDown);
