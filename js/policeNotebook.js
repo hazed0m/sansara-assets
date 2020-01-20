@@ -1300,7 +1300,7 @@ function refreshAddThings()
 {
     $('#add-line').on('click',function(){
         $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper')
-        .append(`<textarea id="thing-add-text" onkeyup="textarea_resize(event);"></textarea><div id="text_area_div"></div>`)
+        .append(`<textarea id="thing-add-text" onkeyup="textarea_resize(event);" maxlength="200"></textarea><div id="text_area_div"></div>`)
         .animate({scrollTop: ($('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper').innerHeight())}, 900);
         $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper #thing-add-text').focus();
     });

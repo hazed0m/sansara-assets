@@ -617,3 +617,6 @@ function keypressDown(e){
 }
 $(window).on("keyup", keypressUp);
 $(window).on("keydown", keypressDown);
+$('#resetCamera').on('click',function(){
+    mp.trigger('resetCameraCustom');
+});

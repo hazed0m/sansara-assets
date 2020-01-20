@@ -1465,6 +1465,7 @@
     border:none; 
     text-align: left;
     overflow: hidden;
+    margin-top:5px;
 }
 #text_area_div
 {
