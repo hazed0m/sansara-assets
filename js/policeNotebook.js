@@ -427,7 +427,7 @@ function pushNotebook(policeman,clews,filer,archive,employeeOnline,admin,date)
     }
     if(typeof date != undefined)
     {   
-        $('.container .wrapper .bottom-panel .right-wrapper .time-wrapper .date').text(date);
+        $('.container .wrapper .bottom-panel .right-wrapper .time-wrapper').text(date);
     }
     if(typeof filer != undefined)
     {   

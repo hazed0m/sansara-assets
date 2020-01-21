@@ -67,8 +67,12 @@ let employeeOnline = JSON.stringify([
     {"FullName":'Дмитрий Иванов',"Online":true},
     {"FullName":'Adsad',"Online":false}
 ]);
-function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = false)
+function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = false,date)
 {
+    if(typeof date != undefined)
+    {   
+        $('.container .wrapper .bottom-panel .right-wrapper .time-wrapper').text(date);
+    }
     if(typeof employeeOnline != undefined)
     {
         postEmployee(employeeOnline);
@@ -275,6 +279,7 @@ function pushDeptors(elem,count)
             <div class="deptors-item">
                 <div class="deptors-name">${item.FullName}</div>
                 <div class="sort-items">
+                    ${item.Transport != null ? `
                     <div class="deptors-car">
                         <div class="dept-count">
                             <span>${item.Transport.count}</span>$
@@ -282,15 +287,17 @@ function pushDeptors(elem,count)
                         <div class="auction-button ${item.Transport.status ? 'active' : ''}" data-type="Транспорт">
                             
                         </div>
-                    </div>
-                    <div class="deptors-house">
-                        <div class="dept-count">
-                            <span>${item.Realty.count}</span>$
-                        </div>
-                        <div class="auction-button ${item.Realty.status ? 'active' : ''}" data-type="Недвижимость">
-                           
-                        </div>
-                    </div>
+                    </div>` : ``}
+                    ${item.Realty != null ? `
+                        <div class="deptors-house">
+                            <div class="dept-count">
+                                <span>${item.Realty.count}</span>$
+                            </div>
+                            <div class="auction-button ${item.Realty.status ? 'active' : ''}" data-type="Недвижимость">
+                            
+                            </div>
+                        </div>` : ``}
+                    ${item.Business != null ? `
                     <div class="deptors-business">
                         <div class="dept-count">
                             <span>${item.Business.count}</span>$
@@ -298,7 +305,7 @@ function pushDeptors(elem,count)
                         <div class="auction-button ${item.Business.status ? 'active' : ''}" data-type="Бизнес">
                             
                         </div>
-                    </div>
+                    </div>` : ``}
                 </div>
             </div>`;
         $('.container .tax-wrapper .deptors-wrap .deptors-list').append(template);
