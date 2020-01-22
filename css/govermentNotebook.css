@@ -360,6 +360,10 @@
     cursor: pointer;
     font-size:14px;
 }
+.container .tax-wrapper .pagination-wrap .button.disabled
+{
+    opacity: 0.2;
+}
 .container .tax-wrapper .deptors-wrap
 {
     position: relative;

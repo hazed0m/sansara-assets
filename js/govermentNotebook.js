@@ -272,6 +272,7 @@ let deptorsList1 = JSON.stringify([
 ]);
 function pushDeptors(elem,count)
 {
+    $('.pagination-wrap .button').removeClass('disabled');
     let element = JSON.parse(elem);
     $('.container .tax-wrapper .deptors-wrap .deptors-list').empty();
     $(element).each(function(index,item){
@@ -329,34 +330,39 @@ function pushDeptors(elem,count)
         mp.trigger('startAuction',name,type);
     });
     $('.pagination-wrap .button').on('click',function(){
-        let pageNumber = parseInt($('.pagination-wrap .page-number').text()),
-            maxPages = 0;
-        if(count%4 == 0)
+        if(!$(this).hasClass('disabled'))
         {
-            maxPages = count/4;
-        }
-        else
-        {
-            maxPages = Math.floor(count/4)+1;
-        }
-        if(this.id == 'prev')
-        {
-            if(pageNumber != 1)
+            let pageNumber = parseInt($('.pagination-wrap .page-number').text()),
+                maxPages = 0;
+            if(count%4 == 0)
             {
-                pageNumber--;
-                $('.pagination-wrap .page-number').text(pageNumber);
-                console.log(pageNumber);
-                mp.trigger('deptorsPagination',pageNumber);
+                maxPages = count/4;
             }
-        }
-        if(this.id == 'next')
-        {
-            if(pageNumber < maxPages)
+            else
             {
-                pageNumber++;
-                $('.pagination-wrap .page-number').text(pageNumber);
-                console.log(pageNumber);
-                mp.trigger('deptorsPagination',pageNumber);
+                maxPages = Math.floor(count/4)+1;
+            }
+            if(this.id == 'prev')
+            {
+                if(pageNumber != 1)
+                {
+                    pageNumber--;
+                    $('.pagination-wrap .page-number').text(pageNumber);
+                    console.log(pageNumber);
+                    $('.pagination-wrap .button').addClass('disabled');
+                    mp.trigger('deptorsPagination',pageNumber);
+                }
+            }
+            if(this.id == 'next')
+            {
+                if(pageNumber < maxPages)
+                {
+                    pageNumber++;
+                    $('.pagination-wrap .page-number').text(pageNumber);
+                    console.log(pageNumber);
+                    $('.pagination-wrap .button').addClass('disabled');
+                    mp.trigger('deptorsPagination',pageNumber);
+                }
             }
         }
     });
