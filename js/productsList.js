@@ -65,6 +65,13 @@ instrumentsList = [
     'садовыеножницы',
     'кирка',
     'серп'
+],
+drugsList = [
+    '',
+    '',
+    '',
+    'бинт',
+    'адреналин'
 ];
 function instrumentTranslate(cyrillic)
 {
@@ -81,6 +88,17 @@ function productTranslate(cyrillic)
 {
     let currentIndex = '';
     $(productsList).each(function(index,item){
+        if(item == cyrillic)
+        {
+            currentIndex = index;
+        }
+    });
+    return currentIndex;
+}
+function drugsTranslate(cyrillic)
+{
+    let currentIndex = '';
+    $(drugsList).each(function(index,item){
         if(item == cyrillic)
         {
             currentIndex = index;

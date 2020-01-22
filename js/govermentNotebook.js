@@ -313,31 +313,20 @@ function pushDeptors(elem,count)
     $('.container .tax-wrapper .deptors-wrap .deptors-list .auction-button.active').on('click',function(){
         $('.container .tax-wrapper .deptors-wrap .accept-window .auction-name span').text($(this).parent().parent().parent().find('.deptors-name').text());
         $('.container .tax-wrapper .deptors-wrap .accept-window .auction-type span').text($(this).attr('data-type'));
+        $('#startAuction').removeClass('disabled');
         $('.container .tax-wrapper .deptors-wrap .accept-window, .container .tax-wrapper .deptors-wrap .mask').fadeIn();
     });
     $('.container .accept-window .close-but').on('click',function(){
         $('.container .tax-wrapper .deptors-wrap .accept-window, .container .tax-wrapper .deptors-wrap .mask').fadeOut();
     });
-    $('.container .tax-wrapper .deptors-wrap .accept-window input').keyup(function(){
-        console.log(this.value.length);
-        if(this.value.length == 0)
-        {
-            $('.container .tax-wrapper .deptors-wrap .accept-window .button#startAuction').addClass('disabled');   
-        }
-        else
-        {
-            $('.container .tax-wrapper .deptors-wrap .accept-window .button#startAuction').removeClass('disabled');
-        }
-    });
     $('.container .tax-wrapper .deptors-wrap .accept-window .button#startAuction').on('click',function(){
-        let price = $('.container .tax-wrapper .deptors-wrap .accept-window input').val(),
-            type = $(this).parent().find('.auction-type span').text(),
+        let type = $(this).parent().find('.auction-type span').text(),
             name = $(this).parent().find('.auction-name span').text();
-        console.log(price,type,name);
+        console.log(type,name);
         $('.container .tax-wrapper .deptors-wrap .accept-window, .container .tax-wrapper .deptors-wrap .mask').fadeOut();
         $('.container .tax-wrapper .deptors-wrap .accept-window input').val('');
         $(this).addClass('disabled');
-        mp.trigger('startAuction',name,type,price);
+        mp.trigger('startAuction',name,type);
     });
     $('.pagination-wrap .button').on('click',function(){
         let pageNumber = parseInt($('.pagination-wrap .page-number').text()),

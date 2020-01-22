@@ -257,6 +257,21 @@ function shopListRefresh()
 				</div>
 			`;
 		}
+		else if(currentShopType == 'drugs')
+		{
+			console.log('drugs');
+			let imgName = item.name.toLowerCase().replace(/\s+/g,'');
+			template = `
+				<div class="shop-item" ${legalId}>
+					<div class="inner-item" ${legalAttr} data-index="${index}" style="background-image:url(images/inventory/objects/${drugsTranslate(imgName) != '' ? drugsTranslate(imgName) : 'medical'}.png);">
+						<div class="title">
+							<span class="title-text">${item.name}</span>
+						</div>
+						<div class="price"><span>${item.price}</span>$</div>
+					</div>
+				</div>
+			`;
+		}
 		else if(currentShopType == 'instruments')
 		{
 			let imgName = item.name.toLowerCase().replace(/\s+/g,'');

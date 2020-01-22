@@ -941,3 +941,114 @@ function adsSendData(data){
 		} 
     });
 };
+let auctionList = [
+	{
+		Id: 0,
+		Time: '22@22@22',
+		Text:'asdasdadadas',
+		Price:25252525,
+		Seller: 'Государство'
+	}
+]
+function pushGoverment(auctionList,playerInfo,admin,date)
+{
+	$(auctionList).each(function(index,item){
+		let itemTime = item.Time.split('@');
+			let template = `
+				<div class="point-item-wrap">
+					<div class="clients-block">
+						<div class="clients-list">
+							<div class="client-item">Александр Нонеймп</div>
+						</div>
+						<div class="button" id="clients" style="display:none;">Участники</div>
+						<div class="button" id="startAuction" data-index="${index}">Участвовать</div>
+						<div class="button" id="change" style="display:none;">Редактировать</div>
+					</div>
+					<div class="inform-block">
+						<div class="ident">#${item.Id}</div>
+						<div class="timer-wrap">
+							<div class="timer-counter">
+								<span class="days">${itemTime[0]}</span>
+								<span class="red-circles">:</span>
+								<span class="hours">${itemTime[1]}</span>
+								<span class="red-circles">:</span>
+								<span class="minutes">${itemTime[2]}</span>
+							</div>
+							<div class="timer-text">Осталось времени</div>
+						</div>
+						<div class="pay-block" id="seller">
+							<div class="pay-text">Продающий</div>
+							<div class="pay-price">${item.Seller}</div>
+						</div> 						
+						<div class="title-block">${item.Text}</div>
+						<div class="pay-block">
+							<div class="pay-price"><span class="pay-count">${item.Price}</span>$</div>
+							<div class="pay-text">Сумма</div>
+						</div>    
+					</div>
+				</div>`;
+			$('.auction-wrap .point-items-wrapper').append(template);
+	});
+	$('.auction-wrap #startAuction').on('click',function(){
+		let currentIndex = $(this).attr('data-index');
+		console.log(playerInfo.FullName,auctionList[currentIndex]);
+		$('.auction-wrap .auction-window input').attr({'data-id':auctionList[currentIndex].Id,'min':auctionList[currentIndex].Price,'value':auctionList[currentIndex].Price});
+		$('.auction-wrap .auction-window').fadeIn().css('display','flex');
+	});
+	$('.auction-wrap #acceptAuction').on('click',function(){
+		if($('.auction-wrap .auction-window input').val().length != 0)
+		{
+			let price = $('.auction-wrap .auction-window input').val();
+			if(price < $('.auction-wrap .auction-window input').attr('min'))
+			{
+				$('.auction-wrap .auction-window input').addClass('error');
+				$('.auction-window span').append('<span class="red">!</span>');
+				console.log('мало');
+			}
+			else
+			{
+				let id = parseInt($('.auction-wrap .auction-window input').attr('data-id'));
+				console.log('attendAuction',id,price);
+				$(this).parent().parent().fadeOut();
+				mp.trigger('attendAuction',playerInfo.FullName,id,price);
+			}
+		}
+	});
+	$('.auction-wrap .auction-window input').on('keyup',function(){
+		$(this).removeClass('error');
+		$('.auction-window span span.red').remove();
+	});
+	$('.auction-wrap #closeAuction').on('click',function(){
+		$(this).parent().parent().fadeOut();
+	});
+	$('.ads-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.order-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.decree-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.law-wrap #main-law-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.law-wrap #other-law-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	let sendObj = {
+		name: playerInfo.FullName,
+		rank: playerInfo.Rank,
+		date: date
+	};
+	$('.ads-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
+	$('.decree-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
+	$('.order-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
+	window.addEventListener('message', function(event) {       
+		if (event.data['RefreshAds']) {
+			console.log('RefreshAds');
+			$('.ads-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+			$('.ads-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
+		}
+		if (event.data['RefreshDecrees']) {
+			console.log('RefreshDecrees');
+			$('.decree-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+			$('.decree-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
+		}
+		if (event.data['RefreshOrders']) {
+			console.log('RefreshOrders');
+			$('.order-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+			$('.order-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
+		}
+	});
+}	

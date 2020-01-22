@@ -67,8 +67,12 @@ let employeeOnline = JSON.stringify([
     {"FullName":'Дмитрий Иванов',"Online":true},
     {"FullName":'Adsad',"Online":false}
 ]);
-function pushNotebook(employeeOnline,admin = false)
+function pushNotebook(employeeOnline,admin = false,date)
 {
+    if(typeof date != undefined)
+    {   
+        $('.container .wrapper .bottom-panel .right-wrapper .time-wrapper').text(date);
+    }
     if(typeof employeeOnline != undefined)
     {
         postEmployee(employeeOnline);
