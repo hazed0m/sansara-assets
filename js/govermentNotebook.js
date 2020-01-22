@@ -287,7 +287,7 @@ function pushDeptors(elem,count)
                         <div class="auction-button ${item.Transport.status ? 'active' : ''}" data-type="Транспорт">
                             
                         </div>
-                    </div>` : ``}
+                    </div>` : `<div class="deptors-car"></div>`}
                     ${item.Realty != null ? `
                         <div class="deptors-house">
                             <div class="dept-count">
@@ -296,7 +296,7 @@ function pushDeptors(elem,count)
                             <div class="auction-button ${item.Realty.status ? 'active' : ''}" data-type="Недвижимость">
                             
                             </div>
-                        </div>` : ``}
+                        </div>` : `<div class="deptors-house"></div>`}
                     ${item.Business != null ? `
                     <div class="deptors-business">
                         <div class="dept-count">
@@ -305,7 +305,7 @@ function pushDeptors(elem,count)
                         <div class="auction-button ${item.Business.status ? 'active' : ''}" data-type="Бизнес">
                             
                         </div>
-                    </div>` : ``}
+                    </div>` : ` <div class="deptors-business"></div>`}
                 </div>
             </div>`;
         $('.container .tax-wrapper .deptors-wrap .deptors-list').append(template);
@@ -345,6 +345,7 @@ function pushDeptors(elem,count)
             {
                 pageNumber--;
                 $('.pagination-wrap .page-number').text(pageNumber);
+                console.log(pageNumber);
                 mp.trigger('deptorsPagination',pageNumber);
             }
         }
@@ -354,6 +355,7 @@ function pushDeptors(elem,count)
             {
                 pageNumber++;
                 $('.pagination-wrap .page-number').text(pageNumber);
+                console.log(pageNumber);
                 mp.trigger('deptorsPagination',pageNumber);
             }
         }

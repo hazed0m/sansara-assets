@@ -944,7 +944,7 @@ function adsSendData(data){
 let auctionList = [
 	{
 		Id: 0,
-		Time: '22@22@22',
+		Time: 'до 22.22',
 		Text:'asdasdadadas',
 		Price:25252525,
 		Seller: 'Государство'
@@ -953,7 +953,6 @@ let auctionList = [
 function pushGoverment(auctionList,playerInfo,admin,date)
 {
 	$(auctionList).each(function(index,item){
-		let itemTime = item.Time.split('@');
 			let template = `
 				<div class="point-item-wrap">
 					<div class="clients-block">
@@ -968,11 +967,7 @@ function pushGoverment(auctionList,playerInfo,admin,date)
 						<div class="ident">#${item.Id}</div>
 						<div class="timer-wrap">
 							<div class="timer-counter">
-								<span class="days">${itemTime[0]}</span>
-								<span class="red-circles">:</span>
-								<span class="hours">${itemTime[1]}</span>
-								<span class="red-circles">:</span>
-								<span class="minutes">${itemTime[2]}</span>
+								<span class="hours">${item.Date}</span>
 							</div>
 							<div class="timer-text">Осталось времени</div>
 						</div>
