@@ -199,6 +199,7 @@ body {
 .map-settings
 {
     align-items: flex-start;
+    position: relative;
 }
 .map-title {
     color: #ffffff;
@@ -206,7 +207,8 @@ body {
     font-weight: 500;
     margin-bottom: 10px;
 }
-.map-settings .gps-item
+.map-settings .gps-item,
+.map-settings .gps-house
 {
     text-transform: capitalize;
     font-size: 17px;
@@ -220,7 +222,7 @@ body {
 {
     text-transform: capitalize;
     font-size: 17px;
-    margin:10px 0;
+    margin:10px 0 5px -30px;
     color:#000;
     position: relative;
     cursor: pointer;
@@ -228,24 +230,24 @@ body {
     display: flex;
     align-items: center;
     background:#fff;
-    margin-left:-30px;
     padding:5px 10px;
-}
-.map-settings .gps-category svg
-{
-
+    transition: 0.5s;
 }
 .map-settings .gps-houses
 {
+    margin-left: -30px;
     padding:5px 10px 5px 40px;
-    border:1px solid #fff;
-    position: absolute;
+    border:3px solid #24231f;
+    max-height:94px;
+    overflow-y: scroll;
+    display: none;
 }
 .map-settings .gps-category .gps-title
 {
     margin:0 auto;
 }
-.map-settings .gps-item::after
+.map-settings .gps-item::after,
+.map-settings .gps-house::after
 {
     content:'';
     position: absolute;
@@ -257,13 +259,15 @@ body {
     background:#fff;
     border-radius: 50%;
 }
-.map-settings .gps-item:hover::after
+.map-settings .gps-item:hover::after,
+.map-settings .gps-house:hover::after
 {    
     border:1px solid #fbe401;
     box-shadow:0 0 5px #fbe401;
     box-sizing: border-box;
 }
-.map-settings .gps-item.active::after
+.map-settings .gps-item.active::after,
+.map-settings .gps-house.active::after
 {
     border:3px solid #fff;
     box-sizing: border-box;

@@ -313,37 +313,30 @@ let menu = new Vue({
             mp.trigger("settingsSave.client", this.autoLogin);
         },
         gpsFilter()
-        {
-            let gpsHousesList = [
-                'Все',
-                'Ранчо',
-                'Дэвис',
-                'Эль-Бурро',
-                'МиррорПарк',
-                'ВосточныйВайнвуд',
-                'ЛяПуэрта',
-                'ПляжВеспуччи',
-                'КаналыВеспуччи',
-                'Пилбокс-Хилл',
-                'Дель-Перро',
-                'Морнингвуд',
-                'ТихоокеанскийБлеф',
-                'РичардсМаджестик',
-                'Веспуччи'
-            ];
-            $(gpsHousesList).each(function(index,item){
-                let template = `<div class="gps-item">${item}</div>`;
-                $('.gps-houses').append(template);
-            });
+        {        
             this.saveButtonState = true;
             $(this.gpsFilterArr).each(function(index,item){
-                if($(`.gps-item:eq(${index})`).hasClass('active'))
+                if(index == 0)
                 {
-                    menu.gpsFilterArr[index] = true;
+                    if($(`.gps-house.active`).length != 0)
+                    {
+                        menu.gpsFilterArr[index] = $(`.gps-house.active`).text();
+                    }
+                    else
+                    {
+                        menu.gpsFilterArr[index] = false;
+                    }
                 }
                 else
                 {
-                    menu.gpsFilterArr[index] = false;
+                    if($(`.gps-item:eq(${index-1})`).hasClass('active'))
+                    {
+                        menu.gpsFilterArr[index] = true;
+                    }
+                    else
+                    {
+                        menu.gpsFilterArr[index] = false;
+                    }
                 }
             });
             console.log(this.gpsFilterArr);
@@ -356,13 +349,27 @@ let menu = new Vue({
                 this.gpsFilterArr = JSON.parse(array);
             }
             $(this.gpsFilterArr).each(function(index,item){
-                if(item)
-                {                    
-                    $(`.gps-item:eq(${index})`).addClass('active');                    
+                if(index > 0)
+                {
+                    if(item)
+                    {                    
+                        $(`.gps-item:eq(${index-1})`).addClass('active');                    
+                    }
+                    else
+                    {
+                        $(`.gps-item:eq(${index-1})`).removeClass('active');
+                    }
                 }
                 else
                 {
-                    $(`.gps-item:eq(${index})`).removeClass('active');
+                    if(typeof item == 'string')
+                    {
+                        let currentHouse = gpsHousesList.indexOf(item);
+                        if(currentHouse != -1)
+                        {
+                            $(`.gps-houses .gps-house:eq(${currentHouse})`).addClass('active');
+                        }
+                    }
                 }
             });
         },
@@ -381,7 +388,27 @@ let menu = new Vue({
         }
     }
 });
-$('.gps-item').on('click',function(){
+let gpsHousesList = [
+    'Ранчо',
+    'Дэвис',
+    'Эль-Бурро',
+    'МиррорПарк',
+    'ВосточныйВайнвуд',
+    'ЛяПуэрта',
+    'ПляжВеспуччи',
+    'КаналыВеспуччи',
+    'Пилбокс-Хилл',
+    'Дель-Перро',
+    'Морнингвуд',
+    'ТихоокеанскийБлеф',
+    'РичардсМаджестик',
+    'Веспуччи'
+];
+$(gpsHousesList).each(function(index,item){
+    let template = `<div class="gps-house">${item}</div>`;
+    $('.gps-houses').append(template);
+});        
+$('.gps-item, .gps-house').on('click',function(){
     menu.saveButtonState = false;
     if($(this).hasClass('active'))
     {
@@ -389,7 +416,18 @@ $('.gps-item').on('click',function(){
     }
     else
     {        
-        $(`.map-settings .gps-item.active`).removeClass('active');
+        console.log($(`.map-settings .active`));
+        $(`.map-settings .active`).removeClass('active');
         $(this).addClass('active');
     }
-});
+});      
+$('.map-settings .gps-category').on('click',function(){
+    if(!$(this).next().is(':visible'))
+    {
+        $(this).next().slideDown();
+    }
+    else
+    {
+        $(this).next().slideUp();
+    }
+});  
