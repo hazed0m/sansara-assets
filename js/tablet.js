@@ -409,16 +409,6 @@ $('.goverment-wrapper .order-wrap .clients-block #change').on('click',function()
 		$('.goverment-wrapper .order-wrap').animate({ scrollTop: 9999 }, 'slow');
 	}
 });
-$('.goverment-wrapper .order-wrap .clients-block #clients').on('click',function(){
-	if(!$(this).prev().is(':visible'))
-	{
-		$(this).prev().fadeIn();
-	}
-	else
-	{
-		$(this).prev().fadeOut();
-	}
-});
 $('.goverment-wrapper .ads-wrap .add-ads, .goverment-wrapper .auction-wrap .add-ads').on('click',function(){
 	$(this).parent().find('.list-wrap').css('width','69%');
 	$(this).parent().find('.ads-add-block').removeClass('zoomOutRight').addClass('zoomInRight').css('display','flex');
@@ -964,10 +954,10 @@ function pushGoverment(auctionList,playerInfo,admin,date)
 						<div class="button" id="change" style="display:none;">Редактировать</div>
 					</div>
 					<div class="inform-block">
-						<div class="ident">#${item.Id}</div>
+						<div class="ident">#${item.ID}</div>
 						<div class="timer-wrap">
 							<div class="timer-counter">
-								<span class="hours">${item.Date}</span>
+								<span class="hours">${item.Time}</span>
 							</div>
 							<div class="timer-text">Осталось времени</div>
 						</div>
@@ -987,7 +977,7 @@ function pushGoverment(auctionList,playerInfo,admin,date)
 	$('.auction-wrap #startAuction').on('click',function(){
 		let currentIndex = $(this).attr('data-index');
 		console.log(playerInfo.FullName,auctionList[currentIndex]);
-		$('.auction-wrap .auction-window input').attr({'data-id':auctionList[currentIndex].Id,'min':auctionList[currentIndex].Price,'value':auctionList[currentIndex].Price});
+		$('.auction-wrap .auction-window input').attr({'data-id':auctionList[currentIndex].ID,'min':auctionList[currentIndex].Price,'value':auctionList[currentIndex].Price});
 		$('.auction-wrap .auction-window').fadeIn().css('display','flex');
 	});
 	$('.auction-wrap #acceptAuction').on('click',function(){
@@ -1003,7 +993,7 @@ function pushGoverment(auctionList,playerInfo,admin,date)
 			else
 			{
 				let id = parseInt($('.auction-wrap .auction-window input').attr('data-id'));
-				console.log('attendAuction',id,price);
+				console.log('attendAuction',playerInfo.FullName,id,price);
 				$(this).parent().parent().fadeOut();
 				mp.trigger('attendAuction',playerInfo.FullName,id,price);
 			}
