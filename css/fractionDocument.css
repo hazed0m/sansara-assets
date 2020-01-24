@@ -180,13 +180,15 @@
 .sign-item .sign
 {
     min-width:200px;
-    font-size:40px;
+    font-size:30px;
     position: absolute;
     top:-20%;
     left:50%;
-    transform:rotate(-15deg) translate(-50%,-50%);
+    transform:rotate(-12deg) translate(-50%,-50%);
     font-family: "Sacramento";
     text-align: center;
+    word-break:keep-all;
+    line-height:0.75;
 }
 .sign-item:nth-child(1)
 {

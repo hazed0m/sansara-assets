@@ -216,6 +216,35 @@ body {
     cursor: pointer;
     box-sizing: border-box;
 }
+.map-settings .gps-category
+{
+    text-transform: capitalize;
+    font-size: 17px;
+    margin:10px 0;
+    color:#000;
+    position: relative;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    background:#fff;
+    margin-left:-30px;
+    padding:5px 10px;
+}
+.map-settings .gps-category svg
+{
+
+}
+.map-settings .gps-houses
+{
+    padding:5px 10px 5px 40px;
+    border:1px solid #fff;
+    position: absolute;
+}
+.map-settings .gps-category .gps-title
+{
+    margin:0 auto;
+}
 .map-settings .gps-item::after
 {
     content:'';

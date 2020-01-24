@@ -151,38 +151,31 @@ function doneAction(action, index, id, currentCount)
 			break;
 			
         case ('put'):
-			if(luggageAvailable)
+			if(inventoryList[index].type == 'Documents')
 			{
-				if(inventoryList[index].type == 'Documents')
-				{
-					let itemImg = `<img src="images/inventory/${inventoryList[index].type}.png" class="itemImg dropdown-toggle">`,
-					    template = `
-						<div class="itemInv" id="${action}">
-							<div class="button-dropdown">
-								<div class="infoItem dropdown-toggle">
-									<div class="nameItem">${inventoryList[index].name}</div>
-								</div>
-								${itemImg}
+				let itemImg = `<img src="images/inventory/${inventoryList[index].type}.png" class="itemImg dropdown-toggle">`,
+					template = `
+					<div class="itemInv" id="${action}">
+						<div class="button-dropdown">
+							<div class="infoItem dropdown-toggle">
+								<div class="nameItem">${inventoryList[index].name}</div>
 							</div>
-						</div>`;
+							${itemImg}
+						</div>
+					</div>`;
+				$('.show-wrapper .find-icon').empty();
+				$('.left-inventory .show-wrapper').slideDown().css('display','flex');
+				$('.show-wrapper .find-icon').append(template);
+				$('.left-inventory .show-wrapper .button-wrapper .button#putDocument').on('click',function(){
+					let currentName = $('.show-wrapper .find-icon .nameItem').text();
+					console.log(currentName);
+					$('.left-inventory .show-wrapper').slideUp();
 					$('.show-wrapper .find-icon').empty();
-					$('.left-inventory .show-wrapper').slideDown().css('display','flex');
-					$('.show-wrapper .find-icon').append(template);
-					$('.left-inventory .show-wrapper .button-wrapper .button#putDocument').on('click',function(){
-						let currentName = $('.show-wrapper .find-icon .nameItem').text();
-						console.log(currentName);
-						$('.left-inventory .show-wrapper').slideUp();
-						$('.show-wrapper .find-icon').empty();
-						mp.trigger('putDocument', currentName);
-					});
-					refreshInventory('luggage');
-					refreshInventory('inventory');	
-					inventoryInitialize(); 
-				}
-			}
-			else
-			{
-				notificationShow('Вы не можете положить в сейф');
+					mp.trigger('putDocument', currentName);
+				});
+				refreshInventory('luggage');
+				refreshInventory('inventory');	
+				inventoryInitialize(); 
 			}
 			break;
 	}	
@@ -198,32 +191,39 @@ $('#searchConfirm').on('click',function(){
 });
 function pushSearchElement(name)
 {
-	let obj = name;
-	console.log(1,obj);	
-	$('.search-wrapper .find-item .find-icon').empty();
-	let template = `
-		<div class="itemInv">
-			<div class="button-dropdown">
-				<div class="infoItem dropdown-toggle">
-					<div class="nameItem">${obj}</div>
-				</div>
-				<img src="images/inventory/Documents.png" class="itemImg dropdown-toggle">
-			</div>
-		</div>`;
-	$('.left-inventory .search-wrapper .find-item').slideDown().css('display','flex');
-	$('.search-wrapper .find-item .find-icon').append(template);
-	$('#previewDocument').on('click',function(){
-		let currentName = $('.find-icon .nameItem').text();
-		console.log(currentName);
-		mp.trigger('previewDocument',currentName);
-	});
-	$('#takeDocument').on('click',function(){
-		let currentName = $('.find-icon .nameItem').text();
-		console.log(currentName);
-		$('.left-inventory .search-wrapper .find-item').slideUp();
+	if(arguments.length == 0)
+	{
+		notificationShow('Документ не найден');
+	}
+	else
+	{
+		let obj = name;
+		console.log(1,obj);	
 		$('.search-wrapper .find-item .find-icon').empty();
-		mp.trigger('takeDocument',currentName);
-	});
+		let template = `
+			<div class="itemInv">
+				<div class="button-dropdown">
+					<div class="infoItem dropdown-toggle">
+						<div class="nameItem">${obj}</div>
+					</div>
+					<img src="images/inventory/Documents.png" class="itemImg dropdown-toggle">
+				</div>
+			</div>`;
+		$('.left-inventory .search-wrapper .find-item').slideDown().css('display','flex');
+		$('.search-wrapper .find-item .find-icon').append(template);
+		$('#previewDocument').on('click',function(){
+			let currentName = $('.find-icon .nameItem').text();
+			console.log(currentName);
+			mp.trigger('previewDocument',currentName);
+		});
+		$('#takeDocument').on('click',function(){
+			let currentName = $('.find-icon .nameItem').text();
+			console.log(currentName);
+			$('.left-inventory .search-wrapper .find-item').slideUp();
+			$('.search-wrapper .find-item .find-icon').empty();
+			mp.trigger('takeDocument',currentName);
+		});
+	}
 }
 $('.left-inventory .search-wrapper .find-item .button#cancel').on('click',function(){
 	$('.left-inventory .search-wrapper .find-item').slideUp();
@@ -299,11 +299,11 @@ function notificationShow(notification)
 	$('.info-wrapper').fadeIn();
 	setTimeout(() => {$('.info-wrapper').fadeOut()},2000);
 };
-function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
+function pushInventory(inventory)
 {
-	luggageAvailable = curAvailable;
-	maxWeightInventory = maxWeightInv;
-	maxWeightLuggage = maxWeightLug;
+	// luggageAvailable = curAvailable;
+	// maxWeightInventory = maxWeightInv;
+	// maxWeightLuggage = maxWeightLug;
     inventoryList = [];
     let invList = JSON.parse(inventory);
     $(invList).each(function(index,item){ 
@@ -344,37 +344,37 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 		}
 	}); 
 	luggageList = [];
-	let lugList = JSON.parse(luggage);
-	$(lugList).each(function(index,item){
-		if(item.type == 'Documents')   	
-		{
-			let obj = 
-			{
-				name: item.name,
-				type: item.type,
-				weight: parseFloat(item.weight),
-				count: item.count,
-				itemElem: item.itemElem, 
-				enabled: false,
-				visible: true 
-			}		
-			let currentElement = containsName(obj.name,'inventory');
-			if(currentElement != -1)
-			{
-				obj.inventoryIndex = currentElement;			
-			}
-			luggageList.push(obj);		
-			if(currentElement != -1)
-			{
-				let length = luggageList.length - 1;
-				inventoryList[length].wearedId = length;
-			}
-		}
-	});
-	$(ammoList).each(function(index,item){
-		item.temp = item.count;
-	});	
-	refreshInventory('luggage');
+	// let lugList = JSON.parse(luggage);
+	// $(lugList).each(function(index,item){
+	// 	if(item.type == 'Documents')   	
+	// 	{
+	// 		let obj = 
+	// 		{
+	// 			name: item.name,
+	// 			type: item.type,
+	// 			weight: parseFloat(item.weight),
+	// 			count: item.count,
+	// 			itemElem: item.itemElem, 
+	// 			enabled: false,
+	// 			visible: true 
+	// 		}		
+	// 		let currentElement = containsName(obj.name,'inventory');
+	// 		if(currentElement != -1)
+	// 		{
+	// 			obj.inventoryIndex = currentElement;			
+	// 		}
+	// 		luggageList.push(obj);		
+	// 		if(currentElement != -1)
+	// 		{
+	// 			let length = luggageList.length - 1;
+	// 			inventoryList[length].wearedId = length;
+	// 		}
+	// 	}
+	// });
+	// $(ammoList).each(function(index,item){
+	// 	item.temp = item.count;
+	// });	
+	// refreshInventory('luggage');
 	refreshInventory('inventory');	
     inventoryInitialize();  
 };
@@ -521,7 +521,7 @@ function toogleTab(currentTab)
 			});
 			break;
 	}
-	refreshInventory('luggage');
+	// refreshInventory('luggage');
 	refreshInventory('inventory');	
     inventoryInitialize(); 
 }
@@ -539,8 +539,8 @@ function countWeight()
 		currentWeightInv += item.weight * item.count;		
 	});		
 	currentWeightInv = currentWeightInv.toFixed(2);
-	$('.right-inventory .weight .current').text(currentWeightInv);
-	$('.right-inventory .weight .max').text(maxWeightInventory);
+	// $('.right-inventory .weight .current').text(currentWeightInv);
+	// $('.right-inventory .weight .max').text(maxWeightInventory);
 };
 function refreshImages(currentClass)
 {
@@ -665,7 +665,7 @@ function refreshInventory(currentIterator)
 		{
 			case 'luggage':				
 				
-				$('.left-inventory ul#luggage').append(itemTemplate);
+				// $('.left-inventory ul#luggage').append(itemTemplate);
 								
 				break;
 			case 'inventory':
@@ -698,11 +698,14 @@ function refreshInventory(currentIterator)
 				$('.right-inventory ul#inventory').append('<li></li>'); 
 			}
 			break;
-		case 'luggage':
-			for (var i = luggageList.length; i != 40; i++) {
-				$('.left-inventory ul#luggage').append(`<li luggage-id="${i}"></li>`); 
-			}	
-			break;			
+		// case 'luggage':
+		// 	for (var i = luggageList.length; i != 40; i++) {
+		// 		$('.left-inventory ul#luggage').append(`<li luggage-id="${i}"></li>`); 
+		// 	}	
+		// 	break;			
 		}    
-    countWeight();      
+	countWeight();    
+	$('#getBlank').on('click',function(){
+		mp.trigger('getBlank');
+	});  
 };

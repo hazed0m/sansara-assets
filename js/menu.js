@@ -314,6 +314,27 @@ let menu = new Vue({
         },
         gpsFilter()
         {
+            let gpsHousesList = [
+                'Все',
+                'Ранчо',
+                'Дэвис',
+                'Эль-Бурро',
+                'МиррорПарк',
+                'ВосточныйВайнвуд',
+                'ЛяПуэрта',
+                'ПляжВеспуччи',
+                'КаналыВеспуччи',
+                'Пилбокс-Хилл',
+                'Дель-Перро',
+                'Морнингвуд',
+                'ТихоокеанскийБлеф',
+                'РичардсМаджестик',
+                'Веспуччи'
+            ];
+            $(gpsHousesList).each(function(index,item){
+                let template = `<div class="gps-item">${item}</div>`;
+                $('.gps-houses').append(template);
+            });
             this.saveButtonState = true;
             $(this.gpsFilterArr).each(function(index,item){
                 if($(`.gps-item:eq(${index})`).hasClass('active'))

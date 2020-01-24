@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
         <link rel="stylesheet" href="css/menu.css?34">
         <link rel="stylesheet" href="fonts/font.css">
+        <link rel="stylesheet" href="css/fontawesome.min.css">
         <link rel="stylesheet" href="css/skills.css">
         <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 	</head>
@@ -158,7 +159,13 @@
                 <div class="mapSettings-wrap" style="order:1;" v-show="mapSettingsShow === true">
                     <div class="setting-wrap">
                         <div class="map-settings">
-                            <div class="gps-item">дома</div>
+                            <div class="gps-category">
+                                <i class="fas fa-arrow-down"></i>
+                                <div class="gps-title">дома</div>
+                            </div>
+                            <div class="gps-houses">
+                                
+                            </div>
                             <div class="gps-item">добыча</div>
                             <div class="gps-item">переработка</div>
                             <div class="gps-item">крафт</div>
@@ -230,6 +237,7 @@
     <script src="https://cdn.rawgit.com/vuejs/vue/v2.1.10/dist/vue.js"></script>
     <script type="text/javascript" src="js/vue-slide-up-down.umd.js"></script>
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/font-awesome.min.js"></script>
     <script src="js/skills.js"></script>
     <script src="js/menu.js"></script>
 </html>

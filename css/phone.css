@@ -160,7 +160,7 @@
 	text-shadow:none;
 	transition:0.3s;
 	cursor: pointer;
-	font-size:15px;
+	font-size:17px;
 	width:fit-content;
 	margin:0 auto;
 }
@@ -189,7 +189,7 @@
 	top:5px;
 	left:17px;
 	color:#fafafa;
-	font-size:11.12px;
+	font-size:12px;
 	text-transform: uppercase;
 }
 .network
@@ -254,7 +254,7 @@
 }
 .time-block .date
 {
-	font-size:11.12px;
+	font-size:12px;
 	color:#fafafa;
 }
 .date
@@ -462,7 +462,7 @@
 	justify-content: center;
 	align-items: center;
 	
-	font-size:13px;
+	font-size:15px;
 	cursor:pointer;
 }
 .settings-wrapper, .outCaller-wrapper, .caller-wrapper, .incomingCall-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper, .getCar-wrapper
@@ -549,6 +549,10 @@
 	background:url(../img/autoschool/boat.png) no-repeat;
 	background-size:30%;
 	background-position: 48%;
+}
+.title-number
+{
+	font-size:18px;
 }
 .getCar-wrapper .title-wrapper .title-number
 {
@@ -728,6 +732,7 @@
 	top:50%;
 	left:50%;
 	transform: translate(-50%,-50%);
+	font-size:19px;
 }
 .dialing-wrapper .history-wrapper:empty:after
 {
@@ -892,7 +897,7 @@
 	height:100%;
 	justify-content: center;
 	align-items: center;
-	font-size:13.17px;
+	font-size:15px;
 	font-weight:400;
 	display: none;
 	text-align: center;
@@ -1006,7 +1011,7 @@
 .contacts-wrapper .current-wrapper .create-contact input::-webkit-input-placeholder,.contacts-wrapper .current-wrapper .create-contact input, .contacts-wrapper .current-wrapper .change-contact input::-webkit-input-placeholder,.contacts-wrapper .current-wrapper .change-contact input { 
 	color: #000;
 	font-weight:400;
-	font-size:13.61px;
+	font-size:15px;
 }
 .contacts-wrapper .current-wrapper .create-contact .save-contact, .contacts-wrapper .current-wrapper .change-contact .save-contact, .geo-wrapper .current-wrapper .selected-contact .send-geo, .getCar-wrapper .current-wrapper .selected-contact .send-geo
 {
@@ -1015,7 +1020,7 @@
 	border-radius:5px;
 	background:#00ff96;
 	color:#fff;
-	font-size:11.72px;
+	font-size:14px;
 	font-weight:400;
 	cursor: pointer;
 	position: absolute;
@@ -1049,7 +1054,7 @@
 {
 	padding:20px 0 0 20px;
 	font-weight:400;
-	font-size:15px;
+	font-size:18px;
 }
 .contacts-wrapper .current-wrapper .selected-contact .number-wrapper
 {
@@ -1059,11 +1064,12 @@
 }
 .contacts-wrapper .current-wrapper .selected-contact .number-wrapper .number
 {
-	font-size:15px;
+	font-size:18px;
+	font-weight: 500;
 }
 .contacts-wrapper .current-wrapper .selected-contact .number-wrapper .title
 {
-	font-size:10px;
+	font-size:15px;
 }
 .contacts-wrapper .current-wrapper .selected-contact .change-but
 {
@@ -1165,7 +1171,7 @@
 	height:50%;
 	background:#f7f7f7;
 	font-weight:400;
-	font-size:14px;
+	font-size:16px;
 	border-radius:5px;
 	color:#000;
 	position: absolute;
@@ -1193,7 +1199,7 @@
 	min-height:30px;
 	background:#fffc9d;
 	font-weight:400;
-	font-size:15.19px;
+	font-size:18px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
@@ -1209,7 +1215,7 @@
 {
 	width:49px;
 	height:22px;
-	font-size:12.12px;
+	font-size:14px;
 	border-radius:5px;
 	background:#fff;
 	display: flex;
@@ -1247,11 +1253,11 @@
 }
 .messages-wrapper .wrapper .message-border .number
 {
-	font-size:13.96px;
+	font-size:15px;
 }
 .messages-wrapper .wrapper .message-border .time
 {
-	font-size:11.51px;
+	font-size:14px;
 }
 .messages-wrapper .wrapper .message-item .message-text
 {
@@ -1264,7 +1270,7 @@
 }
 .messages-wrapper .wrapper .message-item .message-text .text, .messages-wrapper .wrapper .message-item .message-text .text-3
 {
-	font-size:11.12px;
+	font-size:14px;
 	text-align: center;
 	white-space: nowrap;
 	overflow: hidden;
@@ -1294,6 +1300,7 @@
 	padding:0 34px 0 15px;
 	box-sizing: border-box;
 	position: relative;
+	font-size: 17px;
 }
 .messages-inner .bottom-window .sender
 {
@@ -1310,7 +1317,7 @@
 .messages-inner .bottom-window input::-webkit-input-placeholder, .messages-inner .bottom-window input { 
 	color: #000;
 	font-weight:400;
-	font-size:13.12px;
+	font-size:17px;
 }
 .messages-inner .bottom-window .smiles-wrap
 {
@@ -1483,7 +1490,7 @@
 	align-items: center;
 	color: #000;
 	font-weight:400;
-	font-size:12.92px;
+	font-size:14px;
 	position: relative;
 	word-break: break-all;
 }
@@ -1535,7 +1542,7 @@
 .messages-inner .wrapper #outcoming .time
 {
 	margin-left:10px;
-	font-size:11.12px;
+	font-size:13px;
 }
 .messages-inner .wrapper .time
 {
@@ -1550,7 +1557,7 @@
 .messages-inner .wrapper #incoming .time
 {
 	margin-right:10px;
-	font-size:11.12px;
+	font-size:13px;
 }
 .messages-inner .wrapper #incoming
 {

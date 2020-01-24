@@ -64,7 +64,8 @@ body {
 	margin-left:16px;
 }
 .left-inventory .search-wrapper .button,
-.left-inventory .show-wrapper .button
+.left-inventory .show-wrapper .button,
+.right-inventory .button
 {
 	background:#fcfd12;
 	font-weight:500;
@@ -545,6 +546,12 @@ body {
 	align-items: center;
 	margin-top:15px;
 }
+#getBlank
+{
+	position: absolute;
+	bottom:30px;
+	left:50px;
+}
 .col-wrapper input
 {
 	width:205px;
@@ -569,7 +576,7 @@ body {
 	font-size:13.88px;
 	cursor: pointer;
 }
-.col-wrapper .min:hover, .col-wrapper .max:hover, .button-wrapper div:hover, .left-inventory .button:hover
+.col-wrapper .min:hover, .col-wrapper .max:hover, .button-wrapper div:hover, .left-inventory .button:hover,.right-inventory .button:hover
 {
 	transform:scale(1.1);
 }

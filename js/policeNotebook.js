@@ -1086,12 +1086,12 @@ function refreshThingsList()
                                 <div class="toogle"></div>
                                 <div class="name">Арест</div>
                             </div>
-                            <input type="number" id="arrest" placeholder="Срок ареста">
+                            <input type="number" id="arrest" min="0" max="800" maxlength="3" placeholder="Срок ареста">
                             <div class="punishment-item" id="fine">
                             <div class="toogle"></div>
                                 <div class="name">Штраф</div>
                             </div>
-                            <input type="number" id="fine" placeholder="Сумма ареста">
+                            <input type="number" id="fine" min="0" max="9999999" maxlength="7" placeholder="Сумма ареста" disabled>
                         </div>
                         <div class="button" id="punishmentSubmit">Добавить</div>
                     </div>
@@ -1139,6 +1139,7 @@ function refreshThingsList()
                 $('.container .things-wrapper .add-thing-wrapper').empty().append(template);
             }
         });
+           
         refreshAddThings();
         suspectsRefresh();
     });
@@ -1298,6 +1299,30 @@ function refreshViolation()
 }
 function refreshAddThings()
 {
+    var inputQuantity = [];
+    $(function() {
+      $("#fine, #arrest").each(function(i) {
+        inputQuantity[i]=this.defaultValue;
+         $(this).data("idx",i); // save this field's index to access later
+      });
+      $("#fine, #arrest").on("keyup", function (e) {
+		$(this).parent().removeClass('limited');
+		var $field = $(this),
+            val=this.value,
+            $thisIndex=parseInt($field.data("idx"),10); // retrieve the index
+			//window.console && console.log($field.is(":invalid"));
+          	//$field.is(":invalid") is for Safari, it must be the last to not error in IE8
+        if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") || this.value == '0') {
+            this.value = inputQuantity[$thisIndex];
+            return;
+        } 
+        if (val.length > Number($field.attr("maxlength"))) {
+          val=val.slice(0, 5);
+          $field.val(val);
+        }
+        inputQuantity[$thisIndex]=val;
+      });      
+    });	 
     $('#add-line').on('click',function(){
         $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper')
         .append(`<textarea id="thing-add-text" onkeyup="textarea_resize(event);" maxlength="200"></textarea><div id="text_area_div"></div>`)
@@ -1465,8 +1490,13 @@ function suspectsRefresh()
         $('.edit-mask,.add-thing-wrapper .punishmentMenu').fadeOut();
     });
     $('.add-thing-wrapper .punishment-item').on('click',function(){
+        let id = this.id,
+            active = $(this).parent().find('.active')[0].id;
+        console.log(id,active);
         $(this).parent().find('.active').removeClass('active');
         $(this).addClass('active');
+        $(`.add-thing-wrapper input#${active}`).attr('disabled',true);
+        $(`.add-thing-wrapper input#${id}`).attr('disabled',false);
     });
     $('.add-thing-wrapper .punishmentMenu #punishmentSubmit').on('click',function(){
         let currentInfo = $('.punishmentMenu .active').next().val(),
@@ -1474,12 +1504,23 @@ function suspectsRefresh()
             thingId = $('.container .things-wrapper .add-thing-wrapper .name-wrap').attr('data-index');
         if(currentInfo.length > 0)
         {
-            $('.punishmentMenu input').val('');
-            $('.punishmentMenu .active').removeClass('active');
-            $('.punishmentMenu #arrest').addClass('active');
-            $('.edit-mask,.add-thing-wrapper .punishmentMenu').fadeOut();
-            console.log(filerList[thingId].StatementID,currentId,parseInt(currentInfo));
-            mp.trigger('punishmentStatus',filerList[thingId].StatementID,currentId,parseInt(currentInfo));
+            if(currentId == 'currentId' && currentInfo > 9999999)
+            {
+                console.log('>99999999')
+            }
+            else if(currentId == 'arrest' && currentInfo > 800)
+            {
+                console.log('>800');
+            }
+            else
+            {
+                $('.punishmentMenu input').val('');
+                $('.punishmentMenu .active').removeClass('active');
+                $('.punishmentMenu #arrest').addClass('active');
+                $('.edit-mask,.add-thing-wrapper .punishmentMenu').fadeOut();
+                console.log(filerList[thingId].StatementID,currentId,parseInt(currentInfo));
+                mp.trigger('punishmentStatus',filerList[thingId].StatementID,currentId,parseInt(currentInfo));
+            }
         }
     });
     $('.container .add-thing-wrapper .right-block .suspects-wrap .delete-item').on('click',function(){
