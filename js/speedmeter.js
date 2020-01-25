@@ -18,7 +18,7 @@ function speedFadeOut()
 function pushSpeed(vehicleSpeed,maxspeed,gear,gas)
 {
     // pushCurrentGear(gear);
-    setSpeedScale(maxspeed);
+    // setSpeedScale(maxspeed);
     pushCurrentSpeedCount(vehicleSpeed);
     gasLines(gas);
 };
@@ -57,7 +57,6 @@ function setSpeedScale(maxspeed)
                 speedArray.push(Math.round(item+=counter));  
             }  
         }
-        console.log(speedArray);
     }
     // pushSpeedAngle(speedArray);
 }
@@ -70,32 +69,20 @@ const currentBottom = parseInt($('.inner-wrapper .speed-scale').css('bottom')),
 function pushCurrentArrow(vehicleArrowSpeed, durationCount)
 {    
     let currentIndex = vehicleArrowSpeed*angleIndex,
-        currentAngle = angleArrow[currentIndex.toFixed()];       
-    $('.inner-wrapper .speed-scale').each(function () {
-        $(this).prop('Counter', $('.inner-wrapper .speed-scale').attr('data-angle')).animate({
-            Counter: currentAngle
-        }, {
-            duration: durationCount,
-            easing: 'linear',
-            step: function (now) {
-                console.log($(this).css('bottom'));
-                let translate = ``;
-                if(now <= -60 && now > -120)
-                {
-                    translate = 2;
-                }
-                if(now <= -80)
-                {
-                    translate = 1;
-                }
-                else
-                {
-                    translate = 0;
-                }
-                $(this).attr('data-angle',now).css({'transform':`rotate(${now}deg`,'bottom':currentBottom+translate});
-            }
-        });
-    });
+        currentAngle = angleArrow[currentIndex.toFixed()]; 
+        $('.inner-wrapper .speed-scale').attr('data-angle',currentAngle).css({'transform':`rotate(${currentAngle}deg`,'bottom':currentBottom});
+    // $('.inner-wrapper .speed-scale').each(function () {
+    //     $(this).prop('Counter', $('.inner-wrapper .speed-scale').attr('data-angle')).animate({
+    //         Counter: currentAngle
+    //     }, {
+    //         duration: durationCount,
+    //         easing: 'linear',
+    //         step: function (now) {
+    //             console.log($(this).css('bottom'));
+    //             $(this).attr('data-angle',now).css({'transform':`rotate(${now}deg`,'bottom':currentBottom});
+    //         }
+    //     });
+    // });
 }
 function pushCurrentSpeed(vehicleSpeed,durationCount)
 {
@@ -104,17 +91,18 @@ function pushCurrentSpeed(vehicleSpeed,durationCount)
     {
         $('.speed-wrapper .speed').text(0);
     } 
-    $('.speed-wrapper .speed').each(function () {
-        $(this).prop('Counter',currentSpeed).animate({
-            Counter: vehicleSpeed
-        }, {
-            duration: durationCount,
-            easing: 'linear',
-            step: function (now) {
-                $(this).text(Math.ceil(now));
-            }
-        });
-    });
+    $('.speed-wrapper .speed').text(Math.ceil(vehicleSpeed));
+    // $('.speed-wrapper .speed').each(function () {
+    //     $(this).prop('Counter',currentSpeed).animate({
+    //         Counter: vehicleSpeed
+    //     }, {
+    //         duration: durationCount,
+    //         easing: 'linear',
+    //         step: function (now) {
+    //             $(this).text(Math.ceil(now));
+    //         }
+    //     });
+    // });
        
 }
 function pushCurrentSpeedCount(speed,speedDuration = 50,angleDuration)
@@ -174,25 +162,26 @@ function gasLines(gas, durationCount)
 {
     let currentIndex = gas*fuelIndex,
         currentAngle = angleArrow[currentIndex.toFixed()]; 
-    $('.inner-wrapper .fuel-scale').each(function () {
-        $(this).prop('Counter', $('.inner-wrapper .fuel-scale').attr('data-angle')).animate({
-            Counter: currentAngle
-        }, {
-            duration: durationCount,
-            easing: 'linear',
-            step: function (now) {
-                console.log($(this).css('bottom'));
-                let translate = ``;
-                if(now <= -60)
-                {
-                    translate = 1;
-                }
-                else
-                {
-                    translate = 0;
-                }
-                $(this).attr('data-angle',now).css({'transform':`rotate(${now}deg`,'bottom':currentGasBottom+translate,'right':currentGasRight-translate});
-            }
-        });
-    });
+    $('.inner-wrapper .fuel-scale').attr('data-angle',currentAngle).css({'transform':`rotate(${currentAngle}deg`,'bottom':currentGasBottom,'right':currentGasRight});
+    // $('.inner-wrapper .fuel-scale').each(function () {
+    //     $(this).prop('Counter', $('.inner-wrapper .fuel-scale').attr('data-angle')).animate({
+    //         Counter: currentAngle
+    //     }, {
+    //         duration: durationCount,
+    //         easing: 'linear',
+    //         step: function (now) {
+    //             console.log($(this).css('bottom'));
+    //             let translate = ``;
+    //             if(now <= -60)
+    //             {
+    //                 translate = 1;
+    //             }
+    //             else
+    //             {
+    //                 translate = 0;
+    //             }
+    //             $(this).attr('data-angle',now).css({'transform':`rotate(${now}deg`,'bottom':currentGasBottom+translate,'right':currentGasRight-translate});
+    //         }
+    //     });
+    // });
 };

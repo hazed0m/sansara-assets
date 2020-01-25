@@ -208,7 +208,12 @@ function clothesInitialize()
         }    
     });
     $('.clothes-item .remove-but').on('click',function(){
-        let currentId = $(this).parent()[0].id;
+        let currentId = $(this).parent()[0].id,
+            currentPrice = $(this).parent().find('.title').attr('data-price');
+        console.log(currentPrice, currentId);
+        $(this).parent().find('.title').attr({'data-price':0,'data-index':'empty','data-item':'empty'});
+        $(this).parent().find('.title').text('Снято');
+        countPrice();
         mp.trigger('removeClothes',currentId);
     });
 };
@@ -256,36 +261,39 @@ function generateJsonOutput()
         let currentIndex = $(item).find('.title').attr('data-index');
         let currentAttr = $(item).find('.title').attr('data-item'); 
         let currentColor = $(item).find('.color-list .color').attr('color-index');  
-        if(currentIndex == 4 || currentIndex == 5 || currentIndex == 6)
+        if(currentIndex != 'empty' && currentAttr != 'empty')
         {
-            if(clothesArr[className[currentIndex]][currentAttr] != undefined)
+            if(currentIndex == 4 || currentIndex == 5 || currentIndex == 6)
             {
-                temp.push(clothesArr[className[currentIndex]][currentAttr]);
-                let length = temp.length-1;
-                temp[length].color = parseInt(currentColor);
-                upperAttr = 1;
-            }   
-            else 
-            {
-                temp.push({'name':`${className[currentIndex]} Текущ.`,'price':0,'color':0});
-            }          
-            if(currentIndex == 6)
-            {
-                if(upperAttr != 0)
+                if(clothesArr[className[currentIndex]][currentAttr] != undefined)
                 {
-                   $.merge(arr,temp);
-                }
-            }  
-        }
-        else
-        {
-            if(currentAttr != -1)
+                    temp.push(clothesArr[className[currentIndex]][currentAttr]);
+                    let length = temp.length-1;
+                    temp[length].color = parseInt(currentColor);
+                    upperAttr = 1;
+                }   
+                else 
+                {
+                    temp.push({'name':`${className[currentIndex]} Текущ.`,'price':0,'color':0});
+                }          
+                if(currentIndex == 6)
+                {
+                    if(upperAttr != 0)
+                    {
+                       $.merge(arr,temp);
+                    }
+                }  
+            }
+            else
             {
-                arr.push(clothesArr[className[currentIndex]][currentAttr]);
-                let length = arr.length-1;
-                arr[length].color = parseInt(currentColor);
-            }            
-        }      
+                if(currentAttr != -1)
+                {
+                    arr.push(clothesArr[className[currentIndex]][currentAttr]);
+                    let length = arr.length-1;
+                    arr[length].color = parseInt(currentColor);
+                }            
+            }    
+        }
     });
     console.log('after',arr);
     return arr;

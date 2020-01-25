@@ -166,7 +166,9 @@ function keypressUp(e){
         case 114:  // alt
             mp.trigger('KeyF3press');
         break;
-
+        case 117:  // F6
+            mp.trigger('KeyF6Press');
+        break;
     }
 }
 function runOnKeys(func, ...codes) {
