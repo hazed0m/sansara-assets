@@ -245,6 +245,7 @@ $('.incomingCall-wrapper .allow').on('click',function(){
 });
 function refreshAudioIntervals()
 {
+	$('.debugger').append('<p>refreshAudioIntervals func</p>');
 	clearTimeout(dialingTimeout);
 	dialingTimeout = null;	
 	clearInterval(dialingPauseInterval);
@@ -262,6 +263,7 @@ function refreshAudioIntervals()
 }
 function refreshCallerIntervals()
 {	
+	$('.debugger').append('<p>refreshCallerIntervals func</p>');
 	clearTimeout(callTimeout);
 	callTimeout = null;
 	clearInterval(callInterval);
@@ -273,6 +275,7 @@ function refreshCallerIntervals()
 }
 function goHome()
 {
+	$('.debugger').append('<p>goHome func</p>');
 	refreshAudioIntervals();
 	refreshCallerIntervals();
 	if(!$('.main-wrapper').hasClass('active'))

@@ -724,6 +724,11 @@
 	box-sizing: border-box;
 	position: relative;
 }
+.debugger
+{
+	max-height: 80vh;
+	overflow-y: scroll;
+}
 .dialing-wrapper .history-wrapper:empty:after, .dialing-wrapper .this-block:empty:after, .messages-wrapper .wrapper:empty:after, .contacts-wrapper .wrapper:empty:after, .geo-wrapper .wrapper:empty:after, .getCar-wrapper .wrapper:empty:after
 {
 	text-align: center;
