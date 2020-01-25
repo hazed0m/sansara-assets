@@ -760,7 +760,8 @@ input[type="number"]::-webkit-inner-spin-button {
 	{
 		width:92px;
 		height:92px;
-		margin-bottom:20px;
+		/* margin-bottom:20px; */
+		margin:10px 15px;
 	}
 	.left-inventory .items
 	{
@@ -777,7 +778,7 @@ input[type="number"]::-webkit-inner-spin-button {
 	}
 	.left-inventory .items ul
 	{
-	    padding-left: 9%;
+	    padding-left: 5%;
 	}
 	.tabs-inventory ul li
 	{
