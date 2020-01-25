@@ -8,13 +8,15 @@ let counterInterval = setInterval(function(){
         {                  
             if($('.counter-wrapper .number').attr('counter') == 'button')
             {
-                clearInterval(counterInterval);
-                $('.button-wrapper .button').addClass('disabled');
+                // clearInterval(counterInterval);
+                // $('.button-wrapper .button').addClass('disabled');
+                runTimer('waitAmbulance');
                 mp.trigger('comaOutOfTime');
             } 
             if($('.counter-wrapper .number').attr('counter') == 'wait')
             {
                 $('.text-wrapper, .counter-wrapper').fadeOut();
+                $('.button-wrapper .button').removeClass('disabled');
                 setTimeout(function(){
                     $('.counter-wrapper .number').text(10);
                     $('.coma-wrapper, .counter-wrapper').fadeIn();
@@ -30,7 +32,7 @@ function runTimer(id)
         $('.coma-wrapper, .counter-wrapper').fadeOut();
         $('.counter-wrapper .number').attr('counter','wait');
         setTimeout(function(){
-            $('.counter-wrapper .number').text(10);
+            $('.counter-wrapper .number').text(700);
             $('.text-wrapper, .counter-wrapper').fadeIn();
         },500);
     }

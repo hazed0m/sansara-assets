@@ -149,8 +149,16 @@ mp.events.add('gpsFilter', (data) => {
 
     
 
-
-    for (let i = 0; i < blips_houses.length; i++) blips_houses[i].destroy();
+    if(blips_houses.length != 0)
+    {
+        for (let i = 0; i < blips_houses.length; i++) 
+        {
+            if(typeof blips_houses[i] != undefined)
+            {
+                blips_houses[i].destroy();
+            }
+        }        
+    }
     for (let i = 0; i < blips_production.length; i++) blips_production[i].destroy();
     for (let i = 0; i < blips_refining.length; i++) blips_refining[i].destroy();
     for (let i = 0; i < blips_craft.length; i++) blips_craft[i].destroy();
@@ -195,7 +203,7 @@ mp.events.add('gpsFilter', (data) => {
 	        					{
 	        						color = std;
 	        					}
-	        					blips_houses[index] = mp.blips.new(element.sprite, element.position,
+	        					blips_houses.push(mp.blips.new(element.sprite, element.position,
 					            {
 					                name: element.name,
 					                scale: element.scale,
@@ -205,13 +213,13 @@ mp.events.add('gpsFilter', (data) => {
 					                shortRange: element.shortRange,
 					                rotation: element.rotation,
 					                dimension: element.dimension,
-					            });
+					            }));
 	        				});
 	        			});
 	        		}
 	        		else
 	        		{
-        				blips_houses[index] = mp.blips.new(element.sprite, element.position,
+        				blips_houses.push(mp.blips.new(element.sprite, element.position,
 			            {
 			                name: element.name,
 			                scale: element.scale,
@@ -221,7 +229,7 @@ mp.events.add('gpsFilter', (data) => {
 			                shortRange: element.shortRange,
 			                rotation: element.rotation,
 			                dimension: element.dimension,
-			            });
+			            }));
 	        		}	        		
 	        	}        
 	        });
