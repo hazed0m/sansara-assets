@@ -96,7 +96,7 @@ function pushNotebook(employeeOnline,admin = false,date)
         });
         let adminStatus = { Admin: admin };
         $('#charter-frame')[0].contentWindow.postMessage(adminStatus, "*");
-        $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
+        // $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
         $('#employee-frame')[0].contentWindow.postMessage(adminStatus, "*");
         window.addEventListener('message', function(event) {
             if (event.data['newHandbook']) {
@@ -122,6 +122,7 @@ function pushNotebook(employeeOnline,admin = false,date)
             mp.trigger('hireNewbieMedical',val);
         });
     }
+    initHandbook(0);
 }
 $('.container .business-wrapper .search-block #searchDNA').on('click',function(){
     let value = $(this).prev().val();
@@ -131,6 +132,48 @@ $('.container .business-wrapper .search-block #searchDNA').on('click',function()
         mp.trigger('searchDNA',field);
     }
 });
+function initHandbook()
+{
+    let handbookList = [
+        'sick',
+        'injury1',
+        'injury2',
+        'burn',
+        'coldweapon',
+        'drugs',
+        'fireshot1',
+        'fireshot2'
+    ];
+    $('.container .handbook-wrapper .inner-pic .arrow-left,.container .handbook-wrapper .inner-pic .arrow-right').on('click',function(){
+        console.log('action');
+        let currentPage = parseInt($('.container .handbook-wrapper .inner-pic').attr('data-index'));
+        if($(this).hasClass('arrow-left'))
+        {
+            console.log('left');
+            if(currentPage == 0)
+            {
+                currentPage = handbookList.length - 1;
+            }
+            else
+            {
+                currentPage--;
+            }
+        }
+        if($(this).hasClass('arrow-right'))
+        {
+            console.log('right');
+            if(currentPage == handbookList.length-1)
+            {
+                currentPage = 0;
+            }
+            else
+            {
+                currentPage++;
+            }
+        }
+        $('.container .handbook-wrapper .inner-pic').attr({'data-image':handbookList[currentPage],'data-index':currentPage});     
+    });
+}
 function personInit(element)
 {
     let item = JSON.parse(element);

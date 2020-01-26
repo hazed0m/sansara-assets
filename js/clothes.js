@@ -169,6 +169,10 @@ function clothesInitialize()
         var currentAttr = $(element).attr('data-item');
         var currentIndex = $(element).attr('data-index');
         var parent = $(element).parent().parent()[0].id;
+        if(currentAttr == 'empty')
+        {
+            currentAttr = -1;
+        }
         if($(clicker).hasClass('fa-chevron-left'))
         {
             if(currentAttr > 0)
@@ -211,7 +215,7 @@ function clothesInitialize()
         let currentId = $(this).parent()[0].id,
             currentPrice = $(this).parent().find('.title').attr('data-price');
         console.log(currentPrice, currentId);
-        $(this).parent().find('.title').attr({'data-price':0,'data-index':'empty','data-item':'empty'});
+        $(this).parent().find('.title').attr({'data-price':0,'data-item':'empty'});
         $(this).parent().find('.title').text('Снято');
         countPrice();
         mp.trigger('removeClothes',currentId);
@@ -261,7 +265,7 @@ function generateJsonOutput()
         let currentIndex = $(item).find('.title').attr('data-index');
         let currentAttr = $(item).find('.title').attr('data-item'); 
         let currentColor = $(item).find('.color-list .color').attr('color-index');  
-        if(currentIndex != 'empty' && currentAttr != 'empty')
+        if(currentAttr != 'empty')
         {
             if(currentIndex == 4 || currentIndex == 5 || currentIndex == 6)
             {
@@ -290,6 +294,7 @@ function generateJsonOutput()
                 {
                     arr.push(clothesArr[className[currentIndex]][currentAttr]);
                     let length = arr.length-1;
+                    console.log(currentColor,arr[length]);
                     arr[length].color = parseInt(currentColor);
                 }            
             }    

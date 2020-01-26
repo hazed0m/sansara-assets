@@ -236,6 +236,77 @@
 {
     display: flex;
 }
+.container .handbook-wrapper .inner-pic
+{
+    background-repeat:no-repeat;
+    background-position: 94% center;
+    background-size: 80%;
+    width:100%;
+    height:100%;
+}
+.container .handbook-wrapper .inner-pic[data-image='burn']
+{
+    background-image:url(../img/notebook/medicalHandbook/burn.png);
+}
+.container .handbook-wrapper .inner-pic[data-image='sick']
+{
+    background-image:url(../img/notebook/medicalHandbook/sick.png);
+}
+.container .handbook-wrapper .inner-pic[data-image='sick']
+{
+    background-image:url(../img/notebook/medicalHandbook/sick.png);
+}
+.container .handbook-wrapper .inner-pic[data-image='injury1']
+{
+    background-image:url(../img/notebook/medicalHandbook/injury1.png);
+}
+.container .handbook-wrapper .inner-pic[data-image='injury2']
+{
+    background-image:url(../img/notebook/medicalHandbook/injury2.png);
+}
+.container .handbook-wrapper .inner-pic[data-image='burn']
+{
+    background-image:url(../img/notebook/medicalHandbook/burn.png);
+}
+.container .handbook-wrapper .inner-pic[data-image='coldweapon']
+{
+    background-image:url(../img/notebook/medicalHandbook/coldweapon.png);
+}
+.container .handbook-wrapper .inner-pic[data-image='drugs']
+{
+    background-image:url(../img/notebook/medicalHandbook/drugs.png);
+}
+.container .handbook-wrapper .inner-pic[data-image='fireshot1']
+{
+    background-image:url(../img/notebook/medicalHandbook/fireshot1.png);
+}
+.container .handbook-wrapper .inner-pic[data-image='fireshot2']
+{
+    background-image:url(../img/notebook/medicalHandbook/fireshot2.png);
+}
+.container .handbook-wrapper .inner-pic .arrow-left
+{
+    position: absolute;
+    top: 50%;
+    left: 19%;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size:20px;
+}
+.container .handbook-wrapper .inner-pic .arrow-right
+{
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 20px;
+}
+.container .handbook-wrapper .inner-pic .arrow-left:hover,
+.container .handbook-wrapper .inner-pic .arrow-right:hover
+{
+    transform: scale(1.3);
+}
 .container .main-wrapper .recruting-menu
 {
     position: absolute;
