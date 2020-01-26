@@ -74,9 +74,10 @@
 .wrapper .inner-wrapper .speed-scale
 {
     position: absolute;
-    bottom: -69px;
+    bottom: -65px;
     right: -146px;
     transform: rotate(0deg);
+    transform-origin: 50% 49.2%;
 }
 /*rotate 450px + translate(0,2px)*/
 .wrapper .inner-wrapper .speed-scale img
@@ -86,9 +87,10 @@
 .wrapper .inner-wrapper .fuel-scale
 {
     position: absolute;
-    bottom: -36px;
+    bottom: -32px;
     right: -112px;
     transform: rotate(0deg);
+    transform-origin: 50% 49.2%;
 }
 .wrapper .inner-wrapper .fuel-scale img
 {
