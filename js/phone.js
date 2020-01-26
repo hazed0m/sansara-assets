@@ -257,8 +257,10 @@ function refreshAudioIntervals()
 	clearInterval(incomingPlayInterval);
 	incomingPlayInterval = null;	
 	dialingAudio.pause();
+	dialingAudio.muted = true;
 	dialingAudio.currentTime = 0;
 	incomingAudio.pause();
+	incomingAudio.muted = true;
 	incomingAudio.currentTime = 0;
 }
 function refreshCallerIntervals()
@@ -355,6 +357,7 @@ function getCall(number)
 		}
 	}, 1000);
 	$('.incomingCall-wrapper').addClass('active').fadeIn();
+	incomingAudio.muted = false;
 	incomingAudio.play();
 	incomingPauseInterval = setInterval(function(){
 		incomingAudio.pause();
@@ -450,6 +453,7 @@ function outCaller(number)
 	});	
 	$('.outCaller-wrapper').find('.number').text(currentName);
 	$('.outCaller-wrapper').addClass('active').fadeIn();
+	dialingAudio.muted = false;
 	dialingAudio.play();
 	dialingPauseInterval = setInterval(function(){
 		dialingAudio.pause();
