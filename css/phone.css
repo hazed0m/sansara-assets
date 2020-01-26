@@ -726,6 +726,7 @@
 }
 .debugger
 {
+	display: none;
 	max-height: 80vh;
 	overflow-y: scroll;
 }
