@@ -2,7 +2,7 @@ body {
     user-select: none;
     margin: 0;
     padding: 0;
-    font-family:'HelveticaNeueCyr';
+    font-family:'Gotham Pro';
 }
 .menu-wrap {
     width: 351px;
@@ -124,7 +124,7 @@ body {
     width: 50%;
     font-size: 18px;
     position: absolute;
-    bottom:35px;
+    bottom:56px;
     left:31%;
 }
 .user-wrapper div > span, .char-wrapper div > span
@@ -152,21 +152,25 @@ body {
     text-align: center;
 }
 .pass-age, .pass-autograph, .pass-phone, .pass-lic, .pass-rank, .pass-live, .pass-carlic, .pass-carnum {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 400;
 }
 .pass-number {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 300;
     transform: rotateZ(-90deg);
     position: absolute;
     right: -40px;
     top: 40%;
 }
+.pass-number span
+{
+    font-weight: 500;
+}
 .pass-autograph {
     position: absolute;
     bottom:-3%;
-    right:-63%;
+    right:-31%;
     width:100%;
 }
 .autograph {
@@ -174,9 +178,9 @@ body {
     font-size: 45px;
     font-weight: 400;
     position: absolute;
-    top:-30px;
-    margin-left:5px;
-    transform:rotate(-8deg);
+    top: -24px;
+    margin-left: 8px;
+    transform: rotate(-1deg);
 }
 .animCircle, .animation-wrap {
     position: fixed;

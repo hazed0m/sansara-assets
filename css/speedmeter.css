@@ -87,14 +87,14 @@
 .wrapper .inner-wrapper .fuel-scale
 {
     position: absolute;
-    bottom: -32px;
-    right: -112px;
+    bottom: -33.5px;
+    right: -114px;
     transform: rotate(0deg);
     transform-origin: 50% 49.2%;
 }
 .wrapper .inner-wrapper .fuel-scale img
 {
-    width:221px;
+    width:222px;
 }
 .wrapper .inner-wrapper .angle-wrapper
 {
