@@ -52,6 +52,7 @@
 .wrapper .inner-wrapper .engine
 {
     margin-left:5px;
+    margin-bottom:10px;
 }
 .wrapper .inner-wrapper .speed-wrapper
 {
@@ -60,11 +61,13 @@
     justify-content: center;
     align-items: center;
     color:#ecdf1f;  
-    margin-right: 10px;
+    margin-right: 8px;
+    margin-top:0;
+    margin-bottom: 10px;
 }
 .wrapper .inner-wrapper .speed-wrapper .speed
 {
-    font-size:52px;
+    font-size:51px;
 }
 .wrapper .inner-wrapper .speed-wrapper .per
 {
@@ -80,6 +83,10 @@
     transform-origin: 50% 49.2%;
 }
 /*rotate 450px + translate(0,2px)*/
+.wrapper .inner-wrapper .body
+{
+    margin-top:0;
+}
 .wrapper .inner-wrapper .speed-scale img
 {
     width:286px;
