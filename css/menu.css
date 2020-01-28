@@ -362,6 +362,30 @@ body {
     left: 50%;
     transform: translate(-50%,-50%) scale(0.7);
 }
+.getKeyCode-wrap
+{
+    background: #36393f;
+    width: 500px;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%) scale(0.7);
+}
+.getKeyCode-wrap .currentKey,
+.getKeyCode-wrap .keyTitle
+{
+    min-height:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:30px;
+    color:#fff;     
+}
+.getKeyCode-wrap .save
+{
+    margin:20px auto 0 auto;
+}
 .report-content {
     padding: 20px 30px;
     display: flex;
@@ -507,6 +531,10 @@ body {
 {
     transition:1s;
     opacity:0.5;
+}
+button.saveText__active:hover
+{
+    transform:none;
 }
 .animation-2 {
     z-index:99999;

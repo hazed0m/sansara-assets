@@ -52,11 +52,137 @@ let menu = new Vue({
         loginSetShow:false,
         animateShow: false,
         selectAnim: false,
+        keySettingsShow:false,
         setFastAnimIndex: 0,
         animateSettingsShow: false,
         saveButtonState:false,
+        keyChangeSettingsShow:false,
+        setKeyIndex: 0,
         gpsFilterArr: [false,false,false,false,false,false],
         isDisabled: false,
+        keyNameList: [
+            "F1",
+            "F2",
+            "F3",
+            "F4",
+            "F5",
+            "F6",
+            "F7",
+            "F8",
+            "F9",
+            "F10",
+            "F11",
+            "F12",
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "B, b, И, и",
+            "C, c, С, с",
+            "E, e, У, у",
+            "G, g, П, п",
+            "I, i, Ш, ш",
+            "J, j, О, о",
+            "K, k, Л, л",
+            "L, l, Д, д",
+            "M, m, Ь, ь",
+            "N, n, Т, т",
+            "O, o, Щ, щ",
+            "R, r, К, к",
+            "T, t, Е, е",
+            "U, u, Г, г",
+            "X, x, Ч, ч",
+            "Y, y, Н, н",
+            "Z, z, Я, я",
+            "-",
+            "=",
+            ";, Ж, ж",
+            ",, Б, б",
+            "., Ю, ю",
+            "[, {, Х, х",
+            "], }, Ъ, ъ",
+            '\\',
+            "', Э, э",
+            "/, .",
+            'Ё, ё',
+            "CapsLock",
+            "Shift",
+            "Control",
+            "Meta",
+            "Meta",
+            "ContextMenu",
+            "PrintScreen",
+            "ScrollLock",
+            "Pause",
+            "Insert",
+            "Home",
+            "PageUp",
+            "Delete",
+            "End",
+            "PageDown",
+            "NumLock",
+            "ArrowLeft",
+            "ArrowUp",
+            "ArrowDown",
+            "ArrowRight",            
+            "Num 0",
+            "Num 1",
+            "Num 2",
+            "Num 3",
+            "Num 4",
+            "Num 5",
+            "Num 6",
+            "Num 7",
+            "Num 8",
+            "Num 9"
+        ],
+        keyCodeList: [112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 66, 67, 69, 71, 73, 74, 75, 76, 77, 78, 79, 82, 84, 85, 88, 89, 90, 189, 187, 186, 188, 190, 219, 221, 220, 222, 191, 192, 20, 16, 17, 91, 93, 93, 44, 145, 19, 45, 36, 33, 46, 35, 34, 144, 37, 38, 40, 39, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105],
+        actionList: [
+            { keyCode: 73, title: "I, i, Ш, ш", action: 'Инвентарь', active: false },
+            { keyCode: 79, title: "O, o, Щ, щ", action: 'Рация', active: false },
+            { keyCode: 78, title: "N, n, Т, т", action: 'Планшет', active: false },
+            { keyCode: 77, title: "M, m, Ь, ь", action: 'Смартфон', active: false },
+            { keyCode: 113, title: "F2", action: 'Остановить анимацию', active: false },
+            { keyCode: 118, title: "F7", action: 'Мышка (Показать/Скрыть)', active: false },
+            { keyCode: 76, title: "L, l, Д, д", action: 'Анимации', active: false },
+            { keyCode: 75, title: "K, k, Л, л", action: 'Транспорт', active: false },
+            { keyCode: 74, title: "J, j, О, о", action: 'Поднять руки', active: false },
+            { keyCode: 71, title: "G, g, П, п", action: 'Взаимодействие', active: false },
+            { keyCode: 17, title: "Control", action: 'Выделение', active: false },
+            { keyCode: 90, title: "Z, z, Я, я", action: 'Микрофон рации', active: false }
+        ],
+        showKeySettingsMenu: function(keyCode, action, index) {
+            menu.keyChangeSettingsShow = true;   
+            menu.setKeyIndex = index;
+            $('.keyTitle').text(action)
+            $('.currentKey').empty();
+            $('.currentKey').attr('data-index',index).text(this.getKeyTitle(keyCode));
+            this.actionList.forEach(function (value, key) {
+                menu.actionList[key].active = false;
+            });
+            
+            this.actionList[index].active = true;
+        },
+        getKeyTitle: function(keyCode){
+            let currentIndex = this.keyCodeList.indexOf(keyCode),
+                currentName = `Запрещено`;
+            console.log(currentIndex);
+            if(currentIndex != -1)
+            {
+                currentName = this.keyNameList[currentIndex];
+            }
+            else
+            {
+                $('.getKeyCode-wrap .save').addClass('saveText__active');
+            }
+            return currentName;
+        },
         options: [
             { text: 'Мультипаспорт', value: 'passShow', status: false },
             { text: 'Вызов администрации', value: 'reportShow', status: false },
@@ -64,6 +190,7 @@ let menu = new Vue({
             { text: 'Навыки персонажа', value: 'skillsShow', status: false },
             { text: 'Фильтр GPS', value: 'mapSettingsShow', status: false},
             { text: 'Настройка быстрых эмоций', value: 'settingsAnimShow', status: false},
+            { text: 'Настройка клавиш', value: 'keySettingsShow', status: false},
             { text: 'Настройки аккаунта', value: 'settingsShow', status: false}
         ],
         animations: [
@@ -141,6 +268,7 @@ let menu = new Vue({
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
                     this.mapSettingsShow = false;
+                    this.keySettingsShow = false;
                     switch (this.passShow) {
                         case true:
                             this.passShow = false;
@@ -148,7 +276,7 @@ let menu = new Vue({
                         case false: 
                             this.passShow = true;                            
                             $('.categorie-title').each(function(index,item){
-                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'keySettingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
                                 {
                                     $(item).fadeIn(500); 
                                 }
@@ -164,10 +292,11 @@ let menu = new Vue({
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
                     this.mapSettingsShow = false;
+                    this.keySettingsShow = false;
                     switch (this.skillsShow) {
                         case true:
                             $('.categorie-title').each(function(index,item){
-                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'keySettingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
                                 {
                                     $(item).fadeIn(500); 
                                 }
@@ -176,7 +305,7 @@ let menu = new Vue({
                             break;
                         case false: 
                             $('.categorie-title').each(function(index,item){
-                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'keySettingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
                                 {
                                     $(item).css('display','none'); 
                                 }
@@ -193,6 +322,7 @@ let menu = new Vue({
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
                     this.mapSettingsShow = false;
+                    this.keySettingsShow = false;
                     switch (this.settingsShow) {
                         case true:
                             this.settingsShow = false;
@@ -210,10 +340,11 @@ let menu = new Vue({
                 animCircle.settingsAnimShow = false;
                 this.animateSettingsShow = false;
                 this.settingsShow = false;
+                this.keySettingsShow = false;
                 switch (this.mapSettingsShow) {
                     case true:                        
                        $('.categorie-title').each(function(index,item){
-                           if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                           if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'keySettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
                            {
                                $(item).fadeIn(500); 
                            }
@@ -222,7 +353,7 @@ let menu = new Vue({
                         break;
                     case false: 
                         $('.categorie-title').each(function(index,item){
-                           if($(item).attr('data-id') == 'settingsShow'  || $(item).attr('data-id') == 'settingsAnimShow')
+                           if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'keySettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
                            {
                                $(item).css('display','none'); 
                            }
@@ -239,6 +370,7 @@ let menu = new Vue({
                     this.settingsShow = false;
                     this.skillsShow = false;
                     this.mapSettingsShow = false;
+                    this.keySettingsShow = false;
                     switch (animCircle.settingsAnimShow) {
                         case true:
                             animCircle.settingsAnimShow = false;
@@ -257,6 +389,7 @@ let menu = new Vue({
                     animCircle.settingsAnimShow = false;
                     this.animateSettingsShow = false;
                     this.mapSettingsShow = false;
+                    this.keySettingsShow = false;
                     switch (this.reportShow) {
                         case true:
                             this.reportShow = false;
@@ -264,7 +397,7 @@ let menu = new Vue({
                         case false: 
                             this.reportShow = true;                            
                             $('.categorie-title').each(function(index,item){
-                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'keySettingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
                                 {
                                     $(item).fadeIn(500); 
                                 }
@@ -280,12 +413,37 @@ let menu = new Vue({
                     this.animateSettingsShow = false;
                     animCircle.settingsAnimShow = false;
                     this.mapSettingsShow = false;
+                    this.keySettingsShow = false;
                     switch (this.animateShow) {
                         case true:
                             this.animateShow = false;
                             break;
                         case false: 
                             this.animateShow = true;                            
+                            $('.categorie-title').each(function(index,item){
+                                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'keySettingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
+                                {
+                                    $(item).fadeIn(500); 
+                                }
+                            });
+                            break;
+                    }
+                    break;
+                case 'keySettingsShow':
+                    this.passShow = false;
+                    this.settingsShow = false;
+                    this.reportShow = false;
+                    this.skillsShow = false;
+                    this.animateSettingsShow = false;
+                    animCircle.settingsAnimShow = false;
+                    this.mapSettingsShow = false;
+                    this.animateShow = false;
+                    switch (this.keySettingsShow) {
+                        case true:
+                            this.keySettingsShow = false;
+                            break;
+                        case false: 
+                            this.keySettingsShow = true;                            
                             $('.categorie-title').each(function(index,item){
                                 if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'mapSettingsShow' || $(item).attr('data-id') == 'settingsAnimShow')
                                 {
@@ -307,9 +465,30 @@ let menu = new Vue({
                     break;
             }
             this.saveButtonState = false;
+        },        
+        saveCurrentKey ()
+        {
+            let currentKeyCode = parseInt($('.getKeyCode-wrap .currentKey').attr('data-key')),
+                currentIndex = parseInt($('.getKeyCode-wrap .currentKey').attr('data-index')),
+                currentKey = this.getKeyTitle(currentKeyCode);
+            console.log(currentKey);
+            if(currentKey != 'Запрещено')
+            {
+                this.actionList[currentIndex].keyCode = currentKeyCode;
+                this.actionList[currentIndex].title = this.getKeyTitle(currentKeyCode);
+                this.keyChangeSettingsShow = false;
+                this.saveButtonState = true;
+                console.log(this.actionList);
+                mp.trigger('currentKeys',this.actionList);
+            }
+            else
+            {
+                console.log('wrongKey');
+            }
         },
         save (value) {
             this.saveButtonState = true;
+            this.settingsShow = false;
             mp.trigger("settingsSave.client", this.autoLogin);
         },
         gpsFilter()
@@ -340,6 +519,13 @@ let menu = new Vue({
                 }
             });
             console.log(this.gpsFilterArr);
+            this.mapSettingsShow = false;
+            $('.categorie-title').each(function(index,item){
+                if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'settingsAnimShow' || $(item).attr('data-id') == 'keySettingsShow')
+                {
+                    $(item).fadeIn(500); 
+                }
+            });
             mp.trigger('gpsFilter',JSON.stringify(this.gpsFilterArr));
         },
         gpsInit(array)
@@ -431,3 +617,12 @@ $('.map-settings .gps-category').on('click',function(){
         $(this).next().slideUp();
     }
 });  
+function keypressUp(e){  
+    if(menu.keyChangeSettingsShow)
+    {
+        console.log(e.keyCode);
+        $('.getKeyCode-wrap .save').removeClass('saveText__active');
+        $('.getKeyCode-wrap .currentKey').attr('data-key',e.keyCode).text(menu.getKeyTitle(e.keyCode));
+    }
+};
+$(window).on("keyup", keypressUp);

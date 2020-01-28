@@ -208,14 +208,41 @@
                 <div class="animation-wrap" v-show="animateShow === true">
                     <div class="animation-name" v-for="animation in animations" @click="animate(animation.dict, animation.name)">{{ animation.title }}</div>
                 </div>
-            </transition>      
+            </transition>    
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut" :duration="{ enter: 200, leave: 100 }">
+                <div class="settings-wrap animCircle" v-if="keySettingsShow">
+                    <div class="setting-wrap" style="margin:0">
+                        <div class="setting-btn__wrap fast-wrap">
+                            <div class="setting-wrap cursor" v-for="(actionLists, index) in actionList" @click="showKeySettingsMenu(actionLists.keyCode,actionLists.action ,index)">
+                                <div class="setting-text" :class="[actionLists.active ? 'anim-text__active' : '']">{{ actionLists.action }}</div>
+                                <div class="anim-text" :class="[actionLists.active ? 'anim-text__active' : '']" >{{ actionLists.title }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </transition> 
             <transition name="custom-classes-transition"
                         enter-active-class="animated fadeIn"
                         leave-active-class="animated fadeOut">
                 <div class="animation-wrap animation-2" v-show="animateSettingsShow === true">
                     <div class="animation-name" v-for="(animation, index) in animations" @click="setFastAnim(index)">{{ animation.title }}</div>
                 </div>
-            </transition>     
+            </transition>   
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">    
+                <div class="getKeyCode-wrap" v-show="keyChangeSettingsShow === true">
+                    <div class="report-content">
+                        <div class="report-close" @click="keyChangeSettingsShow = false;"></div>
+                        <div class="keyTitle"></div>
+                        <div class="report-title">Нажмите желаемую кнопку</div>
+                        <div class="currentKey"></div>
+                        <button class="save saveText__active" :class="saveButtonState ? 'saveText__active' : ''" @click="saveCurrentKey()" >Применить</button>
+                    </div>
+                </div>
+            </transition>   
         </div>
         <div id="animCircle">
             <transition name="custom-classes-transition"
