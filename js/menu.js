@@ -162,25 +162,32 @@ let menu = new Vue({
             menu.setKeyIndex = index;
             $('.keyTitle').text(action)
             $('.currentKey').empty();
-            $('.currentKey').attr('data-index',index).text(this.getKeyTitle(keyCode));
+            $('.currentKey').attr('data-index',index).text(this.getKeyTitle(keyCode,'init'));
             this.actionList.forEach(function (value, key) {
                 menu.actionList[key].active = false;
             });
             
             this.actionList[index].active = true;
         },
-        getKeyTitle: function(keyCode){
+        getKeyTitle: function(keyCode,param){
             let currentIndex = this.keyCodeList.indexOf(keyCode),
                 currentName = `Запрещено`;
             console.log(currentIndex);
             if(currentIndex != -1)
-            {
-                currentName = this.keyNameList[currentIndex];
+            {              
+                currentName = this.keyNameList[currentIndex];                
+                $(this.actionList).each(function(index,item){
+                    if(keyCode == item.keyCode && param != 'menu' && param != 'init')
+                    {
+                        currentName = `Занято`
+                        $('.getKeyCode-wrap .save').addClass('saveText__active');
+                    }
+                });
             }
             else
             {
                 $('.getKeyCode-wrap .save').addClass('saveText__active');
-            }
+            } 
             return currentName;
         },
         options: [
@@ -472,10 +479,18 @@ let menu = new Vue({
                 currentIndex = parseInt($('.getKeyCode-wrap .currentKey').attr('data-index')),
                 currentKey = this.getKeyTitle(currentKeyCode);
             console.log(currentKey);
-            if(currentKey != 'Запрещено')
+            let error = false;
+            $(this.actionList).each(function(index,item){
+                if(currentKeyCode == item.keyCode)
+                {
+                    error = true;
+                    $('.getKeyCode-wrap .save').addClass('saveText__active');
+                }
+            });
+            if(currentKey != 'Запрещено' && !error)
             {
                 this.actionList[currentIndex].keyCode = currentKeyCode;
-                this.actionList[currentIndex].title = this.getKeyTitle(currentKeyCode);
+                this.actionList[currentIndex].title = this.getKeyTitle(currentKeyCode,'menu');
                 this.keyChangeSettingsShow = false;
                 this.saveButtonState = true;
                 console.log(this.actionList);
