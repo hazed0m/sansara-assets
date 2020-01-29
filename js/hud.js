@@ -101,40 +101,50 @@ function initTime(hour,minute)
     time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
     $('.hud-time').text(time);
 };
+let keyList = '';
+function pushKeyList(obj)
+{
+    keyList = obj;
+}
+let triggersList = [
+    'KeyIpress',   ////////////ИНВЕНТАРЬ
+    'KeyOpress',     ///////////////РАЦИЯ
+    'KeyNpress',           /////////////ПЛАНШЕТ
+    'KeyMpress',      //////////////СМАРТФОН
+    'KeyF2press',       ////////////ОСТАНОВИТЬ АНИМАЦИЮ
+    'KeyF7press',       //////////////МЫШКА (ПОКАЗАТЬ/СКРЫТЬ)
+    'KeyLpress',        /////////////АНИМАЦИИ
+    'KeyKpress',         //////////////////ТРАНСПОРТ
+    'KeyJpress',         /////////////////ПОДНЯТЬ РУКИ
+    'KeyXpress',         ////////////////МИКРОФОН     ТОЛЬКО ТУТ 2 ТРИГГЕРА ОБРАТИ ВНИМАНИЕ, ПРИ НАЖИТИИ И ОТПУСКАНИИ
+    'KeyGpress',       //////////////////ВЗАИМОДЕЙСТВИЕ
+    'KeyCtrlpress',    ////////////////// ВЫДЕЛЕНИЕ
+    'KeyZpress'         ////////////////////// МИКРОФОН РАЦИИ
+];
+function keypressDown(e){ 
+    $(keyList).each(function(index,item){
+        if(index == 9)
+        {
+            if(e.keyCode == item.keyCode)
+            {
+                mp.trigger('KeyXpressDown');
+            }
+        } 
+    });   
+}
 function keypressUp(e){  
+    $(keyList).each(function(index,item){
+        if(e.keyCode == item.keyCode)
+        {
+            mp.trigger(triggersList[index]);
+        }
+    });
     switch(e.keyCode){         
-        case 73:  // I инвентарь
-            mp.trigger('KeyIpress');
-        break;
         case 72:  // I инвентарь
-            mp.trigger('KeyHpress');
-        break;
-        case 79:  // O инвентарь авто
-            mp.trigger('KeyOpress');
-        break;
-        case 78:  // O инвентарь авто
-            mp.trigger('KeyNpress');
-        break;
-        case 77:  // O инвентарь авто
-            mp.trigger('KeyMpress');
-        break;
-        case 113:  // O инвентарь авто
-            mp.trigger('KeyF2press');
+            mp.trigger('KeyHpress');   
         break;
         case 116:  // O инвентарь авто
-            mp.trigger('KeyF5press');
-        break;
-        case 118:  // O инвентарь авто
-            mp.trigger('KeyF7press');
-        break;
-        case 76:  // L аним
-            mp.trigger('KeyLpress');
-        break;
-        case 75:  // K авто
-            mp.trigger('KeyKpress');
-        break;
-        case 74:  // j перс
-            mp.trigger('KeyJpress');
+            mp.trigger('KeyF5press');        
         break;
         case 69:  // E взаимодействие
             mp.trigger('KeyEpress');
@@ -142,73 +152,54 @@ function keypressUp(e){
         case 85:  // E взаимодействие
             mp.trigger('KeyPress');
         break;       
-        case 88:  // X взаимодействие
-            mp.trigger('KeyXpress');
-        break;
         case 89:  // Y взаимодействие
-            mp.trigger('KeyYpress');
+            mp.trigger('KeyYpress');        
         break;  
 		  case 72:  // Y взаимодействие
             mp.trigger('KeyPolice');
         break;  
-        case 71:  // G взаимодействие
-            mp.trigger('KeyGpress');
-        break;
-        case 17:  // Ctrl 
-            mp.trigger('KeyCtrlpress');
-        break;
-        case 90:  // Z 
-            mp.trigger('KeyZpress');
-        break;
         case 18:  // alt
             mp.trigger('KeyAltpress');
         break;
         case 114:  // alt
             mp.trigger('KeyF3press');
         break;
-        case 117:  // F6
+		case 117:  // F6
             mp.trigger('KeyF6Press');
         break;
     }
 }
-function runOnKeys(func, ...codes) {
-    let pressed = new Set();
+// function runOnKeys(func, ...codes) {
+//     let pressed = new Set();
 
-    document.addEventListener('keydown', function(event) {
-      console.log(event.code);
-      pressed.add(event.code);
-      for (let code of codes) { // все ли клавиши из набора нажаты?
-        if (!pressed.has(code)) {
-          return;
-        }
-      }
+//     document.addEventListener('keydown', function(event) {
+//       console.log(event.code);
+//       pressed.add(event.code);
+//       for (let code of codes) { // все ли клавиши из набора нажаты?
+//         if (!pressed.has(code)) {
+//           return;
+//         }
+//       }
 
-      // да, все
+//       // да, все
 
-      // во время показа alert, если посетитель отпустит клавиши - не возникнет keyup
-      // при этом JavaScript "пропустит" факт отпускания клавиш, а pressed[keyCode] останется true
-      // чтобы избежать "залипания" клавиши -- обнуляем статус всех клавиш, пусть нажимает всё заново
-      pressed.clear();
+//       // во время показа alert, если посетитель отпустит клавиши - не возникнет keyup
+//       // при этом JavaScript "пропустит" факт отпускания клавиш, а pressed[keyCode] останется true
+//       // чтобы избежать "залипания" клавиши -- обнуляем статус всех клавиш, пусть нажимает всё заново
+//       pressed.clear();
 
-      func();
-    });
+//       func();
+//     });
 
-    document.addEventListener('keyup', function(event) {
-      pressed.delete(event.code);
-    });
+//     document.addEventListener('keyup', function(event) {
+//       pressed.delete(event.code);
+//     });
 
-};
-function keypressDown(e){   
-    switch(e.keyCode){        
-        case 88:  // X взаимодействие
-            mp.trigger('KeyXpressDown');
-        break;  
-    }
-}
+// };
 $(window).on("keyup", keypressUp);
 $(window).on("keydown", keypressDown);
-runOnKeys(
-    () =>  mp.trigger('KeyZLeftAltpress'),
-    'KeyZ',
-    'AltLeft'
-);
+// runOnKeys(
+//     () =>  mp.trigger('KeyZLeftAltpress'),
+//     'KeyZ',
+//     'AltLeft'
+// );
