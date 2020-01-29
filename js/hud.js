@@ -101,7 +101,22 @@ function initTime(hour,minute)
     time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
     $('.hud-time').text(time);
 };
-let keyList = '';
+let keyList = [
+    { keyCode: 73, title: "I, i, Ш, ш", action: 'Инвентарь', active: false },
+    { keyCode: 79, title: "O, o, Щ, щ", action: 'Рация', active: false },
+    { keyCode: 78, title: "N, n, Т, т", action: 'Планшет', active: false },
+    { keyCode: 77, title: "M, m, Ь, ь", action: 'Смартфон', active: false },
+    { keyCode: 113, title: "F2", action: 'Остановить анимацию', active: false },
+    { keyCode: 118, title: "F7", action: 'Мышка (Показать/Скрыть)', active: false },
+    { keyCode: 76, title: "L, l, Д, д", action: 'Анимации', active: false },
+    { keyCode: 75, title: "K, k, Л, л", action: 'Транспорт', active: false },
+    { keyCode: 74, title: "J, j, О, о", action: 'Поднять руки', active: false },
+    { keyCode: 88, title: "X, x, Ч, ч", action: 'Микрофон общий', active: false },
+    { keyCode: 71, title: "G, g, П, п", action: 'Взаимодействие', active: false },
+    { keyCode: 17, title: "Control", action: 'Выделение', active: false },
+    { keyCode: 90, title: "Z, z, Я, я", action: 'Микрофон рации', active: false },
+    { keyCode: 66, title: "B, b, И, и", action: 'Указать', active: false }
+];
 function pushKeyList(obj)
 {
     keyList = JSON.parse(obj);

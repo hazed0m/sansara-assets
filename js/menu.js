@@ -150,7 +150,9 @@ let menu = new Vue({
             { keyCode: 88, title: "X, x, Ч, ч", action: 'Микрофон общий', active: false },
             { keyCode: 71, title: "G, g, П, п", action: 'Взаимодействие', active: false },
             { keyCode: 17, title: "Control", action: 'Выделение', active: false },
-            { keyCode: 90, title: "Z, z, Я, я", action: 'Микрофон рации', active: false }
+            { keyCode: 90, title: "Z, z, Я, я", action: 'Микрофон рации', active: false },
+            { keyCode: 66, title: "B, b, И, и", action: 'Указать', active: false }
+            
         ],
         showKeySettingsMenu: function(keyCode, action, index) {
             menu.keyChangeSettingsShow = true;   
