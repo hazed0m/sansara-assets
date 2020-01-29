@@ -104,7 +104,7 @@ function initTime(hour,minute)
 let keyList = '';
 function pushKeyList(obj)
 {
-    keyList = obj;
+    keyList = JSON.parse(obj);
 }
 let triggersList = [
     'KeyIpress',   ////////////ИНВЕНТАРЬ

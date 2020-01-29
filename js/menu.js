@@ -490,7 +490,7 @@ let menu = new Vue({
                 this.keyChangeSettingsShow = false;
                 this.saveButtonState = true;
                 console.log(this.actionList);
-                mp.trigger('currentKeys',this.actionList);
+                mp.trigger('currentKeys',JSON.stringify(this.actionList));
             }
             else
             {
