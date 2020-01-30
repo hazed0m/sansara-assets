@@ -11,6 +11,10 @@ $('#sansara-menu').on('click',function(){
         menu.fadeOut();
     }
 });
+$('.sansara-menu #police-menu').on('click',function(){
+    $('.sansara-menu').fadeOut();
+    $('.police-menu').removeClass('slideOutLeft').addClass('slideInLeft');
+});
 $('#noteExit').on('click',function(){
     mp.trigger('exitMedicalNote');
 });
@@ -27,17 +31,27 @@ $('.container .wrapper .bottom-panel .left-wrapper .used-app').on('click',functi
     if($(`.wrapper > .active`).is(':visible'))
     {
         $(`.wrapper > .active`).fadeOut(500);
+        $('.menu-item.active').addClass('hovered');
     }
     else
     {
+        $('.menu-item.active').removeClass('hovered');
         $(`.wrapper > .active`).fadeIn(500).css('display','flex');
     }
+    $('.sansara-menu').fadeOut();
+    $('.police-menu').removeClass('slideOutLeft').addClass('slideInLeft');
 });
 $('.container .wrapper .police-menu .close-but').on('click',function(){        
     $('.container .wrapper .police-menu').fadeOut();
 });
 $('.police-menu .menu-item').on('click',function(){
     let currentWrapper = this.id;
+    console.log(currentWrapper);
+    $('.sansara-menu').fadeOut();
+    if(currentWrapper == 'handbook-wrapper')
+    {
+        $('.police-menu').addClass('animated slideOutLeft');
+    }
     if(!$(this).hasClass('active'))
     {
         $('.wrapper > .active').removeClass('active').fadeOut(200);

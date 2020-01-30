@@ -1,4 +1,6 @@
-$(".mask").delay(350).fadeOut('slow');
+$(document).ready(function(){
+	$(".mask").delay(500).fadeOut('slow');
+});
 $('.main-wrapper').fadeIn();
 const wallpaperList = [0,1,2];
 var mixer = null;
@@ -178,6 +180,10 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 			mixer.forceRender();
 		}
 		refreshCustoms();
+	}
+	if(currentClass == 'goverment')
+	{
+		$('.law-wrap .right-wrap').css('display','block');
 	}
 	if(currentClass == 'transportCompany')
 	{
@@ -1005,12 +1011,10 @@ function pushGoverment(auctionList,playerInfo,admin,date)
 	});
 	$('.auction-wrap #closeAuction').on('click',function(){
 		$(this).parent().parent().fadeOut();
-	});
-	$('.ads-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
-	$('.order-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
-	$('.decree-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
-	$('.law-wrap #main-law-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
-	$('.law-wrap #other-law-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	});	
+	// $('.goverment-wrapper #main-law-text iframe').attr('src','http://server.sansararp.com/goverment/mainlaw');
+	// $('.goverment-wrapper #other-law-text iframe').attr('src','http://server.sansararp.com/goverment/otherlaw');
+	adminInit(admin);
 	let sendObj = {
 		name: playerInfo.FullName,
 		rank: playerInfo.Rank,
@@ -1037,3 +1041,11 @@ function pushGoverment(auctionList,playerInfo,admin,date)
 		}
 	});
 }	
+function adminInit(admin)
+{
+	$('.ads-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.order-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.decree-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.law-wrap #main-law-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.law-wrap #other-law-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+}
