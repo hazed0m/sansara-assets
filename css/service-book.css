@@ -153,13 +153,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color:#fff;
+    color:#222;
     font-weight:500;
-    text-shadow: 0 0 5px rgba(0,0,0,0.3);
+    /* text-shadow: 0 0 5px rgba(0,0,0,0.3); */
     margin-left:10px;
 }
 .container .page .page-item .text-block
 {
+    color:#222;
     width:450px;
     height:50px;
     background:#fff;
