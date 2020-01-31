@@ -26,7 +26,7 @@ function getEvidences()
     });
     return result;
 }
-function pushMedicalChoose(arr)
+function pushCarChoose(arr)
 {
     evidenceList = arr;
     $('.container .evidence-wrapper').empty();
