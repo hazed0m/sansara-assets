@@ -77,7 +77,7 @@ function pushCraft(inventory, needsArr, finalElem, elemMultiple)
   let newElem = JSON.parse(inventory);
   multiple = elemMultiple;
   $(newElem).each(function(index,item){
-    if(item.type == 'Resourses' || item.type == 'Recycled_Resources')
+    if(item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources')
     {
       let obj = 
       {
