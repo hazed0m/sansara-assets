@@ -11,7 +11,8 @@ var contactsList = 	[],
 	myInterval = null,
 	callInterval = null,
 	secondsCounter = 0,
-	minutesCounter = 0,	
+	minutesCounter = 0,
+	priorityIndex = 0,	
 	dialingTimeout = null,
 	callTimeout = null,
 	dialingPauseInterval = null,
@@ -55,7 +56,8 @@ function pushContactList(item,carslist)
 			let obj = {
 				'name': item.name,
 				'number': item.number,
-				'messageList': []
+				'messageList': [],
+				'priority':item.priority
 			};
 			contactsList.push(obj);
 		}
@@ -524,6 +526,10 @@ function carsNameRefresh()
 		}
 	});
 }
+function priorityRefresh()
+{
+	contactsList.sort((a, b) => a.priority > b.priority ? 1 : -1);
+}
 function pushContacts(currentWrapper)
 {
 	$(`.${currentWrapper}-wrapper .wrapper`).empty();	
@@ -557,7 +563,9 @@ function pushContacts(currentWrapper)
 		}	
 	}
 	else
-	{
+	{		
+		
+		$(`.${currentWrapper}-wrapper .wrapper`).empty();
 		$(contactsList).each(function(index,item){
 			let currentTemplate = '';
 			if(currentWrapper == 'contacts')
@@ -587,8 +595,9 @@ function pushContacts(currentWrapper)
 					{
 						currentNumber = item.name;
 					}
-					currentTemplate = `<div class="message-item" data-index="${index}">
+					currentTemplate = `<div class="message-item" data-index="${index}" data-number="${currentNumber}">
 										<div class="message-border">
+											${item.priority == priorityIndex+1 ? '<div class="last">*</div>' : ''}
 											<div class="number">${currentNumber}</div>
 											<div class="time">${item.messageList[item.messageList.length-1].time}</div>
 										</div>
@@ -600,7 +609,7 @@ function pushContacts(currentWrapper)
 				}
 				else
 				{
-					currentTemplate = `<div class="message-item" data-index="${index}">
+					currentTemplate = `<div class="message-item" data-index="${index}" data-number="${currentNumber}">
 										<div class="message-border">
 											<div class="number">${item.name}</div>
 											<div class="time"></div>
@@ -757,7 +766,7 @@ $('.contacts-wrapper .current-wrapper #save-but').on('click',function(){
 		currentMessage = 'Контакт успешно добавлен',	
 		currentIndex = $('.contacts-wrapper .current-wrapper .selected-contact').attr('data-index');
 	$('.contacts-wrapper .current-wrapper .contact-added').text(currentMessage);
-	if(currentNumber.length == 6 && !namePosibilityCheck(currentName,currentIndex) && !numberPosibilityCheck(currentNumber,currentIndex))
+	if(currentNumber.length == 6 && !namePosibilityCheck(currentName,currentIndex) && !numberPosibilityCheck(currentNumber,currentIndex) && currentName.length > 0)
 	{
 		addContact(currentName,currentNumber);
 		let currentElem = $(this);
@@ -817,8 +826,10 @@ function addContact(name,number)
 	let obj = {
 		'name': name,
 		'number': parseInt(number),
-		'messageList': []
+		'messageList': [],
+		'priority':priorityIndex
 	};
+	priorityIndex--;
 	contactsList.unshift(obj);
 	refreshContacts();
 }
@@ -916,11 +927,13 @@ function incomingMessage(number, status, time, message)
 	$(contactsList).each(function(index,item){
 		if(item.number == number)
 		{
+			item.priority = priorityIndex;
+			priorityIndex--;
 			item.messageList.push({	
-									status: status,
-									time: time,
-									message: message
-								});
+				status: status,
+				time: time,
+				message: message
+			});
 			if($('.messages-inner').hasClass('active') && $('.messages-inner .title').attr('data-index') == index)
 			{
 				refreshMessages();
@@ -934,18 +947,21 @@ function incomingMessage(number, status, time, message)
 	if(!checker)
 	{
 		contactsList.push({ 
-							name:'Неизвестный', 
-							number:number, 
-							messageList:
-							[{
-								status: status,
-								time: time, 
-								message: message
-							}]
-						});
-		pushContacts('messages');
+			name:'Неизвестный', 
+			number:number, 
+			messageList:
+			[{
+				status: status,
+				time: time, 
+				message: message
+			}],
+			priority:priorityIndex
+		});
+		priorityIndex--;
 		messageInnerScroll('wrapper');			
 	}	
+	priorityRefresh();
+	pushContacts('messages');
 };
 function checkSmile()
 {

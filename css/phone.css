@@ -1487,7 +1487,7 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	max-width: 55%;	
+	max-width: 75%;	
 	min-width: 100px;	
 	border-radius:20px;
 	min-height:27px;
@@ -1496,7 +1496,7 @@
 	align-items: center;
 	color: #000;
 	font-weight:400;
-	font-size:14px;
+	font-size:16px;
 	position: relative;
 	word-break: break-all;
 }
