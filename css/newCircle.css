@@ -78,6 +78,26 @@ body
     background-size: cover;
     background: url(../img/fractionCircle/ys.png) no-repeat;
 }  
+.container .info-circle
+{
+    width:272px;
+    height:272px;
+    border-radius:50%;
+    background:#4F5359;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color:#fff;
+    padding:5px 10px;
+    word-break: break-word;
+    z-index:999999;
+    font-size:20px;
+    text-align: center;
+}
 .container .wrapper .small-circle .inner .small-item.disabled
 {
     filter: gray; /* IE6-9 */

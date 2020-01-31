@@ -130,6 +130,15 @@ let player = [
         status: 'hide'
     }
 ];
+$('.container .wrapper .small-circle .inner .small-item.active').hover(function(){
+        $('.info-circle').text($(this).attr('data-translate')).css('display','flex');
+    },
+    function(){
+        $('.info-circle').css('display','none');
+});
+$('.container .info-circle').hover(function(){
+    $('.container .info-circle').css('display','flex');
+},function(){});
 function initPlayerCircle(takeHandcuff = 'true',takeBag = 'true',reanimation = 'true')
 {
     if(takeHandcuff == 'false')    

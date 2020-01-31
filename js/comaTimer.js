@@ -30,7 +30,6 @@ function runTimer(id)
     if(id == 'waitAmbulance')
     {
         $('.coma-wrapper, .counter-wrapper').fadeOut();
-        $('.counter-wrapper .number').attr('counter','wait');
         setTimeout(function(){
             $('.counter-wrapper .number').text(700);
             $('.text-wrapper, .counter-wrapper').fadeIn();

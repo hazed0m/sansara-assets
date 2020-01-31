@@ -24,7 +24,7 @@ function quantityProducts() {
 	        		}
 	        	});          
 	        });
-        $quantityNum.val(+$quantityNum.val() - 1);
+        $quantityNum.val($quantityNum.val() - 1);
         blockRefresh();    
         refreshFinalElem();
       }
@@ -43,7 +43,7 @@ function quantityProducts() {
 	        		}
 	        	}); 
 	        });
-	        $quantityNum.val(+$quantityNum.val() + 1); 
+	        $quantityNum.val($quantityNum.val() + 1); 
           blockRefresh();
 	        refreshFinalElem();	    
       }      
