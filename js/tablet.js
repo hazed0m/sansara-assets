@@ -962,10 +962,10 @@ function pushGoverment(auctionList,playerInfo,admin,date)
 					<div class="inform-block">
 						<div class="ident">#${item.ID}</div>
 						<div class="timer-wrap">
+							<div class="timer-text">Конец аукциона в</div>
 							<div class="timer-counter">
 								<span class="hours">${item.Time}</span>
 							</div>
-							<div class="timer-text">Осталось времени</div>
 						</div>
 						<div class="pay-block" id="seller">
 							<div class="pay-text">Продающий</div>

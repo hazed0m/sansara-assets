@@ -121,16 +121,20 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    width: 50%;
+    width: 66%;
     font-size: 18px;
     position: absolute;
-    bottom:56px;
+    bottom:20px;
     left:31%;
 }
 .user-wrapper div > span, .char-wrapper div > span
 {
-    font-size:1.2em;
+    font-size:1em;
     font-weight: 500;
+}
+.char-wrapper > div
+{
+    min-height: 40px;
 }
 .mgt30
 {
@@ -145,7 +149,7 @@ body {
     font-size: 14.55px;
     font-weight: 500;
     text-align: center;
-    margin-bottom:16px;
+    margin-bottom:4px;
 }
 .pass-age, .pass-phone
 {    

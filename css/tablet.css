@@ -921,7 +921,6 @@
 {
 	width:100%;
 	height:100%;
-	padding:0 15px;	
 }
 .goverment-wrapper .auction-wrap .current-wrap .close-but
 {
@@ -945,6 +944,13 @@
 	display: flex;
 	flex-direction: column;	
 	position: relative;
+	margin-bottom:5px;
+}
+.goverment-wrapper .auction-wrap .point-items-wrapper
+{
+	overflow-y: scroll;
+	max-height:380px;
+	padding:0 10px 0 15px;	
 }
 .goverment-wrapper .auction-wrap .clients-block
 {
@@ -1829,14 +1835,17 @@ input::-webkit-inner-spin-button {
 .cars-wrapper .inner-wrapper::-webkit-scrollbar, 
 .cars-wrapper .current-car-wrapper::-webkit-scrollbar,
 .customs-wrapper .transport-wrapper::-webkit-scrollbar,
-.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar
+.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar,
+.goverment-wrapper .point-items-wrapper::-webkit-scrollbar
 {
     width: 8px;
 }
 .cars-wrapper .inner-wrapper::-webkit-scrollbar-track, 
 .cars-wrapper .current-car-wrapper::-webkit-scrollbar-track,
 .customs-wrapper .transport-wrapper::-webkit-scrollbar-track,
-.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar-track
+.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar-track,
+.goverment-wrapper .point-items-wrapper::-webkit-scrollbar-track
+
 {
     background: #ffffff;
     border-radius: 10px;  
@@ -1855,9 +1864,13 @@ input::-webkit-inner-spin-button {
     border-radius: 10px;  
 }
 .customs-wrapper .transport-wrapper::-webkit-scrollbar-thumb,
-.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar-thumb 
+.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar-thumb\
 {
 	background:#d1d1d1;
+}
+.goverment-wrapper .point-items-wrapper::-webkit-scrollbar-thumb
+{
+	background:#ed1c24;
 }
 .ads-wrapper .inner-wrap .currentads-inner::-webkit-scrollbar, .ads-wrapper .inner-wrap .socialads-inner::-webkit-scrollbar{
 	width:4px;

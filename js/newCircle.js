@@ -212,7 +212,12 @@ $('#giveMoney').on('click',function(){
 				$(this).attr('done','done');
 				console.log($('.ok-button').attr('action'), col);
 				mp.trigger($('.ok-button').attr('action'), parseInt(col));
-			}
+            }
+            else
+            {
+                console.log('inputObuz');
+                mp.trigger('inputObuz');
+            }
 		}
 	});
 	$('.cancel-button').on('click',function(){

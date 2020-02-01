@@ -431,9 +431,20 @@ function inventoryInitialize()
 						if($(this).attr('done') == 'undone')
 						{
 							col = $(this).parent().parent().find('input').val();
-							$('.col-wrapper').fadeOut();
-							$(this).attr('done','done');
-							doneAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
+							let min = +$(this).parent().parent().find('input').attr('min'),
+								max = +$(this).parent().parent().find('input').attr('max');		
+							console.log('ok-button',min,max);	
+							if(col >= min && col <= max)
+							{
+								$('.col-wrapper').fadeOut();
+								$(this).attr('done','done');
+								doneAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
+							}
+							else
+							{
+								console.log('inputObuz');
+								mp.trigger('inputObuz');
+							}
 						}
 					});
 					$('.cancel-button').on('click',function(){
