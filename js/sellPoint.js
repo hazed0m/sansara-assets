@@ -33,7 +33,7 @@ function businessRefresh()
               <div class="min-title">MIN</div>
               <div class="min-numb">0</div>
             </div>
-            <input class="quantity" type="number" min="0" max="${item.count}" placeholder="0">
+            <input class="quantity" type="number" min="0" max="${item.count > 0 ? item.count : 0}" placeholder="0">
             <div class="max">
               <div class="max-title">MAX</div>
               <div class="max-numb">${item.count}</div>
@@ -104,12 +104,20 @@ function businessInitialize()
     {
       iterator = true;  
       $('.input-wrapper').each(function(index,item){
-          let currentPrice = $(item).attr('data-price');
-          let currentCount = $(item).find('.quantity').val();
-          genSum += currentPrice * currentCount;
-          $(sellPointList)[index].count -= currentCount;
+          let currentPrice = $(item).attr('data-price'),
+              currentCount = parseInt($(item).find('.quantity').val()),
+              currentMax = $(item).find('.quantity').attr('max');
+          console.log(currentMax,currentCount);
+          if(currentCount <= currentMax)
+          {
+            console.log(currentMax,currentCount,currentCount > currentMax);
+              genSum += currentPrice * currentCount;
+              $(sellPointList)[index].count -= currentCount;
+          }
       });
       businessRefresh();
+      console.log('sellPointItems',genSum,JSON.stringify(sellPointList));
+
       mp.trigger('sellPointItems',genSum,JSON.stringify(sellPointList));
     }    
   }); 
@@ -121,7 +129,7 @@ function checkInputs()
 {
   let checker = false;
   $('input.quantity').each(function(index,item){
-      if(parseInt($(item).val()) > 0)
+      if(parseInt($(item).val()) > 0 && parseInt($(item).val()) <= parseInt($(item).attr('max')))
       {
         checker = true;
       }

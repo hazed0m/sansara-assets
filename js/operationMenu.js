@@ -13,7 +13,8 @@ let operationRooms = {
             'эсмолол',
             'фениндион',
             'фосфатидил',
-            'левамизол'
+            'левамизол',
+            'цетиризин'
         ]
     },
     'Операционная':{
@@ -76,7 +77,8 @@ let operationRooms = {
         'операция на легкие': null,
         'операция на сердце': null,
         'операция на почку': null,
-        'трепанация черепа': null        
+        'трепанация черепа': null,
+        'цетиризин' : null        
     },
     'Перевязочная':{
         'гипс':[            
@@ -186,7 +188,8 @@ let operationRooms = {
             'голова',
             'ключица',
             'таз'
-        ]
+        ],
+        'цетиризин' : null    
     },
     'Приемная':
     {
@@ -246,7 +249,8 @@ let operationRooms = {
         'фосфатидил':null,
         'левамизол':null,
         'метадон':null,
-        'клофелин':null        
+        'клофелин':null,
+        'цетиризин':null            
     },
     'Процедурная':
     {
@@ -259,7 +263,8 @@ let operationRooms = {
         'физиотерапия':[
             'внутримышечно',
             'торс'
-        ] 
+        ],
+        'цетиризин' : null    
     }
 };
 function pushRoom(name)
@@ -313,6 +318,7 @@ function refreshList()
     $('.container .wrapper .list-wrapper .list-elem, .container .wrapper .list-wrapper .list-title.clickable').on('click',function(){
         let elem = $(this).text(),
             title = $(this).attr('data-name');
+        console.log(elem,title);
         if($(this).hasClass('clickable'))
         {
             console.log('chooseOperation','',elem);

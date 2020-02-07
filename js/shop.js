@@ -346,15 +346,16 @@ function shopListInitialize()
 			}
 			else
 			{
-				if(currentElem.type == 'Ammo')
+				let currentIndex = $(this).parent().parent().attr('data-index');
+				if(basketList[currentIndex].type == 'Ammo')
 				{
-					if(currentElem.max != 0)
+					if(basketList[currentIndex].max != basketList[currentIndex].count && basketList[currentIndex].max != 0)
 					{
-						currentElem.count = 10;
+						basketList[currentIndex].count += 10;
 					}
-					else
+					if(basketList[currentIndex].max == 0)
 					{
-						currentElem.count = 0;
+						basketList[currentIndex].count = 0;
 					}
 				}
 				else

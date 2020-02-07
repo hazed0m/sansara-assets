@@ -141,6 +141,7 @@ function checkAction(action, index, id, currentCount)
 		{			
 			actionTimeOut();
 		}
+		console.log(action, index, id, currentCount); 
 		mp.trigger(action, index, id, currentCount); 
 	}
 };
@@ -1093,6 +1094,7 @@ function refreshInventory(currentIterator)
 			{
 				personId = '';
 				currentImg = item.type;
+				itemImg = `<img src="images/${currentIter}/${currentImg}.png" class="itemImg dropdown-toggle">`;
 			}			
 			itemTemplate = 
 			`<li ${currentIterator}-id="${index}" ${personId}>
