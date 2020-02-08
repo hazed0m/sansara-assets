@@ -750,7 +750,7 @@
 	-webkit-backface-visibility: hidden;
     -webkit-transform-style: preserve-3d;
 }
-.goverment-wrapper .law-wrap .but-block::after
+/* .goverment-wrapper .law-wrap .but-block::after
 {
 	content:'';
 	position: absolute;
@@ -760,7 +760,7 @@
 	border-bottom:3px solid #acacac;
 	border-radius: 10px;
 	width:70%;
-}
+} */
 .goverment-wrapper .law-wrap
 {
 	display: none;

@@ -112,46 +112,46 @@ function pushCurrentSpeedCount(speed,speedDuration = 50,angleDuration)
 }
 function engineError(status)
 {
-    if(status >= 0 && status < 25)
+    if(status >= 0 && status < 20)
     {
         $('.engine img').attr('src',`img/speedmeter/engine100.png`);
     }
-    if(status >= 25 && status < 50)
-    {
-        $('.engine img').attr('src',`img/speedmeter/engine75.png`);
-    }
-    if(status >= 50 && status < 75)
-    {
-        $('.engine img').attr('src',`img/speedmeter/engine50.png`);
-    }
-    if(status >= 75 && status < 96)
-    {
-        $('.engine img').attr('src',`img/speedmeter/engine25.png`);
-    }
-    if(status >= 96 && status <= 100)
+    // if(status >= 25 && status < 50)
+    // {
+    //     $('.engine img').attr('src',`img/speedmeter/engine75.png`);
+    // }
+    // if(status >= 50 && status < 75)
+    // {
+    //     $('.engine img').attr('src',`img/speedmeter/engine50.png`);
+    // }
+    // if(status >= 75 && status < 96)
+    // {
+    //     $('.engine img').attr('src',`img/speedmeter/engine25.png`);
+    // }
+    if(status >= 20 && status <= 100)
     {
         $('.engine img').attr('src',`img/speedmeter/engine0.png`);
     }
 }
 function carbodyError(status)
 {
-    if(status >= 0 && status < 25)
+    if(status >= 0 && status < 20)
     {
         $('.body img').attr('src',`img/speedmeter/body100.png`);
     }
-    if(status >= 25 && status < 50)
-    {
-        $('.body img').attr('src',`img/speedmeter/body75.png`);
-    }
-    if(status >= 50 && status < 75)
-    {
-        $('.body img').attr('src',`img/speedmeter/body50.png`);
-    }
-    if(status >= 75 && status < 96)
-    {
-        $('.body img').attr('src',`img/speedmeter/body25.png`);
-    }
-    if(status >= 96 && status <= 100)
+    // if(status >= 25 && status < 50)
+    // {
+    //     $('.body img').attr('src',`img/speedmeter/body75.png`);
+    // }
+    // if(status >= 50 && status < 75)
+    // {
+    //     $('.body img').attr('src',`img/speedmeter/body50.png`);
+    // }
+    // if(status >= 75 && status < 96)
+    // {
+    //     $('.body img').attr('src',`img/speedmeter/body25.png`);
+    // }
+    if(status >= 20 && status <= 100)
     {
         $('.body img').attr('src',`img/speedmeter/body0.png`);
     }

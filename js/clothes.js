@@ -317,6 +317,7 @@ $(function() {
                 currentRangeRotate = 1;
                 break;
         }
+        console.log("cameraClothes", id, val);
         mp.trigger("cameraClothes", id, val);
     });
     

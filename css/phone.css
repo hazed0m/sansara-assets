@@ -1498,7 +1498,7 @@
 	font-weight:400;
 	font-size:16px;
 	position: relative;
-	word-break: break-all;
+	word-break: break-word;
 }
 .messages-inner .wrapper #outcoming, .messages-inner .wrapper #incoming
 {

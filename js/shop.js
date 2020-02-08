@@ -346,24 +346,28 @@ function shopListInitialize()
 			}
 			else
 			{
-				let currentIndex = $(this).parent().parent().attr('data-index');
-				if(basketList[currentIndex].type == 'Ammo')
-				{
-					if(basketList[currentIndex].max != basketList[currentIndex].count && basketList[currentIndex].max != 0)
+				console.log(currentIndex);	
+				if(currentElem.type == 'Ammo')
+				{		
+					currentElem.count = 0;
+					if(currentElem.max != currentElem.count && currentElem.max != 0)
 					{
-						basketList[currentIndex].count += 10;
+						currentElem.count += 10;
 					}
-					if(basketList[currentIndex].max == 0)
+					if(currentElem.max == 0)
 					{
-						basketList[currentIndex].count = 0;
+						currentElem.count = 0;
 					}
 				}
 				else
 				{
 					currentElem.count = 1;
 				}			
+			}					
+			if(checker == -1)
+			{
 				basketList.push(currentElem);
-			}		
+			}
 			basketListRefresh();		
 		}
 	});
@@ -406,7 +410,6 @@ function basketListRefresh()
 					<div class="icon" ${legalId}><img src="images/inventory/items/${productTranslate(imgName)}.png" alt=""></div>
 					<div class="title-wrap">
 						<div class="title-item">${item.name}</div>
-						<div class="class-item">${translateType(item.type)}</div>
 					</div>
 					<div class="col-wrap">
 						<div class="minus">-</div>
@@ -424,7 +427,6 @@ function basketListRefresh()
 					<div class="icon" ${legalId}><img src="images/${path}/${currentImg}.png" alt=""></div>
 					<div class="title-wrap">
 						<div class="title-item">${item.name}</div>
-						<div class="class-item">${translateType(item.type)}</div>
 					</div>
 					<div class="col-wrap">
 						<div class="minus">-</div>

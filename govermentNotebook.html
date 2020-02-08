@@ -19,6 +19,67 @@
                 </div> 
             </div>
             <div class="main-wrapper active">
+                <div class="tax-wrap">
+                    <div class="title">
+                        Налоги
+                    </div>
+                    <div class="tax-table">
+                        <div class="title-table">
+                            <div class="title-item">Наименование</div>
+                            <div class="title-item">За неделю</div>
+                            <div class="title-item">Итого</div>
+                        </div>
+                        <div class="list-table">
+                            <div class="list-item" id="realty">
+                                <div class="list-title">Недвижимость</div>
+                                <div class="list-week"><span></span>$</div>
+                                <div class="list-all"><span></span>$</div>
+                            </div>
+                            <div class="list-item" id="transport">
+                                <div class="list-title">Транспорт</div>
+                                <div class="list-week"><span></span>$</div>
+                                <div class="list-all"><span></span>$</div>
+                            </div>
+                            <div class="list-item" id="business">
+                                <div class="list-title">Бизнес</div>
+                                <div class="list-week"><span></span>$</div>
+                                <div class="list-all"><span></span>$</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sms-push">
+                    <div class="title">СМС рассылка</div>
+                    <textarea name="" id="smsGoverment"></textarea>   
+                    <div class="button disabled" id="sendSms">Отправить</div>
+                </div>
+                <div class="goverment-info">
+                    <div class="info-general" id="pd">
+                        <span class="info-title">Шеф ПД</span>
+                        <span class="info-name">Алекс Вучинич</span>
+                    </div>
+                    <div class="info-general" id="mc">
+                        <span class="info-title">Глава МЗ</span>
+                        <span class="info-name">Роман Информер</span>
+                    </div>  
+                    <div class="duty-info">
+                        <div class="title-item">
+                            <div class="title" style="width: 75px;"></div>
+                            <div class="title">На службе</div>
+                            <div class="title">Всего</div>
+                        </div>
+                        <div class="title-item" id="pd">
+                            <div class="title">Штат ПД</div>
+                            <div class="on-duty">22</div>
+                            <div class="all-duty">99</div>
+                        </div>
+                        <div class="title-item" id="mc">
+                            <div class="title">Штат МЗ</div>
+                            <div class="on-duty">22</div>
+                            <div class="all-duty">99</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="recruting-menu">
                     <div class="recruting-title">
                         Принять на работу
@@ -37,8 +98,56 @@
 
                 </div>
             </div> -->
+            <div class="search-wrapper">
+                <div class="info-wrapper">
+                    <div class="title">Поиск</div>
+                    <div class="info-item-wrap">
+                        <div class="dropdown-button" id="transport">
+                            <span>Транспорт</span>     
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                        <div class="dropdown-list">
+                            <div class="dropdown-item" id="transport">Транспорт</div>
+                            <div class="dropdown-item" id="realty">Недвижимость</div>
+                            <div class="dropdown-item" id="business">Бизнес</div>
+                            <div class="dropdown-item" id="trans-company">Транс. компания</div>
+                            <div class="dropdown-item" id="customs">Автомастерская</div>
+                        </div>
+                    </div>
+                    <div class="info-item-wrap">
+                        <div class="mask-list">
+                            <div class="mask-item active" id="transport">
+                                <input type="number" placeholder="Номер авто">
+                            </div>
+                            <div class="mask-item" id="realty">
+                                <span>д.</span>
+                                <input type="number" placeholder="">
+                                <span>кв.</span>
+                                <input type="number" placeholder="">
+                            </div>
+                            <div class="mask-item" id="business">
+                                <input type="text" placeholder="Название организации">
+                            </div>
+                            <div class="mask-item" id="trans-company">
+                                <input type="text" placeholder="Название организации">
+                            </div>
+                            <div class="mask-item" id="customs">
+                                <input type="text" placeholder="Название организации">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="button disabled" id="searchPerson">Найти</div>
+                </div>
+                <div class="search-done">
+                    <div class="close-but"><i class="fas fa-times"></i></div>
+                    <div class="title">Результат поиска</div>
+                    <div class="screen">
+
+                    </div>
+                </div>
+            </div>
             <div class="tax-wrapper">
-                <div class="tax-wrap">
+                <div class="tax-wrap" style="display:none;">
                     <div class="title">
                         Налоги
                     </div>
@@ -70,13 +179,24 @@
                 <div class="deptors-wrap">
                     <div class="title">Должники</div>
                     <div class="title-table">
-                        <div class="title-item">
-                            Имя
-                        </div>
-                        <div class="title-items-list">
-                            <div class="title-list-item">Транспорт</div>
-                            <div class="title-list-item">Недвиж.</div>
-                            <div class="title-list-item">Бизнес</div>
+                        <div class="title-elem">
+                            <div class="title-item">
+                                Имя
+                            </div>
+                            <div class="title-items-list">
+                                <div class="title-list-item">Транспорт</div>
+                                <div class="title-list-item">Недвиж.</div>
+                                <div class="title-list-item">Бизнес</div>
+                            </div></div>
+                        <div class="title-elem">
+                            <div class="title-items-list">                                
+                                <div class="title-item">
+                                    Имя
+                                </div>
+                                <div class="title-list-item">Транспорт</div>
+                                <div class="title-list-item">Недвиж.</div>
+                                <div class="title-list-item">Бизнес</div>
+                            </div>
                         </div>
                     </div>
                     <div class="deptors-list" data-page="1"></div>
@@ -172,6 +292,7 @@
             <div class="police-menu">
                 <div class="menu-item active" id="main-wrapper">Главная</div>
                 <div class="menu-item" id="tax-wrapper">Налоги</div>
+                <div class="menu-item" id="search-wrapper">Поиск</div>
                 <div class="menu-item" id="employee-wrapper">Сотрудники</div>
                 <div class="menu-item" id="deals-wrapper">Сделки</div>
                 <div class="menu-item" id="charter-wrapper">Устав</div>

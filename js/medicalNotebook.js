@@ -79,7 +79,7 @@ function refreshFrames()
 }
 let employeeOnline = JSON.stringify([
     {"FullName":'Дмитрий Иванов',"Online":true},
-    {"FullName":'Adsad',"Online":false}
+    {"FullName":'Лейсан Кастро',"Online":true}
 ]);
 function pushNotebook(employeeOnline,admin = false,date)
 {

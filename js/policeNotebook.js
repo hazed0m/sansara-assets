@@ -691,7 +691,7 @@ function initFiler(elem,search = false)
                  $('.container .things-wrapper .search-mask').fadeIn();
             }
         }
-        if(item.ClosedFull == true && item.InProgress == false || item.ClosedFull == true && item.InProgress == true)
+        if(item.ClosedFull == true && item.InProgress == false || item.ClosedFull == false && item.InProgress == false)
         {
             let policeMembers  = ``,
             itemText = item.Text.split('@'),
@@ -887,6 +887,7 @@ function appendThings(elem)
     $('.container .things-wrapper #more-things').fadeIn();
     let newList = JSON.parse(elem);
     filerList = [...filerList,...newList];
+    $('.container .things-wrapper .things-container').empty();
     initFiler(newList);
 }
 function appendArchive(elem)
@@ -895,6 +896,7 @@ function appendArchive(elem)
     $('.container .archive-wrapper #more-things').fadeIn();
     let newList = JSON.parse(elem);
     archiveList = [...archiveList,...newList];
+    $('.container .archive-wrapper .archive-container').empty();
     initFiler(newList);
 }
 function searchThing(elem)

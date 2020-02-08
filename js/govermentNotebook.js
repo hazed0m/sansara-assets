@@ -81,10 +81,17 @@ function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = 
     {
         if(admin == 'admin')
         {
-            $('.container .main-wrapper .recruting-menu').fadeIn();
+            $('.container .main-wrapper .recruting-menu, .container .main-wrapper .sms-push').fadeIn();
         }
-        $('.container .main-wrapper .recruting-menu input').keyup(function(){
-            this.value = this.value.replace(/[-\.;":',/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
+        $('.container .main-wrapper .recruting-menu input, .container .main-wrapper .sms-push textarea').keyup(function(){
+            if(this.id != 'smsGoverment')
+            {
+                this.value = this.value.replace(/[-\.;":`',/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
+            }
+            if(this.id == 'smsGoverment')
+            {
+                this.value = this.value.replace(/[-\.;":'`,/<>@?!№%*&^#$()_+=|{}]/g, '');
+            }
             if($(this).val().length > 0)
             {
                 $(this).next().removeClass('disabled');
@@ -92,6 +99,16 @@ function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = 
             else
             {
                 $(this).next().addClass('disabled');
+            }
+        });
+        $('.container .main-wrapper .sms-push #sendSms').on('click',function(index,item){
+            let text = $('.container .main-wrapper .sms-push textarea').val();
+            if(text.length != 0)
+            {
+                $(this).addClass('disabled');
+                $('.container .main-wrapper .sms-push textarea').val('');
+                console.log(text);
+                mp.trigger('sendSmsGov',text);
             }
         });
         let adminStatus = { Admin: admin };
@@ -132,13 +149,27 @@ let taxesList = JSON.stringify({
     TransportWeek:999999,
     TransportAll:99235252525325,
     BusinessWeek:235252532,
-    BusinessAll:50233055030
+    BusinessAll:50233055030,
+    GeneralPD:'Человек PD',
+    GeneralMC:'Человек MC',
+    OnDutyPD: 25,
+    OnDutyMC:22,
+    AllPD:99,
+    AllMC:300
 });
 function pushTax(elem)
 {
     let element = JSON.parse(elem);
     $('#realty .list-week span').text(element.RealtyWeek);
     $('#realty .list-all span').text(element.RealtyAll);
+
+    $('.info-general#pd .info-name').text(element.GeneralPD);
+    $('.info-general#mc .info-name').text(element.GeneralMC);
+
+    $('.title-item#pd .on-duty').text(element.OnDutyPD);
+    $('.title-item#mc .on-duty').text(element.OnDutyMC);
+    $('.title-item#pd .all-duty').text(element.AllPD);
+    $('.title-item#mc .all-duty').text(element.AllMC);
 
     $('#transport .list-week span').text(element.TransportWeek);
     $('#transport .list-all span').text(element.TransportAll);
@@ -147,6 +178,216 @@ function pushTax(elem)
     $('#business .list-all span').text(element.BusinessAll);
 }
 let deptorsList = JSON.stringify([
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
+    {
+        FullName:'Джонни Мнемоник',
+        Transport:{
+            count:2235252,
+            status:true
+        },
+        Realty:{
+            count:2235252,
+            status:false
+        },
+        Business:{
+            count:2235252,
+            status:false
+        }
+    },
     {
         FullName:'Джонни Мнемоник',
         Transport:{
@@ -370,7 +611,7 @@ function pushDeptors(elem,count)
 function dealsInit()
 {
 
-    $('.container .deals-wrapper .info-item-wrap .dropdown-button').on('click',function(){
+    $('.container .deals-wrapper .info-item-wrap .dropdown-button, .container .search-wrapper .info-item-wrap .dropdown-button').on('click',function(){
         if(!$(this).hasClass('opened'))
         {
             $(this).next().slideDown();
@@ -422,6 +663,7 @@ function dealsInit()
                 parseInt($('.mask-item.active input:eq(0)').val()), 
                 parseInt($('.mask-item.active input:eq(1)').val())  
             ]
+            console.log('realty',dealInfo);
         }
         // console.log(dealNumber,buyerInfo,sellerInfo,dealType,dealInfo,dealSum);
         if(dealNumber.length != 0 && buyerInfo.length != 0 && sellerInfo.length != 0 && dealSum.length != 0)
@@ -430,8 +672,9 @@ function dealsInit()
             {
                 $('.container .deals-wrapper .button#doneDeal').removeClass('disabled');
             }
-            else if(dealType == 'realty' && dealInfo[0].length != 0 && dealInfo[1].length)
+            else if(dealType == 'realty' && dealInfo[0].length != 0 && dealInfo[1].length != 0)
             {
+                console.log(dealInfo);
                 $('.container .deals-wrapper .button#doneDeal').removeClass('disabled');
             }
             else
@@ -444,6 +687,75 @@ function dealsInit()
             $('.container .deals-wrapper .button#doneDeal').addClass('disabled');
         }
     });
+    //SEARCH WRAPPER
+    $('.container .search-wrapper .dropdown-list .dropdown-item').on('click',function(){
+        $('.container .search-wrapper .info-item-wrap .dropdown-button').next().slideUp();
+        $('.container .search-wrapper .info-item-wrap .dropdown-button').find('svg').css({
+            'transform':'rotate(0deg)'
+        });
+        $('.container .search-wrapper .info-item-wrap .dropdown-button').removeClass('opened').attr('id',this.id);
+        $('.container .search-wrapper .info-item-wrap .dropdown-button span').text($(this).text());
+        $(`.mask-list .mask-item.active`).removeClass('active');        
+        $(`.mask-list .mask-item#${this.id}`).addClass('active');
+        $('.mask-list .mask-item input').val('');
+        $('.container .search-wrapper .button#searchPerson').addClass('disabled');
+    });
+    $('.search-wrapper input').keyup(function(){
+        if($(this).attr('type') == 'text')
+        {
+            console.log($(this).attr('type'));
+            this.value = this.value.replace(/[-\.;":'`,/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
+        }
+        let dealType = $('.mask-item.active')[0].id,
+            dealInfo = '';
+        console.log(dealType,dealInfo);
+        if(dealType != 'realty')
+        {
+            dealInfo = $('.mask-item.active input').val();    
+        }
+        else
+        {
+            dealInfo = [
+                parseInt($('.mask-item.active input:eq(0)').val()), 
+                parseInt($('.mask-item.active input:eq(1)').val())  
+            ]
+            console.log('realty',dealInfo);
+        }
+        if(dealType != 'realty' && dealInfo.length != 0)
+        {
+            $('.container .search-wrapper .button#searchPerson').removeClass('disabled');
+        }
+        else if(dealType == 'realty' && !Number.isNaN(dealInfo[0]) && !Number.isNaN(dealInfo[1]))
+        {
+            console.log(dealInfo);
+            $('.container .search-wrapper .button#searchPerson').removeClass('disabled');
+        }
+        else
+        {
+            $('.container .search-wrapper .button#searchPerson').addClass('disabled');
+        }
+    });
+    $('.container .search-wrapper .button#searchPerson').on('click',function(){
+        if(!$(this).hasClass('disabled'))
+        {
+            let dealType = $('.mask-item.active')[0].id,
+                dealInfo = '';
+            if(dealType != 'realty')
+            {
+                dealInfo = $('.mask-item.active input').val();    
+            }
+            else
+            {
+                dealInfo = [
+                    $('.mask-item.active input:eq(0)').val(), 
+                    $('.mask-item.active input:eq(1)').val()  
+                ]
+            }
+            console.log(dealType,dealInfo);
+            mp.trigger('govermentSearch',dealType,dealInfo);
+        }
+    });
+    //SEARCH WRAPPER
     $('.container .deals-wrapper .button#doneDeal').on('click',function(){
         if(!$(this).hasClass('disabled'))
         {
@@ -469,6 +781,18 @@ function dealsInit()
         }
     });
 }
+function searchInit(str)
+{
+    let searchData = str.split('@');
+    $(searchData).each(function(index,item){
+        $('.container .search-wrapper .search-done .screen').append(`<p>${item}</p>`);
+    });
+    $('.container .search-wrapper .search-done').slideDown();
+    $('.container .search-done .close-but').on('click',function(){
+        $('.container .search-wrapper .search-done').slideUp();
+    });
+}
+
 function personInit(element)
 {
     let item = JSON.parse(element);
