@@ -236,15 +236,15 @@
 }
 .container .tax-wrap
 {
-    width:492px;
-    height:166px;
+    width:430px;
+    /* height:166px; */
     background:#ffffff;
     font-family: 'Montserrat';
     padding:13px 0;
     border:1px solid #0f0f0f;
     /* border-radius:30px; */
     position: absolute;
-    top: 13%;
+    top: 17%;
     left: 18%;
 }
 .container .tax-wrapper .deptors-wrap
@@ -257,6 +257,57 @@
     padding:13px 0;
     border-radius:30px;
     overflow: hidden;
+}
+.container .tax-wrap .items-list
+{
+    display: flex;
+    flex-direction: column;
+}
+.container .tax-wrap .items-list .list-item,
+.container .tax-wrap .input-item
+{
+    display: flex;
+    justify-content: space-between;
+    padding:5px 10px;
+}
+.container .tax-wrap .input-item,
+.container .tax-wrap .arrows-wrap,
+.container .tax-wrap .number-wrap
+{
+    display: flex;
+}
+.container .tax-wrap .arrows-wrap > div
+{
+    border:1px solid #000;
+    width:22px;
+    height:22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:0 4px;
+    cursor: pointer;
+}
+.container .tax-wrap .arrows-wrap
+{
+    padding-left:10px;
+}
+.container .tax-wrap .input-item .count
+{
+    max-width:80px;
+    border:none;
+    border-bottom:1px solid #000;
+    font-size:17px;
+    max-height:20px;
+    margin:auto;
+    text-align: center;
+}
+.container .tax-wrap .arrows-wrap
+{
+    margin:auto;
+}
+.container .tax-wrap .input-item .title
+{
+    text-align: left;
 }
 .container .tax-wrapper,
 .container .deals-wrapper,
@@ -710,8 +761,8 @@
 .container .main-wrapper .goverment-info
 {
     position: absolute;
-    top:13%;
-    right:20%;
+    top:50%;
+    left:22.5%;
     min-width: 300px;
 	background:#fff;
     padding:10px 20px;
@@ -754,8 +805,8 @@
 .container .main-wrapper .sms-push
 {
     position: absolute;
-    bottom:13%;
-    left:18%;
+    top:35%;
+    left:63%;
     width:492px;
     background:#fff;
     border:1px solid #000;
@@ -775,7 +826,7 @@
 {
     position: absolute;
     top:75%;
-    left:84%;
+    left:81%;
     transform:translate(-50%,-50%);
     width:400px;
     /* height:200px; */
@@ -828,7 +879,7 @@
     width:100%;
     text-align: center;
     border:none;
-    border-bottom:2px solid #000;
+    border-bottom:1px solid #000;
 }
 .container .main-wrapper .button
 {

@@ -1094,7 +1094,6 @@ function refreshInventory(currentIterator)
 			{
 				personId = '';
 				currentImg = item.type;
-				itemImg = `<img src="images/${currentIter}/${currentImg}.png" class="itemImg dropdown-toggle">`;
 			}			
 			itemTemplate = 
 			`<li ${currentIterator}-id="${index}" ${personId}>

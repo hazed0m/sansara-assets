@@ -21,6 +21,32 @@
 {
     margin-right:10px;
 }
+.container .pagination-wrap
+{
+    position: absolute;
+    bottom:2%;
+    left:50%;
+    transform:translate(-50%,0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:7px 0;
+}
+.container .pagination-wrap > div
+{
+    margin:0 10px;
+    font-size:20px;
+    font-weight: 500;
+}
+.container .pagination-wrap .but
+{
+    cursor: pointer;
+    font-size:14px;
+}
+.container .pagination-wrap .but.disabled
+{
+    opacity: 0.2;
+}
 .searchable:before
 {
     content:'Результат поиска';

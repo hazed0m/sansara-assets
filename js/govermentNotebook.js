@@ -144,15 +144,15 @@ function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = 
     dealsInit();
 }
 let taxesList = JSON.stringify({
-    RealtyWeek:10000,
-    RealtyAll:1000000,
-    TransportWeek:999999,
-    TransportAll:99235252525325,
-    BusinessWeek:235252532,
-    BusinessAll:50233055030,
+    Treasury:10000,
+    TaxWeek:999999,
+    fineWeek:235252532,
+    TaxBusiness:25,
+    TaxTC:25,
+    TaxRealty:25,
     GeneralPD:'Человек PD',
     GeneralMC:'Человек MC',
-    OnDutyPD: 25,
+    OnDutyPD:25,
     OnDutyMC:22,
     AllPD:99,
     AllMC:300
@@ -160,22 +160,58 @@ let taxesList = JSON.stringify({
 function pushTax(elem)
 {
     let element = JSON.parse(elem);
-    $('#realty .list-week span').text(element.RealtyWeek);
-    $('#realty .list-all span').text(element.RealtyAll);
+        
+    $('.items-list #treasury .data span').text(element.Treasury);
+    $('.items-list #taxWeek .data span').text(element.TaxWeek);
+    $('.items-list #fineWeek .data span').text(element.TaxWeek);
+
+    $('.items-list #TaxBusiness .count').text(element.TaxBusiness);
+    $('.items-list #TaxTC .count').text(element.TaxTC);
+    $('.items-list #TaxRealty .count').text(element.TaxRealty);
+
+    $('.items-list #treasury .data span').text(element.Treasury);
+    $('.items-list #taxWeek .data span').text(element.TaxWeek);
+    $('.items-list #fineWeek .data span').text(element.TaxWeek);
 
     $('.info-general#pd .info-name').text(element.GeneralPD);
     $('.info-general#mc .info-name').text(element.GeneralMC);
 
     $('.title-item#pd .on-duty').text(element.OnDutyPD);
     $('.title-item#mc .on-duty').text(element.OnDutyMC);
+
     $('.title-item#pd .all-duty').text(element.AllPD);
     $('.title-item#mc .all-duty').text(element.AllMC);
 
-    $('#transport .list-week span').text(element.TransportWeek);
-    $('#transport .list-all span').text(element.TransportAll);
+    $('.container .input-item .arrows-wrap .but').on('click',function(){
+        let id = this.id,
+            value = parseInt($(this).parent().parent().find('.count').text());
+        console.log(id,value);
+        if(id == 'minus')
+        {
+            if(value <= 1000)
+            {
+                value = 0;
+            }
+            else
+            {
+                value -= 1000;
+            }
+        }
+        if(id == 'plus')
+        {
+            value += 1000;
+        }        
+        $(this).parent().parent().find('.count').text(value);
+        mp.trigger('TaxArrows',id,value);
+    });
+    // $('#realty .list-week span').text(element.RealtyWeek);
+    // $('#realty .list-all span').text(element.RealtyAll);
 
-    $('#business .list-week span').text(element.BusinessWeek);
-    $('#business .list-all span').text(element.BusinessAll);
+    // $('#transport .list-week span').text(element.TransportWeek);
+    // $('#transport .list-all span').text(element.TransportAll);
+
+    // $('#business .list-week span').text(element.BusinessWeek);
+    // $('#business .list-all span').text(element.BusinessAll);
 }
 let deptorsList = JSON.stringify([
     {
