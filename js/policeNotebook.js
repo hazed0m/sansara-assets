@@ -415,7 +415,7 @@ let employeeOnline = JSON.stringify([
     {"FullName": 'Дмитрий Иванов',"Online":false},
     {"FullName":'Adsad',"Online":false}
 ]);
-function pushNotebook(policeman,clews,filer,archive,employeeOnline,admin,date)
+function pushNotebook(policeman,clews,filer,archive,thingsCount,archiveCount,employeeOnline,admin,date)
 {
     if(typeof employeeOnline != undefined)
     {
@@ -486,7 +486,83 @@ function pushNotebook(policeman,clews,filer,archive,employeeOnline,admin,date)
                 $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
             } 
         });
-    }                      
+    }  
+    $('.archive-wrapper .pagination-wrap .but').on('click',function(){
+        let count = archiveCount;
+        if(!$(this).hasClass('disabled'))
+        {
+            let pageNumber = parseInt($('.archive-wrapper .pagination-wrap .page-number').text()),
+                maxPages = 0;
+            if(count%4 == 0)
+            {
+                maxPages = count/4;
+            }
+            else
+            {
+                maxPages = Math.floor(count/4)+1;
+            }
+            if(this.id == 'prev')
+            {
+                if(pageNumber != 1)
+                {
+                    pageNumber--;
+                    $('.archive-wrapper .pagination-wrap .page-number').text(pageNumber);
+                    console.log(pageNumber);
+                    $('.archive-wrapper .pagination-wrap .but').addClass('disabled');
+                    mp.trigger('archivePagination',pageNumber);
+                }
+            }
+            if(this.id == 'next')
+            {
+                if(pageNumber < maxPages)
+                {
+                    pageNumber++;
+                    $('.archive-wrapper .pagination-wrap .page-number').text(pageNumber);
+                    console.log(pageNumber);
+                    $('.archive-wrapper .pagination-wrap .but').addClass('disabled');
+                    mp.trigger('archivePagination',pageNumber);
+                }
+            }
+        }
+    });      
+    $('.things-wrapper .pagination-wrap .but').on('click',function(){
+        let count = thingsCount;
+        if(!$(this).hasClass('disabled'))
+        {
+            let pageNumber = parseInt($('.things-wrapper .pagination-wrap .page-number').text()),
+                maxPages = 0;
+            if(count%4 == 0)
+            {
+                maxPages = count/4;
+            }
+            else
+            {
+                maxPages = Math.floor(count/4)+1;
+            }
+            if(this.id == 'prev')
+            {
+                if(pageNumber != 1)
+                {
+                    pageNumber--;
+                    $('.things-wrapper .pagination-wrap .page-number').text(pageNumber);
+                    console.log(pageNumber);
+                    $('.things-wrapper .pagination-wrap .but').addClass('disabled');
+                    mp.trigger('thingsPagination',pageNumber);
+                }
+            }
+            if(this.id == 'next')
+            {
+                if(pageNumber < maxPages)
+                {
+                    pageNumber++;
+                    $('.things-wrapper .pagination-wrap .page-number').text(pageNumber);
+                    console.log(pageNumber);
+                    $('.things-wrapper .pagination-wrap .but').addClass('disabled');
+                    mp.trigger('thingsPagination',pageNumber);
+                }
+            }
+        }
+    });                    
 }
 function personInit(element)
 {
@@ -888,6 +964,7 @@ function appendThings(elem)
     let newList = JSON.parse(elem);
     filerList = [...filerList,...newList];
     $('.container .things-wrapper .things-container').empty();
+    $('.pagination-wrap .but').removeClass('disabled');
     initFiler(newList);
 }
 function appendArchive(elem)
@@ -897,6 +974,7 @@ function appendArchive(elem)
     let newList = JSON.parse(elem);
     archiveList = [...archiveList,...newList];
     $('.container .archive-wrapper .archive-container').empty();
+    $('.pagination-wrap .but').removeClass('disabled');
     initFiler(newList);
 }
 function searchThing(elem)
