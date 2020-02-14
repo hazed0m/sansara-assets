@@ -37,12 +37,12 @@ let doc = JSON.stringify({
         напоивший его языком и речью и заманивший в свое агенство,
         которое использовало его снова и снова в своих проектах.`,
         SignsList:[
+            'Александрополус [Авастиноргеонов]',
+            'Александрополус GOVERMENT',
+            'Александрополус EMS',
             'Александрополус Авастиноргеонов',
             'Александрополус Авастиноргеонов',
-            'Александрополус Авастиноргеонов',
-            'Александрополус Авастиноргеонов',
-            'Александрополус Авастиноргеонов',
-            'Александрополус Авастиноргеонов'
+            'Александрополус LSPD'
         ]
     }),
     docEmpty = JSON.stringify({
@@ -117,8 +117,13 @@ function pushFractionDocument(elem)
     else
     {
         $(docInfo.SignsList).each(function(index,item){
+            let status = '';
+            if(item.includes('[') || item.includes(']') || item.includes('GOVERMENT') || item.includes('LSPD') || item.includes('EMS'))
+            {
+                status = 'default';
+            }
             let signItem = ` 
-                    <div class="sign-item">
+                    <div class="sign-item ${status}">
                         <div class="sign">${item}</div>
                     </div>`;
             signsList += signItem;

@@ -1166,6 +1166,7 @@
     margin-top:7px;
     font-size:10px;
     font-weight:500;
+    min-width:165px;
 }
 .container .archive-wrapper .archive-wrap .archive-item .archive-name,
 .container .things-wrapper .things-wrap .things-item .things-name
@@ -1345,7 +1346,8 @@
 .container .things-wrapper #changeThing,
 .container .things-wrapper #addThing,
 .container .add-thing-wrapper #add-suspect,
-.container .things-wrapper #punishmentSubmit
+.container .things-wrapper #punishmentSubmit,
+.container .things-wrapper #print
 {
     margin-top:15px;
     margin-right:50px;
@@ -1368,7 +1370,8 @@
     margin:5px;
 }
 .container .things-wrapper #edit-thing,
-.container .things-wrapper #add-violation
+.container .things-wrapper #add-violation,
+.container .things-wrapper #print
 {
     margin: 0 5px;
 }
@@ -1566,8 +1569,13 @@ input[type=number]::-webkit-outer-spin-button {
 .container .archive-wrapper .title-wrap .button-wrapper
 {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;    
+}
+.container .archive-wrapper .title-wrap .button-wrapper #print
+{
+    margin-top:5px;
 }
 .container .employee-wrapper .wrapper
 {

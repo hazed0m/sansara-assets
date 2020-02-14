@@ -4,7 +4,6 @@
     margin:0;
     box-sizing: border-box;
     font-family: 'Montserrat';
-
 }
 .container 
 {
@@ -189,6 +188,14 @@
     text-align: center;
     word-break:keep-all;
     line-height:0.75;
+}
+.sign-item.default .sign
+{
+    font-size:20px;
+    font-family: 'Montserrat';
+    transform:rotate(0deg) translate(-50%,-50%);
+    top:50%;
+    line-height:1;
 }
 .sign-item:nth-child(1)
 {

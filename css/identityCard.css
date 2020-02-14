@@ -1,0 +1,101 @@
+*
+{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family:'GothamPro';
+}
+.container
+{
+    position: absolute;
+    top:-6%;
+    left:50%;
+    transform: translate(-50%,0%) scale(0.6);
+}
+.container .wrapper
+{
+    width:669px;
+    height:413px;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+}
+.container #police
+{
+    background-image:url(../img/identity/police.png);
+}
+.container #medical
+{
+    background-image:url(../img/identity/medical.png);
+}
+.container #goverment
+{
+    background-image:url(../img/identity/goverment.png);
+}
+.container .wrapper .info-wrap
+{
+    position: absolute;
+    top:36%;
+    left:40%;
+}
+.container .wrapper .info-wrap > div
+{
+    display: flex;
+    margin:17px 0;
+    font-size:20px;
+}
+.container .wrapper .info-wrap .data
+{
+    margin-left:5px;
+    font-weight: bold;
+}
+.container .wrapper .signature-wrap
+{
+    position: absolute;
+    bottom:13%;
+    right:28%;
+    font-family: "Sacramento";
+    font-size:35px;
+    border-bottom:1px solid #000;
+    padding:0 15px;
+    line-height:19px;
+}
+.container .wrapper .close-button
+{
+    width:157px;
+    height:36px;
+    border-radius:10px;
+    font-size:24px;
+    font-family:'GothamPro-Medium';
+    color:#fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom:-4%;
+    left:50%;
+    transform: translate(-50%,0);
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight:bold;
+}
+.container .wrapper .close-button:hover
+{
+    transform: translate(-50%,0) scale(1.05);
+}
+.container #police .close-button
+{
+    background:#546194;
+    box-shadow: 0 0 10px #546194;
+}
+.container #medical .close-button
+{
+    background:#a84ea8;
+    box-shadow: 0 0 10px #a84ea8;
+}
+.container #goverment .close-button
+{
+    background:#716941;
+    box-shadow: 0 0 10px #716941;
+}

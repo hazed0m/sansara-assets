@@ -244,7 +244,7 @@ let filer = JSON.stringify([
 ]);
 let archive = JSON.stringify([
     {
-        StatementID:12,
+        StatementID:1,
         PoliceMembers : [
             'Младший Сержант@Григорий Упсов',
             'Младший Сержант@Григорий Упсов'
@@ -261,8 +261,8 @@ let archive = JSON.stringify([
             'Нож',
             'Кровь нападавшего'
         ],
-        ClosedFull: true,
-        InProgress:true,
+        ClosedFull:false,
+        InProgress:false,
         WantedLevel: 5,
         Text: 'Кто то расстрелял митинг на мэрии@[1.1.2019 6:09] Шеф ПД Дональд МакРональд Добавил подозреваемого Федор Фреш@[] : Дональд МакРональд : Это был Федор Фреш, он сам это сказал около здания ПД@[1.1.2019 6:15] Дополнил Шеф ПД Дональд МакРональд : установил наказание в виде лишения свободы сроком 228@@[1.1.2019 6:24] Дополнил Шеф ПД Дональд МакРональд : Найдено при обыске Хроник Кураторов: Низ м узкие джинсы цв.1; @@[1.1.2019 6:26] Дополнил Шеф ПД Дональд МакРональд : Найдено при обыске Хроник Кураторов: вода без газа; @@[1.1.2019 5:29] Дополнил Шеф ПД Дональд МакРональд : установил наказание в виде штрафа в сумме 1@@[1.1.2019 5:05] Дополнил Шеф ПД Дональд МакРональд : установил наказание в виде лишения свободы сроком 1@@[1.1.2019 5:09] Дополнил Шеф ПД Дональд МакРональд : Арестовал Федор Фреш@@[1.1.2019 5:22] Дополнил Шеф ПД Дональд МакРональд : Обнаружено при просмотре камеры ПД Мишн-Роу: [1.1.2019 5:18] Федор Фреш; @@[1.1.2019 5:35] Дополнил Шеф ПД Дональд МакРональд : Востановил дело из архива@'
     },
@@ -493,13 +493,13 @@ function pushNotebook(policeman,clews,filer,archive,thingsCount,archiveCount,emp
         {
             let pageNumber = parseInt($('.archive-wrapper .pagination-wrap .page-number').text()),
                 maxPages = 0;
-            if(count%4 == 0)
+            if(count%10 == 0)
             {
-                maxPages = count/4;
+                maxPages = count/10;
             }
             else
             {
-                maxPages = Math.floor(count/4)+1;
+                maxPages = Math.floor(count/10)+1;
             }
             if(this.id == 'prev')
             {
@@ -717,7 +717,8 @@ function initFiler(elem,search = false)
                             </div>     
                             <div class="button-wrapper">
                                 <div class="button" id="edit-thing">Изменить дело</div>
-                                <div class="button" id="add-violation">В розыск</div>   
+                                <div class="button" id="add-violation">В розыск</div>                                 
+                                <div class="button" id="print" data-index="${item.StatementID}">Печать документа</div>    
                             </div>                 
                         </div>
                         <div class="text-wrapper">
@@ -797,11 +798,19 @@ function initFiler(elem,search = false)
             });
             let button = ``;
             console.log(item.StatementID,item.ClosedFull,item.InProgress);
-            if(item.ClosedFull && item.InProgress)
+            if(!item.ClosedFull && !item.InProgress)
             {
                 button = `
                     <div class="button-wrapper">
                         <div class="button" id="archive-revive">Восстановить и присоедениться</div>   
+                        <div class="button" id="print" data-index="${item.StatementID}">Печать документа</div>   
+                    </div>`;
+            }
+            else
+            {
+                button = `
+                    <div class="button-wrapper">
+                        <div class="button" id="print" data-index="${item.StatementID}">Печать документа</div>   
                     </div>`;
             }
             let template = `
@@ -822,7 +831,8 @@ function initFiler(elem,search = false)
                                 </div>
                                 ${policeMembers} 
                             </div>     
-                            ${button}             
+                            ${button}  
+
                         </div>
                         <div class="text-wrapper">
                             ${textItems}
@@ -1052,6 +1062,11 @@ function refreshThingsList()
             $(this).addClass('disabled');        
             mp.trigger('moreThings',currentId);
         }
+    });
+    $('.container .button-wrapper .button#print').on('click',function(){
+        let id = parseInt($(this).attr('data-index'));
+        console.log(id);
+        mp.trigger('printThing',id);
     });
     $(`.container .archive-wrapper .archive-wrap #more-things`).on('click',function(){
         if(!$(this).hasClass('disabled'))

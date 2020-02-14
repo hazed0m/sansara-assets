@@ -58,7 +58,7 @@ let menu = new Vue({
         saveButtonState:false,
         keyChangeSettingsShow:false,
         setKeyIndex: 0,
-        gpsFilterArr: [false,false,false,false,false,false],
+        gpsFilterArr: [false,false,false,false,false,true],
         isDisabled: false,
         keyNameList: [
             "F1",
@@ -628,6 +628,7 @@ $('.map-settings .gps-category').on('click',function(){
         $(this).next().slideUp();
     }
 });  
+mp.trigger('gpsFilter',JSON.stringify(menu.gpsFilterArr));
 function keypressUp(e){  
     if(menu.keyChangeSettingsShow)
     {

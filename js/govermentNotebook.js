@@ -827,6 +827,10 @@ function searchInit(str)
     $('.container .search-done .close-but').on('click',function(){
         $('.container .search-wrapper .search-done').slideUp();
     });
+    $('.container .search-wrapper .search-done #printDocument').on('click',function(){
+        console.log(str);
+        mp.trigger('printDocument',str);
+    });
 }
 
 function personInit(element)

@@ -156,7 +156,12 @@ function initTransportCompany(transportObj)
 	transportInfo = JSON.parse(transportObj);
 	$('.main-wrapper .transportCompany').css('display','block');
 }
-$('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork, .main-wrapper .customs, .main-wrapper .transportCompany').on('click',function(){
+function initBusiness(transportObj)
+{	
+	transportInfo = JSON.parse(transportObj);
+	$('.main-wrapper .business').css('display','block');
+}
+$('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork, .main-wrapper .customs, .main-wrapper .business, .main-wrapper .transportCompany').on('click',function(){
 	let currentClass = this.classList[0];
 	$('.main-wrapper').removeClass('active').fadeOut();
 	if(currentClass == 'cars')
@@ -195,6 +200,12 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 			mixer.forceRender();
 		}
 		refreshTransportCompany();
+	}
+	if(currentClass == 'business')
+	{
+		forwardExit();		
+		pushBusiness(transportInfo);
+		refreshBusiness();
 	}
 	if(currentClass == 'adssell' || currentClass == 'adsbuy' || currentClass == 'adsgetworkers' || currentClass == 'adssearchwork')
 	{
@@ -799,6 +810,119 @@ function refreshTransportCompany()
 			}
 		};
 	mixer = mixitup(container, config);
+}
+function updateBusiness(transportObj)
+{
+	transportInfo = JSON.parse(transportObj);
+	pushBusiness(transportInfo);
+}
+function pushBusiness(transportObj)
+{
+	$('.business-wrapper .service-wrapper .current-input .next-title').text(transportInfo.Name);
+	$('.business-wrapper .service-wrapper .name-wrapper .changable-input input').val(transportInfo.Name);
+	// $('.business-wrapper .service-wrapper .fare-wrapper #distanceFare span').text(transportInfo.DistanceFare);
+	// $('.business-wrapper .service-wrapper .fare-wrapper #callsFare span').text(transportInfo.CallsFare);
+	// $('.business-wrapper .service-wrapper .fare-wrapper .changable-input #distanceFareInput input').val(transportInfo.DistanceFare);
+	// $('.business-wrapper .service-wrapper .fare-wrapper .changable-input #callsFareInput input').val(transportInfo.CallsFare);
+	$('.business-wrapper .service-wrapper .owner-wrapper .next-title').text(transportInfo.Owner);
+	$('.business-wrapper .service-wrapper .gain-wrapper .next-title span').text(transportInfo.Gain);
+	// $('.business-wrapper .employers-wrapper .already-wrapper .next-title span').text(transportInfo.TrucksCount);
+	$('.business-wrapper .employers-wrapper .employers-list').empty();
+	$(transportInfo.WorkersList).each(function(index,item){
+		
+		// <div class="info-item">
+		// 	<div class="info-name">Пробег:</div>
+		// 	<div class="info-data"> ${item.Milage}</div>
+		// </div>
+		let template = `
+			<div class="employee-item hired" data-count="${index+1}">
+				<div class="info-wrapper">
+					<div class="info-item">
+						<div class="info-name">Вызовов:</div>
+						<div class="info-data"> ${item.Calls}</div>
+					</div>
+				</div>
+				<div class="name">
+					${item.FullName}
+				</div>
+				<div class="date">
+					${item.Date}
+				</div>
+				<div class="button" id="dissmisal">Уволить</div>
+				${item.Online ? '<div class="online"></div>' : '<div class="offline"></div>'}				
+			</div>`;
+		$('.business-wrapper .employers-wrapper .employers-list').append(template);
+	});
+	let addTemplate = `
+		<div class="employee-item add" data-count="+">
+			<input type="text" placeholder="Введите Имя">
+			<div class="button" id="hire">Принять</div>
+		</div>`;
+	$('.business-wrapper .employers-wrapper .employers-list').append(addTemplate);
+	$('.business-wrapper [data-ref="transport-company-container"]').empty();	
+	refreshBusiness();
+}
+function refreshBusiness()
+{
+	$('.business-wrapper .employers-wrapper .employers-list .employee-item .button').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			let id = this.id;
+			console.log(id);	
+			$(this).addClass('disabled');
+			if(id == 'dissmisal')	
+			{
+				let name = $(this).prev().prev().text().trim();
+				console.log(name);
+				mp.trigger('dissmisalBusiness',name);
+			}
+			if(id == 'hire')	
+			{
+				let name = $(this).prev().val();
+				console.log(name);
+				$(this).prev().val('');
+				mp.trigger('hireBusiness',name);
+			}
+		}
+	});
+	$('.business-wrapper .service-wrapper .changable-input .button#changeName').on('click',function(){
+		let name = $('.business-wrapper .service-wrapper .changable-input input').val();
+		// $('.transportCompany-wrapper .service-wrapper .current-input .next-title').text(name);
+		if(name.length != 0)
+		{
+			$(this).parent().css('display','none');
+			$('.business-wrapper .service-wrapper .name-wrapper .current-input').css('display','flex');
+			mp.trigger('changeNameBusiness',name);
+		}
+	});
+	// $('.transportCompany-wrapper .service-wrapper .changable-input .button#changeFare').on('click',function(){
+	// 	let callsFare = $('.transportCompany-wrapper .service-wrapper .changable-input #callsFareInput input').val(),
+	// 		distanceFare = $('.transportCompany-wrapper .service-wrapper .changable-input #distanceFareInput input').val();
+	// 	if(callsFare.length != 0 && distanceFare.length != 0)
+	// 	{
+	// 		$(this).parent().css('display','none');
+	// 		console.log(callsFare,distanceFare);
+	// 		$('.transportCompany-wrapper .service-wrapper .fare-wrapper .next-title').css('display','flex');
+	// 		mp.trigger('changeFareTransportCompany',callsFare,distanceFare);
+	// 	}
+	// });
+	$('.business-wrapper .service-wrapper .name-wrapper .edit-icon').on('click',function(){
+		$(this).parent().css('display','none');
+		$('.business-wrapper .service-wrapper .name-wrapper .changable-input').css('display','flex');
+	});
+	$('.business-wrapper .service-wrapper .fare-wrapper .edit-icon').on('click',function(){
+		$(this).parent().css('display','none');
+		$('.business-wrapper .service-wrapper .fare-wrapper .changable-input').css('display','flex');
+	});
+	$('.business-wrapper .menu-wrapper .menu-item').on('click',function(){
+		let id = this.id;
+		console.log(id);
+		if(!$(`.business-wrapper .${id}-page`).hasClass('active'))
+		{
+			$('.business-wrapper').find('.active').css('display','none').removeClass('active');
+			$(`.business-wrapper .${id}-page`).css('display','block').addClass('active');
+		}
+	});
 }
 function pushAutoshop()
 {

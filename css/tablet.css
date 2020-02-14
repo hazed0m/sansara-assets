@@ -134,7 +134,7 @@
     background:url(../img/tablet/wallpaper/wallpaper1.png) no-repeat;
     background-size: cover;
 }
-.main-wrapper, .customs-wrapper, .transportCompany-wrapper,.settings-wrapper, .news-wrapper, .fancybox-container, .goverment-wrapper, .cars-wrapper, .ads-wrapper
+.main-wrapper, .customs-wrapper, .main-wrapper, .business-wrapper, .transportCompany-wrapper,.settings-wrapper, .news-wrapper, .fancybox-container, .goverment-wrapper, .cars-wrapper, .ads-wrapper
 {    	
     position: absolute;
     width:99%;
@@ -334,7 +334,7 @@
     text-shadow:0 0 5px #000;
     color:#fff;
 }
-.main-wrapper .settings, .main-wrapper .transportCompany, .main-wrapper .customs, .main-wrapper .locker, .main-wrapper .goverment, .main-wrapper .news, .main-wrapper .cars, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork
+.main-wrapper .settings, .main-wrapper .business, .main-wrapper .transportCompany, .main-wrapper .customs, .main-wrapper .locker, .main-wrapper .goverment, .main-wrapper .news, .main-wrapper .cars, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork
 {
 	cursor: pointer;
 	transition: 0.2s;	
@@ -366,7 +366,7 @@
 {
     opacity:0.8;
 }
-.settings-wrapper, .customs-wrapper, .transportCompany-wrapper,.news-wrapper, .goverment-wrapper, .cars-wrapper, .ads-wrapper
+.settings-wrapper, .customs-wrapper, .business-wrapper, .transportCompany-wrapper,.news-wrapper, .goverment-wrapper, .cars-wrapper, .ads-wrapper
 {
 	display:none;
 }
@@ -436,7 +436,7 @@
     cursor: pointer;
     font-size:13px;
 }
-.main-wrapper .news:hover, .main-wrapper .transportCompany:hover, .main-wrapper .customs:hover, .main-wrapper .locker:hover,.main-wrapper .goverment:hover, .main-wrapper .cars:hover, .main-wrapper .settings:hover, .main-wrapper .adsbuy:hover, .main-wrapper .adssell:hover, .main-wrapper .adsgetworkers:hover, .main-wrapper .adssearchwork:hover
+.main-wrapper .news:hover, .main-wrapper .business:hover, .main-wrapper .transportCompany:hover, .main-wrapper .customs:hover, .main-wrapper .locker:hover,.main-wrapper .goverment:hover, .main-wrapper .cars:hover, .main-wrapper .settings:hover, .main-wrapper .adsbuy:hover, .main-wrapper .adssell:hover, .main-wrapper .adsgetworkers:hover, .main-wrapper .adssearchwork:hover
 {
 	border-radius: 50%;
 	box-shadow: 0 0 10px rgba(255,255,255,0.9);
@@ -540,6 +540,27 @@
     position: absolute;
     bottom:-30px;
     left:-10px;
+    font-size:11.43px;
+    text-shadow:0 0 5px #000;
+    color:#fff;
+}
+.main-wrapper .business
+{
+	position:absolute;
+	right:3%;
+	bottom:68%;
+	width:55px;
+	height:55px;
+	background:url(../img/tablet/business.png) no-repeat;
+	background-size:contain;
+	display: none;
+}
+.main-wrapper .business::after
+{
+	content:'Бизнес';
+	position: absolute;
+    bottom:-20px;
+    left:7px;
     font-size:11.43px;
     text-shadow:0 0 5px #000;
     color:#fff;
@@ -1864,7 +1885,7 @@ input::-webkit-inner-spin-button {
     border-radius: 10px;  
 }
 .customs-wrapper .transport-wrapper::-webkit-scrollbar-thumb,
-.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar-thumb\
+.transportCompany-wrapper .transport-wrapper::-webkit-scrollbar-thumb
 {
 	background:#d1d1d1;
 }
@@ -2123,8 +2144,13 @@ input::-webkit-inner-spin-button {
 {
 	box-shadow: 0 0 5px rgba(0,0,0,0.8);
 }
+.business-wrapper .logo
+{
+	margin-left:-47%;
+}
 .customs-wrapper .header-wrapper,
-.transportCompany-wrapper .header-wrapper
+.transportCompany-wrapper .header-wrapper,
+.business-wrapper .header-wrapper
 {
 	width:100%;
 	height:120px;	
@@ -2137,19 +2163,32 @@ input::-webkit-inner-spin-button {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 }
+.transportCompany-wrapper .header-wrapper
+{
+	background:url(../img/customs/header1.png) no-repeat;
+	background-position: right;
+}
+.business-wrapper .header-wrapper
+{
+	background:url(../img/customs/header2.png) no-repeat;
+	background-position: right;
+}
 .customs-wrapper .header-wrapper .logo img,
-.transportCompany-wrapper .header-wrapper .logo img
+.transportCompany-wrapper .header-wrapper .logo img,
+.business-wrapper .header-wrapper .logo img
 {
 	width:80%;
 }
 .customs-wrapper .menu-wrapper,
-.transportCompany-wrapper .menu-wrapper
+.transportCompany-wrapper .menu-wrapper,
+.business-wrapper .menu-wrapper
 {
 	display: flex;
 	padding-right:130px;
 }
 .customs-wrapper .service-wrapper,
-.transportCompany-wrapper .service-wrapper
+.transportCompany-wrapper .service-wrapper,
+.business-wrapper .service-wrapper
 {
 	width:100%;
 	height:90px;
@@ -2159,25 +2198,30 @@ input::-webkit-inner-spin-button {
 	align-items: center;
 }
 .customs-wrapper .service-wrapper .title,
-.transportCompany-wrapper .service-wrapper .title
+.transportCompany-wrapper .service-wrapper .title,
+.business-wrapper .service-wrapper .title
 {
 	color:#5d5d5f;
 	font-size:14px;
 }
 .customs-wrapper .service-wrapper .current-input,
-.transportCompany-wrapper .service-wrapper .current-input
+.transportCompany-wrapper .service-wrapper .current-input,
+.business-wrapper .service-wrapper .current-input
 {
 	display: flex;
 }
 .customs-wrapper .service-wrapper .current-input,
 .customs-wrapper .service-wrapper .changable-input,
 .transportCompany-wrapper .service-wrapper .current-input,
-.transportCompany-wrapper .service-wrapper .changable-input
+.transportCompany-wrapper .service-wrapper .changable-input,
+.business-wrapper .service-wrapper .current-input,
+.business-wrapper .service-wrapper .changable-input
 {
 	min-width:150px;
 }
 .customs-wrapper .service-wrapper .changable-input,
-.transportCompany-wrapper .service-wrapper .changable-input
+.transportCompany-wrapper .service-wrapper .changable-input,
+.business-wrapper .service-wrapper .changable-input
 {
 	/* padding:5px 0; */
 	/* display: flex; */
@@ -2186,7 +2230,8 @@ input::-webkit-inner-spin-button {
 	position: relative;
 }
 .customs-wrapper .service-wrapper .changable-input .button,
-.transportCompany-wrapper .service-wrapper .changable-input .button
+.transportCompany-wrapper .service-wrapper .changable-input .button,
+.business-wrapper .service-wrapper .changable-input .button
 {
 	padding:3px 7px;
 	color:#fff;
@@ -2199,12 +2244,14 @@ input::-webkit-inner-spin-button {
 	right:-35px;
 }
 .customs-wrapper .service-wrapper .changable-input .button:hover,
-.transportCompany-wrapper .service-wrapper .changable-input .button:hover
+.transportCompany-wrapper .service-wrapper .changable-input .button:hover,
+.business-wrapper .service-wrapper .changable-input .button:hover
 {
 	box-shadow: 0 0 5px rgba(255,255,255,0.6);
 }
 .customs-wrapper .service-wrapper .changable-input input,
-.transportCompany-wrapper .service-wrapper .name-wrapper .changable-input input
+.transportCompany-wrapper .service-wrapper .name-wrapper .changable-input input,
+.business-wrapper .service-wrapper .name-wrapper .changable-input input
 {
 	width:fit-content;
 	max-width:140px;
@@ -2214,26 +2261,30 @@ input::-webkit-inner-spin-button {
 	border-bottom:1px solid #fff;
 }
 .customs-wrapper .service-wrapper .edit-icon,
-.transportCompany-wrapper .service-wrapper .edit-icon
+.transportCompany-wrapper .service-wrapper .edit-icon,
+.business-wrapper .service-wrapper .edit-icon
 {
 	margin:-3px 0 0 10px;
 	transition: 0.2s;
 	cursor: pointer;
 }
 .customs-wrapper .service-wrapper .edit-icon:hover,
-.transportCompany-wrapper .service-wrapper .edit-icon:hover
+.transportCompany-wrapper .service-wrapper .edit-icon:hover,
+.business-wrapper .service-wrapper .edit-icon:hover
 {
 	/* transform:scale(1.1); */
 }
 .customs-wrapper .employers-wrapper .employers-list .employee-item:hover .info-wrapper,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:hover .info-wrapper
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:hover .info-wrapper,
+.business-wrapper .employers-wrapper .employers-list .employee-item:hover .info-wrapper
 {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 }
 .customs-wrapper .info-wrapper,
-.transportCompany-wrapper .info-wrapper
+.transportCompany-wrapper .info-wrapper,
+.business-wrapper .info-wrapper
 {	
 	min-width:360px;
 	transition:0.9s;
@@ -2253,8 +2304,14 @@ input::-webkit-inner-spin-button {
 	min-width:320px;
 	background: #f7bb38;
 }
+.business-wrapper .info-wrapper
+{
+	min-width:320px;
+	background: #f7bb38;
+}
 .customs-wrapper .info-wrapper .info-item,
-.transportCompany-wrapper .info-wrapper .info-item
+.transportCompany-wrapper .info-wrapper .info-item,
+.business-wrapper .info-wrapper .info-item
 {
 	display: flex;
 	justify-content: space-between;
@@ -2265,7 +2322,8 @@ input::-webkit-inner-spin-button {
 	margin:0 10px;
 }
 .customs-wrapper .service-wrapper .next-title,
-.transportCompany-wrapper .service-wrapper .next-title
+.transportCompany-wrapper .service-wrapper .next-title,
+.business-wrapper .service-wrapper .next-title
 {
 	color:#fff;
 	font-size:20px;
@@ -2304,7 +2362,8 @@ input::-webkit-inner-spin-button {
 	margin:0 4px;
 }
 .customs-wrapper .menu-wrapper .menu-item,
-.transportCompany-wrapper .menu-wrapper .menu-item
+.transportCompany-wrapper .menu-wrapper .menu-item,
+.business-wrapper .menu-wrapper .menu-item
 {
 	color:#fff;
 	margin:0 20px;
@@ -2312,7 +2371,8 @@ input::-webkit-inner-spin-button {
 	transition: 0.2s;
 }
 .customs-wrapper .menu-wrapper .menu-item:hover,
-.transportCompany-wrapper .menu-wrapper .menu-item:hover
+.transportCompany-wrapper .menu-wrapper .menu-item:hover,
+.business-wrapper .menu-wrapper .menu-item:hover
 {
 	transform:scale(1.1);
 }
@@ -2356,14 +2416,31 @@ input::-webkit-inner-spin-button {
 	border-bottom-right-radius: 10px;
 	/* position: relative; */
 }
+.business-wrapper .employers-wrapper	
+{
+	width:100%;
+	height:63.5%;
+	border-bottom:8px solid #f7bb38;
+	background:url(../img/customs/gradient2.png) no-repeat;
+	background-position: bottom;	
+	display: flex;
+	flex-direction: column;
+	padding-top:25px;
+	margin:0 auto;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	/* position: relative; */
+}
 .customs-wrapper .employers-wrapper .title,
-.transportCompany-wrapper .employers-wrapper .title
+.transportCompany-wrapper .employers-wrapper .title,
+.business-wrapper .employers-wrapper .title
 {
 	color:#5d5d5f;
 	text-shadow:0 0 5px #000;
 }
 .customs-wrapper .employers-wrapper .already-wrapper,
-.transportCompany-wrapper .employers-wrapper .already-wrapper 
+.transportCompany-wrapper .employers-wrapper .already-wrapper,
+.business-wrapper .employers-wrapper .already-wrapper 
 {
 	margin-top:10px;
 	display: flex;
@@ -2373,7 +2450,8 @@ input::-webkit-inner-spin-button {
 	height:43%;
 }
 .customs-wrapper .employers-wrapper .already-wrapper .title,
-.transportCompany-wrapper .employers-wrapper .already-wrapper .title
+.transportCompany-wrapper .employers-wrapper .already-wrapper .title,
+.business-wrapper .employers-wrapper .already-wrapper .title
 {
 	font-size:20px;
 	color:#f5f5f5;
@@ -2381,7 +2459,9 @@ input::-webkit-inner-spin-button {
 .customs-wrapper .employers-wrapper .already-wrapper .next-title,
 .customs-wrapper .shop-page .title,
 .transportCompany-wrapper .employers-wrapper .already-wrapper .next-title,
-.transportCompany-wrapper .shop-page .title
+.transportCompany-wrapper .shop-page .title,
+.business-wrapper .employers-wrapper .already-wrapper .next-title,
+.business-wrapper .shop-page .title
 {
 	color:#9e9e9f;
 	font-size:16px;
@@ -2389,19 +2469,23 @@ input::-webkit-inner-spin-button {
 .customs-wrapper .employers-wrapper .already-wrapper .next-title span,
 .customs-wrapper .shop-page .title span,
 .transportCompany-wrapper .employers-wrapper .already-wrapper .next-title span,
-.transportCompany-wrapper .shop-page .title span
+.transportCompany-wrapper .shop-page .title span,
+.business-wrapper .employers-wrapper .already-wrapper .next-title span,
+.business-wrapper .shop-page .title span
 {
 	color:#fff;
 	font-size:20px;
 }
 .customs-wrapper .sort-block,
-.transportCompany-wrapper .sort-block 
+.transportCompany-wrapper .sort-block,
+.business-wrapper .sort-block 
 {
 	right:0;
 	bottom:-10px;
 }
 .customs-wrapper .employers-wrapper .inner-wrapper,
-.transportCompany-wrapper .employers-wrapper .inner-wrapper
+.transportCompany-wrapper .employers-wrapper .inner-wrapper,
+.business-wrapper .employers-wrapper .inner-wrapper
 {
 	padding:0 20%;	
 	overflow-y:scroll;
@@ -2409,12 +2493,14 @@ input::-webkit-inner-spin-button {
 	max-height: 180px;
 }
 .customs-wrapper .employers-wrapper .employers-list .employee-item:first-child,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:first-child
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:first-child,
+.business-wrapper .employers-wrapper .employers-list .employee-item:first-child
 {
 	margin-top:0;
 }
 .customs-wrapper .employers-wrapper .employers-list .employee-item .date,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .date
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .date,
+.business-wrapper .employers-wrapper .employers-list .employee-item .date
 {
 	padding:0;
 	position: absolute;
@@ -2427,7 +2513,9 @@ input::-webkit-inner-spin-button {
 .customs-wrapper .employers-wrapper .employers-list .employee-item .online,
 .customs-wrapper .employers-wrapper .employers-list .employee-item .offline,
 .transportCompany-wrapper .employers-wrapper .employers-list .employee-item .online,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .offline
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .offline,
+.business-wrapper .employers-wrapper .employers-list .employee-item .online,
+.business-wrapper .employers-wrapper .employers-list .employee-item .offline
 {
 	position: absolute;
 	top:50%;
@@ -2438,50 +2526,58 @@ input::-webkit-inner-spin-button {
 	border-radius:50%;
 }
 .customs-wrapper .employers-wrapper .employers-list .employee-item .online,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .online
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .online,
+.business-wrapper .employers-wrapper .employers-list .employee-item .online
 {	
 	background:rgb(2, 190, 2);
 	border:2px solid rgba(0,0,0,0.5);
 	box-shadow:0 0 3px #60dd4e;
 }
 .customs-wrapper .employers-wrapper .employers-list .employee-item .offline,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .offline
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .offline,
+.business-wrapper .employers-wrapper .employers-list .employee-item .offline
 {
 	background:rgb(105, 105, 105);
 	border:2px solid rgba(0,0,0,0.5);
 	box-shadow:0 0 3px rgb(68, 71, 68);
 }
 .customs-wrapper .employers-wrapper .employers-list .employee-item:last-child,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:last-child
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:last-child,
+.business-wrapper .employers-wrapper .employers-list .employee-item:last-child
 {
 	margin-bottom:0;
 }
 .customs-wrapper .employers-wrapper .main-wrap .title,
-.transportCompany-wrapper .employers-wrapper .main-wrap .title
+.transportCompany-wrapper .employers-wrapper .main-wrap .title,
+.business-wrapper .employers-wrapper .main-wrap .title
 {
 	padding:0 20%;	
 	margin-bottom:10px;
 }
 .customs-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar,
-.transportCompany-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar
+.transportCompany-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar,
+.business-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar
 {
     width: 4px;
 }
 .customs-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-track,
-.transportCompany-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-track
+.transportCompany-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-track,
+.business-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-track
 {
     background: #272729;
 	border-radius: 4px;  
 	box-shadow: 0 0 5px #272729;
 } 
 .customs-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-thumb,
-.transportCompany-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-thumb 
+.transportCompany-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-thumb,
+.business-wrapper .employers-wrapper .inner-wrapper::-webkit-scrollbar-thumb  
 {
     background: #60dd4e;
     border-radius: 4px;  
 }
 .customs-wrapper .employers-wrapper	.employers-list,
-.transportCompany-wrapper .employers-wrapper .employers-list
+.transportCompany-wrapper .employers-wrapper .employers-list,
+.business-wrapper .employers-wrapper .employers-list
 {
 	width:100%;
 	display:flex;
@@ -2490,7 +2586,8 @@ input::-webkit-inner-spin-button {
 	align-items: center;	
 }
 .customs-wrapper .employers-wrapper	.employers-list .employee-item,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item,
+.business-wrapper .employers-wrapper .employers-list .employee-item
 {
 	margin:10px 0;
 	height:46px;
@@ -2505,14 +2602,17 @@ input::-webkit-inner-spin-button {
 	font-size:18px;
 }
 .customs-wrapper .employers-wrapper	.employers-list .employee-item input::-webkit-input-placeholder,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item input::-webkit-input-placeholder
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item input::-webkit-input-placeholder,
+.business-wrapper .employers-wrapper .employers-list .employee-item input::-webkit-input-placeholder
 {
 	color:#9e9e9f;
 }
 .customs-wrapper .employers-wrapper	.employers-list .employee-item input,
 .customs-wrapper .service-wrapper .changable-input input,
 .transportCompany-wrapper .employers-wrapper .employers-list .employee-item input,
-.transportCompany-wrapper .service-wrapper .changable-input input
+.transportCompany-wrapper .service-wrapper .changable-input input,
+.business-wrapper .employers-wrapper .employers-list .employee-item input,
+.business-wrapper .service-wrapper .changable-input input
 {
 	background:none;
 	color:#fff;
@@ -2520,7 +2620,8 @@ input::-webkit-inner-spin-button {
 	font-size:18px;
 }
 .customs-wrapper .employers-wrapper	.employers-list .employee-item .button,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .button
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .button,
+.business-wrapper .employers-wrapper .employers-list .employee-item .button
 {
 	background:#202022;
 	color:#9e9e9f;
@@ -2528,14 +2629,17 @@ input::-webkit-inner-spin-button {
 	cursor: pointer;
 }
 .customs-wrapper .employers-wrapper	.employers-list .employee-item .button:hover,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .button:hover
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .button:hover,
+.business-wrapper .employers-wrapper .employers-list .employee-item .button:hover
 {
 	color:#fff;
 }
 .customs-wrapper .employers-wrapper	.employers-list .employee-item:before,
 .customs-wrapper .employers-wrapper	.employers-list .employee-item:after,
 .transportCompany-wrapper .employers-wrapper .employers-list .employee-item:before,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:after
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:after,
+.business-wrapper .employers-wrapper .employers-list .employee-item:before,
+.business-wrapper .employers-wrapper .employers-list .employee-item:after
 {
 	height:46px;
 	width:100%;
@@ -2550,7 +2654,8 @@ input::-webkit-inner-spin-button {
 	background:#29292b;
 }
 .customs-wrapper .employers-wrapper	.employers-list .employee-item:before,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:before
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:before,
+.business-wrapper .employers-wrapper .employers-list .employee-item:before
 {		
 	content:attr(data-count);
 	left:-310px;	
@@ -2559,13 +2664,15 @@ input::-webkit-inner-spin-button {
 	align-items: center;
 }
 .customs-wrapper .employers-wrapper	.employers-list .employee-item:after,
-.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:after
+.transportCompany-wrapper .employers-wrapper .employers-list .employee-item:after,
+.business-wrapper .employers-wrapper .employers-list .employee-item:after
 {
 	content:'';
 	right:-300px;
 }
 .customs-wrapper .main-page,
-.transportCompany-wrapper .main-page
+.transportCompany-wrapper .main-page,
+.business-wrapper .main-page
 {
 	height: 100%;
 	/* display: none; */
