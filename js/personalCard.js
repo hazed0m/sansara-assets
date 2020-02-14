@@ -39,6 +39,11 @@ $('.container .wrapper .button').on('click',function(){
             mp.trigger(id,text);
         }
     }
+    else if(id == 'print')
+    {
+        console.log(personalCard.title);
+        mp.trigger(id,personalCard.title);
+    }
     else
     {
         mp.trigger(id);
