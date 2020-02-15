@@ -628,7 +628,6 @@ $('.map-settings .gps-category').on('click',function(){
         $(this).next().slideUp();
     }
 });  
-mp.trigger('gpsFilter',JSON.stringify(menu.gpsFilterArr));
 function keypressUp(e){  
     if(menu.keyChangeSettingsShow)
     {
