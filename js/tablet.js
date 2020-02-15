@@ -1110,29 +1110,37 @@ function pushGoverment(auctionList,playerInfo,admin,date)
 		$('.auction-wrap .auction-window input').attr({'data-id':auctionList[currentIndex].ID,'min':auctionList[currentIndex].Price,'value':auctionList[currentIndex].Price});
 		$('.auction-wrap .auction-window').fadeIn().css('display','flex');
 	});
-	$('.auction-wrap #acceptAuction').on('click',function(){
-		if($('.auction-wrap .auction-window input').val().length != 0)
+	$('.auction-wrap .auction-window input').on('keyup',function(){
+		let price = parseInt($(this).val());
+		console.log(price);
+		if(price < $('.auction-wrap .auction-window input').attr('min'))
 		{
-			let price = $('.auction-wrap .auction-window input').val();
-			if(price < $('.auction-wrap .auction-window input').attr('min'))
-			{
-				$('.auction-wrap .auction-window input').addClass('error');
-				$('.auction-window span').append('<span class="red">!</span>');
-				console.log('мало');
-			}
-			else
-			{
-				let id = parseInt($('.auction-wrap .auction-window input').attr('data-id'));
-				console.log('attendAuction',playerInfo.FullName,id,price);
-				$(this).parent().parent().fadeOut();
-				mp.trigger('attendAuction',playerInfo.FullName,id,price);
-			}
+			console.log(price,'in');
+			$('.goverment-wrapper .auction-wrap .button-wrapper .button#acceptAuction').addClass('disabled');
+			// $('.auction-window span').append('<span class="red">!</span>');
+			$(this).addClass('error');
+		}
+		else
+		{
+			$(this).removeClass('error');
+			$('.auction-window span span.red').remove();
+			$('.goverment-wrapper .auction-wrap .button-wrapper .button#acceptAuction').removeClass('disabled');
 		}
 	});
-	$('.auction-wrap .auction-window input').on('keyup',function(){
-		$(this).removeClass('error');
-		$('.auction-window span span.red').remove();
+	$('.auction-wrap #acceptAuction').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			let id = parseInt($('.auction-wrap .auction-window input').attr('data-id')),
+				price = parseInt($('.auction-wrap .auction-window input').val());
+			console.log('attendAuction',playerInfo.FullName,id,price);
+			$(this).parent().parent().fadeOut();
+			mp.trigger('attendAuction',playerInfo.FullName,id,price);
+		}
 	});
+	// $('.auction-wrap .auction-window input').on('keyup',function(){
+	// 	$(this).removeClass('error');
+	// 	$('.auction-window span span.red').remove();
+	// });
 	$('.auction-wrap #closeAuction').on('click',function(){
 		$(this).parent().parent().fadeOut();
 	});	
