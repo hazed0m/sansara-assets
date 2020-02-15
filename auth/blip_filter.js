@@ -60,6 +60,7 @@ mp.events.add('CreateAllBlips', ( production_json, refining_json, craft_json, bu
                 rotation: element.rotation,
                 dimension: element.dimension,
             });
+    });
     //houses_array.forEach(function (element, index) {
     //    //mp.gui.chat.push(`Создан блип№ ${index} с именем: ` + element.name);  ///D E B U G
     //    blips_houses[index] = mp.blips.new(element.sprite, element.position,
