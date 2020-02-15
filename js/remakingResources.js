@@ -68,6 +68,12 @@ $('.button').on('click',function(){
         let currentBlock = $('.container').attr('current-block'),
             currentTiming = $('.container').attr('current-timing'),
             finalCount = Math.round(currentBlock*currentTiming);
+        console.log(finalCount);
+        if(Number.isNaN(finalCount))
+        {
+            finalCount = 0;
+        }
+        console.log(finalCount);
         mp.trigger('closeRemake',finalCount);
     }
     if(id == 'Done')
