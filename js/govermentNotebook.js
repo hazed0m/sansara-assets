@@ -593,6 +593,18 @@ function pushDeptors(elem,count)
         $('.container .tax-wrapper .deptors-wrap .accept-window .auction-type span').text($(this).attr('data-type'));
         $('#startAuction').removeClass('disabled');
         $('.container .tax-wrapper .deptors-wrap .accept-window, .container .tax-wrapper .deptors-wrap .mask').fadeIn();
+        let currentType = $(this).attr('data-type');
+        console.log(currentType);
+        let message = '';
+        if(currentType == "Транспорт")
+        {
+            message = "Распечатать ордер";
+        }
+        else
+        {
+            message = "Начать аукцион";
+        }
+        $('.container .tax-wrapper .deptors-wrap .accept-window .button').text(message);
     });
     $('.container .accept-window .close-but').on('click',function(){
         $('.container .tax-wrapper .deptors-wrap .accept-window, .container .tax-wrapper .deptors-wrap .mask').fadeOut();

@@ -542,13 +542,21 @@
     cursor: pointer;
     width:37px;
     height:37px;
-    background:url(../img/notebook/auction-inactive1.png) no-repeat;
+    background:url(../img/notebook/auction-inactive.png) no-repeat;
     background-size:cover;
 }
 .container .tax-wrapper .deptors-wrap .deptors-list .auction-button.active
 {
-    background:url(../img/notebook/auction-active1.png) no-repeat;
+    background:url(../img/notebook/auction-active.png) no-repeat;
     background-size:cover;
+}
+.container .tax-wrapper .deptors-wrap .deptors-list .auction-button[data-type="Транспорт"]
+{
+    background:url(../img/notebook/auction-inactive1.png) no-repeat;
+}
+.container .tax-wrapper .deptors-wrap .deptors-list .auction-button[data-type="Транспорт"].active
+{
+    background:url(../img/notebook/auction-active1.png) no-repeat;
 }
 .container .tax-wrapper .deptors-wrap .deptors-list .sort-items > div
 {
