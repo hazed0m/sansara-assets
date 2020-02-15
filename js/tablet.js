@@ -1108,6 +1108,7 @@ function pushGoverment(auctionList,playerInfo,admin,date)
 		let currentIndex = $(this).attr('data-index');
 		console.log(playerInfo.FullName,auctionList[currentIndex]);
 		$('.auction-wrap .auction-window input').attr({'data-id':auctionList[currentIndex].ID,'min':auctionList[currentIndex].Price,'value':auctionList[currentIndex].Price});
+		$('.auction-wrap .auction-window #acceptAuction').removeClass('disabled');
 		$('.auction-wrap .auction-window').fadeIn().css('display','flex');
 	});
 	$('.auction-wrap .auction-window input').on('keyup',function(){
@@ -1134,6 +1135,7 @@ function pushGoverment(auctionList,playerInfo,admin,date)
 				price = parseInt($('.auction-wrap .auction-window input').val());
 			console.log('attendAuction',playerInfo.FullName,id,price);
 			$(this).parent().parent().fadeOut();
+			$(this).addClass('disabled');
 			mp.trigger('attendAuction',playerInfo.FullName,id,price);
 		}
 	});
