@@ -399,7 +399,7 @@ function inventoryInitialize()
 					$('.ok-button').attr('action',action).attr('id',id).attr('index',index).attr('done','undone');
 					$('.col-wrapper').find('.quantity').replaceWith(input);
 					$('.col-wrapper').find('.col-title').text(eval(id+'List')[index].name);
-					if(eval(id+'List')[index].max == undefined)
+					if(eval(id+'List')[index].max == undefined || eval(id+'List')[index].max > eval(id+'List')[index].count)
 					{
 						$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].count);
 						$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].count);
@@ -423,7 +423,7 @@ function inventoryInitialize()
 							col = $(this).parent().parent().find('input').val();
 							let min = +$(this).parent().parent().find('input').attr('min'),
 								max = +$(this).parent().parent().find('input').attr('max');		
-							console.log('ok-button',min,max);	
+							console.log('ok-button',min,max,col);	
 							if(col >= min && col <= max)
 							{
 								$('.col-wrapper').fadeOut();
