@@ -21,9 +21,9 @@
 .container .wrapper
 {
     width:1369px;
-    height:780px;
-    position: absolute;
-    top:43px;
+    height:781px;
+    position:absolute;
+    top:42px;
     left:277px;
     overflow: hidden;
     background: #fff url(../img/notebook/goverment-back.jpg) no-repeat;

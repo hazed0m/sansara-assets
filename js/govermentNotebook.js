@@ -832,6 +832,7 @@ function dealsInit()
 function searchInit(str)
 {
     let searchData = str.split('@');
+    $('.container .search-wrapper .search-done .screen').empty();
     $(searchData).each(function(index,item){
         $('.container .search-wrapper .search-done .screen').append(`<p>${item}</p>`);
     });
