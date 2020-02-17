@@ -59,7 +59,7 @@ $('.container .business-wrapper .search-block #searchPerson').on('click',functio
     console.log(value);
     mp.trigger('searchPersonal',value);
 });
-$('.container .recruting-menu input, .container .licence-menu input').keyup(function() {
+$('.container .recruting-menu input').keyup(function() {
 	this.value = this.value.replace(/[^А-ЯЁа-яё ]/g, '');
 });
 $('.container .main-wrapper .recruting-menu #hireNewbie').on('click',function(){
@@ -1430,7 +1430,7 @@ function refreshAddThings()
         .append(`<textarea id="thing-add-text" onkeyup="textarea_resize(event);" maxlength="200"></textarea><div id="text_area_div"></div>`)
         .animate({scrollTop: ($('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper').innerHeight())}, 900);
         $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper #thing-add-text').focus();
-    });
+    });    
     $('.container .wrapper .add-thing-wrapper #closeEdit').on('click',function(){        
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
     });
@@ -1582,9 +1582,32 @@ function refreshAddThings()
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
         mp.trigger('changeThing',package);					
     });
+     
+    $('input,textarea').on("keydown keypress keyup", function(e){
+        console.log('this');
+        if(this.id == 'suspect-name' || this.id == 'suspect-lastname')
+        {
+            this.value = this.value.replace(/[^А-ЯЁа-яё ]/g, '');
+        }
+        if(this.id != 'newLoginPromo')
+        {
+            var e = e || event, k = e.which || e.button;
+            if(e.ctrlKey && k == 86) return false
+            if(k == 2)return false	
+        }
+        else
+        {
+            console.log(111);
+        }
+    }).bind("paste contextmenu", function(){
+        if(this.id != 'newLoginPromo')
+        {
+           return false
+        }
+    });
 }
 function suspectsRefresh()
-{    
+{   
     $('#imposePunishment').on('click',function(){
         $('.edit-mask,.add-thing-wrapper .punishmentMenu').fadeIn();
     });

@@ -459,7 +459,7 @@ body {
     flex-wrap: wrap;
     list-style: none;
     max-height: 494px;
-	height: 494px;
+	/* height: 494px; */
 }
 
 .right-inventory .items ul::-webkit-scrollbar, .left-inventory .weapons::-webkit-scrollbar {

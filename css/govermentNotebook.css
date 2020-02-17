@@ -449,6 +449,16 @@
     width: 65%;
     display: flex;
 }
+.container .tax-wrapper .deptors-wrap .title-table .title-items-list.sec .title-item
+{
+    min-width: 63%;
+    max-width: 63%;
+}
+.container .tax-wrapper .deptors-wrap .title-table .title-items-list.sec .title-list-item
+{
+    min-width: 31%;
+    max-width: 31%;
+}
 .container .tax-wrapper .deptors-wrap .title-table .title-items-list .title-list-item,
 .container .tax-wrapper .deptors-wrap .deptors-list .sort-items > div
 {
