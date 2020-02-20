@@ -125,8 +125,11 @@ var sex = '',
 	];
 function checkAction(action, index, id, currentCount)
 {
-	// $('.debugger .left-wrap, .debugger .right-wrap').empty();
-	// actionDebugger(action, index, id, currentCount);
+	if(inventoryList[index].type == 'Documents' && action == 'give')
+	{
+		$('.debugger .left-wrap, .debugger .right-wrap').empty();
+		actionDebugger(action, index, id, currentCount);
+	}
 	if(action == 'use')
 	{
 		let removeElem = inventoryList[index];
@@ -279,7 +282,12 @@ function doneAction(action, index, id, currentCount)
         
 		case ('give'):			
 			if(inventoryList[index].type != 'Documents')
-			{
+			{					
+				if(action == 'give')
+				{
+					$('.debugger .left-wrap, .debugger .right-wrap').empty();
+					actionDebugger(action, index, id, currentCount);
+				}
 				clearTimeout(actionTime);
 				actionTime = null;
 				$('.mask').each(function(index,item){
@@ -316,10 +324,7 @@ function doneAction(action, index, id, currentCount)
 			}
             break;        
     }
-	genFullInventory();		
-	// actionDebugger(action, index, id, currentCount);
-    // console.log("action.currentInventory", action,newList);
-
+	genFullInventory();	
     mp.trigger("action.currentInventory", action, JSON.stringify(newList));
 };
 function listIndexCheck(id)
