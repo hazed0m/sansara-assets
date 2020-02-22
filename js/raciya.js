@@ -47,6 +47,19 @@ $('.little-button.headphone-big').on('click',function(){
     } 
     mp.trigger("raciya.headphone",status);
 });
+$('.little-button.microphone-big').on('click',function(){
+    // let status = '';
+    // if($('.lcd .headphone').is(':visible'))
+    // {
+    //     status = 'off';
+    //     $('.lcd .headphone').fadeOut();
+    // }
+    // else {
+    //     status = 'on';
+    //     $('.lcd .headphone').fadeIn();
+    // } 
+    mp.trigger("raciya.microphone");
+});
 $.fn.reverse = [].reverse;
 $('.big-button .up, .big-button .down').on('click',function(){
     var currentClass = $(this)[0].classList[1];
