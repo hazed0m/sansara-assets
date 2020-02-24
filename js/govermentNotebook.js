@@ -703,13 +703,13 @@ function dealsInit()
             dealSum = $('#dealSum input').val();
         if(dealType != 'realty')
         {
-            dealInfo = $('.mask-item.active input').val();    
+            dealInfo = $('.deals-wrapper .mask-item.active input').val();    
         }
         else
         {
             dealInfo = [
-                parseInt($('.mask-item.active input:eq(0)').val()), 
-                parseInt($('.mask-item.active input:eq(1)').val())  
+                parseInt($('.deals-wrapper .mask-item.active input:eq(0)').val()), 
+                parseInt($('.deals-wrapper .mask-item.active input:eq(1)').val())  
             ]
             console.log('realty',dealInfo);
         }
@@ -717,18 +717,18 @@ function dealsInit()
         if(dealNumber.length != 0 && buyerInfo.length != 0 && sellerInfo.length != 0 && dealSum.length != 0)
         {
             if(dealType != 'realty' && dealInfo.length != 0)
-            {
-                $('.container .deals-wrapper .button#doneDeal').removeClass('disabled');
-            }
-            else if(dealType == 'realty' && dealInfo[0].length != 0 && dealInfo[1].length != 0)
-            {
-                console.log(dealInfo);
-                $('.container .deals-wrapper .button#doneDeal').removeClass('disabled');
-            }
-            else
-            {
-                $('.container .deals-wrapper .button#doneDeal').addClass('disabled');
-            }
+        {
+            $('.container .deals-wrapper .button#doneDeal').removeClass('disabled');
+        }
+        else if(dealType == 'realty' && !Number.isNaN(dealInfo[0]) && !Number.isNaN(dealInfo[1]))
+        {
+            console.log(dealInfo);
+            $('.container .deals-wrapper .button#doneDeal').removeClass('disabled');
+        }
+        else
+        {
+            $('.container .deals-wrapper .button#doneDeal').addClass('disabled');
+        }
         }
         else
         {
@@ -754,18 +754,18 @@ function dealsInit()
             console.log($(this).attr('type'));
             this.value = this.value.replace(/[-\.;":'`,/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
         }
-        let dealType = $('.mask-item.active')[0].id,
+        let dealType = $('.search-wrapper .mask-item.active')[0].id,
             dealInfo = '';
         console.log(dealType,dealInfo);
         if(dealType != 'realty')
         {
-            dealInfo = $('.mask-item.active input').val();    
+            dealInfo = $('.search-wrapper .mask-item.active input').val();    
         }
         else
         {
             dealInfo = [
-                parseInt($('.mask-item.active input:eq(0)').val()), 
-                parseInt($('.mask-item.active input:eq(1)').val())  
+                parseInt($('.search-wrapper .mask-item.active input:eq(0)').val()), 
+                parseInt($('.search-wrapper .mask-item.active input:eq(1)').val())  
             ]
             console.log('realty',dealInfo);
         }

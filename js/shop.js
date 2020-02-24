@@ -337,7 +337,14 @@ function shopListInitialize()
 			{
 				if(currentElem.type == 'Ammo')
 				{
-					basketList[checker].count += 10;
+					if(currentElem.max != currentElem.count)
+					{
+						currentElem.count += 10;
+					}
+					if(currentElem.max == 0)
+					{
+						currentElem.count = 0;
+					}
 				}
 				else
 				{
@@ -350,7 +357,7 @@ function shopListInitialize()
 				if(currentElem.type == 'Ammo')
 				{		
 					currentElem.count = 0;
-					if(currentElem.max != currentElem.count && currentElem.max != 0)
+					if(currentElem.max != currentElem.count)
 					{
 						currentElem.count += 10;
 					}
