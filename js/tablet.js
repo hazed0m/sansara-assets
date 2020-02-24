@@ -1054,11 +1054,27 @@ function adsSendData(data){
 	});
 	// console.log(sendObj);
 	$('#ads-frame')[0].contentWindow.postMessage({'Ads': sendObj},'*');
+	$('.ads-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
+	// $('.decree-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
+	$('.order-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
 	window.addEventListener('message', function(event) {       
 		if (event.data['getAds']) {
 			console.log('getAds');
 			$('#ads-frame')[0].contentWindow.postMessage({'Ads': sendObj}, "*");
 		} 
+		if (event.data['RefreshAds']) {
+			console.log('RefreshAds');
+			$('.ads-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
+		}
+		if (event.data['RefreshOrders']) {
+			console.log('RefreshOrders');
+			$('.order-wrap iframe')[0].contentWindow.postMessage({'playerInfo': sendObj},'*');
+		}		
+		if (event.data['showDocument']) {
+			let currentDocument = parseInt(event.data['showDocument']);
+			console.log('showDocument',currentDocument);
+			mp.trigger('showDocument',currentDocument);
+		}
     });
 };
 let auctionList = [
