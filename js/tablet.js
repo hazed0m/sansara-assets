@@ -1074,7 +1074,8 @@ function adsSendData(data){
 		sendObj = {
 			name: item.name,
 			date: item.date,
-			number: item.number
+			number: item.number,
+			admin: item.admin
 		};
 	});
 	// console.log(sendObj);

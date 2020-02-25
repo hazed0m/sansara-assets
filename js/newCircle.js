@@ -54,63 +54,87 @@ let menuTitleList = {
     maxMoney = 10000;
 function addFractionCircle(fractionName)
 {
+    $('.container .wrapper .small-circle#personCircle #showPassport').hover(
+        function(){
+            let template = `
+                <div class="show-wrapper">
+                    <div class="showItem" id="showPassport">Показать паспорт</div>
+                    <div class="showItem" id="showIdentityСard">Показать удостоверение</div>
+                </div>
+            `;
+            $('.small-item#showPassport').off('click');
+            $('.container .wrapper .small-circle#personCircle .info-circle').empty().append(template);
+            $('.show-wrapper .showItem').on('click',function(){
+                let id = this.id;
+                console.log(id);
+                mp.trigger(id);
+            });
+        },
+        function(){
+    
+        }
+    );
     $('.big-circle').remove();
-    let items = '';
-     $(menuTitleList[fractionName]).each(function(index,item){
-        items += `
-                <div class="big-item" id="${fractionName}" data-name="${item.button}">
-                    <img src="${item.img}">
-                    <div class="big-text">
-                        <span>${item.id}</span>
-                    </div>
-                </div>`;
-     });
-     let template = `
-        <div class="big-circle" id="section${menuTitleList[fractionName].length}">
-            <div class="inner">
-               ${items}
-            </div>
-        </div>`;
-    $('.container .wrapper').append(template);
-    let circleType = null;
-    // if(menuTitleList[fractionName].length == 2)
-    // {
-    //     document.querySelectorAll('.big-circle#section2 .big-item .big-text').forEach(function(item,index){
-    //         circleType = new CircleType(item).radius(280);
-    //     });
-    // }
-    // if(menuTitleList[fractionName].length == 3)
-    // {
-    //     document.querySelectorAll('.big-circle#section3 .big-item .big-text')
-    //     .forEach(function(item,index){
-    //         if(index == 2)
-    //         {
-    //            circleType = new CircleType(item).dir(-1).radius(300);
-    //         }
-    //         else
-    //         {
-    //             circleType = new CircleType(item).radius(300);
-    //         }
-    //     });
-    // }
-    // if(menuTitleList[fractionName].length == 4)
-    // {
-    //     document.querySelectorAll('.big-circle#section4 .big-item .big-text').forEach(function(item,index){
-    //         if(index == 3)
-    //         {
-    //            circleType = new CircleType(item).dir(-1).radius(280);
-    //         }
-    //         else
-    //         {
-    //             circleType = new CircleType(item).radius(280);
-    //         }
-    //     });
-    // } 
-    $('.container .wrapper .big-circle .inner .big-item').on('click',function(){
-        let id = $(this).attr('data-name');
-        console.log(id);
-        mp.trigger(id);
-    });  
+    if(fractionName != 'Goverment')
+    {
+
+        let items = '';
+         $(menuTitleList[fractionName]).each(function(index,item){
+            items += `
+                    <div class="big-item" id="${fractionName}" data-name="${item.button}">
+                        <img src="${item.img}">
+                        <div class="big-text">
+                            <span>${item.id}</span>
+                        </div>
+                    </div>`;
+         });
+         let template = `
+            <div class="big-circle" id="section${menuTitleList[fractionName].length}">
+                <div class="inner">
+                   ${items}
+                </div>
+            </div>`;
+        $('.container .wrapper').append(template);
+        let circleType = null;
+        // if(menuTitleList[fractionName].length == 2)
+        // {
+        //     document.querySelectorAll('.big-circle#section2 .big-item .big-text').forEach(function(item,index){
+        //         circleType = new CircleType(item).radius(280);
+        //     });
+        // }
+        // if(menuTitleList[fractionName].length == 3)
+        // {
+        //     document.querySelectorAll('.big-circle#section3 .big-item .big-text')
+        //     .forEach(function(item,index){
+        //         if(index == 2)
+        //         {
+        //            circleType = new CircleType(item).dir(-1).radius(300);
+        //         }
+        //         else
+        //         {
+        //             circleType = new CircleType(item).radius(300);
+        //         }
+        //     });
+        // }
+        // if(menuTitleList[fractionName].length == 4)
+        // {
+        //     document.querySelectorAll('.big-circle#section4 .big-item .big-text').forEach(function(item,index){
+        //         if(index == 3)
+        //         {
+        //            circleType = new CircleType(item).dir(-1).radius(280);
+        //         }
+        //         else
+        //         {
+        //             circleType = new CircleType(item).radius(280);
+        //         }
+        //     });
+        // } 
+        $('.container .wrapper .big-circle .inner .big-item').on('click',function(){
+            let id = $(this).attr('data-name');
+            console.log(id);
+            mp.trigger(id);
+        });  
+    }
 }
 let player = [
     { 
