@@ -129,6 +129,7 @@ let transportAcc = JSON.stringify({
 		Name: 'Sansara INC.',
 		Owner: 'Человек ин Дастриал',		
 		DistanceFare: 25,
+		MaxMargin:265262,
 		CallsFare:211,
 		Gain: 2352525253,
 		TrucksCount:2,
@@ -820,6 +821,8 @@ function pushBusiness(transportObj)
 {
 	$('.business-wrapper .service-wrapper .current-input .next-title').text(transportInfo.Name);
 	$('.business-wrapper .service-wrapper .name-wrapper .changable-input input').val(transportInfo.Name);
+	$('.business-wrapper .getMargin-wrapper input').attr({max:transportObj.MaxMargin,value:transportObj.MaxMargin});
+	$('.business-wrapper .getMargin-wrapper .max').text(transportObj.MaxMargin);
 	// $('.business-wrapper .service-wrapper .fare-wrapper #distanceFare span').text(transportInfo.DistanceFare);
 	// $('.business-wrapper .service-wrapper .fare-wrapper #callsFare span').text(transportInfo.CallsFare);
 	// $('.business-wrapper .service-wrapper .fare-wrapper .changable-input #distanceFareInput input').val(transportInfo.DistanceFare);
@@ -836,12 +839,6 @@ function pushBusiness(transportObj)
 		// </div>
 		let template = `
 			<div class="employee-item hired" data-count="${index+1}">
-				<div class="info-wrapper">
-					<div class="info-item">
-						<div class="info-name">Вызовов:</div>
-						<div class="info-data"> ${item.Calls}</div>
-					</div>
-				</div>
 				<div class="name">
 					${item.FullName}
 				</div>
@@ -884,6 +881,34 @@ function refreshBusiness()
 				mp.trigger('hireBusiness',name);
 			}
 		}
+	});
+	$('.business-wrapper .button#getMargin').on('click',function(){
+		$('.business-wrapper .getMargin-wrapper, .business-wrapper .mask').fadeIn();
+	});
+	$('.business-wrapper .getMargin-wrapper input').keyup(function(){
+		let currentCount = parseInt($(this).val()),
+			max = parseInt($(this).attr('max'));
+		if(currentCount <= max)
+		{
+			$('.business-wrapper .getMargin-wrapper .button#confirmMargin').removeClass('disabled');
+		}
+		else
+		{
+			$('.business-wrapper .getMargin-wrapper .button#confirmMargin').addClass('disabled');
+		}
+	});
+	$('.business-wrapper .button#confirmMargin').on('click',function(){
+		let currentCount = parseInt($('.business-wrapper .getMargin-wrapper input').val()),
+			max = parseInt($('.business-wrapper .getMargin-wrapper input').attr('max'));
+		if(currentCount <= max)
+		{
+			console.log(currentCount,' ',max,currentCount <= max);
+			$('.business-wrapper .getMargin-wrapper, .business-wrapper .mask').fadeOut();
+			mp.trigger('getMargin',currentCount);
+		}
+	});
+	$('.business-wrapper .button#cancelMargin').on('click',function(){
+		$('.business-wrapper .getMargin-wrapper, .business-wrapper .mask').fadeOut();
 	});
 	$('.business-wrapper .service-wrapper .changable-input .button#changeName').on('click',function(){
 		let name = $('.business-wrapper .service-wrapper .changable-input input').val();

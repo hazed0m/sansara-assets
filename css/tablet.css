@@ -2147,6 +2147,80 @@ input::-webkit-inner-spin-button {
 {
 	margin-left:-47%;
 }
+.business-wrapper .getMargin-wrapper
+{
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	background:#515355;
+	box-shadow: 0 0 10px #00a2ff;
+	z-index: 9999;
+	color:#fff;
+	padding:10px 20px;
+	display: none;
+}
+.business-wrapper .getMargin-wrapper .max-wrapper
+{
+	margin-top:10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.business-wrapper .getMargin-wrapper .max-wrapper .max
+{
+	margin-left:5px;
+}
+.business-wrapper .getMargin-wrapper .title
+{
+	text-align: center;
+	margin-bottom:10px;
+}
+.business-wrapper .getMargin-wrapper input
+{
+	margin:0 auto;
+	width:100%;
+	text-align: center;
+	color:#fff;
+	font-size:20px;
+	background:transparent;
+	border:none;
+	border-bottom:1px solid #00a2ff;
+}
+.business-wrapper .getMargin-wrapper .button-wrapper
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top:10px;
+}
+.business-wrapper .getMargin-wrapper .button,
+.business-wrapper .button#getMargin
+{
+	background-color:#00a2ff;	
+	padding:5px 10px;
+	border-radius:5px;
+	margin:0 5px;
+	cursor: pointer;
+	transition:0.2s;
+}
+.business-wrapper .button#getMargin
+{
+	position: absolute;
+	bottom:10%;
+	left:50%;
+	transform:translate(-50%,0);
+	color:#fff;
+	padding:10px 15px;
+}
+.business-wrapper .getMargin-wrapper .button:hover
+{
+	box-shadow: 0 0 5px #fff;
+}
+.business-wrapper .button#getMargin:hover
+{
+	box-shadow: 0 0 10px #fff;
+}
 .customs-wrapper .header-wrapper,
 .transportCompany-wrapper .header-wrapper,
 .business-wrapper .header-wrapper
@@ -2306,7 +2380,7 @@ input::-webkit-inner-spin-button {
 .business-wrapper .info-wrapper
 {
 	min-width:320px;
-	background: #f7bb38;
+	background: #00a2ff;
 }
 .customs-wrapper .info-wrapper .info-item,
 .transportCompany-wrapper .info-wrapper .info-item,
@@ -2419,7 +2493,7 @@ input::-webkit-inner-spin-button {
 {
 	width:100%;
 	height:63.5%;
-	border-bottom:8px solid #f7bb38;
+	border-bottom:8px solid #00a2ff;
 	background:url(../img/customs/gradient2.png) no-repeat;
 	background-position: bottom;	
 	display: flex;

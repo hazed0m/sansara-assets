@@ -436,7 +436,7 @@
     height:43px;
     border-radius:12px;
     border:1px solid #0f1636;
-    padding-left:23px;
+    padding-left:10px;
     font-size:14px;
 }
 .container .business-wrapper .button,
@@ -480,8 +480,8 @@
 .container .business-wrapper .search-block .text-info
 {
     margin-top:14px;
-    font-size:12px;
-    color:#ee0016;
+    font-size:14px;
+    color:#fff;
 }
 .container .business-wrapper .search-block .text-info p
 {
