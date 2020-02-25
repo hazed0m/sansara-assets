@@ -75,7 +75,7 @@ function addFractionCircle(fractionName)
         }
     );
     $('.big-circle').remove();
-    if(fractionName != 'Goverment')
+    if(fractionName != 'Government')
     {
 
         let items = '';

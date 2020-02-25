@@ -118,7 +118,7 @@ function pushFractionDocument(elem)
     {
         $(docInfo.SignsList).each(function(index,item){
             let status = '';
-            if(item.includes('[') || item.includes(']') || item.includes('GOVERMENT') || item.includes('LSPD') || item.includes('EMS'))
+            if(item.includes('[') || item.includes(']') || item.includes('GOVERNMENT') || item.includes('LSPD') || item.includes('EMS'))
             {
                 status = 'default';
             }
