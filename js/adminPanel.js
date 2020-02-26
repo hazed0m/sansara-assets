@@ -197,7 +197,8 @@ function pushAdmin(Id,FullName,Admin)
 }
 function pushAdminPanel(data)
 {
-    adminList = data;
+    adminList = JSON.parse(data);
+    //
     $('.container .adminpanel-wrapper').empty();
     $(adminList).each(function(index,item){
         let template = `<div class="player-notification-item" data-index="${index}" data-id="${item.Id}" data-fullname="${item.FullName}">
