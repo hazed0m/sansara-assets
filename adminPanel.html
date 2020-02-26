@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts/font.css">
+    <link rel="stylesheet" href="css/fontawesome.min.css">
+    <link rel="stylesheet" href="css/adminPanel.css">
+    <title>Admin Panel</title>
+</head>
+<body>
+    <div class="container">
+        <div class="main-wrapper">
+            <div class="main-block">
+                <div class="search-player">
+                    <input type="text" id="searchPlayer" placeholder="Имя и Фамилия / ИД игрока">
+                </div>
+                <div class="ban-player">
+                    <div class="button disabled" id="banPlayer">Бан</div>
+                    <input type="number" min="0" id="banPlayerInput" placeholder="Срок в часах">
+                </div>
+                <div class="kick-player">
+                    <div class="button disabled" id="kickPlayer">Кик</div>
+                    <input type="text" maxlength="100" id="kickPlayerInput" placeholder="Причина кика">
+                </div>
+                <div class="buttons-wrapper">
+                    <div class="button disabled" id="teleport">ТП</div>
+                    <div class="button disabled" id="teleportToYourself">ТП к себе</div>
+                    <div class="button disabled" id="notification">Уведомл.</div>
+                    <div class="button disabled" id="watchDog">Следить</div>
+                    <div class="button disabled" id="info">Инфо</div>  
+                </div>
+                <div class="textblock" id="aboutPlayer"></div> 
+            </div>
+            <div class="button" id="generalAdminSlide"><i class="fas fa-angle-double-up"></i></div>
+            <div class="general-admin-block">
+                <div class="info-block">
+                    <div class="info-item" id="playersOnServer">
+                        <div class="title">Кол-во игроков на серв.:</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="info-item" id="objectsOnServer">
+                        <div class="title">Кол-во объектов:</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="info-item" id="transportOnServer">
+                        <div class="title">Кол-во авто:</div>
+                        <div class="value"></div>
+                    </div>
+                </div>
+                <div class="input-wrapper">
+                    <input type="text" id="generalAdminInput" placeholder="Введите информацию">
+                    <div class="buttons-wrapper">
+                        <div class="button" id="deleteCar">Удалить авто</div>
+                        <div class="button" id="cleanInv">Очистить инвентарь</div>
+                        <div class="button" id="objectName">Название объекта</div>
+                        <div class="button" id="blockPoint">Заблок. поинт</div>
+                        <div class="button" id="deleteObject">Удалить объект</div>
+                    </div>
+                </div>
+                <div class="button" id="notifyAll">Уведомл. для всех</div>
+            </div>
+            <!-- <div class="button" id="addSlide"><i class="fas fa-angle-double-up"></i></div> -->
+            <div class="additional-block">
+                <div class="admin-panel-checkbox">
+                    <input type="checkbox">
+                    <div class="title">Админ панель</div>
+                </div>
+                <div class="button" id="callGeneralAdmin">Вызвать ГА</div>
+            </div>
+        </div>
+        <div class="adminpanel-wrapper">          
+        </div>
+        <div class="notification-screen">
+            <div class="title">Обращение к <span></span></div>
+            <textarea id="notificationText" placeholder="..."></textarea>
+            <div class="buttons-wrapper">
+                <div class="button disabled" id="sendMessage">Отправить</div>
+                <div class="button" id="cancel">Отмена</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/font-awesome.min.js"></script>
+    <script src="js/adminPanel.js"></script>
+</body> 
+</html>

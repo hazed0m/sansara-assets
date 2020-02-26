@@ -575,22 +575,17 @@ function personInit(element)
                 violationItems = ``,
                 textItems = item.Text.split('@'),
                 textItem = ``;
-            $(item.Cars).each(function(innerIndex,innerItem){
-                let iterator = '';
-                console.log(item.Cars.length);
-                if(innerIndex < item.Cars.length-1)
-                {
-                    iterator = ',';
-                }
-                carItems += `<div id="carItem">${innerItem}${iterator}</div>`;
+            $(item.Cars).each(function(index,item){
+                carItems += `<div class="violation-item">
+                    <div class="title-item">${item}</div>
+                </div>`;
             });
             $(textItems).each(function(index,item){
                 textItem += `<p id="text-item">${item}</p> `;
             });
-            $(item.StatementsID).each(function(index,item){
+            $(item.StatementID).each(function(index,item){
                 violationItems += `<div class="violation-item">
-                    <div class="title-item">${item.Id}</div>
-                    <div class="title-item">${item.Car}</div>
+                    <div class="title-item">${item}</div>
                 </div>`;
             });
             // <div class="car">
@@ -623,13 +618,20 @@ function personInit(element)
                 </div>
                 <div class="violations-wrapper">    
                     <div class="title-wrap">
-                        <div class="title-item">Дело №</div>
                         <div class="title-item">Автомобиль</div>
+                    </div>
+                    <div class="violation-wrap">
+                        ${carItems}
+                    </div>
+                </div>    
+                <div class="violations-wrapper">    
+                    <div class="title-wrap">
+                        <div class="title-item">Дело №</div>
                     </div>
                     <div class="violation-wrap">
                         ${violationItems}
                     </div>
-                </div>                    
+                </div>                 
             `;
             if(!$('.container .business-wrapper .content-block').is(':visible'))
             {

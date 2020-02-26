@@ -467,7 +467,7 @@
 .container .wantedSearch-wrapper .wanted-content-wrapper
 {
     width:364px;
-    height:469px;
+    height:595px;
     background:#fff;
     border-radius:25px;
     margin-left:30px;
@@ -539,7 +539,7 @@
 }
 .business-wrapper .content-block .text-wrapper .text-wrap
 {
-    max-height:156px;
+    max-height:141px;
     overflow-y:scroll;
 }
 .violations-wrapper .title-wrap
@@ -572,7 +572,7 @@
 .violations-wrapper .violation-wrap
 {
     padding:0 13px;
-    max-height: 114px;
+    max-height: 119px;
     overflow-y: scroll;
 }
 .violations-wrapper .violation-wrap .violation-item

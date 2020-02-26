@@ -1,0 +1,342 @@
+*
+{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family:"HelveticaNeueCyr";
+    width:fit-content;
+}
+.container .main-wrapper    
+{
+    margin:5px;
+    padding: 10px;
+    background: #363940;
+    border-radius: 5px;
+    width:380px;
+}
+.container .main-wrapper .main-block
+{
+    width:100%;
+}
+.container .button 
+{
+    padding:5px;
+    background: #ffe100;
+    color: #000;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+.container .button.disabled
+{
+    cursor: default;
+    opacity:0.5;
+}
+.container .button.disabled:hover
+{
+    box-shadow:0 0 0 transparent;
+}
+.container .button:hover
+{
+    box-shadow: 0 0 10px #fff;
+}
+.container input
+{
+    width:100%;
+    min-height:35px;
+    font-size:18px;
+    padding:0 10px;
+}
+.main-wrapper .search-player
+{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-wrapper .ban-player,
+.main-wrapper .kick-player
+{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+    margin:10px 0;
+}
+.main-wrapper .ban-player .button,
+.main-wrapper .kick-player .button
+{
+    width:50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-wrapper .ban-player input,
+.main-wrapper .kick-player input
+{
+    margin-left:10px;
+}
+.main-wrapper .main-block .buttons-wrapper
+{
+    width:100%;
+    display: flex;
+    justify-content: space-between;
+}
+.main-wrapper .main-block .textblock#aboutPlayer
+{
+    padding:10px;
+    margin-top:10px;
+    width:100%;
+    height:150px;
+    font-size:18px;
+    background:#fff;
+    overflow-y: scroll;
+    display: none;
+}
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+.main-wrapper .main-block .textblock#aboutPlayer::-webkit-scrollbar,
+.container .adminpanel-wrapper::-webkit-scrollbar,
+.container .adminpanel-wrapper .player-notification-item .text::-webkit-scrollbar {
+    width: 7px;
+}
+.main-wrapper .main-block .textblock#aboutPlayer::-webkit-scrollbar-track,
+.container .adminpanel-wrapper::-webkit-scrollbar-track,
+.container .adminpanel-wrapper .player-notification-item .text::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+} 
+.main-wrapper .main-block .textblock#aboutPlayer::-webkit-scrollbar-thumb,
+.container .adminpanel-wrapper::-webkit-scrollbar-thumb,
+.container .adminpanel-wrapper .player-notification-item .text::-webkit-scrollbar-thumb {
+    background-color:#ffe100;
+}
+.button#addSlide,
+.button#generalAdminSlide
+{
+    background:#fff;
+    margin:5px auto;
+    padding:3px 18px;
+    font-size:18px;
+}
+.button#generalAdminSlide
+{
+    display: none;
+}
+.button#generalAdminSlide svg
+{
+    transition: 0.2s;
+    transform:rotate(180deg);
+}
+.main-wrapper .general-admin-block
+{
+    width:100%;
+    border-top:2px solid #fff;
+    padding-top:10px;
+    display: none;
+}
+.main-wrapper .general-admin-block .info-block
+{
+    width:100%;
+}
+.main-wrapper .general-admin-block .info-block .info-item
+{
+    width:100%;
+    color:#fff;
+    margin:5px 0;
+    font-size:18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.main-wrapper .general-admin-block .info-block .info-item .value
+{
+   font-size:19px;
+}
+.main-wrapper .general-admin-block .input-wrapper
+{
+    width:100%;
+}
+.main-wrapper .general-admin-block .input-wrapper input
+{
+    width:100%;    
+    margin:10px 0;
+}
+.main-wrapper .general-admin-block .input-wrapper .buttons-wrapper
+{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.main-wrapper .general-admin-block .input-wrapper .buttons-wrapper .button
+{
+    width:115px;
+    max-height:37px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin:3px 0;
+}
+.main-wrapper .general-admin-block .button#notifyAll
+{
+    margin:20px 0 10px 0;
+}
+.main-wrapper .additional-block
+{
+    width:100%;
+    display: flex;
+    border-top:2px solid #fff;
+    margin-top:10px;
+    padding-top:10px;
+}
+.main-wrapper .additional-block .admin-panel-checkbox
+{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    width:100%;
+}
+.main-wrapper .additional-block .admin-panel-checkbox input
+{
+    width:20px;
+    height:20px;
+    cursor: pointer;
+}
+.main-wrapper .additional-block .admin-panel-checkbox .title
+{
+    margin-left:10px;
+    font-size:18px;
+    color:#fff;
+    transition: 0.2s;
+}
+.main-wrapper .additional-block .button
+{
+    background:red;
+    color:#fff;
+    width:150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .notification-screen
+{
+    background:#363940;
+    border-radius: 5px;
+    padding:20px;
+    width:400px;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display: none;
+}
+.container .notification-screen .title
+{
+    font-size:18px;
+    color:#fff;
+    margin-bottom:5px;
+}
+.container .notification-screen .buttons-wrapper
+{
+    width:100%;
+    display: flex;
+    justify-content: center;
+}
+.container .notification-screen textarea
+{
+    resize:none;
+    width:100%;
+    height:150px;
+    padding:10px;
+    font-size:18px;
+}
+.container .notification-screen .buttons-wrapper .button
+{
+    margin:15px 20px 0 20px;
+}
+.container .adminpanel-wrapper
+{
+    display: none;
+    position: absolute;
+    top:50%;
+    right:0;
+    transform: translate(0,-50%);
+    margin:5px;
+    padding: 15px;
+    background: #363940;
+    border-radius: 5px;
+    overflow-y: scroll;
+    max-height: 530px;
+}
+.container .adminpanel-wrapper .player-notification-item
+{
+    background:#fff;
+    display: flex;
+    width:100%;
+    margin-bottom:15px;
+}
+.container .adminpanel-wrapper .player-notification-item:last-child
+{
+    margin:0;
+}
+.container .adminpanel-wrapper .player-notification-item .text
+{
+    width:250px;
+    margin-top:5px;
+    height:236px;
+    padding:10px;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    word-wrap: break-word;
+}
+.container .adminpanel-wrapper .player-notification-item .buttons-wrapper .player-status
+{
+    width:80px;
+    height:45px;
+    margin:3px 0;
+    position: relative;
+}
+.container .adminpanel-wrapper .player-notification-item .buttons-wrapper .player-status#green
+{
+    background:rgb(6, 197, 66);
+}
+.container .adminpanel-wrapper .player-notification-item .buttons-wrapper .player-status#red
+{
+    background:rgb(245, 47, 47);
+}
+.container .adminpanel-wrapper .player-notification-item .buttons-wrapper .player-status#admin
+{
+    background:#cbccd1;
+}
+.container .adminpanel-wrapper .player-notification-item .buttons-wrapper .player-status#admin:before
+{
+    content:'Админ';
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+.container .adminpanel-wrapper .player-notification-item .buttons-wrapper
+{
+    padding:0 5px;
+}
+.container .adminpanel-wrapper .player-notification-item .buttons-wrapper .button
+{
+    width:80px;
+    height:45px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:3px 0;
+}
+.container .adminpanel-wrapper .player-notification-item .buttons-wrapper .button:hover
+{
+    box-shadow: inset 0 0 10px rgb(122, 116, 25);
+}
