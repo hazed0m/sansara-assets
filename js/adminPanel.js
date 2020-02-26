@@ -123,6 +123,11 @@ function showMenu(status)
         $('.main-wrapper').css('display','none');
     }
 }
+function pushNameSearch(name)
+{
+    $('input#searchPlayer').val(name);
+    $('.container .main-wrapper .main-block .buttons-wrapper .button').removeClass('disabled');
+}
 function pushInfo(text)
 {
     let textArr = text.split('@');
