@@ -21,15 +21,15 @@
     background-position: center;
     position: relative;
 }
-.container #police
+.container #Police
 {
     background-image:url(../img/identity/police.png);
 }
-.container #medical
+.container #Medical
 {
     background-image:url(../img/identity/medical.png);
 }
-.container #goverment
+.container #Government
 {
     background-image:url(../img/identity/goverment.png);
 }
