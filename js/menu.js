@@ -393,6 +393,7 @@ let menu = new Vue({
                     this.animateSettingsShow = false;
                     this.mapSettingsShow = false;
                     this.keySettingsShow = false;
+                    $('.report-wrap textarea').val('');
                     switch (this.reportShow) {
                         case true:
                             this.reportShow = false;
@@ -636,4 +637,10 @@ function keypressUp(e){
         $('.getKeyCode-wrap .currentKey').attr('data-key',e.keyCode).text(menu.getKeyTitle(e.keyCode));
     }
 };
+$('.report-btn').on('click',function(){
+    let currentText = $('.report-wrap textarea').val();
+    console.log(currentText);
+    menu.reportShow = false;
+    mp.trigger('sendReport',currentText);
+});
 $(window).on("keyup", keypressUp);

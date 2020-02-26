@@ -112,6 +112,17 @@ $('.container .main-block .buttons-wrapper .button').on('click',function(){
         mp.trigger('adminButton', id, currentAdmin.id,currentAdmin.name, currentData)
     }
 });
+function showMenu(status)
+{
+    if(status)
+    {
+        $('.main-wrapper').fadeIn();
+    }
+    else
+    {
+        $('.main-wrapper').css('display','none');
+    }
+}
 function pushInfo(text)
 {
     let textArr = text.split('@');
