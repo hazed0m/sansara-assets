@@ -42,16 +42,14 @@ var currentRange = 0,
 opacitys = [100, 100, 100, 100, 100],
 sex = '';
 const manHairlist = [
-// male
- 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
-
- 21,22,24,25,26,27,28,29,30,31,32,33,34,35,36,72,73 
+    // male
+    0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
+    21,22,24,25,26,27,28,29,30,31,32,33,34,35,36,72,73 
 ];
 // female
 const girlHairlist =
-[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
-
- 21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,38,76,77];
+    [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
+    21,22,23,25,26,27,28,29,30,31,32,33,34,35,36,37,38,76,77];
 const makeupList = [
 // борода
     [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28],
@@ -78,7 +76,7 @@ function initializeMakeup(input)
 {
     sex = input;
     $(function() {
-        $('input[type="range"]').on('input change', function(e) {
+        $('.main-block input[type="range"]').on('input change', function(e) {
             let id = e.target.id,
                 val = e.target.value;
             $(e).val(val).change();
@@ -108,7 +106,7 @@ function initializeMakeup(input)
             mp.trigger("makeupRange", id, val, currentItem);
         });
     
-        $('input[type=range]').rangeslider({
+        $('.main-block input[type=range]').rangeslider({
         polyfill: false,
         change: function(e) {
             console.log(e)
@@ -255,7 +253,7 @@ $(function() {
         mp.trigger("cameraMakeup", id, val);
     });
     
-    $('input[type=range]').rangeslider({
+    $('.rotate input[type=range]').rangeslider({
       polyfill: false,
       change: function(e) {
           console.log(e)
@@ -266,7 +264,7 @@ $('#resetCamera').on('click',function(){
     let fillWidth = $('.rotate .rangeslider--horizontal').css('width');
     $('.rotate .rangeslider__fill').css('width', `${parseInt(fillWidth)/2}px`);
     $('.rotate .rangeslider__handle').css('left', `${(parseInt(fillWidth)/2)-6}px`);
-    mp.trigger("resetCamera");
+    mp.trigger("resetCameraMakeup");
 });
 
 var makeupTemplate = `<div class="makeup-item" id="haircut">

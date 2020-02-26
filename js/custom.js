@@ -540,7 +540,7 @@ inputsRange = document.getElementsByTagName('input');
 let currentRange = 0;
 
 $(function() {
-    $('input[type="range"]').on('input change', function(e) {
+    $('.custom-popup input[type="range"]').on('input change', function(e) {
         let id = e.target.id,
             val = e.target.value;
         $(e).val(val).change();
@@ -594,7 +594,7 @@ $(function() {
         mp.trigger("inputsRange.client", id, val, index[currentRange]);
     });
     
-    $('input[type=range]').rangeslider({
+    $('.custom-popup input[type=range]').rangeslider({
       polyfill: false,
       change: function(e) {
           console.log(e)
@@ -617,6 +617,30 @@ function keypressDown(e){
 }
 $(window).on("keyup", keypressUp);
 $(window).on("keydown", keypressDown);
+let currentRangeRotate = 0;
+$(function() {
+    $('.rotate input[type="range"]').on('input change', function(e) {
+        let id = e.target.id,
+            val = e.target.value;
+        $(e).val(val).change();
+        switch (id) {
+            case 'cameraHeight':
+                currentRangeRotate = 0;
+                break;
+            case 'cameraRotate':
+                currentRangeRotate = 1;
+                break;
+        }
+        mp.trigger("cameraCustom", id, val);
+    });
+    
+    $('.rotate input[type=range]').rangeslider({
+      polyfill: false,
+      change: function(e) {
+          console.log(e)
+      }
+    });
+});
 $('#resetCamera').on('click',function(){
     mp.trigger('resetCameraCustom');
 });
