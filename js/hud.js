@@ -164,7 +164,7 @@ function keypressUp(e){
         case 69:  // E взаимодействие
             mp.trigger('KeyEpress');
         break;
-        case 85:  // E взаимодействие
+        case 45:  // Menu Insert взаимодействие 
             mp.trigger('KeyPress');
         break;       
         case 89:  // Y взаимодействие

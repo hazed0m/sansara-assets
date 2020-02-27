@@ -224,7 +224,7 @@ function pushAdminPanel(data)
 {
     adminList = JSON.parse(data);
     $('.container .adminpanel-wrapper').empty();
-    $(adminList).each(function(index,item){
+    $(adminList.reverse()).each(function(index,item){
         let template = `<div class="player-notification-item" data-index="${index}" data-id="${item.Id}" data-fullname="${item.FullName}">
                             <div class="text">${item.Text}</div>
                             <div class="buttons-wrapper">
@@ -235,7 +235,7 @@ function pushAdminPanel(data)
                                 <div class="button" id="restartInterface">Рест. интерф.</div>
                             </div>
                         </div>`;
-        $('.container .adminpanel-wrapper').prepend(template);
+        $('.container .adminpanel-wrapper').append(template);
     });
     refreshAdminPanel();
 }

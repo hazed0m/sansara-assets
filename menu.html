@@ -14,7 +14,7 @@
                 <div class="menu-title">Меню игрока</div>
             </div>
             <div class="categorie-wrap" v-for="option in options">
-                <div class="categorie-title" v-if="option.value !== animateShow" @click="switching(option.value)" :data-id="option.value">{{ option.text }}</div>
+                <div class="categorie-title" @click="switching(option.value)" :data-id="option.value">{{ option.text }}</div>
             </div>
             <transition name="custom-classes-transition"
                         enter-active-class="animated fadeIn"
@@ -197,7 +197,7 @@
                         <div class="report-title">Введите текст жалобы/вопроса</div>
                         <textarea  class="report-input" type="text" placeholder="Введите сообщение..." style="resize: none;padding:10px;">
                         </textarea>
-                        <div class="report-subtitle">Внимание! За оффтоп либо дезинформацию, вы получите блокировку чата на определенный срок!</div>
+                        <!-- <div class="report-subtitle">Внимание! За оффтоп либо дезинформацию, вы получите блокировку чата на определенный срок!</div> -->
                         <button class="report-btn">Отправить</button>
                     </div>
                 </div>
