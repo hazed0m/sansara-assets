@@ -84,17 +84,17 @@
 {
     transform: translate(-50%,0) scale(1.05);
 }
-.container #police .close-button
+.container #Police .close-button
 {
     background:#546194;
     box-shadow: 0 0 10px #546194;
 }
-.container #medical .close-button
+.container #Medical .close-button
 {
     background:#a84ea8;
     box-shadow: 0 0 10px #a84ea8;
 }
-.container #goverment .close-button
+.container #Government .close-button
 {
     background:#716941;
     box-shadow: 0 0 10px #716941;
