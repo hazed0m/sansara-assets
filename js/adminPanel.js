@@ -70,12 +70,24 @@ $('.container .notification-screen #cancel').on('click',function(){
 });
 $('.ban-player #banPlayer, .kick-player #kickPlayer').on('click',function(){
     let currentName = $('input#searchPlayer').val(),
-        currentValue = $(this).parent().find('input').val(),
+        currentKickValue = $('.kick-player input').val(),
+        currentBanValue = $('.ban-player input').val(),
         id = this.id;
-    $(this).parent().find('input').val('');
-    $(this).addClass('disabled');
-    console.log(id,currentAdmin.id,currentAdmin.name,currentName,currentValue);
-    mp.trigger(id,currentAdmin.id,currentAdmin.name,currentName,currentValue);
+    if(id == 'kickPlayer')
+    {
+        $('.kick-player #kickPlayer, .ban-player #banPlayer').addClass('disabled');
+        $('.kick-player input').val('');
+        console.log(id,currentAdmin.id,currentAdmin.name,currentName,currentKickValue);
+        mp.trigger(id,currentAdmin.id,currentAdmin.name,currentName,currentKickValue);
+    }
+    if(id == 'banPlayer')
+    {
+        $('.kick-player #kickPlayer, .ban-player #banPlayer').addClass('disabled');
+        $('.kick-player input').val('');
+        $('.ban-player input').val('');
+        console.log(id,currentAdmin.id,currentAdmin.name,currentName,currentKickValue,currentBanValue);
+        mp.trigger(id,currentAdmin.id,currentAdmin.name,currentName,currentKickValue,currentBanValue);
+    }
 });
 $('.ban-player input, .kick-player input').keyup(function(){
     let id = this.id,
