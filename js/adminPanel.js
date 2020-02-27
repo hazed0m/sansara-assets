@@ -36,6 +36,7 @@ $('#notification, #notifyAll, #callGeneralAdmin').on('click',function(){
     {
         $('.container .notification-screen').attr({'id':id,'data-index':currentName}).fadeIn();
     }    
+    mp.trigger('NotificationScreenOpened');
 });
 $('.container .notification-screen textarea').keyup(function(){
     if($(this).val().length != 0)
@@ -75,6 +76,28 @@ $('.ban-player #banPlayer, .kick-player #kickPlayer').on('click',function(){
     $(this).addClass('disabled');
     console.log(id,currentAdmin.id,currentAdmin.name,currentName,currentValue);
     mp.trigger(id,currentAdmin.id,currentAdmin.name,currentName,currentValue);
+});
+$('.ban-player input, .kick-player input').keyup(function(){
+    let id = this.id,
+        kickVal = $('.kick-player input').val(),
+        banVal = $('.ban-player input').val();
+    if($('input#searchPlayer').val().length != 0 && kickVal.length != 0)
+    {
+        $('.button#kickPlayer').removeClass('disabled');
+    }
+    else
+    {
+        $('.button#kickPlayer').addClass('disabled');
+    }
+    if($('input#searchPlayer').val().length != 0 && kickVal.length != 0 && banVal.length != 0)
+    {
+        console.log($('input#searchPlayer').val().length,kickVal.length,'banVAl=',banVal.length);
+        $('.button#banPlayer').removeClass('disabled');
+    }
+    else
+    {
+        $('.button#banPlayer').addClass('disabled');
+    }
 });
 $('input#searchPlayer').keyup(function(){
     if($(this).val().length != 0)
@@ -137,16 +160,6 @@ function pushInfo(text)
     });
     $('.textblock#aboutPlayer').slideDown();
 }
-$('.ban-player input, .kick-player input').keyup(function(){
-    if($('input#searchPlayer').val().length != 0 && $(this).val().length != 0)
-    {
-        $(this).parent().find('.button').removeClass('disabled');
-    }
-    else
-    {
-        $(this).parent().find('.button').addClass('disabled');
-    }
-});
 function pushGeneralAdmin(playersOnServer,objectsOnServer,transportOnServer)
 {
     $('.info-item#playersOnServer .value').text(playersOnServer);
@@ -210,7 +223,7 @@ function pushAdminPanel(data)
                                 <div class="button" id="restartInterface">Рест. интерф.</div>
                             </div>
                         </div>`;
-        $('.container .adminpanel-wrapper').append(template);
+        $('.container .adminpanel-wrapper').prepend(template);
     });
     refreshAdminPanel();
 }
@@ -233,6 +246,7 @@ function refreshAdminPanel()
                 $('.container .notification-screen').attr({'id':id,'data-index':currentIndex}).fadeIn();
                 $('.container .notification-screen .title span').text(adminList[currentIndex].FullName);
             }
+            mp.trigger('NotificationScreenOpened');
         }
     });
 }
