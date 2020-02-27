@@ -114,13 +114,13 @@ $('.container .main-block .buttons-wrapper .button').on('click',function(){
 });
 function showMenu(status)
 {
-    if(status)
+    if(status == 'open')
     {
         $('.main-wrapper').fadeIn();
     }
-    else
+    if(status == 'close')
     {
-        $('.main-wrapper').css('display','none');
+        $('.main-wrapper').fadeOut();
     }
 }
 function pushNameSearch(name)
@@ -198,7 +198,6 @@ function pushAdmin(Id,FullName,Admin)
 function pushAdminPanel(data)
 {
     adminList = JSON.parse(data);
-    //
     $('.container .adminpanel-wrapper').empty();
     $(adminList).each(function(index,item){
         let template = `<div class="player-notification-item" data-index="${index}" data-id="${item.Id}" data-fullname="${item.FullName}">
