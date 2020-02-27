@@ -13,8 +13,8 @@
             <div class="menu-content">
                 <div class="menu-title">Меню игрока</div>
             </div>
-            <div class="categorie-wrap" v-for="option in options" >
-                <div class="categorie-title" @click="switching(option.value)" :data-id="option.value">{{ option.text }}</div>
+            <div class="categorie-wrap" v-for="option in options">
+                <div class="categorie-title" v-if="option.value !== animateShow" @click="switching(option.value)" :data-id="option.value">{{ option.text }}</div>
             </div>
             <transition name="custom-classes-transition"
                         enter-active-class="animated fadeIn"

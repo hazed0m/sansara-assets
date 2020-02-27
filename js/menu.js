@@ -52,6 +52,7 @@ let menu = new Vue({
         loginSetShow:false,
         animateShow: false,
         selectAnim: false,
+        animToogle:true,
         keySettingsShow:false,
         setFastAnimIndex: 0,
         animateSettingsShow: false,
@@ -187,14 +188,14 @@ let menu = new Vue({
             return currentName;
         },
         options: [
-            { text: 'Мультипаспорт', value: 'passShow', status: false },
-            { text: 'Вызов администрации', value: 'reportShow', status: false },
+            { text: 'Мультипаспорт', value: 'passShow', status: true },
+            { text: 'Вызов администрации', value: 'reportShow', status: true },
             { text: 'Эмоции', value: 'animateShow', status: false },
-            { text: 'Навыки персонажа', value: 'skillsShow', status: false },
-            { text: 'Фильтр GPS', value: 'mapSettingsShow', status: false},
+            { text: 'Навыки персонажа', value: 'skillsShow', status: true },
+            { text: 'Фильтр GPS', value: 'mapSettingsShow', status: true},
             { text: 'Настройка быстрых эмоций', value: 'settingsAnimShow', status: false},
-            { text: 'Настройка клавиш', value: 'keySettingsShow', status: false},
-            { text: 'Настройки аккаунта', value: 'settingsShow', status: false}
+            { text: 'Настройка клавиш', value: 'keySettingsShow', status: true},
+            { text: 'Настройки аккаунта', value: 'settingsShow', status: true}
         ],
         animations: [
             { title: 'Искать', dict: 'amb@prop_human_bum_bin@idle_b', name: 'idle_d' },
@@ -644,3 +645,9 @@ $('.report-btn').on('click',function(){
     mp.trigger('sendReport',currentText);
 });
 $(window).on("keyup", keypressUp);
+function categoryHide()
+{
+    $(`.categorie-wrap .categorie-title[data-id="animateShow"],
+       .categorie-wrap .categorie-title[data-id="settingsAnimShow"]`)
+    .parent().css('display','none');
+}
