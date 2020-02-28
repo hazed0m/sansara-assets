@@ -129,6 +129,7 @@ function checkAction(action, index, id, currentCount)
 	{
 		$('.debugger .left-wrap, .debugger .right-wrap').empty();
 		actionDebugger(action, index, id, currentCount);
+		mp.trigger(action, index, id, currentCount, 'document');   
 	}
 	if(action == 'use')
 	{

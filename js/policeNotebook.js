@@ -1066,9 +1066,16 @@ function refreshThingsList()
         }
     });
     $('.container .button-wrapper .button#print').on('click',function(){
-        let id = parseInt($(this).attr('data-index'));
-        console.log(id);
-        mp.trigger('printThing',id);
+        if(!$(this).hasClass('disabled'))
+        {
+            let id = parseInt($(this).attr('data-index'));
+            $(this).addClass('disabled');
+            console.log(id);
+            setTimeout(() => {
+                $(this).removeClass('disabled');
+            },500);
+            mp.trigger('printThing',id);
+        }
     });
     $(`.container .archive-wrapper .archive-wrap #more-things`).on('click',function(){
         if(!$(this).hasClass('disabled'))

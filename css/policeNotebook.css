@@ -1355,6 +1355,8 @@
     height:29px;
     text-align: center;
 }
+.container .things-wrapper .disabled#print,
+.container .archive-wrapper .disabled#print,
 .container .main-wrapper .disabled,
 .container .things-wrapper .disabled#entryThing
 {
