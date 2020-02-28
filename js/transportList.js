@@ -153,17 +153,17 @@ boatsList = [
     { name: 'tug', hash: '0x82CAC433', speed: 110, luggage: 300, type: 'буксир',price: 780000, info: 'Буксир является одной из самых больших управляемых машин в игре (не считая некоторых самолётов). Она может похвастаться крепким корпусом и большой надстройкой с мостиком. Правда, единственным доступным помещением на корабле (назвать это лодкой уже нельзя) является мостик, ни в каюты, ни в машинное отделение спуститься нельзя.', places: 2}
 ],
 towTruckList = [
-    { name: 'Towtruck Large', hash: 'towtruck', speed:167, luggage: 100, type: 'эвакуатор',price: 16100, info: '', places: 2},
-    { name: 'Vapid Tow Truck', hash: 'towtruck2', speed:161, luggage: 50, type: 'эвакуатор',price: 16200, info: '', places: 2},
-    { name: 'MTL Flatbed', hash: 'flatbed', speed:209, luggage: 100, type: 'эвакуатор',price: 16300, info: '', places: 2}
+    { name: 'Towtruck Large', hash: 'towtruck', speed:167, luggage: 100, type: 'эвакуатор',price: 47100, info: '', places: 2},
+    { name: 'Vapid Tow Truck', hash: 'towtruck2', speed:161, luggage: 50, type: 'эвакуатор',price: 30200, info: '', places: 2},
+    { name: 'MTL Flatbed', hash: 'flatbed', speed:209, luggage: 100, type: 'эвакуатор',price: 55300, info: '', places: 2}
 ],
 transportCompanyCarsList = [
-    { name: 'Vapid Taxi', hash: 'taxi', speed:230, luggage: 60, type: 'такси',price: 16100, info: '', places: 4},
-    { name: 'Brute Rental', hash: 'rentalbus', speed:116, luggage: 80, type: 'такси',price: 16100, info: '', places: 4},
-    { name: 'Maibatsu Mule', hash: 'mule4', speed:130, luggage: 1200, type: 'грузовик',price: 16100, info: '', places: 4},
-    { name: 'Declasse Burrito', hash: 'burrito5', speed:209, luggage: 1000, type: 'фургон',price: 16100, info: '', places: 2},
-    { name: 'Jobuilt Phantom', hash: 'phantom3', speed:198, luggage: 0, type: 'тягач',price: 16200, info: '', places: 2},
-    { name: 'Trailer S', hash: 'trailers3', speed:0, luggage: 7000, type: 'прицеп',price: 16300, info: '', places: 0}
+    { name: 'Vapid Taxi', hash: 'taxi', speed:230, luggage: 60, type: 'такси',price: 66100, info: '', places: 4},
+    { name: 'Brute Rental', hash: 'rentalbus', speed:116, luggage: 80, type: 'такси',price: 12200, info: '', places: 4},
+    { name: 'Maibatsu Mule', hash: 'mule4', speed:130, luggage: 1200, type: 'грузовик',price: 300900, info: '', places: 4},
+    { name: 'Declasse Burrito', hash: 'burrito5', speed:209, luggage: 1000, type: 'фургон',price: 280100, info: '', places: 2},
+    { name: 'Jobuilt Phantom', hash: 'phantom3', speed:198, luggage: 0, type: 'тягач',price: 400200, info: '', places: 2},
+    { name: 'Trailer S', hash: 'trailers3', speed:0, luggage: 7000, type: 'прицеп',price: 1016300, info: '', places: 0}
 ]
 function getTransportList()
 {
