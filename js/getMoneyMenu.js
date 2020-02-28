@@ -5,25 +5,26 @@ $('.container .close-but').on('click',function(){
 $('.container .input-wrapper .button').on('click',function(){
     if(!$(this).hasClass('disabled'))
     {
-        let arr = getEvidences();
-        if(arr.length>0)
-        {
-            console.log(arr);
-            mp.trigger('getMoneyList',JSON.stringify(arr));
-        }
+        let str = '';
+        $('.container .evidence-wrapper .evidence-item.active').each(function(index,item){
+            if(str.length != 0)
+            {
+                str += '@';
+            }
+            str += $(item).find('.name').text();
+        });
+        console.log(str);
+        mp.trigger('getMoneyList',str);
     }
 });
-function getEvidences()
-{    
-    let result = [];
-    $('.container .evidence-wrapper .evidence-item').each(function(index,item){
-        if($(this).hasClass('active'))
-        {
-            result.push($(this).find('.name').text());
-        }
-    });
-    return result;
-}
+// function getEvidences()
+// {    
+//     let result = [];
+//     $('.container .evidence-wrapper .evidence-item.active').each(function(index,item){
+//         result.push($(this).find('.name').text());
+//     });
+//     return result;
+// }
 function pushGetMoneyMenu(element)
 {
     $('.container .evidence-wrapper').empty();
