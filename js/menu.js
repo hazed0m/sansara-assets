@@ -153,6 +153,10 @@ let menu = new Vue({
             { keyCode: 90, title: "Z, z, Я, я", action: 'Микрофон рации', active: false },
             { keyCode: 66, title: "B, b, И, и", action: 'Указать', active: false }
         ],
+        pushKeyList: function(obj)
+        {
+            this.actionList = JSON.parse(obj);
+        },
         showKeySettingsMenu: function(keyCode, action, index) {
             menu.keyChangeSettingsShow = true;   
             menu.setKeyIndex = index;
