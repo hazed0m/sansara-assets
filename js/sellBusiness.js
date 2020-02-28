@@ -5,6 +5,10 @@ function pushBusiness(element,busName,busPrice)
 {
   businessPrice = busPrice;
   businessName = busName;
+  if(businessPrice == 0)
+  {
+    $('.ok-button').css('display','none');
+  }
   let currentList = JSON.parse(element);
   $(currentList).each(function(index,item){
      let obj = {
