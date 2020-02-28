@@ -22,9 +22,12 @@ $('#buy').on('click',function(){
     let cashService = $('.radio-block .active')[0].classList[0];
     let currentRange = $('.slick').val();
     let currentGasoline = $('.selector-block .active').parent().parent().parent().find('.selector-name').text();
-    let fullPrice = $('.price-block .price').text();
+    let fullPrice = parseInt($('.price-block .price').text());
     console.log(currentGasoline);
-    mp.trigger("azsBuy", cashService, currentRange, currentGasoline, fullPrice);
+    if(fullPrice != 0)
+    {
+        mp.trigger("azsBuy", cashService, currentRange, currentGasoline, fullPrice);
+    }
 });
 function azsCounter(currentRange)
 {
