@@ -156,7 +156,7 @@ let menu = new Vue({
         showKeySettingsMenu: function(keyCode, action, index) {
             menu.keyChangeSettingsShow = true;   
             menu.setKeyIndex = index;
-            $('.keyTitle').text(action)
+            $('.keyTitle').text(action);
             $('.currentKey').empty();
             $('.currentKey').attr('data-index',index).text(this.getKeyTitle(keyCode,'init'));
             this.actionList.forEach(function (value, key) {
@@ -650,3 +650,6 @@ function categoryHide()
        .categorie-wrap .categorie-title[data-id="settingsAnimShow"]`)
     .parent().css('display','none');
 }
+$('.report-wrap textarea').keyup(function() {
+	this.value = this.value.replace(/[^А-ЯЁа-яё0-9,.!? ]/g, '');
+});

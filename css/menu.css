@@ -403,13 +403,12 @@ body {
 }
 .report-input {
     margin: 20px auto;
+    padding:5px;
     width: 516px;
-    height: 63px;
-    max-height: 63px;
+    height: 150px;
+    max-height: 150px;
     background-color: #ffffff;
-    font-size: 18px;
-    font-weight: 400;
-    text-align: center;
+    font-size: 22px;
 }
 .report-subtitle {
     color: #ffffff;
