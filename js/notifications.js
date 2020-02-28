@@ -1,4 +1,5 @@
-var emailValidate = false;
+var emailValidate = false,
+    licenceStatus = false;
 function loginError(text)
 {
 	$('.alert-message').text(text);
@@ -17,14 +18,59 @@ $('input').focusout(function(){
     }
     $(this).attr('placeholder','');
 });
+$('.popup-wrap#licence .input-wrapper input').on('click',function(){
+    $(this).attr("checked", !$(this).parent().find('input').attr("checked"));
+});
+$('.popup-wrap#licence .input-wrapper input').on('change',function(){
+    if($(this).attr("checked") == 'checked')
+    {
+        $('.form-btn#accept').removeClass('disabled');
+    }
+    else
+    {
+        $('.form-btn#accept').addClass('disabled');
+    }
+});
+$('.popup-wrap#licence .text-wrapper').scroll(function (e) {
+    var target = e.currentTarget,
+        scrollTop = target.scrollTop || window.pageYOffset,
+        scrollHeight = target.scrollHeight || document.body.scrollHeight;
+    if (scrollHeight - scrollTop === $(target).innerHeight()) {
+      console.log("► End of scroll");
+      $('.popup-wrap#licence .input-wrapper').fadeIn();
+    }
+    else
+    {
+        $('.popup-wrap#licence .input-wrapper').fadeOut();
+    }
+});
+$('.form-btn#accept').on('click',function(){
+    $('.popup-wrap#licence').fadeOut();
+    $('.popup-wrap#signup').fadeIn();
+    licenceStatus = true;
+    // mp.trigger('acceptLicence');
+});
+$('.form-btn#close').on('click',function(){
+    $('.popup-wrap#licence').fadeOut();
+    $('.popup-wrap#signin').fadeIn();
+    mp.trigger('cancelLicence');
+});
 let signIn = document.getElementById('signin'),
     signUp = document.getElementById('signup'),
+    licenceAc = document.getElementById('licence'),
     btn = document.querySelectorAll('.form-auth'),
     inputs = document.querySelectorAll('.form-input');
 
 btn[0].addEventListener('click', function() {
    signIn.style.display = 'none';
-   signUp.style.display = 'block'; 
+   if(licenceStatus)
+   {
+      signUp.style.display = 'block'; 
+   }
+   else
+   {
+      licenceAc.style.display = 'block';
+   }
 });
 
 btn[1].addEventListener('click', function() {
