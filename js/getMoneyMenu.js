@@ -9,7 +9,7 @@ $('.container .input-wrapper .button').on('click',function(){
         if(arr.length>0)
         {
             console.log(arr);
-            mp.trigger('getMoneyList',arr);
+            mp.trigger('getMoneyList',JSON.stringify(arr));
         }
     }
 });
