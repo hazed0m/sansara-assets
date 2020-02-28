@@ -819,19 +819,19 @@ function updateBusiness(transportObj)
 }
 function pushBusiness(transportObj)
 {
-	$('.business-wrapper .service-wrapper .current-input .next-title').text(transportInfo.Name);
-	$('.business-wrapper .service-wrapper .name-wrapper .changable-input input').val(transportInfo.Name);
-	$('.business-wrapper .getMargin-wrapper input').attr({max:transportObj.MaxMargin,value:transportObj.MaxMargin});
-	$('.business-wrapper .getMargin-wrapper .max').text(transportObj.MaxMargin);
+	$('.business-wrapper .service-wrapper .current-input .next-title').text(transportObj.Name);
+	$('.business-wrapper .service-wrapper .name-wrapper .changable-input input').val(transportObj.Name);
+	$('.business-wrapper .getMargin-wrapper input').attr({max:transportObj.Gain,value:transportObj.Gain});
+	$('.business-wrapper .getMargin-wrapper .max').text(transportObj.Gain);
 	$('.service-wrapper .fare-wrapper .changable-input .input-wrap#maxMarginInput input').val(transportObj.MaxMargin);
-	// $('.business-wrapper .service-wrapper .fare-wrapper #distanceFare span').text(transportInfo.DistanceFare);
-	// $('.business-wrapper .service-wrapper .fare-wrapper #callsFare span').text(transportInfo.CallsFare);
-	// $('.business-wrapper .service-wrapper .fare-wrapper .changable-input #distanceFareInput input').val(transportInfo.DistanceFare);
-	// $('.business-wrapper .service-wrapper .fare-wrapper .changable-input #callsFareInput input').val(transportInfo.CallsFare);
-	$('.business-wrapper .service-wrapper .owner-wrapper .next-title').text(transportInfo.Owner);
-	$('.business-wrapper .service-wrapper .gain-wrapper .next-title span').text(transportInfo.Gain);
-	$('.business-wrapper .service-wrapper .fare-wrapper .next-title span').text(transportInfo.MaxMargin);
-	// $('.business-wrapper .employers-wrapper .already-wrapper .next-title span').text(transportInfo.TrucksCount);
+	// $('.business-wrapper .service-wrapper .fare-wrapper #distanceFare span').text(transportObj.DistanceFare);
+	// $('.business-wrapper .service-wrapper .fare-wrapper #callsFare span').text(transportObj.CallsFare);
+	// $('.business-wrapper .service-wrapper .fare-wrapper .changable-input #distanceFareInput input').val(transportObj.DistanceFare);
+	// $('.business-wrapper .service-wrapper .fare-wrapper .changable-input #callsFareInput input').val(transportObj.CallsFare);
+	$('.business-wrapper .service-wrapper .owner-wrapper .next-title').text(transportObj.Owner);
+	$('.business-wrapper .service-wrapper .gain-wrapper .next-title span').text(transportObj.Gain);
+	$('.business-wrapper .service-wrapper .fare-wrapper .next-title span').text(transportObj.MaxMargin);
+	// $('.business-wrapper .employers-wrapper .already-wrapper .next-title span').text(transportObj.TrucksCount);
 	$('.business-wrapper .employers-wrapper .employers-list').empty();
 	$(transportInfo.WorkersList).each(function(index,item){
 		
