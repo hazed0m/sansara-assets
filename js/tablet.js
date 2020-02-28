@@ -1078,7 +1078,8 @@ function adsSendData(data){
 			name: item.name,
 			date: item.date,
 			number: item.number,
-			admin: item.admin
+			admin: item.admin,
+			timer: item.canWrite 
 		};
 	});
 	// console.log(sendObj);
@@ -1103,6 +1104,11 @@ function adsSendData(data){
 			let currentDocument = parseInt(event.data['showDocument']);
 			console.log('showDocument',currentDocument);
 			mp.trigger('showDocument',currentDocument);
+		}
+		if(event.data['blockAds'])
+		{
+			sendObj.timer = 30;
+			mp.trigger('blockAds');
 		}
     });
 };
