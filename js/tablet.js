@@ -823,12 +823,14 @@ function pushBusiness(transportObj)
 	$('.business-wrapper .service-wrapper .name-wrapper .changable-input input').val(transportInfo.Name);
 	$('.business-wrapper .getMargin-wrapper input').attr({max:transportObj.MaxMargin,value:transportObj.MaxMargin});
 	$('.business-wrapper .getMargin-wrapper .max').text(transportObj.MaxMargin);
+	$('.service-wrapper .fare-wrapper .changable-input .input-wrap#maxMarginInput input').val(transportObj.MaxMargin);
 	// $('.business-wrapper .service-wrapper .fare-wrapper #distanceFare span').text(transportInfo.DistanceFare);
 	// $('.business-wrapper .service-wrapper .fare-wrapper #callsFare span').text(transportInfo.CallsFare);
 	// $('.business-wrapper .service-wrapper .fare-wrapper .changable-input #distanceFareInput input').val(transportInfo.DistanceFare);
 	// $('.business-wrapper .service-wrapper .fare-wrapper .changable-input #callsFareInput input').val(transportInfo.CallsFare);
 	$('.business-wrapper .service-wrapper .owner-wrapper .next-title').text(transportInfo.Owner);
 	$('.business-wrapper .service-wrapper .gain-wrapper .next-title span').text(transportInfo.Gain);
+	$('.business-wrapper .service-wrapper .fare-wrapper .next-title span').text(transportInfo.MaxMargin);
 	// $('.business-wrapper .employers-wrapper .already-wrapper .next-title span').text(transportInfo.TrucksCount);
 	$('.business-wrapper .employers-wrapper .employers-list').empty();
 	$(transportInfo.WorkersList).each(function(index,item){
@@ -888,7 +890,7 @@ function refreshBusiness()
 	$('.business-wrapper .getMargin-wrapper input').keyup(function(){
 		let currentCount = parseInt($(this).val()),
 			max = parseInt($(this).attr('max'));
-		if(currentCount <= max)
+		if(currentCount <= max  && currentCount != 0)
 		{
 			$('.business-wrapper .getMargin-wrapper .button#confirmMargin').removeClass('disabled');
 		}
@@ -900,10 +902,11 @@ function refreshBusiness()
 	$('.business-wrapper .button#confirmMargin').on('click',function(){
 		let currentCount = parseInt($('.business-wrapper .getMargin-wrapper input').val()),
 			max = parseInt($('.business-wrapper .getMargin-wrapper input').attr('max'));
-		if(currentCount <= max)
+		if(currentCount <= max && currentCount != 0)
 		{
 			console.log(currentCount,' ',max,currentCount <= max);
 			$('.business-wrapper .getMargin-wrapper, .business-wrapper .mask').fadeOut();
+			$(this).addClass('disabled');
 			mp.trigger('getMargin',currentCount);
 		}
 	});
@@ -920,17 +923,17 @@ function refreshBusiness()
 			mp.trigger('changeNameBusiness',name);
 		}
 	});
-	// $('.transportCompany-wrapper .service-wrapper .changable-input .button#changeFare').on('click',function(){
-	// 	let callsFare = $('.transportCompany-wrapper .service-wrapper .changable-input #callsFareInput input').val(),
-	// 		distanceFare = $('.transportCompany-wrapper .service-wrapper .changable-input #distanceFareInput input').val();
-	// 	if(callsFare.length != 0 && distanceFare.length != 0)
-	// 	{
-	// 		$(this).parent().css('display','none');
-	// 		console.log(callsFare,distanceFare);
-	// 		$('.transportCompany-wrapper .service-wrapper .fare-wrapper .next-title').css('display','flex');
-	// 		mp.trigger('changeFareTransportCompany',callsFare,distanceFare);
-	// 	}
-	// });
+	$('.business-wrapper .service-wrapper .changable-input .button#changeMaxMargin').on('click',function(){
+		let maxMargin = $('.business-wrapper .service-wrapper .changable-input #maxMarginInput input').val();
+		console.log(maxMargin);
+		if(maxMargin.length != 0 && maxMargin <= 100 && maxMargin >= 0)
+		{
+			$(this).parent().css('display','none');
+			console.log(maxMargin);
+			$('.business-wrapper .service-wrapper .fare-wrapper .next-title').css('display','flex');
+			mp.trigger('changeMaxMarginBusiness',maxMargin);
+		}
+	});
 	$('.business-wrapper .service-wrapper .name-wrapper .edit-icon').on('click',function(){
 		$(this).parent().css('display','none');
 		$('.business-wrapper .service-wrapper .name-wrapper .changable-input').css('display','flex');

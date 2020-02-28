@@ -356,7 +356,7 @@
             <div class="main-page active">
                 <div class="service-wrapper">
                     <div class="name-wrapper">
-                        <div class="title">Автосервис</div>
+                        <div class="title">Название компании</div>
                         <div class="title-input">
                             <div class="current-input">
                                 <span class="next-title"></span>
@@ -377,9 +377,28 @@
                         <div class="next-title"></div>
                     </div>
                     <div class="gain-wrapper">
-                        <div class="title">Процент от продаж</div>
+                        <div class="title">Сумма прибыли</div>
                         <div class="next-title">
-                            <span></span>%
+                            <span></span>$
+                        </div>
+                    </div>
+                    <div class="fare-wrapper">
+                        <div class="title">Процент от прибыли</div>
+                        <div class="next-title">
+                            <div class="fare-item" id="maxMargin">
+                                <span></span>%
+                            </div>
+                            <div class="edit-icon">
+                                <img src="img/customs/edit.png" alt="">
+                            </div>
+                        </div>
+                        <div class="changable-input">
+                            <div class="input-wrap" id="maxMarginInput">
+                                <input type="number" min="0" value="">
+                            </div>
+                            <div class="button" id="changeMaxMargin">
+                                ОК
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -401,7 +420,7 @@
                 <div class="mask"></div>
                 <div class="getMargin-wrapper">
                     <div class="title">Получить прибыль</div>
-                    <input type="number" min="0">
+                    <input type="number" min="1">
                     <div class="max-wrapper">
                         <span>Максимум -</span>                        
                         <div class="max"></div>$
