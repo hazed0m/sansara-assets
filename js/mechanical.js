@@ -1,3 +1,4 @@
+let itemList = [];
 $('.cash, .card').on('click',function(){
     let clothesPrice = $('.buy-buttons .price span')[0].textContent;
     if(clothesPrice != 0)
@@ -263,12 +264,12 @@ const modsList = [
 ];
 function pushMechanicalShop(json)
 {
-    var itemList = JSON.parse(json);
+    modsArr = [];
+    itemList = JSON.parse(json);
     $(itemList).each(function(index,item){      
         let obj = 
         {
             id: item.id,
-            price: item.price,
             count: parseInt(item.count)
         }
         var colorCount = JSON.parse(JSON.stringify(obj.count));
@@ -284,16 +285,17 @@ function pushMechanicalShop(json)
             if(obj.id == classEl.id)
             {
                 obj.name = classEl.name;
+                obj.price = classEl.price;
                 obj.translatedName = classEl.translatedName;
                 modsArr.push(obj);
             }
         });        
-    }); 
+    });     
     modsInit();
     modsInitialize();
 };
 function modsInit()
-{
+{    
     $('.main-block .wrapper').empty();
     $(modsArr).each(function(index,item){
         console.log(item);
@@ -363,7 +365,7 @@ function modsInitialize()
                 currentAttr = length;
             }
             $(element).attr('data-item',currentAttr);
-            $(element).attr('data-price',modsArr[currentIndex].price[currentAttr]);
+            $(element).attr('data-price',modsArr[currentIndex].price);
             $(element).attr('data-counted', false);
             $(element).text(modsArr[currentIndex].translatedName +` (${currentAttr})`);
             countPrice();
@@ -381,7 +383,7 @@ function modsInitialize()
                 currentAttr = 0;
             }
             $(element).attr('data-item',currentAttr);
-            $(element).attr('data-price',modsArr[currentIndex].price[currentAttr]);
+            $(element).attr('data-price',modsArr[currentIndex].price);
             $(element).attr('data-counted', false);
             $(element).text(modsArr[currentIndex].translatedName +` (${currentAttr})`);
             countPrice();
@@ -404,7 +406,7 @@ function modsInitialize()
         var currentAttr = $(element).attr('data-item');
         var currentIndex = $(element).attr('data-index');
         $(element).attr('data-item',currentAttr);
-        $(element).attr('data-price',modsArr[currentIndex].price[currentAttr]);
+        $(element).attr('data-price',modsArr[currentIndex].price);
         $(element).attr('data-counted', false);
         $('.mask').fadeIn();
     });
