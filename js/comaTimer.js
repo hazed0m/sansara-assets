@@ -8,21 +8,18 @@ let counterInterval = setInterval(function(){
         {                  
             if($('.counter-wrapper .number').attr('counter') == 'button')
             {
-                // clearInterval(counterInterval);
-                // $('.button-wrapper .button').addClass('disabled');
-                runTimer('waitAmbulance');
-                $('.counter-wrapper .number').attr('counter','wait');
-                mp.trigger('comaOutOfTime');
-            } 
-            if($('.counter-wrapper .number').attr('counter') == 'wait')
-            {
-                $('.text-wrapper, .counter-wrapper').fadeOut();
+                $('.coma-wrapper, .counter-wrapper').fadeOut();
                 $('.button-wrapper .button').removeClass('disabled');
                 setTimeout(function(){
                     $('.counter-wrapper .number').text(700);
-                    $('.coma-wrapper, .counter-wrapper').fadeIn();
-                    $('.counter-wrapper .number').attr('counter','button');
-                },500);
+                    $('.text-wrapper, .counter-wrapper').fadeIn();
+                    $('.counter-wrapper .number').attr('counter','wait');
+                },500);                
+            } 
+            if($('.counter-wrapper .number').attr('counter') == 'wait')
+            {
+                runTimer('waitAmbulance');
+                mp.trigger('comaOutOfTime');
             }
         }
     },1000);
@@ -30,11 +27,12 @@ function runTimer(id)
 {
     if(id == 'waitAmbulance')
     {
-        $('.coma-wrapper, .counter-wrapper').fadeOut();
+        $('.text-wrapper, .counter-wrapper').fadeOut();
         setTimeout(function(){
             $('.counter-wrapper .number').text(10);
-            $('.text-wrapper, .counter-wrapper').fadeIn();
+            $('.coma-wrapper, .counter-wrapper').fadeIn();
         },500);
+        $('.counter-wrapper .number').attr('counter','button');
     }
     if(id == 'toHospital')
     {
