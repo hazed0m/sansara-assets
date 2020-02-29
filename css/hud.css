@@ -9,6 +9,17 @@ body {
     right: 5px;
     border-radius: 4px;
 }
+.buttons
+{
+    width:265px;
+    height:112px;
+    background:url(../img/hud/buttons.png) no-repeat;
+    background-position: center;
+    background-size:cover;
+    position: absolute;
+    top: 60px;
+    left:45px;
+}
 .hud-content {
     min-height: 25px;
     padding: 5px 20px;
