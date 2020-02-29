@@ -398,6 +398,7 @@ let menu = new Vue({
                     this.mapSettingsShow = false;
                     this.keySettingsShow = false;
                     $('.report-wrap textarea').val('');
+                    $('.report-btn').removeClass('disabled');
                     switch (this.reportShow) {
                         case true:
                             this.reportShow = false;
@@ -642,10 +643,14 @@ function keypressUp(e){
     }
 };
 $('.report-btn').on('click',function(){
-    let currentText = $('.report-wrap textarea').val();
-    console.log(currentText);
-    menu.reportShow = false;
-    mp.trigger('sendReport',currentText);
+    if(!$(this).hasClass('disabled'))
+    {
+        let currentText = $('.report-wrap textarea').val();
+        console.log(currentText);
+        menu.reportShow = false;
+        $('.report-btn').addClass('disabled');
+        mp.trigger('sendReport',currentText);
+    }
 });
 $(window).on("keyup", keypressUp);
 function categoryHide()
