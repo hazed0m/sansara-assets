@@ -165,9 +165,9 @@ function pushTax(elem)
     $('.items-list #taxWeek .data span').text(element.TaxWeek);
     $('.items-list #fineWeek .data span').text(element.TaxWeek);
 
-    $('.items-list #TaxBusiness .count').text(element.TaxBusiness);
-    $('.items-list #TaxTC .count').text(element.TaxTC);
-    $('.items-list #TaxRealty .count').text(element.TaxRealty);
+    $('.items-list #TaxBusiness .count span').text(element.TaxBusiness);
+    $('.items-list #TaxTC .count span').text(element.TaxTC);
+    $('.items-list #TaxRealty .count span').text(element.TaxRealty);
 
     $('.items-list #treasury .data span').text(element.Treasury);
     $('.items-list #taxWeek .data span').text(element.TaxWeek);
@@ -184,24 +184,23 @@ function pushTax(elem)
 
     $('.container .input-item .arrows-wrap .but').on('click',function(){
         let id = this.id,
-            value = parseInt($(this).parent().parent().find('.count').text());
+            value = parseInt($(this).parent().parent().find('.count span').text());
         console.log(id,value);
         if(id == 'minus')
         {
-            if(value <= 1000)
+            if(value > 0)
             {
-                value = 0;
-            }
-            else
-            {
-                value -= 1000;
+                value --;
             }
         }
         if(id == 'plus')
         {
-            value += 1000;
+            if(value < 100)
+            {
+              value ++;
+            }
         }        
-        $(this).parent().parent().find('.count').text(value);
+        $(this).parent().parent().find('.count span').text(value);
         mp.trigger('TaxArrows',id,value);
     });
     // $('#realty .list-week span').text(element.RealtyWeek);
