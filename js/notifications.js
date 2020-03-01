@@ -31,23 +31,24 @@ $('.popup-wrap#licence .input-wrapper input').on('change',function(){
         $('.form-btn#accept').addClass('disabled');
     }
 });
-$('.popup-wrap#licence .text-wrapper').scroll(function (e) {
-    var target = e.currentTarget,
-        scrollTop = target.scrollTop || window.pageYOffset,
-        scrollHeight = target.scrollHeight || document.body.scrollHeight;
-    if (scrollHeight - scrollTop === $(target).innerHeight()) {
+$('#licence .text-wrapper').scroll(function (e) {
+    console.log($(this).height() + $(this).scrollTop() ,this.scrollHeight);
+    if ($(this).height() + $(this).scrollTop() >= this.scrollHeight) {
       console.log("► End of scroll");
-      $('.popup-wrap#licence .input-wrapper').fadeIn();
+      $('#licence .input-wrapper').fadeIn();
     }
     else
     {
-        $('.popup-wrap#licence .input-wrapper').fadeOut();
+        $('#licence .input-wrapper').fadeOut();
     }
 });
 $('.form-btn#accept').on('click',function(){
-    $('.popup-wrap#licence').fadeOut();
-    $('.popup-wrap#signup').fadeIn();
-    licenceStatus = true;
+    if(!$(this).hasClass('disabled'))
+    {
+        $('.popup-wrap#licence').fadeOut();
+        $('.popup-wrap#signup').fadeIn();
+        licenceStatus = true;
+    }
     // mp.trigger('acceptLicence');
 });
 $('.form-btn#close').on('click',function(){
