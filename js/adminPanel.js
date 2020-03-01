@@ -222,9 +222,9 @@ function pushAdmin(Id,FullName,Admin)
 }
 function pushAdminPanel(data)
 {
-    adminList = JSON.parse(data);
+    adminList = JSON.parse(data).reverse();
     $('.container .adminpanel-wrapper').empty();
-    $(adminList.reverse()).each(function(index,item){
+    $(adminList).each(function(index,item){
         let template = `<div class="player-notification-item" data-index="${index}" data-id="${item.Id}" data-fullname="${item.FullName}">
                             <div class="text">${item.Text}</div>
                             <div class="buttons-wrapper">
