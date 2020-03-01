@@ -20,6 +20,30 @@ body {
     top: 60px;
     left:45px;
 }
+.geo-wrapper 
+{
+    position: absolute;
+    padding: 5px 20px 3px 45px;
+    background: rgba(55,56,60, 0.93);
+    top: 183px;
+    left:45px;
+    border-radius:5px;
+    font-size:22px;
+    color:#fff;
+    font-family:'Bebas Neue';
+}
+.geo-wrapper::after
+{
+    content:'';
+    width:14px;
+    height:20px;
+    position: absolute;
+    top:50%;
+    left:5%;
+    transform:translate(0,-50%);
+    background:url(../img/hud/pin.png) no-repeat;
+    background-size:cover;
+}
 .hud-content {
     min-height: 25px;
     padding: 5px 20px;

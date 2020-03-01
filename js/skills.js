@@ -17,9 +17,18 @@ function wrapperRefresh()
 {
 	$('.block-wrap').each(function(index,item){
 		$(item).find('.level-numb').text(skillsList[index].level);
-		$(item).find('.line-numb .current').text(skillsList[index].exp);
 		$(item).find('.line-numb .max').text(skillsList[index].maxexp);
-		let currentWidth = (skillsList[index].exp*100)/skillsList[index].maxexp;
+		let currentWidth = 0;
+		if(skillsList[index].exp > skillsList[index].maxexp)
+		{
+			$(item).find('.line-numb .current').text(skillsList[index].maxexp);
+			currentWidth = 100;
+		}
+		else
+		{
+			$(item).find('.line-numb .current').text(skillsList[index].exp);
+			currentWidth = (skillsList[index].exp*100)/skillsList[index].maxexp;
+		}	
 		$(item).find('.line-thumb').css('width',currentWidth+'%');
 	});
 }; 

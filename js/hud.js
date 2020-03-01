@@ -94,6 +94,10 @@ function cashStatus(cash)
 {
     $('#cash').text(cash);
 };
+function pushGeo(text)
+{
+    $('.geo-wrapper').text(text);
+}
 function initTime(hour,minute)
 {
     let currentHours = hour,
