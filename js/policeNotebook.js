@@ -1433,12 +1433,12 @@ function refreshAddThings()
         }
         inputQuantity[$thisIndex]=val;
       });      
-    });	 
+    });	     
     $('#add-line').on('click',function(){
         $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper')
         .append(`<textarea id="thing-add-text" onkeyup="textarea_resize(event);" maxlength="200"></textarea><div id="text_area_div"></div>`)
         .animate({scrollTop: ($('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper').innerHeight())}, 900);
-        $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper #thing-add-text').focus();
+        $('.container .things-wrapper .things-wrap .add-thing-wrapper .text-wrapper #thing-add-text').focus();   
     });    
     $('.container .wrapper .add-thing-wrapper #closeEdit').on('click',function(){        
         $('.container .wrapper .add-thing-wrapper, .container .things-wrapper .mask').fadeOut();
@@ -1719,7 +1719,9 @@ $('.container .clews-wrapper #carSearch').on('click',function(){
     }
 });
 function textarea_resize(event, line_height = 10, min_line_count = 2)
-{
+{             
+    console.log(event.target.value);
+    event.target.value = event.target.value.replace(/[^А-ЯЁа-яё!,.?0-9 ]/g, '');
     var min_line_height = min_line_count * line_height;
     var obj = event.target;    
     $(obj).next().text(obj.value);
