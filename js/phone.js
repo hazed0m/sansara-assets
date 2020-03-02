@@ -1010,6 +1010,45 @@ $('.bottom-block .geo').on('click',function(){
 	$('.geo-wrapper').addClass('active').fadeIn();
 });
 
+//Приложение такси
+$('.main-wrapper .taxiApp').on('click',function(){
+	$('.main-wrapper').removeClass('active').fadeOut();
+	
+	$('.taxiApp-wrapper').addClass('active').fadeIn();
+});
+let callsTaxiList = [];
+function pushTaxiApp(callslist)
+{
+	console.log(callslist);
+	callsTaxiList = JSON.parse(callslist);
+	refreshTaxiApp();
+}
+function refreshTaxiApp()
+{
+	// $('.taxiApp-wrapper .calls-wrapper').empty();
+	$(callsTaxiList).each(function(index,item){
+		let template = `
+				<div class="call-item" data-index="${index}">
+					<div class="info-wrapper">
+						<div class="fullname">${item.FullName != undefined ? item.FullName : ''}</div>
+						<div class="number">${item.Number}</div>
+					</div>
+					<div class="text">${item.Text}</div>
+					<div class="button" id="confirm">Принять вызов</div>
+				</div>
+		`;
+		$('.taxiApp-wrapper .calls-wrapper').append(template);
+	});
+	$('.call-item #confirm').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			$(this).addClass('disabled');
+			let currentIndex = $(this).parent().attr('data-index');
+			console.log(currentIndex);
+			mp.trigger('taxiAcceptCall',callsTaxiList[currentIndex].Id);
+		}
+	});
+}
 //Список машин
 $('.main-wrapper .getCar').on('click',function(){
 	$('.main-wrapper').removeClass('active').fadeOut();

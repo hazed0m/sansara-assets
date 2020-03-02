@@ -94,10 +94,6 @@ function cashStatus(cash)
 {
     $('#cash').text(cash);
 };
-function pushGeo(text)
-{
-    $('.geo-wrapper').text(text);
-}
 function initTime(hour,minute)
 {
     let currentHours = hour,
@@ -105,6 +101,10 @@ function initTime(hour,minute)
     time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
     $('.hud-time').text(time);
 };
+function pushGeo(text)
+{
+    $('.geo-wrapper').text(text);
+}
 let keyList = [
     { keyCode: 73, title: "I, i, Ш, ш", action: 'Инвентарь', active: false },
     { keyCode: 79, title: "O, o, Щ, щ", action: 'Рация', active: false },

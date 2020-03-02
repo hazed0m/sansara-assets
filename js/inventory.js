@@ -714,6 +714,7 @@ $('.right-inventory #giveMoney').on('click',function(){
 		currentMin = 0,
 		currentMax = 0;
 	$('.ok-button').attr('action','giveMoney').attr('done','undone');
+	$('.ok-button').removeClass('disabled');
 	$('.col-wrapper').find('.quantity').replaceWith(input);
 	if(maxMoney <= 0)
 	{
@@ -748,6 +749,7 @@ $('.right-inventory #giveMoney').on('click',function(){
 				$('.col-wrapper').fadeOut();
 				$(this).attr('done','done');
 				console.log($('.ok-button').attr('action'), col);
+				$('.ok-button').addClass('disabled');
 				mp.trigger($('.ok-button').attr('action'), parseInt(col));
 			}
 		}

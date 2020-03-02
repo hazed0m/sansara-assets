@@ -106,7 +106,7 @@
 	transform: translate(0,-50%);
 	right:15px;
 }
-.main-wrapper, .settings-wrapper, .caller-wrapper, .outCaller-wrapper, .incomingCall-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper, .getCar-wrapper
+.main-wrapper, .taxiApp-wrapper, .settings-wrapper, .caller-wrapper, .outCaller-wrapper, .incomingCall-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper, .getCar-wrapper
 {
 	position: absolute;
 	top:50%;
@@ -119,6 +119,7 @@
 	background-size:cover;
 	box-sizing: border-box;
 }
+
 .main-wrapper
 {
 	text-shadow:1px 0 10px #000;
@@ -325,11 +326,11 @@
 	text-shadow: 0 0 5px #000;
 	margin-bottom:2px;
 }
-.main-wrapper .fast-block div, .main-wrapper .bottom-block div, .home-but, .main-wrapper .settings, .main-wrapper .getCar, .main-wrapper .locker
+.main-wrapper .fast-block div, .main-wrapper .bottom-block div, .home-but, .main-wrapper .settings, .main-wrapper .getCar, .main-wrapper .taxiApp, .main-wrapper .locker
 {
 	cursor:pointer;
 }
-.main-wrapper .fast-block div:hover, .main-wrapper .bottom-block div:hover, .main-wrapper .settings:hover, .main-wrapper .getCar:hover, .main-wrapper .locker:hover
+.main-wrapper .fast-block div:hover, .main-wrapper .bottom-block div:hover, .main-wrapper .settings:hover, .main-wrapper .getCar:hover, .main-wrapper .locker:hover, .main-wrapper .taxiApp:hover
 {
 	box-shadow: 0 0 15px rgba(255,255,255,0.5);
 	border-radius:50%;
@@ -418,6 +419,87 @@
 	right:2.5%;
 	bottom:23%;
 }
+
+.main-wrapper .taxiApp
+{
+	background:url(../img/phone/taxi.png) no-repeat;
+	background-size:cover;
+	width:58px;
+	height:58px;
+	position:absolute;
+	left:2.5%;
+	bottom:23%;
+}
+.taxiApp-wrapper .calls-wrapper
+{
+	height:100%;
+	padding:0 5px;
+	max-height:450px;
+	overflow-y:scroll;
+}
+.taxiApp-wrapper .title
+{
+	margin:10px 0;
+	text-align: center;
+	font-size:23px;
+}
+.taxiApp-wrapper .call-item
+{	
+	background: #fff;
+	border:2px solid #000;
+	padding:10px 10px 0 10px;
+	margin:10px 0;
+	border-radius:10px;
+}
+.taxiApp-wrapper .info-wrapper
+{
+	display: flex;
+	justify-content:space-between;
+}
+.taxiApp-wrapper .call-item:first-child
+{
+	margin-top:0;
+}
+.taxiApp-wrapper .call-item .fullname,
+.taxiApp-wrapper .call-item .number
+{
+	font-size:22px;
+}
+.taxiApp-wrapper .call-item .text
+{
+	margin-top:5px;
+	border:1px solid #000;
+	padding:5px;
+	font-size:20px;
+	box-shadow: inset 0 0 5px #000;
+}
+.taxiApp-wrapper .button
+{
+	background:#2f2f2f;
+	color:#fff;
+	width:fit-content;
+	padding:5px 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius:5px;
+	margin:10px auto;
+	cursor: pointer;
+	transition: 0.2s;
+}
+.taxiApp-wrapper .button.disabled
+{
+	opacity:0.7;
+	cursor: default;
+}
+.taxiApp-wrapper .button:hover
+{
+	box-shadow: 0 0 10px #000;
+}
+.taxiApp-wrapper .button.disabled:hover
+{
+	box-shadow: 0 0 0 transparent;
+}
 .container .home-but
 {
 	position: absolute;
@@ -465,7 +547,7 @@
 	font-size:15px;
 	cursor:pointer;
 }
-.settings-wrapper, .outCaller-wrapper, .caller-wrapper, .incomingCall-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper, .getCar-wrapper
+.settings-wrapper, .outCaller-wrapper, .caller-wrapper, .incomingCall-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper, .taxiApp-wrapper, .getCar-wrapper
 {
 	display:none;
 }
@@ -597,7 +679,7 @@
 {
 	margin-left:15px;
 }
-.caller-wrapper, .incomingCall-wrapper, .outCaller-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper, .getCar-wrapper
+.caller-wrapper, .incomingCall-wrapper, .outCaller-wrapper, .dialing-wrapper, .contacts-wrapper, .messages-wrapper, .messages-inner, .geo-wrapper, .getCar-wrapper, .taxiApp-wrapper
 {
 	background:#ebebeb;
 	border-radius: 15px;
@@ -867,15 +949,20 @@
 	font-weight:bold;
 }
 .history-wrapper::-webkit-scrollbar,
+.taxiApp-wrapper .calls-wrapper::-webkit-scrollbar,
 .main-wrapper .fast-message textarea::-webkit-scrollbar{
     width: 6px;
 }
 .history-wrapper::-webkit-scrollbar-track,
+.taxiApp-wrapper .calls-wrapper::-webkit-scrollbar-track,
 .main-wrapper .fast-message textarea::-webkit-scrollbar-track {
     background: #cccccc;
     border-radius: 4px;  
 } 
-.history-wrapper::-webkit-scrollbar-thumb {
+.taxiApp-wrapper .calls-wrapper::-webkit-scrollbar-thumb,
+.history-wrapper::-webkit-scrollbar-thumb
+ {
+	
     background: #00ff96;
     border-radius: 4px;  
 }
