@@ -218,13 +218,14 @@
 }
 .time-block .date
 {
-	font-size:18px;
-	color:#fafafa;
+	font-size: 23px;
+    color: #fafafa;
+    text-align: center;
 }
-.date
+/* .date
 {
 	padding-top:70px;
-}
+} */
 .main-wrapper .settings
 {
 	position:absolute;

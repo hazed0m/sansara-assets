@@ -11,22 +11,22 @@ body {
 }
 .buttons
 {
-    width:265px;
-    height:112px;
+    width: 267px;
+    height: 165px;
     background:url(../img/hud/buttons.png) no-repeat;
     background-position: center;
-    background-size:cover;
+    background-size:contain;
     position: absolute;
-    top: 60px;
-    left:45px;
+    top:51px;
+    left:5px;
 }
 .geo-wrapper 
 {
     position: absolute;
     padding: 5px 20px 3px 45px;
-    background: rgba(55,56,60, 0.93);
-    top: 183px;
-    left:45px;
+    background: rgba(55,56,60, 0.88);
+    top:5px;
+    left:5px;
     border-radius:5px;
     font-size:22px;
     color:#fff;

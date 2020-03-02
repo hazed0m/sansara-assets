@@ -1721,7 +1721,7 @@ $('.container .clews-wrapper #carSearch').on('click',function(){
 function textarea_resize(event, line_height = 10, min_line_count = 2)
 {             
     console.log(event.target.value);
-    event.target.value = event.target.value.replace(/[^А-ЯЁа-яё!,.?0-9 ]/g, '');
+    event.target.value = event.target.value.replace(/[^А-ЯЁа-яё!,.?:0-9 ]/g, '');
     var min_line_height = min_line_count * line_height;
     var obj = event.target;    
     $(obj).next().text(obj.value);

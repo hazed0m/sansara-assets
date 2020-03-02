@@ -821,6 +821,17 @@ function numberPosibilityCheck(currentNumber, currentIndex)
 	});
 	return checker;
 }
+function initTime(hour,minute,date)
+{
+    let currentHours = hour,
+        currentMinutes = minute;
+    time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
+	$('.time-block .time').text(time);
+	if(typeof date != undefined)
+	{
+		$('.time-block .date').text(date);
+	}
+};
 function addContact(name,number)
 {
 	let obj = {

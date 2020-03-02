@@ -1121,8 +1121,20 @@ let auctionList = [
 		Seller: 'Государство'
 	}
 ]
-function pushGoverment(auctionList,playerInfo,admin,date)
+function initTime(hour,minute)
 {
+    let currentHours = hour,
+        currentMinutes = minute;
+    time = `${currentHours <=9 ? '0' + currentHours : currentHours}:${currentMinutes <=9 ? '0' + currentMinutes : currentMinutes}`;
+	$('.time-block .time').text(time);
+};
+function pushGoverment(auctionList,playerinfo,admin,date)
+{	
+	if(typeof date != undefined)
+	{
+		$('.time-block .date').text(date);
+	}
+	let playerInfo = JSON.parse(playerinfo);
 	$(auctionList).each(function(index,item){
 			let template = `
 				<div class="point-item-wrap">
