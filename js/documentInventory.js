@@ -706,6 +706,13 @@ function refreshInventory(currentIterator)
 		}    
 	countWeight();    
 	$('#getBlank').on('click',function(){
-		mp.trigger('getBlank');
+		if(!$(this).hasClass('disabled'))
+		{
+			$(this).addClass('disabled')
+			setTimeout(() => {
+				$(this).removeClass('disabled')
+			},500);
+			mp.trigger('getBlank');
+		}
 	});  
 };

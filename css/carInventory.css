@@ -552,6 +552,10 @@ body {
 	bottom:30px;
 	left:50px;
 }
+#getBlank.disabled
+{
+	opacity:0.6;
+}
 .col-wrapper input
 {
 	width:205px;

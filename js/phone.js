@@ -1044,7 +1044,7 @@ function refreshTaxiApp()
 		{
 			$(this).addClass('disabled');
 			let currentIndex = $(this).parent().attr('data-index');
-			console.log(currentIndex);
+			console.log(callsTaxiList[currentIndex].Id);
 			mp.trigger('taxiAcceptCall',callsTaxiList[currentIndex].Id);
 		}
 	});
