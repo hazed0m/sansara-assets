@@ -611,90 +611,97 @@ function inventoryInitialize()
 		var action = $(this)[0].id,		
 			id = $(this).parent().parent().parent().parent().parent()[0].id,
 			index = $(this).parent().parent().parent().parent().attr(id+'-id');	 	
-		if(action === 'use' || action === 'remove')
-		{			
-			if(action === 'remove')
-			{
-				index = eval(id+'List')[index].inventoryIndex;
-			}
-			checkAction(action, index, id);
-		}
-		if(action === 'drop' || action === 'give')
+		if(!$(this).hasClass('disabled'))
 		{
-			var col = 0,
-				input = '<input class="quantity" type="number" min="1" max="150" value="1">',
-				currentMin = 0,
-				currentMax = 0;
-			$('.ok-button').attr('action',action).attr('id',id).attr('index',index).attr('done','undone');
-			$('.col-wrapper').find('.quantity').replaceWith(input);
-			if(id == 'inventory')
-			{
-				$('.col-wrapper').find('.col-title').text(eval(id+'List')[index].name);
-				$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].count);
-				$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].count);
-			} 
-			else
-			{
-				$('.col-wrapper').find('.col-title').text(inventoryList[eval(id+'List')[index].inventoryIndex].name);
-				$('.col-wrapper').find('.quantity').attr('max',inventoryList[eval(id+'List')[index].inventoryIndex].count);
-				$('.col-wrapper').find('.max-numb').text(inventoryList[eval(id+'List')[index].inventoryIndex].count);
-			}
-			$('.col-wrapper .min').on('click',function(){
-				currentMin = $(this).parent().find('.quantity').attr('min');
-				$(this).parent().find('.quantity').val(currentMin);
-			});			
-			$('.col-wrapper .max').on('click',function(){
-				currentMax = $(this).parent().find('.quantity').attr('max');
-				$(this).parent().find('.quantity').val(currentMax);
-			});			
-			$('.ok-button').on('click',function(){
-				if($(this).attr('done') == 'undone')
+			$(this).addClass('disabled');
+			setTimeout(() => {
+				$(this).removeClass('disabled');
+			},500);
+			if(action === 'use' || action === 'remove')
+			{			
+				if(action === 'remove')
 				{
-					col = $(this).parent().parent().find('input').val();
-					let min = +$(this).parent().parent().find('input').attr('min'),
-						max = +$(this).parent().parent().find('input').attr('max');		
-					console.log('ok-button',min,max);	
-					if(col >= min && col <= max)
-					{
-						$('.col-wrapper').fadeOut();
-						$(this).attr('done','done');
-						checkAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
-					}
-					else
-					{
-						console.log('inputObuz');
-						mp.trigger('inputObuz');
-					}
+					index = eval(id+'List')[index].inventoryIndex;
 				}
-			});
-			$('.cancel-button').on('click',function(){
-				$('.col-wrapper').fadeOut();				
-			});			
-			//Input
-		    var inputQuantity = [];
-		    $(function() {
-		      $(".quantity").each(function(i) {
-		        inputQuantity[i]=this.defaultValue;
-		         $(this).data("idx",i); // save this field's index to access later
-		      });
-		      $(".quantity").on("keyup", function (e) {
-		        var $field = $(this),
-		            val=this.value,
-		            $thisIndex=parseInt($field.data("idx"),10); // retrieve the index
-					//window.console && console.log($field.is(":invalid"));
-		          	//$field.is(":invalid") is for Safari, it must be the last to not error in IE8
-		        if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
-		            this.value = inputQuantity[$thisIndex];
-		            return;
-		        } 
-		        if (val.length > Number($field.attr("maxlength"))) {
-		          val=val.slice(0, 5);
-		          $field.val(val);
-		        }
-		        inputQuantity[$thisIndex]=val;
-		      });      
-		    });	
-			$('.col-wrapper').fadeIn();
+				checkAction(action, index, id);
+			}
+			if(action === 'drop' || action === 'give')
+			{
+				var col = 0,
+					input = '<input class="quantity" type="number" min="1" max="150" value="1">',
+					currentMin = 0,
+					currentMax = 0;
+				$('.ok-button').attr('action',action).attr('id',id).attr('index',index).attr('done','undone');
+				$('.col-wrapper').find('.quantity').replaceWith(input);
+				if(id == 'inventory')
+				{
+					$('.col-wrapper').find('.col-title').text(eval(id+'List')[index].name);
+					$('.col-wrapper').find('.quantity').attr('max',eval(id+'List')[index].count);
+					$('.col-wrapper').find('.max-numb').text(eval(id+'List')[index].count);
+				} 
+				else
+				{
+					$('.col-wrapper').find('.col-title').text(inventoryList[eval(id+'List')[index].inventoryIndex].name);
+					$('.col-wrapper').find('.quantity').attr('max',inventoryList[eval(id+'List')[index].inventoryIndex].count);
+					$('.col-wrapper').find('.max-numb').text(inventoryList[eval(id+'List')[index].inventoryIndex].count);
+				}
+				$('.col-wrapper .min').on('click',function(){
+					currentMin = $(this).parent().find('.quantity').attr('min');
+					$(this).parent().find('.quantity').val(currentMin);
+				});			
+				$('.col-wrapper .max').on('click',function(){
+					currentMax = $(this).parent().find('.quantity').attr('max');
+					$(this).parent().find('.quantity').val(currentMax);
+				});			
+				$('.ok-button').on('click',function(){
+					if($(this).attr('done') == 'undone')
+					{
+						col = $(this).parent().parent().find('input').val();
+						let min = +$(this).parent().parent().find('input').attr('min'),
+							max = +$(this).parent().parent().find('input').attr('max');		
+						console.log('ok-button',min,max);	
+						if(col >= min && col <= max)
+						{
+							$('.col-wrapper').fadeOut();
+							$(this).attr('done','done');
+							checkAction($('.ok-button').attr('action'), $('.ok-button').attr('index'), $('.ok-button').attr('id'), col);
+						}
+						else
+						{
+							console.log('inputObuz');
+							mp.trigger('inputObuz');
+						}
+					}
+				});
+				$('.cancel-button').on('click',function(){
+					$('.col-wrapper').fadeOut();				
+				});			
+				//Input
+				var inputQuantity = [];
+				$(function() {
+				$(".quantity").each(function(i) {
+					inputQuantity[i]=this.defaultValue;
+					$(this).data("idx",i); // save this field's index to access later
+				});
+				$(".quantity").on("keyup", function (e) {
+					var $field = $(this),
+						val=this.value,
+						$thisIndex=parseInt($field.data("idx"),10); // retrieve the index
+						//window.console && console.log($field.is(":invalid"));
+						//$field.is(":invalid") is for Safari, it must be the last to not error in IE8
+					if (this.validity && this.validity.badInput || isNaN(val) || $field.is(":invalid") ) {
+						this.value = inputQuantity[$thisIndex];
+						return;
+					} 
+					if (val.length > Number($field.attr("maxlength"))) {
+					val=val.slice(0, 5);
+					$field.val(val);
+					}
+					inputQuantity[$thisIndex]=val;
+				});      
+				});	
+				$('.col-wrapper').fadeIn();
+			}
 		}
 	});
 };
@@ -1066,12 +1073,16 @@ function refreshInventory(currentIterator)
 					}
 				}
 			}
-			if(item.type == 'Medical_Preparation' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol' || item.type == 'Documents')
+			if(item.type == 'Medical_Preparation' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
 			{
 				if(item.name != 'адреналин')
 				{
 					listBut = '<li id="use">Применить</li>';
 				}
+			}
+			if(item.type == 'Documents')
+			{
+				listBut = '<li id="use">Посмотреть</li>';
 			}
 			if(item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
 			{

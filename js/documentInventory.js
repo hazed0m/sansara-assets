@@ -167,11 +167,18 @@ function doneAction(action, index, id, currentCount)
 				$('.left-inventory .show-wrapper').slideDown().css('display','flex');
 				$('.show-wrapper .find-icon').append(template);
 				$('.left-inventory .show-wrapper .button-wrapper .button#putDocument').on('click',function(){
-					let currentName = $('.show-wrapper .find-icon .nameItem').text();
-					console.log(currentName);
-					$('.left-inventory .show-wrapper').slideUp();
-					$('.show-wrapper .find-icon').empty();
-					mp.trigger('putDocument', currentName);
+					if(!$(this).hasClass('disabled'))
+					{
+						$(this).addClass('disabled')
+						setTimeout(() => {
+							$(this).removeClass('disabled')
+						},500);
+						let currentName = $('.show-wrapper .find-icon .nameItem').text();
+						console.log(currentName);
+						$('.left-inventory .show-wrapper').slideUp();
+						$('.show-wrapper .find-icon').empty();
+						mp.trigger('putDocument', currentName);
+					}
 				});
 				refreshInventory('luggage');
 				refreshInventory('inventory');	
@@ -217,11 +224,18 @@ function pushSearchElement(name)
 			mp.trigger('previewDocument',currentName);
 		});
 		$('#takeDocument').on('click',function(){
-			let currentName = $('.find-icon .nameItem').text();
-			console.log(currentName);
-			$('.left-inventory .search-wrapper .find-item').slideUp();
-			$('.search-wrapper .find-item .find-icon').empty();
-			mp.trigger('takeDocument',currentName);
+			if(!$(this).hasClass('disabled'))
+			{
+				$(this).addClass('disabled')
+				setTimeout(() => {
+					$(this).removeClass('disabled')
+				},500);
+				let currentName = $('.find-icon .nameItem').text();
+				console.log(currentName);
+				$('.left-inventory .search-wrapper .find-item').slideUp();
+				$('.search-wrapper .find-item .find-icon').empty();
+				mp.trigger('takeDocument',currentName);
+			}
 		});
 	}
 }
