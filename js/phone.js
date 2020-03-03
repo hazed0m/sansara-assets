@@ -410,7 +410,7 @@ function historyRefresh()
 		});	
 		if(currentName == '')
 		{
-			currentName = 'Неизвестный';
+			currentName = innerItem.number;
 		}
 		let currentNumber = item.number.toString();
 		currentNumber = currentNumber.slice(0, 3) + '-' + currentNumber.slice(-3);
@@ -958,7 +958,7 @@ function incomingMessage(number, status, time, message)
 	if(!checker)
 	{
 		contactsList.push({ 
-			name:'Неизвестный', 
+			name:number, 
 			number:number, 
 			messageList:
 			[{

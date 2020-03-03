@@ -75,7 +75,7 @@ drugsList = [
 ];
 function instrumentTranslate(cyrillic)
 {
-    let currentIndex = '';
+    let currentIndex = -1;
     $(instrumentsList).each(function(index,item){
         if(item == cyrillic)
         {
@@ -86,7 +86,7 @@ function instrumentTranslate(cyrillic)
 }
 function productTranslate(cyrillic)
 {
-    let currentIndex = '';
+    let currentIndex = -1;
     $(productsList).each(function(index,item){
         if(item == cyrillic)
         {
@@ -97,7 +97,7 @@ function productTranslate(cyrillic)
 }
 function drugsTranslate(cyrillic)
 {
-    let currentIndex = '';
+    let currentIndex = -1;
     $(drugsList).each(function(index,item){
         if(item == cyrillic)
         {

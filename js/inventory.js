@@ -125,7 +125,7 @@ var sex = '',
 	];
 function checkAction(action, index, id, currentCount)
 {
-	if(inventoryList[index].type == 'Documents' && action == 'give')
+	if(inventoryList[index].type == 'Documents')
 	{
 		$('.debugger .left-wrap, .debugger .right-wrap').empty();
 		actionDebugger(action, index, id, currentCount);
