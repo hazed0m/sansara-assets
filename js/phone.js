@@ -43,11 +43,18 @@ function phoneToBottom()
 {
 	$('.container').css('top',currentTopPosition);
 }
-function pushContactList(item,carslist)
+let callsTaxiList = [];
+function pushContactList(item,carslist,callslist)
 {
 	goHome();
 	contactsList = [],
 	carsList = [];
+	if(callslist != undefined)
+	{
+		$('.taxiApp').fadeIn();
+		callsTaxiList = JSON.parse(callslist);
+		refreshTaxiApp();
+	}
 	let itemList = JSON.parse(item);
 	let carList = JSON.parse(carslist);
 	$(itemList).each(function(index,item){
@@ -410,7 +417,7 @@ function historyRefresh()
 		});	
 		if(currentName == '')
 		{
-			currentName = innerItem.number;
+			currentName = 'Неизвестный';
 		}
 		let currentNumber = item.number.toString();
 		currentNumber = currentNumber.slice(0, 3) + '-' + currentNumber.slice(-3);
@@ -1016,13 +1023,7 @@ $('.main-wrapper .taxiApp').on('click',function(){
 	
 	$('.taxiApp-wrapper').addClass('active').fadeIn();
 });
-let callsTaxiList = [];
-function pushTaxiApp(callslist)
-{
-	console.log(callslist);
-	callsTaxiList = JSON.parse(callslist);
-	refreshTaxiApp();
-}
+
 function refreshTaxiApp()
 {
 	// $('.taxiApp-wrapper .calls-wrapper').empty();

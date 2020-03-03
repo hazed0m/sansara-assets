@@ -429,6 +429,7 @@
 	position:absolute;
 	left:2.5%;
 	bottom:23%;
+	display: none;
 }
 .taxiApp-wrapper .calls-wrapper
 {
@@ -744,8 +745,8 @@
 }
 .outCaller-wrapper .cancel, .caller-wrapper .cancel, .incomingCall-wrapper .cancel
 {
-	width:54px;
-	height:54px;
+	width:55px;
+	height:55px;
 	background: url(../img/phone/caller/cancel.png) no-repeat;
 	background-size:cover;
 	margin-top:50px;
