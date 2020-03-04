@@ -668,6 +668,12 @@ function refreshInventory(currentIterator)
 			let imgName = item.name.toLowerCase().replace(/\s+/g,'');
 			itemImg = `<img src="images/${currentIter}/instruments/${instrumentTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
 		}
+		if(item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources')
+		{
+			let imgName = item.name.toLowerCase().replace(/\s+/g,'').toLowerCase();
+			console.log(imgName);
+			itemImg = `<img src="images/${currentIter}/resources/${resourceTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
+		}
 		if(currentIterator == 'luggage')
 		{
 			action = 'remove';

@@ -144,9 +144,16 @@ function blockRefresh()
       $('.main-block .block').each(function(indexBlock,itemBlock){
           if(item.name == $(itemBlock).attr('data-name'))
           {
+            let itemImg = `img/${item.type}.png`;
+            if(item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources')
+            {
+              let imgName = item.name.toLowerCase().replace(/\s+/g,'').toLowerCase();
+              console.log(imgName);
+              itemImg = `images/inventory/resources/${resourceTranslate(imgName)}.png`;
+            }
             let currentCount = $('input.quantity-num').val();
             let template = 
-            `<div class="inner-block" style="background-image:url(img/${item.type}.png);">            
+            `<div class="inner-block" style="background-image:url(${itemImg});">            
                 <div class="count">${currentNeedsList[indexBlock].count*currentCount}</div>
                 <div class="inner-wrap">
                   <div class="title">${item.name}</div>
@@ -183,9 +190,11 @@ function checkCompatibility()
       	$('.create-but').removeClass('blocked');
     	$('.button-wrap .blocked').removeClass('blocked');
     	$('.final-block .block').empty();		
-     	let currentCount = $('input.quantity-num').val();
+       let currentCount = $('input.quantity-num').val(),
+           imgName = finalElement.toLowerCase().replace(/\s+/g,'').toLowerCase(),
+           itemImg = `images/inventory/resources/${resourceTranslate(imgName)}.png`;
       	let template = 
-	      `<div class="inner-block" style="background-image:url(img/Craft_Resources.png);">            
+	      `<div class="inner-block" style="background-image:url(${itemImg});">            
 	          <div class="count">${currentCount}</div>
 	          <div class="inner-wrap">
 	            <div class="title">${finalElement}</div>
