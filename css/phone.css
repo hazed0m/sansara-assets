@@ -1167,8 +1167,8 @@
 }
 .contacts-wrapper .current-wrapper .selected-contact .change-but
 {
-	width:22px;
-	height:22px;
+	width:23px;
+	height:23px;
 	background:url(../img/phone/contacts/edit.png) no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -1302,7 +1302,7 @@
 }
 .messages-inner .title-wrap
 {
-	padding:0 30px 0 10px;
+	padding:0 10px;
 	justify-content: space-between;
 }
 .messages-inner .title-wrap .back-but

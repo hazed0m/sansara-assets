@@ -602,9 +602,10 @@ function pushContacts(currentWrapper)
 					{
 						currentNumber = item.name;
 					}
+					// ${item.priority == priorityIndex+1 ? '<div class="last">*</div>' : ''}
 					currentTemplate = `<div class="message-item" data-index="${index}" data-number="${currentNumber}">
 										<div class="message-border">
-											${item.priority == priorityIndex+1 ? '<div class="last">*</div>' : ''}
+											
 											<div class="number">${currentNumber}</div>
 											<div class="time">${item.messageList[item.messageList.length-1].time}</div>
 										</div>
@@ -616,7 +617,7 @@ function pushContacts(currentWrapper)
 				}
 				else
 				{
-					currentTemplate = `<div class="message-item" data-index="${index}" data-number="${currentNumber}">
+					currentTemplate = `<div class="message-item" data-index="${index}" data-number="${item.number}">
 										<div class="message-border">
 											<div class="number">${item.name}</div>
 											<div class="time"></div>
@@ -878,10 +879,11 @@ function refreshMessagesList()
 {
 	$('.messages-wrapper .message-item').on('click',function(){
 		$('.messages-wrapper').removeClass('active').fadeOut();	
-		let currentIndex = $(this).attr('data-index');
+		let currentIndex = $(this).attr('data-index'),
+			currentNumber = $(this).attr('data-number');
 		pushCurrentMessages(currentIndex);	
 		$('.messages-inner').find('.title').text(contactsList[currentIndex].name);
-		$('.messages-inner').find('.title').attr('data-index',currentIndex);
+		$('.messages-inner').find('.title').attr({'data-index':currentIndex,'data-number':currentNumber});
 		checkSmile();
 		$('.messages-inner').addClass('active').fadeIn();
 		messageInnerScroll('inner');			
@@ -904,22 +906,26 @@ $('.messages-inner .back-but').on('click',function(){
 });
 $('.messages-inner .smiles-wrap .smile, .messages-inner .big-smiles-wrap .smile').on('click',function(){	
 	let messageTemplate = `:${$(this)[0].id}:`,
-		currentIndex = $(this).parent().parent().parent().find('.title').attr('data-index');
+		currentIndex = $(this).parent().parent().parent().find('.title').attr('data-index'),
+		currentNumber = $(this).parent().parent().parent().find('.title').attr('data-number');
+	console.log(currentNumber);
 	if($(this).parent().hasClass('big-smiles-wrap'))
 	{
 		currentIndex = $(this).parent().parent().parent().find('.title').attr('data-index');
 		$('.messages-inner .big-smiles-wrap').fadeOut();
 		$('.home-but').fadeIn();
 	}
-	mp.trigger("sendMessage",contactsList[currentIndex].number, messageTemplate);
+	mp.trigger("sendMessage",currentNumber, messageTemplate);
 });
 $('.messages-inner .sender').on('click',function(){
 	let currentMessage = $(this).prev().val();
 	if(currentMessage.length > 0)
 	{
-		let currentIndex = $(this).parent().parent().find('.title').attr('data-index');
+		let currentIndex = $(this).parent().parent().find('.title').attr('data-index'),
+			currentNumber = $(this).parent().parent().find('.title').attr('data-number');
 		$(this).prev().val('');
-		mp.trigger("sendMessage",contactsList[currentIndex].number, currentMessage);
+		console.log(currentNumber);
+		mp.trigger("sendMessage",currentNumber, currentMessage);
 	}	
 });
 $('.messages-inner input').on('keypress',function(e){
@@ -979,7 +985,9 @@ function incomingMessage(number, status, time, message)
 		messageInnerScroll('wrapper');			
 	}	
 	priorityRefresh();
-	pushContacts('messages');
+	pushContacts('messages');	
+	pushContacts('contacts');
+	refreshContacts();	
 };
 function checkSmile()
 {

@@ -155,7 +155,7 @@ boatsList = [
 towTruckList = [
     { name: 'Towtruck Large', hash: 'towtruck', speed:167, luggage: 100, type: 'эвакуатор',price: 47100, info: '', places: 2},
     { name: 'Vapid Tow Truck', hash: 'towtruck2', speed:161, luggage: 50, type: 'эвакуатор',price: 30200, info: '', places: 2},
-    { name: 'MTL Flatbed', hash: 'flatbed', speed:209, luggage: 100, type: 'эвакуатор',price: 55300, info: '', places: 2}
+    // { name: 'MTL Flatbed', hash: 'flatbed', speed:209, luggage: 100, type: 'эвакуатор',price: 55300, info: '', places: 2}
 ],
 transportCompanyCarsList = [
     { name: 'Vapid Taxi', hash: 'taxi', speed:230, luggage: 60, type: 'такси',price: 66100, info: '', places: 4},

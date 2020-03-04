@@ -60,7 +60,10 @@ $('.container .notification-screen #sendMessage').on('click',function(){
     }
     else
     {
-        mp.trigger('adminNotification',id,currentAdmin.id,currentAdmin.name,adminList[parseInt(currentIndex)].Id,adminList[parseInt(currentIndex)].FullName,text);
+        let currentName = $(this).parent().parent().attr('data-fullname'),
+            currentId = parseInt($(this).parent().parent().attr('data-id'));
+        console.log(currentName,currentId);
+        mp.trigger('adminNotification',id,currentAdmin.id,currentAdmin.name,currentId,currentName,text);
     }
 });
 $('.container .notification-screen #cancel').on('click',function(){
@@ -243,11 +246,13 @@ function refreshAdminPanel()
 {
     $('.container .player-notification-item .buttons-wrapper .button').on('click',function(){
         let currentIndex = parseInt($(this).parent().parent().attr('data-index')),
+            currentName = $(this).parent().parent().attr('data-fullname'),
+            currentId = parseInt($(this).parent().parent().attr('data-id')),
             id = this.id;
         if(id != 'sendAnswer')
         {
-            console.log('adminPanelButton', id, currentAdmin.id,currentAdmin.name, adminList[currentIndex].Id, adminList[currentIndex].FullName);
-            mp.trigger('adminPanelButton', id, currentAdmin.id,currentAdmin.name, adminList[currentIndex].Id, adminList[currentIndex].FullName);
+            console.log('adminPanelButton', id, currentAdmin.id,currentAdmin.name, currentId, currentName);
+            mp.trigger('adminPanelButton', id, currentAdmin.id,currentAdmin.name, currentId, currentName);
         }
         else
         {
@@ -255,7 +260,7 @@ function refreshAdminPanel()
             $('.container .notification-screen textarea').val('');
             if(!$(this).hasClass('disabled'))
             {
-                $('.container .notification-screen').attr({'id':id,'data-index':currentIndex}).fadeIn();
+                $('.container .notification-screen').attr({'id':id,'data-index':currentIndex,'data-fullname':currentName,'data-id':currentId}).fadeIn();
                 $('.container .notification-screen .title span').text(adminList[currentIndex].FullName);
             }
             mp.trigger('NotificationScreenOpened');
