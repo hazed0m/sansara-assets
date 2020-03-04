@@ -1244,5 +1244,7 @@ function adminInit(admin)
 	$('.order-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
 	$('.decree-wrap iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
 	$('.law-wrap #main-law-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
-	$('.law-wrap #other-law-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.law-wrap #admin-code-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.law-wrap #criminal-code-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+	$('.law-wrap #road-code-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
 }

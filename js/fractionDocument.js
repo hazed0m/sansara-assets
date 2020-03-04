@@ -151,8 +151,8 @@ function pushFractionDocument(elem)
         </div>`;
     }    
     $('.container').append(template);
-    $('.text-wrapper textarea').keyup(function(){
-        this.value = this.value.replace(/[^А-ЯЁа-яё!,.?:0-9 ]/g, '');
+    $('.text-wrapper textarea, .text-wrapper input').keyup(function(){
+        this.value = this.value.replace(/[^А-ЯЁа-яё!,.?:;%$0-9+-=<>\n() ]/g, '');
     });
     $('.container .sign-wrapper #signDocument').on('click',function(){
         if($('.container .text-wrapper input').length != 0 && $('.container .text-wrapper textarea').length != 0)
