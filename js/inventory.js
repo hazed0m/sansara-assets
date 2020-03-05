@@ -1086,19 +1086,36 @@ function refreshInventory(currentIterator)
 			}
 			if(item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
 			{
-				let imgName = item.name.toLowerCase().replace(/\s+/g,'');
-				itemImg = `<img src="images/${currentIter}/items/${productTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
+				let imgName = item.name.toLowerCase().replace(/\s+/g,''),
+					currentIndex = productTranslate(imgName),
+					currentImg = `images/inventory/${item.type}.png`;
+				if(currentIndex != -1)
+				{
+					currentImg = `images/${currentIter}/items/${currentIndex}.png`;
+				}
+				itemImg = `<img src="${currentImg}" class="itemImg dropdown-toggle">`;
 			}
 			if(item.type == 'Instrument')
 			{
-				let imgName = item.name.toLowerCase().replace(/\s+/g,'');
-				itemImg = `<img src="images/${currentIter}/instruments/${instrumentTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
+				let imgName = item.name.toLowerCase().replace(/\s+/g,''),
+					currentIndex = instrumentTranslate(imgName),
+					currentImg = `images/inventory/${item.type}.png`;
+				if(currentIndex != -1)
+				{
+					currentImg = `images/${currentIter}/instruments/${instrumentTranslate(imgName)}.png`;
+				}
+				itemImg = `<img src="${currentImg}" class="itemImg dropdown-toggle">`;
 			}
 			if(item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources')
 			{
-				let imgName = item.name.toLowerCase().replace(/\s+/g,'').toLowerCase();
-				console.log(imgName);
-				itemImg = `<img src="images/${currentIter}/resources/${resourceTranslate(imgName)}.png" class="itemImg dropdown-toggle">`;
+				let imgName = item.name.toLowerCase().replace(/\s+/g,'').toLowerCase(),
+				currentIndex = resourceTranslate(imgName),
+				currentImg = `images/inventory/${item.type}.png`;
+				if(currentIndex != -1)
+				{
+					currentImg = `images/${currentIter}/resources/${resourceTranslate(imgName)}.png`;
+				}
+				itemImg = `<img src="${currentImg}" class="itemImg dropdown-toggle">`;
 			}
 			if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
 			{				

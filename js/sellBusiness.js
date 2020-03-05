@@ -14,7 +14,7 @@ function pushBusiness(element,busName,busPrice)
      let obj = {
         name: item.name,
         count: item.count,
-        price: item.price,
+        price: item.price != undefined ? item.price : 0,
         type: item.type
      };
      businessList.push(obj);
@@ -26,7 +26,24 @@ function businessRefresh()
   $('.col-wrapper .input-wrapper, .col-wrapper .button-wrapper').remove();
   $('.sell-price').text(businessPrice);
   $('.col-wrapper .title').text(businessName);
-  $(businessList).each(function(index,item){
+  $(businessList).each(function(index,item){    
+      let currentImg = `images/inventory/${item.type}.png`;
+      if(item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
+      {
+        let imgName = item.name.toLowerCase().replace(/\s+/g,'');
+        currentImg = `images/inventory/items/${productTranslate(imgName)}.png`;
+      }
+      if(item.type == 'Instrument')
+      {
+        let imgName = item.name.toLowerCase().replace(/\s+/g,'');
+        currentImg = `images/inventory/instruments/${instrumentTranslate(imgName)}.png`;
+      }
+      if(item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources')
+      {
+        let imgName = item.name.toLowerCase().replace(/\s+/g,'').toLowerCase();
+        console.log(imgName);
+        currentImg = `images/inventory/resources/${resourceTranslate(imgName)}.png`;
+      }
       let template = 
        `<div class="input-wrapper" data-price="${item.price}">
           <div class="item-wrap">             
@@ -34,7 +51,7 @@ function businessRefresh()
               <div class="item-price">${item.price}<span>$/ед.</span></div>
           </div>
           <div class="count-wrap">
-            <div class="ico-wrap" style="background-image:url(images/inventory/${item.type}.png);"></div>
+            <div class="ico-wrap" style="background-image:url(${currentImg});"></div>
             <div class="min">
               <div class="min-title">MIN</div>
               <div class="min-numb">0</div>

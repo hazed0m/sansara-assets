@@ -147,9 +147,13 @@ function blockRefresh()
             let itemImg = `img/${item.type}.png`;
             if(item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources')
             {
-              let imgName = item.name.toLowerCase().replace(/\s+/g,'').toLowerCase();
+              let imgName = item.name.toLowerCase().replace(/\s+/g,'').toLowerCase(),
+                  currentImg = resourceTranslate(imgName);
               console.log(imgName);
-              itemImg = `images/inventory/resources/${resourceTranslate(imgName)}.png`;
+              if(currentImg != -1)
+              {
+                itemImg = `images/inventory/resources/${currentImg}.png`;
+              }
             }
             let currentCount = $('input.quantity-num').val();
             let template = 
@@ -192,7 +196,12 @@ function checkCompatibility()
     	$('.final-block .block').empty();		
        let currentCount = $('input.quantity-num').val(),
            imgName = finalElement.toLowerCase().replace(/\s+/g,'').toLowerCase(),
-           itemImg = `images/inventory/resources/${resourceTranslate(imgName)}.png`;
+           itemImg = `img/Craft_Resources.png`,
+           currentImg = resourceTranslate(imgName);
+        if(currentImg != -1)
+        {
+          itemImg = `images/inventory/resources/${currentImg}.png`;
+        }
       	let template = 
 	      `<div class="inner-block" style="background-image:url(${itemImg});">            
 	          <div class="count">${currentCount}</div>

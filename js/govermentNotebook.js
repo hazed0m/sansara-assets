@@ -692,7 +692,7 @@ function dealsInit()
         if($(this).attr('type') == 'text')
         {
             console.log($(this).attr('type'));
-            this.value = this.value.replace(/[-\.;":'`,/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
+            this.value = this.value.replace(/[-\.;":'`,/<>@?!№%*&^#$()_+=|{}0-9]/g, '');
         }
         let dealNumber = parseInt($('#dealNumber input').val()),
             buyerInfo = $('#buyerInfo input').val(),
@@ -751,7 +751,7 @@ function dealsInit()
         if($(this).attr('type') == 'text')
         {
             console.log($(this).attr('type'));
-            this.value = this.value.replace(/[-\.;":'`,/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
+            this.value = this.value.replace(/[-\.;":'`,/<>@?!№%*&^#$()_+=|{}0-9]/g, '');
         }
         let dealType = $('.search-wrapper .mask-item.active')[0].id,
             dealInfo = '';

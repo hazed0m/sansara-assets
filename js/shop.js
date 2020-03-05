@@ -260,10 +260,11 @@ function shopListRefresh()
 		else if(currentShopType == 'drugs')
 		{
 			console.log('drugs');
-			let imgName = item.name.toLowerCase().replace(/\s+/g,'');
+			let imgName = item.name.toLowerCase().replace(/\s+/g,''),
+				currentImg = drugsTranslate(imgName);
 			template = `
 				<div class="shop-item" ${legalId}>
-					<div class="inner-item" ${legalAttr} data-index="${index}" style="background-image:url(images/inventory/objects/${drugsTranslate(imgName) != '' ? drugsTranslate(imgName) : 'medical'}.png);">
+					<div class="inner-item" ${legalAttr} data-index="${index}" style="background-image:url(images/inventory/objects/${currentImg != -1 ? currentImg : 'medical'}.png);">
 						<div class="title">
 							<span class="title-text">${item.name}</span>
 						</div>
@@ -415,6 +416,43 @@ function basketListRefresh()
 				<div class="basket-item" data-index="${index}">
 					<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
 					<div class="icon" ${legalId}><img src="images/inventory/items/${productTranslate(imgName)}.png" alt=""></div>
+					<div class="title-wrap">
+						<div class="title-item">${item.name}</div>
+					</div>
+					<div class="col-wrap">
+						<div class="minus">-</div>
+						<div class="col-box">${item.count}</div>		
+						<div class="plus">+</div>
+					</div>
+				</div>	
+			`;
+		}
+		else if(currentShopType == 'drugs')
+		{
+			let imgName = item.name.toLowerCase().replace(/\s+/g,''),
+				currentImg = drugsTranslate(imgName);
+			template = `
+				<div class="basket-item" data-index="${index}">
+					<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+					<div class="icon" ${legalId}><img src="images/inventory/objects/${currentImg != -1 ? currentImg : 'medical'}.png" alt=""></div>
+					<div class="title-wrap">
+						<div class="title-item">${item.name}</div>
+					</div>
+					<div class="col-wrap">
+						<div class="minus">-</div>
+						<div class="col-box">${item.count}</div>		
+						<div class="plus">+</div>
+					</div>
+				</div>	
+			`;
+		}
+		else if(currentShopType == 'instruments')
+		{
+			let imgName = item.name.toLowerCase().replace(/\s+/g,'');
+			template = `
+				<div class="basket-item" data-index="${index}">
+					<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>
+					<div class="icon" ${legalId}><img src="images/inventory/instruments/${instrumentTranslate(imgName)}.png" alt=""></div>
 					<div class="title-wrap">
 						<div class="title-item">${item.name}</div>
 					</div>
