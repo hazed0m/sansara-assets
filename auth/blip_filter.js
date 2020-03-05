@@ -294,7 +294,8 @@ mp.events.add('gpsFilter', (data) => {
 
         });
     }
-    if (arr[4]) {    
+    if (arr[4].isArray()) {    
+        buisnes_array = arr[4];
         buisnes_array.forEach(function (element, index) {            
             blips_buisnes[index] = mp.blips.new(element.sprite, element.position,
                 {

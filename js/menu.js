@@ -255,9 +255,58 @@ let menu = new Vue({
             { title: 'Сарказм', dict: 'anim@mp_player_intcelebrationfemale@slow_clap', name: 'slow_clap' }
         ],
         pass: {},
-        autoLogin: 0
+        autoLogin: 0,
+        countsArr: []
     },
-    methods: {        
+    methods: {   
+        pushBusinessGeo(json,divisor)
+        {
+            let element = JSON.parse(json);   
+            element.sort((prev, next) => {
+                next.name.replace('Бизнес: ','');
+                prev.name.replace('Бизнес: ','');
+                if ( prev.name < next.name ) return -1;
+                if ( prev.name < next.name ) return 1;
+            });    
+            console.log(element,element.length); 
+            let count = element.length / divisor;
+            count = Math.ceil(count);
+            console.log(count);
+            let currentIndex = 0;
+            $(element).each(function(index,item)
+            {
+                item.id = index;
+                if(index == 0)
+                {
+                    menu.countsArr[currentIndex] = [];
+                }
+                menu.countsArr[currentIndex].push(item);                
+                console.log(currentIndex);
+                if(index % divisor == 0 && index != 0)
+                {
+                    currentIndex++;
+                    menu.countsArr[currentIndex] = [];
+                }
+            });            
+            console.log(menu.countsArr,currentIndex);
+            $(menu.countsArr).each(function(index,item){
+                let template = `<div class="gps-business-item" data-index="${index}">${item[0].id} - ${item[item.length-1].id}</div>`;
+                $('.gps-business').append(template);
+            });  
+            $('.gps-item, .gps-house, .gps-business-item').on('click',function(){
+                menu.saveButtonState = false;
+                if($(this).hasClass('active'))
+                {
+                    $(this).removeClass('active');
+                }
+                else
+                {        
+                    console.log($(`.map-settings .active`));
+                    $(`.map-settings .active`).removeClass('active');
+                    $(this).addClass('active');
+                }
+            });           
+        },  
         closePassport()
         {
             $('.passport-wrap').fadeOut();
@@ -523,6 +572,17 @@ let menu = new Vue({
                         menu.gpsFilterArr[index] = false;
                     }
                 }
+                else if(index == 4)
+                {
+                    if($(`.gps-business-item.active`).length != 0)
+                    {
+                        menu.gpsFilterArr[index] = menu.countsArr[index];
+                    }
+                    else
+                    {
+                        menu.gpsFilterArr[index] = false;
+                    }
+                }
                 else
                 {
                     if($(`.gps-item:eq(${index-1})`).hasClass('active'))
@@ -610,20 +670,7 @@ let gpsHousesList = [
 $(gpsHousesList).each(function(index,item){
     let template = `<div class="gps-house">${item}</div>`;
     $('.gps-houses').append(template);
-});        
-$('.gps-item, .gps-house').on('click',function(){
-    menu.saveButtonState = false;
-    if($(this).hasClass('active'))
-    {
-        $(this).removeClass('active');
-    }
-    else
-    {        
-        console.log($(`.map-settings .active`));
-        $(`.map-settings .active`).removeClass('active');
-        $(this).addClass('active');
-    }
-});      
+});     
 $('.map-settings .gps-category').on('click',function(){
     if(!$(this).next().is(':visible'))
     {

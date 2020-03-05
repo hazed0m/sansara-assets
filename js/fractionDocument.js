@@ -90,12 +90,12 @@ function pushFractionDocument(elem)
     docInfo = JSON.parse(elem);
     let fractionTitle = docInfo.Fraction == 'police' ? '<div class="title">Police Department</div>': '' || docInfo.Fraction == 'medical' ? '<div class="title">Emergency Services</div>': '',
         signsList = '',
-        template = '';        
-        let textItem = docInfo.Text.split('@'),
-            textElem = '';
-        $(textItem).each(function(index,item){
-            textElem += `<p>${item}</p>`;
-        });
+        template = '',
+        textItem = docInfo.Text.split('@'),
+        textElem = '';
+    $(textItem).each(function(index,item){
+        textElem += `<p>${item}</p>`;
+    });
     if(docInfo.SignsList.length == 0)
     {
         template = `
