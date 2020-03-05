@@ -282,7 +282,8 @@ let menu = new Vue({
                 }
                 menu.countsArr[currentIndex].push(item);                
                 console.log(currentIndex);
-                if(index % divisor == 0 && index != 0)
+                let checkIndex = index+1;
+                if(checkIndex % divisor == 0 && index != 0)
                 {
                     currentIndex++;
                     menu.countsArr[currentIndex] = [];
