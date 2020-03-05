@@ -90,7 +90,12 @@ function pushFractionDocument(elem)
     docInfo = JSON.parse(elem);
     let fractionTitle = docInfo.Fraction == 'police' ? '<div class="title">Police Department</div>': '' || docInfo.Fraction == 'medical' ? '<div class="title">Emergency Services</div>': '',
         signsList = '',
-        template = '';
+        template = '';        
+        let textItem = docInfo.Text.split('@'),
+            textElem = '';
+        $(textItem).each(function(index,item){
+            textElem += `<p>${item}</p>`;
+        });
     if(docInfo.SignsList.length == 0)
     {
         template = `
@@ -106,7 +111,7 @@ function pushFractionDocument(elem)
                     <input type="text" placeholder="Введите заголовок документа" value="${docInfo.Title}">                
                 </div>
                 <div class="text">
-                    <textarea maxlength="2000" placeholder="Введите текст документа">${docInfo.Text}</textarea>                    
+                    <textarea maxlength="2000" placeholder="Введите текст документа">${textElem}</textarea>                    
                 </div>
             </div>  
             <div class="sign-wrapper">
@@ -139,7 +144,7 @@ function pushFractionDocument(elem)
             <div class="text-wrapper">
                 <div class="big-title">${docInfo.Title}</div>
                 <div class="text">
-                    ${docInfo.Text}
+                    ${textElem}
                 </div>
             </div>  
             <div class="sign-wrapper">
@@ -161,6 +166,7 @@ function pushFractionDocument(elem)
                 text = $('.container .text-wrapper textarea').val(),
                 name = docInfo.Name,
                 type = docInfo.Fraction;
+            text = text.replace(/\n/g, '@'); 
             if(title.length != 0 && text.length != 0)
             {
                 $(this).fadeOut();
@@ -181,6 +187,7 @@ function pushFractionDocument(elem)
                 name = docInfo.Name,
                 text = docInfo.Text,
                 type = docInfo.Fraction;
+            text = text.replace(/\n/g, '@'); 
             console.log('signDocument',type,name,title,text);
             mp.trigger('signDocument',type,name,title,text);
         }
@@ -191,6 +198,7 @@ function pushFractionDocument(elem)
             let title = $('.container .text-wrapper input').val(),
                 name = docInfo.Name,
                 text = $('.container .text-wrapper textarea').val();
+            text = text.replace(/\n/g, '@'); 
             console.log(name,title,text);
             mp.trigger('closeDocument',name,title,text);
         }        
@@ -199,6 +207,7 @@ function pushFractionDocument(elem)
             let title = docInfo.Title,
                 name = docInfo.Name,
                 text = docInfo.Text;
+            text = text.replace(/\n/g, '@'); 
             console.log(name,title,text);
             mp.trigger('closeDocument',name,title,text);
         }

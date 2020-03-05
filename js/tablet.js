@@ -1103,6 +1103,8 @@ function adsSendData(data){
 		if (event.data['showDocument']) {
 			let currentDocument = parseInt(event.data['showDocument']);
 			console.log('showDocument',currentDocument);
+			$('.mask').fadeIn();
+			$('.mask').fadeOut();
 			mp.trigger('showDocument',currentDocument);
 		}
 		if(event.data['blockAds'])
