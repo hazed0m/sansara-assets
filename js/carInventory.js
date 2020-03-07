@@ -123,6 +123,7 @@ var sex = '',
 	   "Shoes",
 	   "Bag"
 	];
+	// $('body').append('<div class="debugger"></div>');
 function checkAction(action, index, id, currentCount)
 {
     mp.trigger(action, index, id, currentCount);          
@@ -166,7 +167,16 @@ function doneAction(action, index, id, currentCount)
 						inventoryList.push(removeElem);
 						eval(id+'List')[index].inventoryIndex = inventoryList.length - 1;
 					}				
-				}				
+				}		
+				// $('.debugger').empty().append(
+				// 	`<p>${'put'}</p>
+				// 	<p>***Багажник***</p>
+				// 	<p>${JSON.stringify(luggageList)}</p>
+				// 	<p>***Багажник***</p>
+				// 	<p>***Инвентарь***</p>
+				// 	<p>${JSON.stringify(inventoryList)}</p>
+				// 	<p>***Инвентарь***</p>`
+				// );
 				mp.trigger("action.currentCarInv", action, JSON.stringify(luggageList),JSON.stringify(inventoryList));
 			}
 			else
@@ -238,6 +248,15 @@ function useElement(element, index, currentCount)
 		{
 			inventoryList.splice(index, 1);
 		}		
+		// $('.debugger').empty().append(
+		// 	`<p>${'put'}</p>
+		// 	<p>***Багажник***</p>
+		// 	<p>${JSON.stringify(luggageList)}</p>
+		// 	<p>***Багажник***</p>
+		// 	<p>***Инвентарь***</p>
+		// 	<p>${JSON.stringify(inventoryList)}</p>
+		// 	<p>***Инвентарь***</p>`
+		// );
 		mp.trigger("action.currentCarInv", 'put', JSON.stringify(luggageList), JSON.stringify(inventoryList));
 	}
 	else
@@ -256,7 +275,16 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 	luggageAvailable = curAvailable;
 	maxWeightInventory = maxWeightInv;
 	maxWeightLuggage = maxWeightLug;
-    inventoryList = [];
+	inventoryList = [];
+	// $('.debugger').empty().append(
+	// 	`<p>${'put'}</p>
+	// 	<p>***Багажник***</p>
+	// 	<p>${JSON.stringify(luggage)}</p>
+	// 	<p>***Багажник***</p>
+	// 	<p>***Инвентарь***</p>
+	// 	<p>${JSON.stringify(inventory)}</p>
+	// 	<p>***Инвентарь***</p>`
+	// );
     let invList = JSON.parse(inventory);
     $(invList).each(function(index,item){    	
     	let obj = 
@@ -314,7 +342,10 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 		if(currentElement != -1)
 		{
 			let length = luggageList.length - 1;
-			inventoryList[length].wearedId = length;
+			console.log(length);
+			console.log(luggageList[length].inventoryIndex);
+			console.log(inventoryList[luggageList[length].inventoryIndex].wearedId);
+			inventoryList[luggageList[length].inventoryIndex].wearedId = length;
 		}
 	});
 	$(ammoList).each(function(index,item){

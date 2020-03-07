@@ -323,8 +323,13 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 		luggageList.push(obj);		
 		if(currentElement != -1)
 		{
+			// let length = luggageList.length - 1;
+			// inventoryList[length].wearedId = length;
 			let length = luggageList.length - 1;
-			inventoryList[length].wearedId = length;
+			console.log(length);
+			console.log(luggageList[length].inventoryIndex);
+			console.log(inventoryList[luggageList[length].inventoryIndex].wearedId);
+			inventoryList[luggageList[length].inventoryIndex].wearedId = length;
 		}
 	});
 	$(ammoList).each(function(index,item){
