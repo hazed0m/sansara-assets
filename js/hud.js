@@ -186,6 +186,9 @@ function keypressUp(e){
 		case 117:  // F6
             mp.trigger('KeyF6Press');
         break;
+        case 119:  // Num9
+            mp.trigger('KeyF8Press');
+        break;
     }
 }
 // function runOnKeys(func, ...codes) {
