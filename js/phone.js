@@ -535,7 +535,27 @@ function carsNameRefresh()
 }
 function priorityRefresh()
 {
-	contactsList.sort((a, b) => a.priority > b.priority ? 1 : -1);
+	let arr = [],
+		temporary = [];
+	$(contactsList).each(function(index,item){
+		if(item.priority <= 0)
+		{
+			console.log(item);
+			arr.push(item);
+		}
+		else
+		{
+			console.log(item);
+			temporary.push(item);
+		}
+	});
+	console.log(temporary);
+	arr.sort((a, b) => a.priority > b.priority ? 1 : -1);
+	arr = arr.concat(temporary);
+	console.log(arr);
+	contactsList = arr;
+	messageInnerScroll('inner');	
+	messageInnerScroll('wrapper');	
 }
 function pushContacts(currentWrapper)
 {
@@ -593,20 +613,20 @@ function pushContacts(currentWrapper)
 			{
 				if(!$.isEmptyObject(item.messageList))
 				{
-					var currentNumber = item.name;
+					var currentName = item.name;
 					if(item.name == 'Неизвестный')
 					{
-						currentNumber = `${item.name} ( ${item.number} )`;
+						currentName = `${item.name} ( ${item.number} )`;
 					}
 					else
 					{
-						currentNumber = item.name;
+						currentNumber = item.number;
 					}
 					// ${item.priority == priorityIndex+1 ? '<div class="last">*</div>' : ''}
 					currentTemplate = `<div class="message-item" data-index="${index}" data-number="${currentNumber}">
 										<div class="message-border">
 											
-											<div class="number">${currentNumber}</div>
+											<div class="number">${currentName}</div>
 											<div class="time">${item.messageList[item.messageList.length-1].time}</div>
 										</div>
 										<div class="message-text">
@@ -950,7 +970,7 @@ function incomingMessage(number, status, time, message)
 	if(status == 'incoming')
 	{
 		messageAudio.play();
-	}
+	}	
 	$(contactsList).each(function(index,item){
 		if(item.number == number)
 		{
@@ -987,7 +1007,7 @@ function incomingMessage(number, status, time, message)
 		priorityIndex--;
 		messageInnerScroll('wrapper');			
 	}	
-	priorityRefresh();
+	priorityRefresh();		
 	pushContacts('messages');	
 	pushContacts('contacts');
 	pushContacts('geo');
