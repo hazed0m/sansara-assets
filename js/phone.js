@@ -433,7 +433,7 @@ function refreshHistoryBlock()
 {	
 	$('.history-block').on('click',function(){
 		let currentNumber = $(this).find('.number').text();
-		currentNumber = parseInt(currentNumber.replace('-',''));
+			currentNumber = parseInt(currentNumber.replace('-',''));
 		outCaller(currentNumber);
 		checkCall(currentNumber);
 	});
@@ -686,11 +686,12 @@ function contactsInitialize()
 		};
 	});		
 	$('.contacts-wrapper .caller').on('click',function(){
-		let currentIndex = $(this).parent().attr('data-index');		
+		let currentIndex = $(this).parent().attr('data-index'),
+			currentNumber = parseInt($(this).parent().attr('data-number'));		
 		$('.contacts-wrapper .current-wrapper .active').css('display','none').removeClass('active');
 		$('.contacts-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
-		outCaller($(contactsList)[currentIndex].number);
-		checkCall($(contactsList)[currentIndex].number);
+		outCaller(currentNumber);
+		checkCall(currentNumber);
 	});
 	$('.contacts-wrapper .current-wrapper .create-contact .delete, .contacts-wrapper .current-wrapper .change-contact .delete, .contacts-wrapper .current-wrapper .selected-contact .delete').on('click',function(){
 		if($(this).parent().hasClass('change-contact') || $(this).parent().hasClass('selected-contact'))
@@ -935,9 +936,11 @@ $('.messages-inner input').on('keypress',function(e){
 		let currentMessage = $(this).val();
 		if(currentMessage.length > 0)
 		{
-			let currentIndex = $(this).parent().parent().find('.title').attr('data-index');
+			let currentIndex = $(this).parent().parent().find('.title').attr('data-index'),
+				currentNumber = $(this).parent().parent().find('.title').attr('data-number');
+			console.log(currentNumber);
 			$(this).val('');
-			mp.trigger("sendMessage",contactsList[currentIndex].number, currentMessage);
+			mp.trigger("sendMessage",currentNumber, currentMessage);
 		}
 	}		
 });
@@ -987,7 +990,9 @@ function incomingMessage(number, status, time, message)
 	priorityRefresh();
 	pushContacts('messages');	
 	pushContacts('contacts');
+	pushContacts('geo');
 	refreshContacts();	
+	refreshGeo();
 };
 function checkSmile()
 {
@@ -1101,7 +1106,8 @@ function refreshGetCar()
 function refreshGeo()
 {
 	$('.geo-wrapper .number .geo').on('click',function(){
-		let currentElem = contactsList[$(this).parent().attr('data-index')];
+		let currentElem = contactsList[$(this).parent().attr('data-index')],
+			currentNumber = parseInt($(this).parent().attr('data-number'));
 		$(this).fadeOut();
 		$('.geo-wrapper .current-wrapper .nothing-used').css('display','none').removeClass('active');
 		$('.geo-wrapper .current-wrapper .geo-added').fadeIn(300).css('display','flex').addClass('active');
@@ -1109,7 +1115,8 @@ function refreshGeo()
 			$('.geo-wrapper .current-wrapper .geo-added').css('display','none');
 			$('.geo-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
 		}, 1500);
-		mp.trigger('PhoneSendGeo', currentElem.number);
+		console.log(currentNumber);
+		mp.trigger('PhoneSendGeo', currentNumber);
 	});
 };
 function messageWrapperRound(currentWrapper)
