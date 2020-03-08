@@ -45,7 +45,7 @@ mp.events.add('CreateAllBlips', ( production_json, refining_json, craft_json, bu
     production_array = JSON.parse(production_json);
     refining_array = JSON.parse(refining_json);
     craft_array = JSON.parse(craft_json);
-    buisnes_array = JSON.parse(buisnes_json);
+    // buisnes_array = JSON.parse(buisnes_json);
     infrastructure_array = JSON.parse(infrastructure_json);
 
     infrastructure_array.forEach(function (element, index) {            
@@ -294,21 +294,20 @@ mp.events.add('gpsFilter', (data) => {
 
         });
     }
-    if (arr[4].isArray()) {    
-        buisnes_array = arr[4];
-        buisnes_array.forEach(function (element, index) {            
+    if (arr[4] != false) {    
+        let array = JSON.parse(arr[4]);
+        array.forEach(function (element, index) {            
             blips_buisnes[index] = mp.blips.new(element.sprite, element.position,
-                {
-                    name: element.name,
-                    scale: element.scale,
-                    color: element.color,
-                    alpha: element.alpha,
-                    drawDistance: element.drawDistance,
-                    shortRange: element.shortRange,
-                    rotation: element.rotation,
-                    dimension: element.dimension,
-                });
-
+            {
+                name: element.name,
+                scale: element.scale,
+                color: element.color,
+                alpha: element.alpha,
+                drawDistance: element.drawDistance,
+                shortRange: element.shortRange,
+                rotation: element.rotation,
+                dimension: element.dimension,
+            });
         });
     }
     if (arr[5]) {    

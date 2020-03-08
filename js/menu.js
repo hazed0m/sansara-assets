@@ -59,7 +59,7 @@ let menu = new Vue({
         saveButtonState:false,
         keyChangeSettingsShow:false,
         setKeyIndex: 0,
-        gpsFilterArr: [false,false,false,false,false,true],
+        gpsFilterArr: [false,false,false,false,false,false],
         isDisabled: false,
         keyNameList: [
             "F1",
@@ -577,7 +577,8 @@ let menu = new Vue({
                 {
                     if($(`.gps-business-item.active`).length != 0)
                     {
-                        menu.gpsFilterArr[index] = menu.countsArr[index];
+                        let currentId = parseInt($(`.gps-business-item.active`).attr('data-index'));
+                        menu.gpsFilterArr[index] = JSON.stringify(menu.countsArr[currentId]);
                     }
                     else
                     {
@@ -586,7 +587,7 @@ let menu = new Vue({
                 }
                 else
                 {
-                    if($(`.gps-item:eq(${index-1})`).hasClass('active'))
+                    if($(`.gps-item:eq(${index-2})`).hasClass('active'))
                     {
                         menu.gpsFilterArr[index] = true;
                     }
@@ -613,15 +614,16 @@ let menu = new Vue({
                 this.gpsFilterArr = JSON.parse(array);
             }
             $(this.gpsFilterArr).each(function(index,item){
-                if(index > 0)
+                if(index != 0 && index != 4)
                 {
                     if(item)
                     {                    
-                        $(`.gps-item:eq(${index-1})`).addClass('active');                    
+                        console.log(index,'if');
+                        $(`.gps-item:eq(${index-2})`).addClass('active');                    
                     }
                     else
                     {
-                        $(`.gps-item:eq(${index-1})`).removeClass('active');
+                        $(`.gps-item:eq(${index-2})`).removeClass('active');
                     }
                 }
                 else
