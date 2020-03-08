@@ -566,11 +566,11 @@ let menu = new Vue({
                 {
                     if($(`.gps-house.active`).length != 0)
                     {
-                        menu.gpsFilterArr[index] = $(`.gps-house.active`).text();
+                        menu.gpsFilterArr[0] = $(`.gps-house.active`).text();
                     }
                     else
                     {
-                        menu.gpsFilterArr[index] = false;
+                        menu.gpsFilterArr[0] = false;
                     }
                 }
                 else if(index == 4)
@@ -578,16 +578,33 @@ let menu = new Vue({
                     if($(`.gps-business-item.active`).length != 0)
                     {
                         let currentId = parseInt($(`.gps-business-item.active`).attr('data-index'));
-                        menu.gpsFilterArr[index] = JSON.stringify(menu.countsArr[currentId]);
+                        menu.gpsFilterArr[4] = JSON.stringify(menu.countsArr[currentId]);
                     }
                     else
                     {
-                        menu.gpsFilterArr[index] = false;
+                        menu.gpsFilterArr[4] = false;
                     }
                 }
                 else
                 {
-                    if($(`.gps-item:eq(${index-2})`).hasClass('active'))
+                    let currentItem = -1;
+                    if(index == 1)
+                    {
+                        currentItem = 0;
+                    }
+                    if(index == 2)
+                    {
+                        currentItem = 1;
+                    }
+                    if(index == 3)
+                    {
+                        currentItem = 2;
+                    }
+                    if(index == 5)
+                    {
+                        currentItem = 3;
+                    }
+                    if($(`.gps-item:eq(${currentItem})`).hasClass('active'))
                     {
                         menu.gpsFilterArr[index] = true;
                     }
@@ -616,14 +633,31 @@ let menu = new Vue({
             $(this.gpsFilterArr).each(function(index,item){
                 if(index != 0 && index != 4)
                 {
+                    let currentItem = -1;
+                    if(index == 1)
+                    {
+                        currentItem = 0;
+                    }
+                    if(index == 2)
+                    {
+                        currentItem = 1;
+                    }
+                    if(index == 3)
+                    {
+                        currentItem = 2;
+                    }
+                    if(index == 5)
+                    {
+                        currentItem = 3;
+                    }
                     if(item)
                     {                    
                         console.log(index,'if');
-                        $(`.gps-item:eq(${index-2})`).addClass('active');                    
+                        $(`.gps-item:eq(${currentItem})`).addClass('active');                    
                     }
                     else
                     {
-                        $(`.gps-item:eq(${index-2})`).removeClass('active');
+                        $(`.gps-item:eq(${currentItem})`).removeClass('active');
                     }
                 }
                 else
