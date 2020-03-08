@@ -554,8 +554,7 @@ function priorityRefresh()
 	arr = arr.concat(temporary);
 	console.log(arr);
 	contactsList = arr;
-	messageInnerScroll('inner');	
-	messageInnerScroll('wrapper');	
+	$(`.messages-wrapper .wrapper`).scrollTop(0);
 }
 function pushContacts(currentWrapper)
 {

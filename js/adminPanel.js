@@ -54,9 +54,14 @@ $('.container .notification-screen #sendMessage').on('click',function(){
         text = $('.container .notification-screen textarea').val();
     console.log('adminNotification',id,currentAdmin.id,currentAdmin.name,currentIndex,text);
     $('.container .notification-screen').fadeOut();
-    if(id != 'sendAnswer')
+    if(id != 'sendAnswer' && id != 'notifyAll')
     {
         mp.trigger('adminNotification',id,currentAdmin.id,currentAdmin.name,currentIndex,text);
+    }
+    if(id == 'notifyAll')
+    {
+        console.log('2');
+        mp.trigger('adminNotification',id,currentAdmin.id,currentAdmin.name,text);
     }
     else
     {
