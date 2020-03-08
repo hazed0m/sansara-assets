@@ -612,7 +612,8 @@ function pushContacts(currentWrapper)
 			{
 				if(!$.isEmptyObject(item.messageList))
 				{
-					var currentName = item.name;
+					var currentName = item.name,
+						currentNumber = item.number;
 					if(item.name == 'Неизвестный')
 					{
 						currentName = `${item.name} ( ${item.number} )`;
