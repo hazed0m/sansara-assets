@@ -313,11 +313,17 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 			{
 				obj.class = getWeaponClass(currentElement);
 			}
-			inventoryList.push(obj);
+			if(obj.weight > 0)
+			{
+				inventoryList.push(obj);
+			}	
 		}
 		if(!obj.enabled)
 		{		        
-	    	inventoryList.push(obj);
+	    	if(obj.weight > 0)
+			{
+				inventoryList.push(obj);
+			}	
 	    }    	
 	}); 
 	luggageList = [];
@@ -338,7 +344,10 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 		{
 			obj.inventoryIndex = currentElement;			
 		}
-		luggageList.push(obj);		
+		if(obj.weight > 0)
+		{
+			luggageList.push(obj);
+		}		
 		if(currentElement != -1)
 		{
 			let length = luggageList.length - 1;

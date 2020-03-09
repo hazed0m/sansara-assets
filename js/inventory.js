@@ -555,8 +555,11 @@ function pushInventory(item,gender,maxweight,moneyCount = 10000)
 			if(currentElement != -1)
 			{
 				weaponClassArray[obj.class-1] = true;
+			}
+			if(obj.weight > 0)
+			{
+				inventoryList.push(obj);
 			}		
-			inventoryList.push(obj);
 			let currentLength = inventoryList.length-1;			
 			obj.inventoryIndex = currentLength;
 			if(obj.type == 'Clothes_Legal' || obj.type == 'Clothes_Duty' || obj.type == 'Clothes_Illegal')
@@ -574,7 +577,10 @@ function pushInventory(item,gender,maxweight,moneyCount = 10000)
 		}
 		if(!obj.enabled)
 		{		        
-	    	inventoryList.push(obj);
+	    	if(obj.weight > 0)
+			{
+				inventoryList.push(obj);
+			}	
 	    }    	
     }); 
 	refreshInventory('weapons');
