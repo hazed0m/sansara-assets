@@ -344,7 +344,7 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 		{
 			obj.inventoryIndex = currentElement;			
 		}
-		if(obj.weight > 0)
+		if(obj.weight > 0 && obj.count > 0)
 		{
 			luggageList.push(obj);
 		}		
