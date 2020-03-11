@@ -414,7 +414,7 @@ const
             answersList:[   
                     {   answer:`Да`, status:false
                     },
-                    {   answer:`Нет`, status:false
+                    {   answer:`Нет`, status:true
                     },
                     {   answer:`Только мототранспорту`, status:false
                     }

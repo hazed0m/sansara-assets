@@ -734,10 +734,10 @@ function refreshInventory(currentIterator)
 		{			   
 			if(currentElement != -1)
 			{			
-				console.log('weapon');	
+				// console.log('weapon');	
 				currentImg = weaponsListFull[currentElement].name;
 				itemImg = `<img src="images/weapons/${currentImg}.png" class="itemImg dropdown-toggle">`;
-				console.log(itemImg);	
+				// console.log(itemImg);	
 			}
 		}		
 		if(item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Medical_Preparation')
