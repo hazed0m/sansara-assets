@@ -2,7 +2,8 @@ var craftList = [],
     currentNeedsList = [],
     finalElement = '',
     counter = 0,
-    multiple = 0;
+    multiple = 0,
+    needsArrFinal = [];
 
 function quantityProducts() {
     var $quantityArrowMinus = $(".quantity-arrow-minus");
@@ -76,6 +77,7 @@ function pushCraft(inventory, needsArr, finalElem, elemMultiple)
 {
   let newElem = JSON.parse(inventory);
   multiple = elemMultiple;
+  needsArrFinal = JSON.parse(needsArr);
   $(newElem).each(function(index,item){
     if(item.type == 'Resourses' || item.type == 'Recycled_Resources' || item.type == 'Craft_Resources')
     {
@@ -250,7 +252,7 @@ $('.create-but').on('click',function(){
       count: parseInt(currentCount),
       type: 'Craft_Resources'
     };
-    mp.trigger('doneCraft',JSON.stringify(craftedObj),JSON.stringify(craftList));
+    mp.trigger('doneCraft',JSON.stringify(craftedObj),JSON.stringify(craftList),JSON.stringify(needsArrFinal));
   }  
 });
 $('.exit-but').on('click',function(){

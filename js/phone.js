@@ -246,7 +246,7 @@ function cancelIncomingCall()
 	refreshCallerIntervals();
 };
 $('input[type="text"], textarea').keyup(function() {
-	this.value = this.value.replace(/[^a-zA-Zа-яА-Я0-9,.!?_ ]/g, '');
+	this.value = this.value.replace(/[^a-zA-Zа-яА-Я0-9,.!?()_ ]/g, '');
 });
 $('.incomingCall-wrapper .allow').on('click',function(){
 	debuggerInit(getNumber,'allowIncomingCall');

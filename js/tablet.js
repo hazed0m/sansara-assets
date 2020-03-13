@@ -554,6 +554,12 @@ function pushCustoms(transportObj)
 }
 function refreshCustoms()
 {
+	$('.employee-item input').keyup(function(){
+        this.value = this.value.replace(/[^А-ЯЁа-яё ]/g, '');
+	});
+	$('.name-wrapper .changable-input input').keyup(function(){
+        this.value = this.value.replace(/[^А-ЯЁа-яёA-Za-z ]/g, '');
+	});
 	$('.customs-wrapper .employers-wrapper .employers-list .employee-item .button').on('click',function(){
 		if(!$(this).hasClass('disabled'))
 		{
@@ -714,6 +720,12 @@ function pushTransportCompany(transportObj)
 }
 function refreshTransportCompany()
 {
+	$('.employee-item input').keyup(function(){
+        this.value = this.value.replace(/[^А-ЯЁа-яё ]/g, '');
+	});
+	$('.name-wrapper .changable-input input').keyup(function(){
+        this.value = this.value.replace(/[^А-ЯЁа-яёA-Za-z ]/g, '');
+	});
 	$('.transportCompany-wrapper .employers-wrapper .employers-list .employee-item .button').on('click',function(){
 		if(!$(this).hasClass('disabled'))
 		{
@@ -863,6 +875,12 @@ function pushBusiness(transportObj)
 }
 function refreshBusiness()
 {
+	$('.employee-item input').keyup(function(){
+        this.value = this.value.replace(/[^А-ЯЁа-яё ]/g, '');
+	});
+	$('.name-wrapper .changable-input input').keyup(function(){
+        this.value = this.value.replace(/[^А-ЯЁа-яёA-Za-z ]/g, '');
+	});
 	$('.business-wrapper .employers-wrapper .employers-list .employee-item .button').on('click',function(){
 		if(!$(this).hasClass('disabled'))
 		{
