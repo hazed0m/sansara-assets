@@ -248,7 +248,20 @@
                         <button class="save saveText__active" :class="saveButtonState ? 'saveText__active' : ''" @click="saveCurrentKey()" >Применить</button>
                     </div>
                 </div>
-            </transition>   
+            </transition>               
+            <transition name="custom-classes-transition"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">
+                <div class="inform-wrap" v-show="informShow === true">
+                    <div class="buttons-block">
+                        <div class="button" id="playerMenu">Меню игрока</div>
+                        <div class="button" id="circleMenu">Круговое меню</div>
+                    </div>
+                    <div class="inner-content">
+                        <img src="img/info/player-menu.jpg" alt="player-menu">
+                    </div>
+                </div>
+            </transition> 
         </div>
         <div id="animCircle">
             <transition name="custom-classes-transition"
