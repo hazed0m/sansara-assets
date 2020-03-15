@@ -81,7 +81,7 @@ btn[1].addEventListener('click', function() {
 
 for (let i = 0; i < inputs.length; i++) {
     inputs[i].addEventListener('input', function(){
-        inputs[i].value = inputs[i].value.replace(/[\;":'`,/<>?!№%*&^#$()-+=|{}а-яА-Я]/g, '');
+        inputs[i].value = inputs[i].value.replace(/[\;":'`,/<>?!№%*&^#$()-+=|{}а-яА-Я ]/g, '');
     });
 }
 $('.form-btn').on('click', function() {
