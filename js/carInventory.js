@@ -287,74 +287,79 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 	// );
     let invList = JSON.parse(inventory);
     $(invList).each(function(index,item){    	
-    	let obj = 
-    	{
-    		name: item.name,
-    		type: item.type,
-    		weight: parseFloat(item.weight),
-    		count: item.count,
-    		itemElem: item.itemElem, 
-    		enabled: item.enabled,
-    		visible: true 
-    	}		
-		if(obj.type == 'Ammo')
+		if(index <= 39)
 		{
-			obj.enabled = false;
-		}
-    	if(obj.enabled)
-		{	
-			if(obj.count >= 1)
+			let obj = 
 			{
-				obj.count--;
-			}	
-			obj.used = true;			
-			let currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
-			if(currentElement != -1)
+				name: item.name,
+				type: item.type,
+				weight: parseFloat(item.weight),
+				count: item.count,
+				itemElem: item.itemElem, 
+				enabled: item.enabled,
+				visible: true 
+			}		
+			if(obj.type == 'Ammo')
 			{
-				obj.class = getWeaponClass(currentElement);
+				obj.enabled = false;
 			}
-			if(obj.weight > 0)
-			{
-				inventoryList.push(obj);
-			}	
-		}
-		if(!obj.enabled)
-		{		        
-	    	if(obj.weight > 0)
-			{
-				inventoryList.push(obj);
-			}	
-	    }    	
+			if(obj.enabled)
+			{	
+				if(obj.count >= 1)
+				{
+					obj.count--;
+				}	
+				obj.used = true;			
+				let currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
+				if(currentElement != -1)
+				{
+					obj.class = getWeaponClass(currentElement);
+				}
+				if(obj.weight > 0)
+				{
+					inventoryList.push(obj);
+				}	
+			}
+			if(!obj.enabled)
+			{		        
+				if(obj.weight > 0)
+				{
+					inventoryList.push(obj);
+				}	
+			}    
+		}	
 	}); 
 	luggageList = [];
 	let lugList = JSON.parse(luggage);
+	console.log(lugList);
 	$(lugList).each(function(index,item){
-		let obj = 
-    	{
-    		name: item.name,
-    		type: item.type,
-    		weight: parseFloat(item.weight),
-    		count: item.count,
-    		itemElem: item.itemElem, 
-    		enabled: false,
-    		visible: true 
-		}		
-		let currentElement = containsName(obj.name,'inventory');
-		if(currentElement != -1)
+		if(index <= 39)
 		{
-			obj.inventoryIndex = currentElement;			
-		}
-		if(obj.weight > 0 && obj.count > 0)
-		{
-			luggageList.push(obj);
-		}		
-		if(currentElement != -1)
-		{
-			let length = luggageList.length - 1;
-			console.log(length);
-			console.log(luggageList[length].inventoryIndex);
-			console.log(inventoryList[luggageList[length].inventoryIndex].wearedId);
-			inventoryList[luggageList[length].inventoryIndex].wearedId = length;
+			let obj = 
+			{
+				name: item.name,
+				type: item.type,
+				weight: parseFloat(item.weight),
+				count: item.count,
+				itemElem: item.itemElem, 
+				enabled: false,
+				visible: true 
+			}	
+			if(obj.weight > 0 && obj.count > 0)
+			{
+				let currentElement = containsName(obj.name,'inventory');
+				luggageList.push(obj);
+				if(currentElement != -1)
+				{
+					obj.inventoryIndex = currentElement;	
+					console.log(currentElement);
+					let length = luggageList.length - 1;
+					console.log(length);
+					console.log(luggageList[length].inventoryIndex);
+					console.log(inventoryList[luggageList[length].inventoryIndex].wearedId);
+					inventoryList[luggageList[length].inventoryIndex].wearedId = length;
+				}
+			}		
 		}
 	});
 	$(ammoList).each(function(index,item){
@@ -806,16 +811,33 @@ function refreshInventory(currentIterator)
 				}										
 				break;
 		}		   	
-    }); 
-	switch (currentIterator)
-	{	
+	}); 
+	let enabledIndex = 0;
+	switch (currentIterator)	
+	{			
 		case 'inventory':
-			for (var i = inventoryList.length-usedCounter; i != 40; i++) {
+			enabledIndex = 0;
+			$(inventoryList).each(function(index,item)
+			{
+				if(item.enabled)
+				{
+					enabledIndex++;
+				}
+			});
+			for (var i = inventoryList.length-usedCounter; i != 40-enabledIndex; i++) {
 				$('.right-inventory ul#inventory').append('<li></li>'); 
 			}
 			break;
 		case 'luggage':
-			for (var i = luggageList.length; i != 40; i++) {
+			enabledIndex = 0;
+			$(luggageList).each(function(index,item)
+			{
+				if(item.enabled)
+				{
+					enabledIndex++;
+				}
+			});
+			for (var i = luggageList.length; i != 40-enabledIndex; i++) {
 				$('.left-inventory ul#luggage').append(`<li luggage-id="${i}"></li>`); 
 			}	
 			break;			

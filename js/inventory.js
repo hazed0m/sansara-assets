@@ -489,99 +489,102 @@ function pushInventory(item,gender,maxweight,moneyCount = 10000)
 	$('.left-inventory .items').css('background-image','url(images/' + sex + '.png');
     inventoryList = [];
     var itemList = JSON.parse(item);
-    $(itemList).each(function(index,item){    	
-    	let obj = 
-    	{
-    		name: item.name,
-    		type: item.type,
-    		weight: parseFloat(item.weight),
-    		count: item.count,
-    		itemElem: item.itemElem, 
-    		enabled: item.enabled,
-    		visible: true 
-		}
-		if($.inArray(obj.type, typeName) == -1)
-		{
-			obj.type = 'undefined';
-		}
-    	if(obj.type == 'Clothes_Legal' || obj.type == 'Clothes_Duty' || obj.type == 'Clothes_Illegal')
-		{
-	    	$(className).each(function(index,classEl){
-				if(item.name.includes(classEl))
-				{
-					obj.class = classEl;
-				}
-			});
-		}		
-		if(obj.type == 'Ammo')
-		{
-			obj.enabled = false;
-		}
-		let currentElement = -1;		
-		if(obj.type == 'Weapon_Cold' || obj.type == 'Weapon_FireGun_Legal' || obj.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
+    $(itemList).each(function(index,item){    
+		if(index <= 39)
 		{	
-			console.log(obj.name.toLowerCase());	
-			if(obj.name.toLowerCase().includes('пистолет 9 п') || obj.name.toLowerCase().includes('пистолет mk ii'))
+			let obj = 
 			{
-				console.log('pistolet');	
-				$(weaponsListTranslated).each(function(index,item){
-					// console.log(obj.name.toLowerCase(),' ',obj.name.toLowerCase().includes(item),item);
-					if(obj.name.toLowerCase().includes(item))
-					{
-						// console.log('include',index);
-						currentElement = index;
-					}
-				});
+				name: item.name,
+				type: item.type,
+				weight: parseFloat(item.weight),
+				count: item.count,
+				itemElem: item.itemElem, 
+				enabled: item.enabled,
+				visible: true 
 			}
-			else
-			{	
-				currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
+			if($.inArray(obj.type, typeName) == -1)
+			{
+				obj.type = 'undefined';
 			}
-			console.log(currentElement);
-			if(currentElement != -1)
-			{
-				console.log('class',currentElement,getWeaponClass(currentElement));
-				obj.class = getWeaponClass(currentElement);
-			}
-		}
-    	if(obj.enabled)
-		{	
-			if(obj.count >= 1)
-			{
-				obj.count--;
-			}	
-			obj.used = true;
-			console.log(currentElement);
-			if(currentElement != -1)
-			{
-				weaponClassArray[obj.class-1] = true;
-			}
-			if(obj.weight > 0)
-			{
-				inventoryList.push(obj);
-			}		
-			let currentLength = inventoryList.length-1;			
-			obj.inventoryIndex = currentLength;
 			if(obj.type == 'Clothes_Legal' || obj.type == 'Clothes_Duty' || obj.type == 'Clothes_Illegal')
 			{
-				personList.push(obj);
-				let length = personList.length-1;
-				inventoryList[currentLength].wearedId = length;
-			}	
-			if(obj.type == 'Weapon_Cold' || obj.type == 'Weapon_FireGun_Legal' || obj.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
-			{			
-				weaponsList.push(obj);
-				let length = weaponsList.length-1;
-				inventoryList[currentLength].wearedId = length;
-			}			
-		}
-		if(!obj.enabled)
-		{		        
-	    	if(obj.weight > 0)
+				$(className).each(function(index,classEl){
+					if(item.name.includes(classEl))
+					{
+						obj.class = classEl;
+					}
+				});
+			}		
+			if(obj.type == 'Ammo')
 			{
-				inventoryList.push(obj);
-			}	
-	    }    	
+				obj.enabled = false;
+			}
+			let currentElement = -1;		
+			if(obj.type == 'Weapon_Cold' || obj.type == 'Weapon_FireGun_Legal' || obj.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
+			{	
+				console.log(obj.name.toLowerCase());	
+				if(obj.name.toLowerCase().includes('пистолет 9 п') || obj.name.toLowerCase().includes('пистолет mk ii'))
+				{
+					console.log('pistolet');	
+					$(weaponsListTranslated).each(function(index,item){
+						// console.log(obj.name.toLowerCase(),' ',obj.name.toLowerCase().includes(item),item);
+						if(obj.name.toLowerCase().includes(item))
+						{
+							// console.log('include',index);
+							currentElement = index;
+						}
+					});
+				}
+				else
+				{	
+					currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
+				}
+				console.log(currentElement);
+				if(currentElement != -1)
+				{
+					console.log('class',currentElement,getWeaponClass(currentElement));
+					obj.class = getWeaponClass(currentElement);
+				}
+			}
+			if(obj.enabled)
+			{	
+				if(obj.count >= 1)
+				{
+					obj.count--;
+				}	
+				obj.used = true;
+				console.log(currentElement);
+				if(currentElement != -1)
+				{
+					weaponClassArray[obj.class-1] = true;
+				}
+				if(obj.weight > 0)
+				{
+					inventoryList.push(obj);
+				}		
+				let currentLength = inventoryList.length-1;			
+				obj.inventoryIndex = currentLength;
+				if(obj.type == 'Clothes_Legal' || obj.type == 'Clothes_Duty' || obj.type == 'Clothes_Illegal')
+				{
+					personList.push(obj);
+					let length = personList.length-1;
+					inventoryList[currentLength].wearedId = length;
+				}	
+				if(obj.type == 'Weapon_Cold' || obj.type == 'Weapon_FireGun_Legal' || obj.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
+				{			
+					weaponsList.push(obj);
+					let length = weaponsList.length-1;
+					inventoryList[currentLength].wearedId = length;
+				}			
+			}
+			if(!obj.enabled)
+			{		        
+				if(obj.weight > 0)
+				{
+					inventoryList.push(obj);
+				}	
+			}		
+		}    	
     }); 
 	refreshInventory('weapons');
 	refreshInventory('person');
@@ -1261,7 +1264,15 @@ function refreshInventory(currentIterator)
 	switch (currentIterator)
 	{	
 		case 'inventory':
-			for (var i = inventoryList.length-usedCounter; i != 40; i++) {
+			let enabledIndex = 0;
+			$(inventoryList).each(function(index,item)
+			{
+				if(item.enabled)
+				{
+					enabledIndex++;
+				}
+			});
+			for (var i = inventoryList.length-usedCounter; i != 40-enabledIndex; i++) {
 				$('.right-inventory ul#inventory').append('<li></li>'); 
 			}
 			break;		

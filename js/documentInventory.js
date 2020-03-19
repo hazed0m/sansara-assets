@@ -321,40 +321,43 @@ function pushInventory(inventory)
     inventoryList = [];
     let invList = JSON.parse(inventory);
     $(invList).each(function(index,item){ 
-		if(item.type == 'Documents')   	
+		if(index <= 39)
 		{
-			let obj = 
+			if(item.type == 'Documents')   	
 			{
-				name: item.name,
-				type: item.type,
-				weight: parseFloat(item.weight),
-				count: item.count,
-				itemElem: item.itemElem, 
-				enabled: item.enabled,
-				visible: true 
-			}		
-			if(obj.type == 'Ammo')
-			{
-				obj.enabled = false;
-			}
-			if(obj.enabled)
-			{	
-				if(obj.count >= 1)
+				let obj = 
 				{
-					obj.count--;
-				}	
-				obj.used = true;			
-				let currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
-				if(currentElement != -1)
+					name: item.name,
+					type: item.type,
+					weight: parseFloat(item.weight),
+					count: item.count,
+					itemElem: item.itemElem, 
+					enabled: item.enabled,
+					visible: true 
+				}		
+				if(obj.type == 'Ammo')
 				{
-					obj.class = getWeaponClass(currentElement);
+					obj.enabled = false;
 				}
-				inventoryList.push(obj);
+				if(obj.enabled)
+				{	
+					if(obj.count >= 1)
+					{
+						obj.count--;
+					}	
+					obj.used = true;			
+					let currentElement = $.inArray(obj.name.toLowerCase(), weaponsListTranslated);
+					if(currentElement != -1)
+					{
+						obj.class = getWeaponClass(currentElement);
+					}
+					inventoryList.push(obj);
+				}
+				if(!obj.enabled)
+				{		        
+					inventoryList.push(obj);
+				}    	
 			}
-			if(!obj.enabled)
-			{		        
-				inventoryList.push(obj);
-			}    	
 		}
 	}); 
 	luggageList = [];
@@ -392,6 +395,7 @@ function pushInventory(inventory)
 	refreshInventory('inventory');	
     inventoryInitialize();  
 };
+
 $('.left-inventory .close').on('click',function(){
 	mp.trigger('closeDocInventory');
 });

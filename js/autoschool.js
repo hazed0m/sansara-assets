@@ -900,6 +900,7 @@ $('.qa-wrapper .button-next').on('click',function(){
         }
         else
         {
+            $('.qa-wrapper').fadeOut();
             let final = 0;
             clearInterval(myInterval);
             myInterval = null;	
