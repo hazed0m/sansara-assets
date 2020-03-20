@@ -502,6 +502,7 @@ function pushInventory(item,gender,maxweight,moneyCount = 10000)
 				enabled: item.enabled,
 				visible: true 
 			}
+			console.log('object',item.name);
 			if($.inArray(obj.type, typeName) == -1)
 			{
 				obj.type = 'undefined';
@@ -548,12 +549,12 @@ function pushInventory(item,gender,maxweight,moneyCount = 10000)
 			}
 			if(obj.enabled)
 			{	
+				console.log('enabled',item.name);
 				if(obj.count >= 1)
 				{
 					obj.count--;
 				}	
 				obj.used = true;
-				console.log(currentElement);
 				if(currentElement != -1)
 				{
 					weaponClassArray[obj.class-1] = true;
@@ -1267,7 +1268,7 @@ function refreshInventory(currentIterator)
 			let enabledIndex = 0;
 			$(inventoryList).each(function(index,item)
 			{
-				if(item.enabled)
+				if(item.enabled && item.count > 0)
 				{
 					enabledIndex++;
 				}

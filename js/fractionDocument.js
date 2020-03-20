@@ -157,7 +157,8 @@ function pushFractionDocument(elem)
     }    
     $('.container').append(template);
     $('.text-wrapper textarea, .text-wrapper input').keyup(function(){
-        this.value = this.value.replace(/[^А-ЯЁа-яё!,.?:\\/;%$0-9+-=<>\n() ]/g, '');
+        // this.value = this.value.replace(/[^А-ЯЁа-яё!,.?:;%$0-9+-=<>\n() ]/g, '');
+        this.value = this.value.replace(/[\\"'`/<>@&^()|{}]/g, '');
     });
     $('.container .sign-wrapper #signDocument').on('click',function(){
         if($('.container .text-wrapper input').length != 0 && $('.container .text-wrapper textarea').length != 0)

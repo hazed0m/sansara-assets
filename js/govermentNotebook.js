@@ -86,11 +86,11 @@ function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = 
         $('.container .main-wrapper .recruting-menu input, .container .main-wrapper .sms-push textarea').keyup(function(){
             if(this.id != 'smsGoverment')
             {
-                this.value = this.value.replace(/[-\.;":`',/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
+                this.value = this.value.replace(/[-\\.;":`',/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
             }
             if(this.id == 'smsGoverment')
             {
-                this.value = this.value.replace(/[-\.;":'`,/<>@?!№%*&^#$()_+=|{}]/g, '');
+                this.value = this.value.replace(/[\\"'`/<>@&^()|{}]/g, '');
             }
             if($(this).val().length > 0)
             {
@@ -692,7 +692,7 @@ function dealsInit()
         if($(this).attr('type') == 'text')
         {
             console.log($(this).attr('type'));
-            this.value = this.value.replace(/[-\.;":'`,/<>@?!№%*&^#$()_+=|{}0-9]/g, '');
+            this.value = this.value.replace(/[-.;":'`,\\/<>@?!№%*&^#$()_+=|{}0-9]/g, '');
         }
         let dealNumber = parseInt($('#dealNumber input').val()),
             buyerInfo = $('#buyerInfo input').val(),
@@ -751,11 +751,10 @@ function dealsInit()
         if($(this).attr('type') == 'text')
         {
             console.log($(this).attr('type'));
-            this.value = this.value.replace(/[-\.;":'`,/<>@?!№%*&^#$()_+=|{}0-9]/g, '');
+            this.value = this.value.replace(/[-\\.;":'`,/<>@?!№%*&^#$()_+=|{}0-9]/g, '');
         }
         let dealType = $('.search-wrapper .mask-item.active')[0].id,
             dealInfo = '';
-        console.log(dealType,dealInfo);
         if(dealType != 'realty')
         {
             dealInfo = $('.search-wrapper .mask-item.active input').val();    
