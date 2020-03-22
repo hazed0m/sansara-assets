@@ -540,12 +540,12 @@ function priorityRefresh()
 	$(contactsList).each(function(index,item){
 		if(item.priority <= 0)
 		{
-			console.log(item);
+			// console.log(item);
 			arr.push(item);
 		}
 		else
 		{
-			console.log(item);
+			// console.log(item);
 			temporary.push(item);
 		}
 	});
@@ -594,20 +594,24 @@ function pushContacts(currentWrapper)
 		$(`.${currentWrapper}-wrapper .wrapper`).empty();
 		$(contactsList).each(function(index,item){
 			let currentTemplate = '';
-			if(currentWrapper == 'contacts')
+			if(item.name != 'Неизвестный')			
 			{
-				currentTemplate = `<div class="number" data-index="${index}" data-number="${item.number}">
-									<div class="title-number">${item.name}</div>
-									<div class="caller"></div>
-								</div>`;
+				if(currentWrapper == 'contacts')
+				{
+					currentTemplate = `<div class="number" data-index="${index}" data-number="${item.number}">
+										<div class="title-number">${item.name}</div>
+										<div class="caller"></div>
+									</div>`;
+				}
+				if(currentWrapper == 'geo')
+				{
+					currentTemplate = `<div class="number" data-index="${index}" data-number="${item.number}">
+										<div class="title-number">${item.name}</div>
+										<div class="geo"></div>
+									</div>`;
+				}
 			}
-			if(currentWrapper == 'geo')
-			{
-				currentTemplate = `<div class="number" data-index="${index}" data-number="${item.number}">
-									<div class="title-number">${item.name}</div>
-									<div class="geo"></div>
-								</div>`;
-			}
+			
 			if(currentWrapper == 'messages')
 			{
 				if(!$.isEmptyObject(item.messageList))
@@ -883,7 +887,16 @@ function refreshContacts()
 	setTimeout(function(){
 		$('.contacts-wrapper .wrapper .number').first().slideDown();		
 	}, 100);	
-	mp.trigger('refreshedContacts',JSON.stringify(contactsList));	
+	let lastList = contactsList.map(function(item){
+		return item
+	}).filter(function(item){
+		if(item.name != 'Неизвестный')
+		{
+			return item;
+		}
+	});
+	console.log(lastList);
+	mp.trigger('refreshedContacts',JSON.stringify(lastList));	
 };
 function refreshMessages()
 {
@@ -903,7 +916,7 @@ function refreshMessagesList()
 		let currentIndex = $(this).attr('data-index'),
 			currentNumber = $(this).attr('data-number');
 		pushCurrentMessages(currentIndex);	
-		$('.messages-inner').find('.title').text(contactsList[currentIndex].name);
+		$('.messages-inner').find('.title').text(contactsList[currentIndex].name+' ('+contactsList[currentIndex].number+')');
 		$('.messages-inner').find('.title').attr({'data-index':currentIndex,'data-number':currentNumber});
 		checkSmile();
 		$('.messages-inner').addClass('active').fadeIn();
@@ -994,7 +1007,7 @@ function incomingMessage(number, status, time, message)
 	if(!checker)
 	{
 		contactsList.push({ 
-			name:number, 
+			name:'Неизвестный', 
 			number:number, 
 			messageList:
 			[{
