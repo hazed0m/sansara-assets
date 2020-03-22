@@ -844,3 +844,11 @@ function refreshInventory(currentIterator)
 		}    
     countWeight();      
 };
+function fadeOut()
+{
+	$('.inventory').fadeOut();
+}
+function fadeIn()
+{	
+	$('.inventory').fadeIn().css('display','flex');
+}

@@ -13,6 +13,7 @@
 }
 .container
 {
+    display: none;
     width:159px;
     height:345px;
     position: absolute;

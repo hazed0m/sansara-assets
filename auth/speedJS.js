@@ -23,7 +23,7 @@ let speedoWindow = null,
 // }
 mp.events.add('getVehicleData', (maxfuel,currentfuel,enginehealth,bodyhealth,spending,number) =>
 {	
-	tickCount = 3000000;	
+	tickCount = 250000;	
 	maxFuel = maxfuel;
 	if(currentfuel <= 0)
 	{

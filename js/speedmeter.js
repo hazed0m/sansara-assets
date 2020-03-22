@@ -185,3 +185,11 @@ function gasLines(gas, durationCount)
     //     });
     // });
 };
+function fadeIn()
+{
+    $('.container').fadeIn();
+};
+function fadeOut()
+{
+    $('.container').fadeOut();
+};

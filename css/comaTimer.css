@@ -28,6 +28,12 @@
 {
     font-weight: 500;
 }
+.container .title
+{
+    font-size:45px;
+    font-weight: 500;    
+    margin-bottom:50px;
+}
 .counter-wrapper
 {
     width:195px;
@@ -63,10 +69,11 @@
     align-items: center;
     transition: 0.2s;
     cursor: pointer;
+    font-weight:500;
 }
 .button-wrapper .button.disabled
 {
-    opacity:0.7;
+    opacity:0.4;
     cursor: default;
 }
 .button-wrapper .button:hover
@@ -80,4 +87,9 @@
 .death-wrapper
 {
     display: none;
+}
+.button-wrapper .button#secondChance
+{
+    background:rgb(254, 254, 76);
+    color:#313338;
 }

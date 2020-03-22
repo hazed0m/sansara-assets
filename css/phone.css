@@ -97,6 +97,7 @@
 /* Mask */
 .container
 {
+	display: none;
 	width:294px;
 	height:556px;
 	background:url(../img/phone/phone-back.png) no-repeat;

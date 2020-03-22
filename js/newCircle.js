@@ -283,3 +283,11 @@ $('#giveMoney').on('click',function(){
 	});	
 	$('.col-wrapper').fadeIn();
 });
+function fadeOut()
+{
+	$('.container').fadeOut();
+}
+function fadeIn()
+{	
+	$('.container').fadeIn();
+}

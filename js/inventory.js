@@ -1284,3 +1284,11 @@ $('.left-inventory .weapons').mousewheel(function(e, delta) {
     this.scrollLeft -= (delta * 40);
     e.preventDefault();
 });
+function fadeOut()
+{
+	$('.inventory').fadeOut();
+}
+function fadeIn()
+{	
+	$('.inventory').fadeIn().css('display','flex');
+}

@@ -734,3 +734,11 @@ function refreshInventory(currentIterator)
 		}
 	});  
 };
+function fadeOut()
+{
+	$('.inventory').fadeOut();
+}
+function fadeIn()
+{	
+	$('.inventory').fadeIn().css('display','flex');
+}

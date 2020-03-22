@@ -17,6 +17,23 @@
     opacity:0.7;
     cursor: default;
 }
+#payments-wrapper .buttons-wrapper:empty:after, #payfine-wrapper .buttons-wrapper:empty:after
+{	
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+	font-size:20px;
+	font-weight:500;
+}
+#payments-wrapper .buttons-wrapper:empty:after
+{
+	content:"Неоплаченные счета отсутствуют";
+}
+#payfine-wrapper .buttons-wrapper:empty:after
+{
+	content:"Неоплаченные штрафы отсутствуют";
+}
 #main-wrapper, #payfine-wrapper, #payments-wrapper, #topup-wrapper, #putback-wrapper, #withdrawal-wrapper
 {
 	border-top:8px solid #ee3a3d;

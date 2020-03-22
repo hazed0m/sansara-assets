@@ -561,3 +561,11 @@ function clearBasket()
 	let container = $('.basket-list');
 	$(container).empty().append('<div class="empty-but">Очистить корзину</div>');
 };
+function fadeOut()
+{
+	$('.container').fadeOut();
+}
+function fadeIn()
+{	
+	$('.container').fadeIn();
+}
