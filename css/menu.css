@@ -371,41 +371,6 @@ body {
     left: 50%;
     transform: translate(-50%,-50%) scale(0.7);
 }
-.inform-wrap {
-    background: #36393f;
-    width: auto;
-    position: absolute;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%,0%);
-    padding:20px;
-}
-.inform-wrap .buttons-block
-{
-    position: absolute;
-    top:0;
-    left:-170px;
-    padding:0 10px;
-    background: #36393f;
-}
-.inform-wrap .buttons-block .button
-{
-    padding:5px 10px;
-    background:#fbe504;
-    color:#36393f;
-    margin:10px 0;
-    cursor: pointer;
-    transition: 0.2s;
-}
-.inform-wrap .buttons-block .button:hover
-{
-    box-shadow: 0 0 10px #fbe504;
-}
-.inform-wrap .inner-content
-{    
-    max-height:700px;
-    overflow-y:scroll;
-}
 .getKeyCode-wrap
 {
     background: #36393f;

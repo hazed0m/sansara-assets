@@ -535,9 +535,11 @@ let menu = new Vue({
                     switch (this.informShow) {
                         case true:
                             this.informShow = false;
+                            $('.mask').fadeOut();
                             break;
                         case false: 
-                            this.informShow = true;    
+                            this.informShow = true;   
+                            $('.mask').fadeIn(); 
                             break;
                     }
                     break;
@@ -785,5 +787,19 @@ $('.inform-wrap .buttons-block .button').on('click',function(){
     if(id == 'circleMenu')
     {
         $('.inform-wrap .inner-content img').attr('src','img/info/circle-menu.jpg');
+    }
+});
+$('.inform-wrap .close-but, .mask').on('click',function(){
+    menu.informShow = false;
+    $('.mask').fadeOut();
+});
+$('.button-wrapper .button').on('click',function(){
+    if(!$(this).hasClass('active'))
+    {
+        let id = this.id;
+        $('.inform-wrap .notice-screen .active, .inform-wrap .button-wrapper .active').removeClass('active');
+        $(this).addClass('active');
+        $(`.inform-wrap .notice-screen #${id}-wrapper`).addClass('active');
+        $('.inform-wrap .notice-title').text($(this).text());
     }
 });

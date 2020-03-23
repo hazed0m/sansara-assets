@@ -6,9 +6,11 @@
         <link rel="stylesheet" href="fonts/font.css">
         <link rel="stylesheet" href="css/fontawesome.min.css">
         <link rel="stylesheet" href="css/skills.css">
+        <link rel="stylesheet" href="css/notice.css">
         <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 	</head>
 	<body>
+        <div class="mask"></div>
         <div class="menu-wrap hide" id="buttons">
             <div class="menu-content">
                 <div class="menu-title">Меню игрока</div>
@@ -253,12 +255,352 @@
                         enter-active-class="animated fadeIn"
                         leave-active-class="animated fadeOut">
                 <div class="inform-wrap" v-show="informShow === true">
-                    <div class="buttons-block">
-                        <div class="button" id="playerMenu">Меню игрока</div>
-                        <div class="button" id="circleMenu">Круговое меню</div>
-                    </div>
-                    <div class="inner-content">
-                        <img src="img/info/player-menu.jpg" alt="player-menu">
+                    <div class="close-but"><i class="fas fa-times"></i></div>
+                    <div class="notice-wrapper">
+                        <div class="button-wrapper">
+                            <div class="button active" id="player">Меню игрока</div>
+                            <div class="button" id="circle">Круговое меню</div>
+                            <div class="button" id="inventory">Меню инвентаря</div>
+                            <div class="button" id="medical">Меню медиков</div>
+                            <div class="button" id="car">Меню автомобиля</div>
+                        </div>
+                        <div class="notice-screen">
+                            <div class="notice-title">Меню игрока</div>
+                            <div class="menu-item active" id="player-wrapper">
+                                <div class="menu-elem">
+                                    <img src="img/notice/player1.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="title">Меню игрока (INSERT): здесь отображается основной
+                                            функционал для игры</div>
+                                        <div class="text">
+                                            <ul>  
+                                                <li>Мультипаспорт: просмотреть данные своего персонажа;</li>
+                                                <li>Вызов администрации: обратиться за помощью к администрации;</li>
+                                                <li>Эмоции: просмотреть и использовать эмоции;</li>
+                                                <li>Навыки персонажа: просмотреть все достижения персонажа;</li>
+                                                <li>Фильтр GPS: просмотреть определенные местоположения на проекте;</li>
+                                                <li>Настройка быстрых эмоций: настроить эмоции;</li>
+                                                <li>Настройка клавиш: изменить назначения клавиш;</li>
+                                                <li>Настройки аккаунта: включить/отключить автологин;</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <img src="img/notice/player2.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="title">Мультипаспорт: здесь ты можешь посмотреть данные
+                                            своего персонажа.</div>
+                                        <div class="text">Вся информация о персонаже: имя, фамилия, возраст, номер телефона,
+                                            наличие лицензий, должность, а также место жительства;</div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <img src="img/notice/player3.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="title">Вызов администрации: обратиться за помощью, если
+                                            случилось что-то непонятное (баг) или иное
+                                            (не в рамках RP).</div>
+                                        <div class="text">В появившемся окне необходимо описать ситуацию и нажать на кнопку
+                                            «Отправить» под диалоговым окном;</div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <img src="img/notice/player4.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="title">Эмоции: здесь можно просмотреть эмоции и в
+                                            дальнейшем добавить их в меню быстрых эмоций (L)</div>
+                                        <div class="text">В появившемся окне со списком анимаций вы можете выбрать и
+                                            использовать нужную вам анимацию, а также в дальнейшем
+                                            добавить её в меню быстрых эмоций;</div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <img src="img/notice/player5.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="title">Навыки персонажа: здесь можно просмотреть все
+                                            достижения, полученные вашим персонажем</div>
+                                        <div class="text">
+                                            <ul>
+                                                <li>Уровень силы вашего персонажа;</li>
+                                                <li>Уровень скорости вашего персонажа;</li>
+                                                <li>Уровень навыков торговли;</li>
+                                                <li>Уровень владения инструментами;</li>
+                                                <li>Уровень выносливости;</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <img src="img/notice/player6.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="title">Фильтр GPS: здесь ты можешь найти определенные
+                                            метки на карте</div>
+                                        <div class="text">
+                                            <ul>
+                                                <li>Дома (можно выбрать район расположения);</li>
+                                                <li>Добыча;</li>
+                                                <li>Переработка;</li>
+                                                <li>Крафт;</li>
+                                                <li>Бизнес;</li>
+                                                <li>Инфраструктура;</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <img src="img/notice/player7.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="title">Настройка быстрых эмоций: здесь ты
+                                            можешь установить быструю эмоцию</div>
+                                        <div class="text">
+                                            <p>
+                                                1) Выбираем номер эмоции и в появившемся окне
+                                                эмоцию из списка;
+                                            </p>
+                                            <p>
+                                                2) Через меню быстрых эмоций (L) на эту цифру
+                                                появится данная эмоция (предварительно надо
+                                                закрыть меню игрока, нажав U);
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <img src="img/notice/player8.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="title">Настройка клавиш: здесь ты можешь изменить
+                                            назначение кнопки</div>
+                                        <div class="text">
+                                            <ul>
+                                                <li>Инвентарь;</li>
+                                                <li>Рация;</li>
+                                                <li>Планшет;</li>
+                                                <li>Смартфон;</li>
+                                                <li>Остановить анимацию;</li>
+                                                <li>Мышка (Показать/Скрыть);</li>
+                                                <li>Анимации;</li>
+                                                <li>Транспорт;</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <img src="img/notice/player9.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="title">Настройки аккаунта: здесь ты можешь настроить
+                                            автологин</div>
+                                        <div class="text">При первичной регистрации и заход на сервер, необходимо настроить
+                                            автологин, чтобы каждый раз не вводить логин и пароль для захода на
+                                            сервер. Меняем «выкл.» на «вкл.» и нажимаем «Применить»;</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="menu-item" id="circle-wrapper">
+                                <div class="menu-elem">
+                                    <div class="inform-block">
+                                        <ul>
+                                            <li>Перед использованияем нажми CTRL: появится подстветка желтым игрока, с которым ты будешь
+                                            взаимодействовать;</li>
+                                            <li>При взаимподействии, для подтверждения действия, другой игрок должен нажать У (действие будет
+                                            описано над миникартой);</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <img src="img/notice/circle.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="text-item">
+                                            <img src="img/notice/circle1.png" alt="">
+                                            <div class="text"><span>Познакомиться:</span> при использовании данной функции,
+                                                персонажи помашат друг другу и придет оповещение
+                                                над миникартой: «Вы познакомились»;</div>
+                                        </div>
+                                        <div class="text-item">
+                                            <img src="img/notice/circle2.png" alt="">
+                                            <div class="text"><span>Показать паспорт:</span> при использовании данной функции
+                                                появится информация о человеке, стоящем перед вами:
+                                                имя, фамилия, возраст, номер телефона, наличие лицензий,
+                                                должность, а также место жительства;</div>
+                                        </div>
+                                        <div class="text-item">
+                                            <img src="img/notice/circle3.png" alt="">
+                                            <div class="text"><span>Передать деньги:</span> при использовании данной функции появится
+                                                окно, в котором нужно будет указать сумму передачи. Статус
+                                                передачи будет указан над миникартой;</div>
+                                        </div>
+                                        <div class="text-item">
+                                            <img src="img/notice/circle4.png" alt="">
+                                            <div class="text">В зависимости от занимаемой должности, у персонажа
+                                                появляются дополнительные функции, например:<span> реанимация,
+                                                посадить в машину, сопровождать, обычкать, провести
+                                                первичный осмотр (врач), посмотреть медкарту (врач)
+                                                и так далее;</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="menu-item" id="inventory-wrapper">
+                                <div class="menu-elem">
+                                    <img src="img/notice/inventory.png" alt="">
+                                </div>
+                                <div class="menu-elem">
+                                    <div class="inform-block">
+                                        <div class="title">
+                                            • В меню инвентаря показаны все вещи персонажа.
+                                            Предметы можно систематизировать по:
+                                        </div>
+                                        <ul>
+                                            <li>Вкладка с оружием;</li>
+                                            <li>Вкладка с одеждой;</li>
+                                            <li>Вкладка с ресурсами;</li>
+                                            <li>Вкладка с предметами;</li>
+                                        </ul>
+                                    </div>
+                                    <div class="inform-block">
+                                        <p>• При нажатии левой кнопкой мышки по нужному
+                                        вам предмету, появится список действий с
+                                        предметом (применить/выбросить/передать);</p>
+                                        <p>• При передаче предмета появится окно, в которое
+                                        надо будет указать кол-во передаваемых предметов.
+                                        Игрок, которому вы передаёте должен принять
+                                        сделку, нажав на клавишу Y;</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="menu-item" id="medical-wrapper">
+                                <div class="menu-elem column">
+                                    <div class="inform-block">
+                                        1) <span>Круговое меню:</span> а) при нажатие на кнопку (G) откроется круговое меню (функционал медиков), где
+                                        есть 2 «внешних» действий колеса, а именно: Провести осмотр (откроется мед.карта, где будет написана
+                                        история болезней и результаты первичного осмотра), Посмотреть мед.карту (откроется мед.карта, где
+                                        будет написана история болезней, осмотров, а так же запись диагноза, назначение лечения, отправить
+                                        домой и распечатка документа)
+                                    </div>   
+                                    <div class="med-block">
+                                        <div class="med-wrap">
+                                            <img src="img/notice/medical1.png" alt="">
+                                            <div class="title">Провести осмотр</div>
+                                        </div>
+                                        <div class="med-wrap">
+                                            <img src="img/notice/medical2.png" alt="">
+                                            <div class="title">Посмотреть медкарту</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <div class="med-block column">
+                                        <h2>Устройство медкарты</h2>
+                                        <img src="img/notice/medical3.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <div class="menu-elem">
+                                        <img src="img/notice/medical4.png" alt="">
+                                        <div class="inform-block">б) 1 „внутренее“ действие колеса:
+                                            Реанимация (Чтобы реанимировать
+                                            персонажа, который оказался в шоке -
+                                            нужно навестить на персонажа, нажать
+                                            клавишу CTRL, после через круговое меню
+                                            (функционал) нажать кнопку „Реанимация“)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <div class="menu-elem">
+                                        <img src="img/notice/medical5.png" alt="">
+                                        <div class="inform-block ml45">2) <span>Компьютер:</span> а) Во вкладке
+                                            «Список сотрудников» можно
+                                            увидеть тех кто находится на
+                                            смене или не на смене. Глав врач
+                                            так же может: повышать, понижать
+                                            и увольнять сотрудников.</div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <div class="menu-elem">
+                                        <img src="img/notice/medical6.png" alt="">
+                                        <div class="inform-block ml20">б) Во вкладке „Поиск по ДНК“ даёт
+                                            возможность узнать иформацию
+                                            медикам о человеке с помощью
+                                            анализа на ДНК</div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <div class="menu-elem">
+                                        <img src="img/notice/medical7.png" alt="">
+                                        <div class="inform-block ml20">в) Во вкладке „Морг“ можно увидеть
+                                            информацию умерших персонажей</div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <div class="menu-elem">
+                                        <img src="img/notice/medical8.png" alt="">
+                                        <div class="inform-block ml20">г) Во вкладке „Справочник“ написаны
+                                            болезни и препараты для их лечения</div>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <div class="menu-elem">
+                                        <img src="img/notice/medical9.png" alt="">
+                                        <div class="inform-block ml20">д) Во вкладке „Устав“ прописан
+                                            внутренний устав медицинского
+                                            центра</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="menu-item" id="car-wrapper">
+                                <div class="menu-elem">
+                                    <div class="inform-block">
+                                        <ul>
+                                            <li>Перед использованияем нажми CTRL: появится подстветка желтым игрока, с которым ты будешь
+                                            взаимодействовать;</li>
+                                            <li>При взаимподействии, для подтверждения действия, другой игрок должен нажать У (действие будет
+                                            описано над миникартой);</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="menu-elem">
+                                    <img src="img/notice/car.png" alt="">
+                                    <div class="text-wrapper">
+                                        <div class="text-item">
+                                            <img src="img/notice/car1.png" alt="">
+                                            <div class="text">Открыть машину</div>
+                                        </div>
+                                        <div class="text-item">
+                                            <img src="img/notice/car2.png" alt="">
+                                            <div class="text">Открыть багажник</div>
+                                        </div>
+                                        <div class="text-item">
+                                            <img src="img/notice/car3.png" alt="">
+                                            <div class="text">Припарковать</div>
+                                        </div>
+                                        <div class="text-item">
+                                            <img src="img/notice/car4.png" alt="">
+                                            <div class="text">Открыть капот</div>
+                                        </div>
+                                    </div>
+                                    <div class="text-wrapper">                            
+                                        <div class="text-item">
+                                            <img src="img/notice/car5.png" alt="">
+                                            <div class="text">Сменить замок</div>
+                                        </div>
+                                        <div class="text-item">
+                                            <img src="img/notice/car6.png" alt="">
+                                            <div class="text">Инвентарь багажника</div>
+                                        </div>
+                                        <div class="text-item">
+                                            <img src="img/notice/car7.png" alt="">
+                                            <div class="text">Взять ключи от т/c</div>
+                                        </div>
+                                        <div class="text-item">
+                                            <img src="img/notice/car8.png" alt="">
+                                            <div class="text">Выгнать из машины</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </transition> 
