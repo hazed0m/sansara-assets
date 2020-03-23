@@ -11,6 +11,14 @@ $('#sansara-menu').on('click',function(){
         menu.fadeOut();
     }
 });
+function fadeOut()
+{
+	$('.container').fadeOut();
+}
+function fadeIn()
+{	
+	$('.container').fadeIn();
+}
 $('#noteExit').on('click',function(){
     mp.trigger('exitGovermentNote');
 });

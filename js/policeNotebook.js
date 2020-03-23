@@ -15,6 +15,14 @@ let policemanList = {},
         Text: ''
     }, 
     charterText = '';    
+function fadeOut()
+{
+	$('.container').fadeOut();
+}
+function fadeIn()
+{	
+	$('.container').fadeIn();
+}
 $(".startup-mask").delay(450).fadeOut('slow');
 $('#sansara-menu').on('click',function(){
     let menu = $('.container .wrapper .sansara-menu');
