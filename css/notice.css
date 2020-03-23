@@ -157,8 +157,16 @@
 }
 .inform-wrap .text-wrapper .text-item img
 {
-    width:40px;
-    height:40px;
+    min-width:40px;
+    min-height:40px;
+}
+.inform-wrap .notice-wrapper .notice-screen #circle-wrapper .menu-elem:nth-child(2)
+{
+    padding-top:0;
+}
+.inform-wrap .notice-wrapper #circle-wrapper .text-wrapper
+{
+    padding: 15px 20px;
 }
 .inform-wrap .text-wrapper .text-item .text
 {
@@ -204,6 +212,7 @@
     border-radius:10px;
     position: relative;
     font-size:12px;
+    line-height:12px;
 }
 .inform-wrap #inventory-wrapper .inform-block .title
 {

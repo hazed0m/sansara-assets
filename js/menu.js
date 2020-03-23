@@ -799,7 +799,7 @@ $('.button-wrapper .button').on('click',function(){
         let id = this.id;
         $('.inform-wrap .notice-screen .active, .inform-wrap .button-wrapper .active').removeClass('active');
         $(this).addClass('active');
-        $(`.inform-wrap .notice-screen #${id}-wrapper`).addClass('active');
+        $(`.inform-wrap .notice-screen #${id}-wrapper`).addClass('active').animate({scrollTop:0},500);
         $('.inform-wrap .notice-title').text($(this).text());
     }
 });
