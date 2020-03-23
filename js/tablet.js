@@ -1039,7 +1039,7 @@ function refreshAutoshop()
 		$('.cars-wrapper .current-car-wrapper').scroll(function() {
 			var scroll = $(this).scrollTop();
 			if(scroll > position) {
-				$('.speed-wrap .line-inner').css('width',`${speedPercentage(currentList[currentIndex].speed,currentWrapper)}%`);
+				$('.current-car-wrapper .speed-wrap .line-inner').css('width',`${speedPercentage(currentList[currentIndex].speed,currentWrapper)}%`);
 			}
 			position = scroll;
 		});
