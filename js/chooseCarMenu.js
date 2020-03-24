@@ -62,3 +62,11 @@ function evidenceRefresh()
         }
     });
 }
+function fadeOut()
+{
+	$('.container').fadeOut();
+}
+function fadeIn()
+{	
+	$('.container').fadeIn();
+}

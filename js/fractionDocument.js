@@ -214,3 +214,11 @@ function pushFractionDocument(elem)
         }
     });
 }
+function fadeOut()
+{
+	$('.container').fadeOut();
+}
+function fadeIn()
+{	
+	$('.container').fadeIn();
+}
