@@ -6,7 +6,7 @@ function pushCarChoose(arr)
     $(evidenceList).each(function(index,item){
         let currentElement = item.split('@'),
             template = `
-                <div class="garage-item" data-id="${currentElement[1]}">
+                <div class="garage-item" data-id="${currentElement[1]}" data-text="${currentElement[2]}">
                     <div class="img-block">
                         <img src="img/tablet/cars/${currentElement[0]}.jpg" alt="">
                         <div class="characters">
@@ -40,11 +40,12 @@ function initGarage()
     $('.button#use').on('click',function(){
         if($('.garage-item.active').length != 0)
         {
-            let active = parseInt($('.garage-item.active').attr('data-id'));
-            console.log(active);
+            let active = parseInt($('.garage-item.active').attr('data-id')),
+                text = $('.garage-item.active').attr('data-text');
+            console.log(active,text);
             $('.button#use').addClass('disabled');
             $('.garage-wrapper .active').removeClass('active');
-            mp.trigger('ChooseCar',active);
+            mp.trigger('ChooseCar',active,text);
         }
     });
     $('.button#close').on('click',function(){
