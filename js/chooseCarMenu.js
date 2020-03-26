@@ -1,65 +1,54 @@
 let evidenceList = [];
-
-$('.container .close-but').on('click',function(){
-    mp.trigger('closeChooseCarMenu');
-});
-$('.container .input-wrapper .button').on('click',function(){
-    if(!$(this).hasClass('disabled'))
-    {
-        let result = getEvidences();
-        if(result.length>0)
-        {
-            // let caseNumber = $('.container .input-wrapper input').val();
-            console.log(result);
-            mp.trigger('ChooseCar',result);
-        }
-    }
-});
-function getEvidences()
-{    
-    let result = '';
-    $('.container .evidence-wrapper .evidence-item').each(function(index,item){
-        if($(this).hasClass('active'))
-        {
-            result = $(this).find('.name').text();
-        }
-    });
-    return result;
-}
 function pushCarChoose(arr)
 {
-    evidenceList = arr;
-    $('.container .evidence-wrapper').empty();
+    evidenceList = arr; 
+    $('.container .garage-wrapper').empty();
     $(evidenceList).each(function(index,item){
-        let template = `<div class="evidence-item">
-                            <div class="toogle"></div>
-                            <div class="name">${item}</div>
-                        </div>`;
-        $('.container .evidence-wrapper').append(template);
+        let currentElement = item.split('@'),
+            template = `
+                <div class="garage-item" data-id="${currentElement[1]}">
+                    <div class="img-block">
+                        <img src="img/tablet/cars/${currentElement[0]}.jpg" alt="">
+                        <div class="characters">
+                            <div class="char-wrapper">${currentElement[2]}</div>                            
+                        </div>
+                    </div>
+                    <div class="garage-name" style="text-align:center;text-transform:capitalize;">${currentElement[0]} - [${currentElement[1]}]</div>
+                </div>`;
+        $('.container .garage-wrapper').append(template);
     });
-    evidenceRefresh();
+    initGarage();
 }
-function evidenceRefresh()
+function initGarage()
 {
-    $('.container .evidence-wrapper .evidence-item').on('click',function(){
-        if($(this).hasClass('active'))
+    $('.garage-item').on('click',function(){
+        if(!$(this).hasClass('closed'))
         {
-            $(this).removeClass('active');
+            if($(this).hasClass('active'))
+            {
+                $(this).removeClass('active');
+                $('.button#use').addClass('disabled');
+            }
+            else
+            {
+                $('.button#use').removeClass('disabled');
+                $('.garage-item.active').removeClass('active');
+                $(this).addClass('active');
+            }
         }
-        else
+    });
+    $('.button#use').on('click',function(){
+        if($('.garage-item.active').length != 0)
         {
-            $('.container .evidence-wrapper .evidence-item.active').removeClass('active');
-            $(this).addClass('active'); 
+            let active = parseInt($('.garage-item.active').attr('data-id'));
+            console.log(active);
+            $('.button#use').addClass('disabled');
+            $('.garage-wrapper .active').removeClass('active');
+            mp.trigger('ChooseCar',active);
         }
-        let str = getEvidences();
-        if(str.length>0)
-        {
-            $('.input-wrapper .button').removeClass('disabled');
-        }
-        else
-        {
-            $('.input-wrapper .button').addClass('disabled');
-        }
+    });
+    $('.button#close').on('click',function(){
+        mp.trigger('closeChooseCarMenu');
     });
 }
 function fadeOut()

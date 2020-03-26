@@ -1,5 +1,8 @@
 var customsName = '',
 	customsPrice = 0;
+$('input.stoName').keyup(function(){
+	this.value = this.value.replace(/[^А-ЯЁа-яёA-Za-z ]/g, '');
+});
 $('.cash, .card').on('click',function(){
 	$(this).each(function(index, item){
 		if($(item).hasClass('active'))
