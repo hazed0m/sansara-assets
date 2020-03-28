@@ -1,5 +1,5 @@
 * {
-	font-family: "GothamPro";
+	font-family: "HelveticaNeueCyr";
 	padding:0;
 	margin:0;
 	color:#fff;
@@ -76,7 +76,7 @@
 	border-radius: 3px;
 	cursor: pointer;
     font-weight:500;
-    margin:10px auto 5px auto;
+    margin:0px auto 5px auto;
 }
 .container .wrapper .button.disabled
 {
@@ -114,7 +114,7 @@
 }
 .rangeslider
 {
-	margin:38px 0;
+    margin: 50px 0 40px 0;
 }
 .rangeslider__fill
 {   
@@ -127,9 +127,33 @@
 }
 .container .resource-item 
 {
-    padding:20px 0 15px 0;
+    padding:10px 0 15px 0;
     width:100%;
     position: relative;     
+}
+.container .resource-item .img-block
+{
+    background: rgba(72,76,82,0.8);
+    opacity: 1;
+    height: 80px;
+    width: 80px;
+    border-radius: 5px;
+    margin:10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.container .resource-item .img-block img
+{
+    width:80%;
+    height:80%;
+}
+.container .resource-item .title
+{
+    text-align: center;
+    font-size:18px;
+    text-transform: capitalize;
 }
 .container .resource-item .counters-list
 {
@@ -159,12 +183,6 @@
     position: absolute;
     bottom:-65px;
     right:0px;
-}
-.container .resource-item .title
-{
-    text-align: center;
-    padding:7px 0;
-    font-size:20px;
 }
 .container .progress-bar
 {

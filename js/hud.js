@@ -6,18 +6,19 @@ function microphoneStatus(bool)
     if(bool)
     {
         $('.hud-voice').addClass('voice-active');
-        micro = setTimeout(function() {
-            $(function(){
-                (function pulse(){
-                   $('.hud-voice').delay(300).fadeOut(800).delay(50).fadeIn(800,pulse);
-                })();
-            });
-        });
+        // micro = setTimeout(function() {
+        //     $(function(){
+        //         (function pulse(){
+        //            $('.hud-voice').delay(100).fadeOut(300).delay(50).fadeIn(300,pulse);
+        //         })();
+        //     });
+        // });
     }
     else
     {
         clearTimeout(micro);
-        $('.hud-voice').removeClass('voice-active').stop(true).fadeIn();
+        $('.hud-voice').removeClass('voice-active');
+        // $('.hud-voice').removeClass('voice-active').stop(true).fadeIn();
     }
 };
 function closeMoney()
@@ -40,6 +41,20 @@ function hudInit(water,eat,cash,card,microStatus)
     cardStatus(card);
     cashStatus(cash);
 };
+$('.button#hover').on('click',function(){
+    if($('.hud-footer__wrap').is(':visible'))
+    {
+        $(this).css('bottom','-16px');
+        $('.hud-footer__wrap').slideUp();
+        $(this).find('i').css('transform','rotate(180deg)');
+    }
+    else
+    {
+        $('.hud-footer__wrap').slideDown();
+        $(this).find('i').css('transform','rotate(0deg)');
+        $(this).css('bottom','-17px');
+    }
+});
 function waterStatus(water)
 {
     if(water > 75)

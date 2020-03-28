@@ -1,5 +1,14 @@
 function pushRemake(name,count)
 {
+    let imgName = name.toLowerCase().replace(/\s+/g,'').toLowerCase(),
+    currentIndex = resourceTranslate(imgName),
+    currentImg = `images/inventory/Resourses.png`;
+    if(currentIndex != -1)
+    {
+        currentImg = `images/inventory/resources/${resourceTranslate(imgName)}.png`;
+    }
+    itemImg = `<img src="${currentImg}" class="itemImg dropdown-toggle">`;
+    $('.resource-item .img-block').empty().append(itemImg);
     $('.resource-item .title').text(name);
     $('.resource-item .max span').text(count);
     $('input[type="range"]').attr('max',count);

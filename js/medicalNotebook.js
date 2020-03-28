@@ -54,7 +54,7 @@ $('.container .wrapper .police-menu .close-but').on('click',function(){
 });
 $('.police-menu .menu-item').on('click',function(){
     let currentWrapper = this.id;
-    console.log(currentWrapper);
+    // console.log(currentWrapper);
     $('.sansara-menu').fadeOut();
     if(currentWrapper == 'handbook-wrapper')
     {
@@ -75,7 +75,7 @@ function postEmployee(item)
     window.addEventListener('message', function(event) {
         if (event.data['onlineChange']) {
             const { currentId, name } = event.data.onlineChange;        
-            console.log(currentId,name);
+            // console.log(currentId,name);
             mp.trigger('medicalOnlineChange',currentId,name);
         }    
     });
@@ -87,6 +87,7 @@ function refreshFrames()
 }
 let employeeOnline = JSON.stringify([
     {"FullName":'Дмитрий Иванов',"Online":true},
+    {"FullName":'Дмитрий Иванов',"Online":false},
     {"FullName":'Лейсан Кастро',"Online":true}
 ]);
 function pushNotebook(employeeOnline,admin = false,date)
@@ -123,16 +124,16 @@ function pushNotebook(employeeOnline,admin = false,date)
         window.addEventListener('message', function(event) {
             if (event.data['newHandbook']) {
                 const { currentId, name, penalty, article } = event.data.newHandbook;        
-                console.log(currentId,name, penalty, article);
+                // console.log(currentId,name, penalty, article);
                 mp.trigger('newMedicalHandbook',currentId,name,penalty,article);
             }  
             if (event.data['editHandbook']) {
                 const { currentId, name, penalty, article } = event.data.editHandbook;        
-                console.log(currentId,name, penalty, article);
+                // console.log(currentId,name, penalty, article);
                 mp.trigger('editMedicalHandbook',currentId,name,penalty,article);
             }
             if (event.data['getStatus']) {
-                console.log('getStatus');
+                // console.log('getStatus');
                 $('#handbook-frame')[0].contentWindow.postMessage(adminStatus, "*");
             } 
         });
@@ -140,7 +141,7 @@ function pushNotebook(employeeOnline,admin = false,date)
             let val = $(this).prev().val();
             $(this).prev().val('');
             $(this).addClass('disabled');
-            console.log(val);
+            // console.log(val);
             mp.trigger('hireNewbieMedical',val);
         });
     }
@@ -148,7 +149,7 @@ function pushNotebook(employeeOnline,admin = false,date)
 }
 $('.container .business-wrapper .search-block #searchDNA').on('click',function(){
     let value = $(this).prev().val();
-    console.log(value);
+    // console.log(value);
     if(value.length != 0)
     {
         mp.trigger('searchDNA',field);
@@ -167,11 +168,11 @@ function initHandbook()
         'fireshot2'
     ];
     $('.container .handbook-wrapper .inner-pic .arrow-left,.container .handbook-wrapper .inner-pic .arrow-right').on('click',function(){
-        console.log('action');
+        // console.log('action');
         let currentPage = parseInt($('.container .handbook-wrapper .inner-pic').attr('data-index'));
         if($(this).hasClass('arrow-left'))
         {
-            console.log('left');
+            // console.log('left');
             if(currentPage == 0)
             {
                 currentPage = handbookList.length - 1;
@@ -183,7 +184,7 @@ function initHandbook()
         }
         if($(this).hasClass('arrow-right'))
         {
-            console.log('right');
+            // console.log('right');
             if(currentPage == handbookList.length-1)
             {
                 currentPage = 0;

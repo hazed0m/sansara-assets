@@ -173,7 +173,7 @@ let menu = new Vue({
         getKeyTitle: function(keyCode,param){
             let currentIndex = this.keyCodeList.indexOf(keyCode),
                 currentName = `Запрещено`;
-            console.log(currentIndex);
+            // console.log(currentIndex);
             if(currentIndex != -1)
             {              
                 currentName = this.keyNameList[currentIndex];                
@@ -270,10 +270,10 @@ let menu = new Vue({
                 if ( prev.name < next.name ) return -1;
                 if ( prev.name < next.name ) return 1;
             });    
-            console.log(element,element.length); 
+            // console.log(element,element.length); 
             let count = element.length / divisor;
             count = Math.ceil(count);
-            console.log(count);
+            // console.log(count);
             let currentIndex = 0;
             $(element).each(function(index,item)
             {
@@ -283,7 +283,7 @@ let menu = new Vue({
                     menu.countsArr[currentIndex] = [];
                 }
                 menu.countsArr[currentIndex].push(item);                
-                console.log(currentIndex);
+                // console.log(currentIndex);
                 let checkIndex = index+1;
                 if(checkIndex % divisor == 0 && index != 0)
                 {
@@ -291,7 +291,7 @@ let menu = new Vue({
                     menu.countsArr[currentIndex] = [];
                 }
             });            
-            console.log(menu.countsArr,currentIndex);
+            // console.log(menu.countsArr,currentIndex);
             $(menu.countsArr).each(function(index,item){
                 let template = `<div class="gps-business-item" data-index="${index}">${item[0].id} - ${item[item.length-1].id}</div>`;
                 $('.gps-business').append(template);
@@ -304,7 +304,7 @@ let menu = new Vue({
                 }
                 else
                 {        
-                    console.log($(`.map-settings .active`));
+                    // console.log($(`.map-settings .active`));
                     $(`.map-settings .active`).removeClass('active');
                     $(this).addClass('active');
                 }
@@ -561,7 +561,7 @@ let menu = new Vue({
             let currentKeyCode = parseInt($('.getKeyCode-wrap .currentKey').attr('data-key')),
                 currentIndex = parseInt($('.getKeyCode-wrap .currentKey').attr('data-index')),
                 currentKey = this.getKeyTitle(currentKeyCode);
-            console.log(currentKey);
+            // console.log(currentKey);
             let error = false;
             $(this.actionList).each(function(index,item){
                 if(currentKeyCode == item.keyCode)
@@ -576,7 +576,7 @@ let menu = new Vue({
                 this.actionList[currentIndex].title = this.getKeyTitle(currentKeyCode,'menu');
                 this.keyChangeSettingsShow = false;
                 this.saveButtonState = true;
-                console.log(this.actionList);
+                // console.log(this.actionList);
                 mp.trigger('currentKeys',JSON.stringify(this.actionList));
             }
             else
@@ -645,7 +645,7 @@ let menu = new Vue({
                     }
                 }
             });
-            console.log(this.gpsFilterArr);
+            // console.log(this.gpsFilterArr);
             this.mapSettingsShow = false;
             $('.categorie-title').each(function(index,item){
                 if($(item).attr('data-id') == 'settingsShow' || $(item).attr('data-id') == 'settingsAnimShow' || $(item).attr('data-id') == 'keySettingsShow')
@@ -683,7 +683,7 @@ let menu = new Vue({
                     }
                     if(item)
                     {                    
-                        console.log(index,'if');
+                        // console.log(index,'if');
                         $(`.gps-item:eq(${currentItem})`).addClass('active');                    
                     }
                     else
@@ -752,7 +752,7 @@ $('.map-settings .gps-category').on('click',function(){
 function keypressUp(e){  
     if(menu.keyChangeSettingsShow)
     {
-        console.log(e.keyCode);
+        // console.log(e.keyCode);
         $('.getKeyCode-wrap .save').removeClass('saveText__active');
         $('.getKeyCode-wrap .currentKey').attr('data-key',e.keyCode).text(menu.getKeyTitle(e.keyCode));
     }
@@ -761,7 +761,7 @@ $('.report-btn').on('click',function(){
     if(!$(this).hasClass('disabled'))
     {
         let currentText = $('.report-wrap textarea').val();
-        console.log(currentText);
+        // console.log(currentText);
         menu.reportShow = false;
         $('.report-btn').addClass('disabled');
         mp.trigger('sendReport',currentText);

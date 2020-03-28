@@ -66,7 +66,7 @@ function addFractionCircle(fractionName)
             $('.container .wrapper .small-circle#personCircle .info-circle').empty().append(template);
             $('.show-wrapper .showItem').on('click',function(){
                 let id = this.id;
-                console.log(id);
+                // console.log(id);
                 mp.trigger(id);
             });
         },
@@ -77,7 +77,6 @@ function addFractionCircle(fractionName)
     $('.big-circle').remove();
     if(fractionName != 'Government')
     {
-
         let items = '';
          $(menuTitleList[fractionName]).each(function(index,item){
             items += `
@@ -131,7 +130,7 @@ function addFractionCircle(fractionName)
         // } 
         $('.container .wrapper .big-circle .inner .big-item').on('click',function(){
             let id = $(this).attr('data-name');
-            console.log(id);
+            // console.log(id);
             mp.trigger(id);
         });  
     }
@@ -188,7 +187,7 @@ function initCarCircle(repair = 'true')
 $(`.container .wrapper .small-circle#personCircle .inner .small-item,
    .container .wrapper .small-circle#carCircle .inner .small-item`).on('click',function(){
     let id = this.id;
-    console.log(id);
+    // console.log(id);
     if($(this).hasClass('active') && id != 'giveMoney')
     {
         mp.trigger(id);
@@ -234,7 +233,7 @@ $('#giveMoney').on('click',function(){
 			{
 				$('.col-wrapper').fadeOut();
 				$(this).attr('done','done');
-				console.log($('.ok-button').attr('action'), col);
+				// console.log($('.ok-button').attr('action'), col);
 				mp.trigger($('.ok-button').attr('action'), parseInt(col));
             }
             else

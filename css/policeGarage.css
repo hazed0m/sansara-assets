@@ -30,7 +30,7 @@
     max-height: 492px;
     overflow-y: scroll;
 }
-.container .garage-wrapper:empty::after
+.chooseCarMenu .garage-wrapper:empty::after
 {
     content:'Ваш транспорт отсутствует на штрафстоянке';
     position: absolute;

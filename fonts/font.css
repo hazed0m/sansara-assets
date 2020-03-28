@@ -37,11 +37,20 @@
 }
 @font-face {
 	font-family: 'Bebas Neue';
-	src: url('Bebas Neue.ttf');
+	src: url('BebasNeue.otf');
+	src: local('Bebas Neue'), local('BebasNeue'),
+		url('BebasNeue.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
-
+@font-face {
+	font-family: 'ds-digital';
+	src: url('ds-digital.ttf');
+	src: local('ds-digital'),
+		url('ds-digital.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
 @font-face {
 	font-family:"Sacramento";
 	src: url("Sacramento-Regular.ttf") format("truetype");

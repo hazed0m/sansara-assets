@@ -11,9 +11,9 @@ body {
 }
 .buttons
 {
-    width: 267px;
-    height: 165px;
-    background:url(../img/hud/buttons.png) no-repeat;
+    width: 265px;
+    height: 112px;
+    background:url(../img/hud/buttons1.png) no-repeat;
     background-position: center;
     background-size:contain;
     position: absolute;
@@ -61,6 +61,10 @@ body {
     justify-content: space-around;
     align-items: center;
 }
+.hud-footer
+{
+    position: relative;
+}
 .hud-time {
     color: #f8f8f8;
     font-family: "Montserrat";
@@ -100,14 +104,33 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     background-size:contain;
-    margin:0 5px;
+    margin:0 10px;
 }
 .hud-voice i
 {    
+    transition:0.5s;
     font-size: 24px;
 }
 .voice-active i {
     color:#fbe401;
+}
+.button#hover
+{
+    /* border-left:2px solid #FFFD43;
+    border-right:2px solid #FFFD43;
+    border-bottom:2px solid #FFFD43; */
+    border-bottom-left-radius:5px;
+    border-bottom-right-radius:5px;
+    background-color: rgb(54,57,63, 0.88);
+    padding: 2px 15px 0 15px;
+    color:#fff;
+    font-size:13px;
+    cursor: pointer;
+    text-align: center;
+}
+.button#hover i
+{    
+    transition:0.5s;
 }
 .money-wrap {
     position: relative;

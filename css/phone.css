@@ -865,6 +865,13 @@
 	cursor: pointer;
 	position: relative;
 }
+.history-wrapper .history-block .name
+{
+	text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 160px;
+}
 /* .history-wrapper .history-block.out:hover
 {
 	box-shadow: 0 0 5px #00ff96;
