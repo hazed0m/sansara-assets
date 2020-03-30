@@ -914,7 +914,7 @@ function refreshContacts()
 		}
 	});
 	// console.log(lastList);
-	// mp.trigger('refreshedContacts',JSON.stringify(lastList));	
+	mp.trigger('refreshedContacts',JSON.stringify(lastList));	
 };
 function refreshMessages()
 {
