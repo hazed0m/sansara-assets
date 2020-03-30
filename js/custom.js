@@ -410,8 +410,8 @@ function slidesPlus(btn, index, names, inputs, genders) {
     inputs.setAttribute('data',index);
     btn.addEventListener('click', () => {   
         let curIndex = inputs.getAttribute('data');
-        console.log(names.length);
-        console.log(names);
+        // console.log(names.length);
+        // console.log(names);
         if (curIndex >= names.length-1) {
             curIndex = 0;
             inputs.textContent = names[curIndex];
@@ -590,7 +590,7 @@ $(function() {
                 opacitys[currentRange] = val;
                 break;
         }
-        console.log("inputsRange.client", id, val, index[currentRange]);
+        // console.log("inputsRange.client", id, val, index[currentRange]);
         mp.trigger("inputsRange.client", id, val, index[currentRange]);
     });
     

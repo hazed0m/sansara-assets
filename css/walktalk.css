@@ -1,0 +1,191 @@
+*
+{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Electronica';
+    /* font-weight: bold; */
+    font-style:italic;
+}
+.container .wrapper
+{
+    position: absolute;
+    bottom:10px;
+    right:10px;
+    width:296px;
+    height:661px;
+    background:url(../img/raciya/back.png) no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.container .wrapper .screen
+{
+    width:208px;
+    height:157px;
+    background:#fffd4c;
+    box-shadow:0 0 8px #fffd4c;
+    border-radius:10px;
+    position: absolute;
+    top:170px;
+    left:50%;
+    transform:translate(-50%,0);
+}
+.container .screen .pin-block,
+.container .screen .channel-block
+{
+    position: absolute;
+    top:13px;
+    left:10px;
+    display: flex;
+}
+.container .screen .channel-block
+{
+    top:auto;
+    left:auto;
+    bottom:10px;
+    right:10px;
+    font-size:75px;
+}
+.container .screen .pin-block .pin-item
+{
+    width:25px;
+    height:25px;
+    background:rgba(0,0,0,0.3);
+    margin-left:3px;
+    font-size:22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.container .screen .channel-block .channel-item.blocked
+{
+    color:rgba(0,0,0,0.3);
+}
+.container .screen .microphone-status
+{
+    position: absolute;
+    top:16px;
+    right:50px;
+    font-size:18px;
+}
+.container .screen .network-status
+{
+    position: absolute;
+    top:16px;
+    right:15px;
+    font-size:18px;
+}
+.container .button-block
+{
+    position: absolute;
+    top:345px;
+    left:49%;
+    transform:translate(-50%,0);
+    color:#fff;
+    display: flex;
+    align-items: center;
+}
+.container .button-block #key,
+.container .button-block #edit,
+.container .button-block #confirm
+{
+    width:33px;
+    height:33px;
+    border-radius:8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:7px;
+}
+.container .button-block #key
+{
+    background:#c93636;
+}
+.container .button-block #edit
+{
+    background:#fff200;
+    color:#000;
+}
+.container .button-block #confirm
+{
+    background:#3ed52f;
+}
+.container .button-block #prev,
+.container .button-block #next
+{
+    width:43px;
+    height:43px;
+    background:rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .button-block #prev
+{
+    border-top-left-radius:8px;
+    border-bottom-left-radius:8px;
+    margin-left:10px;
+}
+.container .button-block #next
+{
+    border-top-right-radius:8px;
+    border-bottom-right-radius:8px;
+    margin-left:5px;
+}
+.container .button-block .button
+{
+    cursor: pointer;
+    transition: 0.2s;
+}
+.container .button-block #key:hover,
+.container .button-block #edit:hover,
+.container .button-block #confirm:hover
+{
+    box-shadow:inset 0 0 5px rgba(0,0,0,0.7);
+}
+.container .button-block .button#prev:hover,
+.container .button-block .button#next:hover
+{
+    box-shadow:inset 0 0 7px rgba(255,255,255,0.3);
+}
+.container .wrapper .number-block
+{
+    position: absolute;
+    top:430px;
+    left:50%;
+    transform: translate(-50%,0);
+    display: flex;
+    flex-direction: column;
+    background:rgba(0,0,0,0.5);
+    padding:16px 18px;
+    min-width:255px;
+    border-radius:5px;
+}
+.container .wrapper .number-block .number-wrap
+{
+    display: flex;
+    justify-content:space-between;
+}
+.container .wrapper .number-block .number-wrap.sec
+{
+    margin-top:15px;
+}
+.container .wrapper .number-block .button
+{
+    width:35px;
+    height:35px;
+    background:#ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:27px;
+    border-radius:5px;
+    box-shadow:inset 0 0 5px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: 0.2s;
+}
+.container .wrapper .number-block .button:hover
+{
+    box-shadow:inset 0 0 5px rgba(0,0,0,1);
+}

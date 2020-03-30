@@ -549,10 +549,10 @@ function priorityRefresh()
 			temporary.push(item);
 		}
 	});
-	console.log(temporary);
+	// console.log(temporary);
 	arr.sort((a, b) => a.priority > b.priority ? 1 : -1);
 	arr = arr.concat(temporary);
-	console.log(arr);
+	// console.log(arr);
 	contactsList = arr;
 	$(`.messages-wrapper .wrapper`).scrollTop(0);
 }
@@ -589,7 +589,7 @@ function pushContacts(currentWrapper)
 		}	
 	}
 	else
-	{		
+	{	
 		
 		$(`.${currentWrapper}-wrapper .wrapper`).empty();
 		$(contactsList).each(function(index,item){
@@ -610,8 +610,7 @@ function pushContacts(currentWrapper)
 										<div class="geo"></div>
 									</div>`;
 				}
-			}
-			
+			}			
 			if(currentWrapper == 'messages')
 			{
 				if(!$.isEmptyObject(item.messageList))
@@ -800,8 +799,15 @@ $('.contacts-wrapper .current-wrapper #save-but').on('click',function(){
 		currentIndex = $('.contacts-wrapper .current-wrapper .selected-contact').attr('data-index');
 	$('.contacts-wrapper .current-wrapper .contact-added').text(currentMessage);
 	if(currentNumber.length == 6 && !namePosibilityCheck(currentName,currentIndex) && !numberPosibilityCheck(currentNumber,currentIndex) && currentName.length > 0)
-	{
+	{					
 		addContact(currentName,currentNumber);
+		let checkIndex = parseInt(errorPosibilityCheck(currentNumber,currentIndex));
+		if(checkIndex != -1)
+		{
+			console.log(checkIndex);
+			contactsList[0].messageList = contactsList[checkIndex].messageList;
+			contactsList.splice(checkIndex,1);
+		}
 		let currentElem = $(this);
 		$(this).parent().css('display','none').removeClass('active');
 		$(this).parent().parent().find('.contact-added').fadeIn(300).css('display','flex').addClass('active');
@@ -847,9 +853,21 @@ function numberPosibilityCheck(currentNumber, currentIndex)
 {
 	var checker = false;
 	$(contactsList).each(function(index,item){
-		if(item.number == currentNumber && index != currentIndex)
+		if(item.number == currentNumber && index != currentIndex && item.name != 'Неизвестный')
 		{
 			checker = true;
+		}
+	});
+	return checker;
+}
+function errorPosibilityCheck(currentNumber, currentIndex)
+{
+	var checker = -1;
+	$(contactsList).each(function(index,item){
+		currentNumber = parseInt(currentNumber);
+		if(item.number == currentNumber && index != currentIndex && item.name == 'Неизвестный')
+		{
+			checker = index;
 		}
 	});
 	return checker;
@@ -895,8 +913,8 @@ function refreshContacts()
 			return item;
 		}
 	});
-	console.log(lastList);
-	mp.trigger('refreshedContacts',JSON.stringify(lastList));	
+	// console.log(lastList);
+	// mp.trigger('refreshedContacts',JSON.stringify(lastList));	
 };
 function refreshMessages()
 {

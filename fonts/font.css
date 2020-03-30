@@ -52,6 +52,13 @@
 	font-style: normal;
 }
 @font-face {
+	font-family: 'Electronica';
+	src: local('Digital7Italic'),
+		url('Digital7Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
 	font-family:"Sacramento";
 	src: url("Sacramento-Regular.ttf") format("truetype");
 	font-weight: normal;
