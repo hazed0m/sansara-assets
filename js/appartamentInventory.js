@@ -171,7 +171,7 @@ function doneAction(action, index, id, currentCount)
 			}
 			else
 			{
-				notificationShow('Ваше хранилище переполнено');
+				notificationShow('Ваш инвентарь полон');
 			}
 			refreshInventory('luggage');	
 			refreshInventory('inventory');
@@ -217,7 +217,7 @@ function useElement(element, index, currentCount)
 	}	
 	let tempWeight = parseFloat(count*element.weight);
 		tempWeight += parseFloat(currentWeightLug);
-	if(tempWeight < maxWeightLuggage)
+	if(tempWeight <= maxWeightLuggage)
 	{
 		element.inventoryIndex = -1;
 		currentElement = containsName(element.name,'luggage');
