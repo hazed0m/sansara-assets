@@ -11,9 +11,9 @@ body {
 }
 .buttons
 {
-    width: 265px;
-    height: 112px;
-    background:url(../img/hud/buttons1.png) no-repeat;
+    width: 267px;
+    height: 165px;
+    background:url(../img/hud/buttons.png) no-repeat;
     background-position: center;
     background-size:contain;
     position: absolute;
