@@ -171,7 +171,7 @@ function pushTax(elem)
         
     $('.items-list #treasury .data span').text(element.Treasury);
     $('.items-list #taxWeek .data span').text(element.TaxWeek);
-    $('.items-list #fineWeek .data span').text(element.TaxWeek);
+    $('.items-list #fineWeek .data span').text(element.fineWeek);
 
     $('.items-list #TaxBusiness .count span').text(element.TaxBusiness);
     $('.items-list #TaxTC .count span').text(element.TaxTC);
@@ -179,7 +179,7 @@ function pushTax(elem)
 
     $('.items-list #treasury .data span').text(element.Treasury);
     $('.items-list #taxWeek .data span').text(element.TaxWeek);
-    $('.items-list #fineWeek .data span').text(element.TaxWeek);
+    $('.items-list #fineWeek .data span').text(element.fineWeek);
 
     $('.info-general#pd .info-name').text(element.GeneralPD);
     $('.info-general#mc .info-name').text(element.GeneralMC);
@@ -595,7 +595,7 @@ function pushDeptors(elem,count)
             </div>`;
         $('.container .tax-wrapper .deptors-wrap .deptors-list').append(template);
     });
-    $('.container .tax-wrapper .deptors-wrap .deptors-list .auction-button.active').on('click',function(){
+    $('.container .tax-wrapper .deptors-wrap .deptors-list .auction-button.active').on('click',function(e){
         $('.container .tax-wrapper .deptors-wrap .accept-window .auction-name span').text($(this).parent().parent().parent().find('.deptors-name').text());
         $('.container .tax-wrapper .deptors-wrap .accept-window .auction-type span').text($(this).attr('data-type'));
         $('#startAuction').removeClass('disabled');
@@ -617,13 +617,16 @@ function pushDeptors(elem,count)
         $('.container .tax-wrapper .deptors-wrap .accept-window, .container .tax-wrapper .deptors-wrap .mask').fadeOut();
     });
     $('.container .tax-wrapper .deptors-wrap .accept-window .button#startAuction').on('click',function(){
-        let type = $(this).parent().find('.auction-type span').text(),
-            name = $(this).parent().find('.auction-name span').text();
-        console.log(type,name);
-        $('.container .tax-wrapper .deptors-wrap .accept-window, .container .tax-wrapper .deptors-wrap .mask').fadeOut();
-        $('.container .tax-wrapper .deptors-wrap .accept-window input').val('');
-        $(this).addClass('disabled');
-        mp.trigger('startAuction',name,type);
+        if(!$(this).hasClass('disabled'))
+        {
+            let type = $(this).parent().find('.auction-type span').text(),
+                name = $(this).parent().find('.auction-name span').text();
+            console.log(type,name);
+            $('.container .tax-wrapper .deptors-wrap .accept-window, .container .tax-wrapper .deptors-wrap .mask').fadeOut();
+            $('.container .tax-wrapper .deptors-wrap .accept-window input').val('');
+            $(this).addClass('disabled');
+            mp.trigger('startAuction',name,type);
+        }
     });
     $('.pagination-wrap .button').on('click',function(){
         if(!$(this).hasClass('disabled'))

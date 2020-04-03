@@ -184,13 +184,29 @@ function initCarCircle(repair = 'true')
         $(`.small-item#repair`).removeClass('active').addClass('disabled');
     }
 }
+var messageAudio = new Audio('audio/signal.ogg');
 $(`.container .wrapper .small-circle#personCircle .inner .small-item,
    .container .wrapper .small-circle#carCircle .inner .small-item`).on('click',function(){
     let id = this.id;
     // console.log(id);
-    if($(this).hasClass('active') && id != 'giveMoney')
+    if(!$(this).hasClass('disabled'))
     {
-        mp.trigger(id);
+        if(id == 'carAction')
+        {
+            messageAudio.play();
+        }
+        if(id == 'parking')
+        {
+            messageAudio.play();
+        }
+        $(this).addClass('disabled')
+        setTimeout(() => {
+            $(this).removeClass('disabled')
+        },1000);
+        if($(this).hasClass('active') && id != 'giveMoney')
+        {
+            mp.trigger(id);
+        }
     }
 });
 $('#giveMoney').on('click',function(){

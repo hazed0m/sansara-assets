@@ -1081,7 +1081,7 @@ function refreshThingsList()
             console.log(id);
             setTimeout(() => {
                 $(this).removeClass('disabled');
-            },500);
+            },1000);
             mp.trigger('printThing',id);
         }
     });

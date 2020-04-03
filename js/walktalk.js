@@ -76,6 +76,10 @@ $('.button#key').on('click',function(){
     status = 'pin';
 });
 $('.button#confirm').on('click',function(){
+    let currentPin = '';
+    $('.pin-block .pin-item').map(function(index,item){
+        currentPin += $(item).text();
+    });
     if(status == 'wave')
     {
         if($('#ci3').hasClass('active') || $('#ci4').hasClass('active'))
@@ -84,6 +88,7 @@ $('.button#confirm').on('click',function(){
             {
                 showError('Connected to the wave');
                 $('.channel-block .channel-item.active').removeClass('active');
+                $('.container .screen .network-status').addClass('active');
                 if($('.pin-block').hasClass('empty'))
                 {
                     setTimeout(function(){                
@@ -92,13 +97,14 @@ $('.button#confirm').on('click',function(){
                 }
                 else
                 {
+                    
                     setTimeout(function(){                
                         showError('ReEnter PIN');
                     },1000);
                 }
                 let currentWave = $('#ci3').text() + $('#ci4').text();
-                console.log(parseInt(currentWave));
-                mp.trigger('waveNumber',parseInt(currentWave));
+                console.log(parseInt(currentWave),currentPin);
+                mp.trigger('checkPin',parseInt(currentWave),currentPin);
             }
             else
             {
@@ -109,11 +115,7 @@ $('.button#confirm').on('click',function(){
     }
     if(status == 'pin')
     {
-        console.log('pin1');
-        let currentPin = '';
-        $('.pin-block .pin-item').map(function(index,item){
-            currentPin += $(item).text();
-        });
+        console.log('pin1');        
         if(currentPin.indexOf('-') != -1)
         {
             showError('Pin incorrect');
@@ -142,7 +144,7 @@ function pinStatus(status)
             $('.pin-block .pin-item.active').removeClass('active');
         },500);
         setTimeout(function(){    
-            $('.pin-block .pin-item').text('*');
+            // $('.pin-block .pin-item').text('*');
             $('.container .screen .network-status').removeClass('active');
             showError('You are online');
         },1400);

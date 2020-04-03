@@ -729,7 +729,7 @@ function refreshInventory(currentIterator)
 			$(this).addClass('disabled')
 			setTimeout(() => {
 				$(this).removeClass('disabled')
-			},500);
+			},1000);
 			mp.trigger('getBlank');
 		}
 	});  
