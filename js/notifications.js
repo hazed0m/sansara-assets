@@ -91,10 +91,37 @@ $('.form-btn').on('click', function() {
     }
 });
 $('input[type="text"], input[type="password"]').keyup(function() {
-    if($(this)[0].id != 'newLoginEmail' && $(this)[0].id != 'newLoginPromo')
+    if($(this)[0].id != 'newLoginEmail' && $(this)[0].id != 'newLoginPromo' && $(this)[0].id != 'newLoginPassRepeat')
     {
         console.log($(this)[0].id);
         if($(this).val().length < 6)
+        {
+            console.log($(this)[0].id+'if');
+            $(this).css('border','2px solid red');
+        }
+        else
+        {
+            console.log($(this)[0].id+'else');
+            $(this).css('border','2px solid green');
+        }
+        this.value = this.value.replace(/[^a-zA-Z0-9_]/g, '');
+        if($(this)[0].id == 'newLoginPass')
+        {
+            if($('#newLoginPass').val() != $('#newLoginPassRepeat').val())
+            {
+                console.log($('#newLoginPassRepeat')[0].id+'if');
+                $('#newLoginPassRepeat').css('border','2px solid red');
+            }
+            else
+            {
+                console.log($('#newLoginPassRepeat')[0].id+'else');
+                $('#newLoginPassRepeat').css('border','2px solid green');
+            }
+        }
+    }
+    else if($(this)[0].id == 'newLoginPassRepeat')
+    {
+        if($('#newLoginPass').val() != $('#newLoginPassRepeat').val())
         {
             console.log($(this)[0].id+'if');
             $(this).css('border','2px solid red');
@@ -150,7 +177,7 @@ $('.form-input__wrap input').keyup(function(){
 $('.form-input__wrap input').keyup(function(){
     if($(this).parent().parent()[0].id === 'signup')
     {
-        if($('#newLoginName').val().length >= 6 && $('#newLoginPass').val().length >= 6 && emailValidate)
+        if($('#newLoginName').val().length >= 6 && $('#newLoginPass').val().length >= 6 && $('#newLoginPass').val() == $('#newLoginPassRepeat').val() && emailValidate)
         {
             $('.register').removeClass('disabled');
         }

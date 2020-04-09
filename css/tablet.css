@@ -106,7 +106,7 @@
 /* Mask */
 .container
 {
-	display: none;
+	/* display: none; */
     width:996px;
     height:585px;
     position: absolute;
