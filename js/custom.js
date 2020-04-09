@@ -185,6 +185,7 @@ for (let i = 0; i < items.length; i++) {
                 appearanceItem = 'chestHairOpacity';
                 break;
         }
+        console.log(appearanceItem, opacitys[i], index[i]);
         mp.trigger("inputsRange.client", appearanceItem, opacitys[i], index[i]);
     }
 
@@ -590,7 +591,7 @@ $(function() {
                 opacitys[currentRange] = val;
                 break;
         }
-        // console.log("inputsRange.client", id, val, index[currentRange]);
+        console.log("inputsRange.client", id, val, index[currentRange]);
         mp.trigger("inputsRange.client", id, val, index[currentRange]);
     });
     
