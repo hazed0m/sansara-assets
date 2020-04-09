@@ -803,3 +803,11 @@ $('.button-wrapper .button').on('click',function(){
         $('.inform-wrap .notice-title').text($(this).text());
     }
 });
+function fadeIn()
+{
+    $('.passport-wrap').fadeIn();
+}
+function fadeOut()
+{
+    $('.passport-wrap').fadeOut();
+}

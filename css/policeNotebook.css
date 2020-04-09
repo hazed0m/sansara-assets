@@ -100,7 +100,7 @@
     background-size:contain;
     background-position: center;
     overflow: hidden;
-    display: none;
+    /* display: none; */
 }
 .container .wrapper
 {

@@ -11,14 +11,14 @@ $('#sansara-menu').on('click',function(){
         menu.fadeOut();
     }
 });
-function fadeOut()
-{
-	$('.container').fadeOut();
-}
-function fadeIn()
-{	
-	$('.container').fadeIn();
-}
+// function fadeOut()
+// {
+// 	$('.container').fadeOut();
+// }
+// function fadeIn()
+// {	
+// 	$('.container').fadeIn();
+// }
 $('#noteExit').on('click',function(){
     mp.trigger('exitGovermentNote');
 });
@@ -90,6 +90,11 @@ function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = 
         if(admin == 'admin')
         {
             $('.container .main-wrapper .recruting-menu, .container .main-wrapper .sms-push').fadeIn();
+        }
+        else
+        {
+            console.log('asd');
+            $('.container .main-wrapper .items-list .input-item .arrows-wrap').css('display','none');
         }
         $('.container .main-wrapper .recruting-menu input, .container .main-wrapper .sms-push textarea').keyup(function(){
             if(this.id != 'smsGoverment')
