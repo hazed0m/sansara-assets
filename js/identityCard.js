@@ -9,3 +9,11 @@ function pushIdentityCard(type,name,lastname,rank,signature)
 $('.container .wrapper .close-button').on('click',function(){
     mp.trigger('closeIdentityCard');
 });
+function fadeIn()
+{
+    $('.container').fadeIn();
+}
+function fadeOut()
+{
+    $('.container').fadeOut();
+}

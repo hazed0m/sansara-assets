@@ -1,4 +1,5 @@
-let status = 'wave';
+let status = 'wave',
+    micro = true;
 $('.button#prev, .button#next').on('click',function(){
     let id = this.id;
     if(status == 'wave')
@@ -103,8 +104,8 @@ $('.button#confirm').on('click',function(){
                     },1000);
                 }
                 let currentWave = $('#ci3').text() + $('#ci4').text();
-                console.log(parseInt(currentWave),currentPin);
-                mp.trigger('checkPin',parseInt(currentWave),currentPin);
+                console.log(parseInt(currentWave),currentPin,micro);
+                mp.trigger('checkPin',parseInt(currentWave),currentPin,micro);
             }
             else
             {
@@ -129,9 +130,9 @@ $('.button#confirm').on('click',function(){
             showError('Checking pin');
             $('.pin-block .pin-item.active').removeClass('active');
             let currentWave = $('#ci3').text() + $('#ci4').text();
-            console.log(parseInt(currentWave),currentPin);
+            console.log(parseInt(currentWave),currentPin,micro);
             $('.pin-block').removeClass('empty');
-            mp.trigger('checkPin',parseInt(currentWave),currentPin);            
+            mp.trigger('checkPin',parseInt(currentWave),currentPin,micro);            
         }
     }
 });
@@ -167,13 +168,22 @@ $('.button#micro').on('click',function(){
     if(!$(this).hasClass('active'))
     {
         $(this).addClass('active');
+        micro = false;
         $('.microphone-status').addClass('active');
     }
     else
     {
         $(this).removeClass('active');
+        micro = true;
         $('.microphone-status').removeClass('active');
     }
+    let currentPin = '';
+    $('.pin-block .pin-item').map(function(index,item){
+        currentPin += $(item).text();
+    });
+    let currentWave = $('#ci3').text() + $('#ci4').text();
+    console.log(parseInt(currentWave),currentPin,micro);
+    mp.trigger('checkPin',parseInt(currentWave),currentPin,micro);
 });
 function showNotification()
 {

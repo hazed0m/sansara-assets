@@ -483,6 +483,7 @@ function actionTimeOut()
 }
 function pushInventory(item,gender,maxweight,moneyCount = 10000)
 {
+	$('.debugger .left-wrap').append('pushInventory');
 	maxMoney = moneyCount;
 	sex = gender;
 	maxWeight = maxweight;
@@ -1057,6 +1058,10 @@ function refreshInventory(currentIterator)
 				{
 					giveBut = '';
 				}	
+				if(item.name == 'Радиостанция')
+				{
+					listBut = ``;
+				}
 			}			
 			if(item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Medical_Preparation')
 			{
@@ -1104,6 +1109,10 @@ function refreshInventory(currentIterator)
 					currentImg = `images/${currentIter}/items/${currentIndex}.png`;
 				}
 				itemImg = `<img src="${currentImg}" class="itemImg dropdown-toggle">`;
+			}
+			if(item.name == 'Радиостанция')
+			{
+				itemImg = `<img src="images/inventory/walktalk.png" class="itemImg dropdown-toggle">`;
 			}
 			if(item.type == 'Instrument')
 			{
@@ -1287,8 +1296,10 @@ $('.left-inventory .weapons').mousewheel(function(e, delta) {
 function fadeOut()
 {
 	$('.inventory').fadeOut();
+	$('.debugger .left-wrap').append('<p>fadeOut</p>');
 }
 function fadeIn()
 {	
 	$('.inventory').fadeIn().css('display','flex');
+	$('.debugger .left-wrap').append('<p>fadeIn</p>');
 }

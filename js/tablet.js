@@ -4,14 +4,14 @@ $(document).ready(function(){
 $('.main-wrapper').fadeIn();
 const wallpaperList = [0,1,2];
 var mixer = null;
-function fadeOut()
-{
-	$('.container').fadeOut();
-}
-function fadeIn()
-{	
-	$('.container').fadeIn();
-}
+// function fadeOut()
+// {
+// 	$('.container').fadeOut();
+// }
+// function fadeIn()
+// {	
+// 	$('.container').fadeIn();
+// }
 $(wallpaperList).each(function(index,item){
 	var active = '';
 	if(index == 0)

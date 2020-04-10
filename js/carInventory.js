@@ -744,7 +744,11 @@ function refreshInventory(currentIterator)
 				itemImg = `<img src="images/weapons/${currentImg}.png" class="itemImg dropdown-toggle">`;
 				// console.log(itemImg);	
 			}
-		}		
+		}	
+		if(item.name == 'Радиостанция')
+		{
+			itemImg = `<img src="images/inventory/walktalk.png" class="itemImg dropdown-toggle">`;
+		}	
 		if(item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Medical_Preparation')
 		{
 			console.log(item.name);
