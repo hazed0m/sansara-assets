@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fonts/font.css">
+    <link rel="stylesheet" href="css/autoschool.css">
+    <link rel="stylesheet" href="css/test.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <!-- <div class="close-but">Закрыть</div> -->
+        <div class="wrapper">
+            <div class="mask"></div>
+            <div class="title">
+                РП Тест
+            </div>
+            <div class="title-add">
+                Чтобы начать, нажмите кнопку
+            </div>
+            <div class="button" id="start">Продолжить</div>
+        </div>
+        <div class="qa-wrapper" data-question="0">            
+            <div class="mask"></div>
+            <div class="qa-title">Вопрос <span class="question-count">1</span></div>
+            <!-- <div class="timer">
+                <span class="minutes">00</span>
+                <span class="del">:</span>
+                <span class="seconds">00</span>
+            </div> -->
+            <div class="qa-question"></div>
+            <div class="qa-wrap">
+            </div>
+            <div class="button-next">Далее</div>
+        </div>
+        <div class="notification">
+            <span>Вы не выбрали ответ</span>
+            <div class="button" id="notifSubmit">Ок</div>            
+        </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/test.js"></script>
+</body>
+</html>

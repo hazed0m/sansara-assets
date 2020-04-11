@@ -196,9 +196,10 @@ function pushTax(elem)
     $('.title-item#mc .all-duty').text(element.AllMC);
 
     $('.container .input-item .arrows-wrap .but').on('click',function(){
-        let id = this.id,
+        let currentId = $(this).parent().parent().parent()[0].id,
+            id = this.id,
             value = parseInt($(this).parent().parent().find('.count span').text());
-        console.log(id,value);
+        console.log(currentId,value);
         if(id == 'minus')
         {
             if(value > 0)
@@ -214,7 +215,7 @@ function pushTax(elem)
             }
         }        
         $(this).parent().parent().find('.count span').text(value);
-        mp.trigger('TaxArrows',id,value);
+        mp.trigger('TaxArrows',currentId,value);
     });
     // $('#realty .list-week span').text(element.RealtyWeek);
     // $('#realty .list-all span').text(element.RealtyAll);

@@ -1296,10 +1296,10 @@ $('.left-inventory .weapons').mousewheel(function(e, delta) {
 function fadeOut()
 {
 	$('.inventory').fadeOut();
-	$('.debugger .left-wrap').append('<p>fadeOut</p>');
+	// $('.debugger .left-wrap').append('<p>fadeOut</p>');
 }
 function fadeIn()
 {	
 	$('.inventory').fadeIn().css('display','flex');
-	$('.debugger .left-wrap').append('<p>fadeIn</p>');
+	// $('.debugger .left-wrap').append('<p>fadeIn</p>');
 }

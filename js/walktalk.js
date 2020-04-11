@@ -177,6 +177,11 @@ $('.button#micro').on('click',function(){
         micro = true;
         $('.microphone-status').removeClass('active');
     }
+    sendInform();
+});
+sendInform();
+function sendInform()
+{
     let currentPin = '';
     $('.pin-block .pin-item').map(function(index,item){
         currentPin += $(item).text();
@@ -184,7 +189,7 @@ $('.button#micro').on('click',function(){
     let currentWave = $('#ci3').text() + $('#ci4').text();
     console.log(parseInt(currentWave),currentPin,micro);
     mp.trigger('checkPin',parseInt(currentWave),currentPin,micro);
-});
+}
 function showNotification()
 {
     $(".notification").fadeIn();

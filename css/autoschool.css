@@ -52,7 +52,8 @@
     background:#7b7c80;
     color:#fafafa;
 }
-.container .notification .button
+.container .notification .button,
+.container .wrapper .button
 {
     background:#ffe100;
     color:#000;
@@ -305,7 +306,8 @@
 {
     color:#85ff69;
 }
-.container .mask
+.container .mask,
+.qa-wrapper .mask
 {
     display: none;
     background:rgba(0,0,0,0.6);
@@ -315,6 +317,10 @@
     top:0;
     left:0;
     z-index: 99;
+}
+.qa-wrapper .mask
+{
+    border-radius:5px;
 }
 .container .qa-wrapper
 {
