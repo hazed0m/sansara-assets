@@ -581,8 +581,12 @@ function personInit(element)
         {
             let carItems = ``,
                 violationItems = ``,
-                textItems = item.Text.split('@'),
+                textItems = '',
                 textItem = ``;
+            if(item.Text != null)
+            {
+                textItems = item.Text.split('@');
+            }
             $(item.Cars).each(function(index,item){
                 carItems += `<div class="violation-item">
                     <div class="title-item">${item}</div>
@@ -602,6 +606,7 @@ function personInit(element)
             //     ${carItems}
             //     </div>
             // </div>
+            console.log(textItem.length);
             let template = `
                 <div class="name-wrapper">
                     <div class="name">${item.FullName}</div>
@@ -618,7 +623,7 @@ function personInit(element)
                         <p id="house">${item.Home}</p>                            
                     </div>
                 </div>
-                <div class="text-wrapper">
+                <div class="text-wrapper" style="${textItem.length == 0 ? 'display:none;' : ''}">
                     <div class="title">Информация:</div>
                     <div class="text-wrap">
                         ${textItem}                    

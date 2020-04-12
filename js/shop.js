@@ -569,3 +569,30 @@ function fadeIn()
 {	
 	$('.container').fadeIn();
 }
+function pushIllegalShop(artefactCount)
+{
+	if(artefactCount != 0)
+	{
+		$('input[type="range"]').attr('max',artefactCount);
+		$(function() {
+			$('input[type="range"]').on('input change', function(e) {
+				let id = e.target.id,
+					val = e.target.value;
+				$(e).val(val).change();
+				$(this).parent().find('.current-count span').text(val);
+				checkButton(val);
+			});  
+			$('input[type=range]').rangeslider({
+				polyfill: false,
+				change: function(e) {
+					console.log(e)  
+				}
+			});
+		});
+	}
+	else
+	{
+		$('.artefact-wrap').css('opacity',0.7);
+		$('.artefact-wrap .button').css('')
+	}
+}
