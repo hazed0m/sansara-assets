@@ -152,11 +152,12 @@
                 <div class="info-wrapper">
                     <div class="title">Поиск</div>
                     <div class="info-item-wrap">
-                        <div class="dropdown-button" id="transport">
-                            <span>Транспорт</span>     
+                        <div class="dropdown-button" id="fullname">
+                            <span>Данные</span>     
                             <i class="fas fa-arrow-down"></i>
                         </div>
                         <div class="dropdown-list">
+                            <div class="dropdown-item" id="fullname">Данные</div>
                             <div class="dropdown-item" id="transport">Транспорт</div>
                             <div class="dropdown-item" id="realty">Недвижимость</div>
                             <div class="dropdown-item" id="business">Бизнес</div>
@@ -166,7 +167,10 @@
                     </div>
                     <div class="info-item-wrap">
                         <div class="mask-list">
-                            <div class="mask-item active" id="transport">
+                            <div class="mask-item active" id="fullname">
+                                <input type="text" placeholder="Имя и Фамилия">
+                            </div>
+                            <div class="mask-item" id="transport">
                                 <input type="number" placeholder="Номер авто">
                             </div>
                             <div class="mask-item" id="realty">

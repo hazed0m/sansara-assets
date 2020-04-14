@@ -75,7 +75,9 @@ function pushContactList(item,carslist,callslist)
 			let obj = {
 				'name': item.name,
 				'parked': item.parked,
-				'number': item.number
+				'number': item.number,
+				'status': item.status,
+				'proxy': item.proxy
 			};
 			carsList.push(obj);
 		}
@@ -573,13 +575,25 @@ function pushContacts(currentWrapper)
 				}			
 				currentTemplate = `<div class="number" data-type="${item.type}" data-index="${index}" data-number="${item.number}">
 				<div class="title-wrapper">
-				<div class="title-number">${item.name}</div>
-				<div class="car-number">${item.number}</div>
-				</div>
-				<div class="button-wrapper">
-				${parked}
-				<div class="geo"></div>
-				</div>
+					<div class="title-number">${item.name}</div>
+					<div class="car-number">${item.number}</div>
+					</div>
+					<div class="right-wrapper">
+						<div class="button-wrapper">
+							${parked}
+							<div class="geo"></div>
+							${item.status == true ? `
+							<div class="key"></div>
+							<div class="key-wrap">
+								<input placeholder="Введите Имя и Фамилию">
+								<div class="but-wrap">
+									<div class="button" id="accept">Ок</div>
+									<div class="button" id="cancel">Отмена</div>
+								</div>
+							</div>` : ``}
+						</div>
+						${item.proxy.length != 0 ? `<div class="proxy">${item.proxy}</div>` : ``}
+					</div>
 				</div>`;
 				let debug = `<div>${item.parked}</div><div>${typeof item.parked}</div>`;
 				$(`.${currentWrapper}-wrapper .wrapper`).append(currentTemplate);
@@ -1123,7 +1137,27 @@ $('.main-wrapper .getCar').on('click',function(){
 });
 
 function refreshGetCar()
-{
+{	
+	$('.button-wrapper .key-wrap input').keyup(function() {
+		this.value = this.value.replace(/[^а-яА-Я ]/g, '');
+	});
+	$('.key-wrap #accept').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			let currentName = $('.key-wrap input').val();
+			
+			if(currentName.length != 0)
+			{
+				$('.key-wrap').fadeOut();
+				console.log(currentName);
+				$(this).addClass('disabled');
+				mp.trigger('changeProxy',currentName);
+			}			
+		}
+	});
+	$('.key-wrap #cancel').on('click',function(){
+		$('.key-wrap').fadeOut();
+	});
 	$('.getCar-wrapper .button-wrapper .geo').on('click',function(){
 		let currentElem = carsList[$(this).parent().parent().attr('data-index')];
 		$(this).fadeOut();
@@ -1134,6 +1168,11 @@ function refreshGetCar()
 			$('.getCar-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
 		}, 500);
 		mp.trigger('PhoneSendGeoCar', currentElem.number);
+	});
+	$('.getCar-wrapper .button-wrapper .key').on('click',function(){
+		$('.key-wrap').fadeIn().css('display','flex');
+		$('.key-wrap input').val('');
+		$('.key-wrap #accept').removeClass('disabled');
 	});
 	$('.getCar-wrapper .button-wrapper .parked').on('click',function(){
 		if(!$(this).hasClass('disabled'))
