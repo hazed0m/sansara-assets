@@ -1148,10 +1148,11 @@ function refreshGetCar()
 			
 			if(currentName.length != 0)
 			{
+				let currentNumber = $(this).parent().parent().parent().parent().parent().find('.car-number').text();
 				$('.key-wrap').fadeOut();
-				console.log(currentName);
+				console.log(currentName,currentNumber);
 				$(this).addClass('disabled');
-				mp.trigger('changeProxy',currentName);
+				mp.trigger('changeProxy',currentName,currentNumber);
 			}			
 		}
 	});
