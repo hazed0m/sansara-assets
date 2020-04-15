@@ -588,6 +588,7 @@ function pushContacts(currentWrapper)
 								<input placeholder="Введите Имя и Фамилию">
 								<div class="but-wrap">
 									<div class="button" id="accept">Ок</div>
+									<div class="button ${item.proxy.length != 0 ? `` : `disabled`}" id="clear">Очистить</div>
 									<div class="button" id="cancel">Отмена</div>
 								</div>
 							</div>` : ``}
@@ -1154,6 +1155,15 @@ function refreshGetCar()
 				$(this).addClass('disabled');
 				mp.trigger('changeProxy',currentName,currentNumber);
 			}			
+		}
+	});
+	$('.key-wrap #clear').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			$(this).addClass('disabled');
+			$('.key-wrap').fadeOut();
+			let currentNumber = $(this).parent().parent().parent().parent().parent().find('.car-number').text();
+			mp.trigger('clearProxy',currentNumber);
 		}
 	});
 	$('.key-wrap #cancel').on('click',function(){
