@@ -294,7 +294,7 @@
 	width: 100%;
 	box-sizing: border-box;
 }
-.bottom-wrap .left-wrap .radio-block i
+.bottom-wrap .left-wrap .radio-block svg
 {
 	margin-top:6px;
 	color:#fafafa;
@@ -474,10 +474,13 @@
 }
 .illegal-wrap
 {
-	height:100%;
+	height:auto;
 	background: #404349;
 	color:#fff;
 	padding:0 3px 0 10px;
+	display: none;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 .artefact-wrap, 
 .radioRent-wrapper
@@ -487,6 +490,26 @@
 	flex-direction: column;
 	align-items: center;
 }
+.artefact-wrap .count-wrapper
+{
+	width:85%;
+	margin-top:15px;
+	display: flex;
+	justify-content: space-between;
+}
+.artefact-wrap .current
+{
+	margin-top:15px;
+}
+.artefact-wrap .button
+{
+	margin-top:15px;
+}
+.rangeslider--horizontal
+{
+	width:85%;
+	margin-top:15px;
+}
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -495,6 +518,86 @@ input::-webkit-inner-spin-button {
 
 input[type=number] {
   -moz-appearance: textfield;
+}
+.radioRent-wrapper select
+{
+	margin:15px 0 0 0;
+}
+.radioRent-wrapper .info-item-wrap
+{
+	max-width:80%;
+	margin:15px auto 0 auto;
+    color:#515151;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.radioRent-wrapper .info-item-wrap .dropdown-list
+{
+    width:205px;
+    padding:2px;
+    background:#eee;
+    border-radius: 13px;
+    position: absolute;
+    top:32px;
+	z-index:99;
+	display: none;
+}
+.radioRent-wrapper .info-item-wrap .dropdown-list .dropdown-item
+{
+    padding-left:10px;
+    margin:5px 0;
+    cursor: pointer;
+}
+.radioRent-wrapper .info-item-wrap .dropdown-list .dropdown-item:hover
+{
+    opacity:0.7;
+}
+.radioRent-wrapper .info-item-wrap .dropdown-button
+{
+    display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-right:15px;
+	cursor: pointer;
+}
+.radioRent-wrapper .info-item-wrap .dropdown-button svg
+{
+    transition:0.3s;
+}
+.radioRent-wrapper .info-item-wrap .dropdown-button
+{
+    border:none;
+    width:180px;
+    height:30px;
+    border-radius:20px;
+    background:#eeeeee;
+    padding-left:15px;
+}
+.radioRent-wrapper input
+{
+	background:none;
+	color:#fff;
+	border:none;
+	border-bottom:2px solid #fff;
+	margin:15px 0;
+	padding:5px;
+	font-size:18px;
+	width:26%;
+	text-align: center;
+}
+.radioRent-wrapper input::placeholder
+{
+	color:#fff;
+}
+.button.disabled, .rangeslider.disabled
+{
+	opacity:0.7;
+	cursor: default;
+}
+.button.disabled:hover
+{
+	box-shadow:none;
 }
 @media(max-width:1920px) and (max-height:1080px), (max-width:1920px) and (max-height:1200px)
 {
