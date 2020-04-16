@@ -3,7 +3,7 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-family:'GothamPro';
+    font-family:'Gotham Pro';
 }
 .container
 {
@@ -34,15 +34,31 @@
 {
     background-image:url(../img/identity/goverment.png);
 }
+.container #News
+{
+    background-image:url(../img/identity/news.png);
+}
 .container .wrapper .info-wrap
 {
     position: absolute;
     top:36%;
     left:40%;
 }
+.container .agency-name
+{
+    display: none;
+    font-size:28px;
+    justify-content: center;
+    align-items: center;
+    height:72px;
+    color:#52691f;
+    font-weight:900;
+    text-transform: uppercase;
+}
 .container .wrapper .info-wrap > div
 {
     display: flex;
+    align-items:center;
     margin:17px 0;
     font-size:20px;
 }
@@ -68,7 +84,7 @@
     height:36px;
     border-radius:10px;
     font-size:24px;
-    font-family:'GothamPro-Medium';
+    font-family:'Gotham Pro';
     color:#fff;
     display: flex;
     justify-content: center;
@@ -78,7 +94,7 @@
     left:50%;
     transform: translate(-50%,0);
     cursor: pointer;
-    transition: 0.2s;
+    /* transition: 0.2s; */
     font-weight:bold;
 }
 .container .wrapper .close-button:hover
@@ -99,4 +115,9 @@
 {
     background:#716941;
     box-shadow: 0 0 10px #716941;
+}
+.container #News .close-button
+{
+    background:#52691f;
+    box-shadow: 0 0 10px #52691f;
 }

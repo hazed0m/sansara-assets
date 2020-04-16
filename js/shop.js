@@ -466,6 +466,10 @@ function basketListRefresh()
 		}
 		else
 		{
+			if(item.name.toLowerCase == 'радиостанция')
+			{
+				currentImg = 'walktalk';
+			}
 			template = `
 				<div class="basket-item" data-index="${index}">
 					<div class="close"><i class="fa fa-times" aria-hidden="true"></i></div>

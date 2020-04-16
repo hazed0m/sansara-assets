@@ -1077,7 +1077,7 @@ function refreshInventory(currentIterator)
 				{
 					giveBut = '';
 				}	
-				if(item.name == 'Радиостанция')
+				if(item.name.toLowerCase() == 'радиостанция')
 				{
 					listBut = ``;
 				}
@@ -1129,7 +1129,7 @@ function refreshInventory(currentIterator)
 				}
 				itemImg = `<img src="${currentImg}" class="itemImg dropdown-toggle">`;
 			}
-			if(item.name == 'Радиостанция')
+			if(item.name.toLowerCase() == 'радиостанция')
 			{
 				itemImg = `<img src="images/inventory/walktalk.png" class="itemImg dropdown-toggle">`;
 			}
