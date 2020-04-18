@@ -75,7 +75,7 @@ let employeeOnline = JSON.stringify([
     {"FullName":'Дмитрий Иванов',"Online":true},
     {"FullName":'Adsad',"Online":false}
 ]);
-function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = false,date)
+function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = false,date,agencyList)
 {
     if(typeof date != undefined)
     {   
@@ -90,6 +90,7 @@ function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = 
         if(admin == 'admin')
         {
             $('.container .main-wrapper .recruting-menu, .container .main-wrapper .sms-push').fadeIn();
+            agencyInit(agencyList);
         }
         else
         {
@@ -154,7 +155,96 @@ function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = 
     }    
     pushTax(taxesList);
     pushDeptors(deptorsList,deptorsCount);
-    dealsInit();
+    dealsInit();    
+    refreshProcurement();
+}
+function refreshProcurement()
+{
+    $(transportCompanyCarsList).each(function(index,item){
+		let currentItem = `
+		<div class="transport-block" data-list='${'mechanical'}' data-index='${index}' data-price='${item.price}' data-name="${item.name}" data-luggage='${item.luggage}' data-type='${item.type}'>
+			<div class="mask">Куплено</div>
+			<div class="car-image">
+				<img src="img/tablet/cars/${item.hash}.jpg" alt="">
+			</div>
+			<div class="car-info">			
+				<div class="title-block">
+					<div class="car-name">${item.name}</div>
+				</div>
+				<div class="speed-block">
+					<div class="speed-wrap">
+						<div class="line-inner" style="width:${speedPercentage(item.speed,'transportCompanyCars')}%;"></div>						
+					</div>
+					<div class="speed-title">Мощность</div>
+				</div>
+				<div class="title-block">
+					<div class="car-price"><span>${item.price}</span>$</div>
+					<div class="button" id="buyTransport">Купить</div>
+				</div>	
+			</div>					
+		</div>`
+		$('.procurement-wrapper [data-ref="transport-company-container"]').append(currentItem);
+	});	
+    let container = document.querySelector('.procurement-wrapper [data-ref="transport-company-container"]'),
+		config = {
+			animation: {
+				duration: 350
+			},
+			selectors: {
+				target: '.transport-block'
+			},
+			callbacks: {
+				onMixClick: function(state, originalEvent) {
+					if($(this).hasClass('mixitup-control-active'))
+					{
+						originalEvent.stopPropagation();
+						originalEvent.preventDefault();
+					}
+					else
+					{
+						$(`.procurement-wrapper #${$(this).parent().prev()[0].id}`).next().slideUp();
+					}
+				}
+			}
+		};
+    mixer = mixitup(container, config);
+    $('.procurement-wrapper #transport-sort').on('click',function(){
+        if(!$(this).next().is(':visible'))
+        {
+            $(this).next().slideDown().css('display','flex');
+        }
+        else
+        {
+            $(this).next().slideUp();
+        }
+    });
+    $('.procurement-wrapper .transport-block .title-block .button').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			let parent = $(this).parent().parent().parent(),
+				price = parseInt($(parent).attr('data-price')),
+				name = $(parent).attr('data-name');
+			parent.find('.mask').fadeIn().css('display','flex');
+			$(this).addClass('disabled');
+			setTimeout(() => {
+				parent.find('.mask').fadeOut();
+				$(this).removeClass('disabled');
+            },1000);
+			console.log('buyAutoGoverment',name,price);
+            
+			mp.trigger('buyAutoGoverment',name,price);
+		}
+	});
+}
+function speedPercentage(curSpeed,currentWrapper)
+{
+	const max = typeof getMaxSpeed(currentWrapper) != 'undefined' ? getMaxSpeed(currentWrapper) : 300;
+	let percentage = 0;
+	if(max > 0)
+	{
+		percentage = (curSpeed/max)*100;
+	}
+	return percentage;
 }
 let taxesList = JSON.stringify({
     Treasury:10000,
@@ -924,4 +1014,45 @@ function personInit(element)
 $('.container .business-wrapper input').keyup(function(){
     this.value = this.value.replace(/[-\.;":',/<>@?!№%*&^#$()_+=|{}а-яА-Я0-9]/g, '');
 });
-
+function agencyInit(agencyList)
+{
+    $(agencyList).each(function(index,item){
+        $(`.container .agency-wrapper .agency-item:eq(${index})`).attr('data-name',item);
+        $(`.container .agency-wrapper .agency-item:eq(${index}) .title`).text(item);
+    });
+    $('.menu-item#agency-wrapper').fadeIn();
+    $('.container .agency-wrapper input').keyup(function(){
+        this.value = this.value.replace(/[^А-ЯЁа-яё]/g, '');
+    });
+    $('.container .agency-wrapper #agencyName').keyup(function(){
+        if($(this).val().length > 0 && $(this).parent().find('#agencyFullname').val().length > 0)
+        {
+            $(this).parent().find('.button').removeClass('disabled');
+        }
+        else
+        {
+            $(this).parent().find('.button').addClass('disabled');
+        }
+    });
+    $('.container .agency-wrapper #agencyFullname').keyup(function(){
+        if($(this).val().length > 0 && $(this).parent().find('#agencyName').val().length > 0)
+        {
+            $(this).parent().find('.button').removeClass('disabled');
+        }
+        else
+        {
+            $(this).parent().find('.button').addClass('disabled');
+        }
+    });
+    $('.container .agency-wrapper .button').on('click',function(){
+        let id = this.id,
+            agencyName = $(this).parent().parent().attr('data-name'),
+            name = $('.container .agency-wrapper #agencyName').val(),
+            fullname = $('.container .agency-wrapper #agencyFullname').val();
+        console.log(id,agencyName,name,fullname);
+        $('.container .agency-wrapper #agencyName').val(''),
+        $('.container .agency-wrapper #agencyFullname').val('');
+        $(this).parent().find('.button').addClass('disabled');
+        mp.trigger(id,agencyName,name,fullname);
+    });
+}

@@ -824,7 +824,7 @@ function refreshTransportCompany()
 					}
 					else
 					{
-						$(`.customs-wrapper #${$(this).parent().prev()[0].id}`).next().slideUp();
+						$(`.transportCompany-wrapper #${$(this).parent().prev()[0].id}`).next().slideUp();
 					}
 				}
 			}
@@ -1274,4 +1274,38 @@ function adminInit(admin)
 	$('.law-wrap #admin-code-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
 	$('.law-wrap #criminal-code-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
 	$('.law-wrap #road-code-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
+}
+
+function fillOnTheVID(vid){
+    var key = 'AIzaSyAjwDoE7W1HyAr2YhDALfF5Cyb4lcGcRyM';
+    var urlReq = 'https://www.googleapis.com/youtube/v3/videos?id='+vid+'&key='+key+'&part=snippet,contentDetails,statistics';
+    console.log("Request URI:",urlReq);
+    $.ajax({
+        type: "GET",
+        ///dataType: "JSON",
+        ///dataType: "html",
+        url: urlReq,
+        data: { b:true }
+    }).done(function( res ){
+        console.log("Response Data:",res);
+        var $form = $('form')
+            ,item = res.items[0]
+        ///,duration = item.contentDetails.duration
+            ,author = item.snippet.channelTitle
+            ,add = item.snippet.publishedAt
+            ,title = item.snippet.title
+            ,views = item.statistics.viewCount
+            ;
+        $form.find('input[name="vid"]').val(vid);
+        $form.find('input[name="url"]').val('https://www.youtube.com/embed/'+vid);
+        $form.find('input[name="author"]').val(author);
+        $form.find('input[name="add"]').val(add);
+        $form.find('textarea[name="title"]').val(title);
+        $form.find('input[name="views"]').val(views);
+    }).fail(function(e){
+        ///console.log("Response Fail:",e);
+        ///return -3;
+    }).always(function(){
+        ///console.log( "Response Always" );
+    });
 }
