@@ -108,25 +108,6 @@ var sex = '',
 		'самозарядная винтовка mk ii',
 		'снайперская винтовка'
 	],
-	weaponsAmmoList = [
-		{'weapon':'пистолет 9 П','ammo':'патроны 9 П'},
-		{'weapon':'пистолет Mk II','ammo':'патроны 9 П Mk II'},
-		{'weapon':'боевой пистолет','ammo':'патроны 9 БП'},
-		{'weapon':'AP пистолет','ammo':'патроны .22 АР'},
-		{'weapon':'пистолет .50','ammo':'патроны .50 П'},
-		{'weapon':'тяжелый пистолет','ammo':'патроны 25 ТП'},
-		{'weapon':'микро SMG','ammo':'патроны 9 М SMG'},
-		{'weapon':'SMG','ammo':'патроны 9 SMG'},
-		{'weapon':'SMG Mk II','ammo':'патроны 9 SMG Mk II'},
-		{'weapon':'штурмовое SMG','ammo':'патроны 5.45 SMG'},
-		{'weapon':'боевая PDW','ammo':'патроны 4.6 PDW'},
-		{'weapon':'помповый дробовик Mk II','ammo':'патроны 12 ПД Mk II'},
-		{'weapon':'обрез','ammo':'патроны 12 О'},
-		{'weapon':'штурмовая винтовка','ammo':'патроны 7.62 ШВ'},
-		{'weapon':'карабин винтовка','ammo':'патроны 5.56 КВ'},
-		{'weapon':'самозарядная винтовка Mk ll','ammo':'патроны 7.62 СВ Mk ll'},
-		{'weapon':'снайперская винтовка','ammo':'патроны 8.60 СВ'}
-	];
 	classNameTranslated = 
     [
 	   "Mask",   
@@ -613,6 +594,73 @@ function pushInventory(item,gender,maxweight,moneyCount = 10000)
 	inventoryInitialize();  	
 	// actionDebugger();
 };
+let weaponsAmmoList = [
+	{'weapon':'пистолет 9 П','ammo':'патроны 9 П'},
+	{'weapon':'пистолет Mk II','ammo':'патроны 9 П Mk II'},
+	{'weapon':'боевой пистолет','ammo':'патроны 9 БП'},
+	{'weapon':'AP пистолет','ammo':'патроны .22 АР'},
+	{'weapon':'пистолет .50','ammo':'патроны .50 П'},
+	{'weapon':'тяжелый пистолет','ammo':'патроны 25 ТП'},
+	{'weapon':'микро SMG','ammo':'патроны 9 М SMG'},
+	{'weapon':'SMG','ammo':'патроны 9 SMG'},
+	{'weapon':'SMG Mk II','ammo':'патроны 9 SMG Mk II'},
+	{'weapon':'штурмовое SMG','ammo':'патроны 5.45 SMG'},
+	{'weapon':'боевая PDW','ammo':'патроны 4.6 PDW'},
+	{'weapon':'помповый дробовик Mk II','ammo':'патроны 12 ПД Mk II'},
+	{'weapon':'обрез','ammo':'патроны 12 О'},
+	{'weapon':'штурмовая винтовка','ammo':'патроны 7.62 ШВ'},
+	{'weapon':'карабин винтовка','ammo':'патроны 5.56 КВ'},
+	{'weapon':'самозарядная винтовка Mk ll','ammo':'патроны 7.62 СВ Mk ll'},
+	{'weapon':'снайперская винтовка','ammo':'патроны 8.60 СВ'}
+];
+function checkUsedAmmo()
+{
+	
+	$(weaponsList).each(function(index,item){
+		$(weaponsAmmoList).each(function(innerIndex,innerItem){			
+			if(item.name.toLowerCase().includes('пистолет 9 п'))
+			{
+				if('пистолет 9 п' == innerItem.weapon.toLowerCase())
+				{
+					console.log(item.name, '-', innerItem.weapon.toLowerCase());
+					$(inventoryList).each(function(invIndex,invItem){
+						if(innerItem.ammo.toLowerCase() == invItem.name.toLowerCase())
+						{
+							// console.log('inInv',$(`#inventory li[inventory-id="${invIndex}"]`));
+							$(`#inventory li[inventory-id="${invIndex}"] .dropdown-menu`).remove();
+							$(`#inventory li[inventory-id="${invIndex}"] .itemInv`).css('opacity','0.5');
+						}
+					});
+				}
+			}
+			if(item.name.toLowerCase().includes('пистолет mk ii'))
+			{
+				if('пистолет mk ii' == innerItem.weapon.toLowerCase())
+				{
+					$(inventoryList).each(function(invIndex,invItem){
+						if(innerItem.ammo.toLowerCase() == invItem.name.toLowerCase())
+						{
+							// console.log('inInv',$(`#inventory li[inventory-id="${invIndex}"]`));
+							$(`#inventory li[inventory-id="${invIndex}"] .dropdown-menu`).remove();
+							$(`#inventory li[inventory-id="${invIndex}"] .itemInv`).css('opacity','0.5');
+						}
+					});
+				}
+			}
+			if(item.name.toLowerCase() == innerItem.weapon.toLowerCase())
+			{
+				$(inventoryList).each(function(invIndex,invItem){
+					if(innerItem.ammo.toLowerCase() == invItem.name.toLowerCase())
+					{
+						// console.log('inInv',$(`#inventory li[inventory-id="${invIndex}"]`));
+						$(`#inventory li[inventory-id="${invIndex}"] .dropdown-menu`).remove();
+						$(`#inventory li[inventory-id="${invIndex}"] .itemInv`).css('opacity','0.5');
+					}
+				});
+			}
+		});
+	});
+}
 $('.left-inventory .close').on('click',function(){
 	mp.trigger('closeInventory');
 });
@@ -734,6 +782,7 @@ function inventoryInitialize()
 			}
 		}
 	});
+	checkUsedAmmo();
 };
 $('.tabs-inventory .tabMenu').on('click',function(){
 	$('.tabs-inventory .tabMenu').each(function(index,item){

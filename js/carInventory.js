@@ -331,7 +331,7 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 	}); 
 	luggageList = [];
 	let lugList = JSON.parse(luggage);
-	console.log(lugList);
+	// console.log(lugList);
 	$(lugList).each(function(index,item){
 		if(index <= 39)
 		{
@@ -352,11 +352,11 @@ function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 				if(currentElement != -1)
 				{
 					obj.inventoryIndex = currentElement;	
-					console.log(currentElement);
+					// console.log(currentElement);
 					let length = luggageList.length - 1;
-					console.log(length);
-					console.log(luggageList[length].inventoryIndex);
-					console.log(inventoryList[luggageList[length].inventoryIndex].wearedId);
+					// console.log(length);
+					// console.log(luggageList[length].inventoryIndex);
+					// console.log(inventoryList[luggageList[length].inventoryIndex].wearedId);
 					inventoryList[luggageList[length].inventoryIndex].wearedId = length;
 				}
 			}		
@@ -385,6 +385,7 @@ function containsName(nameObj,iterator)
 }
 function inventoryInitialize()
 {	
+	checkUsedAmmo();	
 	$(ammoList).each(function(index,item){
 		item.count = item.temp;
 		$(inventoryList).each(function(countIndex,countItem){
@@ -419,9 +420,9 @@ function inventoryInitialize()
             $(this).parent().find('.dropdown-menu').css('display','block');
         }
 	});	
-	$('#inventory #put, #luggage #remove').on('click',function(){
+	$('#inventory #put, #luggage #remove').on('click',function(){		
 		if(!$(this).hasClass('form'))
-		{
+		{			
 			var action = $(this)[0].id,		
 				id = $(this).parent().parent()[0].id,
 				index = $(this).parent().attr(id+'-id'),
@@ -518,7 +519,6 @@ function inventoryInitialize()
 			notificationShow('Вы не можете положить полицейские предметы');
 		}
 	});
-		
 };
 $('.tabs-inventory .tabMenu').on('click',function(){
 	$('.tabs-inventory .tabMenu').each(function(index,item){
@@ -675,16 +675,16 @@ function refreshInventory(currentIterator)
 		}
 		if(item.name.toLowerCase().includes('пистолет 9 п') ||  item.name.toLowerCase().includes('пистолет mk ii'))
 		{
-			console.log('pistolet');	
+			// console.log('pistolet');	
 			$(weaponsListTranslated).each(function(weaponIndex,weaponItem){
 				if(weaponItem.includes('пистолет 9 п') && item.name.toLowerCase().includes('пистолет 9 п'))
 				{
-					console.log('9p',weaponIndex);
+					// console.log('9p',weaponIndex);
 					currentElement = weaponIndex;
 				}
 				if(weaponItem.includes('пистолет mk ii') && item.name.toLowerCase().includes('пистолет mk ii'))
 				{
-					console.log('mkii',weaponIndex);
+					// console.log('mkii',weaponIndex);
 
 					currentElement = weaponIndex;
 				}
@@ -855,4 +855,72 @@ function fadeOut()
 function fadeIn()
 {	
 	$('.inventory').fadeIn().css('display','flex');
+}
+let weaponsAmmoList = [
+	{'weapon':'пистолет 9 П','ammo':'патроны 9 П'},
+	{'weapon':'пистолет Mk II','ammo':'патроны 9 П Mk II'},
+	{'weapon':'боевой пистолет','ammo':'патроны 9 БП'},
+	{'weapon':'AP пистолет','ammo':'патроны .22 АР'},
+	{'weapon':'пистолет .50','ammo':'патроны .50 П'},
+	{'weapon':'тяжелый пистолет','ammo':'патроны 25 ТП'},
+	{'weapon':'микро SMG','ammo':'патроны 9 М SMG'},
+	{'weapon':'SMG','ammo':'патроны 9 SMG'},
+	{'weapon':'SMG Mk II','ammo':'патроны 9 SMG Mk II'},
+	{'weapon':'штурмовое SMG','ammo':'патроны 5.45 SMG'},
+	{'weapon':'боевая PDW','ammo':'патроны 4.6 PDW'},
+	{'weapon':'помповый дробовик Mk II','ammo':'патроны 12 ПД Mk II'},
+	{'weapon':'обрез','ammo':'патроны 12 О'},
+	{'weapon':'штурмовая винтовка','ammo':'патроны 7.62 ШВ'},
+	{'weapon':'карабин винтовка','ammo':'патроны 5.56 КВ'},
+	{'weapon':'самозарядная винтовка Mk ll','ammo':'патроны 7.62 СВ Mk ll'},
+	{'weapon':'снайперская винтовка','ammo':'патроны 8.60 СВ'}
+];
+function checkUsedAmmo()
+{	
+	$(inventoryList).each(function(index,item){
+		$(weaponsAmmoList).each(function(innerIndex,innerItem){
+			if(item.type == 'Weapon_Cold' || item.type == 'Weapon_FireGun_Legal' || item.type == 'Weapon_FireGun_Police' || item.type == 'Weapon_FireGun_Illegal')
+			{
+				if(item.enabled == true)
+				{
+					if(item.name.toLowerCase().includes('пистолет 9 п'))
+					{
+						if('пистолет 9 п' == innerItem.weapon.toLowerCase())
+						{
+							$(inventoryList).each(function(invIndex,invItem){
+								if(innerItem.ammo.toLowerCase() == invItem.name.toLowerCase())
+								{
+									// console.log('inInv',$(`#inventory li[inventory-id="${invIndex}"]`));
+									$(`#inventory li[inventory-id="${invIndex}"] .itemInv`).attr('id','').css('opacity','0.5');
+								}
+							});
+						}
+					}
+					if(item.name.toLowerCase().includes('пистолет mk ii'))
+					{
+						if('пистолет mk ii' == innerItem.weapon.toLowerCase())
+						{
+							$(inventoryList).each(function(invIndex,invItem){
+								if(innerItem.ammo.toLowerCase() == invItem.name.toLowerCase())
+								{
+									// console.log('inInv',$(`#inventory li[inventory-id="${invIndex}"]`));
+									$(`#inventory li[inventory-id="${invIndex}"] .itemInv`).attr('id','').css('opacity','0.5');
+								}
+							});
+						}
+					}
+					if(item.name.toLowerCase() == innerItem.weapon.toLowerCase())
+					{
+						$(inventoryList).each(function(invIndex,invItem){
+							if(innerItem.ammo.toLowerCase() == invItem.name.toLowerCase())
+							{
+								// console.log('inInv',$(`#inventory li[inventory-id="${invIndex}"]`));
+								$(`#inventory li[inventory-id="${invIndex}"] .itemInv`).attr('id','').css('opacity','0.5');
+							}
+						});
+					}
+				}
+			}
+		});
+	});
 }
