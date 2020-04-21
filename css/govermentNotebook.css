@@ -642,6 +642,51 @@
     top:0;
     left:0;
     margin:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .agency-wrapper .agency-item .title .edit-icon
+{
+    margin-left:20px;
+    cursor: pointer;
+}
+.container .agency-wrapper .agency-item .title .edit-wrap 
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background: #3b3939;
+    width:100%;
+    height:100%;
+    display: none;
+}
+.container .agency-wrapper .agency-item .title .edit-wrap input
+{
+    width:70%;
+    border-bottom:1px solid #fff;
+    color:#fff;
+}
+.container .agency-wrapper .agency-item .title .edit-wrap .button
+{
+    background:#fff;
+    color:#000;
+    border-radius:2px;
+    padding:5px 7px;
+    cursor: pointer;
+    transition:0.2s;
+}
+.container .agency-wrapper .agency-item .title .edit-wrap .button:hover
+{
+    box-shadow:0 0 10px #fff;
+}
+.container .agency-wrapper .agency-item .title .edit-icon:hover
+{
+    transform:scale(1.1);
 }
 .container .agency-wrapper .agency-item input:nth-child(2)
 {
@@ -1241,10 +1286,13 @@
     margin:1px 0;
     background:#ececec;
 } 
-.container .tax-wrapper .deptors-wrap .deptors-list::-webkit-scrollbar-thumb,
-.procurement-wrapper .transport-wrapper::-webkit-scrollbar-thumb
+.container .tax-wrapper .deptors-wrap .deptors-list::-webkit-scrollbar-thumb
 {
     background: #f7ef80;
+}
+.procurement-wrapper .transport-wrapper::-webkit-scrollbar-thumb
+{
+    background: #1c1c1e;
 }
 .container .search-wrapper .search-done .screen::-webkit-scrollbar-thumb
 {
@@ -2272,6 +2320,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .procurement-wrapper .shop-page .title-wrap .title
 {	
+    font-size:18px;
     position: relative;
     top: 10px;
     left: 43%;
@@ -2336,7 +2385,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .procurement-wrapper .transport-wrapper
 {
-	max-height:601px;	
+	max-height:498px;	
 	border-bottom-left-radius:5px;
 	border-bottom-right-radius:5px;
 	position: relative;
@@ -2362,6 +2411,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .procurement-wrapper .transport-block .mask
 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 	width:101%;
 	height:101%;
 	color:#fff;

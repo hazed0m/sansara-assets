@@ -69,7 +69,7 @@ function settingsInitialize(wallIndex)
 }
 function backButtonCheck()
 {
-	console.log('backButtonCheck');
+	// console.log('backButtonCheck');
 	if(!$('.container > .active').hasClass('main-wrapper'))
 	{
 		if($('.container > .active').hasClass('news-wrapper'))
@@ -169,7 +169,7 @@ function initBusiness(transportObj)
 	transportInfo = JSON.parse(transportObj);
 	$('.main-wrapper .business').css('display','block');
 }
-$('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork, .main-wrapper .customs, .main-wrapper .business, .main-wrapper .transportCompany').on('click',function(){
+$('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wrapper .settings, .main-wrapper .adssell, .main-wrapper .adsbuy, .main-wrapper .adsgetworkers, .main-wrapper .adssearchwork, .main-wrapper .customs, .main-wrapper .business, .main-wrapper .transportCompany, .main-wrapper .newsAgency').on('click',function(){
 	let currentClass = this.classList[0];
 	$('.main-wrapper').removeClass('active').fadeOut();
 	if(currentClass == 'cars')
@@ -214,6 +214,11 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 		forwardExit();		
 		pushBusiness(transportInfo);
 		refreshBusiness();
+	}
+	if(currentClass = 'newsAgency')
+	{
+		forwardExit();		
+		initNewsAgency()
 	}
 	if(currentClass == 'adssell' || currentClass == 'adsbuy' || currentClass == 'adsgetworkers' || currentClass == 'adssearchwork')
 	{
@@ -1275,11 +1280,9 @@ function adminInit(admin)
 	$('.law-wrap #criminal-code-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
 	$('.law-wrap #road-code-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
 }
-
 function fillOnTheVID(vid){
     var key = 'AIzaSyAjwDoE7W1HyAr2YhDALfF5Cyb4lcGcRyM';
     var urlReq = 'https://www.googleapis.com/youtube/v3/videos?id='+vid+'&key='+key+'&part=snippet,contentDetails,statistics';
-    console.log("Request URI:",urlReq);
     $.ajax({
         type: "GET",
         ///dataType: "JSON",
@@ -1287,25 +1290,165 @@ function fillOnTheVID(vid){
         url: urlReq,
         data: { b:true }
     }).done(function( res ){
-        console.log("Response Data:",res);
-        var $form = $('form')
-            ,item = res.items[0]
-        ///,duration = item.contentDetails.duration
-            ,author = item.snippet.channelTitle
-            ,add = item.snippet.publishedAt
-            ,title = item.snippet.title
-            ,views = item.statistics.viewCount
-            ;
-        $form.find('input[name="vid"]').val(vid);
-        $form.find('input[name="url"]').val('https://www.youtube.com/embed/'+vid);
-        $form.find('input[name="author"]').val(author);
-        $form.find('input[name="add"]').val(add);
-        $form.find('textarea[name="title"]').val(title);
-        $form.find('input[name="views"]').val(views);
-    }).fail(function(e){
-        ///console.log("Response Fail:",e);
-        ///return -3;
-    }).always(function(){
-        ///console.log( "Response Always" );
-    });
+		var item = res.items[0],
+			title = item.snippet.title,
+			views = item.statistics.viewCount,
+			during = item.contentDetails.duration,
+			likes = item.statistics.likeCount,
+			dislikes = item.statistics.dislikeCount;
+		console.log(item);
+		during = covtime(during);
+		$('.container .newsAgency-wrapper .video-wrapper .download .title').text(title);
+		$('.container .newsAgency-wrapper .video-wrapper .download .pre-title#during span').text(during);
+		$('.container .newsAgency-wrapper .video-wrapper .download .pre-title#views span').text(views);
+		$('.container .newsAgency-wrapper .video-wrapper .download .pre-title#likes span').text(likes);
+		$('.container .newsAgency-wrapper .video-wrapper .download .pre-title#dislikes span').text(dislikes);
+	});
+}
+function covtime(youtube_time){
+	let array = youtube_time.match(/(\d+)(?=[MHS])/ig)||[], 
+		formatted = array.map(function(item){
+			if(item.length<2) return '0'+item;
+			return item;
+		}).join(':');
+	return formatted;
+}
+function initNewsAgency()
+{
+	$('.newsAgency-wrapper .input-wrapper .input-button').on('click',function(){
+		let id = $(this).parent()[0].id;
+		if(id == 'imageLink')
+		{
+			if(!$(this).hasClass('downloaded'))
+			{
+				$(this).prev().addClass('active');
+				$(this).addClass('active').text('Изображение загружено!');
+			}
+		}
+		if(id == 'videoLink')
+		{
+			if(!$(this).hasClass('downloaded'))
+			{
+				$(this).prev().addClass('active');
+				$(this).addClass('active').text('Видеоролик загружен!');
+				$(this).parent().parent().parent().removeClass('download');
+			}
+			setTimeout(() => {
+				let template = `
+					<div class="video-item download">
+						<div class="video-preview"></div>
+						<div class="info-block">
+							<div class="title">Без названия</div>
+							<div class="pre-title" id="during">
+								Длительность:
+								<span>Не определено</span>
+							</div>
+							<div class="pre-title" id="views">
+								Просмотров:
+								<span>Не определено</span>
+							</div>
+							<div class="pre-title" id="likes">
+								Лайков:
+								<span>Не определено</span>
+							</div>
+							<div class="pre-title" id="dislikes">
+								Дизлайков:
+								<span>Не определено</span>
+							</div>
+							<div class="input-wrapper" id="videoLink">
+								<input type="text" class="clickable" placeholder="Вставьте ссылку на видеоролик">
+								<div class="input-button"><i class="fas fa-cloud-download-alt"></i></div>
+							</div>
+						</div>
+					</div>`;
+					$('.newsAgency-wrapper .video-wrapper').prepend(template);
+					initNewsAgency();
+			},1000);
+		}
+		setTimeout(() => {
+			$(this).prev().removeClass('active').addClass('downloaded');
+			$(this).removeClass('active').addClass('downloaded');
+		},1000);
+	});
+	$('.newsAgency-wrapper .input-wrapper input').keyup(function(){
+		let id = $(this).parent()[0].id;
+		if(id == 'imageLink')
+		{
+			let link = $(this).val();
+			if(link.includes('http'))
+			{			
+				if(link.includes('youtube.com/watch?v='))
+				{
+					link = link.substring(link.indexOf('youtube')).replace('youtube.com/watch?v=','');
+					if(link.indexOf('?') != -1)
+					{
+						link = link.substring(0,link.indexOf('?'));
+					}	
+					$('.image-wrapper .image-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});		
+				}
+				else if(link.includes('youtu.be'))
+				{
+					link = link.substring(link.indexOf('youtu.be')).replace('youtu.be/','');
+					if(link.indexOf('?') != -1)
+					{
+						link = link.substring(0,link.indexOf('?'));
+					}
+					$('.image-wrapper .image-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});
+				}
+				else
+				{
+					$('.image-wrapper .image-preview').css({'background':`url(${link})`,'background-size':'cover'});
+				}
+			}
+			else
+			{
+				$('.image-wrapper .image-preview').css({'background':`#262626 url(../img/tablet/news/picture.png) no-repeat center`,'background-size':'none'});
+			}
+		}
+		if(id == 'videoLink')
+		{
+			let link = $(this).val();		
+			if(link.length > 0)
+			{			
+				if(link.includes('youtube.com/watch?v='))
+				{
+					link = link.substring(link.indexOf('youtube')).replace('youtube.com/watch?v=','');
+					if(link.indexOf('?') != -1)
+					{
+						link = link.substring(0,link.indexOf('?'));
+					}	
+					fillOnTheVID(link);
+					$('.video-wrapper .download .video-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});		
+				}
+				else if(link.includes('youtu.be'))
+				{
+					link = link.substring(link.indexOf('youtu.be')).replace('youtu.be/','');
+					if(link.indexOf('?') != -1)
+					{
+						link = link.substring(0,link.indexOf('?'));
+					}
+					fillOnTheVID(link);
+					$('.video-wrapper .download .video-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});
+				}
+				else
+				{
+					$(this).val('');
+				}
+			}
+			else
+			{
+				$('.video-wrapper .download .video-preview').css({'background':`#ff3b3b url(../img/tablet/news/video.png) no-repeat center`,'background-size':'none'});
+			}
+		}
+	});
+	$('.newsAgency-wrapper .menu-block .button').on('click',function(){
+		if(!$(this).hasClass('active'))
+		{
+			let id = this.id;
+			$('.newsAgency-wrapper .menu-block .button.active').removeClass('active');
+			$(this).addClass('active');
+			$(`.newsAgency-wrapper .workscreen .workscreen-item.active`).removeClass('active');
+			$(`.newsAgency-wrapper .workscreen .${id}-wrapper`).addClass('active');
+		}
+	});
 }

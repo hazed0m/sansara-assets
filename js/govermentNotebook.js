@@ -160,12 +160,12 @@ function pushNotebook(employeeOnline,taxesList,deptorsList,deptorsCount,admin = 
 }
 function refreshProcurement()
 {
-    $(transportCompanyCarsList).each(function(index,item){
+    $(autosList).each(function(index,item){
 		let currentItem = `
 		<div class="transport-block" data-list='${'mechanical'}' data-index='${index}' data-price='${item.price}' data-name="${item.name}" data-luggage='${item.luggage}' data-type='${item.type}'>
 			<div class="mask">Куплено</div>
 			<div class="car-image">
-				<img src="img/tablet/cars/${item.hash}.jpg" alt="">
+				<img src="img/tablet/cars/${item.name}.jpg" alt="">
 			</div>
 			<div class="car-info">			
 				<div class="title-block">
@@ -1018,11 +1018,14 @@ function agencyInit(agencyList)
 {
     $(agencyList).each(function(index,item){
         $(`.container .agency-wrapper .agency-item:eq(${index})`).attr('data-name',item);
-        $(`.container .agency-wrapper .agency-item:eq(${index}) .title`).text(item);
+        $(`.container .agency-wrapper .agency-item:eq(${index}) .title span`).text(item);
     });
     $('.menu-item#agency-wrapper').fadeIn();
-    $('.container .agency-wrapper input').keyup(function(){
+    $('.container .agency-wrapper #agencyName, .container .agency-wrapper #agencyFullname').keyup(function(){
         this.value = this.value.replace(/[^А-ЯЁа-яё]/g, '');
+    });
+    $('.container .agency-wrapper .title input').keyup(function(){
+        this.value = this.value.replace(/[^A-za-zА-ЯЁа-яё0-9 -]/g, '');
     });
     $('.container .agency-wrapper #agencyName').keyup(function(){
         if($(this).val().length > 0 && $(this).parent().find('#agencyFullname').val().length > 0)
@@ -1044,7 +1047,7 @@ function agencyInit(agencyList)
             $(this).parent().find('.button').addClass('disabled');
         }
     });
-    $('.container .agency-wrapper .button').on('click',function(){
+    $('.container .agency-wrapper .button-wrapper .button').on('click',function(){
         let id = this.id,
             agencyName = $(this).parent().parent().attr('data-name'),
             name = $('.container .agency-wrapper #agencyName').val(),
@@ -1054,5 +1057,22 @@ function agencyInit(agencyList)
         $('.container .agency-wrapper #agencyFullname').val('');
         $(this).parent().find('.button').addClass('disabled');
         mp.trigger(id,agencyName,name,fullname);
+    });
+    $('.container .agency-wrapper .agency-item .title .edit-icon').on('click',function(){
+        let currentName = $(this).prev().text();
+        console.log(currentName);        
+        if(!$(this).parent().find('.edit-wrap').is(':visible'))
+        {
+            $(this).parent().find('.edit-wrap input').val(currentName);
+            $(this).parent().find('.edit-wrap').fadeIn().css('display','flex');
+        }
+    });
+    $('.container .agency-wrapper .agency-item .title .edit-wrap .button').on('click',function(){
+        let currentName = $(this).prev().val(),
+            previousName = $(this).parent().parent().parent().attr('data-name');
+        console.log(currentName,'-',previousName);
+        $(this).parent().parent().find('span').text(currentName);
+        $(this).parent().fadeOut();
+        mp.trigger('changeName',previousName,currentName);
     });
 }
