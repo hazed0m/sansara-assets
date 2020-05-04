@@ -215,7 +215,7 @@ $('.main-wrapper .news, .main-wrapper .goverment, .main-wrapper .cars, .main-wra
 		pushBusiness(transportInfo);
 		refreshBusiness();
 	}
-	if(currentClass = 'newsAgency')
+	if(currentClass == 'newsAgency')
 	{
 		forwardExit();		
 		initNewsAgency()
@@ -1313,62 +1313,79 @@ function covtime(youtube_time){
 		}).join(':');
 	return formatted;
 }
+let editor = new Quill('#editor', {
+	theme: 'snow'
+});
+let newsObj = {
+		imageLink: '',
+		videoLink: '',
+		text: ''
+	},
+	agencyName = ``;
 function initNewsAgency()
 {
 	$('.newsAgency-wrapper .input-wrapper .input-button').on('click',function(){
 		let id = $(this).parent()[0].id;
-		if(id == 'imageLink')
+		if(!$(this).hasClass('downloaded') && !$(this).hasClass('disabled'))
 		{
-			if(!$(this).hasClass('downloaded'))
-			{
+			if(id == 'imageLink')
+			{			
 				$(this).prev().addClass('active');
 				$(this).addClass('active').text('Изображение загружено!');
+				setTimeout(function(){
+					$('.newsAgency-wrapper .image-wrapper').removeClass('active');
+					$('.button#publishing, .newsAgency-wrapper .publishing-wrapper').addClass('active');
+				},1500);
 			}
-		}
-		if(id == 'videoLink')
-		{
-			if(!$(this).hasClass('downloaded'))
+			if(id == 'videoLink')
 			{
-				$(this).prev().addClass('active');
-				$(this).addClass('active').text('Видеоролик загружен!');
-				$(this).parent().parent().parent().removeClass('download');
+				if(!$(this).hasClass('downloaded') && !$(this).hasClass('disabled'))
+				{
+					$(this).prev().addClass('active');
+					$(this).addClass('active').text('Видеоролик загружен!');
+					$(this).parent().parent().parent().removeClass('download');
+				}
+				setTimeout(() => {
+					let template = `
+						<div class="video-item download">
+							<div class="video-preview"></div>
+							<div class="info-block">
+								<div class="title">Без названия</div>
+								<div class="pre-title" id="during">
+									Длительность:
+									<span>Не определено</span>
+								</div>
+								<div class="pre-title" id="views">
+									Просмотров:
+									<span>Не определено</span>
+								</div>
+								<div class="pre-title" id="likes">
+									Лайков:
+									<span>Не определено</span>
+								</div>
+								<div class="pre-title" id="dislikes">
+									Дизлайков:
+									<span>Не определено</span>
+								</div>
+								<div class="input-wrapper" id="videoLink">
+									<input type="text" class="clickable" placeholder="Вставьте ссылку на видеоролик">
+									<div class="input-button disabled"><i class="fas fa-cloud-download-alt"></i></div>
+								</div>
+							</div>
+						</div>`;
+						$('.newsAgency-wrapper .video-wrapper').prepend(template);
+						initNewsAgency();
+				},1000);				
+				setTimeout(function(){
+					$('.newsAgency-wrapper .video-wrapper').removeClass('active');
+					$('.button#publishing, .newsAgency-wrapper .publishing-wrapper').addClass('active');
+				},950);
 			}
 			setTimeout(() => {
-				let template = `
-					<div class="video-item download">
-						<div class="video-preview"></div>
-						<div class="info-block">
-							<div class="title">Без названия</div>
-							<div class="pre-title" id="during">
-								Длительность:
-								<span>Не определено</span>
-							</div>
-							<div class="pre-title" id="views">
-								Просмотров:
-								<span>Не определено</span>
-							</div>
-							<div class="pre-title" id="likes">
-								Лайков:
-								<span>Не определено</span>
-							</div>
-							<div class="pre-title" id="dislikes">
-								Дизлайков:
-								<span>Не определено</span>
-							</div>
-							<div class="input-wrapper" id="videoLink">
-								<input type="text" class="clickable" placeholder="Вставьте ссылку на видеоролик">
-								<div class="input-button"><i class="fas fa-cloud-download-alt"></i></div>
-							</div>
-						</div>
-					</div>`;
-					$('.newsAgency-wrapper .video-wrapper').prepend(template);
-					initNewsAgency();
+				$(this).prev().removeClass('active').addClass('downloaded');
+				$(this).removeClass('active').addClass('downloaded');
 			},1000);
 		}
-		setTimeout(() => {
-			$(this).prev().removeClass('active').addClass('downloaded');
-			$(this).removeClass('active').addClass('downloaded');
-		},1000);
 	});
 	$('.newsAgency-wrapper .input-wrapper input').keyup(function(){
 		let id = $(this).parent()[0].id;
@@ -1377,6 +1394,7 @@ function initNewsAgency()
 			let link = $(this).val();
 			if(link.includes('http'))
 			{			
+				$(this).next().removeClass('disabled');
 				if(link.includes('youtube.com/watch?v='))
 				{
 					link = link.substring(link.indexOf('youtube')).replace('youtube.com/watch?v=','');
@@ -1384,7 +1402,8 @@ function initNewsAgency()
 					{
 						link = link.substring(0,link.indexOf('?'));
 					}	
-					$('.image-wrapper .image-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});		
+					newsObj.imageLink = `http://i3.ytimg.com/vi/${link}/hqdefault.jpg`;
+					$('.image-wrapper .image-preview, #image .resource-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});		
 				}
 				else if(link.includes('youtu.be'))
 				{
@@ -1393,53 +1412,80 @@ function initNewsAgency()
 					{
 						link = link.substring(0,link.indexOf('?'));
 					}
-					$('.image-wrapper .image-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});
+					newsObj.imageLink = `http://i3.ytimg.com/vi/${link}/hqdefault.jpg`;
+					$('.image-wrapper .image-preview, #image .resource-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});
 				}
 				else
 				{
-					$('.image-wrapper .image-preview').css({'background':`url(${link})`,'background-size':'cover'});
+					$('.image-wrapper .image-preview, #image .resource-preview').css({'background':`url(${link})`,'background-size':'cover'});
+					newsObj.imageLink = link;
 				}
 			}
 			else
 			{
+				$(this).next().addClass('disabled');
 				$('.image-wrapper .image-preview').css({'background':`#262626 url(../img/tablet/news/picture.png) no-repeat center`,'background-size':'none'});
+				$('#image .resource-preview').css({'background':`#262626 url(../img/tablet/news/picture.png) no-repeat center`,'background-size':'25%'});
+				newsObj.imageLink = '';
+				$('#image .resource-preview').empty();
 			}
 		}
 		if(id == 'videoLink')
 		{
 			let link = $(this).val();		
 			if(link.length > 0)
-			{			
+			{	
 				if(link.includes('youtube.com/watch?v='))
-				{
+				{							
+					$(this).next().removeClass('disabled');
 					link = link.substring(link.indexOf('youtube')).replace('youtube.com/watch?v=','');
 					if(link.indexOf('?') != -1)
 					{
 						link = link.substring(0,link.indexOf('?'));
 					}	
 					fillOnTheVID(link);
-					$('.video-wrapper .download .video-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});		
+					$('.video-wrapper .download .video-preview, #video .resource-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});		
+					let fancyLink = `
+						<a data-fancybox href="https://www.youtube.com/embed/${link}" data-id="${link}" class="video-block">
+							<i class="fas fa-play"></i>
+						</a>`;
+					$('#video .resource-preview').empty().append(fancyLink);
+					newsObj.videoLink = link;
 				}
 				else if(link.includes('youtu.be'))
-				{
+				{							
+					$(this).next().removeClass('disabled');
 					link = link.substring(link.indexOf('youtu.be')).replace('youtu.be/','');
 					if(link.indexOf('?') != -1)
 					{
 						link = link.substring(0,link.indexOf('?'));
 					}
 					fillOnTheVID(link);
-					$('.video-wrapper .download .video-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});
+					$('.video-wrapper .download .video-preview, #video .resource-preview').css({'background':`url(http://i3.ytimg.com/vi/${link}/hqdefault.jpg) center`,'background-size':'cover'});
+					let fancyLink = `
+						<a data-fancybox href="https://www.youtube.com/embed/${link}" data-id="${link}" class="video-block">
+							<i class="fas fa-play"></i>
+						</a>`;
+					$('#video .resource-preview').empty().append(fancyLink);
+					newsObj.videoLink = link;
 				}
 				else
 				{
+					$(this).next().addClass('disabled');
 					$(this).val('');
+					newsObj.videoLink = '';
 				}
+				fancyInit();
 			}
 			else
 			{
+				$(this).next().addClass('disabled');
 				$('.video-wrapper .download .video-preview').css({'background':`#ff3b3b url(../img/tablet/news/video.png) no-repeat center`,'background-size':'none'});
+				$('#video .resource-preview').css({'background':`#ff3b3b url(../img/tablet/news/video.png) no-repeat center`,'background-size':'20%'});
+				$('#video .resource-preview').empty();
 			}
 		}
+		checkNews(newsObj);
 	});
 	$('.newsAgency-wrapper .menu-block .button').on('click',function(){
 		if(!$(this).hasClass('active'))
@@ -1450,5 +1496,136 @@ function initNewsAgency()
 			$(`.newsAgency-wrapper .workscreen .workscreen-item.active`).removeClass('active');
 			$(`.newsAgency-wrapper .workscreen .${id}-wrapper`).addClass('active');
 		}
+	});
+	$('.newsAgency-wrapper #editPreview').on('click',function(){
+		let id = $(this).parent().parent()[0].id;
+		if(id == 'image')
+		{
+			$('.image-wrapper .image-preview').css({'background':`#262626 url(../img/tablet/news/picture.png) no-repeat center`,'background-size':'none'});
+			$('.container .newsAgency-wrapper .input-wrapper input').removeClass('downloaded').val('');
+			$('.container .newsAgency-wrapper .input-wrapper .input-button').removeClass('downloaded').addClass('disabled').html('<i class="fas fa-cloud-download-alt"></i>');
+		}
+		if(id == 'text')
+		{
+			$('.newsAgency-wrapper .text-wrapper .editor-wrapper').fadeIn();
+		}
+		$('.newsAgency-wrapper .menu-block .button.active').removeClass('active');
+		$(`.newsAgency-wrapper .workscreen .workscreen-item.active`).removeClass('active');
+		$(`.newsAgency-wrapper .workscreen .${id}-wrapper`).addClass('active');
+	});
+	$('.newsAgency-wrapper .text-wrapper .button-wrapper .button').on('click',function(){
+		let id = this.id;
+		if(id == 'submit')
+		{
+			let template = $('#editor .ql-editor').html();
+			$('.newsAgency-wrapper .complete-text, #text .resource-preview').html(template);
+			newsObj.text = template;
+			$('.newsAgency-wrapper .text-wrapper .editor-wrapper').fadeOut();
+			setTimeout(function(){
+				$('.button#publishing, .newsAgency-wrapper .publishing-wrapper').addClass('active');
+			// 	$('.newsAgency-wrapper .text-wrapper .change-wrapper').fadeIn().css('display','flex');
+			},400);
+		}
+		if(id == 'cancel')
+		{
+			let template = $('.newsAgency-wrapper .complete-text').html();			
+			$('.newsAgency-wrapper .text-wrapper .editor-wrapper').fadeOut();
+			setTimeout(function(){
+				$('.button#publishing, .newsAgency-wrapper .publishing-wrapper').addClass('active');
+			// 	$('.newsAgency-wrapper #editor .ql-editor').html(template);
+			// 	$('.newsAgency-wrapper .text-wrapper .change-wrapper').fadeIn().css('display','flex');
+			},400);
+		}
+		if(id == 'change')
+		{
+			$('.newsAgency-wrapper .text-wrapper .change-wrapper').fadeOut();
+			setTimeout(function(){
+				$('.newsAgency-wrapper .text-wrapper .editor-wrapper').fadeIn().css('display','flex');
+			},400);
+		}
+		checkNews(newsObj);
+	});
+	$('.newsAgency-wrapper .employee-wrapper .button-wrapper .button#submit').on('click',function(){
+		let name = $(this).parent().parent().find('input').val();
+		let template = `
+			<div class="employee-item">
+				<div class="employee-name">${name}</div>
+				<div class="button-wrapper">
+					<div class="button" id="sackEmployee">Уволить</div>
+				</div>
+			</div>`;
+		if(name.length > 0)
+		{
+			$(this).parent().parent().find('input').val('');
+			$('.employee-list').append(template);
+			initEmployeeItem();
+			mp.trigger('appendEmployee',name);
+		}
+	});	
+	$('.newsAgency-wrapper #publishNews').on('click',function(){
+		if(!$(this).hasClass('disabled'))
+		{
+			console.log(agencyName,newsObj);
+			mp.trigger('publishNews',agencyName,newsObj)
+		}
+	});
+}
+function fancyInit()
+{
+	$("[data-fancybox]").fancybox({
+		parentEl: ".container"
+	});
+	$('[data-fancybox]').on('click',function(){
+		let currentPlayer = `<div id="player" data-plyr-provider="youtube" 
+								data-plyr-embed-id="${$(this).attr('data-id')}">
+							</div>`;
+		$('.fancybox-content iframe').replaceWith(currentPlayer);
+		const player = new Plyr('#player', {
+			controls: [ 'play-large', 
+						'play', 
+						'progress', 
+						'current-time', 
+						'mute', 
+						'volume'
+					],
+			autoplay: true  		
+		});
+		window.player = player;
+	});
+}
+function checkNews(obj)
+{
+	if(obj.imageLink.length > 0 && obj.videoLink.length > 0 && obj.text.length > 0  && obj.text != "<p><br></p>")
+	{
+		$('.button#publishNews').removeClass('disabled');
+	}
+	else
+	{
+		$('.button#publishNews').addClass('disabled');
+	}
+}
+function pushNewsAgency(name,list)
+{
+	agencyName = name;
+	$('.main-wrapper .newsAgency').fadeIn();
+	$('.newsAgency-wrapper .title#agency').text(name);
+	$(list).each(function(index,item){
+		let template = `
+			<div class="employee-item">
+				<div class="employee-name">${item}</div>
+				<div class="button-wrapper">
+					<div class="button" id="sackEmployee">Уволить</div>
+				</div>
+			</div>`;
+		$('.employee-list').append(template);
+	});
+	initEmployeeItem();
+}
+function initEmployeeItem()
+{	
+	$('.newsAgency-wrapper .employee-wrapper .button-wrapper .button#sackEmployee').on('click',function(){
+		let name = $(this).parent().parent().find('.employee-name').text();
+	    $(this).parent().parent().remove();
+		mp.trigger('sackEmployee',name);
 	});
 }

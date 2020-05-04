@@ -1,5 +1,293 @@
+*
+{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family:'Gotham Pro';
+}
 .wrapper
 {
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
     background:#393b42;
     color:#fff;
+    width:871px;
+    height:539px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding:33px 0 40px 0;
+    border-radius:10px;
+}
+.wrapper .status-wrapper
+{
+    width:752px;
+    height:52px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background:#2e2e33;
+    border-radius:5px;
+}
+.wrapper .status-wrapper .status-block
+{
+    display: flex;
+}
+.wrapper .status-wrapper .status-block .front
+{
+    margin-left:5px;
+    font-weight:bold;
+    display: flex;
+    align-items: center;
+}
+.wrapper .status-wrapper .status-block .front .karma-coin
+{
+    margin-left:7px;
+    width:20px;
+    height:20px;
+    background:url(../img/donate/karma_sansara.png) no-repeat;
+    background-size:contain;
+}
+.wrapper .property-wrapper
+{
+    margin-top:22px;
+    background:#2e2e33;
+    width:752px;
+    height:393px;
+    padding:0 50px;
+    border-radius:5px;
+    position: relative;
+}
+.wrapper .property-wrapper .inner-wrap
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.wrapper .property-wrapper .inner-wrap .property-block
+{
+    width:140px;
+    height:135px;
+    background:#232327;
+    border-radius:10px;    
+    cursor: pointer;
+    transition:0.2s;
+}
+.wrapper .property-wrapper .inner-wrap .property-block:hover
+{
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.568);
+}
+.wrapper .property-wrapper .inner-wrap .property-item
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wrapper .property-wrapper .inner-wrap #vip.vip1.active .property-block
+{
+    background:#232327 url(../img/donate/vip1.png) no-repeat;
+    background-position: center;
+}
+.wrapper .property-wrapper .inner-wrap #vip.vip2.active .property-block
+{
+    background:#232327 url(../img/donate/vip2.png) no-repeat;
+    background-position: center;
+}
+.wrapper .property-wrapper .inner-wrap #vip.vip3.active .property-block
+{
+    background:#232327 url(../img/donate/vip3.png) no-repeat;
+    background-position: center;
+}
+.wrapper .property-wrapper .inner-wrap #business.active .property-block
+{
+    background:#232327 url(../img/donate/business-large.png) no-repeat;
+    background-position: center;
+}
+.wrapper .property-wrapper .inner-wrap #secondChance.active .property-block
+{
+    background:#232327 url(../img/donate/second-chance.png) no-repeat;
+    background-position: center;
+}
+.wrapper .property-wrapper .inner-wrap .active .property-block:hover
+{
+    box-shadow: 0 0 10px #faf02ab6;
+}
+.wrapper .property-wrapper .inner-wrap .property-item .title
+{
+    margin:10px 0;
+}
+.wrapper .property-wrapper .car-wrap
+{
+    margin-top:20px;
+}
+.wrapper .property-wrapper .car-wrap .title
+{
+    text-align: center;
+}
+.wrapper .property-wrapper .car-wrap .car-list
+{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+}
+.wrapper .property-wrapper .car-wrap .car-list .car-item
+{
+    width:49px;
+    height:47px;
+    background:#232327;
+    margin:20px 18px 15px 0;
+    border-radius: 5px;
+    font-size:9px;
+    text-align: center;
+    position: relative;
+}
+.wrapper .property-wrapper .car-wrap .car-list .car-item span
+{
+    position: absolute;
+    bottom:-18px;
+    left:50%;
+    transform:translate(-50%,0);
+}
+.wrapper .property-wrapper .car-wrap .car-list .car-item:nth-child(10),
+.wrapper .property-wrapper .car-wrap .car-list .car-item:nth-child(20)
+{
+    margin-right:0;
+}
+.wrapper .property-wrapper .car-wrap .car-list .car-item.active
+{
+    background:#232327 url(../img/donate/buyed-car.png) no-repeat;
+    background-position: center;
+}
+.wrapper .property-wrapper .car-wrap .car-list .car-item:empty
+{
+    background:#232327 url(../img/donate/empty-car.png) no-repeat;
+    background-position: center;
+}
+.wrapper .property-wrapper .vip-wrap
+{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background:#2e2e33;
+    width:100%;
+    height:100%;
+    border-radius:5px;
+    display: none;
+    justify-content: space-around;
+    align-content: center;
+}
+.wrapper .property-wrapper .vip-wrap 
+{
+    display: flex;
+    
+}
+.wrapper .property-wrapper .vip-wrap .title
+{
+    font-size:12px;
+    margin-top:10px;
+}
+.wrapper .property-wrapper .vip-wrap .time-wrap,
+.wrapper .property-wrapper .vip-wrap .time-wrap .vip-item
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wrapper .property-wrapper .vip-wrap .time-wrap .vip-item
+{
+    cursor: pointer;   
+}
+.wrapper .status-wrapper .status-block .front .karma-coin:hover
+{
+    animation:coinAnim 1s infinite;
+}
+@keyframes coinAnim
+{
+    0%
+    {
+        transform:rotate(0deg);
+    }
+    100%
+    {
+        transform:rotate(1500deg);
+    }
+}
+.wrapper .property-wrapper .vip-wrap .time-wrap .vip-item:hover .vip-image
+{
+   animation:vipAnim 1s ease-in infinite;
+}
+@keyframes vipAnim
+{
+    0%
+    {
+        transform:skew(0deg);
+    }
+    20%
+    {
+        transform:skew(-2deg) scale(1.02) translate(3px,2px);
+    }
+    50%
+    {
+        transform:skew(0deg);
+    }
+    80%
+    {
+        transform:skew(2deg) scale(1.02) translate(3px,-2px);
+    }
+    100%
+    {
+        transform:skew(0deg);
+    }
+}
+.wrapper .property-wrapper .vip-wrap .time-wrap .vip-item .vip-image
+{
+    width:144px;
+    height:84px;
+}
+.wrapper .property-wrapper .vip-wrap .time-wrap .vip-item#vip1 .vip-image
+{
+    background:url(../img/donate/vip1.png) no-repeat;    
+    background-position: center;
+    background-size:cover;
+}
+.wrapper .property-wrapper .vip-wrap .time-wrap .vip-item#vip2 .vip-image
+{
+    background:url(../img/donate/vip2.png) no-repeat;
+    background-position: center;
+    background-size:cover;
+}
+.wrapper .property-wrapper .vip-wrap .time-wrap .vip-item#vip3 .vip-image
+{
+    background:url(../img/donate/vip3.png) no-repeat;
+    background-position: center;
+    background-size:cover;
+}
+.wrapper .property-wrapper .vip-wrap .vip-title
+{
+    font-size:14px;
+    /* font-weight: bold; */
+}
+.wrapper .property-wrapper .vip-wrap .vip-cost
+{
+    font-size:10px;
+    margin-top:3px;
+}
+.wrapper .property-wrapper .vip-wrap .vip-cost span
+{
+    font-weight:bold;
+}
+.wrapper .property-wrapper .vip-wrap .time-wrap .vip-item#vip1
+{
+    color:#f3ab4c;
+}
+.wrapper .property-wrapper .vip-wrap .time-wrap .vip-item#vip2
+{
+    color:#c3c3c2;
+}
+.wrapper .property-wrapper .vip-wrap .time-wrap .vip-item#vip3
+{
+    color:#faee29;
 }

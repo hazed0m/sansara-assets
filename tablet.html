@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/plyr.css" />
     <link rel="stylesheet" href="css/jquery.fancybox.min.css">
     <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/quill.bubble.css">
+    <link rel="stylesheet" href="css/quill.snow.css">
     <link rel="stylesheet" href="fonts/font.css">
     <link rel="stylesheet" href="css/jquery.Fullpage.css">
     <link rel="stylesheet" href="css/tablet.css">
@@ -58,7 +60,7 @@
             <div class="customs"></div>
             <div class="transportCompany"></div>
             <div class="business"></div>
-            <!-- <div class="newsAgency"></div> -->
+            <div class="newsAgency"></div>
         </div>
         <div class="settings-wrapper">	
 			<i class="fas fa-chevron-left"></i>
@@ -546,20 +548,55 @@
             </div>
         </div>
         <div class="newsAgency-wrapper">
-            <div class="title">Новостное агенство</div>
+            <div class="title" id="agency">Новостное агенство</div>
             <div class="inner-wrapper">
                 <div class="menu-block">
-                    <div class="button active" id="image">Вставить изображение</div>
-                    <div class="button" id="video">Вставить видеофайл</div>
-                    <div class="button" id="text">Создать текст</div>
+                    <div class="button active" id="publishing">Публикация новостей</div>
+                    <!-- <div class="menu-list">
+                        <div class="button small" id="image">Вставить изображение</div>
+                        <div class="button small" id="video">Вставить видеофайл</div>
+                        <div class="button small" id="text">Создать текст</div>
+                    </div>                     -->
                     <div class="button" id="employee">Добавить сотрудника</div>
                 </div>
                 <div class="workscreen">
-                    <div class="workscreen-item image-wrapper active">
+                    <div class="workscreen-item publishing-wrapper active">
+                        <div class="resources-list">
+                            <div class="resource-block" id="image">
+                                <div class="title">
+                                    <span>Изображение</span>
+                                    <div class="button" id="editPreview">
+                                        <i class="fas fa-edit"></i>
+                                    </div>                                    
+                                </div>
+                                <div class="resource-preview"></div>
+                            </div>
+                            <div class="resource-block" id="video">
+                                <div class="title">
+                                    <span>Видеофайл</span>
+                                    <div class="button" id="editPreview">
+                                        <i class="fas fa-edit"></i>
+                                    </div>   
+                                </div>
+                                <div class="resource-preview"></div>
+                            </div>
+                            <div class="resource-block" id="text">
+                                <div class="title">
+                                    <span>Текст</span>
+                                    <div class="button" id="editPreview">
+                                        <i class="fas fa-edit"></i>
+                                    </div>   
+                                </div>
+                                <div class="resource-preview"></div>
+                            </div>
+                        </div>
+                        <div class="button disabled" id="publishNews">Опубликовать</div>
+                    </div>
+                    <div class="workscreen-item image-wrapper">
                         <div class="image-preview"></div>
                         <div class="input-wrapper" id="imageLink">
                             <input type="text" class="clickable" placeholder="Вставьте ссылку на изображение">
-                            <div class="input-button"><i class="fas fa-cloud-download-alt"></i></div>
+                            <div class="input-button disabled"><i class="fas fa-cloud-download-alt"></i></div>
                         </div>
                     </div>
                     <div class="workscreen-item video-wrapper">
@@ -585,15 +622,39 @@
                                 </div>
                                 <div class="input-wrapper" id="videoLink">
                                     <input type="text" class="clickable" placeholder="Вставьте ссылку на видеоролик">
-                                    <div class="input-button"><i class="fas fa-cloud-download-alt"></i></div>
+                                    <div class="input-button disabled"><i class="fas fa-cloud-download-alt"></i></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="workscreen-item text-wrapper">
-
+                        <div class="editor-wrapper">
+                            <div id="editor"></div>
+                            <div class="button-wrapper">
+                                <div class="button" id="submit">Сохранить</div>
+                                <div class="button" id="cancel">Отмена</div>
+                            </div>
+                        </div>
+                        <div class="change-wrapper">
+                            <div class="complete-text"></div>
+                            <div class="button-wrapper">
+                                <div class="button" id="change">Изменить</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="workscreen-item employee-wrapper"></div>
+                    <div class="workscreen-item employee-wrapper">
+                        <div class="title">Добавить сотрудника</div>
+                        <div class="employee-add">
+                            <input type="text" placeholder="Введите Имя и Фамилию">
+                            <div class="button-wrapper">
+                                <div class="button" id="submit">Добавить</div>
+                            </div>
+                        </div>
+                        <div class="title">Список работников</div>
+                        <div class="employee-list">
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -605,6 +666,7 @@
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="js/jquery.fancybox.min.js"></script>
+    <script src="js/quill.min.js"></script>
     <script src="js/mixitup.min.js"></script>
     <script src="js/jquery.mousewheel.min.js"></script>
     <script src="js/plyr.js"></script>
