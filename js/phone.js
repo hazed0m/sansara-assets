@@ -572,7 +572,11 @@ function pushContacts(currentWrapper)
 				if(item.parked == 'true')
 				{
 					parked = `<div class="parked"></div>`;
-				}			
+				}	
+				if(item.proxy == null)
+				{
+					item.proxy = '';
+				}		
 				currentTemplate = `<div class="number" data-type="${item.type}" data-index="${index}" data-number="${item.number}">
 				<div class="title-wrapper">
 					<div class="title-number">${item.name}</div>
