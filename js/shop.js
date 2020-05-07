@@ -101,22 +101,12 @@ var shopList = [],
 	ammoCount = [];
 $('.cash, .card').on('click',function(){
 	$(this).each(function(index, item){
-		if($(item).hasClass('active'))
+		if(!$(item).hasClass('active'))		
 		{
-			$(item).removeClass('active');			
-			$(item).find('i').removeClass('fas').addClass('far');
-		}
-		else
-		{
-			$('.cash, .card').each(function(index, item){
-				if($(item).hasClass('active'))
-				{
-					$(item).removeClass('active');			
-					$(item).find('i').removeClass('fas').addClass('far');
-				}
-			});
+			$('.bottom-wrap .left-wrap .radio-block .active svg').attr('data-prefix','far');		
+			$('.bottom-wrap .left-wrap .radio-block .active').removeClass('active');			
 			$(item).addClass('active');
-			$(item).find('i').removeClass('far').addClass('fas');
+			$(item).find('svg').attr('data-prefix','fas');		
 		}		
 	});
 });
@@ -148,6 +138,7 @@ $('#buy').on('click',function(){
 		setTimeout(function(){
 			shopListRefresh();
 		},300);		
+		console.log("shopBuyButton", cashService, clothesPrice, output);
     	mp.trigger("shopBuyButton", cashService, clothesPrice, output);
     }    
 });
