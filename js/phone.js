@@ -1174,7 +1174,7 @@ function refreshGetCar()
 		$('.key-wrap').fadeOut();
 	});
 	$('.getCar-wrapper .button-wrapper .geo').on('click',function(){
-		let currentElem = carsList[$(this).parent().parent().attr('data-index')];
+		let currentElem = carsList[$(this).parent().parent().parent().attr('data-index')];
 		$(this).fadeOut();
 		$('.getCar-wrapper .current-wrapper .nothing-used').css('display','none').removeClass('active');
 		$('.getCar-wrapper .current-wrapper .geo-added').fadeIn(300).css('display','flex').addClass('active');
@@ -1182,6 +1182,7 @@ function refreshGetCar()
 			$('.getCar-wrapper .current-wrapper .geo-added').css('display','none');
 			$('.getCar-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
 		}, 500);
+		console.log(currentElem.number);
 		mp.trigger('PhoneSendGeoCar', currentElem.number);
 	});
 	$('.getCar-wrapper .button-wrapper .key').on('click',function(){
@@ -1192,16 +1193,17 @@ function refreshGetCar()
 	$('.getCar-wrapper .button-wrapper .parked').on('click',function(){
 		if(!$(this).hasClass('disabled'))
 		{
-			let currentElem = carsList[$(this).parent().parent().attr('data-index')];
+			let currentElem = carsList[$(this).parent().parent().parent().attr('data-index')];
 			$(this).fadeOut();
 			let currentMessage = $('.getCar-wrapper .current-wrapper .geo-added').text(),
-				parkedMessage = `<span style="text-transform:capitalize;margin-right:5px;">${carsList[$(this).parent().parent().attr('data-index')].name}</span> выгнан из парковки`;
+				parkedMessage = `<span style="text-transform:capitalize;margin-right:5px;">${currentElem.name}</span> выгнан из парковки`;
 			$('.getCar-wrapper .current-wrapper .nothing-used').css('display','none').removeClass('active');
 			$('.getCar-wrapper .current-wrapper .geo-added').text('').append(parkedMessage).fadeIn(300).css('display','flex').addClass('active');
 			saveTimeout = setTimeout(function(){
 				$('.getCar-wrapper .current-wrapper .geo-added').css('display','none').text(currentMessage);
 				$('.getCar-wrapper .current-wrapper .nothing-used').fadeIn(500).css('display','flex').addClass('active');
 			}, 500);
+			console.log(currentElem.number);
 			mp.trigger('PhoneSendParkingCar', currentElem.number);
 		}
 	});
