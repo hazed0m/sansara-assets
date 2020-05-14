@@ -145,9 +145,15 @@ $('#buy').on('click',function(){
 $('.exit-but').on('click',function(){
 	mp.trigger("shopExit");
 });
-function pushShopList(element, shoptype, ammocount)
+function pushShopList(element, shoptype, ammocount, artefactCount)
 {
 	shopType = shoptype;
+	if(shopType.toLowerCase() == 'illegal')
+	{		
+		$('.illegal-wrap').fadeIn();		
+		$('.container').css('border-top-right-radius','0px')
+		pushIllegalShop(ammocount,artefactCount)
+	}
 	if(shopType.toLowerCase() == 'ammo')
 	{
 		ammoCount = JSON.parse(ammocount);
@@ -287,7 +293,6 @@ function shopListRefresh()
 			}			
 			if(item.name.toLowerCase() == 'радиостанция')
 			{
-				console.log(item.name);
 				currentImg = 'walktalk';
 				path = 'inventory';
 			}
@@ -351,7 +356,6 @@ function shopListInitialize()
 			}
 			else
 			{
-				console.log(currentIndex);	
 				if(currentElem.type == 'Ammo')
 				{		
 					currentElem.count = 0;
@@ -572,10 +576,9 @@ function fadeIn()
 {	
 	$('.container').fadeIn();
 }
-function pushIllegalShop(waveList,artefactCount)
+function pushIllegalShop(wavelist,artefactCount)
 {
-	$('.illegal-wrap').fadeIn();
-	$('.container').css('border-top-right-radius','0px')
+	let waveList = wavelist.split('@');;
 	if(waveList != undefined)
 	{
 		$('.info-item-wrap .dropdown-list').empty();

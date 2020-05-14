@@ -724,6 +724,10 @@
 {
 	background:#00aeef!important;
 } */
+/* iframe .ytp-expand-pause-overlay .ytp-pause-overlay
+{
+	display: none!important;
+} */
 .news-item .image-block,
 .news-fullscreen .video-block,
 .news-fullscreen .image-block
