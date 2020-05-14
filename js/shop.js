@@ -150,6 +150,7 @@ function pushShopList(element, shoptype, ammocount, artefactCount)
 	shopType = shoptype;
 	if(shopType.toLowerCase() == 'illegal')
 	{		
+		console.log('illegal');
 		$('.illegal-wrap').fadeIn();		
 		$('.container').css('border-top-right-radius','0px')
 		pushIllegalShop(ammocount,artefactCount)
@@ -578,7 +579,8 @@ function fadeIn()
 }
 function pushIllegalShop(wavelist,artefactCount)
 {
-	let waveList = wavelist.split('@');;
+	console.log('waveList:',wavelist,artefactCount);
+	let waveList = wavelist.split('@');
 	if(waveList != undefined)
 	{
 		$('.info-item-wrap .dropdown-list').empty();
