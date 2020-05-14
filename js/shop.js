@@ -622,6 +622,8 @@ function pushIllegalShop(wavelist,artefactCount)
 					'transform':'rotate(180deg)'
 				});
 				$(this).addClass('opened');
+				$(this).css('border-bottom-left-radius','0');
+				$(this).css('border-bottom-right-radius','0');
 			}
 			else
 			{
@@ -630,6 +632,10 @@ function pushIllegalShop(wavelist,artefactCount)
 					'transform':'rotate(0deg)'
 				});
 				$(this).removeClass('opened');
+				setTimeout(() => {
+					$(this).css('border-bottom-left-radius','15px');
+					$(this).css('border-bottom-right-radius','15px');
+				},450);
 			}
 		});
 		$('.dropdown-list .dropdown-item').on('click',function(){
