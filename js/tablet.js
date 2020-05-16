@@ -1610,6 +1610,7 @@ function fancyInit()
 		window.player = player;
 	});
 }
+let newsList = [];
 function getNews(currentPage)
 {
 	$('.news-wrapper .newswrap iframe')[0].contentWindow.postMessage({'currentPage': currentPage},'*');

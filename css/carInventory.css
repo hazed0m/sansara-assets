@@ -83,7 +83,7 @@ body {
  font-size: 1.2em;
 }
 .inventory {
-	display: none;
+	display: flex;
 	height: 723px;
 	width: 1516px;
 	position: fixed;
