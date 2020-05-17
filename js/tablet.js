@@ -1561,10 +1561,17 @@ function initNewsAgency()
 			</div>`;
 		if(name.length > 0)
 		{
-			$(this).parent().parent().find('input').val('');
-			$('.employee-list').append(template);
-			initEmployeeItem();
-			mp.trigger('appendEmployee',name);
+			if(!$(this).hasClass('disabled'))
+			{
+				$(this).parent().parent().find('input').val('');
+				// $('.employee-list').append(template);
+				// initEmployeeItem();
+				$(this).addClass('disabled');
+				setTimeout(() => {
+					$(this).removeClass('disabled');
+				},500);
+				mp.trigger('appendEmployee',newsObj.agencyId,name);
+			}
 		}
 	});	
 }
@@ -1731,13 +1738,16 @@ function checkNews(obj)
 		$('.button#publishNews').addClass('disabled');
 	}
 }
-function pushNewsAgency(id,name,list)
+let agencyNameList = [];
+function pushNewsAgency(id,nameList,employeeList)
 {
 	newsObj.agencyId = id;
+	agencyNameList = nameList;
 	newsObj.date = newsDate;
 	$('.main-wrapper .newsAgency').fadeIn();
-	$('.newsAgency-wrapper .title#agency').text(name);
-	$(list).each(function(index,item){
+	$('.newsAgency-wrapper .title#agency').text(nameList[id-1]);
+	$('.employee-list').empty();
+	$(employeeList).each(function(index,item){
 		let template = `
 			<div class="employee-item">
 				<div class="employee-name">${item}</div>
@@ -1752,8 +1762,12 @@ function pushNewsAgency(id,name,list)
 function initEmployeeItem()
 {	
 	$('.newsAgency-wrapper .employee-wrapper .button-wrapper .button#sackEmployee').on('click',function(){
-		let name = $(this).parent().parent().find('.employee-name').text();
-	    $(this).parent().parent().remove();
-		mp.trigger('sackEmployee',name);
+		if(!$(this).hasClass('disabled'))
+		{
+			let name = $(this).parent().parent().find('.employee-name').text();
+			$(this).parent().parent().remove();
+			$(this).addClass('disabled');
+			mp.trigger('sackEmployee',newsObj.agencyId,name);
+		}
 	});
 }
