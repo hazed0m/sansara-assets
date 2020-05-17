@@ -90,7 +90,7 @@ let employeeOnline = JSON.stringify([
     {"FullName":'Дмитрий Иванов',"Online":false},
     {"FullName":'Лейсан Кастро',"Online":true}
 ]);
-function pushNotebook(employeeOnline,admin = false,date)
+function pushNotebook(employeeOnline,admin = false,date,wavelist)
 {
     if(typeof date != undefined)
     {   
@@ -104,7 +104,8 @@ function pushNotebook(employeeOnline,admin = false,date)
     {
         if(admin == 'admin')
         {
-            $('.container .main-wrapper .recruting-menu').fadeIn();
+            $('.container .main-wrapper .recruting-menu, .container .main-wrapper .wave-menu').fadeIn();
+            waveInit(wavelist);
         }
         $('.container .main-wrapper .recruting-menu input').keyup(function(){
             this.value = this.value.replace(/[-\.;":',/<>@?!№%*&^#$()_+=|{}a-zA-Z0-9]/g, '');
@@ -155,6 +156,61 @@ $('.container .business-wrapper .search-block #searchDNA').on('click',function()
         mp.trigger('searchDNA',field);
     }
 });
+function waveInit(wavelist)
+{    
+    let waveList = JSON.parse(wavelist);
+    $('.main-wrapper .wave-menu .wave-list').empty();
+    $(waveList).each(function(index,item){
+        let template =`
+            <div class="wave-item">
+                <div class="wave-number">
+                    Волна № 
+                    <span>${index+8}</span>
+                </div>
+                <div class="wave-pin">
+                    Пинкод: 
+                    <span>${item}</span>
+                    <div class="edit-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                </div>
+                <div class="changable-input">
+                    <input type="number" max="9999">
+                    <div class="button disabled" id="changePin">
+                        ОК
+                    </div>
+                </div>
+            </div>`
+        $('.main-wrapper .wave-menu .wave-list').append(template);
+    });
+    $('.changable-input input').keyup(function() {
+        if (this.value.length > 4) {
+            this.value = this.value.slice(0,4); 
+        }
+        else if(this.value.length == 4)
+        {				
+            $(this).next().removeClass('disabled');
+        }
+        else
+        {
+            $(this).next().addClass('disabled');
+        }
+    });
+    $('.container .main-wrapper .wave-menu .wave-item .wave-pin').on('click',function(){                    
+        $(this).prev().val('');
+        $(this).parent().find('.changable-input').fadeIn().css('display','flex');
+    });
+    $('.container .main-wrapper .wave-menu .wave-item #changePin').on('click',function(){
+        let pin = $(this).prev().val(),
+            wave = parseInt($(this).parent().parent().find('.wave-number span').text());
+        if(!$(this).hasClass('disabled'))
+        {
+            console.log(pin,wave);
+            $(this).parent().fadeOut();
+            mp.trigger('changePin',wave,pin);
+        }
+    });
+}
 function initHandbook()
 {
     let handbookList = [

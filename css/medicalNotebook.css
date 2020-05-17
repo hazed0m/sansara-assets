@@ -70,6 +70,100 @@
     display: flex;
     justify-content: space-between;
 }
+.container .main-wrapper .wave-menu
+{
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform:translate(-50%,-50%);
+    width:300px;
+    height:130px;
+    background:#fff;
+    border:1px solid #000;
+    padding:10px;
+    border-radius:5px;
+    display: none;
+}
+.container .main-wrapper .wave-menu .changable-input
+{
+    justify-content: center;
+    align-items: center;
+    display: none;
+    position: absolute;
+    right:12px;
+}
+.container .main-wrapper .wave-menu .changable-input input
+{
+    width:42px;
+    height:20px;
+    text-align: center;
+    border:none;
+    font-size:16px;
+    border-bottom:1px solid #000;
+}
+.container .main-wrapper .wave-menu .changable-input .button
+{
+    margin:0;
+    width:30px;
+    height:20px;
+    background: #0f1636;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 0px;
+    transition: 0.2s;
+}
+.container .main-wrapper .recruting-menu .recruting-title,
+.container .main-wrapper .licence-menu .licence-title,
+.container .main-wrapper .wave-menu .wave-title
+{
+    font-size:20px;
+    text-align: center;
+}
+.container .main-wrapper .wave-menu .wave-title
+{
+    margin-bottom:5px;
+}
+.container .main-wrapper .wave-menu .wave-list
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container .main-wrapper .wave-menu .wave-item
+{
+    width:75%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin:5px 0;
+}
+.container .main-wrapper .wave-menu .wave-item .wave-number,
+.container .main-wrapper .wave-menu .wave-item .wave-pin
+{
+    text-align: left;
+    min-width:110px;
+    color:#000;
+    display: flex;
+    align-items: center;
+}
+.container .main-wrapper .wave-menu .wave-item .wave-pin
+{
+    cursor: pointer;
+}
+.container .main-wrapper .wave-menu .wave-item .wave-pin .edit-icon
+{
+    margin-left:10px;
+    margin-bottom:2px;
+    display: none;
+}
+.container .main-wrapper .wave-menu .wave-item .wave-pin:hover .edit-icon
+{
+    display: flex;
+}
 .container .wrapper .bottom-panel .left-wrapper .menu-but
 {
     width:60px;
