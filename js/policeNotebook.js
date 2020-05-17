@@ -636,6 +636,15 @@ function personInit(element)
     let item = JSON.parse(element);
     if(item !== undefined)
     {
+        for (key in item)
+        {
+            if(item[key] == null || item[key] == undefined)
+            {
+                console.log(item[key]);
+                item[key] = '';
+            }
+        }
+        console.log(item);
         if(item.FullName != $('.container .business-wrapper .content-block .name').text())
         {
             let carItems = ``,
