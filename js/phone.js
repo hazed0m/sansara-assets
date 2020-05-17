@@ -1149,7 +1149,7 @@ function refreshGetCar()
 	$('.key-wrap #accept').on('click',function(){
 		if(!$(this).hasClass('disabled'))
 		{
-			let currentName = $('.key-wrap input').val();
+			let currentName = $(this).parent().parent().find('input').val();
 			
 			if(currentName.length != 0)
 			{
@@ -1186,9 +1186,9 @@ function refreshGetCar()
 		mp.trigger('PhoneSendGeoCar', currentElem.number);
 	});
 	$('.getCar-wrapper .button-wrapper .key').on('click',function(){
-		$('.key-wrap').fadeIn().css('display','flex');
-		$('.key-wrap input').val('');
-		$('.key-wrap #accept').removeClass('disabled');
+		$(this).parent().find('.key-wrap').fadeIn().css('display','flex');
+		$(this).parent().find('.key-wrap input').val('');
+		$(this).parent().find('.key-wrap #accept').removeClass('disabled');
 	});
 	$('.getCar-wrapper .button-wrapper .parked').on('click',function(){
 		if(!$(this).hasClass('disabled'))
