@@ -1178,10 +1178,6 @@ function refreshInventory(currentIterator)
 				}
 				itemImg = `<img src="${currentImg}" class="itemImg dropdown-toggle">`;
 			}
-			if(item.name.toLowerCase() == 'радиостанция')
-			{
-				itemImg = `<img src="images/inventory/walktalk.png" class="itemImg dropdown-toggle">`;
-			}
 			if(item.type == 'Instrument')
 			{
 				let imgName = item.name.toLowerCase().replace(/\s+/g,''),
@@ -1218,6 +1214,11 @@ function refreshInventory(currentIterator)
 				{
 					giveBut = '';
 				}
+			}			
+			if(item.name.toLowerCase().includes('радиостанция'))
+			{
+				listBut = '';
+				itemImg = `<img src="images/inventory/walktalk.png" class="itemImg dropdown-toggle">`;
 			}
 			else
 			{

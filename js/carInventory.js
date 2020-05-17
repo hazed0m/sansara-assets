@@ -745,10 +745,6 @@ function refreshInventory(currentIterator)
 				// console.log(itemImg);	
 			}
 		}	
-		if(item.name == 'Радиостанция')
-		{
-			itemImg = `<img src="images/inventory/walktalk.png" class="itemImg dropdown-toggle">`;
-		}	
 		if(item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Medical_Preparation')
 		{
 			console.log(item.name);
@@ -773,6 +769,10 @@ function refreshInventory(currentIterator)
 					itemImg = `<img src="images/${currentIter}/objects/${currentIndex}.png" class="itemImg dropdown-toggle">`;
 				}
 			}
+		}
+		if(item.name.toLowerCase().includes('радиостанция'))
+		{
+			itemImg = `<img src="images/inventory/walktalk.png" class="itemImg dropdown-toggle">`;
 		}
 		itemTemplate = 
 		`<li ${currentIterator}-id="${index}">

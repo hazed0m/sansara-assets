@@ -6,3 +6,7 @@ $('.button-wrapper .button').on('click',function(){
         mp.trigger('deathScreen',id);
     }
 });
+function pushDeathReason(text)
+{
+    $('.container .pre-title').text(text);
+}
