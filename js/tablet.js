@@ -1630,7 +1630,10 @@ function initNews(currentNews)
 	$(currentNews).each(function(index,item){
 		let template = `
 			<div class="news-item" data-image="${item.imageLink}" data-video="${item.videoLink}">
-			<div class="news-author">${item.author}</div>
+			<div class="news-author">
+				<div class="agency">${item.agencyName}</div>
+				<div class="author">${item.author}</div>
+			</div>
 			<div class="news-title">${item.title}</div>
 			<div class="image-block">
 				<img src="${item.imageLink == '' ? `http://i3.ytimg.com/vi/${item.videoLink}/hqdefault.jpg` : item.imageLink}" alt="">
@@ -1706,6 +1709,7 @@ $('.newsAgency-wrapper #publishNews').on('click',function(){
 	if(!$(this).hasClass('disabled'))
 	{
 		newsObj.author = newsmakerName;
+		newsObj.agencyName = $('.newsAgency-wrapper .title#agency').text();
 		console.log(newsObj);
 		$('.newsAgency-wrapper .workscreen iframe')[0].contentWindow.postMessage({'newsObj': newsObj},'*');
 		window.addEventListener('message', function(event) {       
@@ -1739,13 +1743,12 @@ function checkNews(obj)
 	}
 }
 let agencyNameList = [];
-function pushNewsAgency(id,nameList,employeeList)
+function pushNewsAgency(id,name,employeeList)
 {
 	newsObj.agencyId = id;
-	agencyNameList = nameList;
 	newsObj.date = newsDate;
 	$('.main-wrapper .newsAgency').fadeIn();
-	$('.newsAgency-wrapper .title#agency').text(nameList[id-1]);
+	$('.newsAgency-wrapper .title#agency').text(name);
 	$('.employee-list').empty();
 	$(employeeList).each(function(index,item){
 		let template = `
