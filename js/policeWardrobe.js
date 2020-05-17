@@ -256,7 +256,8 @@ let wardrobeMaleSetList = [
             ]
         }
     ],
-    wardrobeMaleClothesList = [				
+    wardrobeMaleClothesList = [			
+        'Радиостанция служебная',	
         'Низ м брюки ПД',				
         'Низ м брюки 2 ПД 1',	
         'Аксессуар м значок ПД',
@@ -528,6 +529,7 @@ let wardrobeMaleSetList = [
         }
     ],
     wardrobeFemaleClothesList = [		
+        'Радиостанция служебная',	
         'Низ ж брюки ПД',					
         'Низ ж юбка ПД',					
         'Низ ж брюки 2 ПД',	
@@ -545,13 +547,15 @@ let wardrobeMaleSetList = [
         'Низ',
         'Аксессуар',
         'Шляпа',
-        'Бронежилет'
+        'Бронежилет',
+        'Радиостанция'
     ],
     wardrobeNamesTranslated = [
         'Bottom',
         'Accessories',
         'Hat',
-        'Armor'
+        'Armor',
+        'Items'
     ];
 $('.container .wardrobe-wrapper .wardrobe-category-title').on('click',function(){
     if(!$(this).next().is(':visible'))
@@ -592,10 +596,15 @@ function pushWardrobe(sex)
         $(wardrobeNames).each(function(indexEl,classEl){
             if(item.includes(classEl))
             {
+                let img = `images/person/${wardrobeNamesTranslated[indexEl]}`;
+                if(item.includes('Радиостанция'))
+                {
+                    img = `images/inventory/walktalk`;
+                }
                 let template = `
                     <div class="wardrobe-item" id="${sex}" data-index="${index}" data-list="wardrobe${sex}ClothesList">
                         <div class="wardrobe-name">${item}</div>
-                        <img src="images/person/${wardrobeNamesTranslated[indexEl]}.png" alt="">
+                        <img src="${img}.png" alt="">
                     </div>`;
                 $(`.container .wardrobe-wrapper #${wardrobeNamesTranslated[indexEl]}`).append(template);
             }
@@ -638,10 +647,8 @@ function initWardrobe()
                     element = eval($(item).attr('data-list'))[$(item).attr('data-index')];
                     console.log('Set',element);
                 }
-                console.log(element);
                 activeList.push(element);
             });      
-            console.log(activeList);
             $('.button#use').addClass('disabled');
             $('.wardrobe-wrapper .active').removeClass('active');
             $('.container .wardrobe-category-title').next().slideUp();

@@ -67,6 +67,7 @@ let wardrobeMaleSetList = [
     wardrobeMaleClothesList = [				
         // 'Торс м мед перчатки',
         // 'Торс м мед перчатки 5',
+        'Радиостанция служебная',	
         'Аксессуар м стетоскоп',
         'Аксессуар м бейдж',
         'Очки м респератор 26',
@@ -209,6 +210,7 @@ let wardrobeMaleSetList = [
         // 'Торс ж мед перчатки 15',
         // 'Торс ж мед перчатки 16',
         // 'Торс ж мед перчатки 17',
+        'Радиостанция служебная',	
         'Аксессуар ж стетоскоп',
         'Аксессуар ж бейдж',
         'Очки ж респератор 28',
@@ -225,7 +227,8 @@ let wardrobeMaleSetList = [
         'Шляпа',
         'Бронежилет',
         'Значки',
-        'Очки'
+        'Очки',
+        'Радиостанция'
     ],
     wardrobeNamesTranslated = [
         'Top',
@@ -234,7 +237,8 @@ let wardrobeMaleSetList = [
         'Hat',
         'Armor',
         'Badges',
-        'Glasses'
+        'Glasses',
+        'Items'
     ];
 $('.container .wardrobe-wrapper .wardrobe-category-title').on('click',function(){
     if(!$(this).next().is(':visible'))
@@ -275,10 +279,15 @@ function pushWardrobe(sex)
         $(wardrobeNames).each(function(indexEl,classEl){
             if(item.includes(classEl))
             {
+                let img = `images/person/${wardrobeNamesTranslated[indexEl]}`;
+                if(item.includes('Радиостанция'))
+                {
+                    img = `images/inventory/walktalk`;
+                }
                 let template = `
                     <div class="wardrobe-item" id="${sex}" data-index="${index}" data-list="wardrobe${sex}ClothesList">
                         <div class="wardrobe-name">${item}</div>
-                        <img src="images/person/${wardrobeNamesTranslated[indexEl]}.png" alt="">
+                        <img src="${img}.png" alt="">
                     </div>`;
                 $(`.container .wardrobe-wrapper #${wardrobeNamesTranslated[indexEl]}`).append(template);
             }
@@ -321,10 +330,8 @@ function initWardrobe()
                     element = eval($(item).attr('data-list'))[$(item).attr('data-index')];
                     console.log('Set',element);
                 }
-                console.log(element);
                 activeList.push(element);
             });      
-            console.log(activeList);
             $('.button#use').addClass('disabled');
             $('.wardrobe-wrapper .active').removeClass('active');
             $('.container .wardrobe-category-title').next().slideUp();
