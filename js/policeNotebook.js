@@ -626,6 +626,7 @@ function waveInit(wavelist)
         if(!$(this).hasClass('disabled'))
         {
             console.log(pin,wave);
+            $(this).parent().parent().find('.wave-pin span').text(pin);
             $(this).parent().fadeOut();
             mp.trigger('changePin',wave,pin);
         }

@@ -198,6 +198,7 @@ function fineInit(finesList)
 				cardVal -= count;		
 				console.log(car,fine,count);
 				refreshCashpoint();
+				$(this).remove();
 				mp.trigger('payFine',car,fine,count,cardVal);
 			}
 			else

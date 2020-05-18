@@ -4,20 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/plyr.css">
     <link rel="stylesheet" href="css/video.css">
 </head>
 <body>
     <div class="container">
-        <video id="sansara_promo" src="https://server.sansararp.com/sansara_promo.mp4" width="100%" height="100%" autoplay></video>
+        <div id="player" data-plyr-provider="youtube" 
+            data-plyr-embed-id="Krg9aqbGvAw">
+        </div>
     </div>
     <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/plyr.js"></script>
     <script>
-        let promo = document.getElementById("sansara_promo");
-        promo.controls = false;
-        promo.onended = function() {
-            console.log("The video has ended");
-            mp.trigger('promoVideoEnded');
-        };
+            const player = new Plyr('#player', {
+                controls: [ 
+                        ],
+                autoplay: true  		
+            });
+            window.player = player;
+            player.on('pause', function() {
+                player.play();
+            });
+            player.on('ended',function() {
+                console.log("The video has ended");
+                player.pause();
+                mp.trigger('promoVideoEnded');
+            });
     </script>
 </body>
 </html>

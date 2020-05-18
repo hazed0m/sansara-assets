@@ -1656,7 +1656,7 @@ function initNews(currentNews)
 			video = currentElem.attr('data-video')
 		if(video != '')
 		{			
-			$('a.video-block').css('display','flex');
+			$('a.video-block').attr('data-id',video).attr('href',`https://www.youtube.com/embed/${video}`).css('display','flex');
 			$("[data-fancybox]").fancybox({
 				parentEl: ".container"
 			});
