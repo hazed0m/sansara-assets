@@ -4,6 +4,16 @@ $('.button#start').on('click',function(){
 });
 let questionCounter = 0,
     currentQuest = ``;
+function shuffle(arr){
+    var j, temp;
+    for(var i = arr.length - 1; i > 0; i--){
+        j = Math.floor(Math.random()*(i + 1));
+        temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+    }
+    return arr;
+}
 function pushQuestion(quest,ans1,ans2,ans3,truth)
 {
     currentQuest = quest;
@@ -14,6 +24,7 @@ function pushQuestion(quest,ans1,ans2,ans3,truth)
         { 'answer':ans2, 'status': parseInt(truth) == 2 ? true : false },
         { 'answer':ans3, 'status': parseInt(truth) == 3 ? true : false }
     ];
+    answerArr = shuffle(answerArr);
     $('.qa-wrapper .qa-question').text(quest);
     $('.qa-wrapper .question-count').text(questionCounter);    
     $('.qa-wrapper .qa-wrap').empty();      

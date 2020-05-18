@@ -1149,8 +1149,7 @@ function refreshGetCar()
 	$('.key-wrap #accept').on('click',function(){
 		if(!$(this).hasClass('disabled'))
 		{
-			let currentName = $(this).parent().parent().find('input').val();
-			
+			let currentName = $(this).parent().parent().find('input').val();		
 			if(currentName.length != 0)
 			{
 				let currentNumber = $(this).parent().parent().parent().parent().parent().find('.car-number').text();
