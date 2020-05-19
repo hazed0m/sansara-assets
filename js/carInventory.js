@@ -273,8 +273,14 @@ function notificationShow(notification)
 function pushInventory(inventory,luggage,maxWeightInv,maxWeightLug,curAvailable)
 {
 	luggageAvailable = curAvailable;
+	console.log('maxWeightLug = ');
+	console.log(maxWeightLug);
+	console.log('maxWeightInv = ');
+	console.log(maxWeightInv);
 	maxWeightInventory = maxWeightInv;
 	maxWeightLuggage = maxWeightLug;
+	$('.right-inventory .weight .max').text(maxWeightInventory);
+	$('.left-inventory .max').text(maxWeightLuggage);
 	inventoryList = [];
 	// $('.debugger').empty().append(
 	// 	`<p>${'put'}</p>
@@ -594,20 +600,18 @@ function toogleTab(currentTab)
 }
 function countWeight()
 {
-		currentWeightLug = 0,
-		currentWeightInv = 0;
+	currentWeightLug = 0,
+	currentWeightInv = 0;
 	$(luggageList).each(function(index,item){
 		currentWeightLug += item.weight * item.count;		
 	});
 	currentWeightLug = currentWeightLug.toFixed(2);
 	$('.left-inventory .weight .current').text(currentWeightLug);
-	$('.left-inventory .max').text(maxWeightLuggage);
 	$(inventoryList).each(function(index,item){
 		currentWeightInv += item.weight * item.count;		
 	});		
 	currentWeightInv = currentWeightInv.toFixed(2);
 	$('.right-inventory .weight .current').text(currentWeightInv);
-	$('.right-inventory .weight .max').text(maxWeightInventory);
 };
 function refreshImages(currentClass)
 {

@@ -34,5 +34,5 @@ function pushSellApartament(status, numberOf, priceOf = 0)
 		$('.sell-block, #changeLock, #closeSell, #giveKey, #openStorage').css('display','none');
 	}
 	$('.title-numb').text(numberOf);
-	$('.sell-info .price').text(priceOf);
+	$('.sell-info .price').text(priceOf/2);
 };
