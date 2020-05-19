@@ -1088,14 +1088,14 @@ let newsmakerName = ``,
 function adsSendData(data){
 	let currentObj = JSON.parse(data),
 		sendObj = {};
-	newsmakerName = currentObj[0].name;
-	newsDate = currentObj[0].date;
+	newsmakerName = currentObj.name;
+	newsDate = currentObj.date;
 	sendObj = {
-		name:   currentObj[0].name,
-		date:   currentObj[0].date,
-		number: currentObj[0].number,
-		admin:  currentObj[0].admin,
-		timer:  currentObj[0].canWrite 
+		name:   currentObj.name,
+		date:   currentObj.date,
+		number: currentObj.number,
+		admin:  currentObj.admin,
+		timer:  currentObj.canWrite 
 	};
 	// console.log(sendObj);
 	$('#ads-frame')[0].contentWindow.postMessage({'Ads': sendObj},'*');

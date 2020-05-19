@@ -27,7 +27,7 @@
             });
             player.on('ended',function() {
                 console.log("The video has ended");
-                player.pause();
+                player.stop();
                 mp.trigger('promoVideoEnded');
             });
     </script>
