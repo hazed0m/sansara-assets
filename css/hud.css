@@ -35,7 +35,7 @@ body {
 .geo-wrapper::after
 {
     content:'';
-    width:14px;
+    width:15px;
     height:20px;
     position: absolute;
     top:50%;
