@@ -296,6 +296,19 @@ function shopListRefresh()
 			{
 				currentImg = 'walktalk';
 				path = 'inventory';
+				legalId = `id="illegal"`;
+			}
+			if(item.name.toLowerCase() == 'стяжка')
+			{
+				currentImg = 'objects/0';
+				path = 'inventory';
+				legalId = `id="illegal"`;
+			}
+			if(item.name.toLowerCase() == 'мешок')
+			{
+				currentImg = 'objects/1';
+				path = 'inventory';
+				legalId = `id="illegal"`;
 			}
 			template = `
 				<div class="shop-item" ${legalId}>
@@ -411,9 +424,21 @@ function basketListRefresh()
 			currentImg = item.type;
 			if(item.name.toLowerCase() == 'радиостанция')
 			{
-				console.log(item.name);
 				currentImg = 'walktalk';
 				path = 'inventory';
+				legalId = `id="illegal"`;
+			}
+			if(item.name.toLowerCase() == 'стяжка')
+			{
+				currentImg = 'objects/0';
+				path = 'inventory';
+				legalId = `id="illegal"`;
+			}
+			if(item.name.toLowerCase() == 'мешок')
+			{
+				currentImg = 'objects/1';
+				path = 'inventory';
+				legalId = `id="illegal"`;
 			}
 		}
 		let template = ``;

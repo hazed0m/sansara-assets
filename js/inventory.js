@@ -1134,18 +1134,19 @@ function refreshInventory(currentIterator)
 			if(item.type == 'Illegal_Object' || item.type == 'LegalObject' || item.type == 'Medical_Preparation')
 			{
 				// console.log(item.name);
-				if(item.name == 'стяжка' || item.name == 'пакет' || item.name == 'запчасти' || item.name == 'бинт' || item.name == 'адреналин')
+				if(item.name.toLowerCase() == 'индейский артефакт' || item.name.toLowerCase() == 'стяжка' || item.name.toLowerCase() == 'мешок' || item.name.toLowerCase() == 'запчасти' || item.name.toLowerCase() == 'бинт' || item.name.toLowerCase() == 'адреналин')
 				{
 					let objectImg = [
 						'стяжка',
-						'пакет',
+						'мешок',
 						'запчасти',
 						'бинт',
-						'адреналин'
+						'адреналин',
+						'индейский артефакт'
 					];
 					let currentIndex = -1;
 					$(objectImg).each(function(indexEl,itemEl){
-						if(itemEl == item.name)
+						if(itemEl == item.name.toLowerCase())
 						{
 							currentIndex = indexEl;
 						}
@@ -1158,7 +1159,7 @@ function refreshInventory(currentIterator)
 			}
 			if(item.type == 'Medical_Preparation' || item.type == 'Eat' || item.type == 'Drink' || item.type == 'Alcohol')
 			{
-				if(item.name != 'адреналин')
+				if(item.name.toLowerCase() != 'адреналин')
 				{
 					listBut = '<li id="use">Применить</li>';
 				}
