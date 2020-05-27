@@ -179,11 +179,6 @@
     justify-content: space-around;
     align-content: center;
 }
-.wrapper .property-wrapper .vip-wrap 
-{
-    display: flex;
-    
-}
 .wrapper .property-wrapper .vip-wrap .title
 {
     font-size:12px;

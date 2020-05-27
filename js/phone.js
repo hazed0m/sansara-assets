@@ -73,11 +73,11 @@ function pushContactList(item,carslist,callslist)
 		if(typeof item.name != "undefined" && typeof item.parked != "undefined" && typeof item.number != "undefined")
 		{
 			let obj = {
-				'name': item.name,
-				'parked': item.parked,
-				'number': item.number,
-				'status': item.status,
-				'proxy': item.proxy
+				'name': item.name != null ? item.name : '',
+				'parked': item.parked != null ? item.parked : '',
+				'number': item.number != null ? item.number : '',
+				'status': item.status != null ? item.status : '',
+				'proxy': item.proxy != null ? item.proxy : ''
 			};
 			carsList.push(obj);
 		}
