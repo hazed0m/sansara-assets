@@ -45,12 +45,12 @@ $('.button#hover').on('click',function(){
     if($('.hud-footer__wrap').is(':visible'))
     {
         $(this).css('bottom','-16px');
-        $('.hud-footer__wrap, .geo-wrapper, .buttons').slideUp();
+        $('.hud-footer__wrap, .buttons').slideUp();
         $(this).find('i').css('transform','rotate(180deg)');
     }
     else
     {
-        $('.hud-footer__wrap, .geo-wrapper, .buttons').slideDown();
+        $('.hud-footer__wrap, .buttons').slideDown();
         $(this).find('i').css('transform','rotate(0deg)');
         $(this).css('bottom','-17px');
     }

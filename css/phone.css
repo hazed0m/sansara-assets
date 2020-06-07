@@ -613,25 +613,25 @@
 {
 	background:url(../img/autoschool/car.png) no-repeat;
 	background-size:25%;
-	background-position: 50%;
+	background-position: 40%;
 }
 .getCar-wrapper .wrapper .number[data-type="moto"]
 {
 	background:url(../img/autoschool/moto.png) no-repeat;
 	background-size:20%;
-	background-position: 50%;
+	background-position: 40%;
 }
 .getCar-wrapper .wrapper .number[data-type="truck"]
 {
 	background:url(../img/autoschool/truck.png) no-repeat;
 	background-size:20%;
-	background-position: 50%;
+	background-position: 40%;
 }
 .getCar-wrapper .wrapper .number[data-type="trailer"]
 {
 	background:url(../img/autoschool/trailer.png) no-repeat;
 	background-size:20%;
-	background-position: 50%;
+	background-position: 40%;
 }
 .getCar-wrapper .wrapper .number[data-type="boat"]
 {
