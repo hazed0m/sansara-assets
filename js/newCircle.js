@@ -249,8 +249,9 @@ $('#giveMoney').on('click',function(){
 		if($(this).attr('done') == 'undone')
 		{
 			col = $(this).parent().parent().find('input').val();
-			if(col <= maxMoney && col != 0)
+			if(col <= maxMoney && col > 0)
 			{
+                console.log(col);
 				$('.col-wrapper').fadeOut();
 				$(this).attr('done','done');
 				// console.log($('.ok-button').attr('action'), col);
