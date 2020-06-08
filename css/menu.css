@@ -349,13 +349,29 @@ body {
     display: block;
     transition: 0.5s;
 }
-.animation-name {
+.animation-name,
+.anim-group-toogle {
     color: #ffffff;
     font-size: 20px;
     font-weight: 500;
     margin: 0 auto;
     cursor: pointer;
     padding: 15px;
+}
+.anim-group-toogle
+{
+    background: #36393f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border:1px solid #fff;
+}
+.anim-group
+{
+    display: none;    
+    border-left:1px solid #fff;
+    border-right:1px solid #fff;
+    border-bottom:1px solid #fff;
 }
 .animation-name:hover {
     box-shadow: 0 0 5px 1px rgba(251, 228, 1, 1);

@@ -213,8 +213,8 @@
             <transition name="custom-classes-transition"
                         enter-active-class="animated fadeIn"
                         leave-active-class="animated fadeOut">
-                <div class="animation-wrap" v-show="animateShow === true">
-                    <div class="animation-name" v-for="animation in animations" @click="animate(animation.dict, animation.name)">{{ animation.title }}</div>
+                <div class="animation-wrap animation-1" v-show="animateShow === true">
+                    <div class="animation-name" :data-group="animation.group" v-for="animation in animations" @click="animate(animation.dict, animation.name)">{{ animation.title }}</div>
                 </div>
             </transition>    
             <transition name="custom-classes-transition"
@@ -235,7 +235,7 @@
                         enter-active-class="animated fadeIn"
                         leave-active-class="animated fadeOut">
                 <div class="animation-wrap animation-2" v-show="animateSettingsShow === true">
-                    <div class="animation-name" v-for="(animation, index) in animations" @click="setFastAnim(index)">{{ animation.title }}</div>
+                    <div class="animation-name" :data-group="animation.group" v-for="(animation, index) in animations" @click="setFastAnim(index)">{{ animation.title }}</div>
                 </div>
             </transition>   
             <transition name="custom-classes-transition"
