@@ -205,14 +205,14 @@ let menu = new Vue({
         animations: [
             { title: 'Искать', dict: 'amb@prop_human_bum_bin@idle_b', name: 'idle_d', group:"Общее"},
             { title: 'Чинить наверху', dict: 'amb@prop_human_movie_bulb@base', name: 'base', group:"Общее"},
-            { title: 'Чинить', dict: 'amb@prop_human_movie_studio_light@base', name: 'base', group:"Общее"},
+            //{ title: 'Чинить', dict: 'amb@prop_human_movie_studio_light@base', name: 'base', group:"Общее"},
             { title: 'Подтягиваться', dict: 'amb@prop_human_muscle_chin_ups@male@base', name: 'base', group:"Общее"},
             { title: 'Рассматривать руки', dict: 'amb@prop_human_parking_meter@female@base', name: 'base_female', group:"Общее"},
             { title: 'Сесть на стул', dict: 'amb@prop_human_seat_chair_drink@male@generic@base', name: 'base', group:"Общее"},
             { title: 'Нога на ногу', dict: 'amb@prop_human_seat_chair_food@female@base', name: 'base', group:"Общее"},
             { title: 'Сесть, раздвинув ноги', dict: 'amb@prop_human_seat_chair_food@male@base', name: 'base', group:"Общее"},
             { title: 'Сидеть за компьютером', dict: 'amb@prop_human_seat_computer@male@base', name: 'base', group:"Общее"},
-            { title: 'Пить кофе', dict: 'amb@world_human_drinking@coffee@female@base', name: 'base', group:"Общее"},
+            //{ title: 'Пить кофе', dict: 'amb@world_human_drinking@coffee@female@base', name: 'base', group:"Общее"},
             { title: 'Окучивать грядки', dict: 'amb@world_human_gardener_plant@male@base', name: 'base', group:"Общее"},
             { title: 'Стоять, скрестив руки', dict: 'amb@world_human_golf_player@male@base', name: 'base', group:"Общее"},
             { title: 'Бить молотком', dict: 'amb@world_human_hammering@male@base', name: 'base', group:"Общее"},
@@ -221,7 +221,7 @@ let menu = new Vue({
             { title: 'Скромница', dict: 'amb@world_human_hang_out_street@female_hold_arm@base', name: 'base', group:"Общее"},
             { title: 'Стойка копа', dict: 'amb@world_human_hang_out_street@male_b@base', name: 'base', group:"Общее"},
             { title: 'Стойка 1', dict: 'amb@world_human_hang_out_street@male_c@base', name: 'base', group:"Общее"},
-            { title: 'Курить', dict: 'amb@world_human_hang_out_street@male_c@idle_a', name: 'idle_a', group:"Общее"},
+            //{ title: 'Курить', dict: 'amb@world_human_hang_out_street@male_c@idle_a', name: 'idle_a', group:"Общее"},
             { title: 'Бег на месте', dict: 'amb@world_human_jog_standing@male@base', name: 'base', group:"Общее"},
             { title: 'Уставший бег на месте', dict: 'amb@world_human_jog_standing@male@fitidle_a', name: 'idle_a', group:"Общее"},
             { title: 'Опереться о стену', dict: 'amb@world_human_leaning@female@coffee@base', name: 'base', group:"Общее"},
@@ -239,7 +239,7 @@ let menu = new Vue({
             { title: 'Говорить по телефону', dict: 'amb@world_human_stand_mobile@male@standing@call@base', name: 'base', group:"Общее"},
             { title: 'Апплодисменты', dict: 'amb@world_human_strip_watch_stand@male_a@idle_a', name: 'idle_a', group:"Общее"},
             { title: 'Танец', dict: 'amb@world_human_strip_watch_stand@male_b@base', name: 'base', group:"Общее"},
-            { title: 'Танец с пивом', dict: 'amb@world_human_strip_watch_stand@male_c@base', name: 'base', group:"Общее"},
+            //{ title: 'Танец с пивом', dict: 'amb@world_human_strip_watch_stand@male_c@base', name: 'base', group:"Общее"},
             { title: 'Сесть на песок', dict: 'amb@world_human_stupor@male@idle_a', name: 'idle_c', group:"Общее"},
             { title: 'Лечь на песок', dict: 'amb@world_human_stupor@male_looking_left@idle_a', name: 'idle_a', group:"Общее"},
             { title: 'Лечь на живот', dict: 'amb@world_human_sunbathe@female@front@idle_a', name: 'idle_c', group:"Общее"},
@@ -256,7 +256,7 @@ let menu = new Vue({
             { title: '2 $', dict: 'anim@mp_player_intcelebrationfemale@peace', name: 'peace', group:"Общее"},
             { title: 'Сарказм', dict: 'anim@mp_player_intcelebrationfemale@slow_clap', name: 'slow_clap', group:"Общее"},
         
-            { dict:"amb@code_human_in_bus_passenger_idles@male@sit@idle_a", name:"idle_a", title:"Сидеть покачиваясь", group:"Сидячие анимации"},
+            //{ dict:"amb@code_human_in_bus_passenger_idles@male@sit@idle_a", name:"idle_a", title:"Сидеть покачиваясь", group:"Сидячие анимации"},
             { dict:"amb@code_human_in_bus_passenger_idles@female@sit@base", name:"base", title:"Сидеть", group:"Сидячие анимации"},
             { dict:"amb@incar@male@patrol@base", name:"base", title:"Сидеть сложив руки", group:"Сидячие анимации"},
             { dict:"amb@lo_res_idles@", name:"prop_human_deckchair_female_lo_res_base", title:"Нога на ногу", group:"Сидячие анимации"},
@@ -277,7 +277,7 @@ let menu = new Vue({
             { dict:"anim@heists@prison_heistig_5_p1_rashkovsky_idle", name:"idle", title:"Плохое состояние", group:"Сидячие анимации"},
             { dict:"anim@heists@ornate_bank@hostages@ped_c@", name:"fail", title:"Заложник", group:"Сидячие анимации"},
         
-            { dict:"amb@lo_res_idles@", name:"world_human_bum_slumped_left_lo_res_base", title:"Лежать на левом боку", group:"Лежачие анимации:"},
+            //{ dict:"amb@lo_res_idles@", name:"world_human_bum_slumped_left_lo_res_base", title:"Лежать на левом боку", group:"Лежачие анимации:"},
             { dict:"amb@lo_res_idles@", name:"world_human_bum_slumped_right_lo_res_base", title:"Лежать на правом боку", group:"Лежачие анимации:"},
             { dict:"amb@lo_res_idles@", name:"world_human_sit_ups_lo_res_base", title:"Лежать на спине", group:"Лежачие анимации:"},
             { dict:"amb@world_human_bum_slumped@male@laying_on_right_side@base", name:"base", title:"Клубок", group:"Лежачие анимации:"},
@@ -294,7 +294,7 @@ let menu = new Vue({
             { dict:"anim@mini@yacht@bar@drink@four", name:"four_bartender", title:"Руки на столе", group:"Анимации у стенки:"},
             { dict:"amb@world_human_hammering@male@base", name:"base", title:"Стучать в дверь", group:"Анимации у стенки:"},
         
-            { dict:"amb@world_human_jog_standing@female@base", name:"base", title:"Пританцовывая", group:"Анимации танцев:"},
+            //{ dict:"amb@world_human_jog_standing@female@base", name:"base", title:"Пританцовывая", group:"Анимации танцев:"},
             { dict:"amb@world_human_jog_standing@female@idle_a", name:"idle_a", title:"Активно пританцовывая", group:"Анимации танцев:"},
             { dict:"amb@world_human_partying@female@partying_beer@base", name:"base", title:"Медленно пританцовывая", group:"Анимации танцев:"},
             { dict:"anim@amb@nightclub@dancers@crowddance_facedj@", name:"hi_dance_facedj_09_v1_female^1", title:"Танец на месте", group:"Анимации танцев:"},
@@ -341,7 +341,7 @@ let menu = new Vue({
             { dict:"anim@amb@nightclub@lazlow@hi_chair@", name:"seatedidle_hi_13_armswirl_laz", title:"Танец 13", group:"Анимации танцев:"},
             { dict:"anim@amb@nightclub@lazlow@hi_chair@", name:"seatedidle_hi_11_handpump_laz", title:"Танец 14", group:"Анимации танцев:"},
         
-            { dict:"amb@prop_human_muscle_chin_ups@male@base", name:"base", title:"Подтягивание", group:"Анимации спорта:"},
+            //{ dict:"amb@prop_human_muscle_chin_ups@male@base", name:"base", title:"Подтягивание", group:"Анимации спорта:"},
             { dict:"amb@world_human_yoga@female@base", name:"base_c", title:"Йога Ж", group:"Анимации спорта:"},
             { dict:"amb@world_human_yoga@male@base", name:"base_a", title:"Йога М", group:"Анимации спорта:"},
             { dict:"amb@world_human_muscle_flex@arms_at_side@idle_a", name:"idle_a", title:"Мускулы", group:"Анимации спорта:"},
@@ -361,7 +361,7 @@ let menu = new Vue({
             { dict:"amb@world_human_muscle_free_weights@male@barbell@base", name:"base", title:"Тягать штангу", group:"Анимации спорта:"},
             { dict:"amb@world_human_muscle_flex@arms_at_side@idle_a", name:"idle_c", title:"Мускулы", group:"Анимации спорта:"},
         
-            { dict:"timetable@amanda@ig_9", name:"ig_9_base_amanda", title:"Руки на талию", group:"Анимации на месте:"},
+            //{ dict:"timetable@amanda@ig_9", name:"ig_9_base_amanda", title:"Руки на талию", group:"Анимации на месте:"},
             { dict:"anim@miss@low@fin@vagos@", name:"idle_ped06", title:"Руки за спиной", group:"Анимации на месте:"},
             { dict:"anim@heists@prison_heiststation@cop_reactions", name:"cop_a_idle", title:"Стойка копа", group:"Анимации на месте:"},
             { dict:"anim@heists@heist_corona@single_team", name:"single_team_intro_boss", title:"Выслушивать", group:"Анимации на месте:"},
@@ -382,7 +382,7 @@ let menu = new Vue({
             { dict:"amb@world_human_bum_wash@male@low@base", name:"base", title:"Мыться в озере 4", group:"Анимации на месте:"},
             { dict:"amb@world_human_bum_standing@depressed@base", name:"base", title:"Стойка бомжа", group:"Анимации на месте:"},
         
-            { dict:"anim@mp_player_intupperrock", name:"enter", title:"Рок", group:"Анимации - дразнилки:"},
+            //{ dict:"anim@mp_player_intupperrock", name:"enter", title:"Рок", group:"Анимации - дразнилки:"},
             { dict:"anim@mp_player_intupperfinger", name:"enter", title:"Факи", group:"Анимации - дразнилки:"},
             { dict:"anim@mp_player_intcelebrationmale@dock", name:"dock", title:"Проникновение", group:"Анимации - дразнилки:"},
             { dict:"anim@mp_player_intcelebrationmale@bro_love", name:"bro_love", title:"Братская любовь", group:"Анимации - дразнилки:"},
@@ -402,12 +402,12 @@ let menu = new Vue({
             { dict:"anim@mp_player_intcelebrationpaired@m_m_sarcastic", name:"sarcastic_left", title:"Приклониться 2", group:"Анимации - дразнилки:"},
             { dict:"anim@mp_player_intcelebrationmale@wank", name:"wank", title:"Ловите!", group:"Анимации - дразнилки:"},
         
-            { dict:"amb@code_human_wander_texting@male@base", name:"static", title:"В планшете", group:"Анимации для гаджетов:"},
+            //{ dict:"amb@code_human_wander_texting@male@base", name:"static", title:"В планшете", group:"Анимации для гаджетов:"},
         
-            { dict:"mp_suicide", name:"pistol", title:"Застрелиться", group:"Анимации суицидов:"},
+            //{ dict:"mp_suicide", name:"pistol", title:"Застрелиться", group:"Анимации суицидов:"},
             { dict:"mp_suicide", name:"pill", title:"Съесть таблетку", group:"Анимации суицидов:"},
         
-            { dict:"random@arrests", name:"idle_2_hands_up", title:"Поднять руки", group:"Анимации копов:"},
+            //{ dict:"random@arrests", name:"idle_2_hands_up", title:"Поднять руки", group:"Анимации копов:"},
             { dict:"anim@mp_player_intincarsalutestd@ds@", name:"idle_a", title:"Отдать честь", group:"Анимации копов:"},
             { dict:"amb@world_human_cop_idles@female@idle_b", name:"idle_e", title:"Сложить руки", group:"Анимации копов:"},
             { dict:"amb@world_human_cop_idles@female@idle_b", name:"idle_d", title:"Руки на поясе", group:"Анимации копов:"},
@@ -416,16 +416,16 @@ let menu = new Vue({
             { dict:"amb@medic@standing@timeofdeath@base", name:"base", title:"Блокнот 1", group:"Анимации копов:"},
             { dict:"amb@medic@standing@timeofdeath@enter", name:"enter", title:"Блокнот 2", group:"Анимации копов:"},
         
-            { dict:"missfbi3_party_b", name:"walk_inside_male2", title:"Облокотиться на плечо", group:"Анимации отношений:"},
+            //{ dict:"missfbi3_party_b", name:"walk_inside_male2", title:"Облокотиться на плечо", group:"Анимации отношений:"},
             { dict:"missfbi3_party_b", name:"walk_to_balcony_male2", title:"Обнять", group:"Анимации отношений:"},
         
-            { dict:"mini@repair", name:"fixing_a_ped", title:"Чинить 1", group:"Анимации механиков:"},
+            //{ dict:"mini@repair", name:"fixing_a_ped", title:"Чинить 1", group:"Анимации механиков:"},
             { dict:"mini@repair", name:"fixing_a_player", title:"Чинить 2", group:"Анимации механиков:"},
             { dict:"amb@world_human_maid_clean@", name:"idle_c", title:"Протирать 1", group:"Анимации механиков:"},
             { dict:"amb@world_human_maid_clean@", name:"idle_d", title:"Протирать 2", group:"Анимации механиков:"},
             { dict:"amb@world_human_maid_clean@", name:"idle_e", title:"Протирать 3", group:"Анимации механиков:"},
         
-            { dict:"amb@world_human_musician@bongos@male@base", name:"base", title:"Бонго", group:"Анимации музыки:"},
+            //{ dict:"amb@world_human_musician@bongos@male@base", name:"base", title:"Бонго", group:"Анимации музыки:"},
             { dict:"amb@world_human_musician@guitar@male@base", name:"base", title:"Гитара 1", group:"Анимации музыки:"},
             { dict:"amb@world_human_musician@guitar@male@idle_a", name:"idle_c", title:"Гитара 2", group:"Анимации музыки:"},
             { dict:"amb@world_human_musician@guitar@male@idle_a", name:"idle_b", title:"Гитара 3", group:"Анимации музыки:"}        

@@ -122,6 +122,10 @@
 {
     margin-top:20px;
 }
+.wrapper .property-wrapper .car-wrap.disabled
+{
+    
+}
 .wrapper .property-wrapper .car-wrap .title
 {
     text-align: center;
