@@ -4,22 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="fonts/font.css">
     <link rel="stylesheet" href="css/fontawesome.min.css">
     <link rel="stylesheet" href="css/donate.css">
 </head>
 <body>
-    <div class="container">
-        <div class="wrapper">
+    <div class="container">        
+        <div class="wrapper">                       
+        <div class="mask"></div>
+            <div class="close-but" id="closeMenu"><i class="fas fa-times"></i></div>    
+            <div class="inform-popup">
+                <div class="title">Подробная информация</div>
+                <div class="close-but" id="closePopup"><i class="fas fa-times"></i></div>
+                <div class="inner-wrapper">
+                    <div id="main-info">
+                        <div class="vip-image"></div>
+                        <ul>
+                            <li id="vip-level"><span class="back">Уровень VIP:</span><span class="front"></span></li>
+                            <li id="validity"><span class="back">Срок действия:</span><span class="front"></span></li>
+                        </ul>
+                    </div>
+                    <div id="add-info">
+                        <ul></ul>
+                    </div>
+                    <div id="cost-info">
+                        <img src="img/donate/coin.png" alt="">
+                        <span class="karma-count"></span>
+                        <span class="text">кармы</span>
+                    </div>
+                    <div class="button-wrapper">
+                        <div class="button" id="buyVip">Купить</div>
+                        <!-- <div class="button" id="closePopup">Закрыть</div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="notification">
+                <div class="close-but" id="closeNotif"><i class="fas fa-times"></i></div>  
+                <div class="title">Покупка второго шанса</div>
+                <div class="inner-wrapper">
+                    <div id="title-info">
+                        <div class="info">Вы действительно хотите купить второй шанс?</div>
+                    </div>
+                    <div id="cost-info">
+                        <img src="img/donate/coin.png" alt="">
+                        <span class="karma-count"></span>
+                        <span class="text">кармы</span>
+                    </div>
+                </div>
+                <div class="button-wrapper">
+                    <div class="button" id="buySecondChance">Купить</div>
+                </div>
+            </div>
             <div class="status-wrapper">
-                <div class="status-block">
+                <div class="status-block" id="login">
                     <div class="back">Имя пользователя:</div>
-                    <div class="front">Player</div>
+                    <div class="front"></div>
                 </div>
-                <div class="status-block">
+                <div class="status-block" id="email">
                     <div class="back">Почта:</div>
-                    <div class="front">Player@mail.ru</div>
+                    <div class="front"></div>
                 </div>
-                <div class="status-block">
+                <div class="status-block" id="karma">
                     <div class="back">Баланс кармы:</div>
                     <div class="front">
                         <span>0</span>
@@ -36,7 +81,7 @@
                         </div>
                         <div class="property-block"></div>
                     </div>
-                    <div class="property-item active" id="business">
+                    <div class="property-item disabled" id="business">
                         <div class="title">
                             <img src="img/donate/business.png" alt="">
                             Бизнес
@@ -51,15 +96,13 @@
                         <div class="property-block"></div>
                     </div>
                 </div>
-                <div class="car-wrap">
+                <div class="car-wrap disabled">
                     <div class="title">
                         <img src="img/donate/car.png" alt="">
                         Транспорт
                     </div>
                     <div class="car-list">
-                        <div class="car-item active">
-                            <span>Infernus</span>
-                        </div>
+                        <div class="car-item"></div>
                         <div class="car-item"></div>
                         <div class="car-item"></div>
                         <div class="car-item"></div>
@@ -82,6 +125,7 @@
                     </div>
                 </div>
                 <div class="vip-wrap">
+                    <div class="back-but"><i class="fas fa-arrow-circle-left"></i></div>
                     <div class="time-wrap" id="oneWeek">
                         <div class="title">1 неделя</div>
                         <div class="vip-item" id="vip1">
@@ -91,7 +135,7 @@
                             </div>
                             <div class="vip-cost">
                                 Стоимость:
-                                <span>100</span>
+                                <span>200</span>
                                 кармы
                             </div>
                         </div>
@@ -102,7 +146,7 @@
                             </div>
                             <div class="vip-cost">
                                 Стоимость:
-                                <span>100</span>
+                                <span>400</span>
                                 кармы
                             </div>
                         </div>
@@ -113,7 +157,7 @@
                             </div>
                             <div class="vip-cost">
                                 Стоимость:
-                                <span>100</span>
+                                <span>700</span>
                                 кармы
                             </div>
                         </div>
@@ -127,7 +171,7 @@
                             </div>
                             <div class="vip-cost">
                                 Стоимость:
-                                <span>100</span>
+                                <span>300</span>
                                 кармы
                             </div>
                         </div>
@@ -138,7 +182,7 @@
                             </div>
                             <div class="vip-cost">
                                 Стоимость:
-                                <span>100</span>
+                                <span>600</span>
                                 кармы
                             </div>
                         </div>
@@ -149,7 +193,7 @@
                             </div>
                             <div class="vip-cost">
                                 Стоимость:
-                                <span>100</span>
+                                <span>1200</span>
                                 кармы
                             </div>
                         </div>
@@ -163,7 +207,7 @@
                             </div>
                             <div class="vip-cost">
                                 Стоимость:
-                                <span>100</span>
+                                <span>500</span>
                                 кармы
                             </div>
                         </div>
@@ -174,7 +218,7 @@
                             </div>
                             <div class="vip-cost">
                                 Стоимость:
-                                <span>100</span>
+                                <span>1000</span>
                                 кармы
                             </div>
                         </div>
@@ -185,12 +229,16 @@
                             </div>
                             <div class="vip-cost">
                                 Стоимость:
-                                <span>100</span>
+                                <span>2000</span>
                                 кармы
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="error-wrapper">
+                <div class="title">Произошла ошибка! Перезапустить интерфейс?</div>
+                <div class="button" id="restart"><i class="fas fa-sync-alt"></i></div>
             </div>
         </div>
     </div>
