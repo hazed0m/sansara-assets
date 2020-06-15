@@ -200,6 +200,7 @@ let menu = new Vue({
             { text: 'Настройка быстрых эмоций', value: 'settingsAnimShow', status: false},
             { text: 'Настройка клавиш', value: 'keySettingsShow', status: true},
             { text: 'Справка', value: 'informShow', status: true},
+            { text: 'Донат', value: 'donatePanel', status: true},
             { text: 'Настройки аккаунта', value: 'settingsShow', status: true}
         ],
         animations: [
@@ -493,6 +494,9 @@ let menu = new Vue({
         },
         switching (section){
             switch (section) {
+                case 'donatePanel':
+                    mp.trigger('openDonate');
+                    break;
                 case 'passShow':
                     this.settingsShow = false;
                     this.reportShow = false;
@@ -998,12 +1002,10 @@ $(document).ready(function(){
             let currentGroup = $(`.${wrapper} .anim-group[data-group="${$(item).attr('data-group')}"]`);
             if(currentGroup.length > 0)
             {
-                console.log($(item).attr('data-group'), 'if')
                 $(item).appendTo(currentGroup);
             }
             else
             {
-                console.log($(item).attr('data-group'), 'else')
                 let template = `<div class="anim-group-toogle" data-group="${$(item).attr('data-group')}"><span>${$(item).attr('data-group')}</span><i class="fas fa-arrow-down"></i></div>
                                 <div data-group="${$(item).attr('data-group')}" class="anim-group">${item.outerHTML}</div>`;
                 $(this).parent().append(template);
