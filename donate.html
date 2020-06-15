@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-            <div class="notification">
+            <div class="notification" id="confirm-popup">
                 <div class="close-but" id="closeNotif"><i class="fas fa-times"></i></div>  
                 <div class="title">Покупка второго шанса</div>
                 <div class="inner-wrapper">
@@ -53,6 +53,15 @@
                 </div>
                 <div class="button-wrapper">
                     <div class="button" id="buySecondChance">Купить</div>
+                </div>
+            </div>
+            <div class="notification" id="error-popup">
+                <div class="close-but" id="closeNotif"><i class="fas fa-times"></i></div>  
+                <div class="title">Ошибка</div>
+                <div class="inner-wrapper">
+                    <div id="title-info">
+                        <div class="info">У вас недостаточно средств</div>
+                    </div>
                 </div>
             </div>
             <div class="status-wrapper">
@@ -74,7 +83,7 @@
             </div>
             <div class="property-wrapper">
                 <div class="inner-wrap">
-                    <div class="property-item active vip3" id="vip">
+                    <div class="property-item" id="vip">
                         <div class="title">
                             <img src="img/donate/vip.png" alt="">
                             VIP
@@ -88,7 +97,7 @@
                         </div>
                         <div class="property-block"></div>
                     </div>
-                    <div class="property-item active" id="secondChance">
+                    <div class="property-item" id="secondChance">
                         <div class="title">
                             <img src="img/donate/pray.png" alt="">
                             Второй шанс

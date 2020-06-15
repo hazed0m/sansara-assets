@@ -43,12 +43,12 @@ $(document).ready(function(){
     $('#secondChance').on('click',function(){
         if(!$(this).hasClass('active'))
         {
-            $('.notification #cost-info .karma-count').text(secondChance);
-            $('.mask, .notification').fadeIn();
+            $('#confirm-popup #cost-info .karma-count').text(secondChance);
+            $('.mask, #confirm-popup').fadeIn();
         }
     });
     $('#buySecondChance').on('click',function(){
-        $('.mask, .notification').fadeOut();
+        $('.mask, #confirm-popup').fadeOut();
         mp.trigger('buySecondChance');
     });
     //Кнопки закрытия и рестарта интерфейса
@@ -58,14 +58,19 @@ $(document).ready(function(){
     $('#closeMenu').on('click',function(){
         mp.trigger('closeDonate');
     });
-    $('#closeNotif').on('click',function(){
-        $('.mask, .notification').fadeOut();
+    $('.notification .close-but').on('click',function(){
+        $('.mask').fadeOut();
+        $(this).parent().fadeOut();
      });
     $('#closePopup').on('click',function(){
        $('.mask, .inform-popup').fadeOut();
     });
 });
-
+function showNotification(text)
+{
+    $('#error-popup #title-info .info').text(text);
+    $('#error-popup, .mask').fadeIn();
+}
 function pushDonatePanel(login,email,karma,secondChance,vip,vipDate)
 {
     if(login != undefined && email != undefined && karma != undefined && vip != undefined && secondChance != undefined)
