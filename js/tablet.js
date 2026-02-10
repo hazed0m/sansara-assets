@@ -1266,7 +1266,7 @@ function adminInit(admin)
 	$('.law-wrap #road-code-text iframe')[0].contentWindow.postMessage({'Admin': admin},'*');
 }
 function fillOnTheVID(vid){
-    var key = 'AIzaSyAjwDoE7W1HyAr2YhDALfF5Cyb4lcGcRyM';
+    var key = '';
     var urlReq = 'https://www.googleapis.com/youtube/v3/videos?id='+vid+'&key='+key+'&part=snippet,contentDetails,statistics';
     $.ajax({
         type: "GET",
